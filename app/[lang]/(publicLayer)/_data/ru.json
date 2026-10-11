@@ -109,28 +109,11 @@
         "label": "Пеший маршрут (сырой код)",
         "text": "Claude.ai быстро соберёт CRM или магазин. Но связать проекты разных чатов вместе без своего сервера нельзя.",
         "stations": [
-          "чат: CRM",
-          "чат: магазин"
+          "Google",
+          "ChatGPT",
+          "Claude"
         ],
         "deadEnd": "тупик",
-        "products": [
-          {
-            "name": "Claude.ai",
-            "icon": "chat"
-          },
-          {
-            "name": "Claude Code",
-            "icon": "code"
-          },
-          {
-            "name": "Claude Platform",
-            "icon": "platform"
-          },
-          {
-            "name": "Cowork",
-            "icon": "cowork"
-          }
-        ],
         "items": [
           {
             "tag": "Ожидание",
@@ -148,7 +131,9 @@
             "tag": "Тупик",
             "text": "Потоки разных чатов не сливаются: объединение заходит в тупик."
           }
-        ]
+        ],
+        "free": "Free AI",
+        "flag": "Burn the tokens"
       },
       "right": {
         "who": "Fractera $LGX",

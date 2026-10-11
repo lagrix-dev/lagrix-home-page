@@ -1,68 +1,44 @@
 import s from "./landing-agent.module.css"
 
-// «ПЕШИЙ МАРШРУТ» (секция «Fractera vs LLM»). Владелец 2026-09-30: чаты Claude.ai хороши на коротком маршруте, но части
-// проекта из разных мест не связать — «внутри существует ещё одна железная дорога, которая какую-то часть идёт параллельно
-// основной, а потом соединяется с ней в одну, и в момент, когда соединяются, они заходят в тупик». Две станции-чата, два пути
-// параллельно, слияние — и сразу красный упор. Квадрат 600×600, как карта справа, чтобы экраны были одной высоты. Неподвижна
-// намеренно: движение секции — у магистрали справа. Рисует сервер.
-// Правка владельца того же дня: после слияния путь разрушается (рельсы гнутся и рвутся, шпалы разбросаны), и только потом знак
-// тупика; четыре оранжевые сноски — продукты Claude, которыми идут по этому пути. Иконки свои (не знак Claude), цвет — `--claude`.
+// «ПЕШИЙ МАРШРУТ» (секция «Fractera vs LLM»). Владелец 2026-09-30: чаты хороши на коротком маршруте, но части проекта из разных
+// мест не связать — пути идут параллельно, сливаются в один и в момент слияния заходят в тупик. Квадрат 600×600, как карта справа,
+// чтобы экраны были одной высоты. Неподвижна намеренно: движение секции — у магистрали справа. Рисует сервер.
+// Перерисовка владельца 2026-10-11: «три железных дороги расположены друг под другом … отправление идёт от станции: Google, ChatGPT,
+// Claude … оформи его в виде небольшой карточки символизирующей домик … справа нарисовать ещё один домик железнодорожную станцию на
+// которой стоит флаг: Free AI … по железной дороге от станции Claude нарисуй крабика который напоминает символику Claude code …
+// флажок и на этом флажке написано Burn the tokens». Сноски продуктов Claude сняты тем же словом.
 
-// Слияние у x=350: общий путь идёт целым до 408, дальше разрушение нарастает к знаку тупика (526).
-const MAIN = "M40 232 H350"
-const SIDE = "M40 472 H170 C280 472 250 232 350 232"
-const MERGED = "M350 232 H408"
-// Обломки пути после слияния: отрезок и поворот вокруг его середины — чем дальше, тем сильнее.
-const BROKEN: { d: string; turn: number; cx: number; cy: number }[] = [{ d: "M412 233 H432", turn: 3, cx: 422, cy: 233 }]
-// Дальше пути как целого нет: рельсы по одному — разошлись, потом один торчит вверх, другой упал.
+// Три станции слева, пути сходятся у x=350, y=232 — в той же точке, что и прежде.
+const STATION_Y = [112, 232, 392]
+const TRACKS = [
+  "M174 112 H210 C290 112 260 232 350 232",
+  "M174 232 H350",
+  "M174 392 H240 C310 392 270 232 350 232",
+]
+const MERGED = "M350 232 H372"
+// Разрушение после слияния сжато, чтобы справа уместилась станция «Free AI»: обломок, рельсы по одному, шпалы и щебень.
+const BROKEN: { d: string; turn: number; cx: number; cy: number }[] = [{ d: "M376 233 H390", turn: 4, cx: 383, cy: 233 }]
 const RAILS: [number, number, number, number][] = [
-  [438, 227, 462, 223],
-  [440, 240, 460, 248],
-  [470, 226, 486, 206],
-  [468, 252, 490, 268],
+  [394, 228, 410, 225],
+  [395, 238, 409, 244],
+  [416, 227, 426, 212],
+  [415, 249, 429, 260],
 ]
-// Шпалы, ещё лежащие поперёк разошедшихся рельсов.
 const LOOSE_TIES: { x: number; turn: number }[] = [
-  { x: 440, turn: 12 },
-  { x: 452, turn: -20 },
+  { x: 396, turn: 12 },
+  { x: 404, turn: -20 },
 ]
-// Разбросанные шпалы и щебень.
 const DEBRIS: { x: number; y: number; w: number; turn: number }[] = [
-  { x: 478, y: 236, w: 14, turn: 40 },
-  { x: 494, y: 214, w: 12, turn: -60 },
-  { x: 498, y: 256, w: 15, turn: 75 },
-  { x: 462, y: 272, w: 10, turn: -15 },
-  { x: 424, y: 258, w: 9, turn: 20 },
+  { x: 422, y: 236, w: 11, turn: 40 },
+  { x: 432, y: 218, w: 9, turn: -60 },
+  { x: 434, y: 254, w: 11, turn: 75 },
+  { x: 386, y: 254, w: 8, turn: 20 },
 ]
 const GRAVEL: [number, number, number][] = [
-  [506, 240, 2.5],
-  [488, 226, 2],
-  [515, 232, 1.8],
-  [476, 280, 2],
+  [440, 240, 2.2],
+  [428, 228, 1.8],
+  [420, 268, 1.8],
 ]
-
-type Icon = "chat" | "code" | "cowork" | "platform"
-// Иконки 24×24 вокруг нуля — рисуются линией цвета табло внутри светлого кружка.
-const ICON: Record<Icon, React.ReactNode> = {
-  chat: <path d="M-8 -7 h16 a3 3 0 0 1 3 3 v8 a3 3 0 0 1 -3 3 h-7 l-5 4 v-4 h-4 a3 3 0 0 1 -3 -3 v-8 a3 3 0 0 1 3 -3z" />,
-  code: (
-    <>
-      <rect x={-10} y={-8} width={20} height={16} rx={2.5} />
-      <path d="M-6 -3 l3.5 3 -3.5 3 M0 3.5 h5" />
-    </>
-  ),
-  cowork: <path d="M-10 -6 h7 l2 2.5 h11 v10.5 h-20z M4 -10 v4 M2 -8 h4" />,
-  // Claude Platform (platform.claude.com — агенты и приложения на API): стопка слоёв.
-  platform: <path d="M0 -10 L10 -5 L0 0 L-10 -5z M-10 0 L0 5 L10 0 M-10 4.5 L0 9.5 L10 4.5" />,
-}
-// Сноски по порядку данных: где табличка, из какой её стороны идёт линия и в какую точку пути она указывает.
-const CALLOUTS: { box: [number, number]; from: "bottom" | "top" | "left" | "right"; pt: [number, number] }[] = [
-  { box: [40, 60], from: "right", pt: [300, 232] },
-  { box: [300, 70], from: "bottom", pt: [378, 232] },
-  { box: [322, 392], from: "left", pt: [264, 352] },
-  { box: [40, 524], from: "top", pt: [120, 472] },
-]
-const H = 40
 
 function Track({ d, turn }: { d: string; turn?: { a: number; cx: number; cy: number } }) {
   return (
@@ -74,23 +50,61 @@ function Track({ d, turn }: { d: string; turn?: { a: number; cx: number; cy: num
   )
 }
 
-export type Product = { name: string; icon: Icon }
+// Станция-домик: карточка с крышей. `w` — ширина стены, центр по `cx`.
+function House({ cx, cy, w, name }: { cx: number; cy: number; w: number; name?: string }) {
+  const x = cx - w / 2
+  return (
+    <g className={s.lostPlatform}>
+      <path className={s.lostRoof} d={`M${x - 8} ${cy - 22} L${cx} ${cy - 50} L${x + w + 8} ${cy - 22} Z`} />
+      <rect x={x} y={cy - 22} width={w} height={44} rx={3} />
+      {name && <text x={cx} y={cy + 6} textAnchor="middle">{name}</text>}
+    </g>
+  )
+}
 
-export function LostRoute({ stations, deadEnd, products, label }: { stations: [string, string]; deadEnd: string; products?: Product[]; label: string }) {
+// Флаг на древке: полотнище с вырезом-ласточкиным хвостом уходит от древка влево, надпись на полотнище.
+function Flag({ x, top, text, tone }: { x: number; top: number; text: string; tone: "red" | "go" }) {
+  const w = Math.round(text.length * 8.6 + 26)
+  return (
+    <g className={tone === "red" ? s.lostFlagRed : s.lostFlagGo}>
+      <path d={`M${x} ${top} H${x - w} L${x - w + 10} ${top + 13} L${x - w} ${top + 26} H${x} Z`} />
+      <text x={x - w / 2 + 5} y={top + 18} textAnchor="middle">{text}</text>
+    </g>
+  )
+}
+
+// Крабик в духе знака Claude Code: квадратное тело, два глаза, клешни по бокам, четыре ножки; стоит на пути и держит флажок.
+function Crab({ x, y, flag }: { x: number; y: number; flag: string }) {
+  return (
+    <g>
+      <path className={s.lostPole} d={`M${x + 27} ${y - 20} V${y - 100}`} />
+      <Flag x={x + 27} top={y - 100} text={flag} tone="red" />
+      <g className={s.lostCrab}>
+        <rect x={x - 22} y={y - 30} width={44} height={24} />
+        <rect x={x - 32} y={y - 24} width={10} height={10} />
+        <rect x={x + 22} y={y - 24} width={10} height={10} />
+        <rect x={x - 18} y={y - 6} width={5} height={8} />
+        <rect x={x - 8} y={y - 6} width={5} height={8} />
+        <rect x={x + 3} y={y - 6} width={5} height={8} />
+        <rect x={x + 13} y={y - 6} width={5} height={8} />
+      </g>
+      <g className={s.lostCrabEye}>
+        <rect x={x - 11} y={y - 24} width={5} height={8} />
+        <rect x={x + 6} y={y - 24} width={5} height={8} />
+      </g>
+    </g>
+  )
+}
+
+export function LostRoute({ stations, deadEnd, free, flag, label }: { stations: string[]; deadEnd: string; free?: string; flag?: string; label: string }) {
   return (
     <svg className={s.lost} viewBox="0 0 600 600" role="img" aria-label={label}>
-      {[172, 412].map((y, i) => (
-        <g key={y} className={s.lostPlatform}>
-          <rect x={40} y={y} width={170} height={38} rx={3} />
-          <text x={125} y={y + 25} textAnchor="middle">{stations[i]}</text>
-        </g>
-      ))}
-      <Track d={SIDE} />
-      <Track d={MAIN} />
+      {TRACKS.slice(0, stations.length).map((d) => <Track key={d} d={d} />)}
+      {stations.slice(0, STATION_Y.length).map((name, i) => <House key={name} cx={99} cy={STATION_Y[i]} w={150} name={name} />)}
       <Track d={MERGED} />
       {BROKEN.map((b) => <Track key={b.d} d={b.d} turn={{ a: b.turn, cx: b.cx, cy: b.cy }} />)}
       <g className={s.lostLooseTies}>
-        {LOOSE_TIES.map((t) => <rect key={t.x} x={t.x} y={222} width={5} height={26} transform={`rotate(${t.turn} ${t.x + 2.5} 235)`} />)}
+        {LOOSE_TIES.map((t) => <rect key={t.x} x={t.x} y={222} width={5} height={24} transform={`rotate(${t.turn} ${t.x + 2.5} 234)`} />)}
       </g>
       <g className={s.lostBrokenRail}>
         {RAILS.map(([x1, y1, x2, y2]) => <line key={`${x1}-${y1}`} x1={x1} y1={y1} x2={x2} y2={y2} />)}
@@ -102,28 +116,19 @@ export function LostRoute({ stations, deadEnd, products, label }: { stations: [s
         {GRAVEL.map(([cx, cy, r]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={r} />)}
       </g>
       <g className={s.lostStop}>
-        <rect x={526} y={208} width={10} height={48} />
-        <rect x={562} y={208} width={10} height={48} />
-        <rect x={518} y={216} width={62} height={13} />
-        <text x={549} y={290} textAnchor="middle">{deadEnd}</text>
+        <rect x={452} y={210} width={8} height={44} />
+        <rect x={478} y={210} width={8} height={44} />
+        <rect x={446} y={218} width={46} height={12} />
+        <text x={469} y={284} textAnchor="middle">{deadEnd}</text>
       </g>
-      {products?.slice(0, CALLOUTS.length).map((p, i) => {
-        const c = CALLOUTS[i]
-        const [x, y] = c.box
-        const w = Math.round(p.name.length * 9.6 + 56)
-        const [ax, ay] =
-          c.from === "bottom" ? [x + w / 2, y + H] : c.from === "top" ? [x + w / 2, y] : c.from === "left" ? [x, y + H / 2] : [x + w, y + H / 2]
-        return (
-          <g key={p.name} className={s.lostCallout}>
-            <line x1={ax} y1={ay} x2={c.pt[0]} y2={c.pt[1]} />
-            <circle cx={c.pt[0]} cy={c.pt[1]} r={6} className={s.lostCalloutPin} />
-            <rect x={x} y={y} width={w} height={H} rx={H / 2} />
-            <circle cx={x + 22} cy={y + H / 2} r={15} className={s.lostIconBg} />
-            <g transform={`translate(${x + 22} ${y + H / 2})`} className={s.lostIcon}>{ICON[p.icon]}</g>
-            <text x={x + 44} y={y + 26}>{p.name}</text>
-          </g>
-        )
-      })}
+      {free && (
+        <g>
+          <House cx={550} cy={232} w={80} />
+          <path className={s.lostPole} d="M550 182 V104" />
+          <Flag x={550} top={104} text={free} tone="go" />
+        </g>
+      )}
+      {flag && stations.length >= 3 && <Crab x={212} y={384} flag={flag} />}
     </svg>
   )
 }

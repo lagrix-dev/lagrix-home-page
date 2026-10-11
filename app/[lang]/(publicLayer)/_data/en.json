@@ -110,28 +110,11 @@
         "label": "On foot (raw code)",
         "text": "Claude.ai quickly builds a CRM or a shop. But linking projects from different chats without your own server fails.",
         "stations": [
-          "chat: CRM",
-          "chat: shop"
+          "Google",
+          "ChatGPT",
+          "Claude"
         ],
         "deadEnd": "dead end",
-        "products": [
-          {
-            "name": "Claude.ai",
-            "icon": "chat"
-          },
-          {
-            "name": "Claude Code",
-            "icon": "code"
-          },
-          {
-            "name": "Claude Platform",
-            "icon": "platform"
-          },
-          {
-            "name": "Cowork",
-            "icon": "cowork"
-          }
-        ],
         "items": [
           {
             "tag": "Waiting",
@@ -149,7 +132,9 @@
             "tag": "Dead end",
             "text": "Chats never merge: joining their separate streams hits dead ends."
           }
-        ]
+        ],
+        "free": "Free AI",
+        "flag": "Burn the tokens"
       },
       "right": {
         "who": "Fractera $LGX",
