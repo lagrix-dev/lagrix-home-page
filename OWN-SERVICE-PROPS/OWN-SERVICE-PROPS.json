@@ -1,0 +1,27 @@
+{
+  "id": "rtyhh",
+  "name": "rtyhh",
+  "shortDescription": "AGI element rtyhh, born from fractera-item-starter v0.3.73 on 2026-10-11. Its capabilities are written by its agent from Settings → Capabilities description.",
+  "longDescription": "",
+  "accepts": "",
+  "returns": "",
+  "designSkill": "impeccable",
+  "isFracteraArchitecture": true,
+  "framework": "next",
+  "visibility": "network",
+  "calls": [
+    "auth",
+    "data",
+    "config",
+    "design"
+  ],
+  "marketplace": {
+    "listed": false,
+    "price": "",
+    "currency": ""
+  },
+  "nostr": {
+    "tags": [],
+    "description": ""
+  }
+}
