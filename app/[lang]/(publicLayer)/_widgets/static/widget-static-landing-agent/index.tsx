@@ -13,6 +13,7 @@ import s from "./landing-agent.module.css"
 import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
 import { LostRoute } from "./lost-route"
+import { ZeroDay } from "./zero-day"
 import { Walkers } from "./walkers.client"
 import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
@@ -341,6 +342,10 @@ export function LandingAgent({ lang }: { lang: string }) {
           </div>
         </section>
       )}
+
+      {/* 453 (владелец 2026-10-11): «Инфраструктура нулевого дня» — после «Fractera vs LLM», над справочным бюро; сюда ведёт
+          ссылка подзаголовка первого экрана (#zero-day). */}
+      {x.zeroDay && <ZeroDay title={x.zeroDay.title} text={x.zeroDay.text} art={x.zeroDay.art} />}
 
       {/* 348–349 (владелец 2026-09-30): справочное бюро — третья секция снизу, над «Конвейером децентрализованной разработки»
           («конвейер … должен быть под новой секцией справочного бюро»). */}

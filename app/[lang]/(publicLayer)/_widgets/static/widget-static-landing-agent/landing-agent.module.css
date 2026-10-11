@@ -1131,3 +1131,66 @@
 .lostBuddy rect { fill: oklch(0.82 0.1 230); }
 .lostRobot path, .lostRobot rect { fill: var(--go); }
 .lostRobotLine { fill: none !important; stroke: var(--go); stroke-width: 3; stroke-linecap: round; }
+
+/* ── «Инфраструктура нулевого дня» (шаг 453, владелец 2026-10-11, навык impeccable) ─────────────────────────────────────────
+   Светлый пол вокзала; по краям — патруль (форма цвета табло, кокарды и столбик ограждения — цвет плаката), в центре — тёмная
+   камера: текст читается сквозь решётку, контраст приглушён, но не ниже 4.5:1. Телефон: левая группа на четверть ширины,
+   высоту ряда задают офицеры, текст прокручивается внутри камеры. */
+.zeroDay { padding: 4rem 0 4.5rem; scroll-margin-top: 4rem; border-top: 6px solid var(--ink); }
+.zeroTitle {
+  text-align: center; font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1;
+  text-wrap: balance;
+}
+.zeroGrid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, 1fr); gap: 1.25rem; align-items: end;
+  margin-top: 2.5rem;
+}
+.zeroArt { min-width: 0; }
+.zeroSvg { display: block; width: 100%; height: auto; }
+.zeroMirror { transform: scaleX(-1); }
+.zeroShadow { fill: color-mix(in oklab, var(--ink) 14%, transparent); }
+.zeroUniform { fill: var(--board); }
+.zeroTrousers { fill: var(--board-deep); }
+.zeroDark { fill: var(--ink); }
+.zeroGold { fill: var(--poster); }
+.zeroShirt { fill: oklch(from var(--primary) 0.86 0.05 h); }
+.zeroSkin { fill: oklch(0.76 0.07 55); }
+.zeroSkinAlt { fill: oklch(0.83 0.05 45); }
+.zeroHair { fill: oklch(0.34 0.05 45); }
+.zeroLips { fill: oklch(0.6 0.13 20); }
+.zeroLine { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; }
+.zeroDog { fill: oklch(0.69 0.11 65); }
+.zeroDogDeep { fill: oklch(0.57 0.1 58); }
+.zeroDogBlack { fill: oklch(0.22 0.02 60); }
+.zeroCell {
+  position: relative; align-self: center; padding: 2.4rem 2.1rem; background: var(--board); border: 4px solid var(--board-deep);
+  border-radius: var(--corner); box-shadow: 0 24px 50px -28px var(--shade);
+}
+/* Решётка поверх текста: прутья с бликом и тенью, сверху и снизу — поперечины. */
+.zeroCell::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background:
+    linear-gradient(180deg, var(--board-deep) 0 10px, transparent 10px calc(100% - 10px), var(--board-deep) calc(100% - 10px)),
+    repeating-linear-gradient(90deg, transparent 0 32px, oklch(from var(--board) calc(l + 0.22) 0.03 h) 32px 34px, oklch(from var(--board) calc(l - 0.12) c h) 34px 38px);
+  opacity: 0.85;
+}
+.zeroLock {
+  position: absolute; z-index: 1; top: -1.15rem; left: 50%; transform: translateX(-50%);
+  display: grid; place-items: center; width: 2.3rem; height: 2.3rem; background: var(--poster); color: var(--ink);
+  border-radius: var(--tile-corner); box-shadow: 0 6px 14px -6px var(--shade);
+}
+.zeroText {
+  max-width: 62ch; margin-inline: auto; font-family: var(--text); font-weight: 500; font-size: 1.15rem; line-height: 1.6;
+  color: color-mix(in oklab, var(--chalk) 64%, var(--board));
+}
+.zeroText p + p { margin-top: 0.9rem; }
+.zeroText::selection, .zeroText p::selection { background: var(--poster); color: var(--ink); }
+@media (max-width: 720px) {
+  .zeroGrid { grid-template-columns: 25% minmax(0, 1fr); gap: 0.75rem; align-items: stretch; }
+  .zeroArtRight { display: none; }
+  .zeroArt { height: 22rem; overflow: hidden; }
+  .zeroArt .zeroSvg { width: auto; height: 100%; }
+  .zeroCell { height: 22rem; display: flex; flex-direction: column; padding: 1.6rem 0.4rem 1rem 1rem; }
+  .zeroText { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-right: 0.6rem; font-size: 1rem; }
+  .zeroLock { top: 0.35rem; width: 1.9rem; height: 1.9rem; }
+}

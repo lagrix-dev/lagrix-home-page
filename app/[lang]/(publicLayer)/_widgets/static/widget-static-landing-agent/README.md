@@ -89,3 +89,18 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   answers). The door passes only plain text of the history (✗ useChat's OpenAI metadata made the second turn fail). Every landing
   button (red CTAs, the portal «Жми», the chat's end button) leads to `#help-desk`; the procedure ends at the fork of
   `github.com/fractera/agi`. Words — `landing.helpDesk` of the home page data.
+
+## Step 453 (2026-10-11): mission concept
+
+- **Lost route** (`lost-route.tsx`): the station behind the dead end flies the flag «AI Freedom»; each left station has its agent with a
+  flag — Google: an Android-style robot «I'm in charge», ChatGPT: a light-blue two-legged buddy «Max dependency», Claude: the Claude
+  Code crab «Burn the tokens». Words — `landing.compare.left.flags`, `landing.compare.left.free`.
+  Attribution: the robot is our own drawing in the spirit of the Android robot, which is reproduced or modified from work created and
+  shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.
+- **First screen**: the plate is the H1 («Open Source …»); `landing.titleSubLink` turns part of the subtitle into a link in the
+  `--poster` inversion (like the «?») to `#zero-day`; the «?» explains why to run a super-node at the start (mechanics of Lagrix
+  documents 05/06/09 only, no promise of income); `hero.cta` leads to `github.com/lagrix-dev/lagrix` and gets the GitHub icon.
+- **Zero-day infrastructure** (`zero-day.tsx`, `#zero-day`): after «Fractera vs LLM», above the help desk. Mirrored patrols (officer in
+  a peaked cap, a yellow barrier post, a policewoman, a German Shepherd with the sloped back) around a dark cell whose text reads
+  through bars. Phone (≤ 720 px): only the left group, a quarter of the width, the row height is the officers' height, text scrolls
+  inside the cell. Words — `landing.zeroDay`.
