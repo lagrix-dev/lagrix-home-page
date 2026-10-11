@@ -133,8 +133,12 @@
             "text": "Chats never merge: joining their separate streams hits dead ends."
           }
         ],
-        "free": "Free AI",
-        "flag": "Burn the tokens"
+        "free": "AI Freedom",
+        "flags": [
+          "I'm in charge",
+          "Max dependency",
+          "Burn the tokens"
+        ]
       },
       "right": {
         "who": "Fractera $LGX",

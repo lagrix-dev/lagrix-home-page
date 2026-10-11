@@ -312,7 +312,7 @@ export function LandingAgent({ lang }: { lang: string }) {
                   </div>
                   <div data-block="ryu19" className={s.screenArt}>
                     {tone === "off"
-                      ? <LostRoute stations={x.compare!.left.stations} deadEnd={x.compare!.left.deadEnd} free={x.compare!.left.free} flag={x.compare!.left.flag} label={x.compare!.left.label} />
+                      ? <LostRoute stations={x.compare!.left.stations} deadEnd={x.compare!.left.deadEnd} free={x.compare!.left.free} flags={x.compare!.left.flags} label={x.compare!.left.label} />
                       : <TransitMap hub={x.compare!.right.hub} here={x.compare!.right.here} stations={x.compare!.right.stations} ring={x.compare!.right.ring} label={x.compare!.mapLabel} />}
                   </div>
                   <p data-block="txccg" className={s.screenText}>{side.text}</p>

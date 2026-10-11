@@ -1114,8 +1114,12 @@
 .lostRoof { fill: var(--board-deep); stroke: var(--chalk); stroke-width: 2; stroke-linejoin: round; }
 .lostPole { stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; }
 .lostFlagRed path { fill: var(--signal); }
-.lostFlagRed text { fill: var(--chalk); font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+.lostFlagRed text { fill: var(--chalk); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
 .lostFlagGo path { fill: var(--go); }
-.lostFlagGo text { fill: var(--ink); font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+.lostFlagGo text { fill: var(--ink); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
 .lostCrab rect { fill: var(--claude); }
-.lostCrabEye rect { fill: var(--ink); }
+.lostEye rect, .lostEye circle { fill: var(--ink); }
+/* Агенты станций (2026-10-11): ChatGPT — светло-голубой, Google — Android цвета сигнала «go». */
+.lostBuddy rect { fill: oklch(0.82 0.1 230); }
+.lostRobot path, .lostRobot rect { fill: var(--go); }
+.lostRobotLine { fill: none !important; stroke: var(--go); stroke-width: 3; stroke-linecap: round; }
