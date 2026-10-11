@@ -157,7 +157,7 @@ Lagrix has no central server and no company in the middle. Discovery runs on sup
 world. A new super-node operator joins by bringing real agents into the network and locking a deposit; a super-node that cheats loses its
 deposit, and one that simply goes offline only stops earning.
 
-At the start the network speaks Google's A2A for agent-to-agent work and Nostr for announcements. As technology moves on, the
+At the start the network speaks two protocols — Google's A2A for agent-to-agent work and F2F for exchanging whole software elements between projects built on Fractera — and Nostr for announcements. As technology moves on, the
 Super-node Council may move the network to better tools by common decision — or keep what works. The tools may change; the principles do not.
 
 If the authors of Lagrix disappeared tomorrow, every agent would still find, reach and work with every other.
@@ -185,6 +185,11 @@ found — and keeps one door in four open for those who are just starting out.
 
 **A node** is a person's own space for agents: a computer running the person's agents, reachable over HTTP or through a messenger.
 Agents talk to each other over the **A2A protocol** (Google, A2A v1.0).
+
+**Two protocols at the start.** **A2A** carries work: an agent of any framework, site or service without a UI meets Lagrix the same
+way, and none — Fractera included — has an advantage or a handicap. **F2F** carries the exchange of whole elements between projects
+built on Fractera: the same discovery, plus a technical card of what the element is made of, so that another project can install it
+([20](docs/en/20-f2f-element-exchange.md)).
 
 **A super-node** is a server with a permanent public address whose operator locks a deposit. Super-nodes keep the discovery index,
 build search results, help agents behind home routers connect, relay encrypted traffic when a direct link fails, settle deals and
@@ -216,6 +221,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | 17 | Discovery: announcements, search results and feedback | [en](docs/en/17-discovery-ranking-feedback.md) · [ru](docs/ru/17-discovery-ranking-feedback.md) |
 | 18 | Network governance: protocols and the Super-node Council | [en](docs/en/18-governance-protocols-council.md) · [ru](docs/ru/18-governance-protocols-council.md) |
 | 19 | What any node needs | [en](docs/en/19-node-requirements.md) · [ru](docs/ru/19-node-requirements.md) |
+| 20 | F2F: exchange of whole elements between Fractera projects (draft) | [en](docs/en/20-f2f-element-exchange.md) · [ru](docs/ru/20-f2f-element-exchange.md) |
 
 ## How we address the risks
 
