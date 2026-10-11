@@ -48,12 +48,12 @@
     {
       "kind": "block-section-head",
       "id": "under-the-hood",
-      "title": "Reserve the launch of your super-node",
+      "title": "«Super-node» station",
       "bid": "ubj4n"
     },
     {
       "kind": "text-p",
-      "text": "Super-nodes hold the Lagrix network together: they keep the discovery table, connect agents and carry settlement. The first operators join on the easiest terms, and a place, once taken, reopens only on the terms it was taken on. Follow the launch on GitHub and take your place among the first.",
+      "text": "Valid for one operator. No changes en route.",
       "bid": "tr7cu"
     },
     {
@@ -78,20 +78,24 @@
       "A seat on the Super-node Council"
     ],
     "ticket": {
-      "kicker": "Invitation for super-node operators",
+      "kicker": "Boarding pass · Lagrix network",
       "serial": "No. $LGX-0001",
       "fields": [
         {
-          "label": "Operator",
-          "value": "You"
+          "label": "Passenger",
+          "value": "Operator"
         },
         {
-          "label": "Launch",
+          "label": "Departure",
           "value": "End of 2026"
         },
         {
           "label": "Class",
-          "value": "Super-node, first wave"
+          "value": "First wave"
+        },
+        {
+          "label": "Luggage",
+          "value": "A powerful computer or a VPS server"
         }
       ],
       "keep": "Keep until the network launches",
@@ -102,6 +106,21 @@
       "reserve": {
         "label": "Reserve on GitHub",
         "href": "https://github.com/lagrix-dev/lagrix"
+      },
+      "route": {
+        "fromLabel": "From",
+        "from": "Your computer",
+        "toLabel": "To"
+      },
+      "rules": {
+        "title": "Rules of travel",
+        "items": [
+          "Boarding by the number of passengers you bring: the first operator needs one, the fiftieth about a thousand.",
+          "The deposit for your seat comes back in parts, as your passengers make their trips.",
+          "Delays are not fined: a stop costs you only the income of that time.",
+          "A forged ticket means removal from the route: coins are taken only for proven fraud.",
+          "Early boarding is cheaper: the bar rises for those who come later, and a free seat reopens only on its old terms."
+        ]
       }
     },
     "compare": {
@@ -869,7 +888,7 @@
       "title": "Zero-day infrastructure",
       "text": [
         "Today a handful of corporations own the internet. They hold our money, collect everything they can about us, and decide whose voice the rest of us get to hear.",
-        "Zero-day infrastructure gives the internet back to people. Your site and your AI agent live on your own computer, find the people they need on their own and make deals directly. No company stands between you and the people you work with — ours included."
+        "Zero-day infrastructure gives the internet back to people. Your site and your AI agent live on your own computer, find the people they need on their own and make deals directly. No middleman company stands between you and the people you work with — ours included."
       ],
       "art": "Two police officers and a German Shepherd guarding the locked internet",
       "unlock": "Unlock",

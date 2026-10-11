@@ -261,7 +261,24 @@ export function LandingAgent({ lang }: { lang: string }) {
                   <span className={s.ticketSerial}>{x.ticket.serial}</span>
                 </p>
               )}
-              <h2 data-block="lm51s" className={s.ticketTitle}>{hood.title}</h2>
+              {/* 454-7 (владелец 2026-10-12): «билет на станцию Супер-узловая … для оператора … Багаж … Правила поездки» — анатомия
+                  настоящего билета, информация подаётся косвенно, как на всём сайте: маршрут «откуда → куда», поля, правила мелким
+                  шрифтом. Станция назначения — заголовок секции (H2). */}
+              {x.ticket?.route ? (
+                <div data-block="tr454" className={s.ticketRoute}>
+                  <div data-block="dvsv0" className={s.routeEnd}>
+                    <span className={s.routeLabel}>{x.ticket.route.fromLabel}</span>
+                    <span className={s.routeFrom}>{x.ticket.route.from}</span>
+                  </div>
+                  <span className={s.routeTrack} aria-hidden="true"><TrainFront className="size-6" strokeWidth={2.2} /></span>
+                  <div data-block="m8cn3" className={s.routeEnd}>
+                    <span className={s.routeLabel}>{x.ticket.route.toLabel}</span>
+                    <h2 data-block="lm51s" className={s.ticketTitle}>{hood.title}</h2>
+                  </div>
+                </div>
+              ) : (
+                <h2 data-block="lm51s" className={s.ticketTitle}>{hood.title}</h2>
+              )}
               {hood.texts.map((t, i) => <p data-block="zw1b0" key={i} className={s.ticketText}>{t}</p>)}
               {x.ticket && (
                 <dl className={s.ticketFields}>
@@ -273,13 +290,13 @@ export function LandingAgent({ lang }: { lang: string }) {
                   ))}
                 </dl>
               )}
-              {/* 453-9 (владелец 2026-10-12): билет — приглашение операторам супер-узлов; бронь — на GitHub (его выбор «Кнопка → GitHub»). */}
-              {x.ticket?.reserve && (
-                <a data-block="tk453" href={x.ticket.reserve.href} className={`${s.go} ${s.ticketGo}`}>
-                  <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />
-                  {x.ticket.reserve.label}
-                  <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
-                </a>
+              {x.ticket?.rules && (
+                <div data-block="rl454" className={s.ticketRules}>
+                  <p data-block="wblxt" className={s.rulesTitle}>{x.ticket.rules.title}</p>
+                  <ol data-block="z99vx" className={s.rulesList}>
+                    {x.ticket.rules.items.map((r) => <li data-block="ri454" key={r}>{r}</li>)}
+                  </ol>
+                </div>
               )}
             </div>
             <div data-block="o8d2u" className={s.ticketStub}>
@@ -305,6 +322,16 @@ export function LandingAgent({ lang }: { lang: string }) {
               )}
             </div>
           </div>
+          {/* 454-7 (владелец 2026-10-12): «Кнопка ни в коем случае не должна находиться внутри билета, вынеси её наружу». */}
+          {x.ticket?.reserve && (
+            <div data-block="ta454" className={s.actions}>
+              <a href={x.ticket.reserve.href} className={s.go}>
+                <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />
+                {x.ticket.reserve.label}
+                <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
