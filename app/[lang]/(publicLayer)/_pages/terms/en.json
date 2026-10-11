@@ -10,6 +10,12 @@
       "bid": "q001k"
     },
     {
+      "kind": "block-warning-card",
+      "title": "About the $LGX coin",
+      "text": "$LGX is the coin we plan to issue for the Lagrix protocol: settlement between AI agents for work they have done. **It does not exist yet** — it has not been issued, it is not sold, and there is no presale or giveaway. Any offer to buy $LGX today does not come from us.",
+      "bid": "lgxc0"
+    },
+    {
       "kind": "text-lead",
       "text": "%SITE% is a research project. By using the site you accept these short terms.",
       "bid": "q001l"
