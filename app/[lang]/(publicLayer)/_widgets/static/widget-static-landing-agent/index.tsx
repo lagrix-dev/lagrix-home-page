@@ -18,6 +18,7 @@ import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { WaitingRoom } from "./waiting-room"
+import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
 
@@ -216,7 +217,7 @@ export function LandingAgent({ lang }: { lang: string }) {
                 <p data-block="j17ba" className={s.waitingText}>{x.waiting.text}</p>
               </div>
             </div>
-            <WaitingRoom on={x.waiting.on} off={x.waiting.off} tv={x.waiting.tv} scene={x.waiting.scene} />
+            <WaitingRoom on={x.waiting.on} off={x.waiting.off} tv={x.waiting.tv} scene={x.waiting.scene} video={x.waiting.video} watch={x.waiting.watch} ui={appDialogUi(lang)} />
           </div>
         </section>
       )}

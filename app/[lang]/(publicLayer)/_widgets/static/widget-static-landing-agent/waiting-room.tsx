@@ -1,13 +1,13 @@
 import s from "./landing-agent.module.css"
-import { TvSet } from "./tv-set.client"
+import { TvMobile, TvSet } from "./tv-set.client"
+import type { AppDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { ClockHands } from "./clock-hands.client"
-import { TvDrawing } from "./tv-drawing"
 
 // ЗАЛ ОЖИДАНИЯ (владелец 2026-10-01): «изобразить ожидание … схематическое плоское кресло слева, окно и занавеска, убранная книзу и
 // развёрнутая сверху (асимметричная драпировка гардины с кокилье), справа телевизор на ножках, старый ламповый». Домысел агента в мире
 // вокзала (DIRECTION.md): это зал ожидания станции — над креслом и окном висят круглые вокзальные часы, под креслом ковёр.
 // Неподвижная сцена — серверная разметка (видна без JavaScript); живой только телевизор (`tv-set.client.tsx`). Цвета — роли макета.
-export function WaitingRoom({ on, off, tv, scene }: { on: string; off: string; tv: string; scene: string }) {
+export function WaitingRoom({ on, off, tv, scene, video, watch, ui }: { on: string; off: string; tv: string; scene: string; video?: string; watch?: string; ui: AppDialogUi }) {
   return (
     <div data-block="gbreq" className={s.room}>
       <svg viewBox="0 0 1000 400" className={s.roomSvg} role="img" aria-label={scene}>
@@ -47,12 +47,12 @@ export function WaitingRoom({ on, off, tv, scene }: { on: string; off: string; t
         <path className={s.chairLeg} d="M100 330 V348 M320 330 V348" />
       </svg>
       <div data-block="cycgu" className={s.roomTv}>
-        <TvSet on={on} off={off} label={tv} />
+        <TvSet on={on} off={off} label={tv} video={video} watch={watch} ui={ui} />
       </div>
       {/* Узкий экран (владелец 2026-10-01): «диван и окно убери, поставь телевизор в центр, убери кнопку включить, пусть на нём
           всегда горит иконка YouTube с самого начала». Сцена выше скрыта стилем, здесь — неподвижный телевизор с play от сервера. */}
-      <div data-block="tvmob" className={s.roomMobile} role="img" aria-label={tv}>
-        <TvDrawing uid="tvm" phase="play" />
+      <div data-block="tvmob" className={s.roomMobile}>
+        <TvMobile label={tv} video={video} ui={ui} />
       </div>
     </div>
   )
