@@ -116,7 +116,7 @@ export function ZeroDay({ title, text, art }: { title: string; text: string[]; a
           <div data-block="zd4c1" className={s.zeroCell}>
             <span className={s.zeroLock} aria-hidden="true"><Lock className="size-5" strokeWidth={2.4} /></span>
             <div data-block="zd4x1" className={s.zeroText}>
-              {text.map((t) => <p key={t}>{t}</p>)}
+              {text.map((t) => <p data-block="baiqi" key={t}>{t}</p>)}
             </div>
           </div>
           <div data-block="zd4a2" className={`${s.zeroArt} ${s.zeroArtRight}`}><Officers mirror /></div>
