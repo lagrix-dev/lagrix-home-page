@@ -5,7 +5,7 @@ import "@fontsource/barlow/400.css"
 import "@fontsource/barlow/500.css"
 import "@fontsource/barlow/600.css"
 import "@fontsource-variable/jetbrains-mono"
-import { ArrowDown, ArrowRight, ArrowUp, Check, Code, Footprints, MessagesSquare, Ticket, TrainFront } from "lucide-react"
+import { ArrowDown, ArrowRight, ArrowUp, Check, Code, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
 import { landingWords, type LandingExtra } from "./words"
 import { AgentChat } from "./agent-chat.client"
 import { StaticImage } from "@/components/media/static-image.server"
@@ -91,7 +91,14 @@ export function LandingAgent({ lang }: { lang: string }) {
               )}
             </div>
             <p data-block="fh05d" className={s.signSub}>
-              {x.titleSub}
+              {/* 453 (владелец 2026-10-11): «инфраструктуру нулевого дня» — ссылка инверсией цвета темы, как «?», к секции ниже. */}
+              {x.titleSubLink && x.titleSub.includes(x.titleSubLink.text) ? (
+                <>
+                  {x.titleSub.slice(0, x.titleSub.indexOf(x.titleSubLink.text))}
+                  <a href={x.titleSubLink.href} className={s.subLink}>{x.titleSubLink.text}</a>
+                  {x.titleSub.slice(x.titleSub.indexOf(x.titleSubLink.text) + x.titleSubLink.text.length)}
+                </>
+              ) : x.titleSub}
               {/* Слово владельца 2026-09-30: [?] у подзаголовка — как у «От идеи до enterprise-продукта…» на табло. */}
               {x.titleSubHint && (
                 <span className={`${s.hintWrap} ${s.subHint}`}>
@@ -106,6 +113,8 @@ export function LandingAgent({ lang }: { lang: string }) {
                 (слова и адрес подписки — `hero.cta`), на первом экране. */}
             {hero.cta && (
               <a data-block="p342c" href={hero.cta.href} className={`${s.go} ${s.signGo}`}>
+                {/* 453: кнопка ведёт в репозиторий Lagrix — иконка GitHub слева. */}
+                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
                 {hero.cta.label}
                 <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
               </a>
@@ -195,6 +204,7 @@ export function LandingAgent({ lang }: { lang: string }) {
           <div data-block="b5dcb" className={s.actions}>
             {hero.cta && (
               <a href={hero.cta.href} className={s.go}>
+                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
                 {hero.cta.label}
                 <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
               </a>

@@ -10,6 +10,8 @@ type Block = { kind: string; id?: string; title?: string; text?: string; pill?: 
 
 export type LandingExtra = {
   titleSub: string
+  /** 453: часть подзаголовка — ссылка к секции (инверсия цвета темы). */
+  titleSubLink?: { text: string; href: string }
   /** Подсказка [?] к подзаголовку (слово владельца 2026-09-30: «add [?] … like in От идеи до enterprise-продукта»); абзацы — через пустую строку. */
   titleSubHint?: string
   titleSubHintLabel?: string

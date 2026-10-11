@@ -6,11 +6,11 @@
     {
       "kind": "block-hero-centered",
       "pill": "$LGX element",
-      "title": "If you're an indie hacker, a Web3 builder or an AI visionary — you're invited to a private party for the makers of AI corporations.",
+      "title": "If you're an indie hacker, a Web3 builder or an AI visionary — you're invited to a private party for the makers of a fair AI internet.",
       "description": "Not just a site template. It quickly grows into what you need: an agent that solves your tasks, an application, or automation of your business processes. You decide. All you bring is the idea; Fractera $LGX does the rest.",
       "cta": {
         "label": "Look inside",
-        "href": "#help-desk"
+        "href": "https://github.com/lagrix-dev/lagrix"
       },
       "bid": "j7tri"
     },
@@ -192,9 +192,9 @@
     },
     "closingTitle": "Your idea is the only thing missing",
     "closingText": "Use Claude Code, start building and describe what you want. The rest is already here.",
-    "titleSub": "Transfer to zero-day infrastructure: the world of home $LGX servers, smart contracts and automated Web3 orders. Claim your first-emission tokens.",
-    "titleSubHint": "Only in the first season, early users receive reputation tokens simply for launching their first service. These tokens are your mathematical weight in the ecosystem. The more you hold, the higher you rank when Web3 orders are distributed.\n\nThe reward is dynamic: the token pool shrinks with every new participant. Launch your $LGX server today to claim the largest starting stack before the algorithm makes the terms harder.",
-    "titleSubHintLabel": "What are first-emission tokens?",
+    "titleSub": "Transfer to zero-day infrastructure: the world of home $LGX servers, smart contracts and automated Web3 orders. Become a super-node operator.",
+    "titleSubHint": "A super-node keeps the network's discovery table, connects agents and carries settlement. Every paid deal it serves gives it a receipt, and receipts are its attempts at the next block: 49.5% of a block reward goes to the super-node that finds it.\n\nWhy now: the entry bar rises with the network — one brought-in participant for the first operator, on the order of a thousand for the fiftieth — and a vacated place reopens on the terms its operator joined on. The deposit comes back in parts as your participants close deals. Downtime costs only income; coins are taken only for proven fraud. Super-node operators form the Council that chooses the network's protocols.",
+    "titleSubHintLabel": "Why run a super-node at the start?",
     "gate": {
       "routes": [
         "AI agent",
@@ -212,7 +212,7 @@
       "exitTime": "3 min"
     },
     "titleMark": "you're invited",
-    "openSource": "*Open-source* *AI* agent framework for *Web3* development",
+    "openSource": "*Open Source* *AI* agent framework for *Web3* development",
     "outcomes": [
       {
         "name": "Agent",
@@ -858,6 +858,10 @@
       "off": "Turn the TV off",
       "video": "zhkn2p1FQoM",
       "watch": "Watch the video"
+    },
+    "titleSubLink": {
+      "text": "zero-day infrastructure",
+      "href": "#zero-day"
     }
   }
 }

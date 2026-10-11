@@ -227,6 +227,14 @@
 .hintWrap:hover .hint, .hintWrap:focus-within .hint { opacity: 1; visibility: visible; transform: none; }
 /* [?] у подзаголовка на тёмном табло (владелец 2026-09-30): та же подсказка, кнопка — светлым плакатом, чтобы читалась. */
 .subHint { margin-left: 0.6rem; vertical-align: middle; }
+/* 453 (владелец 2026-10-11): ссылка в подзаголовке — инверсия цветом темы, как кнопка «?» рядом. */
+.subLink {
+  padding: 0 0.22em; background: var(--poster); color: var(--ink); border-radius: var(--tile-corner);
+  text-decoration: none; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  transition: background 0.25s var(--ease);
+}
+.subLink:hover { background: color-mix(in oklab, var(--poster) 82%, var(--chalk)); }
+.subLink:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
 .subHint .hintBtn { background: var(--poster); color: var(--ink); }
 .hintPara { display: block; }
 .hintPara + .hintPara { margin-top: 0.6rem; }
