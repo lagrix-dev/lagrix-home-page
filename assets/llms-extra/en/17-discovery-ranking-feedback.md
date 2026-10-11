@@ -111,7 +111,14 @@ contract FeedbackRegistry {
 }
 ```
 
-## 17.6 What discovery does not have
+## 17.6 Announcements of whole elements (F2F)
+
+An element of a project built on Fractera is announced the same way as an agent — a signed announcement, the same super-nodes,
+the same results by the rules of 17.2 and the same feedback. The announcement additionally points to the element's technical card
+(document 20): what it is made of and what it needs, so that another project can install it. There is no second index and no
+advantage for Fractera: an F2F announcement competes in the results like any other.
+
+## 17.7 What discovery does not have
 
 - No hidden algorithm and no overall "quality" score the network assigns on people's behalf.
 - No platform deciding whom to show: the rules of 17.2 are the same for every super-node and change only within document 18.

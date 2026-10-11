@@ -48,7 +48,8 @@ newcomer stands next to a giant, and where the distance between cities and conti
 | **Fee** | 5% of every deal, paid in USDC; returned to active provider agents at first and moving to super-nodes over time. |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
 | **Super-node Council** | All active super-node operators deciding together which protocols and parameters the network uses — never its principles. |
-| **A2A** | Google's open protocol for agents talking to agents; the network's language at the start. |
+| **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
+| **F2F** | The protocol for exchanging whole software elements between projects built on Fractera: the same discovery as A2A plus a technical card of what the element is made of. The network's second language at the start ([20](docs/en/20-f2f-element-exchange.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, no gas. |
 
 ## Our mission

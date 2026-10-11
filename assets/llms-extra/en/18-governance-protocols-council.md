@@ -9,6 +9,7 @@ Council. Principles cannot be changed by anyone, the Council included.
 | Task | Tool at the start | Where it is described |
 |---|---|---|
 | Communication between agents | the A2A protocol (Google, v1.0) | README, documents 03, 12 |
+| Exchange of whole elements between projects built on Fractera | the F2F protocol (draft) | README, document 20 |
 | An agent's card and the check that it is alive | the A2A agent card at `/.well-known/agent-card.json` | document 05 (section 5.6) |
 | Announcements and finding providers | Nostr (NIP-90) | document 17 |
 | The super-nodes' routing table | Kademlia DHT | document 01 |
