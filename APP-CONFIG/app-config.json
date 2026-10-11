@@ -108,5 +108,6 @@
   "analytics": {
     "enabled": true,
     "googleAnalyticsId": "G-HFXZJF2051"
-  }
+  },
+  "iconMark": "/icon-mark.svg"
 }
