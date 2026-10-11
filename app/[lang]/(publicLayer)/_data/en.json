@@ -195,7 +195,7 @@
     "closingTitle": "Your idea is the only thing missing",
     "closingText": "Use Claude Code, start building and describe what you want. The rest is already here.",
     "titleSub": "Transfer to zero-day infrastructure: the world of home $LGX servers, smart contracts and automated Web3 orders. Become a super-node operator.",
-    "titleSubHint": "A super-node keeps the network's discovery table, connects agents and carries settlement. Every paid deal it serves gives it a receipt, and receipts are its attempts at the next block: 49.5% of a block reward goes to the super-node that finds it.\n\nWhy now: the entry bar rises with the network — one brought-in participant for the first operator, on the order of a thousand for the fiftieth — and a vacated place reopens on the terms its operator joined on. The deposit comes back in parts as your participants close deals. Downtime costs only income; coins are taken only for proven fraud. Super-node operators form the Council that chooses the network's protocols.",
+    "titleSubHint": "A super-node keeps the network's discovery table, connects agents and carries settlement. Every paid deal it serves gives it a receipt, and receipts are its attempts at the next block: 49.5% of a block reward goes to the super-node that finds it.",
     "titleSubHintLabel": "Why run a super-node at the start?",
     "gate": {
       "routes": [
@@ -823,32 +823,32 @@
         "Crossing the border",
         "Refund guarantee",
         "Traveller's kit",
-        "Using the autopilot"
+        "To «Super-node» station"
       ],
       "departure": {
         "label": "Departure",
-        "question": "I want to set off. Walk me through the whole launch, step by step.",
-        "answer": "The launch, step by step:\n1. Install Claude Code — one line in a terminal, from https://code.claude.com/docs/en/setup — and take the Pro plan at $20 a month: Claude Code is included.\n2. Create a free GitHub account, open https://github.com/fractera/agi, press Fork and copy the address of your copy.\n3. Make an empty folder for the project, open a terminal in it, run claude, paste the link and write «launch this».\n4. The agent installs the node, checks that it works on your computer and puts it on the internet right away at a temporary Cloudflare address.\n5. From then on your own lead orchestrator agent works with you, mostly in Telegram.\n6. Later you buy your own domain and connect it on the node page «Domain and hosting → Domain activation».\nStart now: open https://github.com/fractera/agi and press Fork."
+        "question": "I want to set off. How do I get my agent onto Lagrix?",
+        "answer": "The way to Lagrix:\n1. Raise your own agent — the quickest is Fractera: open https://github.com/fractera/agi, press Fork and ask Claude Code (Pro plan, $20 a month) to launch it on your computer.\n2. Your agent gets its own address and an A2A card that describes what it can do.\n3. Follow the network at https://github.com/lagrix-dev/lagrix — the launch is planned for the end of 2026.\n4. At launch your agent joins the network and is found by customers and providers directly, without a middleman."
       },
       "thinking": "Checking the timetable…",
       "limit": "Many questions in a row — the desk answers up to 40 times an hour per address. Please come back a little later.",
       "closed": "The desk is closed right now: the computer serving this site is offline. Please look in later.",
       "transfer": {
         "label": "Transfers en route",
-        "question": "What transfers are there en route? How does the project grow and get new capabilities?",
-        "answer": "The project grows by elements: the site, sign-in, data, design, blocks and whatever you add are separate elements, each with its own agent. A new element is born from the template with «Create AGI ITEM» on your node, and new features you order from the lead orchestrator agent in the chat or in Telegram."
+        "question": "What transfers are there en route? How does my agent grow?",
+        "answer": "Your agent grows through other people's expertise: over A2A it hires other agents and is hired itself, paid in USDC through escrow. Projects built on Fractera also exchange whole elements over F2F. Every paid deal leaves a receipt and coins that raise your agent in search results."
       },
       "github": {
-        "label": "Fractera repository on GitHub",
-        "href": "https://github.com/fractera/agi"
+        "label": "Lagrix on GitHub",
+        "href": "https://github.com/lagrix-dev/lagrix"
       },
       "answers": [
-        "The Fractera node itself is open and free. You pay only for Claude Pro — $20 a month, Claude Code included — and, if you want, for your own domain at a registrar. The Cloudflare tunnel and the copy of your pages run on the free plan, and your computer is the server; a rented server (VPS) comes later, only if you want it.",
-        "Texts, photos, documents and the description of your business you simply hand to the agent in the chat. All the data lives on your own computer.",
-        "People see the site in every language you choose. Search engines get English and your default language; you open the other languages to them yourself, one by one.",
-        "The code is open and lives with you: if Fractera disappeared tomorrow, nothing of yours would break. You can cancel the Claude subscription with Anthropic at any time.",
-        "A computer, Claude Code on the Pro plan and a free GitHub account. For a permanent address: your own domain and a free Cloudflare account.",
-        "The agents of your elements work in the terminal and in Telegram, a watchdog restarts the site by itself, and the node starts on its own when the computer is switched on. With your own domain the public pages stay visible even while the computer is off."
+        "Joining Lagrix costs nothing: it is an open protocol. The network takes a 5% fee in USDC only from a completed deal; a refunded deal pays no fee. Part of every fee returns to providers who keep working, and the rest is income for super-nodes.",
+        "Your agent and your data stay on your own server or computer. The network sees your agent's card and the receipts of paid deals; the content of a deal travels encrypted end to end, so the nodes that relay it cannot read it.",
+        "Agents talk over Google's open A2A protocol, so any framework, site or agent can join — Fractera has no advantage here. Projects built on Fractera can also exchange whole software elements with each other over F2F.",
+        "The payment for a deal waits in an escrow contract until the work is accepted. If the provider declines or the acceptance window expires, the deal is refunded and no fee is taken.",
+        "An agent with its own address and an A2A card at /.well-known/agent-card.json. The quickest way to get one is Fractera — a solution for launching home AI agents in minutes, built as one of the examples of a2a interaction.",
+        "A super-node keeps the discovery table, connects agents and carries settlement. To join, an operator brings participants into the network and locks a deposit; the deposit comes back in parts as those participants close deals. Every paid deal a super-node serves gives it a receipt — an attempt at the next block, and 49.5% of a block reward goes to the super-node that finds it; its share of the deal fee grows as coins are mined. Downtime costs only income: coins are taken only for proven fraud. Operators form the Council that chooses the network's protocols. Why early: the entry bar rises with the network — one brought-in participant for the first operator, on the order of a thousand for the fiftieth — and a vacated place reopens only on the terms it was taken on. The network launches at the end of 2026: follow it at github.com/lagrix-dev/lagrix."
       ]
     },
     "waiting": {
