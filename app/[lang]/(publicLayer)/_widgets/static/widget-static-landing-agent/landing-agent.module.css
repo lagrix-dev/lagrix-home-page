@@ -1166,33 +1166,57 @@
   position: relative; align-self: center; padding: 2.4rem 2.1rem; background: var(--board); border: 4px solid var(--board-deep);
   border-radius: var(--corner); box-shadow: 0 24px 50px -28px var(--shade);
 }
-/* Решётка поверх текста: прутья с бликом и тенью, сверху и снизу — поперечины. */
-.zeroCell::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+/* Решётка поверх текста — отдельный слой (453-6), чтобы её можно было отодвинуть: прутья с бликом и тенью, поперечины. */
+.zeroDay { overflow-x: clip; }
+.zeroBarsClip { position: absolute; inset: 0; z-index: 1; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.zeroBars {
+  position: absolute; inset: 0;
   background:
     linear-gradient(180deg, var(--board-deep) 0 10px, transparent 10px calc(100% - 10px), var(--board-deep) calc(100% - 10px)),
     repeating-linear-gradient(90deg, transparent 0 32px, oklch(from var(--board) calc(l + 0.22) 0.03 h) 32px 34px, oklch(from var(--board) calc(l - 0.12) c h) 34px 38px);
-  opacity: 0.85;
+  opacity: 0.85; transition: transform 1.1s var(--ease);
 }
+/* Замок — кнопка: при наведении из него выезжает надпись «Разблокировать»; на сенсорном экране она видна сразу. */
 .zeroLock {
-  position: absolute; z-index: 1; top: -1.15rem; left: 50%; transform: translateX(-50%);
-  display: grid; place-items: center; width: 2.3rem; height: 2.3rem; background: var(--poster); color: var(--ink);
-  border-radius: var(--tile-corner); box-shadow: 0 6px 14px -6px var(--shade);
+  position: absolute; z-index: 2; top: -1.15rem; left: 50%; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 0; height: 2.3rem; padding: 0 0.6rem; background: var(--poster); color: var(--ink);
+  border-radius: var(--tile-corner); box-shadow: 0 6px 14px -6px var(--shade); cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; white-space: nowrap;
+  transition: gap 0.35s var(--ease), opacity 0.4s var(--ease) 0.5s, background 0.25s var(--ease);
+}
+.zeroLockLabel { max-width: 0; overflow: hidden; opacity: 0; transition: max-width 0.45s var(--ease), opacity 0.3s var(--ease); }
+.zeroLock:hover, .zeroLock:focus-visible { gap: 0.45rem; background: color-mix(in oklab, var(--poster) 85%, var(--chalk)); }
+.zeroLock:hover .zeroLockLabel, .zeroLock:focus-visible .zeroLockLabel { max-width: 14rem; opacity: 1; }
+.zeroLock:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
+@media (hover: none) {
+  .zeroLock { gap: 0.45rem; }
+  .zeroLockLabel { max-width: 14rem; opacity: 1; }
 }
 .zeroText {
   max-width: 62ch; margin-inline: auto; font-family: var(--text); font-weight: 500; font-size: 1.15rem; line-height: 1.6;
-  color: color-mix(in oklab, var(--chalk) 64%, var(--board));
+  color: color-mix(in oklab, var(--chalk) 64%, var(--board)); transition: color 0.8s var(--ease) 0.4s;
 }
 .zeroText p + p { margin-top: 0.9rem; }
 .zeroText::selection, .zeroText p::selection { background: var(--poster); color: var(--ink); }
+.zeroArtLeft, .zeroArtRight { transition: transform 1.2s var(--ease) 0.25s, opacity 0.9s var(--ease) 0.35s; }
+/* Открыто: решётка уезжает вбок, патрули расходятся — левый влево, правый вправо, — текст светлеет до полного контраста. */
+.zeroGrid[data-open] .zeroBars { transform: translateX(102%); }
+.zeroGrid[data-open] .zeroLock { opacity: 0; pointer-events: none; }
+.zeroGrid[data-open] .zeroText { color: color-mix(in oklab, var(--chalk) 96%, var(--board)); }
+.zeroGrid[data-open] .zeroArtLeft { transform: translateX(-70vw); opacity: 0; }
+.zeroGrid[data-open] .zeroArtRight { transform: translateX(70vw); opacity: 0; }
 @media (max-width: 720px) {
-  .zeroGrid { grid-template-columns: 25% minmax(0, 1fr); gap: 0.75rem; align-items: stretch; }
+  .zeroGrid { grid-template-columns: 25% minmax(0, 1fr); gap: 0.75rem; align-items: stretch; transition: grid-template-columns 0.9s var(--ease) 0.6s, gap 0.9s var(--ease) 0.6s; }
+  .zeroGrid[data-open] { grid-template-columns: 0% minmax(0, 1fr); gap: 0; }
   .zeroArtRight { display: none; }
   .zeroArt { height: 22rem; overflow: hidden; }
   .zeroArt .zeroSvg { width: auto; height: 100%; }
   .zeroCell { height: 22rem; display: flex; flex-direction: column; padding: 1.6rem 0.4rem 1rem 1rem; }
   .zeroText { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-right: 0.6rem; font-size: 1rem; }
-  .zeroLock { top: 0.35rem; width: 1.9rem; height: 1.9rem; }
+  .zeroLock { top: 0.35rem; height: 1.9rem; font-size: 0.95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zeroBars, .zeroLock, .zeroLockLabel, .zeroText, .zeroArtLeft, .zeroArtRight, .zeroGrid { transition: none; }
 }
 
 /* ── Баннер «Запуск — конец 2026» (шаг 453): полупрозрачный плакат с размытием под шапкой, выезжает после 300 px прокрутки. */

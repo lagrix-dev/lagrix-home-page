@@ -1,5 +1,5 @@
-import { Lock } from "lucide-react"
 import s from "./landing-agent.module.css"
+import { ZeroDayStage } from "./zero-day-stage.client"
 
 // «ИНФРАСТРУКТУРА НУЛЕВОГО ДНЯ» (шаг 453, владелец 2026-10-11): слева и справа зеркально — полицейский в фуражке, между ними
 // бордюр другого цвета (столбик ограждения платформы), женщина-полицейский и немецкая овчарка — узнаваемая по наклонной спине:
@@ -106,21 +106,13 @@ function Officers({ label, mirror }: { label?: string; mirror?: boolean }) {
   )
 }
 
-export function ZeroDay({ title, text, art }: { title: string; text: string[]; art: string }) {
+export function ZeroDay({ title, text, art, unlock }: { title: string; text: string[]; art: string; unlock: string }) {
   return (
     <section data-block="zd453" id="zero-day" className={s.zeroDay}>
       <div data-block="zd4w1" className={s.wrap}>
         <h2 data-block="zd4t1" className={s.zeroTitle}>{title}</h2>
-        <div data-block="zd4g1" className={s.zeroGrid}>
-          <div data-block="zd4a1" className={s.zeroArt}><Officers label={art} /></div>
-          <div data-block="zd4c1" className={s.zeroCell}>
-            <span className={s.zeroLock} aria-hidden="true"><Lock className="size-5" strokeWidth={2.4} /></span>
-            <div data-block="zd4x1" className={s.zeroText}>
-              {text.map((t) => <p data-block="baiqi" key={t}>{t}</p>)}
-            </div>
-          </div>
-          <div data-block="zd4a2" className={`${s.zeroArt} ${s.zeroArtRight}`}><Officers mirror /></div>
-        </div>
+        {/* 453-6: сетку держит островок — замок «Разблокировать» отодвигает решётку и разводит патрули. Рисунки — с сервера. */}
+        <ZeroDayStage left={<Officers label={art} />} right={<Officers mirror />} text={text} unlock={unlock} />
       </div>
     </section>
   )

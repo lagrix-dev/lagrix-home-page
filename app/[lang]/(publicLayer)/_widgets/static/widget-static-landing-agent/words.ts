@@ -13,7 +13,7 @@ export type LandingExtra = {
   /** 453: полоса при прокрутке — «Запуск запланирован на конец 2026». */
   launchBanner?: string
   /** 453: секция «Инфраструктура нулевого дня» — заголовок, абзацы за решёткой, подпись картинки. */
-  zeroDay?: { title: string; text: string[]; art: string }
+  zeroDay?: { title: string; text: string[]; art: string; unlock: string }
   /** 453: часть подзаголовка — ссылка к секции (инверсия цвета темы). */
   titleSubLink?: { text: string; href: string }
   /** Подсказка [?] к подзаголовку (слово владельца 2026-09-30: «add [?] … like in От идеи до enterprise-продукта»); абзацы — через пустую строку. */

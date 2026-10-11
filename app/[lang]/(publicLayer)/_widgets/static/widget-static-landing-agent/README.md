@@ -104,3 +104,7 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   a peaked cap, a yellow barrier post, a policewoman, a German Shepherd with the sloped back) around a dark cell whose text reads
   through bars. Phone (≤ 720 px): only the left group, a quarter of the width, the row height is the officers' height, text scrolls
   inside the cell. Words — `landing.zeroDay`.
+- **Unlock** (453-6, `zero-day-stage.client.tsx`): the lock is a button; on hover a label «Unlock» slides out of it (always visible on
+  touch screens). Click: the bars slide aside, the left patrol leaves to the left, the right one to the right, the text brightens to
+  full contrast; on a phone the art column closes. One-way, one state (`data-open` on the grid), all motion in CSS; reduced motion —
+  no animation. Without JavaScript the text still reads through the bars. Words — `landing.zeroDay.unlock`.
