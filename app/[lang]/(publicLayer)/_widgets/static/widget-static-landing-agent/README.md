@@ -108,3 +108,8 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   touch screens). Click: the bars slide aside, the left patrol leaves to the left, the right one to the right, the text brightens to
   full contrast; on a phone the art column closes. One-way, one state (`data-open` on the grid), all motion in CSS; reduced motion —
   no animation. Without JavaScript the text still reads through the bars. Words — `landing.zeroDay.unlock`.
+- **People** (453-8): after the patrols leave, a cook, a locksmith and a teacher (`People` in `zero-day.tsx`) come in from the screen
+  edges onto their place. Timing (owner): bars 1 s → pause 0.3 s → patrols out 0.5 s → pause 0.2 s → people in 0.5 s (delays 1.3 s
+  and 2 s in CSS). A red target (150 px, 72 px on a phone) stands left of the section title — the main goal of the product.
+- **Ticket** (453-9): an invitation for super-node operators — `landing.ticket` (kicker, fields, keep, `reserve` → GitHub), three
+  `landing.chips`; shape, stub, barcode and stamp unchanged. Title and text — the `under-the-hood` section head and its paragraph.

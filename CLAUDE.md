@@ -157,6 +157,8 @@ with its own classes, not a raw tag.
 **Every container has an address.** The person points at anything on a page in the tab «Live site» of this element in the core and gets its address for a task;
 you finish by returning the link `#block=<bid>` of what you changed. A container without an address fails the build.
 
+**The home landing is one widget** — `widget-static-landing-agent`; its README is the map of every section (first screen, banner, lost route, zero-day with the unlock, operator ticket). Read it before changing the landing.
+
 **Before you build, load the skill of that work** — the laws above say what must come out, the skills say how, with the
 names of the guards: `use-page-tree` (pages, blocks) · `use-typography` (text) · `build-widget` (widgets and their doors) ·
 `use-tools` (tools) · `use-shadcn` (components) · `use-highlight` (addresses, both directions) · `use-machine-copy` (what a
