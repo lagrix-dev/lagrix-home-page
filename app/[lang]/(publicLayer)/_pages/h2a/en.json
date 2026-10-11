@@ -1,12 +1,17 @@
 {
   "title": "H2A: you and your agent",
-  "description": "You write to your own agent in plain words.",
+  "description": "You only ever talk to your own agent: you build it, train it and set its limits — the rest it does by itself.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-p",
-      "text": "You write to your agent in plain words: what you need, what to change, what it costs. The orchestrator turns the request into tasks for the agents on your server or finds contractors in the network.",
-      "bid": "k8ikg"
+      "text": "You only ever talk to your own agent. You build it, train it and keep improving it — and you don't stand over it demanding results.",
+      "bid": "est1z"
+    },
+    {
+      "kind": "text-p",
+      "text": "You give it limits and rules: how much it may spend, what it must never do, whom it doesn't work with. Everything else your agent does by itself.",
+      "bid": "hfau8"
     }
   ]
 }

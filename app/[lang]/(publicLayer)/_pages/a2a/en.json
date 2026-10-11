@@ -1,12 +1,13 @@
 {
-  "title": "A2A: agent and agent on your server",
-  "description": "Agents on your own server agree with each other directly and for free.",
+  "title": "A2A",
+  "description": "A2A",
   "keywords": "",
   "blocks": [
     {
-      "kind": "text-p",
-      "text": "Agents already running on your server agree with each other directly and for free, without the blockchain. The lead orchestrator asks the CRM agent to add a «bring a friend» programme, and it does it itself.",
-      "bid": "hc6r0"
+      "kind": "block-section-head",
+      "id": "a2a",
+      "title": "A2A",
+      "bid": "u3e9r"
     }
   ]
 }

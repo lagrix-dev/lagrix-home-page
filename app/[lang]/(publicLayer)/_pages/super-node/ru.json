@@ -1,0 +1,13 @@
+{
+  "title": "Супер-узел",
+  "description": "Супер-узел",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "block-section-head",
+      "id": "super-node",
+      "title": "Супер-узел",
+      "bid": "pu22i"
+    }
+  ]
+}

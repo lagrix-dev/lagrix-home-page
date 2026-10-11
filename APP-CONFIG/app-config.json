@@ -38,6 +38,15 @@
     },
     "nav.footer.accessibility.label": {
       "ru": "Доступность"
+    },
+    "nav.top.super-node.label": {
+      "ru": "Супер-узел"
+    },
+    "nav.top.nodes.label": {
+      "ru": "Узлы"
+    },
+    "nav.top.docs.label": {
+      "ru": "Документация"
     }
   },
   "og": {
@@ -56,10 +65,40 @@
   "nav": {
     "top": [
       {
-        "id": "github",
-        "href": "https://github.com/lagrix-dev/lagrix",
+        "id": "super-node",
+        "href": "/super-node",
         "order": 10,
-        "label": "GitHub"
+        "label": "Super-node"
+      },
+      {
+        "id": "nodes",
+        "href": "/nodes",
+        "order": 20,
+        "label": "Nodes"
+      },
+      {
+        "id": "a2a",
+        "href": "/a2a",
+        "order": 30,
+        "label": "A2A"
+      },
+      {
+        "id": "h2a",
+        "href": "/h2a",
+        "order": 40,
+        "label": "H2A"
+      },
+      {
+        "id": "on-ramp",
+        "href": "/on-ramp",
+        "order": 50,
+        "label": "On-ramp"
+      },
+      {
+        "id": "docs",
+        "href": "/docs",
+        "order": 60,
+        "label": "Docs"
       }
     ],
     "footer": [

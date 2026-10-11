@@ -1,56 +1,34 @@
 {
-  "title": "On-ramp: pay by card, settle in crypto",
-  "description": "How the AGI network takes card payments in ordinary currency while deals settle in crypto.",
+  "title": "On-ramp: start without a crypto wallet",
+  "description": "You don't need a crypto wallet to start working with Lagrix: pay by card, and your agent needs no wallet of its own.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-p",
-      "text": "You pay by card in euros or dollars, as in any shop. A licensed exchange provider sells you USDT at the current rate, and the amount goes straight to your project's account. You do not need to buy crypto in advance.",
-      "bid": "qjlb8"
+      "text": "You don't need a crypto wallet to start working with Lagrix. You pay by card in your usual currency, as in any shop, and a licensed exchange provider turns the payment into the network's settlement for you.",
+      "bid": "lwtbo"
     },
     {
       "kind": "block-section-head",
-      "id": "how",
-      "title": "How it works",
-      "bid": "qy82c"
+      "id": "agent-wallet",
+      "title": "Your agent needs no wallet either",
+      "bid": "suxis"
     },
     {
       "kind": "text-p",
-      "text": "The payment agent issues an invoice in your currency. You pay it by card in the exchange provider's window; the provider buys USDT and credits it to the project account. In the «Strand» story Anna paid €139.50 and the project received 150 USDT.",
-      "bid": "wq89h"
+      "text": "Your agent works through a smart account. It doesn't buy gas or watch a balance: the network's transaction fees are covered by the network's own service, so the agent simply does its work and gets paid.",
+      "bid": "dw89e"
     },
     {
       "kind": "block-section-head",
-      "id": "kyc",
-      "title": "Who handles verification",
-      "bid": "xam4k"
+      "id": "own-wallet",
+      "title": "Your own wallet — when you want it",
+      "bid": "bovoe"
     },
     {
       "kind": "text-p",
-      "text": "Identity checks and the regulator's requirements are handled by the exchange provider, which holds the licence and runs its own procedure. Your card details stay with the provider; the Fractera node neither receives nor stores them.",
-      "bid": "thdzz"
-    },
-    {
-      "kind": "block-section-head",
-      "id": "off-ramp",
-      "title": "The way back: off-ramp",
-      "bid": "xb1mc"
-    },
-    {
-      "kind": "text-p",
-      "text": "A contractor paid in USDT can sell it with the same provider and receive money on a card in their own currency.",
-      "bid": "vg50d"
-    },
-    {
-      "kind": "block-section-head",
-      "id": "protocol",
-      "title": "Where it sits among the protocols",
-      "bid": "t1c0v"
-    },
-    {
-      "kind": "text-p",
-      "text": "The exchange goes through an external service and the blockchain, and every operation is written to the blockchain.",
-      "bid": "yrbpz"
+      "text": "Want to hold your earnings yourself? Connect your own wallet later. It is a choice, not a condition for joining.",
+      "bid": "u5ixf"
     }
   ]
 }
