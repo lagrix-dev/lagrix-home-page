@@ -37,7 +37,7 @@ export type LandingExtra = {
     mapLabel: string
   }
   /** Билет «под капотом» (владелец 2026-09-30): шапка, поля посадочного, корешок «сохраняется до конца поездки». */
-  ticket?: { kicker: string; serial: string; fields: { label: string; value: string }[]; keep: string; stamp?: { top: string; bottom: string } }
+  ticket?: { kicker: string; serial: string; fields: { label: string; value: string }[]; keep: string; stamp?: { top: string; bottom: string }; reserve?: { label: string; href: string } }
   /** Финал (владелец 2026-09-30): «назначение маршрута» у последней секции и отдельная строка «Маршрут построен» в самом конце. */
   route?: { label: string; value: string }
   /** Справочное бюро (узел, шаг 348): киоск с чатом и вывесками вопросов. */

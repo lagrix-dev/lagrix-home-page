@@ -215,7 +215,17 @@ export function ZeroDay({ title, text, art, people, unlock }: { title: string; t
   return (
     <section data-block="zd453" id="zero-day" className={s.zeroDay}>
       <div data-block="zd4w1" className={s.wrap}>
-        <h2 data-block="zd4t1" className={s.zeroTitle}>{title}</h2>
+        {/* 453-9 (владелец 2026-10-12): слева от заголовка — красная мишень ~150 px: это главная цель приложения. */}
+        <h2 data-block="zd4t1" className={s.zeroTitle}>
+          <svg className={s.zeroTarget} viewBox="0 0 100 100" aria-hidden="true">
+            <circle className={s.targetRed} cx={50} cy={50} r={48} />
+            <circle className={s.targetWhite} cx={50} cy={50} r={37} />
+            <circle className={s.targetRed} cx={50} cy={50} r={26} />
+            <circle className={s.targetWhite} cx={50} cy={50} r={15} />
+            <circle className={s.targetRed} cx={50} cy={50} r={6} />
+          </svg>
+          <span>{title}</span>
+        </h2>
         {/* 453-6/8: сетку держит островок — замок «Разблокировать» отодвигает решётку, патрули улетают, люди въезжают на их место.
             Рисунки — с сервера. */}
         <ZeroDayStage

@@ -17,27 +17,27 @@
     {
       "kind": "block-section-head",
       "id": "what-it-can-do",
-      "title": "AI agent orchestration and autonomous deployment of Web3 applications",
+      "title": "Launch your own AI agents and deploy Web3 nodes autonomously — including on your home computer",
       "bid": "zy6l4"
     },
     {
       "kind": "text-p",
-      "text": "The $LGX and web3 core installs on your computer in seconds, and your site is live on the internet at a temporary address right away. Your own domain takes a couple of minutes more. Need a server? Rent a VPS and run hundreds of sites on your own APP factory.",
+      "text": "The $LGX and web3 core installs on your computer in seconds, and your site is live on the internet at a temporary address right away. Your own domain takes a couple of minutes more. Create as many personal agents as you like on your own computer and let them find billions of other agents — without a single middleman.",
       "bid": "r9fm4"
     },
     {
       "kind": "text-p",
-      "text": "Tell the agent your idea. It asks a few sharp questions and builds the project. Under it is the Fractera starter for Next 16: high-load architecture, sign-in, database and media storage already set up locally.",
+      "text": "Tell the agent your idea. It asks a few sharp questions and builds the project. Under it is the Fractera starter for Next 16: high-load architecture, sign-in, database and media storage already set up locally. And here is what matters: your agent's body and brain appear completely automatically.",
       "bid": "eyhxg"
     },
     {
       "kind": "text-p",
-      "text": "Your knowledge graph already holds thousands of proven skills, plugins and MCP servers, chosen on the advice of leading AI developers. The agent finds the right one the moment it is needed.",
+      "text": "Your knowledge graph already holds thousands of proven skills, plugins and MCP servers, chosen on the advice of leading AI developers. The agent finds the right one the moment it is needed. You don't need to engineer complex technical solutions: your agent buys them and installs them seamlessly, ready to use.",
       "bid": "g2vkq"
     },
     {
       "kind": "text-p",
-      "text": "Take any ready solution and make it stronger with your own experience and craft. That makes a digital product with real value. We find buyers for it, and a smart contract guarantees every deal.",
+      "text": "Take any ready solution and make it stronger with your own experience and craft. That makes a digital product with real value. We find buyers for it, and a smart contract guarantees every deal. Now anyone's expertise can be hired and ordered from anywhere on the planet — across any distance, on any continent.",
       "bid": "r4of5"
     },
     {
@@ -48,12 +48,12 @@
     {
       "kind": "block-section-head",
       "id": "under-the-hood",
-      "title": "Day-zero infrastructure: a ready backend architecture for platforms",
+      "title": "Reserve the launch of your super-node",
       "bid": "ubj4n"
     },
     {
       "kind": "text-p",
-      "text": "A built-in database, sign-in with user roles and dozens of other solutions. All of their code is open right inside your application: fix it, improve it or remove it. It is up to you.",
+      "text": "Super-nodes hold the Lagrix network together: they keep the discovery table, connect agents and carry settlement. The first operators join on the easiest terms, and a place, once taken, reopens only on the terms it was taken on. Follow the launch on GitHub and take your place among the first.",
       "bid": "tr7cu"
     },
     {
@@ -73,33 +73,35 @@
       "The result"
     ],
     "chips": [
-      "Database",
-      "Sign-in and roles",
-      "Multiple languages",
-      "Open source code",
-      "Buy & sell on WEB3"
+      "A share of every deal's fee",
+      "Attempts to find each new block",
+      "A seat on the Super-node Council"
     ],
     "ticket": {
-      "kicker": "Your entry ticket to the private party",
+      "kicker": "Invitation for super-node operators",
       "serial": "No. $LGX-0001",
       "fields": [
         {
-          "label": "Passenger",
+          "label": "Operator",
           "value": "You"
         },
         {
-          "label": "Departure",
-          "value": "Today"
+          "label": "Launch",
+          "value": "End of 2026"
         },
         {
           "label": "Class",
-          "value": "First emission"
+          "value": "Super-node, first wave"
         }
       ],
-      "keep": "Keep until the end of the journey",
+      "keep": "Keep until the network launches",
       "stamp": {
         "top": "Open-source",
         "bottom": "Amount due: 0"
+      },
+      "reserve": {
+        "label": "Reserve on GitHub",
+        "href": "https://github.com/lagrix-dev/lagrix"
       }
     },
     "compare": {

@@ -273,6 +273,14 @@ export function LandingAgent({ lang }: { lang: string }) {
                   ))}
                 </dl>
               )}
+              {/* 453-9 (владелец 2026-10-12): билет — приглашение операторам супер-узлов; бронь — на GitHub (его выбор «Кнопка → GitHub»). */}
+              {x.ticket?.reserve && (
+                <a data-block="tk453" href={x.ticket.reserve.href} className={`${s.go} ${s.ticketGo}`}>
+                  <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />
+                  {x.ticket.reserve.label}
+                  <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
+                </a>
+              )}
             </div>
             <div data-block="o8d2u" className={s.ticketStub}>
               <p data-block="znlj8" className={s.stubHead}>{b.included}</p>
