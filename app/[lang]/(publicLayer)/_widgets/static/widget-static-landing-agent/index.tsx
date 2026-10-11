@@ -347,7 +347,7 @@ export function LandingAgent({ lang }: { lang: string }) {
 
       {/* 453 (владелец 2026-10-11): «Инфраструктура нулевого дня» — после «Fractera vs LLM», над справочным бюро; сюда ведёт
           ссылка подзаголовка первого экрана (#zero-day). */}
-      {x.zeroDay && <ZeroDay title={x.zeroDay.title} text={x.zeroDay.text} art={x.zeroDay.art} unlock={x.zeroDay.unlock} />}
+      {x.zeroDay && <ZeroDay title={x.zeroDay.title} text={x.zeroDay.text} art={x.zeroDay.art} people={x.zeroDay.people} unlock={x.zeroDay.unlock} />}
 
       {/* 348–349 (владелец 2026-09-30): справочное бюро — третья секция снизу, над «Конвейером децентрализованной разработки»
           («конвейер … должен быть под новой секцией справочного бюро»). */}

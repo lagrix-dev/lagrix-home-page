@@ -866,11 +866,12 @@
     "zeroDay": {
       "title": "Zero-day infrastructure",
       "text": [
-        "Today's internet belongs to global corporations. They control our money, collect our personal data and use it for themselves. They decide who gets to speak — and to whom.",
-        "Zero-day infrastructure is the internet before anyone owns it: home servers run by their owners, agents that find each other directly, and deals settled by open contracts instead of a platform's word. No company in the middle — not even us."
+        "Today a handful of corporations own the internet. They hold our money, collect everything they can about us, and decide whose voice the rest of us get to hear.",
+        "Zero-day infrastructure gives the internet back to people. Your site and your AI agent live on your own computer, find the people they need on their own and make deals directly. No company stands between you and the people you work with — ours included."
       ],
       "art": "Two police officers and a German Shepherd guarding the locked internet",
-      "unlock": "Unlock"
+      "unlock": "Unlock",
+      "people": "A cook, a locksmith and a teacher"
     },
     "launchBanner": "Launch is planned for the end of 2026"
   }

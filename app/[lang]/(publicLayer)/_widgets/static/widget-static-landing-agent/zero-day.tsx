@@ -106,13 +106,126 @@ function Officers({ label, mirror }: { label?: string; mirror?: boolean }) {
   )
 }
 
-export function ZeroDay({ title, text, art, unlock }: { title: string; text: string[]; art: string; unlock: string }) {
+// Обычные люди (453-8, владелец 2026-10-11): «когда из экрана улетают офицеры то на их место … снаружи внутрь попасть обычные люди
+// повар, слесарь, учитель». Тот же холст и та же земля, что у патруля, — люди встают ровно на его место.
+function People({ label, mirror }: { label?: string; mirror?: boolean }) {
+  return (
+    <svg
+      className={`${s.zeroSvg} ${mirror ? s.zeroMirror : ""}`}
+      viewBox="0 0 380 372"
+      preserveAspectRatio="xMinYMax slice"
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    >
+      <ellipse className={s.zeroShadow} cx={190} cy={358} rx={182} ry={9} />
+
+      {/* Повар: высокий колпак, двубортный белый китель, красный шейный платок, усы, половник в руке. */}
+      <g>
+        <path className={s.zeroPants} d="M34 234 H90 L88 350 H66 L62 262 L58 350 H36 Z" />
+        <ellipse className={s.zeroDark} cx={47} cy={354} rx={14} ry={6} />
+        <ellipse className={s.zeroDark} cx={77} cy={354} rx={14} ry={6} />
+        <path className={s.zeroWood} d="M99 218 L112 166" />
+        <ellipse className={s.zeroMetal} cx={113} cy={160} rx={7} ry={4.5} />
+        <path className={s.zeroChef} d="M28 124 L20 206 Q20 214 27 214 L32 210 L36 132 Z" />
+        <path className={s.zeroChef} d="M96 124 L104 206 Q104 214 97 214 L92 210 L88 132 Z" />
+        <circle className={s.zeroSkin} cx={25} cy={218} r={6} />
+        <circle className={s.zeroSkin} cx={99} cy={218} r={6} />
+        <path className={s.zeroChef} d="M28 124 Q30 116 44 114 H80 Q94 116 96 124 L93 236 H31 Z" />
+        <path className={s.zeroChefLine} d="M62 118 L74 140 V232" />
+        {[146, 170, 194].map((y) => (
+          <g key={y} className={s.zeroButton}>
+            <circle cx={54} cy={y} r={2.3} />
+            <circle cx={70} cy={y} r={2.3} />
+          </g>
+        ))}
+        <rect className={s.zeroSkin} x={55} y={108} width={14} height={10} />
+        <path className={s.zeroScarf} d="M48 112 H76 L62 130 Z" />
+        <ellipse className={s.zeroSkin} cx={46} cy={94} rx={4} ry={6} />
+        <ellipse className={s.zeroSkin} cx={78} cy={94} rx={4} ry={6} />
+        <ellipse className={s.zeroSkin} cx={62} cy={94} rx={16} ry={19} />
+        <circle className={s.zeroDark} cx={56} cy={91} r={1.8} />
+        <circle className={s.zeroDark} cx={68} cy={91} r={1.8} />
+        <path className={s.zeroDark} d="M53 101 Q62 96 71 101 Q62 105 53 101 Z" />
+        <path className={s.zeroChef} d="M44 72 Q32 46 48 40 Q52 22 64 30 Q78 20 82 40 Q96 44 82 72 Z" />
+        <rect className={s.zeroChef} x={44} y={66} width={38} height={9} />
+        <path className={s.zeroChefLine} d="M44 66 H82" />
+      </g>
+
+      {/* Слесарь: кепка, рабочая рубашка, комбинезон с лямками и карманом, гаечный ключ. */}
+      <g>
+        <path className={s.zeroOveralls} d="M162 228 H218 L216 350 H194 L190 262 L186 350 H164 Z" />
+        <ellipse className={s.zeroDark} cx={175} cy={354} rx={14} ry={6} />
+        <ellipse className={s.zeroDark} cx={205} cy={354} rx={14} ry={6} />
+        <path className={s.zeroWorkShirt} d="M156 124 L148 206 Q148 214 155 214 L160 210 L164 132 Z" />
+        <path className={s.zeroWorkShirt} d="M224 124 L232 206 Q232 214 225 214 L220 210 L216 132 Z" />
+        <path className={s.zeroWrench} d="M227 220 L240 252" />
+        <circle className={s.zeroMetal} cx={242} cy={257} r={7} />
+        <rect className={s.zeroPaper} x={240} y={256} width={6} height={7} />
+        <circle className={s.zeroSkin} cx={153} cy={218} r={6} />
+        <circle className={s.zeroSkin} cx={227} cy={218} r={6} />
+        <path className={s.zeroWorkShirt} d="M156 124 Q158 116 172 114 H208 Q222 116 224 124 L220 236 H160 Z" />
+        <path className={s.zeroOveralls} d="M170 150 H210 V236 H170 Z" />
+        <path className={s.zeroOveralls} d="M170 152 L175 116 H182 L177 152 Z" />
+        <path className={s.zeroOveralls} d="M210 152 L205 116 H198 L203 152 Z" />
+        <rect className={s.zeroOverallsDeep} x={182} y={166} width={16} height={13} />
+        <circle className={s.zeroGold} cx={174} cy={156} r={2.6} />
+        <circle className={s.zeroGold} cx={206} cy={156} r={2.6} />
+        <rect className={s.zeroSkin} x={183} y={108} width={14} height={10} />
+        <ellipse className={s.zeroSkin} cx={174} cy={92} rx={4} ry={6} />
+        <ellipse className={s.zeroSkin} cx={206} cy={92} rx={4} ry={6} />
+        <ellipse className={s.zeroSkin} cx={190} cy={92} rx={16} ry={19} />
+        <circle className={s.zeroDark} cx={184} cy={90} r={1.8} />
+        <circle className={s.zeroDark} cx={196} cy={90} r={1.8} />
+        <path className={s.zeroLine} d="M185 101 Q190 104 195 101" />
+        <path className={s.zeroOveralls} d="M173 80 Q172 60 190 59 Q208 60 207 80 Z" />
+        <path className={s.zeroOverallsDeep} d="M172 78 H214 Q212 84 198 84 H172 Z" />
+      </g>
+
+      {/* Учительница: волосы в пучок, очки, кардиган поверх блузки, юбка, книга под рукой. */}
+      <g>
+        <rect className={s.zeroSkinAlt} x={305} y={298} width={8} height={52} />
+        <rect className={s.zeroSkinAlt} x={323} y={298} width={8} height={52} />
+        <ellipse className={s.zeroDark} cx={308} cy={354} rx={10} ry={5} />
+        <ellipse className={s.zeroDark} cx={328} cy={354} rx={10} ry={5} />
+        <path className={s.zeroSkirt} d="M296 222 H340 L348 304 H288 Z" />
+        <path className={s.zeroCardigan} d="M290 128 L282 210 Q282 218 289 218 L294 214 L298 136 Z" />
+        <path className={s.zeroCardigan} d="M346 128 L354 210 Q354 218 347 218 L342 214 L338 136 Z" />
+        <circle className={s.zeroSkinAlt} cx={287} cy={222} r={5.5} />
+        <circle className={s.zeroSkinAlt} cx={351} cy={222} r={5.5} />
+        <path className={s.zeroCardigan} d="M290 128 Q292 120 306 118 H330 Q344 120 346 128 L342 228 H294 Z" />
+        <path className={s.zeroChef} d="M306 118 L318 152 L330 118 Z" />
+        <rect className={s.zeroBook} x={276} y={168} width={18} height={30} rx={2} />
+        <path className={s.zeroChefLine} d="M291 170 V196" />
+        <path className={s.zeroHair} d="M300 92 Q298 118 306 124 H330 Q338 118 336 92 Z" />
+        <circle className={s.zeroHair} cx={318} cy={68} r={9} />
+        <rect className={s.zeroSkinAlt} x={312} y={112} width={12} height={9} />
+        <ellipse className={s.zeroSkinAlt} cx={318} cy={96} rx={15} ry={18} />
+        <path className={s.zeroHair} d="M302 92 Q304 74 318 73 Q332 74 334 92 Q326 82 318 84 Q310 82 302 92 Z" />
+        <circle className={s.zeroDark} cx={312} cy={95} r={1.4} />
+        <circle className={s.zeroDark} cx={324} cy={95} r={1.4} />
+        <path className={s.zeroGlasses} d="M307.5 95 a4.5 4.5 0 1 0 9 0 a4.5 4.5 0 1 0 -9 0 M319.5 95 a4.5 4.5 0 1 0 9 0 a4.5 4.5 0 1 0 -9 0 M316.5 95 H319.5" />
+        <ellipse className={s.zeroLips} cx={318} cy={106} rx={3.2} ry={1.5} />
+      </g>
+    </svg>
+  )
+}
+
+export function ZeroDay({ title, text, art, people, unlock }: { title: string; text: string[]; art: string; people: string; unlock: string }) {
   return (
     <section data-block="zd453" id="zero-day" className={s.zeroDay}>
       <div data-block="zd4w1" className={s.wrap}>
         <h2 data-block="zd4t1" className={s.zeroTitle}>{title}</h2>
-        {/* 453-6: сетку держит островок — замок «Разблокировать» отодвигает решётку и разводит патрули. Рисунки — с сервера. */}
-        <ZeroDayStage left={<Officers label={art} />} right={<Officers mirror />} text={text} unlock={unlock} />
+        {/* 453-6/8: сетку держит островок — замок «Разблокировать» отодвигает решётку, патрули улетают, люди въезжают на их место.
+            Рисунки — с сервера. */}
+        <ZeroDayStage
+          left={<Officers label={art} />}
+          right={<Officers mirror />}
+          leftPeople={<People label={people} />}
+          rightPeople={<People mirror />}
+          text={text}
+          unlock={unlock}
+        />
       </div>
     </section>
   )

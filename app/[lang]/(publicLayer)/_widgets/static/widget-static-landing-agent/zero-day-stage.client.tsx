@@ -10,11 +10,18 @@ import s from "./landing-agent.module.css"
 // для прочтения». Островок держит одно состояние — открыто ли, и ставит `data-open` на сетку; всё движение — в CSS. Открытие
 // одностороннее (обратно не запирается — этого не просили). Без JavaScript разметка та же: текст читается сквозь решётку.
 
-export function ZeroDayStage({ left, right, text, unlock }: { left: ReactNode; right: ReactNode; text: string[]; unlock: string }) {
+// 453-8: в каждой колонке два слоя — патруль и обычные люди (повар, слесарь, учитель). Патруль улетает наружу, люди въезжают
+// с края экрана на его место. До открытия слой людей скрыт от чтения экраном.
+export function ZeroDayStage({ left, right, leftPeople, rightPeople, text, unlock }: {
+  left: ReactNode; right: ReactNode; leftPeople: ReactNode; rightPeople: ReactNode; text: string[]; unlock: string
+}) {
   const [open, setOpen] = useState(false)
   return (
     <div data-block="zd4g1" className={s.zeroGrid} data-open={open ? "" : undefined}>
-      <div data-block="zd4a1" className={`${s.zeroArt} ${s.zeroArtLeft}`}>{left}</div>
+      <div data-block="zd4a1" className={`${s.zeroArt} ${s.zeroArtLeft}`}>
+        <div data-block="b8938" className={s.zeroGuards} aria-hidden={open || undefined}>{left}</div>
+        <div data-block="rcdio" className={s.zeroPeople} aria-hidden={!open}>{leftPeople}</div>
+      </div>
       <div data-block="zd4c1" className={s.zeroCell}>
         <span className={s.zeroBarsClip} aria-hidden="true"><span className={s.zeroBars} /></span>
         <Button
@@ -33,7 +40,10 @@ export function ZeroDayStage({ left, right, text, unlock }: { left: ReactNode; r
           {text.map((t) => <p data-block="baiqi" key={t}>{t}</p>)}
         </div>
       </div>
-      <div data-block="zd4a2" className={`${s.zeroArt} ${s.zeroArtRight}`}>{right}</div>
+      <div data-block="zd4a2" className={`${s.zeroArt} ${s.zeroArtRight}`}>
+        <div data-block="x8ji8" className={s.zeroGuards}>{right}</div>
+        <div data-block="nxlhc" className={s.zeroPeople} aria-hidden="true">{rightPeople}</div>
+      </div>
     </div>
   )
 }

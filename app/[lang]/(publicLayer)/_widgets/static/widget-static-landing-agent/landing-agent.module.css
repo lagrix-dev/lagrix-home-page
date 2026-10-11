@@ -1198,16 +1198,38 @@
 }
 .zeroText p + p { margin-top: 0.9rem; }
 .zeroText::selection, .zeroText p::selection { background: var(--poster); color: var(--ink); }
-.zeroArtLeft, .zeroArtRight { transition: transform 1.2s var(--ease) 0.25s, opacity 0.9s var(--ease) 0.35s; }
+/* 453-8: в колонке два слоя — патруль (в потоке) и люди (поверх, за краем экрана до открытия). */
+.zeroArt { position: relative; }
+.zeroGuards { transition: transform 1.2s var(--ease) 0.25s, opacity 0.9s var(--ease) 0.35s; }
+.zeroPeople { position: absolute; inset: 0; opacity: 0; transition: transform 1.4s var(--ease) 1.2s, opacity 0.9s var(--ease) 1.2s; }
+.zeroArtLeft .zeroPeople { transform: translateX(-70vw); }
+.zeroArtRight .zeroPeople { transform: translateX(70vw); }
+.zeroPants { fill: oklch(0.36 0.01 260); }
+.zeroChef { fill: oklch(0.97 0.005 90); }
+.zeroChefLine { fill: none; stroke: oklch(0.8 0.01 260); stroke-width: 1.6; stroke-linecap: round; }
+.zeroButton { fill: oklch(0.45 0.01 260); }
+.zeroScarf { fill: var(--signal); }
+.zeroWood { fill: none; stroke: oklch(0.55 0.09 60); stroke-width: 4; stroke-linecap: round; }
+.zeroMetal { fill: oklch(0.72 0.01 260); }
+.zeroWrench { fill: none; stroke: oklch(0.72 0.01 260); stroke-width: 5; stroke-linecap: round; }
+.zeroPaper { fill: var(--floor); }
+.zeroOveralls { fill: oklch(from var(--primary) 0.5 0.13 h); }
+.zeroOverallsDeep { fill: oklch(from var(--primary) 0.4 0.11 h); }
+.zeroWorkShirt { fill: oklch(0.86 0.02 80); }
+.zeroCardigan { fill: oklch(0.6 0.12 35); }
+.zeroSkirt { fill: oklch(from var(--board) 0.38 0.05 h); }
+.zeroBook { fill: var(--go, var(--signal)); }
+.zeroGlasses { fill: none; stroke: var(--ink); stroke-width: 1.4; }
 /* Открыто: решётка уезжает вбок, патрули расходятся — левый влево, правый вправо, — текст светлеет до полного контраста. */
 .zeroGrid[data-open] .zeroBars { transform: translateX(102%); }
 .zeroGrid[data-open] .zeroLock { opacity: 0; pointer-events: none; }
 .zeroGrid[data-open] .zeroText { color: color-mix(in oklab, var(--chalk) 96%, var(--board)); }
-.zeroGrid[data-open] .zeroArtLeft { transform: translateX(-70vw); opacity: 0; }
-.zeroGrid[data-open] .zeroArtRight { transform: translateX(70vw); opacity: 0; }
+.zeroGrid[data-open] .zeroArtLeft .zeroGuards { transform: translateX(-70vw); opacity: 0; }
+.zeroGrid[data-open] .zeroArtRight .zeroGuards { transform: translateX(70vw); opacity: 0; }
+.zeroGrid[data-open] .zeroPeople { transform: none; opacity: 1; }
 @media (max-width: 720px) {
-  .zeroGrid { grid-template-columns: 25% minmax(0, 1fr); gap: 0.75rem; align-items: stretch; transition: grid-template-columns 0.9s var(--ease) 0.6s, gap 0.9s var(--ease) 0.6s; }
-  .zeroGrid[data-open] { grid-template-columns: 0% minmax(0, 1fr); gap: 0; }
+  .zeroGrid { grid-template-columns: 25% minmax(0, 1fr); gap: 0.75rem; align-items: stretch; }
+  .zeroGuards { height: 100%; }
   .zeroArtRight { display: none; }
   .zeroArt { height: 22rem; overflow: hidden; }
   .zeroArt .zeroSvg { width: auto; height: 100%; }
@@ -1216,7 +1238,7 @@
   .zeroLock { top: 0.35rem; height: 1.9rem; font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .zeroBars, .zeroLock, .zeroLockLabel, .zeroText, .zeroArtLeft, .zeroArtRight, .zeroGrid { transition: none; }
+  .zeroBars, .zeroLock, .zeroLockLabel, .zeroText, .zeroGuards, .zeroPeople { transition: none; }
 }
 
 /* ── Баннер «Запуск — конец 2026» (шаг 453): полупрозрачный плакат с размытием под шапкой, выезжает после 300 px прокрутки. */
