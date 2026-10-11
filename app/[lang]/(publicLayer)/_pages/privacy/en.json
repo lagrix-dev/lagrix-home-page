@@ -1,20 +1,83 @@
 {
   "title": "Privacy Policy",
-  "description": "What personal data this site processes, why, who else receives it, and how to ask for it to be deleted.",
-  "keywords": "privacy policy, personal data, GDPR, Google Analytics",
+  "description": "Who processes your data on %SITE%, why, on what basis, who receives it, for how long, and your rights.",
+  "keywords": "privacy policy, GDPR, personal data, rights, AEPD",
   "blocks": [
-    { "kind": "block-section-head", "id": "privacy-h1", "title": "Privacy on %SITE%", "bid": "wpj2y" },
-    { "kind": "text-lead", "text": "This site runs on its owner's own computer. Your data is kept there, not in a shared cloud database of a third company.", "bid": "kns6w" },
-    { "kind": "text-h2", "text": "What is processed and why", "bid": "pv2wh" },
-    { "kind": "text-list", "items": [
-      "**Every visit** — your IP address and the page address pass through Cloudflare, which carries the site to the internet and protects it from attacks.",
-      "**Sign-in** — when you create an account: your e-mail and the name you give, to let you in and show what is yours. Kept on the owner's computer.",
-      "**The help desk chat** — what you type or say there is sent to OpenAI to produce the answer; voice is turned into text the same way. The number of messages per address is limited to stop abuse.",
-      "**Your settings** — language, theme and your cookie choice; see the [Cookie Policy](/en/cookies)."
-    ], "bid": "pv3ls" },
-    { "kind": "widget-static-policy-analytics", "bid": "pv4ga" },
-    { "kind": "text-h2", "text": "Your rights", "bid": "pv5rt" },
-    { "kind": "text-p", "text": "You may ask what data about you is kept, ask to correct it or to delete it, and withdraw your consent to analytics at any time with «Cookie settings» at the bottom of the page. Write to the owner of %SITE% through the contacts on this site.", "bid": "xne9d" },
-    { "kind": "text-p", "text": "Back to [%SITE%](/en).", "bid": "pv6bk" }
+    {
+      "kind": "block-section-head",
+      "id": "privacy-h1",
+      "title": "Privacy on %SITE%",
+      "bid": "q000s"
+    },
+    {
+      "kind": "text-lead",
+      "text": "This site runs on its owner's own computer. Here is every piece of personal data it touches, as Article 13 GDPR requires.",
+      "bid": "q000t"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Who is responsible",
+      "bid": "q000u"
+    },
+    {
+      "kind": "text-p",
+      "text": "Roman Bolshiyanov (Armstrong), a private person in Spain — Telegram [@roma_armstrong](https://t.me/roma_armstrong).",
+      "bid": "q000v"
+    },
+    {
+      "kind": "text-h2",
+      "text": "What, why and on what basis",
+      "bid": "q000w"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "**Delivering the site** — your IP address and the page address pass through Cloudflare, which carries the site to the internet and protects it. Basis: legitimate interest in a working, safe site (Art. 6(1)(f) GDPR).",
+        "**Sign-in** — only if you create an account: your e-mail and the name you give, so you can sign in. Basis: your request (Art. 6(1)(b)). Kept while the account exists; deleted on request.",
+        "**The help desk chat** — what you type or say is sent to OpenAI to produce the answer; the site itself does not store the conversation. Your IP address is kept in memory for up to one hour only to limit the number of messages. Basis: legitimate interest in answering questions and preventing abuse (Art. 6(1)(f)).",
+        "**Analytics** — Google Analytics, only after you press «Accept» in the cookie banner. Basis: your consent (Art. 6(1)(a)); details below and in the [Cookie Policy](/en/cookies).",
+        "**Your settings** — language, theme and your cookie choice, kept in your browser."
+      ],
+      "bid": "q000x"
+    },
+    {
+      "kind": "widget-static-policy-analytics",
+      "bid": "q000y"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Who receives the data",
+      "bid": "q000z"
+    },
+    {
+      "kind": "text-p",
+      "text": "Cloudflare (delivery and protection), OpenAI (answers of the help desk), Google (analytics, only with consent). These companies are based in the USA; transfers rely on the European Commission's adequacy decision for the EU-US Data Privacy Framework or on standard contractual clauses. Nothing is sold and nothing is used for advertising.",
+      "bid": "q0010"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Your rights",
+      "bid": "q0011"
+    },
+    {
+      "kind": "text-p",
+      "text": "You may ask for access to your data, its correction or deletion, restriction of or objection to processing, and portability (Art. 15–22 GDPR), and withdraw consent to analytics at any time with «Cookie settings» at the bottom of every page. Write on Telegram. You may also complain to the Spanish data protection authority, AEPD — www.aepd.es.",
+      "bid": "q0012"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Other",
+      "bid": "q0013"
+    },
+    {
+      "kind": "text-p",
+      "text": "You do not have to give any data to read the site; without an e-mail you simply cannot sign in. No decisions are made about you automatically and no profiles are built. Accounts are for people aged 14 and over (Art. 7 LOPDGDD).",
+      "bid": "q0014"
+    },
+    {
+      "kind": "text-p",
+      "text": "Back to [%SITE%](/en).",
+      "bid": "q0015"
+    }
   ]
 }

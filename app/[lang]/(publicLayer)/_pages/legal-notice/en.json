@@ -1,0 +1,47 @@
+{
+  "title": "Legal notice",
+  "description": "Who is responsible for %SITE% and on what basis it runs.",
+  "keywords": "legal notice, aviso legal, owner, research project",
+  "blocks": [
+    {
+      "kind": "block-section-head",
+      "id": "legal-h1",
+      "title": "Legal notice",
+      "bid": "q000e"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "**Owner of the site:** Roman Bolshiyanov (Armstrong), a private person, Spain.",
+        "**Contact:** Telegram [@roma_armstrong](https://t.me/roma_armstrong).",
+        "**Nature of the site:** a non-commercial research project. No goods or services are sold here, no payments are taken, no advertising is shown, and no economic activity is carried out through this site."
+      ],
+      "bid": "q000f"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Content and code",
+      "bid": "q000g"
+    },
+    {
+      "kind": "text-p",
+      "text": "The texts and the code of %SITE% are published openly; their licences are stated in the project repository. Names of other companies mentioned on the site belong to their owners and are used only to describe compatibility.",
+      "bid": "q000h"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Links",
+      "bid": "q000i"
+    },
+    {
+      "kind": "text-p",
+      "text": "Links to other sites are given for information; their owners answer for their content.",
+      "bid": "q000j"
+    },
+    {
+      "kind": "text-p",
+      "text": "Personal data: [Privacy Policy](/en/privacy) · cookies: [Cookie Policy](/en/cookies) · use of the site: [Terms of use](/en/terms).",
+      "bid": "q000k"
+    }
+  ]
+}

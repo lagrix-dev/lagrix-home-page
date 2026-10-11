@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { LandingAgent } from './static/widget-static-landing-agent'
 import { PolicyAnalytics } from './static/widget-static-policy-analytics'
+import { AboutAuthor } from './static/widget-static-about-author'
 
 // ВИДЖЕТЫ ЭТОЙ ВЕТКИ (владелец 2026-10-07: «удалили маршрут — проект чистый»). Страница ветки называет виджет в `meta.json` →
 // `"widget"`; ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
@@ -9,4 +10,6 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-static-landing-agent': (lang) => <LandingAgent lang={lang} />,
   // Policy pages — the Google Analytics section, only while it is on (node step 449-2).
   'widget-static-policy-analytics': (lang) => <PolicyAnalytics lang={lang} />,
+  // About — the author card (node step 450-4).
+  'widget-static-about-author': (lang) => <AboutAuthor lang={lang} />,
 }

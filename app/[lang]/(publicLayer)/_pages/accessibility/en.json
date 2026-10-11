@@ -1,22 +1,33 @@
 {
   "title": "Accessibility",
-  "description": "How this site tries to stay usable for everyone, and where to write if something here gets in your way.",
-  "keywords": "accessibility, screen reader, keyboard navigation, contrast",
+  "description": "How %SITE% tries to be usable by everyone, and where to report a barrier.",
+  "keywords": "accessibility, WCAG, barrier",
   "blocks": [
     {
-      "kind": "text-p",
-      "text": "We want this site to be usable by everyone — including people who read it with a screen reader, move through it with a keyboard alone, or enlarge the text. Its public pages are ordinary server-rendered HTML and keep working with JavaScript switched off. Back to [%SITE%](/en).",
-      "bid": "i1u61"
+      "kind": "block-section-head",
+      "id": "accessibility-h1",
+      "title": "Accessibility of %SITE%",
+      "bid": "q001s"
+    },
+    {
+      "kind": "text-lead",
+      "text": "We want everyone to be able to read %SITE%, with any device and any way of using it.",
+      "bid": "q001t"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "Pages are rendered on the server and readable without JavaScript.",
+        "Light and dark themes; text scales with the browser settings.",
+        "Buttons and dialogs work from the keyboard; pictures carry text descriptions.",
+        "Motion follows the «reduce motion» setting of your system."
+      ],
+      "bid": "q001u"
     },
     {
       "kind": "text-p",
-      "text": "Accessibility is never finished, and parts of this site have not been reviewed yet, so we do not claim a conformance level we have not measured.",
-      "bid": "lgbn1"
-    },
-    {
-      "kind": "text-p",
-      "text": "If something here gets in your way, please tell us through the contact details published on this site: name the page and describe what happened. We answer and fix what we can.",
-      "bid": "w3y70"
+      "text": "Found a barrier? Write on Telegram [@roma_armstrong](https://t.me/roma_armstrong) — tell us the page and what got in the way. Back to [%SITE%](/en).",
+      "bid": "q001v"
     }
   ]
 }

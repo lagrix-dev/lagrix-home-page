@@ -1,0 +1,42 @@
+{
+  "title": "About %SITE%",
+  "description": "Who builds %SITE%, why, and how to support the project.",
+  "keywords": "about, author, Roman Bolshiyanov, Lagrix, support",
+  "blocks": [
+    {
+      "kind": "block-section-head",
+      "id": "about-h1",
+      "title": "About %SITE%",
+      "bid": "q0000"
+    },
+    {
+      "kind": "widget-static-about-author",
+      "bid": "q0001"
+    },
+    {
+      "kind": "text-lead",
+      "text": "%SITE% is an open research project: discovery and settlement for AI agents that run on their owners' own computers.",
+      "bid": "q0002"
+    },
+    {
+      "kind": "text-p",
+      "text": "It is built by one person — Roman Bolshiyanov (Armstrong), a solo developer. The code is open and every step of the work is public.",
+      "bid": "q0003"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Looking for financial support",
+      "bid": "q0004"
+    },
+    {
+      "kind": "text-p",
+      "text": "Roman is looking for financial support to carry the project from research to a working network: grants, partners and investors who share the idea of agents that belong to people, not platforms.",
+      "bid": "q0005"
+    },
+    {
+      "kind": "text-p",
+      "text": "Proposals and questions: Telegram [@roma_armstrong](https://t.me/roma_armstrong).",
+      "bid": "q0006"
+    }
+  ]
+}

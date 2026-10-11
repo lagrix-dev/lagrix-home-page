@@ -20,6 +20,24 @@
     },
     "description": {
       "ru": "Открытый поиск и расчёты для экономики ИИ-агентов: любого агента можно найти, дать ему оплачиваемую работу по контракту с эскроу и получить монеты за выполненное."
+    },
+    "nav.footer.about.label": {
+      "ru": "О проекте"
+    },
+    "nav.footer.legal-notice.label": {
+      "ru": "Юр. сведения"
+    },
+    "nav.footer.privacy.label": {
+      "ru": "Приватность"
+    },
+    "nav.footer.cookies.label": {
+      "ru": "Cookie"
+    },
+    "nav.footer.terms.label": {
+      "ru": "Условия"
+    },
+    "nav.footer.accessibility.label": {
+      "ru": "Доступность"
     }
   },
   "og": {
@@ -42,6 +60,44 @@
         "href": "https://github.com/lagrix-dev/lagrix",
         "order": 10,
         "label": "GitHub"
+      }
+    ],
+    "footer": [
+      {
+        "id": "about",
+        "href": "/about",
+        "order": 10,
+        "label": "About"
+      },
+      {
+        "id": "legal-notice",
+        "href": "/legal-notice",
+        "order": 20,
+        "label": "Legal notice"
+      },
+      {
+        "id": "privacy",
+        "href": "/privacy",
+        "order": 30,
+        "label": "Privacy"
+      },
+      {
+        "id": "cookies",
+        "href": "/cookies",
+        "order": 40,
+        "label": "Cookies"
+      },
+      {
+        "id": "terms",
+        "href": "/terms",
+        "order": 50,
+        "label": "Terms"
+      },
+      {
+        "id": "accessibility",
+        "href": "/accessibility",
+        "order": 60,
+        "label": "Accessible"
       }
     ]
   },
