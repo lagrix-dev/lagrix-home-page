@@ -8,7 +8,7 @@ export const DRUM: readonly string[] = [
   ...Array.from("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"),
   ...Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
   ...Array.from("0123456789"),
-  ".", ",", "-", ":", "/", "&", "?", "!",
+  ".", ",", "-", ":", "/", "&", "?", "!", "$",
 ]
 
 const AT = new Map(DRUM.map((ch, i) => [ch, i]))

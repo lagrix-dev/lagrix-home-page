@@ -5,9 +5,9 @@
   "blocks": [
     {
       "kind": "block-hero-centered",
-      "pill": "AGI element",
+      "pill": "$LGX element",
       "title": "If you're an indie hacker, a Web3 builder or an AI visionary — you're invited to a private party for the makers of AI corporations.",
-      "description": "Not just a site template. It quickly grows into what you need: an agent that solves your tasks, an application, or automation of your business processes. You decide. All you bring is the idea; Fractera AGI does the rest.",
+      "description": "Not just a site template. It quickly grows into what you need: an agent that solves your tasks, an application, or automation of your business processes. You decide. All you bring is the idea; Fractera $LGX does the rest.",
       "cta": {
         "label": "Look inside",
         "href": "#help-desk"
@@ -22,7 +22,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The AGI and web3 core installs on your computer in seconds, and your site is live on the internet at a temporary address right away. Your own domain takes a couple of minutes more. Need a server? Rent a VPS and run hundreds of sites on your own APP factory.",
+      "text": "The $LGX and web3 core installs on your computer in seconds, and your site is live on the internet at a temporary address right away. Your own domain takes a couple of minutes more. Need a server? Rent a VPS and run hundreds of sites on your own APP factory.",
       "bid": "r9fm4"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "kind": "text-p",
-      "text": "You come with an idea and tell it to your agent. It builds the product from skills and other people's expertise. Use it yourself or sell it: buyers find you through the AGI network, and you move on to the next idea.",
+      "text": "You come with an idea and tell it to your agent. It builds the product from skills and other people's expertise. Use it yourself or sell it: buyers find you through the $LGX network, and you move on to the next idea.",
       "bid": "xh0ym"
     },
     {
@@ -81,7 +81,7 @@
     ],
     "ticket": {
       "kicker": "Your entry ticket to the private party",
-      "serial": "No. AGI-0001",
+      "serial": "No. $LGX-0001",
       "fields": [
         {
           "label": "Passenger",
@@ -152,7 +152,7 @@
         ]
       },
       "right": {
-        "who": "Fractera AGI",
+        "who": "Fractera $LGX",
         "label": "Day-zero main line",
         "text": "You set the destination. Agents lay the tracks themselves and launch a whole network of services in one ecosystem.",
         "hub": "Main hub",
@@ -164,20 +164,20 @@
           "next.domain"
         ],
         "ring": {
-          "name": "Infinite AGI loop",
+          "name": "Infinite $LGX loop",
           "stations": [
-            "AGI CRM",
-            "AGI support",
-            "AGI shops",
-            "AGI next"
+            "$LGX CRM",
+            "$LGX support",
+            "$LGX shops",
+            "$LGX next"
           ],
           "free": [
-            "AGI.figma",
-            "AGI.slack",
-            "AGI.jira",
-            "AGI.notion",
-            "AGI.github",
-            "AGI.linear"
+            "$LGX.figma",
+            "$LGX.slack",
+            "$LGX.jira",
+            "$LGX.notion",
+            "$LGX.github",
+            "$LGX.linear"
           ]
         },
         "items": [
@@ -199,17 +199,17 @@
           }
         ]
       },
-      "mapLabel": "Map: the main hub, branches to subdomain stations and transfers to the «Infinite AGI loop» ring"
+      "mapLabel": "Map: the main hub, branches to subdomain stations and transfers to the «Infinite $LGX loop» ring"
     },
     "closingTitle": "Your idea is the only thing missing",
     "closingText": "Use Claude Code, start building and describe what you want. The rest is already here.",
-    "titleSub": "Transfer to zero-day infrastructure: the world of home AGI servers, smart contracts and automated Web3 orders. Claim your first-emission tokens.",
-    "titleSubHint": "Only in the first season, early users receive reputation tokens simply for launching their first service. These tokens are your mathematical weight in the ecosystem. The more you hold, the higher you rank when Web3 orders are distributed.\n\nThe reward is dynamic: the token pool shrinks with every new participant. Launch your AGI server today to claim the largest starting stack before the algorithm makes the terms harder.",
+    "titleSub": "Transfer to zero-day infrastructure: the world of home $LGX servers, smart contracts and automated Web3 orders. Claim your first-emission tokens.",
+    "titleSubHint": "Only in the first season, early users receive reputation tokens simply for launching their first service. These tokens are your mathematical weight in the ecosystem. The more you hold, the higher you rank when Web3 orders are distributed.\n\nThe reward is dynamic: the token pool shrinks with every new participant. Launch your $LGX server today to claim the largest starting stack before the algorithm makes the terms harder.",
     "titleSubHintLabel": "What are first-emission tokens?",
     "gate": {
       "routes": [
         "AI agent",
-        "AGI",
+        "$LGX",
         "Web3",
         "A2A",
         "M2M",
@@ -254,7 +254,7 @@
       "alt": "A station of AI agents, services and routes in space, joined by glowing lines"
     },
     "chat": {
-      "label": "AGI network, live",
+      "label": "$LGX network, live",
       "items": [
         {
           "side": "right",
@@ -382,7 +382,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "m2m",
-          "text": "Searching the AGI network for ready solutions.",
+          "text": "Searching the $LGX network for ready solutions.",
           "kind": "thinking",
           "title": "The orchestrator looks for solutions",
           "steps": [
@@ -682,7 +682,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Thank you, the ratings went to the contractors' profiles in the AGI network. I will adjust the consultant's tone free of charge: it already runs on your server."
+          "text": "Thank you, the ratings went to the contractors' profiles in the $LGX network. I will adjust the consultant's tone free of charge: it already runs on your server."
         },
         {
           "side": "right",
