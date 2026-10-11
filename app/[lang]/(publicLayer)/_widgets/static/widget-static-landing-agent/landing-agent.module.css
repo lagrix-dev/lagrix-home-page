@@ -1264,7 +1264,7 @@
 /* ── Билет на станцию «Супер-узловая» (454-7, владелец 2026-10-12, навык impeccable) ─────────────────────────────────────────
    Анатомия настоящего билета: маршрут «откуда → куда» с поездом на пунктире пути, поля, правила поездки мелким шрифтом, как
    на обороте. Кнопка — снаружи, под билетом (в билете ей не место). */
-.ticketRoute { display: grid; grid-template-columns: auto minmax(3rem, 1fr) auto; align-items: end; gap: 1rem; margin-top: 1.4rem; }
+.ticketRoute { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; align-items: end; gap: 1rem; margin-top: 1.4rem; }
 .routeEnd { display: grid; gap: 0.3rem; min-width: 0; }
 .routeEnd:last-child { text-align: right; }
 .routeLabel { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
@@ -1274,7 +1274,7 @@
   background: linear-gradient(90deg, var(--ink) 55%, transparent 0) repeat-x center / 14px 2px;
 }
 .routeTrack svg { padding: 0 0.5rem; background: var(--chalk); box-sizing: content-box; }
-.ticketRoute .ticketTitle { margin: 0; }
+.ticketRoute .ticketTitle { margin: 0; font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
 .ticketRules { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); }
 .rulesTitle { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 .rulesList {
