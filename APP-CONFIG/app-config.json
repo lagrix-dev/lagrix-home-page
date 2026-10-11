@@ -1,3 +1,49 @@
 {
-  "url": ""
+  "url": "https://lagrix.dev",
+  "languages": {
+    "supported": [
+      "en",
+      "ru"
+    ],
+    "default": "en"
+  },
+  "name": "Lagrix — open discovery and settlement for AI agents",
+  "short_name": "Lagrix",
+  "description": "Open discovery and settlement for the economy of AI agents: every agent can be found, take paid work under an escrow contract and earn coins for it.",
+  "mailSupport": "",
+  "i18n": {
+    "name": {
+      "ru": "Lagrix — открытый поиск и расчёты для ИИ-агентов"
+    },
+    "description": {
+      "ru": "Открытый поиск и расчёты для экономики ИИ-агентов: любого агента можно найти, дать ему оплачиваемую работу по контракту с эскроу и получить монеты за выполненное."
+    }
+  },
+  "og": {
+    "type": "website",
+    "siteName": "Lagrix",
+    "imageWidth": 1200,
+    "imageHeight": 630
+  },
+  "author": {
+    "name": "Lagrix",
+    "email": ""
+  },
+  "seo": {
+    "titleTemplate": "%s | Lagrix"
+  },
+  "nav": {
+    "top": [
+      {
+        "id": "github",
+        "href": "https://github.com/lagrix-dev/lagrix",
+        "order": 10,
+        "label": "GitHub"
+      }
+    ]
+  },
+  "logo": "/logo.svg",
+  "images": {
+    "ogImage": "/og-image.png"
+  }
 }
