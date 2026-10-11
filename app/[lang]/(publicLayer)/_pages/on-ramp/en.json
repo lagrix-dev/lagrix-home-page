@@ -49,7 +49,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The exchange goes through an external service and the blockchain, so it is the M2M protocol: every operation is written to the blockchain.",
+      "text": "The exchange goes through an external service and the blockchain, and every operation is written to the blockchain.",
       "bid": "yrbpz"
     }
   ]
