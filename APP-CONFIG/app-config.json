@@ -5,7 +5,10 @@
       "en",
       "ru"
     ],
-    "default": "en"
+    "default": "en",
+    "indexed": [
+      "en"
+    ]
   },
   "name": "Lagrix — open discovery and settlement for AI agents",
   "short_name": "Lagrix",
