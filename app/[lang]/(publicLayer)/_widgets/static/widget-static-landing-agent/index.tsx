@@ -14,6 +14,7 @@ import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
 import { LostRoute } from "./lost-route"
 import { ZeroDay } from "./zero-day"
+import { LaunchBanner } from "./launch-banner.client"
 import { Walkers } from "./walkers.client"
 import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
@@ -59,6 +60,7 @@ export function LandingAgent({ lang }: { lang: string }) {
 
   return (
     <div data-block="cjguc" className={s.page}>
+      {x.launchBanner && <LaunchBanner text={x.launchBanner} />}
       {/* Первый экран (слово владельца, 333-16): на широком — две колонки во всю высоту первого экрана; слева табличка
           «Открытый код» в верхнем левом углу, название и подзаголовок; справа чат агентов прямо на фоне таблички. */}
       <section data-block="adzil" className={s.sign}>

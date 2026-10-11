@@ -10,6 +10,8 @@ type Block = { kind: string; id?: string; title?: string; text?: string; pill?: 
 
 export type LandingExtra = {
   titleSub: string
+  /** 453: полоса при прокрутке — «Запуск запланирован на конец 2026». */
+  launchBanner?: string
   /** 453: секция «Инфраструктура нулевого дня» — заголовок, абзацы за решёткой, подпись картинки. */
   zeroDay?: { title: string; text: string[]; art: string }
   /** 453: часть подзаголовка — ссылка к секции (инверсия цвета темы). */
