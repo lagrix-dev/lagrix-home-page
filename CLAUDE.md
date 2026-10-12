@@ -185,3 +185,10 @@ or others inside Russian or English words are a frequent model artifact. Names a
 
 **The file tree of this element matches the skill `use-element-tree` exactly** — load it before you create, move, rename or
 delete any file or folder. Guards refuse a build that leaves it; a change of the tree itself is the person's decision.
+
+## Documentation and page snippets
+
+**`/docs` is the `lagrix-dev/lagrix` repository, read live** (node step 458): an edit or a new document on GitHub reaches the site
+within about five minutes with no rebuild — `app/[lang]/(publicLayer)/docs/_libs/docs.ts` `liveDocs()`, README of the branch in
+`docs/_libs/README.md`. The pages are blog posts (`createContentPost`): breadcrumbs, table of contents, cover, «Next». **Every public
+page has its snippet** at `<page>/snippet.png` — skill `page-snippet`; the background is `public/images/snippet/background.webp`.
