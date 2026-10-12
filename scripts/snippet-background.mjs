@@ -53,8 +53,11 @@ const key = process.env.OPENAI_API_KEY || (() => {
 })()
 if (!key) fail('no OPENAI_API_KEY in the environment or .env.local — use --pattern or ask the owner for a key')
 
-// Фон под текст: просим картинку без надписей и с тёмной левой частью, где ляжет заголовок. 1536×864 — 16:9, кратно 16.
-const full = `${prompt}. Wide background image for a social preview card. No text, no letters, no logos, no watermarks. Keep the left half calm and darker so a large white headline stays readable.`
+// Фон под текст: слова заказчика как есть, плюс цвета темы из DESIGN-CONFIG («в цветах темы» модель сама не знает) и просьба
+// оставить левую часть тихой под заголовок. 1536×864 — 16:9, кратно 16.
+// ✗ 458-3: здесь стояло «no letters» — и спорило с заказчиком, попросившим букву на экранах; запрещены только слова и подписи.
+const theme = designColors(ROOT)
+const full = `${prompt}. Wide background image for a social preview card. Theme colours: background ${theme.background}, main colour ${theme.primary}, text colour ${theme.foreground}. No words, captions, logos or watermarks. Keep the left half calm and darker so a large white headline stays readable.`
 const res = await fetch('https://api.openai.com/v1/images/generations', {
   method: 'POST',
   headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
