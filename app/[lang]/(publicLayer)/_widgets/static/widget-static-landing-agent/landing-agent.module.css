@@ -1287,3 +1287,5 @@
   .routeEnd:last-child { text-align: left; }
   .routeTrack { height: 1.8rem; justify-content: start; justify-items: start; background-position: left center; }
 }
+
+.rulesOne { margin-top: 0.6rem; max-width: 70ch; font-family: var(--text); font-size: 0.88rem; line-height: 1.45; color: var(--ink-soft); }
