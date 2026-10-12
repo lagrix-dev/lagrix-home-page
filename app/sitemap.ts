@@ -4,6 +4,7 @@ import { SUPPORTED_LANGUAGES } from "@/config/translations/translations.config"
 import { urlFor } from "@/lib/seo/alternates"
 import { indexableLanguages } from "@/lib/seo/translation-state"
 import { branchRoot, branchChildren } from "@/lib/page-tree"
+import { allSlugs, languagesOf, DOCS_LANGUAGES } from "@/app/[lang]/(publicLayer)/docs/_libs/docs"
 
 // ГЛАВНАЯ КАРТА САЙТА — страницы, множество которых конечно и авторское.
 //
@@ -75,6 +76,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const lang of indexableLanguages(page)) {
       out.push({ url: urlFor(lang, `/${page.slug}`), changeFrequency: "weekly", priority: 0.5 })
     }
+  }
+
+  // Шаг узла 457-3: документы репозитория lagrix-dev/lagrix — /docs и каждый документ на языках, где он есть и открыт поиску.
+  const open = new Set(home ? indexableLanguages(home) : [])
+  for (const lang of DOCS_LANGUAGES.filter((l) => open.has(l))) out.push({ url: urlFor(lang, "/docs"), changeFrequency: "weekly", priority: 0.6 })
+  for (const doc of allSlugs()) for (const lang of languagesOf(doc).filter((l) => open.has(l))) {
+    out.push({ url: urlFor(lang, `/docs/${doc}`), changeFrequency: "weekly", priority: 0.5 })
   }
 
   return out.filter((row, i) => out.findIndex(r => r.url === row.url) === i)

@@ -1,0 +1,8 @@
+{
+  "_": "Where the /docs branch takes its pages from (node step 457-1). Change the repository or branch here; scripts/sync-lagrix-docs.mjs reads it at every build.",
+  "repo": "lagrix-dev/lagrix",
+  "branch": "main",
+  "readme": "README.md",
+  "docsDir": "docs",
+  "languages": ["en", "ru"]
+}
