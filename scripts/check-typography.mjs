@@ -58,6 +58,8 @@ const ALLOWED_RAW_HEADINGS = new Set([
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "help-desk.client.tsx"),
   // «Инфраструктура нулевого дня» того же лендинга (шаг 453): заголовок секции в оформлении страницы.
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "zero-day.tsx"),
+  // «Таможня» того же лендинга (шаг 467): табличка на цепочках — та же, что у «Зала ожидания» в index.tsx.
+  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "customs.tsx"),
 ])
 
 // 🔒 ПОЛЯ ВВОДА УМЕНЬШАЮТ ТЕКСТ НАМЕРЕННО — И ЭТО НЕ ТА ОШИБКА, ЧТО ИЩЕТ СТОРОЖ.
