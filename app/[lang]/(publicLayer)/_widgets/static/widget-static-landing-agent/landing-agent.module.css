@@ -1340,6 +1340,8 @@
   background-image: repeating-linear-gradient(90deg, var(--ink) 0 2.2rem, color-mix(in oklab, var(--ink) 80%, var(--chalk)) 2.2rem 2.4rem);
 }
 .bags { position: absolute; inset: 0; z-index: 1; }
+/* 467-3: оживлённый зал (`data-live`) ведёт чемоданы сам — от левого края, сдвигом; серверная расстановка — от центра. */
+.customsHall[data-live] .bag { left: 0; will-change: transform; }
 .bag { position: absolute; bottom: 9.1rem; left: calc(50% + var(--x, 0rem)); width: var(--w, 6rem); height: auto; display: block; }
 .bag[data-tone="poster"] { --bag: var(--poster); --strap: var(--ink); }
 .bag[data-tone="signal"] { --bag: var(--signal); --strap: var(--chalk); }
