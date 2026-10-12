@@ -192,3 +192,9 @@ delete any file or folder. Guards refuse a build that leaves it; a change of the
 within about five minutes with no rebuild — `app/[lang]/(publicLayer)/docs/_libs/docs.ts` `liveDocs()`, README of the branch in
 `docs/_libs/README.md`. The pages are blog posts (`createContentPost`): breadcrumbs, table of contents, cover, «Next». **Every public
 page has its snippet** at `<page>/snippet.png` — skill `page-snippet`; the background is `public/images/snippet/background.webp`.
+
+## Messengers
+
+**H2H Messenger and H2A Messenger** (node step 459) are protected branches `messenger-h2h`, `messenger-h2a` — architect only, entered
+from the account drawer. 🔒 Their UI is built only from ai-elements — skill `use-messenger` (gatekeeper) and `ai-elements` (vendored).
+Sending and storing messages is not built.
