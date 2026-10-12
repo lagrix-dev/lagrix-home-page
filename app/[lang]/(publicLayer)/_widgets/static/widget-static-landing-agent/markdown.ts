@@ -25,8 +25,11 @@ export function markdown(lang: string): string {
     if (q && a) out.push(`### ${q.trim()}`, "", a.trim(), "")
   }
 
-  // Первый экран: приглашение, подсказка к нему, указатель к чату.
+  // Первый экран: табличка H1 (453-2, звёздочки в данных — выделение, в Markdown — жирный), приглашение, подсказка, указатель к чату.
+  const plate = (x as typeof x & { openSource?: string }).openSource
+  if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
   para(x.titleSub)
+  para(x.launchBanner)
   qa(x.titleSubHintLabel, x.titleSubHint)
   if (x.gate) {
     list(x.gate.routes)
@@ -37,7 +40,9 @@ export function markdown(lang: string): string {
   if (x.chat?.items?.length) {
     head(2, x.chat.label)
     for (const m of x.chat.items) {
-      if (m.text) out.push(`**${m.who}:** ${m.text.trim()}`, "")
+      // 456: протокол реплики — как на значке чата (у гостя сайта — слова из данных, у остальных — код протокола).
+      const badge = m.contract === "guest" ? x.chat.contractLabels.guest : m.contract
+      if (m.text) out.push(`**${m.who}** (${badge}): ${m.text.trim()}`, "")
       if (m.steps?.length) list(m.steps)
       if (m.checks?.length) list(m.checks)
     }
@@ -56,8 +61,16 @@ export function markdown(lang: string): string {
 
   if (x.ticket) {
     head(2, x.ticket.kicker)
+    // 454-7: маршрут билета — «откуда» из данных билета, «куда» — заголовок секции (станция назначения).
+    if (x.ticket.route) list([`${x.ticket.route.fromLabel}: ${x.ticket.route.from}`, `${x.ticket.route.toLabel}: ${w.hood.title}`])
     list(x.ticket.fields.map((f) => `${f.label}: ${f.value}`))
+    if (x.ticket.rules) {
+      head(3, x.ticket.rules.title)
+      list(x.ticket.rules.items)
+    }
     para(x.ticket.keep)
+    if (x.ticket.stamp) para(`${x.ticket.stamp.top} · ${x.ticket.stamp.bottom}`)
+    if (x.ticket.reserve) out.push(`[${x.ticket.reserve.label}](${x.ticket.reserve.href})`, "")
   }
 
   list(x.chips)
@@ -70,6 +83,17 @@ export function markdown(lang: string): string {
       para(side.text)
       list(side.items.map((i) => (i.tag ? `**${i.tag}** ${i.text}` : i.text)))
     }
+    // 453-1: подписи картинки «пешего маршрута» — станции, флаги их агентов, тупик и станция за ним.
+    const left = x.compare.left
+    list(left.stations.map((st, i) => (left.flags?.[i] ? `${st} — ${left.flags[i]}` : st)))
+    list([left.deadEnd, left.free])
+  }
+
+  // 453-3/6/8: «Инфраструктура нулевого дня» — заголовок, текст за решёткой, подпись рисунка до и после «Разблокировать».
+  if (x.zeroDay) {
+    head(2, x.zeroDay.title)
+    para(...x.zeroDay.text)
+    list([x.zeroDay.art, x.zeroDay.people])
   }
 
   if (x.helpDesk) {
