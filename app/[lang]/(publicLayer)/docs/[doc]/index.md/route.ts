@@ -1,12 +1,14 @@
 import { urlFor } from "@/lib/seo/alternates"
-import { allSlugs, docOf, withSiteLinks } from "../../_libs/docs"
+import { DOCS_LANGUAGES, allSlugs, docOf, withSiteLinks } from "../../_libs/docs"
 
 // Markdown-двойник документа (для агентов, node step 457-3): текст репозитория, ссылки — на полные адреса этого сайта.
 export const dynamic = "force-static"
 export const dynamicParams = false
 
+// Обработчик маршрута не наследует язык из [lang] в заранее построенные адреса (замерено: только { doc } → 404 на всех) —
+// пары «язык + документ» задаются здесь явно.
 export function generateStaticParams() {
-  return allSlugs().map((doc) => ({ doc }))
+  return DOCS_LANGUAGES.flatMap((lang) => allSlugs().map((doc) => ({ lang, doc })))
 }
 
 export async function GET(_req: Request, { params }: { params: Promise<{ lang: string; doc: string }> }) {
