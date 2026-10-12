@@ -1136,7 +1136,14 @@
    Светлый пол вокзала; по краям — патруль (форма цвета табло, кокарды и столбик ограждения — цвет плаката), в центре — тёмная
    камера: текст читается сквозь решётку, контраст приглушён, но не ниже 4.5:1. Телефон: левая группа на четверть ширины,
    высоту ряда задают офицеры, текст прокручивается внутри камеры. */
-.zeroDay { padding: 4rem 0 4.5rem; scroll-margin-top: 4rem; border-top: 6px solid var(--ink); }
+.zeroDay { position: relative; padding: 4rem 0 4.5rem; scroll-margin-top: 4rem; border-top: 6px solid var(--ink); }
+/* 467-5 (владелец 2026-10-12): «наличие пола помещения … аналогичное решение» — пол как в «Таможне» (`.hallFloor`): тот же цвет и
+   плинтус цвета табло; верх пола чуть выше низа сетки, чтобы патруль, люди и камера стояли на нём. */
+.zeroDay::before {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 6rem;
+  background: color-mix(in oklab, var(--board) 10%, var(--floor)); border-top: 4px solid var(--board);
+}
+.zeroDay > * { position: relative; }
 /* Вывеска на двух цепочках (467-1): тот же язык, что `.waitingSign` — цепочки `.gateRods`, табличка цвета табло, буквы мелом;
    здесь она висит по центру секции. Мишень — эмблема на левом краю таблички, с меловым ободом, как круглый значок станции. */
 .zeroSign { position: relative; display: table; margin-inline: auto; padding-top: 2rem; --rod: var(--ink); }
