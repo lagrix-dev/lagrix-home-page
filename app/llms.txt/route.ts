@@ -1,4 +1,5 @@
 import { buildLlmsTxt } from "@/lib/aio/llms";
+import { liveDocs } from "@/app/[lang]/(publicLayer)/docs/_libs/docs";
 import { DEFAULT_LANGUAGE } from "@/config/translations/translations.config";
 
 // `/llms.txt` — карта сайта для модели, на языке по умолчанию (шаг 505).
@@ -16,9 +17,11 @@ import { DEFAULT_LANGUAGE } from "@/config/translations/translations.config";
 // Статика с суточным обновлением: содержимое меняется вместе с настройками и
 // постами, а не на каждый запрос.
 export const dynamic = "force-static";
-export const revalidate = 86_400;
+// 458-9: документы Lagrix читаются с GitHub на лету — карта обновляется вместе с ними, раз в 5 минут.
+export const revalidate = 300;
 
 export async function GET() {
+  await liveDocs();
   return new Response(buildLlmsTxt(DEFAULT_LANGUAGE), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });

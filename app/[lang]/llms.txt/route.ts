@@ -1,4 +1,5 @@
 import { buildLlmsTxt } from "@/lib/aio/llms";
+import { liveDocs } from "@/app/[lang]/(publicLayer)/docs/_libs/docs";
 import { SUPPORTED_LANGUAGES, SINGLE_LANG_MODE } from "@/config/translations/translations.config";
 
 // `/<язык>/llms.txt` — та же карта на языке этого раздела (шаг 505).
@@ -11,6 +12,8 @@ import { SUPPORTED_LANGUAGES, SINGLE_LANG_MODE } from "@/config/translations/tra
 // сайте, карта живёт в корне.
 export const dynamic = "force-static";
 export const dynamicParams = false;
+// 458-9: документы Lagrix читаются с GitHub на лету — карта обновляется вместе с ними, раз в 5 минут.
+export const revalidate = 300;
 
 export function generateStaticParams() {
   return SINGLE_LANG_MODE ? [] : SUPPORTED_LANGUAGES.map(lang => ({ lang }));
@@ -18,6 +21,7 @@ export function generateStaticParams() {
 
 export async function GET(_req: Request, { params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  await liveDocs();
   return new Response(buildLlmsTxt(lang), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });

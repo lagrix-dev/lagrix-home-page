@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 import type { ContentPostConfig } from "@/lib/content/create-content-post"
 import { DEFAULT_LANGUAGE } from "@/config/translations/translations.config"
 import { snippetPath } from "@/lib/snippet/page-snippet"
-import { DOCS_SOURCE, descriptionOf, docOf, readme, rewriteHref, languagesOf, DOCS_LANGUAGES } from "./docs"
+import { docsSource, docsFor, titleOf, descriptionOf, docOf, readme, rewriteHref, languagesOf, DOCS_LANGUAGES } from "./docs"
 import { markdownToBlocks, readingMinutes } from "./to-blocks"
 import WORDS from "./words.json"
 
@@ -15,14 +15,14 @@ import WORDS from "./words.json"
 // Языки поиска — тот же закон, что у всех страниц (шаг 340): «перевод» документа есть, когда в репозитории лежит его файл
 // на этом языке; язык без файла показывает английский текст и закрыт от поиска.
 
-type Words = { crumb: string; suffix: string; list: string; listNote: string; minRead: string }
+type Words = { crumb: string; suffix: string; list: string; listNote: string; minRead: string; next: string }
 export const docsWords = (lang: string): Words => (WORDS as Record<string, Words>)[lang] ?? WORDS.en
 
 const siteLink = (lang: string) => (href: string) => rewriteHref(href, lang, (l, p) => `/${l}${p}`)
 /** Переводы страницы для фабрики: языки, где у документа есть свой файл (кроме основного — он «переведён» всегда). */
 const translations = (langs: string[]) => ({ overrides: Object.fromEntries(langs.filter((l) => l !== DEFAULT_LANGUAGE).map((l) => [l, { own: true }])) })
 
-function docPost(subPath: string, langs: string[], text: (lang: string) => { md: string; lang: string } | null, opts: { crumbs: (lang: string, title: string) => { label: string; href?: string }[]; back?: (lang: string) => { href: string; label: string }; afterBody?: (lang: string) => ReactNode }): ContentPostConfig {
+function docPost(subPath: string, langs: string[], text: (lang: string) => { md: string; lang: string } | null, opts: { crumbs: (lang: string, title: string) => { label: string; href?: string }[]; back?: (lang: string) => { href: string; label: string }; next?: (lang: string) => { href: string; label: string; title: string } | undefined; afterBody?: (lang: string) => ReactNode }): ContentPostConfig {
   return {
     format: "document",
     subPath,
@@ -31,7 +31,7 @@ function docPost(subPath: string, langs: string[], text: (lang: string) => { md:
     minLabel: (lang) => docsWords(lang).minRead,
     afterBody: opts.afterBody,
     // Ссылка «назад» — у документа на оглавление; у корня уровня выше нет (пустой адрес — ссылки нет).
-    chrome: (lang, post) => ({ breadcrumbs: opts.crumbs(lang, post.title), backHref: opts.back?.(lang).href ?? "", backLabel: opts.back?.(lang).label ?? "" }),
+    chrome: (lang, post) => ({ breadcrumbs: opts.crumbs(lang, post.title), backHref: opts.back?.(lang).href ?? "", backLabel: opts.back?.(lang).label ?? "", next: opts.next?.(lang) }),
     resolve: (lang) => {
       const found = text(lang)
       const md = found?.md ?? ""
@@ -41,7 +41,7 @@ function docPost(subPath: string, langs: string[], text: (lang: string) => { md:
         title,
         description: descriptionOf(md),
         tags: [],
-        date: (DOCS_SOURCE.updatedAt ?? DOCS_SOURCE.syncedAt).slice(0, 10),
+        date: (docsSource().updatedAt ?? docsSource().syncedAt).slice(0, 10),
         readingMinutes: readingMinutes(md),
         blocks,
         heroImage: snippet,
@@ -68,5 +68,11 @@ export function docConfigOf(doc: string) {
   }, {
     crumbs: (lang, title) => [{ label: docsWords(lang).crumb, href: `/${lang}/docs` }, { label: title }],
     back: (lang) => ({ href: `/${lang}/docs`, label: docsWords(lang).crumb }),
+    // 458-11: «вперёд» — следующий документ того же языка по порядку файлов репозитория (номер документа); у последнего — нет.
+    next: (lang) => {
+      const list = docsFor(lang)
+      const after = list[list.findIndex((d) => d.slug === doc) + 1]
+      return after && list.some((d) => d.slug === doc) ? { href: `/${lang}/docs/${after.slug}`, label: docsWords(lang).next, title: titleOf(after.text) } : undefined
+    },
   })
 }

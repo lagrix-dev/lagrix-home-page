@@ -4,6 +4,7 @@ import { convertToModelMessages, streamText, type UIMessage } from "ai"
 import { createOpenAI } from "@ai-sdk/openai"
 import { openAiKey } from "@/lib/openai-key"
 import { HELP_DESK_MODEL, allowRequest, helpDeskSystem } from "@/app/[lang]/(publicLayer)/_libs/help-desk"
+import { liveDocs } from "@/app/[lang]/(publicLayer)/docs/_libs/docs"
 
 // ДВЕРЬ СПРАВОЧНОГО БЮРО (узел, шаг 349): чат киоска на лендинге (`components/landing-agent/help-desk.client.tsx`, `useChat`).
 // Открыта посетителям без входа (`PUBLIC_API_PREFIXES` в `proxy.ts`) — поэтому предел с одного адреса и короткие ответы
@@ -39,6 +40,8 @@ export async function POST(req: NextRequest) {
     .filter((m) => m.parts.some((p) => p.text.trim())) as UIMessage[]
   if (messages.length === 0) return NextResponse.json({ ok: false, reason: "empty" }, { status: 400 })
 
+  // 458-9: знания бюро — те же документы, что на сайте сейчас (с GitHub, не старше 5 минут).
+  await liveDocs()
   const openai = createOpenAI({ apiKey: key })
   const result = streamText({
     model: openai(HELP_DESK_MODEL),

@@ -108,7 +108,12 @@ export function buildLlmsFullTxt(lang: string): string {
   const pages = out.join('\n').replace(/\n{3,}/g, '\n\n')
   // 451-5: документы из `assets/llms-extra/<язык>/` — ДОСЛОВНО, после страниц и вне схлопывания пустых строк (иначе текст
   // документа менялся бы). Нет документов на этом языке — берутся английские; нет и их — файл как прежде, только страницы.
-  const extra = LLMS_EXTRA[lang]?.length ? LLMS_EXTRA[lang] : LLMS_EXTRA.en ?? []
+  // 458-9: документы ветки /docs — те же, что на сайте сейчас (живое чтение GitHub, `liveDocs()` зовёт маршрут), а не копия
+  // сборки: иначе llms-full.txt отставал бы от страниц до следующей пересборки. Копия сборки — только если документов нет.
+  const live = docsFor(lang)
+  const extra = live.length
+    ? [{ file: '0-README.md', text: readme(lang) }, ...live.map((d) => ({ file: `${d.slug}.md`, text: d.text }))]
+    : LLMS_EXTRA[lang]?.length ? LLMS_EXTRA[lang] : LLMS_EXTRA.en ?? []
   if (extra.length === 0) return pages
   return [pages.replace(/\n+$/, '\n'), ...extra.map((d) => `\n---\n\n<!-- document: ${d.file} -->\n\n${d.text}`)].join('')
 }

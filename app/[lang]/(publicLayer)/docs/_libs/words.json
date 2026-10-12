@@ -1,4 +1,4 @@
 {
-  "en": { "crumb": "Docs", "suffix": "Documentation", "list": "Documents", "listNote": "The Lagrix specification, document by document.", "minRead": "min read" },
-  "ru": { "crumb": "Документация", "suffix": "Документация", "list": "Документы", "listNote": "Спецификация Lagrix, документ за документом.", "minRead": "мин чтения" }
+  "en": { "crumb": "Docs", "suffix": "Documentation", "list": "Documents", "listNote": "The Lagrix specification, document by document.", "minRead": "min read", "next": "Next" },
+  "ru": { "crumb": "Документация", "suffix": "Документация", "list": "Документы", "listNote": "Спецификация Lagrix, документ за документом.", "minRead": "мин чтения", "next": "Следующая" }
 }

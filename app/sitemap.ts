@@ -4,7 +4,10 @@ import { SUPPORTED_LANGUAGES } from "@/config/translations/translations.config"
 import { urlFor } from "@/lib/seo/alternates"
 import { indexableLanguages } from "@/lib/seo/translation-state"
 import { branchRoot, branchChildren } from "@/lib/page-tree"
-import { allSlugs, languagesOf, DOCS_LANGUAGES } from "@/app/[lang]/(publicLayer)/docs/_libs/docs"
+import { allSlugs, languagesOf, liveDocs, DOCS_LANGUAGES } from "@/app/[lang]/(publicLayer)/docs/_libs/docs"
+
+// 458-9: документы Lagrix читаются с GitHub на лету — новый документ попадает в карту в пределах 5 минут, без пересборки.
+export const revalidate = 300
 
 // ГЛАВНАЯ КАРТА САЙТА — страницы, множество которых конечно и авторское.
 //
@@ -40,7 +43,8 @@ import { allSlugs, languagesOf, DOCS_LANGUAGES } from "@/app/[lang]/(publicLayer
 // 314-2: страницы публичной ветки — из дерева данных (`lib/page-tree.ts`): корень и дети `(publicLayer)/_pages/<slug>/`.
 // Списка руками нет — новая папка страницы попадает в карту сама.
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  await liveDocs()
   const site = brand().siteUrl
   if (!site) return []
 

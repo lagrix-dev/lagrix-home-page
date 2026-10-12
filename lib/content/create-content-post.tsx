@@ -88,6 +88,8 @@ export type ContentPostConfig = {
     breadcrumbs: Breadcrumb[]
     backHref: string
     backLabel: string
+    /** 458-11: следующая страница по порядку — «вперёд» рядом с «назад». */
+    next?: { href: string; label: string; title: string }
   }
   /** <title> suffix, e.g. (lang) => 'Fractera News'. */
   titleSuffix: (lang: string) => string
@@ -174,7 +176,7 @@ export function createContentPost(config: ContentPostConfig) {
   async function Page({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params
     const post = resolve(lang)
-    const { breadcrumbs, backHref, backLabel } = chrome(lang, post)
+    const { breadcrumbs, backHref, backLabel, next } = chrome(lang, post)
     const url = `${brand().siteUrl}/${lang}${subPath}`
     const ogImage = snippetImage(post)
 
@@ -248,6 +250,7 @@ export function createContentPost(config: ContentPostConfig) {
           faq={faq}
           backHref={backHref}
           backLabel={backLabel}
+          next={next}
           afterBody={config.afterBody?.(lang)}
         />
       </>

@@ -2,15 +2,74 @@ import "server-only"
 import DOCS from "./docs.generated.json"
 import { INDEXED_LANGUAGES } from "@/config/translations/translations.config"
 
-// ДОКУМЕНТЫ ВЕТКИ /docs (node step 457-2). Источник — копия репозитория `lagrix-dev/lagrix`, снятая при сборке
-// (`scripts/sync-lagrix-docs.mjs` → `docs.generated.json`): ветка рисует ровно то, что лежит на GitHub, один в один.
-// Язык: документ на языке страницы, а нет его — английский (закон элемента «языки — это файлы»). README — свой у каждого языка (README.<язык>.md, шаг 458-1), нет своего — английский.
+import SOURCE from "./source.json"
+
+// ДОКУМЕНТЫ ВЕТКИ /docs (node step 457-2). Источник — репозиторий `lagrix-dev/lagrix`: ветка рисует ровно то, что лежит на
+// GitHub, один в один. Язык: документ на языке страницы, а нет его — английский (закон элемента «языки — это файлы»). README —
+// свой у каждого языка (README.<язык>.md, шаг 458-1), нет своего — английский.
+//
+// 🔒 ЖИВОЕ ЧТЕНИЕ, БЕЗ ПЕРЕСБОРКИ (шаг 458-9). Владелец 2026-10-12: «проверь подтвердишь что когда я буду обновлять или дополнить
+// страницы в GitHub здесь будут происходить те же сам изменения» → выбор «Живое чтение с GitHub». Каждая страница, маршрут и
+// карта ветки первым делом зовут `liveDocs()`: она спрашивает GitHub через кэш данных Next — последний коммит ветки не чаще раза
+// в 5 минут (`revalidate`), дерево и файлы — по хэшу коммита (неизменны, берутся один раз на коммит). Таймеров и опроса нет:
+// запрос к GitHub бывает только тогда, когда страницу рисуют (заход посетителя после истечения кэша). Лимит GitHub без ключа —
+// 60 запросов к API в час; здесь их не больше 12 в час плюс одно дерево на коммит.
+// Нет сети или GitHub отказал — остаётся последнее прочитанное, а до первого чтения — копия сборки (`docs.generated.json`,
+// `scripts/sync-lagrix-docs.mjs` в prebuild): сайт не теряет документы из-за GitHub.
 
 export type Doc = { slug: string; file: string; title: string; text: string }
 type Docs = { source: { repo: string; branch: string; updatedAt?: string; syncedAt: string }; readme: Record<string, string>; languages: Record<string, Doc[]> }
-const data = DOCS as Docs
+let data = DOCS as Docs
 
-export const DOCS_SOURCE = data.source
+export const LIVE_REVALIDATE = 300
+const API = "https://api.github.com"
+const RAW = "https://raw.githubusercontent.com"
+const GH_HEADERS = { accept: "application/vnd.github+json", "user-agent": "fractera-docs-live" }
+
+async function readLive(): Promise<Docs> {
+  const src = SOURCE as { repo: string; branch: string; readme: string | Record<string, string>; docsDir: string; languages: string[] }
+  const readmes: Record<string, string> = typeof src.readme === "string" ? { en: src.readme } : src.readme
+  // Последний коммит ветки: его хэш делает дальнейшие адреса неизменными, его дата — дата документов.
+  const commitRes = await fetch(`${API}/repos/${src.repo}/commits/${encodeURIComponent(src.branch)}`, { headers: GH_HEADERS, next: { revalidate: LIVE_REVALIDATE } })
+  if (!commitRes.ok) throw new Error(`commit ${commitRes.status}`)
+  const commit = (await commitRes.json()) as { sha: string; commit: { committer: { date: string } } }
+  const treeRes = await fetch(`${API}/repos/${src.repo}/git/trees/${commit.sha}?recursive=1`, { headers: GH_HEADERS, cache: "force-cache" })
+  if (!treeRes.ok) throw new Error(`tree ${treeRes.status}`)
+  const tree = (await treeRes.json()) as { truncated: boolean; tree: { path: string; type: string }[] }
+  if (tree.truncated) throw new Error("tree truncated")
+  const blobs = tree.tree.filter((t) => t.type === "blob").map((t) => t.path)
+  const raw = async (p: string) => {
+    const r = await fetch(`${RAW}/${src.repo}/${commit.sha}/${p.split("/").map(encodeURIComponent).join("/")}`, { cache: "force-cache" })
+    if (!r.ok) throw new Error(`${p} ${r.status}`)
+    return r.text()
+  }
+  const out: Docs = { source: { repo: src.repo, branch: src.branch, updatedAt: commit.commit.committer.date, syncedAt: new Date().toISOString() }, readme: {}, languages: {} }
+  const baseReadme = blobs.includes(readmes.en) ? await raw(readmes.en) : ""
+  for (const lang of src.languages) {
+    out.readme[lang] = readmes[lang] && blobs.includes(readmes[lang]) ? await raw(readmes[lang]) : baseReadme
+    const prefix = `${src.docsDir}/${lang}/`
+    const files = blobs.filter((p) => p.startsWith(prefix) && p.endsWith(".md")).sort()
+    out.languages[lang] = await Promise.all(files.map(async (p) => {
+      const text = await raw(p)
+      return { slug: p.slice(prefix.length, -3), file: p, title: (text.match(/^#\s+(.+)$/m)?.[1] ?? "").trim(), text }
+    }))
+  }
+  return out
+}
+
+/** Свежие документы с GitHub (через кэш данных Next); отказ — последнее прочитанное. Звать первым в каждой точке входа ветки. */
+export async function liveDocs(): Promise<void> {
+  try {
+    data = await readLive()
+  } catch (e) {
+    console.warn(`===DOCS_LIVE_FALLBACK=== ${(e as Error).message} — the last copy stays (${data.source.syncedAt})`)
+  }
+}
+
+/** Откуда и когда взяты документы, которые сейчас на сайте. */
+export function docsSource(): Docs["source"] {
+  return data.source
+}
 export const DOCS_LANGUAGES = Object.keys(data.languages)
 const FALLBACK = DOCS_LANGUAGES.includes("en") ? "en" : DOCS_LANGUAGES[0]
 
@@ -34,7 +93,7 @@ export function allSlugs(): string[] {
 
 /** Языки, на которых документ есть, — для hreflang и карты сайта. */
 export function languagesOf(slug: string): string[] {
-  return DOCS_LANGUAGES.filter((l) => data.languages[l].some((d) => d.slug === slug))
+  return DOCS_LANGUAGES.filter((l) => data.languages[l]?.some((d) => d.slug === slug))
 }
 
 /** README на языке страницы; нет своего — английский (синхронизация уже подставила его). */
