@@ -1,0 +1,7 @@
+{
+  "_": "Paths of the starting tree that are gone ON PURPOSE (node step 462): each with the person's words, verbatim. Read by scripts/check-tree.mjs.",
+  "paths": {
+    "app/[lang]/(publicLayer)/_pages/chain": "owner 2026-10-12, SEO audit of step 457: «h2h will use . Another remove» (step 461)",
+    "app/[lang]/(publicLayer)/_pages/h2m": "owner 2026-10-12, SEO audit of step 457: «h2h will use . Another remove» (step 461)"
+  }
+}
