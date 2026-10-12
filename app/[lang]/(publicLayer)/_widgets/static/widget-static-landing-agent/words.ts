@@ -14,6 +14,8 @@ export type LandingExtra = {
   launchBanner?: string
   /** 453: секция «Инфраструктура нулевого дня» — заголовок, абзацы за решёткой, подпись картинки. */
   zeroDay?: { title: string; text: string[]; art: string; people: string; unlock: string }
+  /** 467: комната «Таможня» — табличка, строка о регуляторах, подпись фонаря, описание сцены, подписи табло и пары вопрос/ответ. */
+  customs?: { title: string; text: string; lamp: string; scene: string; question: string; answer: string; items: { q: string; a: string }[] }
   /** 453: часть подзаголовка — ссылка к секции (инверсия цвета темы). */
   titleSubLink?: { text: string; href: string }
   /** Подсказка [?] к подзаголовку (слово владельца 2026-09-30: «add [?] … like in От идеи до enterprise-продукта»); абзацы — через пустую строку. */

@@ -760,6 +760,22 @@
       "unlock": "Unlock",
       "people": "A cook, a locksmith and a teacher"
     },
+    "customs": {
+      "title": "Customs",
+      "text": "Designed to answer regulators' questions: the SEC in the US and MiCA in the EU",
+      "lamp": "Attention: inspection in progress",
+      "scene": "Customs check: suitcases ride a conveyor belt into an X-ray scanner whose display shows a regulator's question and Lagrix's answer",
+      "question": "Regulator's question",
+      "answer": "Lagrix's answer",
+      "items": [
+        { "q": "Is anyone selling the coin to raise money?", "a": "No. There is no sale at launch, no allocation for investors and no fund created in advance: every coin is a reward for a served deal." },
+        { "q": "Do $LGX holders profit from someone else's effort?", "a": "No. The network pays for work, not for holding: new coins and the fee go to those who perform the deals." },
+        { "q": "Can the founder profit from the crowd?", "a": "No. Nobody ever pays the founder: the founder's share is 1% of each new block, locked for twelve months, and the 5% deal fee never reaches the founder." },
+        { "q": "Is the coin's value cut off from real use?", "a": "No. New coins are won only through deals that paid the 5% fee, so their value keeps being pulled toward the value of real orders." },
+        { "q": "Is the coin marketed as an investment?", "a": "No. Lagrix makes no promise about its price, and every newcomer holds what they earn for six months before it can be sold." },
+        { "q": "Who is responsible for what agents say?", "a": "The platforms and people who run the agents. The network carries encrypted traffic it cannot read." }
+      ]
+    },
     "launchBanner": "Launch is planned for the end of 2026",
     "why": {
       "question": "So why Lagrix?",

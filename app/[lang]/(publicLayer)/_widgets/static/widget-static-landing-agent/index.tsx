@@ -14,6 +14,7 @@ import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
 import { LostRoute } from "./lost-route"
 import { ZeroDay } from "./zero-day"
+import { Customs } from "./customs"
 import { LaunchBanner } from "./launch-banner.client"
 import { Walkers } from "./walkers.client"
 import { VersusTabs } from "./versus-tabs.client"
@@ -388,6 +389,10 @@ export function LandingAgent({ lang }: { lang: string }) {
       {/* 453 (владелец 2026-10-11): «Инфраструктура нулевого дня» — после «Fractera vs LLM», над справочным бюро; сюда ведёт
           ссылка подзаголовка первого экрана (#zero-day). */}
       {x.zeroDay && <ZeroDay title={x.zeroDay.title} text={x.zeroDay.text} art={x.zeroDay.art} people={x.zeroDay.people} unlock={x.zeroDay.unlock} />}
+
+      {/* 467 (владелец 2026-10-12): «Ниже чем раздел инфраструктура нулевого дня мы будем рисовать комнату которая будет называться
+          таможню». Слова — `landing.customs`. */}
+      {x.customs && <Customs w={x.customs} />}
 
       {/* 348–349 (владелец 2026-09-30): справочное бюро — третья секция снизу, над «Конвейером децентрализованной разработки»
           («конвейер … должен быть под новой секцией справочного бюро»). */}

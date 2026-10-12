@@ -4,6 +4,8 @@ import { landingWords } from "./words"
 // `llms-full.txt`) зовёт эту функцию на блоке `widget-static-landing-agent`. Источник тот же, что рисует виджет, — `landingWords`
 // (данные главной, поле `landing`): поправили слова — изменились обе формы страницы.
 // Здесь только поле `landing`: заголовок, «что умеет» и «под капотом» — обычные блоки страницы, их пишет сборщик сам.
+// 🔒 467-4: копия собирается ВРУЧНУЮ — новая секция или новое видимое поле в `landing` без строки здесь в `/<язык>/index.md` и
+// `llms-full.txt` не попадает. Добавил секцию на страницу — добавь её и сюда той же правкой.
 // 🔒 Только слова из данных — ни одной своей подписи: английская подпись на русской странице — чужой язык для машины (шаг 507).
 
 export function markdown(lang: string): string {
@@ -99,6 +101,15 @@ export function markdown(lang: string): string {
     head(2, x.zeroDay.title)
     para(...x.zeroDay.text)
     list([x.zeroDay.art, x.zeroDay.people])
+  }
+
+  // 467: «Таможня» — табличка, строка о регуляторах, фонарь, сцена и все пары «вопрос регулятора → ответ Lagrix» с табло.
+  if (x.customs) {
+    const c = x.customs
+    head(2, c.title)
+    para(c.text)
+    list([c.lamp, c.scene])
+    for (const it of c.items) qa(it.q, it.a)
   }
 
   if (x.helpDesk) {
