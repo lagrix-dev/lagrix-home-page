@@ -1,5 +1,8 @@
 {
   "widthToggle": true,
   "viewportBadge": true,
-  "faq": false
+  "faq": false,
+  "features": {
+    "viewportBadge": false
+  }
 }
