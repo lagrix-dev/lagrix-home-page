@@ -1,4 +1,4 @@
 {
-  "en": { "nav": "Documents", "home": "Overview" },
-  "ru": { "nav": "Документы", "home": "Обзор" }
+  "en": { "crumb": "Docs", "suffix": "Documentation", "list": "Documents", "listNote": "The Lagrix specification, document by document.", "minRead": "min read" },
+  "ru": { "crumb": "Документация", "suffix": "Документация", "list": "Документы", "listNote": "Спецификация Lagrix, документ за документом.", "minRead": "мин чтения" }
 }

@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { allSlugs, docOf, isOpen, languagesOf, openAlternates } from "../_libs/docs"
-import { buildAlternates } from "@/lib/seo/alternates"
-import { docMetadata } from "../_libs/seo"
-import { DocPage } from "../_widgets/static/widget-static-docs-reader"
+import { allSlugs, docOf } from "../_libs/docs"
+import { createContentPost } from "@/lib/content/create-content-post"
+import { docConfigOf } from "../_libs/post"
 
-// ДОКУМЕНТ ВЕТКИ /docs (node step 457-2): один файл `docs/<язык>/<имя>.md` репозитория — одна страница `/<язык>/docs/<имя>`.
-// Все документы рисуются при сборке; имени, которого нет в репозитории, нет и на сайте (404).
+// ДОКУМЕНТ ВЕТКИ /docs (шаг узла 457-2, вид — 458-4): один файл `docs/<язык>/<имя>.md` репозитория — одна страница
+// `/<язык>/docs/<имя>`, нарисованная как пост блога (`createContentPost`, формат document → TechArticle). Все документы рисуются
+// при сборке; имени, которого нет в репозитории, нет и на сайте (404).
 export const dynamic = "force-static"
 export const dynamicParams = false
 
@@ -16,14 +16,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; doc: string }> }): Promise<Metadata> {
   const { lang, doc } = await params
-  const found = docOf(lang, doc)
-  if (!found) return {}
-  return docMetadata(lang, `/docs/${doc}`, found.doc.text, buildAlternates(lang, `/docs/${doc}`, openAlternates(lang, languagesOf(doc))), isOpen(lang, languagesOf(doc)))
+  if (!docOf(lang, doc)) return {}
+  return createContentPost(docConfigOf(doc)).generateMetadata({ params: Promise.resolve({ lang }) })
 }
 
 export default async function DocsPage({ params }: { params: Promise<{ lang: string; doc: string }> }) {
   const { lang, doc } = await params
-  const found = docOf(lang, doc)
-  if (!found) notFound()
-  return <DocPage lang={lang} subPath={`/docs/${doc}`} md={found.doc.text} current={doc} />
+  if (!docOf(lang, doc)) notFound()
+  return createContentPost(docConfigOf(doc)).Page({ params: Promise.resolve({ lang }) })
 }

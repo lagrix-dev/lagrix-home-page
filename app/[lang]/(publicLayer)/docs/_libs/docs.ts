@@ -7,7 +7,7 @@ import { INDEXED_LANGUAGES } from "@/config/translations/translations.config"
 // Язык: документ на языке страницы, а нет его — английский (закон элемента «языки — это файлы»). README — свой у каждого языка (README.<язык>.md, шаг 458-1), нет своего — английский.
 
 export type Doc = { slug: string; file: string; title: string; text: string }
-type Docs = { source: { repo: string; branch: string; syncedAt: string }; readme: Record<string, string>; languages: Record<string, Doc[]> }
+type Docs = { source: { repo: string; branch: string; updatedAt?: string; syncedAt: string }; readme: Record<string, string>; languages: Record<string, Doc[]> }
 const data = DOCS as Docs
 
 export const DOCS_SOURCE = data.source

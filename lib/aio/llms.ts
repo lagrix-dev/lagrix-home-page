@@ -3,6 +3,7 @@ import { urlFor } from '@/lib/seo/alternates'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { SUPPORTED_LANGUAGES, SINGLE_LANG_MODE } from '@/config/translations/translations.config'
 import LLMS_EXTRA_JSON from './llms-extra.generated.json'
+import { descriptionOf, docsFor, readme, titleOf } from '@/app/[lang]/(publicLayer)/docs/_libs/docs'
 
 // 451-5: документы для llms-full.txt, собранные `scripts/build-llms-extra.mjs` из `assets/llms-extra/<язык>/`.
 const LLMS_EXTRA = LLMS_EXTRA_JSON as Record<string, { file: string; text: string }[]>
@@ -71,6 +72,15 @@ export function buildLlmsTxt(lang: string): string {
       // разметку, а не HTML со всей обвязкой сайта.
       out.push(`- [${s.title}](${mdUrlFor(lang, s.subPath)}): ${s.description}`)
     }
+    out.push('')
+  }
+
+  // 458-6: документы ветки /docs (репозиторий lagrix-dev/lagrix) — их тексты уже в llms-full.txt (llms-extra), а в карте их не
+  // было: агент, читающий карту, не узнавал, что у каждого документа есть своя страница и Markdown-копия.
+  const docs = docsFor(lang)
+  if (docs.length) {
+    out.push(`## ${lang === 'ru' ? 'Документация' : 'Documentation'}`, '', `- [${titleOf(readme(lang))}](${mdUrlFor(lang, '/docs')}): ${descriptionOf(readme(lang))}`)
+    for (const d of docs) out.push(`- [${titleOf(d.text)}](${mdUrlFor(lang, `/docs/${d.slug}`)}): ${descriptionOf(d.text)}`)
     out.push('')
   }
 

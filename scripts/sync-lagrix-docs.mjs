@@ -44,7 +44,13 @@ for (const p of wanted) {
 
 // Titles from the first «# » line — the page title and the list entry; the slug is the file name without .md.
 const titleOf = (md) => (md.match(/^#\s+(.+)$/m)?.[1] ?? '').trim()
-const out = { source: { repo: src.repo, branch: src.branch, syncedAt: new Date().toISOString() }, readme: {}, languages: {} }
+// 458-4: date of the last commit of the branch — the documents' «modified» date (JSON-LD TechArticle). One more API call;
+// no answer → the previous copy's date stays (or today's, on a first sync).
+const prevCopy = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : null
+const commitRes = await fetch(`https://api.github.com/repos/${src.repo}/commits/${encodeURIComponent(src.branch)}`, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'fractera-docs-sync' }, signal: AbortSignal.timeout(20_000) }).catch(() => null)
+const commit = commitRes && commitRes.ok ? await commitRes.json() : null
+const updatedAt = commit?.commit?.committer?.date ?? prevCopy?.source?.updatedAt ?? new Date().toISOString()
+const out = { source: { repo: src.repo, branch: src.branch, updatedAt, syncedAt: new Date().toISOString() }, readme: {}, languages: {} }
 const baseReadme = files[readmes.en] ?? ''
 for (const lang of src.languages) {
   const own = readmes[lang] && files[readmes[lang]]
