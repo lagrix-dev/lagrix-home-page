@@ -26,7 +26,8 @@ import base from "./landing-agent.module.css"
 // после последней реплики разговор стоит, прокручен до конца, под ним — кнопка `endCta`. Реплики `side: "system"` — не
 // левые и не правые: уведомление системы по центру (штамп в ленте), без аватара и без «печатает…».
 
-type Contract = "a2a" | "h2a" | "m2m" | "h2m" | "h2h"
+// 456 (владелец 2026-10-12): протоколы чата — guest (гость сайта lagrix.dev), h2a, i2i, a2a, f2f; m2m/h2m/h2h сняты вместе со сценарием.
+type Contract = "guest" | "h2a" | "i2i" | "a2a" | "f2f"
 type Item = {
   side: "left" | "right" | "system"
   who: string
@@ -77,9 +78,14 @@ function readMs(item: Item): number {
   return Math.min(2800, 900 + item.text.length * 14) + (item.kind ? 700 : 0)
 }
 
+// 456: у гостя сайта на значке — слова («гость с сайта»), у протоколов — их код.
+function badgeOf(c: Contract, labels: Record<Contract, string>): string {
+  return c === "guest" ? labels.guest : c
+}
+
 function isHuman(item: Item): boolean {
   // 333-21: человек пишет по любому протоколу «h2…» (h2a своему агенту, h2m внешнему, h2h человеку) — у него аватар.
-  return item.contract.startsWith("h2") && item.side === "right"
+  return (item.contract.startsWith("h2") || item.contract === "guest") && item.side === "right"
 }
 
 function Extra({ item, s }: { item: Item; s: Classes }) {
@@ -184,7 +190,7 @@ export function AgentChat({ label, items, contractLabels, endCta, classes }: {
           {list.map((m, i) => m.side === "system" ? (
             <div data-block="t647q" key={i} className={s.system}>
               <p data-block="j2lc9" className={s.systemStamp}>
-                <span className={s.systemBadge} title={contractLabels[m.contract]}>{`${m.who} · ${m.contract}`}</span>
+                <span className={s.systemBadge} title={contractLabels[m.contract]}>{`${m.who} · ${badgeOf(m.contract, contractLabels)}`}</span>
                 <span><Linked text={m.text} /></span>
               </p>
             </div>
@@ -197,7 +203,7 @@ export function AgentChat({ label, items, contractLabels, endCta, classes }: {
                   </Avatar>
                 )}
                 <span className={s.msgWho}>{m.who}</span>
-                <Badge variant="outline" className={s.contract} title={contractLabels[m.contract]}>{m.contract}</Badge>
+                <Badge variant="outline" className={s.contract} title={contractLabels[m.contract]}>{badgeOf(m.contract, contractLabels)}</Badge>
               </div>
               <MessageContent className={m.side === "right" ? s.msgTextRight : s.msgText}><Linked text={m.text} /></MessageContent>
               {m.attachments && m.attachments.length > 0 && (
