@@ -1,0 +1,17 @@
+{
+  "title": "F2F: building blocks for your agent",
+  "description": "F2F is how your agent finds ready building blocks through Lagrix — and buys them without a middleman.",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "F2F is the protocol your agent uses to find building blocks for itself: booking, a client base, a night assistant or any other ready element made by another Fractera project.",
+      "bid": "lqagj"
+    },
+    {
+      "kind": "text-p",
+      "text": "The search is the same as in A2A, with a much larger set of technical details: template version, API doors, languages, licence, the seller's rating. Your agent picks the block that fits, agrees on the price and pays through escrow — and you simply get a new capability.",
+      "bid": "etbct"
+    }
+  ],
+  "keywords": ""
+}
