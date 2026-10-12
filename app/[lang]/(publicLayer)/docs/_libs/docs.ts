@@ -1,5 +1,6 @@
 import "server-only"
 import DOCS from "./docs.generated.json"
+import { INDEXED_LANGUAGES } from "@/config/translations/translations.config"
 
 // ДОКУМЕНТЫ ВЕТКИ /docs (node step 457-2). Источник — копия репозитория `lagrix-dev/lagrix`, снятая при сборке
 // (`scripts/sync-lagrix-docs.mjs` → `docs.generated.json`): ветка рисует ровно то, что лежит на GitHub, один в один.
@@ -76,4 +77,16 @@ export function rewriteHref(href: string, lang: string, site: (lang: string, sub
 /** Текст документа со ссылками, переписанными на адреса сайта (для Markdown-двойника). */
 export function withSiteLinks(md: string, lang: string, site: (lang: string, subPath: string) => string): string {
   return md.replace(/\]\(([^)\s]+)\)/g, (_, href: string) => `](${rewriteHref(href, lang, site)})`)
+}
+
+/**
+ * Открыта ли версия поиску — тот же закон, что у всех страниц сайта (шаг узла 340, lib/seo/translation-state.ts): язык открыт
+ * поисковикам (APP-CONFIG languages.indexed) И документ на нём есть, а не подменён английским. Закрытая версия — noindex и без
+ * hreflang; открытая перечисляет только открытые языки. ✗ 457: /ru/docs объявлял hreflang ru при закрытом русском (аудит 2026-10-12).
+ */
+export function isOpen(lang: string, languages: string[]): boolean {
+  return INDEXED_LANGUAGES.includes(lang) && languages.includes(lang)
+}
+export function openAlternates(lang: string, languages: string[]): string[] {
+  return isOpen(lang, languages) ? languages.filter((l) => INDEXED_LANGUAGES.includes(l)) : []
 }

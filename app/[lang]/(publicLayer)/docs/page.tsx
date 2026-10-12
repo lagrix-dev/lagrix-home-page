@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { DOCS_LANGUAGES, readme } from "./_libs/docs"
+import { DOCS_LANGUAGES, isOpen, openAlternates, readme } from "./_libs/docs"
 import { buildAlternates } from "@/lib/seo/alternates"
 import { docMetadata } from "./_libs/seo"
 import { DocPage } from "./_widgets/static/widget-static-docs-reader"
@@ -10,7 +10,7 @@ export const dynamic = "force-static"
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params
-  return docMetadata(lang, "/docs", readme(), buildAlternates(lang, "/docs", DOCS_LANGUAGES))
+  return docMetadata(lang, "/docs", readme(), buildAlternates(lang, "/docs", openAlternates(lang, DOCS_LANGUAGES)), isOpen(lang, DOCS_LANGUAGES))
 }
 
 export default async function DocsHome({ params }: { params: Promise<{ lang: string }> }) {

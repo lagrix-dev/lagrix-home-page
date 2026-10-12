@@ -9,7 +9,7 @@ import { descriptionOf, titleOf } from "./docs"
 // Markdown-двойник), Open Graph и Twitter, JSON-LD `TechArticle`.
 
 
-export function docMetadata(lang: string, subPath: string, md: string, alternates: Metadata["alternates"]): Metadata {
+export function docMetadata(lang: string, subPath: string, md: string, alternates: Metadata["alternates"], open: boolean): Metadata {
   const title = titleOf(md) || brand().name
   const description = descriptionOf(md)
   const url = urlFor(lang, subPath)
@@ -17,6 +17,8 @@ export function docMetadata(lang: string, subPath: string, md: string, alternate
     title,
     description,
     alternates,
+    // Закрытая поиску версия — noindex (люди видят все языки, поисковик — только открытые).
+    ...(open ? {} : { robots: { index: false, follow: true } }),
     openGraph: { type: "article", title, description, url, siteName: brand().name, locale: lang },
     twitter: { card: "summary", title, description },
   }

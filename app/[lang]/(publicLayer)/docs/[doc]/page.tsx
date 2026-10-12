@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { allSlugs, docOf, languagesOf } from "../_libs/docs"
+import { allSlugs, docOf, isOpen, languagesOf, openAlternates } from "../_libs/docs"
 import { buildAlternates } from "@/lib/seo/alternates"
 import { docMetadata } from "../_libs/seo"
 import { DocPage } from "../_widgets/static/widget-static-docs-reader"
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang, doc } = await params
   const found = docOf(lang, doc)
   if (!found) return {}
-  return docMetadata(lang, `/docs/${doc}`, found.doc.text, buildAlternates(lang, `/docs/${doc}`, languagesOf(doc)))
+  return docMetadata(lang, `/docs/${doc}`, found.doc.text, buildAlternates(lang, `/docs/${doc}`, openAlternates(lang, languagesOf(doc))), isOpen(lang, languagesOf(doc)))
 }
 
 export default async function DocsPage({ params }: { params: Promise<{ lang: string; doc: string }> }) {
