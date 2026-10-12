@@ -265,7 +265,7 @@
         {
           "side": "right",
           "who": "Anna",
-          "text": "Hello! I'm opening a hair salon, «Pryad», on Sadovaya Street. I want the salon to have its own AI agent that books clients and answers at night. Where do I start?",
+          "text": "Hello! I'm opening a hair salon, «Bella», on Sadovaya Street. I want the salon to have its own AI agent that books clients and answers at night. Where do I start?",
           "contract": "guest"
         },
         {
@@ -313,13 +313,13 @@
         {
           "side": "right",
           "who": "Anna",
-          "text": "The agent set everything up and gave me an address: https://pryad-sadovaya.trycloudflare.com",
+          "text": "The agent set everything up and gave me an address: https://bella-salon.trycloudflare.com",
           "contract": "guest"
         },
         {
           "side": "left",
           "who": "Lagrix agent",
-          "text": "Wonderful, Anna! Now you have your own node. From here on you only talk to your own agent — it will go out to the Lagrix network by itself when it needs to. Good luck to «Pryad»!",
+          "text": "Wonderful, Anna! Now you have your own node. From here on you only talk to your own agent — it will go out to the Lagrix network by itself when it needs to. Good luck to «Bella»!",
           "contract": "guest"
         },
         {
@@ -343,7 +343,7 @@
               "mediaType": "image/jpeg"
             },
             {
-              "filename": "About «Pryad».pdf",
+              "filename": "About «Bella».pdf",
               "mediaType": "application/pdf"
             }
           ]
@@ -447,7 +447,7 @@
           "kind": "tool",
           "tool": "escrow.lock",
           "input": {
-            "project": "Pryad",
+            "project": "Bella",
             "deals": [
               {
                 "element": "Booking",
@@ -473,7 +473,7 @@
         {
           "side": "right",
           "who": "Seller of the «Booking» element",
-          "text": "The element is installed in the «Pryad» node, the grid for three stylists is ready. Please accept.",
+          "text": "The element is installed in the «Bella» node, the grid for three stylists is ready. Please accept.",
           "contract": "f2f"
         },
         {
@@ -522,7 +522,7 @@
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Anna, the site, booking, client base and night assistant are all working: https://pryad-sadovaya.trycloudflare.com",
+          "text": "Anna, the site, booking, client base and night assistant are all working: https://bella-salon.trycloudflare.com",
           "contract": "h2a"
         },
         {
@@ -569,7 +569,7 @@
         },
         {
           "side": "left",
-          "who": "«Pryad» salon agent",
+          "who": "«Bella» salon agent",
           "text": "There's a slot at 6:30 pm. The deposit is $5: it counts towards the payment after the haircut and is not returned on a no-show. Confirm?",
           "contract": "a2a"
         },
@@ -587,7 +587,7 @@
         },
         {
           "side": "left",
-          "who": "«Pryad» salon agent",
+          "who": "«Bella» salon agent",
           "text": "Saturday, 10:00–12:00, with Nina. The $5 deposit counts towards the payment and is not returned on a no-show.",
           "contract": "a2a"
         },
@@ -605,7 +605,7 @@
         },
         {
           "side": "left",
-          "who": "«Pryad» salon agent",
+          "who": "«Bella» salon agent",
           "text": "Today's last slot is at 7 pm. A $5 deposit on the same terms.",
           "contract": "a2a"
         },
@@ -623,7 +623,7 @@
         },
         {
           "side": "left",
-          "who": "«Pryad» salon agent",
+          "who": "«Bella» salon agent",
           "text": "Booked for 12:00 with Eva. The $5 deposit counts towards the payment, the rest after the haircut; on a no-show the deposit is not returned.",
           "contract": "a2a"
         },
