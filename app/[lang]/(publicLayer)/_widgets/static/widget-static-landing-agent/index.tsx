@@ -293,9 +293,14 @@ export function LandingAgent({ lang }: { lang: string }) {
               {x.ticket?.rules && (
                 <div data-block="rl454" className={s.ticketRules}>
                   <p data-block="wblxt" className={s.rulesTitle}>{x.ticket.rules.title}</p>
-                  <ol data-block="z99vx" className={s.rulesList}>
-                    {x.ticket.rules.items.map((r) => <li data-block="ri454" key={r}>{r}</li>)}
-                  </ol>
+                  {/* 454-8 (владелец 2026-10-12): одно правило — строкой без номера; несколько — нумерованным списком. */}
+                  {x.ticket.rules.items.length === 1 ? (
+                    <p data-block="ro454" className={s.rulesOne}>{x.ticket.rules.items[0]}</p>
+                  ) : (
+                    <ol data-block="z99vx" className={s.rulesList}>
+                      {x.ticket.rules.items.map((r) => <li data-block="ri454" key={r}>{r}</li>)}
+                    </ol>
+                  )}
                 </div>
               )}
             </div>
