@@ -47,6 +47,9 @@
     },
     "nav.top.docs.label": {
       "ru": "Документация"
+    },
+    "nav.footer.support.label": {
+      "ru": "Поддержать проект"
     }
   },
   "og": {
@@ -137,6 +140,12 @@
         "href": "/accessibility",
         "order": 60,
         "label": "Accessible"
+      },
+      {
+        "id": "support",
+        "href": "/support",
+        "order": 70,
+        "label": "Support the project"
       }
     ]
   },

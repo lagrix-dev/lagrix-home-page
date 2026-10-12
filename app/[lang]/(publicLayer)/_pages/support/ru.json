@@ -1,0 +1,13 @@
+{
+  "title": "Поддержать проект",
+  "description": "Поддержать проект",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "block-section-head",
+      "id": "support",
+      "title": "Поддержать проект",
+      "bid": "d4okb"
+    }
+  ]
+}
