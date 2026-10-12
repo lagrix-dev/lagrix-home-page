@@ -68,6 +68,12 @@
   "nav": {
     "top": [
       {
+        "id": "lgx",
+        "href": "/lgx",
+        "order": 5,
+        "label": "$LGX"
+      },
+      {
         "id": "super-node",
         "href": "/super-node",
         "order": 10,
