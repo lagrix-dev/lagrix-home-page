@@ -31,7 +31,9 @@ if (tree.truncated) offline('tree truncated')
 
 // What to take: the README of the repository (shown at /<lang>/docs) and every .md of docs/<lang>/ (one page each).
 const blobs = tree.tree.filter((t) => t.type === 'blob').map((t) => t.path)
-const wanted = blobs.filter((p) => p === src.readme || src.languages.some((l) => p.startsWith(`${src.docsDir}/${l}/`) && p.endsWith('.md')))
+// README of each language (458-1): { en: 'README.md', ru: 'README.ru.md' }; an old single string still works.
+const readmes = typeof src.readme === 'string' ? { en: src.readme } : src.readme
+const wanted = blobs.filter((p) => Object.values(readmes).includes(p) || src.languages.some((l) => p.startsWith(`${src.docsDir}/${l}/`) && p.endsWith('.md')))
 const raw = (p) => `https://raw.githubusercontent.com/${src.repo}/${src.branch}/${p.split('/').map(encodeURIComponent).join('/')}`
 const files = {}
 for (const p of wanted) {
@@ -42,7 +44,13 @@ for (const p of wanted) {
 
 // Titles from the first «# » line — the page title and the list entry; the slug is the file name without .md.
 const titleOf = (md) => (md.match(/^#\s+(.+)$/m)?.[1] ?? '').trim()
-const out = { source: { repo: src.repo, branch: src.branch, syncedAt: new Date().toISOString() }, readme: files[src.readme] ?? '', languages: {} }
+const out = { source: { repo: src.repo, branch: src.branch, syncedAt: new Date().toISOString() }, readme: {}, languages: {} }
+const baseReadme = files[readmes.en] ?? ''
+for (const lang of src.languages) {
+  const own = readmes[lang] && files[readmes[lang]]
+  if (!own) console.log(`===DOCS_SYNC_README_FALLBACK=== ${lang}: no own README in the repository — the English one is shown`)
+  out.readme[lang] = own || baseReadme
+}
 for (const lang of src.languages) {
   const prefix = `${src.docsDir}/${lang}/`
   out.languages[lang] = Object.keys(files)
@@ -63,7 +71,7 @@ for (const lang of src.languages) {
   const keep = new Set(['0-README.md', ...out.languages[lang].map((d) => `${d.slug}.md`)])
   for (const f of fs.readdirSync(dir)) if (!keep.has(f)) fs.rmSync(path.join(dir, f))
   const write = (f, t) => { const p = path.join(dir, f); if (!fs.existsSync(p) || fs.readFileSync(p, 'utf8') !== t) fs.writeFileSync(p, t) }
-  write('0-README.md', out.readme)
+  write('0-README.md', out.readme[lang])
   for (const d of out.languages[lang]) write(`${d.slug}.md`, d.text)
 }
 const count = Object.values(out.languages).reduce((n, l) => n + l.length, 0)

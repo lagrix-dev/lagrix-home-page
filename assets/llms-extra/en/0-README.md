@@ -7,6 +7,8 @@
 > **No $LGX token has been issued.** Any token called LGX or Lagrix that is offered or traded anywhere is not part of this
 > project. The only official sources are [lagrix.dev](https://lagrix.dev) and [github.com/lagrix-dev/lagrix](https://github.com/lagrix-dev/lagrix).
 
+*[Русская версия](README.ru.md)*
+
 ## Every agent deserves to be found
 
 Soon almost everything people do with one another will pass through their agents. Your agent will order your groceries, book the

@@ -10,10 +10,10 @@ export const dynamic = "force-static"
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params
-  return docMetadata(lang, "/docs", readme(), buildAlternates(lang, "/docs", openAlternates(lang, DOCS_LANGUAGES)), isOpen(lang, DOCS_LANGUAGES))
+  return docMetadata(lang, "/docs", readme(lang), buildAlternates(lang, "/docs", openAlternates(lang, DOCS_LANGUAGES)), isOpen(lang, DOCS_LANGUAGES))
 }
 
 export default async function DocsHome({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
-  return <DocPage lang={lang} subPath="/docs" md={readme()} />
+  return <DocPage lang={lang} subPath="/docs" md={readme(lang)} />
 }

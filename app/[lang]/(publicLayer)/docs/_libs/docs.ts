@@ -4,10 +4,10 @@ import { INDEXED_LANGUAGES } from "@/config/translations/translations.config"
 
 // ДОКУМЕНТЫ ВЕТКИ /docs (node step 457-2). Источник — копия репозитория `lagrix-dev/lagrix`, снятая при сборке
 // (`scripts/sync-lagrix-docs.mjs` → `docs.generated.json`): ветка рисует ровно то, что лежит на GitHub, один в один.
-// Язык: документ на языке страницы, а нет его — английский (закон элемента «языки — это файлы»). README в репозитории один.
+// Язык: документ на языке страницы, а нет его — английский (закон элемента «языки — это файлы»). README — свой у каждого языка (README.<язык>.md, шаг 458-1), нет своего — английский.
 
 export type Doc = { slug: string; file: string; title: string; text: string }
-type Docs = { source: { repo: string; branch: string; syncedAt: string }; readme: string; languages: Record<string, Doc[]> }
+type Docs = { source: { repo: string; branch: string; syncedAt: string }; readme: Record<string, string>; languages: Record<string, Doc[]> }
 const data = DOCS as Docs
 
 export const DOCS_SOURCE = data.source
@@ -37,8 +37,9 @@ export function languagesOf(slug: string): string[] {
   return DOCS_LANGUAGES.filter((l) => data.languages[l].some((d) => d.slug === slug))
 }
 
-export function readme(): string {
-  return data.readme
+/** README на языке страницы; нет своего — английский (синхронизация уже подставила его). */
+export function readme(lang: string): string {
+  return data.readme[lang] ?? data.readme[FALLBACK] ?? ""
 }
 
 export function titleOf(md: string): string {
@@ -58,7 +59,7 @@ export function descriptionOf(md: string): string {
 
 /**
  * Ссылка из Markdown репозитория → адрес на этом сайте. `docs/<язык>/x.md` и `x.md` внутри документа — страница документа,
- * `README.md` — /docs; прочие файлы репозитория — на GitHub; внешние адреса и якоря — как есть.
+ * `README.md` и `README.<язык>.md` — /docs; прочие файлы репозитория — на GitHub; внешние адреса и якоря — как есть.
  * `site(lang, subPath)` строит адрес: в странице — относительный, в Markdown-двойнике — полный.
  */
 export function rewriteHref(href: string, lang: string, site: (lang: string, subPath: string) => string): string {
@@ -68,8 +69,10 @@ export function rewriteHref(href: string, lang: string, site: (lang: string, sub
   const inDocs = pathPart.match(/(?:^|\/)docs\/([a-z]{2})\/([^/]+)\.md$/)
   if (inDocs) return site(inDocs[1], `/docs/${inDocs[2]}`) + anchor
   const local = pathPart.match(/^(?:\.\/)?([^/]+)\.md$/)
-  if (local && local[1] !== "README") return site(lang, `/docs/${local[1]}`) + anchor
-  if (/(^|\/)README\.md$/.test(pathPart)) return site(lang, "/docs") + anchor
+  // README.<язык>.md — /docs этого языка, README.md — английский (ссылки «English version» / «Русская версия», 458-1).
+  const readmeLink = pathPart.match(/(?:^|\/)README(?:\.([a-z]{2}))?\.md$/)
+  if (readmeLink) return site(readmeLink[1] ?? FALLBACK, "/docs") + anchor
+  if (local) return site(lang, `/docs/${local[1]}`) + anchor
   const clean = pathPart.replace(/^(\.\.\/)+|^\.\//, "")
   return `https://github.com/${data.source.repo}/blob/${data.source.branch}/${clean}${anchor}`
 }
