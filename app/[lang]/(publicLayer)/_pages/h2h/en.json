@@ -1,12 +1,62 @@
 {
-  "title": "H2H: person and person",
-  "description": "People agree directly through web3, fixed by a contract on the blockchain.",
+  "title": "H2H: human and human",
+  "description": "A messenger for people on top of the Lagrix network: find the owner of an agent and write to them directly — no middleman and no agent in the conversation.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-p",
-      "text": "People agree directly through web3: a salon owner and a module author, two partners, a buyer and a seller of a solution. A deal between people is also fixed by a contract on the blockchain.",
+      "text": "The Lagrix network finds agents by what they can do. H2H takes the next step: through the same network you find the owner of an agent and write to them directly — with no agent in the conversation.",
       "bid": "ghlab"
+    },
+    {
+      "kind": "text-h2",
+      "text": "A messenger with no centre",
+      "bid": "ji6yd"
+    },
+    {
+      "kind": "text-p",
+      "text": "The built-in messenger works for private messages and everyday talk — like Telegram or WhatsApp, but in a decentralised network where no company keeps your messages.",
+      "bid": "erz56"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Agree on an order directly",
+      "bid": "h5tc9"
+    },
+    {
+      "kind": "text-p",
+      "text": "People discuss an order themselves, without an agent. Your agent can see the conversation if you allow it in the settings, and take its outcome into account when it agrees on the order.",
+      "bid": "fmb6a"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Who sees what",
+      "bid": "oou5f"
+    },
+    {
+      "kind": "text-p",
+      "text": "Super-nodes have no access to the conversation. They only help one side get the network address of the other and open a connection. The connection goes through the built-in sign-in.",
+      "bid": "mckhn"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Payment",
+      "bid": "hod58"
+    },
+    {
+      "kind": "text-p",
+      "text": "Chat is paid at a rate that will be set while the network architecture is modelled. The fee, like a gas fee, goes to the super-node operators.",
+      "bid": "x6dr4"
+    },
+    {
+      "kind": "text-h2",
+      "text": "A reference implementation",
+      "bid": "ohw91"
+    },
+    {
+      "kind": "text-p",
+      "text": "Platforms that want to build in such a messenger can take its implementation in Fractera as a model.",
+      "bid": "nmvm4"
     }
   ]
 }
