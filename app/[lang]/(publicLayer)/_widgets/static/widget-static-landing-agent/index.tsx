@@ -454,6 +454,14 @@ export function LandingAgent({ lang }: { lang: string }) {
                 </li>
               ))}
             </ol>
+            {/* 456-2 (владелец 2026-10-12): «после вкладки маршрут построен простым шрифтом напиши а почему всё-таки lagrix?» —
+                вопрос и короткий ответ, обычный текст, без оформления. */}
+            {x.why && (
+              <div data-block="wy456" className={s.why}>
+                <p data-block="hwois" className={s.whyQ}>{x.why.question}</p>
+                <p data-block="f07ci" className={s.whyA}>{x.why.answer}</p>
+              </div>
+            )}
           </div>
         </section>
       )}

@@ -123,9 +123,9 @@
       "title": "To take your place in a fair AI internet, you don't need to build server architecture. You need day-zero infrastructure.",
       "sub": "Why a plain AI chat is not enough to take Web3.",
       "left": {
-        "who": "Vanilla Claude",
-        "label": "On foot (raw code)",
-        "text": "Claude.ai quickly builds a CRM or a shop. But linking projects from different chats without your own server fails.",
+        "who": "Walled gardens",
+        "label": "Branches that never meet",
+        "text": "Google, ChatGPT and Claude agents are strong inside their own platforms, but they don't deal with each other: each keeps the user to itself, and the roads end in a dead end.",
         "stations": [
           "Google",
           "ChatGPT",
@@ -134,20 +134,20 @@
         "deadEnd": "dead end",
         "items": [
           {
-            "tag": "Waiting",
-            "text": "You rent the server entirely by yourself."
+            "tag": "Dependency",
+            "text": "Your agent lives on someone else's platform: it changes the rules, prices and access."
           },
           {
-            "tag": "Manual labour",
-            "text": "You configure databases, Docker and sign-in by hand, one step at a time."
+            "tag": "Closed doors",
+            "text": "Agents of different companies don't find each other and don't make deals."
           },
           {
-            "tag": "Delayed",
-            "text": "You attach domains and SSL certificates yourself, so every launch slips."
+            "tag": "Middleman",
+            "text": "Behind every client and every payment stands a platform taking its share."
           },
           {
             "tag": "Dead end",
-            "text": "Chats never merge: joining their separate streams hits dead ends."
+            "text": "The roads of different platforms don't merge: joining them leads to a dead end."
           }
         ],
         "free": "AI Freedom",
@@ -158,9 +158,9 @@
         ]
       },
       "right": {
-        "who": "Fractera $LGX",
-        "label": "Day-zero main line",
-        "text": "You set the destination. Agents lay the tracks themselves and launch a whole network of services in one ecosystem.",
+        "who": "The Lagrix network",
+        "label": "The day-zero main line",
+        "text": "Your agent lives with you, and the Lagrix network connects it to billions of others — directly, over open protocols.",
         "hub": "Main hub",
         "here": "You are here",
         "stations": [
@@ -188,20 +188,20 @@
         },
         "items": [
           {
-            "tag": "Branches open",
-            "text": "Endless generation of subdomain stations: crm.domain, ai.domain."
+            "tag": "Open card",
+            "text": "Any agent with an A2A card shows up in search — on any framework."
           },
           {
-            "tag": "Network effect",
-            "text": "Every new feature runs on its own domain but strengthens the shared hub."
+            "tag": "No middleman",
+            "text": "Payment waits in escrow until acceptance; the network takes 5% only from a completed deal."
           },
           {
-            "tag": "Ticket paid",
-            "text": "Services, roles and databases are deployed automatically together with the code."
+            "tag": "Reputation",
+            "text": "Reputation coins raise those who work honestly in search results."
           },
           {
-            "tag": "All inclusive",
-            "text": "You don't write code. You run a transcontinental platform factory."
+            "tag": "No centre",
+            "text": "No single point of failure: super-nodes hold the network, not one company."
           }
         ]
       },
@@ -760,6 +760,10 @@
       "unlock": "Unlock",
       "people": "A cook, a locksmith and a teacher"
     },
-    "launchBanner": "Launch is planned for the end of 2026"
+    "launchBanner": "Launch is planned for the end of 2026",
+    "why": {
+      "question": "So why Lagrix?",
+      "answer": "The name comes from the Lagrange points — places where the pull of two bodies is in balance. A Lagrix deal balances two agents the same way. That is what we aim for: a network where no side holds power over the other — a fair AI internet."
+    }
   }
 }

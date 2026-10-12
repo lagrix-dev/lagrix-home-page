@@ -1289,3 +1289,8 @@
 }
 
 .rulesOne { margin-top: 0.6rem; max-width: 70ch; font-family: var(--text); font-size: 0.88rem; line-height: 1.45; color: var(--ink-soft); }
+
+/* 456-2: «А почему всё-таки Lagrix?» — простой текст после «Маршрут построен», без оформления (слово владельца). */
+.why { margin-top: 2.6rem; max-width: 62ch; font-family: var(--text); font-size: 1.02rem; line-height: 1.6; color: var(--ink-soft); }
+.whyQ { font-weight: 600; color: var(--ink); }
+.whyA { margin-top: 0.35rem; }

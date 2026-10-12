@@ -9,6 +9,10 @@ import s from "./landing-agent.module.css"
 // Android нарисован своим силуэтом в духе талисмана Android (Google, CC BY 3.0 — атрибуция в README виджета).
 
 const STATION_Y = [130, 300, 470]
+// 456-2: домики станций уже (правый край 134), пути и всё за ними — левее на 40, чтобы тупик не наезжал на станцию за ним.
+const HOUSE_W = 116
+const HOUSE_CX = 76
+const SHIFT = -40
 const TRACKS = [
   "M174 130 H240 C320 130 300 300 380 300",
   "M174 300 H380",
@@ -146,8 +150,11 @@ export function LostRoute({ stations, deadEnd, free, flags, label }: { stations:
   const [gFlag, cFlag, kFlag] = flags ?? []
   return (
     <svg className={s.lost} viewBox="0 0 600 600" role="img" aria-label={label}>
+      {/* 456-2 (владелец 2026-10-12): знак «тупик» наезжал на домик за ним (край знака 522, крыша 506). Домики станций сужены
+          со 150 до 116, а всё между ними и станцией за тупиком сдвинуто на SHIFT влево: зазор до крыши 24, до стены 32. */}
+      {stations.slice(0, STATION_Y.length).map((name, i) => <House key={name} cx={HOUSE_CX} cy={STATION_Y[i]} w={HOUSE_W} name={name} />)}
+      <g transform={`translate(${SHIFT} 0)`}>
       {TRACKS.slice(0, stations.length).map((d) => <Track key={d} d={d} />)}
-      {stations.slice(0, STATION_Y.length).map((name, i) => <House key={name} cx={99} cy={STATION_Y[i]} w={150} name={name} />)}
       <Track d={MERGED} />
       {BROKEN.map((b) => <Track key={b.d} d={b.d} turn={{ a: b.turn, cx: b.cx, cy: b.cy }} />)}
       <g className={s.lostLooseTies}>
@@ -168,6 +175,7 @@ export function LostRoute({ stations, deadEnd, free, flags, label }: { stations:
         <rect x={476} y={286} width={46} height={12} />
         <text x={499} y={352} textAnchor="middle">{deadEnd}</text>
       </g>
+      </g>
       {free && (
         <g>
           <House cx={552} cy={300} w={76} />
@@ -175,7 +183,8 @@ export function LostRoute({ stations, deadEnd, free, flags, label }: { stations:
           <Flag x={552} top={172} text={free} tone="go" />
         </g>
       )}
-      {/* Агенты станций стоят на прямом участке своего пути; флаги — там, где нет путей. */}
+      {/* Агенты станций стоят на прямом участке своего пути; флаги — там, где нет путей. Сдвинуты вместе с путями. */}
+      <g transform={`translate(${SHIFT} 0)`}>
       {gFlag && (
         <g>
           <Robot x={210} y={124} />
@@ -197,6 +206,7 @@ export function LostRoute({ stations, deadEnd, free, flags, label }: { stations:
           <Flag x={239} top={366} text={kFlag} tone="red" />
         </g>
       )}
+      </g>
     </svg>
   )
 }

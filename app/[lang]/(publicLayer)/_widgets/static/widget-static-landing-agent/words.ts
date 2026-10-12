@@ -42,6 +42,8 @@ export type LandingExtra = {
   route?: { label: string; value: string }
   /** Справочное бюро (узел, шаг 348): киоск с чатом и вывесками вопросов. */
   helpDesk?: { title: string; hours: string; greeting: string; who: string; you: string; placeholder: string; send: string; mic: string; questions: string[]; answers: string[]; departure: { label: string; question: string; answer: string }; transfer: { label: string; question: string; answer: string }; github: { label: string; href: string }; thinking: string; limit: string; closed: string }
+  /** 456-2: «А почему всё-таки Lagrix?» — вопрос и короткий ответ после «Маршрут построен». */
+  why?: { question: string; answer: string }
   routeBuilt?: { title: string; from: { label: string; station: string }; via?: { label: string; station: string; go?: { label: string; aria: string } }; to: { label: string; station: string } }
   /** Зал ожидания (владелец 2026-10-01): кресло, окно с драпировкой, ламповый телевизор; слова кнопки и описание сцены. */
   waiting?: { title: string; text: string; scene: string; tv: string; on: string; off: string; video?: string; watch?: string }
