@@ -35,6 +35,8 @@ export function markdown(lang: string): string {
     list(x.gate.routes)
     qa(x.gate.ask, x.gate.answer)
   }
+  // 467-4: строка табло «Отправление из» — видна на первом экране.
+  if (x.board?.from && x.board.fromValue) list([`${x.board.from}: ${x.board.fromValue}`])
 
   // Чат-пример: кто что сказал, по порядку.
   if (x.chat?.items?.length) {
@@ -55,6 +57,9 @@ export function markdown(lang: string): string {
   if (x.waiting) {
     head(2, x.waiting.title)
     para(x.waiting.text)
+    // 467-4: подпись сцены и видео телевизора — то, что посетитель видит и включает.
+    list([x.waiting.scene])
+    if (x.waiting.video) out.push(`[${x.waiting.watch || x.waiting.tv}](https://www.youtube.com/watch?v=${x.waiting.video})`, "")
   }
 
   list(x.cards)
@@ -111,8 +116,12 @@ export function markdown(lang: string): string {
     list(x.outcomes.map((o) => `**${o.name}** — ${o.text}`))
   }
 
-  head(2, x.closingTitle)
+  // 467-4: заголовок финальной секции на странице — `board.closing` (`closingTitle` не рисуется нигде); назначение маршрута и
+  // подпись картинки — как на странице.
+  head(2, x.board?.closing || x.closingTitle)
+  if (x.route) list([`${x.route.label}: ${x.route.value}`])
   para(x.closingText)
+  if (x.closingImage?.alt) list([x.closingImage.alt])
   if (x.routeBuilt) {
     const r = x.routeBuilt
     head(3, r.title)

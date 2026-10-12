@@ -1137,16 +1137,23 @@
    камера: текст читается сквозь решётку, контраст приглушён, но не ниже 4.5:1. Телефон: левая группа на четверть ширины,
    высоту ряда задают офицеры, текст прокручивается внутри камеры. */
 .zeroDay { padding: 4rem 0 4.5rem; scroll-margin-top: 4rem; border-top: 6px solid var(--ink); }
-.zeroTitle {
-  display: flex; align-items: center; justify-content: center; gap: 1.5rem;
-  text-align: left; font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1;
-  text-wrap: balance;
+/* Вывеска на двух цепочках (467-1): тот же язык, что `.waitingSign` — цепочки `.gateRods`, табличка цвета табло, буквы мелом;
+   здесь она висит по центру секции. Мишень — эмблема на левом краю таблички, с меловым ободом, как круглый значок станции. */
+.zeroSign { position: relative; display: table; margin-inline: auto; padding-top: 2rem; --rod: var(--ink); }
+.zeroSign .gateRods::before, .zeroSign .gateRods::after { height: 2rem; }
+.zeroPlate {
+  display: flex; align-items: center; gap: 1.1rem; padding: 0.9rem 1.7rem 0.9rem 0.9rem;
+  background: var(--board); color: var(--chalk); border-radius: var(--tile-corner); box-shadow: 0 14px 26px -18px var(--shade);
+  font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem); line-height: 1;
+  letter-spacing: 0.01em; text-wrap: balance;
 }
-/* Мишень (453-9): ~150 px на широком экране, меньше на телефоне; красный — сигнал страницы. */
-.zeroTarget { flex: none; width: 150px; height: 150px; filter: drop-shadow(0 10px 18px var(--shade)); }
+.zeroTarget { flex: none; width: 5.6rem; height: 5.6rem; }
 .targetRed { fill: var(--signal); }
 .targetWhite { fill: var(--chalk); }
-@media (max-width: 720px) { .zeroTitle { gap: 0.9rem; } .zeroTarget { width: 72px; height: 72px; } }
+@media (max-width: 720px) {
+  .zeroPlate { gap: 0.75rem; padding: 0.7rem 1.1rem 0.7rem 0.7rem; }
+  .zeroTarget { width: 3.4rem; height: 3.4rem; }
+}
 .zeroGrid {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, 1fr); gap: 1.25rem; align-items: end;
   margin-top: 2.5rem;
