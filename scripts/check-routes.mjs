@@ -33,6 +33,11 @@ const ALLOWED = new Map([
   ['app/[lang]/(publicLayer)/index.md/route.ts', 'главная для агентов (markdown)'],
   ['app/[lang]/(publicLayer)/[slug]/page.tsx', 'РЕБЁНОК публичной ветки — все страницы _pages/'],
   ['app/[lang]/(publicLayer)/[slug]/index.md/route.ts', 'markdown-двойник любого ребёнка публичной ветки'],
+  // сниппеты страниц (шаг узла 458-3; владелец 2026-10-12: «Картинка рядом со страницей»): PNG при первом запросе, без пересборки
+  ['app/[lang]/(publicLayer)/snippet.png/route.ts', 'сниппет главной'],
+  ['app/[lang]/(publicLayer)/[slug]/snippet.png/route.ts', 'сниппет любого ребёнка публичной ветки'],
+  ['app/[lang]/(publicLayer)/docs/snippet.png/route.ts', 'сниппет корня docs'],
+  ['app/[lang]/(publicLayer)/docs/[doc]/snippet.png/route.ts', 'сниппет документа'],
   // ветка «документы» (шаг узла 457, владелец 2026-10-12: «Подтвердить с новой веткой /docs»): документы репозитория lagrix-dev/lagrix
   ['app/[lang]/(publicLayer)/docs/page.tsx', 'КОРЕНЬ ветки docs — README репозитория и список документов'],
   ['app/[lang]/(publicLayer)/docs/index.md/route.ts', 'markdown-двойник корня docs'],
