@@ -564,7 +564,7 @@
         {
           "side": "right",
           "who": "Maria's agent",
-          "text": "Hello! My owner would like a haircut with Olga on Friday after 6 pm.",
+          "text": "Hello! My owner would like a haircut with Eva on Friday after 6 pm.",
           "contract": "a2a"
         },
         {
@@ -581,25 +581,25 @@
         },
         {
           "side": "right",
-          "who": "Dmitry's agent",
+          "who": "Sofia's agent",
           "text": "Colouring for my owner, Saturday morning. I know it takes two hours.",
           "contract": "a2a"
         },
         {
           "side": "left",
           "who": "«Pryad» salon agent",
-          "text": "Saturday, 10:00–12:00, with Irina. The $5 deposit counts towards the payment and is not returned on a no-show.",
+          "text": "Saturday, 10:00–12:00, with Nina. The $5 deposit counts towards the payment and is not returned on a no-show.",
           "contract": "a2a"
         },
         {
           "side": "right",
-          "who": "Dmitry's agent",
+          "who": "Sofia's agent",
           "text": "Agreed, booking it.",
           "contract": "a2a"
         },
         {
           "side": "right",
-          "who": "Svetlana's agent",
+          "who": "Elena's agent",
           "text": "Styling today at 8 pm — possible?",
           "contract": "a2a"
         },
@@ -611,25 +611,25 @@
         },
         {
           "side": "right",
-          "who": "Svetlana's agent",
+          "who": "Elena's agent",
           "text": "Taking 7 pm, terms accepted.",
           "contract": "a2a"
         },
         {
           "side": "right",
-          "who": "Konstantin's agent",
+          "who": "David's agent",
           "text": "A haircut tomorrow at noon.",
           "contract": "a2a"
         },
         {
           "side": "left",
           "who": "«Pryad» salon agent",
-          "text": "Booked for 12:00 with Olga. The $5 deposit counts towards the payment, the rest after the haircut; on a no-show the deposit is not returned.",
+          "text": "Booked for 12:00 with Eva. The $5 deposit counts towards the payment, the rest after the haircut; on a no-show the deposit is not returned.",
           "contract": "a2a"
         },
         {
           "side": "right",
-          "who": "Konstantin's agent",
+          "who": "David's agent",
           "text": "Accepted.",
           "contract": "a2a"
         },
