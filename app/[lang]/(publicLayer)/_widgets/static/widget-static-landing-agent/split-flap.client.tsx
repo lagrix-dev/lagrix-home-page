@@ -26,7 +26,7 @@ export function SplitFlap({ words, className, announce = false }: { words: strin
     const root = ref.current
     if (!root) return
     const targets = words.map((w) => drumRow(w, n))
-    const cells: Parts[] = Array.from(root.children, (c) => {
+    const cells: Parts[] = Array.from(root.querySelectorAll<HTMLElement>(`.${s.cell}`), (c) => {
       const [top, bottom, leaf] = Array.from(c.children) as HTMLElement[]
       const [face, back] = Array.from(leaf.children) as HTMLElement[]
       return { top, bottom, leaf, face, back }
@@ -106,22 +106,32 @@ export function SplitFlap({ words, className, announce = false }: { words: strin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const cell = (c: number, i: number) => {
+    const ch = DRUM[c]
+    return (
+      <span key={i} className={s.cell}>
+        <span className={`${s.half} ${s.top}`} data-c={ch} />
+        <span className={`${s.half} ${s.bottom}`} data-c={ch} />
+        <span className={s.leaf}>
+          <span className={`${s.half} ${s.face}`} data-c={ch} />
+          <span className={`${s.half} ${s.back}`} data-c={ch} />
+        </span>
+        <span className={s.axle} />
+      </span>
+    )
+  }
+  // 469: неподвижная надпись из нескольких слов («Домашний компьютер») переносится только между словами — ячейки слова
+  // держатся группой. Одно слово и перебор слов — как прежде, ячейками.
+  const groups: number[][] = []
+  if (words.length === 1 && first.some((c) => c === 0) && first.some((c) => c !== 0)) {
+    first.forEach((c, i) => { if (c === 0 || !groups.length || first[i - 1] === 0) groups.push([]); groups[groups.length - 1].push(i) })
+  }
+
   return (
     <span ref={ref} className={`${s.drum} ${className ?? ""}`} style={{ ["--n" as string]: n }} aria-hidden="true">
-      {first.map((c, i) => {
-        const ch = DRUM[c]
-        return (
-          <span key={i} className={s.cell}>
-            <span className={`${s.half} ${s.top}`} data-c={ch} />
-            <span className={`${s.half} ${s.bottom}`} data-c={ch} />
-            <span className={s.leaf}>
-              <span className={`${s.half} ${s.face}`} data-c={ch} />
-              <span className={`${s.half} ${s.back}`} data-c={ch} />
-            </span>
-            <span className={s.axle} />
-          </span>
-        )
-      })}
+      {groups.length
+        ? groups.map((g) => <span key={g[0]} className={s.flapGroup}>{g.map((i) => cell(first[i], i))}</span>)
+        : first.map((c, i) => cell(c, i))}
     </span>
   )
 }

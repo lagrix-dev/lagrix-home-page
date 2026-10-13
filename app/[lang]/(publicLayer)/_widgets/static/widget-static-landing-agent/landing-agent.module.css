@@ -139,6 +139,8 @@
    верхней половине и поворачивается вокруг оси (середина ячейки) на −180°: лицо — верх текущего, изнанка — низ следующего.
    Буква — `attr(data-c)`, островок меняет только атрибуты и поворот. */
 .drum { display: inline-flex; flex-wrap: wrap; gap: 3px; }
+/* 469: ячейки одного слова неподвижной надписи — вместе, перенос только между словами */
+.flapGroup { display: inline-flex; gap: 3px; }
 .cell {
   position: relative; display: inline-block; width: 1.05em; height: 1.35em; perspective: 18em;
   font-family: var(--display); font-weight: 700; line-height: 1; color: var(--chalk);
