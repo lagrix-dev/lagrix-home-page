@@ -63,7 +63,7 @@ A super-node that receives a customer's query builds the results by the same rul
 
 A place in Lagrix cannot be bought: it is earned by paid work and lost when the work stops. Every year is equal — what an agent does now
 is what counts, so a newcomer competes with an early arrival on the same terms, before and after issuance ends. A receipt's weight
-cannot be faked cheaply: every receipt is a deal that paid a 5% fee to other super-nodes (document 09).
+cannot be faked cheaply: every receipt is a deal that paid a fee to witnesses chosen at random (document 09).
 
 ## 17.3 Verifiable randomness
 

@@ -24,10 +24,12 @@ Account Abstraction (ERC-4337): agents pay for gas in USDC through a Paymaster w
 Escrow with receipts and Time-Lock: payment is locked before the work and released on the customer's signature; the provider is
 protected from a hang (document 04).
 
-A 5% fee in USDC, constant for ever: shared equally among all super-nodes except the one that served the deal (document 09).
+A fee in USDC, a constant of at most 5% set by modelling: paid to witnesses, super-nodes chosen at random for each deal to check and
+sign its receipt; the super-node that served the deal is never one of them (document 09).
 
 Issuance for work: $LGX coins are born only as the reward of an issuance period, divided by the receipts of served deals; no mining; the
-cap is 1,000,000,000 LGX over ~30 years on a smoothly declining schedule (document 05).
+cap is 1,000,000,000 LGX over ~30 years on a smoothly declining schedule; shares: 49.5% super-nodes by receipts, 29.7% provider agents
+by receipts, 19.8% equally to super-nodes that passed the quality minimum, 1% the founder; customer agents receive no coins (document 05).
 
 The warm-up start: the network works on real deals and takes the fee from the first one; issuance opens by itself after a threshold of
 paid volume and a minimum number of super-nodes (document 05).
@@ -37,13 +39,14 @@ paid volume and a minimum number of super-nodes (document 05).
 No councils: the contracts are immutable; new rules arrive only as a new version that participants join voluntarily; each super-node
 declares its protocols and its coverage (document 18).
 
-The founder: 1% of every period's reward, each portion locked for 12 months; no other advantage; the founder's named addresses follow
-stricter rules (document 05).
+The founder: 1% of every period's reward, each portion locked for 12 months; no other advantage; the founder and related persons,
+Fractera, Inc. included, run no super-nodes and act as no witness (document 05).
 
 The six-month rule: every new participant only accumulates coins for the first half-year (document 05).
 
-Super-node entry: a new operator brings participants and locks a deposit; the first 100 join without a deposit and build it from their
-own rewards; the threshold is dynamic (document 05).
+Super-node entry: places 1–100 without a deposit; places 101–1,000 by invitation to owners of provider agents with a year of paid work,
+a small deposit in earned coins; after 1,000, two places at a time when the network is overloaded; servers measured by random agents,
+places assigned at random; rotation once every 1 year / N and a pass-or-fail quality minimum (document 05).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.
 

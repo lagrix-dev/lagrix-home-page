@@ -4,6 +4,12 @@
 
 Ниже описан полный пошаговый алгоритм ввода узла в эксплуатацию — от чистого сервера до включения в таблицу маршрутизации Kademlia DHT.
 
+**До этапа 3 у оператора должно быть место.** Места 1–100 занимаются без залога. Места 101–1 000 достаются по приглашению
+владельцам агентов-исполнителей с оплаченной работой за последний год; после 1 000 места открываются по два, когда сеть перегружена. В
+обоих случаях сервер заявителя измеряют случайные агенты, а место назначается случайным выбором; раз в 1 год / N случайный супер-узел выбывает
+по ротации, и его место заново назначается случайным выбором (документ 05, раздел 5.6). Адреса, названные основателем и связанными с ним лицами,
+включая Fractera, Inc., места занять не могут (документ 05, раздел 5.5).
+
 ## 15.1 Общий сквозной процесс запуска (Deployment Flow Pipeline)
 
 Активация Супер-Узла состоит из пяти последовательных этапов:
@@ -62,7 +68,7 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : calculated by the network at entry (document 05, 5.6); none for the first 100 operators
+Required Deposit           : none for places 1-100; a small fixed amount in earned coins for later places (document 05, 5.6)
 Status                     : NOT_STAKED (Pending On-Chain Stake)
 ===================================================================
 ```
@@ -96,6 +102,8 @@ Solidity Механика под капотом ValidatorStaking.sol:
 
 ```solidity
 function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant {
+    require(placeWon[msg.sender], "ValidatorStaking: no place assigned");               // doc 05, 5.6
+    require(!namedFounderAddress[msg.sender], "ValidatorStaking: founder and related addresses excluded"); // doc 05, 5.5
     require(amount >= requiredDeposit(), "ValidatorStaking: deposit below the required amount"); // doc 05, 5.6
     require(validators[msg.sender].stakeBalance == 0, "ValidatorStaking: Already registered");
 
