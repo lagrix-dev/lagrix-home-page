@@ -124,6 +124,7 @@ export function markdown(lang: string): string {
     para(c.text)
     list([c.lamp, c.scene])
     for (const it of c.items) qa(it.q, it.a)
+    if (c.more) para(`${c.more.label}: ${c.more.href}`)
   }
 
   if (x.outcomes?.length) {

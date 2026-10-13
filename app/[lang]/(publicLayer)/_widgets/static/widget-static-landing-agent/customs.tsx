@@ -9,7 +9,8 @@ import { CustomsHall } from "./customs-hall.client"
 // чемоданами; на телефоне остаётся только ящик (как телевизор зала ожидания). Шапку рисует сервер; зал — островок
 // `customs-hall.client.tsx` (467-3): его серверная разметка — неподвижная сцена, видимая без JavaScript. Цвета — роли макета.
 
-type Words = { title: string; text: string; lamp: string; scene: string; question: string; answer: string; items: { q: string; a: string }[] }
+type Words = { title: string; text: string; lamp: string; scene: string; question: string; answer: string; items: { q: string; a: string }[]
+  more?: { label: string; href: string } }
 
 function CustomsLamp({ label }: { label: string }) {
   return (
@@ -38,6 +39,8 @@ export function Customs({ w }: { w: Words }) {
           <div data-block="csplt" className={s.waitingPlate}>
             <h2 data-block="csttl" className={s.waitingTitle}>{w.title}</h2>
             <p data-block="cstxt" className={s.waitingText}>{w.text}</p>
+            {/* 473: ссылка на документ 22 протокола — все вопросы регуляторов с первоисточниками и полными ответами. */}
+            {w.more && <p data-block="csmor" className={s.waitingText}><a href={w.more.href} className="underline underline-offset-2">{w.more.label}</a></p>}
           </div>
         </div>
       </div>
