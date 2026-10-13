@@ -47,7 +47,8 @@ export async function POST(req: NextRequest) {
     model: openai(HELP_DESK_MODEL),
     system: helpDeskSystem(lang),
     messages: await convertToModelMessages(messages),
-    maxOutputTokens: 300,
+    // 471-4: ~150 слов с заголовками (русский — до ~2,5 токена на слово) — запас до 900, обрыва на полуслове не будет.
+    maxOutputTokens: 900,
   })
   return result.toUIMessageStreamResponse()
 }
