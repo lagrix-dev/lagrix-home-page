@@ -140,3 +140,14 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   `waiting.video`, `route`, `closingImage.alt`; the final section title is `board.closing`).
 - **Typography guard**: a new widget file with a raw `h2` must be listed in `ALLOWED_RAW_HEADINGS` of `scripts/check-typography.mjs`,
   otherwise the build fails with `TYPOGRAPHY_FAILED` (467-2, `customs.tsx`).
+
+## Step 469 (2026-10-13): help desk under the first screen, new board texts
+
+- **Help desk** (`#help-desk`) stands right after the first screen (below the gate sign to the chat), above the departure board; the
+  machine copy (`markdown.ts`) follows the same order. Wide screens: `.sign + .desk` leaves room for the hanging gate sign
+  (11.5rem), as `.sign + .hall` did when the board came first.
+- **Board**: «Departing from» — home computer; four destinations (Agent, Application, Automation, Messenger) — `outcomes` in
+  `_data`, the board takes up to four (`slice(0, 4)`, platform highlight in CSS up to row 4); the line under the board — «From idea
+  to revenue, 99% faster».
+- **Split-flap**: a still caption of several words (`SplitFlap` with one word containing spaces) keeps each word's cells in a
+  `.flapGroup`, so it wraps only between words; single words and cycling words wrap by cell as before.
