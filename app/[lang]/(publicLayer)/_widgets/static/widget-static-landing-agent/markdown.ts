@@ -56,11 +56,14 @@ export function markdown(lang: string): string {
   // 469: справочное бюро на странице — сразу под первым экраном, над табло; копия следует порядку страницы.
   if (x.helpDesk) {
     const d = x.helpDesk
+    // 471-3: ответы вывесок размечены «# …» / «## …» для окна бюро; в копии страницы они ниже «### вопрос», поэтому их заголовки
+    // становятся жирными строками — структура документа (H2 секции, H3 вопроса) не ломается.
+    const plain = (t?: string) => t?.replace(/^#{1,6}\s+(.+)$/gm, "**$1**")
     head(2, d.title)
     para(d.greeting)
-    d.questions.forEach((q, i) => qa(q, d.answers[i]))
-    qa(d.departure?.question, d.departure?.answer)
-    qa(d.transfer?.question, d.transfer?.answer)
+    d.questions.forEach((q, i) => qa(q, plain(d.answers[i])))
+    qa(d.departure?.question, plain(d.departure?.answer))
+    qa(d.transfer?.question, plain(d.transfer?.answer))
     if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
   }
 

@@ -1041,6 +1041,11 @@
 /* 349: все кнопки лендинга ведут сюда (`#help-desk`) — отступ под липкую шапку сайта (3.5rem + 1px). */
 .desk { scroll-margin-top: calc(3.5rem + 1px); }
 .kioskMsg a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+/* 471-3: ответ бюро — заголовок-ответ, смежные темы, абзацы. Заголовок горит цветом плаката, как строки табло; темы — мелом. */
+.kioskH1 { display: block; margin: 0.1rem 0 0.45rem; font-family: var(--display); font-weight: 700; font-size: 1.18rem; line-height: 1.2; color: var(--poster); white-space: normal; }
+.kioskH2 { display: block; margin: 0.75rem 0 0.2rem; font-family: var(--display); font-weight: 700; font-size: 1rem; line-height: 1.25; color: var(--chalk); white-space: normal; }
+.kioskPara { display: block; }
+.kioskPara + .kioskPara { margin-top: 0.5rem; }
 
 /* 350: микрофон киоска — во время записи красный, пульсирует и показывает секунды; расшифровка — «занят». */
 .kioskMic[data-rec] { background: var(--signal); color: var(--chalk); animation: kioskRec 1.2s ease-in-out infinite; }

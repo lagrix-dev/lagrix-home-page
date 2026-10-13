@@ -67,6 +67,27 @@ function Linked({ text }: { text: string }) {
   })}</>
 }
 
+// 471-3 (владелец 2026-10-13): ответ — «заголовок первого уровня, который … отвечает на основной вопрос, и ещё … три сопутствующих
+// темы». Ответ вывески и ответ модели приходят текстом с разметкой: строка «# …» — заголовок-ответ, «## …» — смежная тема, остальное —
+// абзацы (пустая строка их делит, строки списка остаются строками). Своих подписей нет — только текст ответа.
+function Rich({ text }: { text: string }) {
+  const out: { kind: "h1" | "h2" | "p"; text: string }[] = []
+  let para: string[] = []
+  const flush = () => { if (para.length) out.push({ kind: "p", text: para.join("\n") }); para = [] }
+  for (const line of text.replace(/\*\*/g, "").split("\n")) {
+    const h = line.match(/^(#{1,6})\s+(.*)$/)
+    if (h) { flush(); out.push({ kind: h[1].length === 1 ? "h1" : "h2", text: h[2].trim() }) }
+    else if (!line.trim()) flush()
+    else para.push(line)
+  }
+  flush()
+  return <>{out.map((b, i) => (
+    <span key={i} className={b.kind === "h1" ? s.kioskH1 : b.kind === "h2" ? s.kioskH2 : s.kioskPara}>
+      {b.kind === "p" ? <Linked text={b.text} /> : b.text}
+    </span>
+  ))}</>
+}
+
 export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: string; voiceWords: VoiceStrings }) {
   const [text, setText] = useState("")
   const input = useRef<HTMLInputElement>(null)
@@ -79,7 +100,23 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
   // Расшифровка встаёт в поле сразу: само поле и есть проверка перед «Отправить».
   useEffect(() => { if (voice.draft) voice.accept() }, [voice.draft]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => { log.current?.scrollTo({ top: log.current.scrollHeight, behavior: "smooth" }) }, [messages, status, error])
+  // Новый ответ встаёт в окне с начала — с вопроса, на который он отвечает (471-3: ответы длинные, их читают сверху); пока ответа нет —
+  // к низу ленты, как прежде.
+  const shown = useRef("")
+  useEffect(() => {
+    const box = log.current
+    if (!box) return
+    const last = messages[messages.length - 1]
+    if (last?.role === "assistant") {
+      if (last.id === shown.current) return
+      shown.current = last.id
+      const prev = messages[messages.length - 2]
+      const el = box.querySelector<HTMLElement>(`[data-mid="${prev?.role === "user" ? prev.id : last.id}"]`)
+      if (el) box.scrollTo({ top: box.scrollTop + el.getBoundingClientRect().top - box.getBoundingClientRect().top - 8, behavior: "smooth" })
+      return
+    }
+    box.scrollTo({ top: box.scrollHeight, behavior: "smooth" })
+  }, [messages, status, error])
 
   // Набранный вопрос — модели (дверь, предел).
   const ask = (q: string) => {
@@ -148,9 +185,9 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
               {w.greeting}
             </p>
             {messages.map((m) => (
-              <p data-block="hd3m2" key={m.id} className={s.kioskMsg} data-me={m.role === "user" ? "" : undefined}>
+              <p data-block="hd3m2" key={m.id} data-mid={m.id} className={s.kioskMsg} data-me={m.role === "user" ? "" : undefined}>
                 <span className={s.kioskWho}>{m.role === "user" ? w.you : w.who}</span>
-                <Linked text={textOf(m)} />
+                {m.role === "user" ? <Linked text={textOf(m)} /> : <Rich text={textOf(m)} />}
               </p>
             ))}
             {status === "submitted" && (
