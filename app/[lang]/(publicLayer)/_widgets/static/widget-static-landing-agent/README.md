@@ -155,15 +155,17 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
 ## Step 470 (2026-10-13): why Lagrix — night city and the word train
 
 - **Scene** (`why-night.tsx`, server; after «Route built»): night sky in the board colour, one-tone skyscraper silhouettes (a fixed
-  pattern, `CITY`), ground and rails. The train: a one-tone cartoon locomotive (SVG, lit cab window and headlamp, yellow beam ahead,
-  flag «$LGX») and one wagon per word of `landing.why.answer` (a punctuation-only token rides with the previous word). The font of the
-  train is the h2 size (`.waitingTitle` clamp) — each wagon is measured by its word; >5 letters → two windows, >3 letters → two
-  wheels. A moon rim (`drop-shadow` on top edges) separates the one-tone train from the city. Words: `landing.why` (unchanged).
-- **Plate button** (470-3, `why-ride.client.tsx`, island `WhyStage`): the question is `h2 > Button(bare)`; until pressed it blinks
-  inverted once a second (CSS, only after hydration). Press (one-way): the track opens (600 ms), rails slide in left to right
-  (700 ms), 1 s later the first train. No press — no rails, no train; the answer is plain text under the plate (also without JS).
-- **Ride** (470-2): the train enters from the left edge, 80 px/s, wheels turn at the speed of travel, leaves on the right, 2 s gap,
-  next train; rAF only while the scene is on screen. Reduced motion: no blink, no transitions, the train stands at the right.
-  Once a train rides, the answer text stays for screen readers only (`:has(.whyTrack[data-live])`).
-- Guards: both files are in `ALLOWED_RAW_HEADINGS`; a control must be the ui `Button` (`check-shadcn-rules`, ✗ 470-3 build failed on
-  a raw `<button>`).
+  pattern, `CITY`), ground, rails with sleepers (rectangles a little darker than the rail). The train: a one-tone cartoon
+  locomotive facing LEFT (SVG mirrored by coordinates, so the «$LGX» flag reads normally; lit cab window and headlamp, yellow beam
+  ahead) and one wagon per word of `landing.why.answer` (a punctuation-only token rides with the previous word). The locomotive is
+  first and on the left — the train reads left to right. Font of the train = h2 size (`.waitingTitle` clamp), each wagon is
+  measured by its word; windows fill the wagon width (window 0.5em + gap 0.3em, `background-repeat: space` — as many whole windows
+  as fit); >3 letters → two wheels. A moon rim (`drop-shadow` on top edges) separates the train from the city.
+- **Plate button** (`why-ride.client.tsx`, island `WhyStage`): the question is `h2 > Button(bare)`; until pressed it blinks
+  inverted once a second (CSS, only after hydration). The scene has its full height from the start. Press (one-way): rails slide in
+  left to right (700 ms), 1 s later the first train. No press — no rails, no train. The answer is never shown as text on screen —
+  only for screen readers and search (`.whyAnswer` is visually hidden).
+- **Ride**: the train enters from the RIGHT edge, moves left at 80 px/s, wheels turn with the speed (counter-clockwise), leaves on
+  the left, 2 s gap, next train; rAF only while the scene is on screen. Reduced motion: no blink, rails at once, the train stands.
+- Guards: both files are in `ALLOWED_RAW_HEADINGS`; a control must be the ui `Button` (`check-shadcn-rules`, ✗ a build failed on a
+  raw `<button>`).
