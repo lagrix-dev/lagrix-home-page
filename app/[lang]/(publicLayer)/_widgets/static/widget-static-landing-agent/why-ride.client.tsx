@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import s from "./landing-agent.module.css"
+import { Button } from "@/components/ui/button"
 
 // СЦЕНА «А ПОЧЕМУ ВСЁ-ТАКИ LAGRIX?» — островок (шаги 470-2 и 470-3, владелец 2026-10-13).
 // 470-3: «вывеска … должна превратиться в кнопку в которой с частотой раз в 1 секунду текст инвертирует. Железной дороги на старте
@@ -90,12 +91,12 @@ export function WhyStage({ question, answer, children }: { question: string; ans
         <div data-block="wy472" className={`${s.waitingSign} ${s.whySign}`}>
           <span className={s.gateRods} aria-hidden="true" />
           <h2 data-block="hwois" className={`${s.waitingTitle} ${s.whyTitle}`}>
-            <button
-              type="button" className={`${s.waitingPlate} ${s.whyPlate}`} aria-expanded={open} aria-controls="why-track"
+            <Button
+              variant="bare" size="bare" type="button" className={`${s.waitingPlate} ${s.whyPlate}`} aria-expanded={open} aria-controls="why-track"
               onClick={() => setOpen(true)}
             >
               {question}
-            </button>
+            </Button>
           </h2>
         </div>
         <p data-block="f07ci" className={s.whyAnswer}>{answer}</p>
