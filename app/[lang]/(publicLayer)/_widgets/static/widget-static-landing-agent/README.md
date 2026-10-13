@@ -169,3 +169,13 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   the left, 2 s gap, next train; rAF only while the scene is on screen. Reduced motion: no blink, rails at once, the train stands.
 - Guards: both files are in `ALLOWED_RAW_HEADINGS`; a control must be the ui `Button` (`check-shadcn-rules`, ✗ a build failed on a
   raw `<button>`).
+
+## Step 471 (2026-10-13): help desk signs and long answers
+
+- **Signs** (`landing.helpDesk.questions/answers`): Fare, Refund guarantees, Glossary | Telegraph (the H2A/H2H messengers), Zero-day
+  infrastructure, To «Super-node Junction». Every sign answer (and Departure, Transfer) is a ready text of 150–200 words, no AI:
+  a `# ` answer heading, a paragraph, then two or three `## ` related topics. Facts only from the Lagrix documents.
+- **Window** (`help-desk.client.tsx`, `Rich`): `#` → `.kioskH1`, `##` → `.kioskH2`, blank lines split paragraphs; a new answer opens
+  in the window from its question (long answers are read from the top). The machine copy (`markdown.ts`) turns those headings into
+  bold lines so the document keeps its own levels.
+- **Model** (`_libs/help-desk.ts`): about 150 words in the same shape, `maxOutputTokens` 900; knowledge = llms-full.

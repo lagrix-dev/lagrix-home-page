@@ -51,6 +51,8 @@ newcomer stands next to a giant, and where the distance between cities and conti
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
 | **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
 | **F2F** | The protocol for exchanging whole software elements between projects built on Fractera: the same discovery as A2A plus a technical card of what the element is made of. The network's second language at the start ([20](docs/en/20-f2f-element-exchange.md)). |
+| **H2A** | Human to agent: a person talks only to their own agent — creates it, teaches it, sets its limits ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
+| **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed; no server in the middle, the conversation stays on the two nodes ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, and free to use. |
 
 ## Our mission
