@@ -1310,9 +1310,68 @@
 .rulesOne { margin-top: 0.6rem; max-width: 70ch; font-family: var(--text); font-size: 0.88rem; line-height: 1.45; color: var(--ink-soft); }
 
 /* 456-2: «А почему всё-таки Lagrix?» — простой текст после «Маршрут построен», без оформления (слово владельца). */
-.why { margin-top: 2.6rem; max-width: 62ch; font-family: var(--text); font-size: 1.02rem; line-height: 1.6; color: var(--ink-soft); }
-.whyQ { font-weight: 600; color: var(--ink); }
-.whyA { margin-top: 0.35rem; }
+/* «А почему всё-таки Lagrix?» — ночной город и паровозик (шаг 470). Небо — табло, город — один тон, поезд — один тон темнее;
+   свет только жёлтый: луч фонаря, окно будки, окошки вагонов. Шрифт поезда = заголовок второго уровня (`.waitingTitle`), вагон
+   меряется своим словом. Поезд стоит у правого края (сервер, без JavaScript); едет — островок 470-2. */
+.whyNight {
+  --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 72%, var(--ink)); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board));
+  position: relative; display: flex; flex-direction: column; min-height: clamp(36rem, 82vh, 50rem); padding-top: 3rem; overflow: clip;
+  background: linear-gradient(to bottom, var(--board-deep), var(--board) 70%); color: var(--chalk);
+}
+.whyCity { position: absolute; left: 0; bottom: var(--ground); width: 100%; height: 58%; fill: var(--city); }
+.whyHead { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.whySign { --rod: color-mix(in oklab, var(--chalk) 55%, transparent); }
+.whyPlate { background: var(--chalk); box-shadow: 0 0 2.6rem -0.6rem oklch(from var(--poster) l c h / 0.4), 0 16px 28px -18px var(--shade); }
+.whyPlate .waitingTitle { color: var(--board); }
+.whyAnswer {
+  margin-top: 1.4rem; max-width: 60ch; font-family: var(--text); font-size: 1.05rem; line-height: 1.6;
+  color: color-mix(in oklab, var(--chalk) 88%, transparent); text-wrap: pretty;
+}
+.whyTrack {
+  position: relative; z-index: 1; margin-top: auto; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
+  height: calc(3.2em + 0.7rem + var(--ground) + 2rem);
+}
+/* Земля и рельсы: рельс сверху полосы, шпалы под ним. */
+.whyTrack::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--ground); background: var(--ink); }
+.whyTrack::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: var(--ground); height: 0.7rem;
+  background:
+    linear-gradient(var(--rail), var(--rail)) top / 100% 0.22rem no-repeat,
+    repeating-linear-gradient(to right, var(--city) 0 0.55rem, transparent 0.55rem 1.7rem);
+}
+.whyTrain {
+  position: absolute; bottom: calc(var(--ground) + 0.7rem); right: 4%; z-index: 1;
+  display: flex; flex-direction: row-reverse; align-items: flex-end; gap: 0.3em; color: var(--ink); white-space: nowrap;
+}
+.whyLoco { position: relative; flex: none; line-height: 0; }
+.whyLoco svg { display: block; height: 3.2em; width: auto; fill: currentColor; overflow: visible; }
+.whyPole { stroke: currentColor; stroke-width: 3; }
+.whyFlag { fill: var(--chalk); }
+.whyFlagText { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 0.02em; }
+.whyLit { fill: var(--poster); filter: drop-shadow(0 0 5px oklch(from var(--poster) l c h / 0.8)); }
+.whySpoke { fill: none; stroke: var(--city); stroke-width: 2.5; stroke-linecap: round; }
+.whyBeam {
+  position: absolute; left: calc(100% - 0.12em); top: 54%; width: 7em; height: 1.75em; pointer-events: none;
+  clip-path: polygon(0 0, 100% 22%, 100% 100%, 0 26%);
+  background: linear-gradient(to right, oklch(from var(--poster) l c h / 0.6), oklch(from var(--poster) l c h / 0) 92%);
+}
+.wagon {
+  position: relative; flex: none; display: flex; flex-direction: column; align-items: center; gap: 0.12em;
+  margin-bottom: 0.3em; padding: 0.18em 0.32em 0.16em; background: var(--ink); border-radius: 0.14em;
+}
+.wagon::after { content: ""; position: absolute; right: -0.3em; bottom: 0.24em; width: 0.3em; height: 0.08em; background: var(--ink); }
+.wagonWindows { display: flex; gap: 0.3em; }
+.wagonWindow {
+  width: 0.5em; height: 0.36em; border-radius: 0.06em; background: var(--poster);
+  box-shadow: 0 0 0.35em oklch(from var(--poster) l c h / 0.5);
+}
+.wagonWord { font-family: var(--display); font-weight: 700; font-size: 1em; line-height: 1; letter-spacing: 0.01em; color: var(--chalk); }
+.wagonWheels { position: absolute; left: 0; right: 0; bottom: -0.3em; display: flex; justify-content: space-between; padding: 0 14%; }
+.wagon[data-wheels="1"] .wagonWheels { justify-content: center; }
+.wagonWheel {
+  width: 0.42em; height: 0.42em; border-radius: 50%; background: var(--ink);
+  box-shadow: inset 0 0 0 0.06em var(--city), inset 0 0 0 0.16em var(--ink), inset 0 0 0 0.21em var(--city);
+}
 
 /* ── Таможня (шаг 467, владелец 2026-10-12) ─────────────────────────────────────────────────────────────────────────────────────
    Комната того же вокзала, что «Зал ожидания»: табличка на цепочках справа (те же классы `.waitingSign`/`.waitingPlate`), слева

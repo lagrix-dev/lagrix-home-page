@@ -21,6 +21,7 @@ import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { WaitingRoom } from "./waiting-room"
+import { WhyNight } from "./why-night"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -460,17 +461,12 @@ export function LandingAgent({ lang }: { lang: string }) {
                 </li>
               ))}
             </ol>
-            {/* 456-2 (владелец 2026-10-12): «после вкладки маршрут построен простым шрифтом напиши а почему всё-таки lagrix?» —
-                вопрос и короткий ответ, обычный текст, без оформления. */}
-            {x.why && (
-              <div data-block="wy456" className={s.why}>
-                <p data-block="hwois" className={s.whyQ}>{x.why.question}</p>
-                <p data-block="f07ci" className={s.whyA}>{x.why.answer}</p>
-              </div>
-            )}
           </div>
         </section>
       )}
+      {/* 470 (владелец 2026-10-13): «А почему всё-таки Lagrix?» — отдельная ночная сцена после «Маршрута построен»: силуэты города,
+          табличка-вопрос, паровозик со словами ответа (456-2 был обычным текстом в конце «Маршрута»). */}
+      {x.why && <WhyNight w={x.why} />}
       {/* Пассажиры у нижней кромки окна (владелец 2026-09-30) — только в браузере, после 10 с покоя. */}
       <Walkers />
     </div>
