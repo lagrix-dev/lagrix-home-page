@@ -113,3 +113,30 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   and 2 s in CSS). A red target (150 px, 72 px on a phone) stands left of the section title — the main goal of the product.
 - **Ticket** (453-9): an invitation for super-node operators — `landing.ticket` (kicker, fields, keep, `reserve` → GitHub), three
   `landing.chips`; shape, stub, barcode and stamp unchanged. Title and text — the `under-the-hood` section head and its paragraph.
+
+## Step 467 (2026-10-12): zero-day sign and the customs room
+
+- **Zero-day sign** (467-1, `zero-day.tsx`): the section title is a plate `.zeroPlate` on two dotted chains `.gateRods` inside
+  `.zeroSign`, centred, in the same manner as the waiting-room plate; the red target is the plate's emblem on its left edge (5.6rem,
+  3.4rem on a phone). Floor (467-5): `.zeroDay::before` — a 6rem band with a 4px board-coloured skirting, the same colour as
+  `.hallFloor` of the customs room; patrols, people and the camera stand on it.
+- **Customs** (467-2, `customs.tsx`, `#customs`): below zero-day, above the help desk. The plate (same classes as the waiting room,
+  `waitingSign`/`waitingPlate`) stands on the right with the yellow regulators line (owner's wording: «designed to answer the questions
+  of regulators», not «fully compliant»; SEC and MiCA checked at the source); on the left a red alarm lamp «Attention, inspection in
+  progress», pulsing once in 2 s in CSS. The hall spans the screen: floor, a conveyor on legs standing on the floor, suitcases, and in the
+  centre the X-ray box `min(44rem, 100vw − 2rem)` (the help-desk kiosk width; it does not shrink, suitcases get cut by the edges). The box
+  display has two stacked containers: question (`--signal`) and answer (`--go`); phases are `data-phase` = `off` · `question` · `answer`.
+  Six question/answer pairs come from the protocol README «Built with regulators in mind», condensed. Words — `landing.customs`.
+  Phone (≤ 640 px): only the plate and the box.
+- **Live cycle** (467-3, `customs-hall.client.tsx`): the island renders the same still scene on the server (without JavaScript: the
+  first pair in the «answer» state). Live: suitcases every 15rem, belt 80 px/s (the walkers' `SPEED`); a suitcase reaching the box
+  centre stops → question 2 s (red lamp blinks) → answer 5 s (question dimmed, green lamp blinks) → display off, belt moves, next pair.
+  Time runs in rAF frames and only while the hall is on screen (IntersectionObserver). Phone and `prefers-reduced-motion`: no belt, the
+  display cycles pairs by itself (2 s, 5 s, 0.7 s pause). The display is hidden from screen readers; all six pairs are in an `srOnly`
+  list beside it.
+- **Machine copy** (467-4): `markdown.ts` builds `/<lang>/index.md` and the home part of `llms-full.txt` BY HAND — a new section or a
+  new visible field in `landing` without a line there never reaches the copy. Add a section to the page → add it to `markdown.ts` in the
+  same change. 467-4 added the customs room and the fields that were visible but missing (`board.from/fromValue`, `waiting.scene`,
+  `waiting.video`, `route`, `closingImage.alt`; the final section title is `board.closing`).
+- **Typography guard**: a new widget file with a raw `h2` must be listed in `ALLOWED_RAW_HEADINGS` of `scripts/check-typography.mjs`,
+  otherwise the build fails with `TYPOGRAPHY_FAILED` (467-2, `customs.tsx`).
