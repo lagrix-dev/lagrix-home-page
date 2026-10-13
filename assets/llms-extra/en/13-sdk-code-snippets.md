@@ -41,8 +41,8 @@ async def main():
         rpc_url="https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
     )
 
-    # Register the method in the DHT
-    await node.register_service(
+    # Publish a signed announcement (Nostr, document 17): capability, availability and price
+    await node.announce(
         service_name="market-analyzer-v1",
         price_per_task_usdc=0.50,  # $0.50 USDC per task
         handler=handle_ai_inference
@@ -65,11 +65,12 @@ async def main():
     # Initialize the Client
     client = LagrixClient(
         private_key="0x8c1d...a90",  # Client wallet (ERC-4337 smart account)
-        paymaster_url="https://paymaster.lagrix.dev/v1"
+        paymaster_address="0xLagrixPaymasterAddressOnArbitrum"  # a contract address, not a server
     )
 
-    print("[Client] Searching for a Provider in the Kademlia DHT...")
-    provider_node = await client.discover_provider(service_name="market-analyzer-v1")
+    # One search through a super-node ($0.001, document 17); the client remembers the provider for the next tasks
+    print("[Client] Searching for a Provider...")
+    provider_node = await client.find_provider(capability="market-analyzer-v1", max_price_usdc=0.70)
     
     print(f"[Client] Node found: {provider_node.node_id}. Locking $0.50 USDC in escrow...")
 
@@ -150,7 +151,7 @@ async function runClient() {
   try {
     console.log('[TS-Client] Sending an asynchronous task to the P2P network...');
 
-    // One-line call: Discover -> Escrow Lock -> P2P Execution -> Verification
+    // One-line call: Search (only if this provider is not known yet) -> Escrow Lock -> P2P Execution -> Verification
     const response = await client.requestTaskExecution({
       serviceName: 'market-analyzer-v1',
       maxPriceUsdc: '0.50',

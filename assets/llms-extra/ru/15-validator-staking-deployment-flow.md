@@ -34,8 +34,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker $USER
 
-# Install CLI tool for Lagrix Node Operators
-curl -fsSL https://get.lagrix.dev/cli/install.sh | bash
+# Install CLI tool for Lagrix Node Operators from the repository's releases (no Lagrix server is involved)
+curl -fsSL https://github.com/lagrix-dev/lagrix-supernode/releases/latest/download/install.sh | bash
 source ~/.bashrc
 
 # Verify installation
@@ -62,7 +62,7 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : calculated by the network at entry (document 05, 5.6)
+Required Deposit           : calculated by the network at entry (document 05, 5.6); none for the first 100 operators
 Status                     : NOT_STAKED (Pending On-Chain Stake)
 ===================================================================
 ```
@@ -107,7 +107,7 @@ function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant 
         stakeBalance: amount,
         lastActive: uint40(block.timestamp),
         slashCount: 0,
-        isJailed: false,
+        blacklisted: false,
         pubKeyAddress: msg.sender
     });
 
@@ -142,7 +142,6 @@ escrow_contract = "0xA2AEscrowContractAddress"
 [relay]
 enable_turn_relay = true
 max_bandwidth_mbps = 1000
-relay_fee_per_mb_usdc = "0.000100" # Начисление комиссии за проксирование
 
 [metrics]
 enabled = true

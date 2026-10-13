@@ -6,8 +6,10 @@ this document: **downtime is not fraud**. A server that goes offline simply stop
 
 ## 6.1 The deposit
 
-The deposit size is calculated when the operator joins (document 05, section 5.6). On withdrawal the deposit stays locked for 14
-days: if fraud committed before the withdrawal comes to light in that time, the penalty can still be collected.
+The deposit size is calculated when the operator joins (document 05, section 5.6). The first 100 operators join without a deposit:
+their first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what has accumulated.
+On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
+can still be collected.
 
 ```solidity
 struct Validator {
@@ -24,8 +26,8 @@ struct Validator {
 
 As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-- **While the node is unavailable,** it gets no receipts, takes no part in block search and receives no share of the fee. It loses
-  only income.
+- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward, and as an inactive
+  node it receives no share of the fee. It loses only income.
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row,** it is removed. Its place becomes a vacancy on the terms on which it joined
   (document 05, section 5.6), and the deposit is returned to the operator after the 14-day withdrawal. It did not cheat — it left.
@@ -55,7 +57,7 @@ signatures that do not match the node's key.
 | Forged tables, NodeID hijacking | signatures that do not match | 100% of the deposit and permanent exclusion |
 
 **Where the taken coins go.** Half goes to whoever proved the violation: a reward for keeping the network honest. The other half is
-removed from circulation for good — as in Bitcoin, where an unclaimed reward is simply lost. No new coins are mined to replace it, so
+removed from circulation for good — as in Bitcoin, where an unclaimed reward is simply lost. No new coins are issued to replace it, so
 the final number of coins ends up below 1,000,000,000 by exactly that amount.
 
 ```

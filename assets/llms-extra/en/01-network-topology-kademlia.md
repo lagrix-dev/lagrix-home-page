@@ -10,9 +10,9 @@ The Super-Node identifier (NodeID) is deterministically computed from the public
 
 Formula: $NodeID = \text{SHA3-256}(PublicKey_{EVM})$
 
-Handshake validation: When Node A tries to connect to Node B, it sends its NodeID and a cryptographic signature proving ownership of the private key. Node B takes the public key, queries a blockchain RPC node and checks that this address holds an active super-node deposit calculated at entry (document 05, section 5.6) and is not excluded (document 06): `isActiveValidator(PublicKey) == true`.
+Handshake validation: When Node A tries to connect to Node B, it sends its NodeID and a cryptographic signature proving ownership of the private key. Node B takes the public key, queries a blockchain RPC node and checks that this address is an active super-node — it has entered under document 05, section 5.6 (participants brought in and a deposit, or, for the first 100 operators, a deposit being built from their own rewards) and is not excluded (document 06): `isActiveValidator(PublicKey) == true`.
 
-Result: If there is no stake, the connection is dropped instantly at the socket level. An attacker physically cannot fill the network with a million fake NodeIDs, because each one requires a real financial deposit.
+Result: If the address is not an active super-node, the connection is dropped instantly at the socket level. An attacker cannot fill the network with a million fake NodeIDs, because each one requires a real entry: participants checked for a month and a deposit at stake.
 
 ## 1.2 Routing Mathematics (XOR Metric)
 

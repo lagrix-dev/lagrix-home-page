@@ -34,7 +34,7 @@ This is the most important point for maintaining the legal status of a "Mere Con
 
 A multi-layer envelope architecture (Onion-lite routing) is used:
 
-Outer layer (Transport): Envoy encapsulates packets in a standard TLS 1.3 tunnel to the Super-Node. The Super-Node sees only headers: sender IP, recipient IP, packet size. This meta-information is used by the Paymaster smart contract to charge the gas fee (Relay Fee) for routing.
+Outer layer (Transport): Envoy encapsulates packets in a standard TLS 1.3 tunnel to the Super-Node. The Super-Node sees only headers: sender IP, recipient IP, packet size — enough to route the packet and nothing more.
 
 Inner layer (Payload E2EE): The data itself (for example, JSON with a system prompt) is encrypted with a symmetric key (AES-256-GCM or ChaCha20-Poly1305). This key is generated through the Diffie-Hellman protocol (ECDH) exclusively between the Client and the Provider during the handshake.
 

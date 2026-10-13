@@ -68,9 +68,8 @@ When a deal moves to COMPLETED, the contract splits the amount:
 | The Provider | 95% | to its wallet |
 | The network fee | 5% | deducted from the deal amount and distributed under document 09 |
 
-The fee is split into two parts (document 09): the super-nodes' share goes to their shared pool, and the rest is returned in turn to
-active **providers** — those whose payment the fee is deducted from and who keep working in the network. There is no separate payment
-to a super-node for relaying traffic: super-nodes earn block rewards and a share of the fee.
+The fee is divided equally among all super-nodes except the one the deal passed through (document 09). It is taken from the very
+first deal, including the warm-up before issuance starts (document 05, section 5.2).
 
 ## 4.5 The receipt and the participants' history
 
@@ -86,10 +85,12 @@ event Receipt(
 );
 ```
 
-- **The super-node's receipt.** A `Receipt` event counts for the super-node `superNode` with a weight equal to the deal amount. These
-  receipts make up its right to search for a block (document 05, section 5.2).
-- **The participants' history.** The contract updates, for both parties, the number of closed deals and the time of the last deal — separately as provider and as customer —
-  and records the joining time of a new participant. The fee-return queue (document 09) and the six-month rule (document 05) rely on
+- **The receipt.** A `Receipt` event counts for the customer, the provider and the super-node `superNode`, each with a weight equal to
+  the deal amount. Receipts divide each issuance period's reward (document 05, section 5.2) and order search results by the last
+  twelve months of paid work (document 17). Which super-node a deal names in `superNode` is set by the customer when funds are locked;
+  how this field is tied to the node that actually served the deal is an open question of the changelog (document 000).
+- **The participants' history.** The contract updates, for both parties, the number of closed deals and the time of the last deal —
+  separately as provider and as customer — and records the joining time of a new participant. The six-month rule (document 05) relies on
   this data.
 
 ## 4.6 Cost

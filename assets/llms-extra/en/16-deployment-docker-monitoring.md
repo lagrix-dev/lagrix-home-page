@@ -1,6 +1,6 @@
 # 16. Node Operator Guide: Deployment (Docker Compose, Prometheus, Grafana and Alerting Rules)
 
-The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (Downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) lead directly to calls of the slashValidator() function in the ValidatorStaking.sol contract.
+The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed with its deposit returned; only proven fraud leads to slashValidator() in the ValidatorStaking.sol contract (document 06).
 
 A monitoring stack based on Prometheus, Grafana and Alertmanager with an integrated Node Exporter and Envoy Statsd guarantees the operator instant detection of anomalies before they lead to financial penalties (Slashing).
 
@@ -144,7 +144,7 @@ The alerting system must fire an alarm instantly when conditions arise that thre
 groups:
   - name: LagrixNodeCriticalAlerts
     rules:
-      # 1. Soft-Slash threat (dropping out of the network)
+      # 1. Lost income (dropping out of the network)
       - alert: LagrixNodeDown
         expr: up{job="lagrix-core-node"} == 0
         for: 1m
@@ -152,7 +152,7 @@ groups:
           severity: critical
         annotations:
           summary: "CRITICAL ERROR: Lagrix Super-Node is down!"
-          description: "The lagrix-core container has been unavailable for more than 1 minute. Risk of Jail and Soft-Slash!"
+          description: "The lagrix-core container has been unavailable for more than 1 minute. The node earns nothing while it is down and is removed after 30 days offline (document 06)."
 
       # 2. Loss of Kademlia DHT connectivity
       - alert: KademliaPeersLow
@@ -222,6 +222,6 @@ Network Health: Number of active neighbors in k-buckets, status of PING checks f
 
 Relay Throughput: Rate of encrypted E2EE traffic pumped in Mbit/s, number of active TURN sessions.
 
-Financial Accounting: the super-node's accumulated share of deal fees in USDC, $LGX block rewards and the state of its deposit.
+Financial Accounting: the super-node's accumulated share of deal fees and search fees in USDC, its $LGX period rewards and the state of its deposit.
 
 Slashing Risk Metrics: Counter of recorded anomalies and a timer until the stake can be safely withdrawn (Unbonding Countdown).

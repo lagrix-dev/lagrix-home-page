@@ -48,4 +48,4 @@ field that could carry a secret is a name, never a value.
 
 - Which fields are required and which are optional.
 - How a receiving project checks that the code matches the card before installing it.
-- How the Super-node Council (document 18) adopts F2F as a supported protocol next to A2A.
+- Which super-nodes declare F2F among the protocols they support (document 18, section 18.4).

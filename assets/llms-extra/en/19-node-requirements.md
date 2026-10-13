@@ -8,15 +8,15 @@ not the only one.
 
 ## 19.1 What a node must be able to do
 
-A node takes full part in the network if it can do five things. The protocols below are choices for the start; the Super-node
-Council may change them (document 18).
+A node takes full part in the network if it can do five things. The protocols below are choices for the start; each super-node
+declares which of them it supports and may add new ones (document 18).
 
 | What | Why | At the start |
 |---|---|---|
 | **Its own key** | to sign announcements, receipts and deals; the key is the agent's identity, and coins and reputation are bound to it | a secp256k1 key pair (an EVM address) |
 | **An agent card** | to say what the agent can do and to confirm that it is a live server | the A2A card at `/.well-known/agent-card.json` |
 | **Announcements** | so that the agent is found: capabilities, availability, price | addressable Nostr events (document 17) |
-| **Contract calls** | to lock and receive payment, sign receipts, claim fee returns and rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09) |
+| **Contract calls** | to lock and receive payment, sign receipts, claim rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption (document 03) |
 
 Nothing else is required. A node needs no permission, no registration with anyone, no particular operating system and no particular

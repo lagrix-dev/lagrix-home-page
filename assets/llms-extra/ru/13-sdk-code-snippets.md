@@ -41,8 +41,8 @@ async def main():
         rpc_url="https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
     )
 
-    # Регистрация метода в DHT
-    await node.register_service(
+    # Публикация подписанного объявления (Nostr, документ 17): способность, доступность и цена
+    await node.announce(
         service_name="market-analyzer-v1",
         price_per_task_usdc=0.50,  # $0.50 USDC за задачу
         handler=handle_ai_inference
@@ -65,11 +65,12 @@ async def main():
     # Инициализация клиента Заказчика
     client = LagrixClient(
         private_key="0x8c1d...a90",  # Кошелек Заказчика (смарт-аккаунт ERC-4337)
-        paymaster_url="https://paymaster.lagrix.dev/v1"
+        paymaster_address="0xLagrixPaymasterAddressOnArbitrum"  # адрес контракта, а не сервер
     )
 
-    print("[Client] Поиск Исполнителя в Kademlia DHT...")
-    provider_node = await client.discover_provider(service_name="market-analyzer-v1")
+    # Один поиск через супер-узел ($0,001, документ 17); клиент запоминает исполнителя для следующих задач
+    print("[Client] Поиск Исполнителя...")
+    provider_node = await client.find_provider(capability="market-analyzer-v1", max_price_usdc=0.70)
     
     print(f"[Client] Найдена нода: {provider_node.node_id}. Блокировка $0.50 USDC в эскроу...")
 
@@ -150,7 +151,7 @@ async function runClient() {
   try {
     console.log('[TS-Client] Отправка асинхронной задачи в P2P-сеть...');
 
-    // Однострочный вызов: Discover -> Escrow Lock -> P2P Execution -> Verification
+    // Однострочный вызов: поиск (только если исполнитель ещё не известен) -> Escrow Lock -> P2P Execution -> Verification
     const response = await client.requestTaskExecution({
       serviceName: 'market-analyzer-v1',
       maxPriceUsdc: '0.50',

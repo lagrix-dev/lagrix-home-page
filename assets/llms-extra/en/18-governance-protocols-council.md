@@ -1,59 +1,67 @@
-# 18. Network Governance: Protocols and the Super-node Council
+# 18. Network Governance: Rules in Code, Protocols Chosen by Each Super-node
 
-Lagrix is built on open protocols, but protocols age and new ones take their place. This document separates two things: the
-**tools** the network uses today and may replace, and the **principles** that never change. Tools are chosen by the Super-node
-Council. Principles cannot be changed by anyone, the Council included.
+Lagrix is built so that it can run on its own, like Bitcoin, with no body that holds power over it. There is no council of operators and
+no council of guardians: rules live in immutable contracts, and the choice of protocols belongs to each super-node. This document
+separates two things: the **tools** the network uses today and may outgrow, and the **principles** that never change.
 
 ## 18.1 Tools at the start
 
 | Task | Tool at the start | Where it is described |
 |---|---|---|
-| Communication between agents | the A2A protocol (Google, v1.0) | README, documents 03, 12 |
+| Work between agents | the A2A protocol (Google, v1.0) | README, documents 03, 12 |
 | Exchange of whole elements between projects built on Fractera | the F2F protocol (draft) | README, document 20 |
 | An agent's card and the check that it is alive | the A2A agent card at `/.well-known/agent-card.json` | document 05 (section 5.6) |
-| Announcements and finding providers | Nostr (NIP-90) | document 17 |
+| Announcements | Nostr: signed addressable events on relays | document 17 |
+| Search | the index and result lists of each super-node | document 17 |
 | The super-nodes' routing table | Kademlia DHT | document 01 |
-| Settlement, deposits and coins | smart contracts on an EVM layer-2 network | documents 04, 05, 06 |
+| Settlement, deposits and coins | immutable smart contracts on an EVM layer-2 network | documents 04, 05, 06, 09 |
 
-These are decisions for the start, not forever. When a better protocol appears, the network can move to it.
+These are choices for the start, not forever. When a better protocol appears, super-nodes can add it on their own.
 
 ## 18.2 Principles nobody changes
 
 - The network is neutral: it carries and settles, but it does not read, judge or censor what agents say to each other.
 - Coins are created only by the network's work; the cap is 1,000,000,000 LGX.
 - Every new participant only accumulates coins for the first six months.
-- One search result in every four is chosen at random among the matching agents.
-- Likes, dislikes and order counts are visible to the parties but do not affect search results.
+- Search results follow the last twelve months of paid work, and one place in every four is chosen at random among the matching agents.
+- Coins, likes, dislikes and order counts are visible to the parties but do not affect search results.
 - The network has no central server and no single point of failure.
-- The founder's share is 1% of every block with a 12-month lock; it cannot be increased.
+- The founder's share is 1% of every period's reward with a 12-month lock; it cannot be increased, and the founder has no other
+  advantage.
 
-## 18.3 The Super-node Council
+## 18.3 Rules live in immutable contracts
 
-**Who is in it.** All active super-node operators.
+The contracts have no administrator key and no upgrade key, and no parameter can be changed after deployment. What a council would
+once have decided is either a constant or a formula in code:
 
-**What it decides.**
-- which protocols for communication, discovery and agent checks the network supports: adding a new one, making it primary, retiring
-  an outdated one;
-- the rules for checking that a brought participant is a live agent (document 05, section 5.6);
-- parameter values within the bounds set by the network model: mining difficulty, the super-node entry threshold, the deposit size,
-  the fee rate.
+| Rule | How it is fixed |
+|---|---|
+| Deal fee | 5%, a constant (document 09) |
+| Search fee | $0.001 per result list, a constant (document 17) |
+| Issuance | a smoothly declining schedule up to the cap, divided by period (document 05) |
+| Start of issuance | a threshold of paid volume and a minimum number of super-nodes, constants (document 05) |
+| Super-node entry and deposit | formulas of network size and load (document 05, section 5.6) |
 
-**What it does not decide.** Anything in section 18.2.
+The values that are not yet numbers are set once, by modelling, before deployment.
 
-**How it votes.** A decision needs a qualified majority (two thirds of the votes at the start). How a vote is counted — by receipts,
-by deposit or one node, one vote — is set separately by modelling, so that no single operator or group can capture the Council.
+**How the rules change.** Only by a new version of the contracts. Participants move to it voluntarily — the way an upgrade of Bitcoin
+spreads only as far as people choose to run it. Nothing forces anyone onto a new version, and coins and history move with the agent's
+key.
 
-## 18.4 How a protocol changes
+**Why there is no council.** A council was needed only to add protocols and to move parameters. Protocols need no vote (section 18.4),
+and parameters need none once each is a constant or a formula. With nothing left to decide, there is nothing to capture: a body that can
+change the rules is a body that can be pressured, bought or blamed, and a network without one keeps working whoever its authors are.
 
-1. **Proposal.** Any operator proposes adding or retiring a protocol and publishes a description.
-2. **Council decision.** The Council votes under the rules of section 18.3.
-3. **Parallel operation.** The new protocol runs alongside the old one (at least 12 months at the start), so that no agent is cut off
-   from the network on the day of the switch.
-4. **Retirement.** Only then does the old protocol stop being supported.
+## 18.4 Each super-node declares its protocols and its coverage
+
+Every super-node publishes what it supports, the way a Nostr relay lists the NIPs it supports in its relay information document
+(NIP-11, field `supported_nips`):
+
+- **protocols** — A2A, F2F, and any later one it chooses to add;
+- **coverage** — the kinds of announcements (tags) it takes into its index and the relays it reads.
+
+Clients choose super-nodes that support what they need. A super-node that does not want a new protocol loses the clients who use it; it
+cannot block the rest of the network. A super-node in a country with strict laws may leave some kinds of services out of its index:
+other super-nodes still show them, and anyone may read Nostr directly.
 
 A protocol change never costs an agent its coins or its reputation: they are bound to its key, not to the protocol it speaks.
-
-## 18.5 The Super-node Council and the Guardian Council
-
-The Guardian Council (document 00, part 3) protects the network from capture: from vote buying and hasty changes. The Super-node
-Council chooses the network's tools. These are different tasks and different bodies.

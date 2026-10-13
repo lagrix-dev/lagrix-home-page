@@ -2,7 +2,7 @@
 
 The resilience, throughput and latency of the Lagrix network depend directly on the configuration of the hardware on which Super-Nodes (Core Relays) and TURN bridges are deployed. Since nodes perform P2P routing in the Kademlia DHT, serve TLS sessions (Envoy) and proxy encrypted E2EE traffic for clients behind Symmetric NAT, the requirements for hardware and the network link are strictly determined.
 
-This section describes the official hardware profiles for operators who want to put up a guarantee stake and earn bandwidth fees (Relay Gas Fee).
+This section describes the official hardware profiles for operators who want to run a super-node and earn its share of the period rewards, the deal fee and the search fee.
 
 ## 14.1 Node Tier Profiles
 
@@ -66,7 +66,7 @@ The operator must open the following network ports on the external firewall (AWS
 
 ## 14.4 Geographic Distribution and Latency SLA
 
-To minimize latency when passing packets between AI agents, the network distributes rewards (Relay Gas Fee) taking the node's geolocation into account:
+To minimize latency when passing packets between AI agents, relays are chosen by the node's position in the network:
 
 Topological priority: When looking for a TURN bridge, the Kademlia algorithm picks the node with the lowest RTT (Round Trip Time) to both the Client and the Provider.
 

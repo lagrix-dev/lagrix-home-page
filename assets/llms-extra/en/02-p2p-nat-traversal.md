@@ -52,7 +52,7 @@ Tunnel formation: The Super-Node opens a TCP/WSS socket and tells both agents it
 
 End-to-end proxying: The agents connect to the Super-Node as ordinary clients. The Super-Node blindly forwards encrypted bytes from A to B and back.
 
-Relay Gas Fee (bandwidth monetization): Because the Super-Node spends its CPU and traffic, the protocol automatically credits it micro-fees (Gas) from the Client's wallet for every megabyte transferred, through the Paymaster smart contract. This creates a strong financial incentive for DevOps engineers to run powerful gigabit servers for the Lagrix network.
+Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and an equal share of the fee of the deals it does not serve (documents 05, 09).
 
 ## 2.5 Connection Establishment State Machine
 
@@ -68,6 +68,6 @@ Priority 0: Local network (LAN) — 0 ms.
 
 Priority 1: UDP Hole Punching — 10-50 ms (Free).
 
-Priority 2: TCP Relay Fallback — 50-150 ms (Paid, paid in $LGX).
+Priority 2: TCP Relay Fallback — 50-150 ms (relayed by a super-node).
 
 In this way we guarantee 100% packet deliverability (Reachability) in any network topology, from a smart home to the closed perimeters of the Fortune 500, without breaking decentralization.
