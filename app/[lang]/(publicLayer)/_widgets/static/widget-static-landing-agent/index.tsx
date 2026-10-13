@@ -55,7 +55,8 @@ export function LandingAgent({ lang }: { lang: string }) {
   if (!w) return null
   const { hero, can, hood, x } = w
   const b = x.board
-  const outcomes = x.outcomes.slice(0, 3)
+  // 469 (владелец 2026-10-13): четвёртое направление «Мессенджер» — табло держит до четырёх строк (подсветка пути в CSS — до 4).
+  const outcomes = x.outcomes.slice(0, 4)
   const openSource = (x as LandingExtra & { openSource?: string }).openSource
   const TitleTag = openSource ? "p" : "h1"
 
