@@ -9,7 +9,8 @@ import { WhyStage } from "./why-ride.client"
 // будут иметь одно окошко другие … два … одни … на одном колесе другие на двух … ровно столько вагончиков сколько слов».
 // И уточнение того же дня: «слова в вагончике определяют его размер … шрифт будет такого же размера как текст в заголовках
 // второго уровня» — шрифт поезда = `.waitingTitle`, вагон меряется своим словом.
-// Сервер рисует ночь и поезд; табличку-кнопку, путь и ход ведёт островок `why-ride.client.tsx` (470-2, 470-3). Без нажатия поезда нет, ответ виден текстом под табличкой (без JavaScript и для поиска).
+// Сервер рисует ночь и поезд; табличку-кнопку, рельсы и ход ведёт островок `why-ride.client.tsx` (470-2…470-4). Без нажатия поезда нет;
+// ответ текстом — только для чтения с экрана и поиска (470-4: «тексты быть не должно»).
 // Мир вокзала ночью: небо — табло, город и поезд — один тон каждый, свет — только жёлтый (`--poster`): луч фонаря и окошки.
 
 type Words = { question: string; answer: string }
@@ -51,36 +52,37 @@ function City() {
   )
 }
 
-// Паровозик смотрит вправо: будка с окном, котёл, труба-воронка, купол, фонарь впереди, путеочиститель, колёса со спицами.
+// Паровозик смотрит влево — едет справа налево (470-4, владелец: «поезд должен ехать в обратную сторону»): фонарь и путеочиститель
+// слева, будка справа. Геометрия отражена по координатам (x' = 210 − x), а не трансформом — надпись флага читается прямо.
 // Однотонный (`currentColor`), светятся только окно будки и фонарь; флаг «$LGX» — на шесте над будкой.
 function Locomotive() {
   return (
     <span className={s.whyLoco}>
       <svg viewBox="0 0 210 180" aria-hidden="true">
-        <line className={s.whyPole} x1={18} y1={52} x2={18} y2={4} />
-        <rect className={s.whyFlag} x={18} y={4} width={64} height={28} rx={2} />
-        <text className={s.whyFlagText} x={50} y={24.5} textAnchor="middle">$LGX</text>
-        <rect x={6} y={52} width={74} height={12} rx={4} />
-        <rect x={12} y={60} width={62} height={70} rx={6} />
-        <rect className={s.whyLit} x={26} y={74} width={32} height={26} rx={4} />
-        <rect x={70} y={92} width={108} height={46} rx={23} />
-        <circle cx={108} cy={92} r={13} />
-        <rect x={140} y={64} width={20} height={34} />
-        <path d="M130 66 h40 l-8 -16 h-24 z" />
-        <rect className={s.whyLit} x={176} y={98} width={16} height={16} rx={3} />
-        <path d="M168 134 h30 l10 24 h-46 z" />
-        <rect x={12} y={134} width={168} height={8} rx={2} />
-        <g className={s.whyWheel} data-size="big" style={{ transformOrigin: "44px 156px" }}>
-          <circle cx={44} cy={156} r={24} />
-          <path className={s.whySpoke} d="M44 136 V176 M24 156 H64 M30 142 L58 170 M58 142 L30 170" />
+        <line className={s.whyPole} x1={192} y1={52} x2={192} y2={4} />
+        <rect className={s.whyFlag} x={128} y={4} width={64} height={28} rx={2} />
+        <text className={s.whyFlagText} x={160} y={24.5} textAnchor="middle">$LGX</text>
+        <rect x={130} y={52} width={74} height={12} rx={4} />
+        <rect x={136} y={60} width={62} height={70} rx={6} />
+        <rect className={s.whyLit} x={152} y={74} width={32} height={26} rx={4} />
+        <rect x={32} y={92} width={108} height={46} rx={23} />
+        <circle cx={102} cy={92} r={13} />
+        <rect x={50} y={64} width={20} height={34} />
+        <path d="M40 66 h40 l-8 -16 h-24 z" />
+        <rect className={s.whyLit} x={18} y={98} width={16} height={16} rx={3} />
+        <path d="M12 134 h30 l6 24 h-46 z" />
+        <rect x={30} y={134} width={168} height={8} rx={2} />
+        <g className={s.whyWheel} data-size="big" style={{ transformOrigin: "166px 156px" }}>
+          <circle cx={166} cy={156} r={24} />
+          <path className={s.whySpoke} d="M166 136 V176 M146 156 H186 M180 142 L152 170 M152 142 L180 170" />
         </g>
-        <g className={s.whyWheel} style={{ transformOrigin: "108px 164px" }}>
-          <circle cx={108} cy={164} r={16} />
-          <path className={s.whySpoke} d="M108 151 V177 M95 164 H121" />
+        <g className={s.whyWheel} style={{ transformOrigin: "102px 164px" }}>
+          <circle cx={102} cy={164} r={16} />
+          <path className={s.whySpoke} d="M102 151 V177 M89 164 H115" />
         </g>
-        <g className={s.whyWheel} style={{ transformOrigin: "148px 164px" }}>
-          <circle cx={148} cy={164} r={16} />
-          <path className={s.whySpoke} d="M148 151 V177 M135 164 H161" />
+        <g className={s.whyWheel} style={{ transformOrigin: "62px 164px" }}>
+          <circle cx={62} cy={164} r={16} />
+          <path className={s.whySpoke} d="M62 151 V177 M49 164 H75" />
         </g>
       </svg>
       {/* Луч фонаря — вперёд по ходу, на дорогу. */}
@@ -89,21 +91,21 @@ function Locomotive() {
   )
 }
 
-// Вагончик меряется словом: окошек два у длинного слова, одно у короткого; короткий вагон — на одном колесе.
+// Вагончик меряется словом; окошки заполняют его ширину (CSS, 470-4: «рассчитай ширину и сделать больше окошек») — столько
+// целых окошек с тем же шагом, сколько помещается; короткий вагон — на одном колесе.
 function Wagon({ word }: { word: string }) {
   const letters = Array.from(word.replace(/[^\p{L}\p{N}]/gu, "")).length
-  const windows = letters > 5 ? 2 : 1
   const wheels = letters > 3 ? 2 : 1
   return (
     <span className={s.wagon} data-wheels={wheels}>
-      <span className={s.wagonWindows}>{Array.from({ length: windows }, (_, i) => <span key={i} className={s.wagonWindow} />)}</span>
+      <span className={s.wagonWindows} />
       <span className={s.wagonWord}>{word}</span>
       <span className={s.wagonWheels}>{Array.from({ length: wheels }, (_, i) => <span key={i} className={s.wagonWheel}><span className={s.wagonSpoke} /></span>)}</span>
     </span>
   )
 }
 
-// Поезд целиком: паровоз первым в разметке, ряд развёрнут (`row-reverse`) — паровоз справа, первое слово сразу за ним.
+// Поезд целиком: паровоз первым и слева, за ним слова по порядку — состав читается слева направо (470-4).
 export function WhyTrain({ answer }: { answer: string }) {
   return (
     <span className={s.whyTrain} aria-hidden="true">

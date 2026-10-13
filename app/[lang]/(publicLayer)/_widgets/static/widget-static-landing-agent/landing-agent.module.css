@@ -1314,7 +1314,7 @@
    свет только жёлтый: луч фонаря, окно будки, окошки вагонов. Шрифт поезда = заголовок второго уровня (`.waitingTitle`), вагон
    меряется своим словом. Поезд стоит у правого края (сервер, без JavaScript); едет — островок 470-2. */
 .whyNight {
-  --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 60%, var(--board)); --moon: color-mix(in oklab, var(--chalk) 38%, transparent); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board));
+  --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 60%, var(--board)); --moon: color-mix(in oklab, var(--chalk) 38%, transparent); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board)); --sleeper: color-mix(in oklab, var(--rail) 72%, var(--ink));
   position: relative; display: flex; flex-direction: column; min-height: clamp(26rem, 62vh, 38rem); padding-top: 3rem; overflow: clip;
   background: linear-gradient(to bottom, var(--board-deep), var(--board) 70%); color: var(--chalk);
 }
@@ -1338,19 +1338,19 @@
 }
 .whyTrack {
   position: relative; z-index: 1; margin-top: auto; overflow: hidden; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
-  --open: calc(3.8em + 0.7rem + var(--ground) + 2rem); height: 0; transition: height 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  height: calc(3.8em + 0.7rem + var(--ground) + 2rem);
 }
-/* Земля и рельсы: рельс сверху полосы, шпалы под ним. */
+/* Земля и рельсы: рельс сверху полосы, под ним шпалы — прямоугольники чуть темнее рельса (470-4, владелец). */
 .whyTrack::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--ground); background: var(--ink); }
 .whyTrack::before {
   content: ""; position: absolute; left: 0; right: 0; bottom: var(--ground); height: 0.7rem;
   background:
     linear-gradient(var(--rail), var(--rail)) top / 100% 0.22rem no-repeat,
-    repeating-linear-gradient(to right, var(--city) 0 0.55rem, transparent 0.55rem 1.7rem);
+    repeating-linear-gradient(to right, var(--sleeper) 0 1.1rem, transparent 1.1rem 2rem) 0 0.22rem / 100% 0.45rem no-repeat;
 }
 .whyTrain {
-  position: absolute; bottom: calc(var(--ground) + 0.7rem); right: 4%; z-index: 1;
-  display: flex; flex-direction: row-reverse; align-items: flex-end; gap: 0.3em; color: var(--ink); white-space: nowrap;
+  position: absolute; bottom: calc(var(--ground) + 0.7rem); left: 4%; z-index: 1;
+  display: flex; flex-direction: row; align-items: flex-end; gap: 0.3em; color: var(--ink); white-space: nowrap;
   /* Лунный кант по верхним краям: однотонный силуэт отделяется от города, не получая второго цвета. */
   filter: drop-shadow(0 -0.035em 0 var(--moon));
 }
@@ -1362,39 +1362,41 @@
 .whyLit { fill: var(--poster); filter: drop-shadow(0 0 5px oklch(from var(--poster) l c h / 0.8)); }
 .whySpoke { fill: none; stroke: var(--moon); stroke-width: 2.5; stroke-linecap: round; }
 .whyBeam {
-  position: absolute; left: calc(100% - 0.12em); top: 54%; width: 7em; height: 1.75em; pointer-events: none;
-  clip-path: polygon(0 0, 100% 22%, 100% 100%, 0 26%);
-  background: linear-gradient(to right, oklch(from var(--poster) l c h / 0.6), oklch(from var(--poster) l c h / 0) 92%);
+  position: absolute; right: calc(100% - 0.12em); top: 54%; width: 7em; height: 1.75em; pointer-events: none;
+  clip-path: polygon(100% 0, 0 22%, 0 100%, 100% 26%);
+  background: linear-gradient(to left, oklch(from var(--poster) l c h / 0.6), oklch(from var(--poster) l c h / 0) 92%);
 }
 .wagon {
   position: relative; flex: none; display: flex; flex-direction: column; align-items: center; gap: 0.12em;
   margin-bottom: 0.3em; padding: 0.18em 0.32em 0.16em; background: var(--ink); border-radius: 0.14em;
 }
-.wagon::after { content: ""; position: absolute; right: -0.3em; bottom: 0.24em; width: 0.3em; height: 0.08em; background: var(--ink); }
-.wagonWindows { display: flex; gap: 0.3em; }
-.wagonWindow {
-  width: 0.5em; height: 0.36em; border-radius: 0.06em; background: var(--poster);
-  box-shadow: 0 0 0.35em oklch(from var(--poster) l c h / 0.5);
+.wagon::after { content: ""; position: absolute; left: -0.3em; bottom: 0.24em; width: 0.3em; height: 0.08em; background: var(--ink); }
+/* Окошки (470-4): окно 0,5em и промежуток 0,3em — как у прежних вагонов с двумя окнами; ряд во всю ширину вагона, `space`
+   ставит столько ЦЕЛЫХ окошек, сколько помещается, и делит остаток поровну. Ряд не уже одного окна — у «к» одно окошко. */
+.wagonWindows {
+  align-self: stretch; min-width: 0.8em; height: 0.36em;
+  background: linear-gradient(to right, transparent 0.15em, var(--poster) 0.15em 0.65em, transparent 0.65em) center / 0.8em 100% space no-repeat;
+  filter: drop-shadow(0 0 0.15em oklch(from var(--poster) l c h / 0.6));
 }
 .wagonWord { font-family: var(--display); font-weight: 700; font-size: 1em; line-height: 1; letter-spacing: 0.01em; color: var(--chalk); }
 .wagonWheels { position: absolute; left: 0; right: 0; bottom: -0.3em; display: flex; justify-content: space-between; padding: 0 14%; }
 .wagon[data-wheels="1"] .wagonWheels { justify-content: center; }
 .wagonSpoke { position: absolute; inset: 0; margin: auto; width: 0.06em; height: 70%; background: var(--moon); }
 .wagonWheel { position: relative; }
-/* Едет (470-2): поезд от левого края, его двигает островок; ответ уходит в текст для чтения с экрана — его везут вагоны. */
-.whyStage[data-open] .whyTrack { height: var(--open); }
+/* Едет (470-2, 470-4): поезд справа налево, его двигает островок; ответ уходит в текст для чтения с экрана — его везут вагоны. */
 /* Рельсы выдвигаются слева направо за 700 мс, когда путь раскрылся; поезд до первого выезда не виден. */
 .whyTrack::before { transform: scaleX(0); transform-origin: left; }
-.whyStage[data-open] .whyTrack::before { transform: scaleX(1); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 600ms; }
+.whyStage[data-open] .whyTrack::before { transform: scaleX(1); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); }
 .whyTrack:not([data-live]):not([data-still]) .whyTrain { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .whyStage .whyPlate { animation: none !important; }
-  .whyTrack, .whyStage[data-open] .whyTrack::before { transition: none; }
+  .whyStage[data-open] .whyTrack::before { transition: none; }
 }
 .whyTrack[data-live] .whyTrain { left: 0; right: auto; will-change: transform; }
-.whyNight:has(.whyTrack[data-live]) .whyAnswer { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* 470-4: ответ текстом не показывается — его везут вагоны; остаётся для чтения с экрана и поиска. */
+.whyAnswer { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .whyWheel { transform-box: view-box; }
-@keyframes whySpin { to { transform: rotate(1turn); } }
+@keyframes whySpin { to { transform: rotate(-1turn); } }
 .whyTrack[data-live] .whyWheel { animation: whySpin var(--spin-small, 1s) linear infinite paused; }
 .whyTrack[data-live] .whyWheel[data-size="big"] { animation-duration: var(--spin-big, 1.5s); }
 .whyTrack[data-live] .wagonWheel { animation: whySpin var(--spin-wagon, 0.6s) linear infinite paused; }

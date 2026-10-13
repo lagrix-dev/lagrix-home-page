@@ -9,17 +9,17 @@ import { Button } from "@/components/ui/button"
 // нет поезда нет если нажимают эту кнопку пространство под этой кнопкой расширяется на высоту необходимую для пространства где
 // появляется железная дорога … она выдвигается слева направо с анимацией в течение 700 милисекунд и задержкой в 1 секунду начинается
 // та анимация … Далее поезда движутся непрерывно если … не нажал кнопку то поезд не появляется».
-// 470-2: «слева направо выезжал бы паровозик … пауза в 2 секунды и выезжают следующей паровозик» — поезд (серверная разметка
-// `WhyTrain`) въезжает из-за левого края, едет 80 px/с (как `SPEED` пешеходов), уходит за правый край, 2 с пусто — снова слева.
+// 470-2: «… пауза в 2 секунды и выезжают следующей паровозик»; 470-4: «поезд должен ехать в обратную сторону» — поезд (серверная
+// разметка `WhyTrain`) въезжает из-за правого края, едет влево 80 px/с (как `SPEED` пешеходов), уходит за левый край, 2 с пусто —
+// снова справа. Слова состава читаются слева направо.
 // Колёса крутятся со скоростью хода; время идёт только пока сцена на экране.
-// Кнопка одноразовая (как замок «нулевого дня»). До нажатия ответ виден текстом под табличкой; поехал поезд — слова везут вагоны,
-// текст остаётся для чтения с экрана. Без JavaScript табличка не мигает и пути нет — ответ читается текстом. «Меньше движения» —
-// без мигания и анимаций: путь открывается сразу, поезд стоит. Это анимация в браузере посетителя, а не поведение узла.
+// Кнопка одноразовая (как замок «нулевого дня»). Ответ текстом не виден никогда — только для чтения с экрана (470-4); слова везут
+// вагоны. Без JavaScript табличка не мигает и рельсов нет. «Меньше движения» — без мигания и анимаций: рельсы сразу, поезд стоит. Это анимация в браузере посетителя, а не поведение узла.
 
 const SPEED = 80
 const GAP_MS = 2000
-const OPEN_MS = 600 // путь раскрывается (CSS `.whyTrack`, transition height)
-const RAILS_MS = 700 // рельсы выдвигаются слева направо (CSS `.whyTrack::before`, задержка = OPEN_MS)
+// 470-4 (владелец: «пусть секция будет иметь изначально ширину всегда») — место под путь есть сразу, раскрытия нет.
+const RAILS_MS = 700 // рельсы выдвигаются слева направо (CSS `.whyTrack::before`)
 const WAIT_MS = 1000 // пауза перед первым поездом
 
 export function WhyStage({ question, answer, children }: { question: string; answer: string; children: ReactNode }) {
@@ -37,7 +37,7 @@ export function WhyStage({ question, answer, children }: { question: string; ans
 
     let sceneW = root.clientWidth
     let trainW = train.offsetWidth
-    let x = -trainW
+    let x = sceneW
     let gap = 0
     let last = 0
     let frame = 0
@@ -60,10 +60,10 @@ export function WhyStage({ question, answer, children }: { question: string; ans
       last = now
       if (gap > 0) {
         gap -= dt
-        if (gap <= 0) { x = -trainW; root.setAttribute("data-moving", "") }
+        if (gap <= 0) { x = sceneW; root.setAttribute("data-moving", "") }
       } else {
-        x += (SPEED * dt) / 1000
-        if (x > sceneW) { gap = GAP_MS; root.removeAttribute("data-moving") }
+        x -= (SPEED * dt) / 1000
+        if (x + trainW < 0) { gap = GAP_MS; root.removeAttribute("data-moving") }
       }
       place()
       frame = requestAnimationFrame(tick)
@@ -74,14 +74,14 @@ export function WhyStage({ question, answer, children }: { question: string; ans
     // Путь раскрылся, рельсы выдвинулись, секунда тишины — первый поезд.
     const go = window.setTimeout(() => {
       measure()
-      x = -trainW
+      x = sceneW
       place()
       root.setAttribute("data-live", "")
       io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { threshold: 0 })
       io.observe(root)
       ro = new ResizeObserver(measure)
       ro.observe(root)
-    }, OPEN_MS + RAILS_MS + WAIT_MS)
+    }, RAILS_MS + WAIT_MS)
     return () => { clearTimeout(go); io?.disconnect(); ro?.disconnect(); cancelAnimationFrame(frame) }
   }, [open])
 
