@@ -62,6 +62,8 @@ const ALLOWED_RAW_HEADINGS = new Set([
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "customs.tsx"),
   // «А почему всё-таки Lagrix?» того же лендинга (шаг 470): табличка-вопрос ночной сцены — заголовок в оформлении страницы.
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "why-night.tsx"),
+  // Тот же вопрос — кнопка-табличка в островке сцены (шаг 470-3).
+  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "why-ride.client.tsx"),
 ])
 
 // 🔒 ПОЛЯ ВВОДА УМЕНЬШАЮТ ТЕКСТ НАМЕРЕННО — И ЭТО НЕ ТА ОШИБКА, ЧТО ИЩЕТ СТОРОЖ.

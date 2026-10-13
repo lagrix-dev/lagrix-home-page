@@ -1,5 +1,5 @@
 import s from "./landing-agent.module.css"
-import { WhyRide } from "./why-ride.client"
+import { WhyStage } from "./why-ride.client"
 
 // «А ПОЧЕМУ ВСЁ-ТАКИ LAGRIX?» — НОЧНОЙ ГОРОД И ПАРОВОЗИК (шаг 470, владелец 2026-10-13): «этот блок стал выше на заднем фоне
 // появились силуэты небоскрёбов в центре висела бы надпись тот самый заголовок а потом слева направо выезжал бы паровозик …
@@ -9,7 +9,7 @@ import { WhyRide } from "./why-ride.client"
 // будут иметь одно окошко другие … два … одни … на одном колесе другие на двух … ровно столько вагончиков сколько слов».
 // И уточнение того же дня: «слова в вагончике определяют его размер … шрифт будет такого же размера как текст в заголовках
 // второго уровня» — шрифт поезда = `.waitingTitle`, вагон меряется своим словом.
-// Сервер рисует неподвижную сцену: поезд стоит у правого края; едет — островок `why-ride.client.tsx` (470-2), ответ виден текстом под табличкой (без JavaScript и для поиска).
+// Сервер рисует ночь и поезд; табличку-кнопку, путь и ход ведёт островок `why-ride.client.tsx` (470-2, 470-3). Без нажатия поезда нет, ответ виден текстом под табличкой (без JavaScript и для поиска).
 // Мир вокзала ночью: небо — табло, город и поезд — один тон каждый, свет — только жёлтый (`--poster`): луч фонаря и окошки.
 
 type Words = { question: string; answer: string }
@@ -117,18 +117,10 @@ export function WhyNight({ w }: { w: Words }) {
   return (
     <section data-block="wy470" className={s.whyNight}>
       <City />
-      <div data-block="wy471" className={`${s.wrap} ${s.whyHead}`}>
-        <div data-block="wy472" className={`${s.waitingSign} ${s.whySign}`}>
-          <span className={s.gateRods} aria-hidden="true" />
-          <div data-block="wy473" className={`${s.waitingPlate} ${s.whyPlate}`}>
-            <h2 data-block="hwois" className={s.waitingTitle}>{w.question}</h2>
-          </div>
-        </div>
-        <p data-block="f07ci" className={s.whyAnswer}>{w.answer}</p>
-      </div>
-      <WhyRide>
+      {/* 470-3: табличка — кнопка; путь и поезд появляются только после нажатия (островок). */}
+      <WhyStage question={w.question} answer={w.answer}>
         <WhyTrain answer={w.answer} />
-      </WhyRide>
+      </WhyStage>
     </section>
   )
 }

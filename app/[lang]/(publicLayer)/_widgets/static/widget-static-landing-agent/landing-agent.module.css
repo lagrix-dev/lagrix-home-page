@@ -1315,21 +1315,30 @@
    меряется своим словом. Поезд стоит у правого края (сервер, без JavaScript); едет — островок 470-2. */
 .whyNight {
   --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 60%, var(--board)); --moon: color-mix(in oklab, var(--chalk) 38%, transparent); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board));
-  position: relative; display: flex; flex-direction: column; min-height: clamp(36rem, 82vh, 50rem); padding-top: 3rem; overflow: clip;
+  position: relative; display: flex; flex-direction: column; min-height: clamp(26rem, 62vh, 38rem); padding-top: 3rem; overflow: clip;
   background: linear-gradient(to bottom, var(--board-deep), var(--board) 70%); color: var(--chalk);
 }
-.whyCity { position: absolute; left: 0; bottom: var(--ground); width: 100%; height: 58%; fill: var(--city); }
+.whyCity { position: absolute; left: 0; bottom: 0; width: 100%; height: 58%; fill: var(--city); }
 .whyHead { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .whySign { --rod: color-mix(in oklab, var(--chalk) 55%, transparent); }
-.whyPlate { background: var(--chalk); box-shadow: 0 0 2.6rem -0.6rem oklch(from var(--poster) l c h / 0.4), 0 16px 28px -18px var(--shade); }
-.whyPlate .waitingTitle { color: var(--board); }
+.whyStage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; }
+/* 470-3: табличка — кнопка; до нажатия мигает инверсией раз в 1 с (период 2 с, смена ровно на секунде). Мигает только когда
+   островок ожил (`data-ready`): без JavaScript кнопка не работает и не зовёт. */
+.whyPlate {
+  display: block; font: inherit; line-height: inherit; letter-spacing: inherit; cursor: pointer; border: 0;
+  background: var(--chalk); color: var(--board); box-shadow: 0 0 2.6rem -0.6rem oklch(from var(--poster) l c h / 0.4), 0 16px 28px -18px var(--shade);
+}
+.whyPlate:focus-visible { outline: 3px solid var(--poster); outline-offset: 4px; }
+@keyframes whyInvert { 0% { background: var(--chalk); color: var(--board); } 50% { background: var(--ink); color: var(--chalk); box-shadow: inset 0 0 0 2px var(--chalk), 0 0 2.6rem -0.6rem oklch(from var(--poster) l c h / 0.4); } }
+.whyStage[data-ready]:not([data-open]) .whyPlate { animation: whyInvert 2s step-end infinite; }
+.whyStage[data-open] .whyPlate { cursor: default; }
 .whyAnswer {
   margin-top: 1.4rem; max-width: 60ch; font-family: var(--text); font-size: 1.05rem; line-height: 1.6;
   color: color-mix(in oklab, var(--chalk) 88%, transparent); text-wrap: pretty;
 }
 .whyTrack {
-  position: relative; z-index: 1; margin-top: auto; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
-  height: calc(3.8em + 0.7rem + var(--ground) + 2rem);
+  position: relative; z-index: 1; margin-top: auto; overflow: hidden; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
+  --open: calc(3.8em + 0.7rem + var(--ground) + 2rem); height: 0; transition: height 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 /* Земля и рельсы: рельс сверху полосы, шпалы под ним. */
 .whyTrack::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--ground); background: var(--ink); }
@@ -1373,6 +1382,15 @@
 .wagonSpoke { position: absolute; inset: 0; margin: auto; width: 0.06em; height: 70%; background: var(--moon); }
 .wagonWheel { position: relative; }
 /* Едет (470-2): поезд от левого края, его двигает островок; ответ уходит в текст для чтения с экрана — его везут вагоны. */
+.whyStage[data-open] .whyTrack { height: var(--open); }
+/* Рельсы выдвигаются слева направо за 700 мс, когда путь раскрылся; поезд до первого выезда не виден. */
+.whyTrack::before { transform: scaleX(0); transform-origin: left; }
+.whyStage[data-open] .whyTrack::before { transform: scaleX(1); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 600ms; }
+.whyTrack:not([data-live]):not([data-still]) .whyTrain { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .whyStage .whyPlate { animation: none !important; }
+  .whyTrack, .whyStage[data-open] .whyTrack::before { transition: none; }
+}
 .whyTrack[data-live] .whyTrain { left: 0; right: auto; will-change: transform; }
 .whyNight:has(.whyTrack[data-live]) .whyAnswer { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .whyWheel { transform-box: view-box; }
