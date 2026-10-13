@@ -161,6 +161,16 @@ export function LandingAgent({ lang }: { lang: string }) {
         </div>
       </section>
 
+      {/* 469 (владелец 2026-10-13): «Под эту вывеску я прошу переместить вверх справочную службу» — сразу под первым экраном
+          (под указателем к чату), над залом табло. Прежде (348–349) — третья секция снизу. */}
+      {x.helpDesk && (
+        <section data-block="xbxoz" id="help-desk" className={s.desk}>
+          <div data-block="ql52w" className={s.wrap}>
+            <HelpDesk w={x.helpDesk} lang={lang} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
+          </div>
+        </section>
+      )}
+
       <section data-block="hbbfq" className={s.hall}>
         <div data-block="rkprp" className={s.wrap}>
             <div data-block="qvj57" className={s.board} data-board data-shown="0">
@@ -393,16 +403,6 @@ export function LandingAgent({ lang }: { lang: string }) {
       {/* 467 (владелец 2026-10-12): «Ниже чем раздел инфраструктура нулевого дня мы будем рисовать комнату которая будет называться
           таможню». Слова — `landing.customs`. */}
       {x.customs && <Customs w={x.customs} />}
-
-      {/* 348–349 (владелец 2026-09-30): справочное бюро — третья секция снизу, над «Конвейером децентрализованной разработки»
-          («конвейер … должен быть под новой секцией справочного бюро»). */}
-      {x.helpDesk && (
-        <section data-block="xbxoz" id="help-desk" className={s.desk}>
-          <div data-block="ql52w" className={s.wrap}>
-            <HelpDesk w={x.helpDesk} lang={lang} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
-          </div>
-        </section>
-      )}
 
       <section data-block="xsind" className={s.depart}>
         {x.closingImage && (

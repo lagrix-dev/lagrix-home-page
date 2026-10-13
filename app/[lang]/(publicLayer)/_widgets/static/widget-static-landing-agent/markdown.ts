@@ -53,6 +53,17 @@ export function markdown(lang: string): string {
     if (x.chat.endCta) out.push(`[${x.chat.endCta.label}](${x.chat.endCta.href})`, "")
   }
 
+  // 469: справочное бюро на странице — сразу под первым экраном, над табло; копия следует порядку страницы.
+  if (x.helpDesk) {
+    const d = x.helpDesk
+    head(2, d.title)
+    para(d.greeting)
+    d.questions.forEach((q, i) => qa(q, d.answers[i]))
+    qa(d.departure?.question, d.departure?.answer)
+    qa(d.transfer?.question, d.transfer?.answer)
+    if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
+  }
+
   head(2, x.claim)
   qa(x.claimHintLabel, x.claimHint)
 
@@ -110,16 +121,6 @@ export function markdown(lang: string): string {
     para(c.text)
     list([c.lamp, c.scene])
     for (const it of c.items) qa(it.q, it.a)
-  }
-
-  if (x.helpDesk) {
-    const d = x.helpDesk
-    head(2, d.title)
-    para(d.greeting)
-    d.questions.forEach((q, i) => qa(q, d.answers[i]))
-    qa(d.departure?.question, d.departure?.answer)
-    qa(d.transfer?.question, d.transfer?.answer)
-    if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
   }
 
   if (x.outcomes?.length) {

@@ -182,7 +182,8 @@
 }
 .board[data-shown="0"] .row:nth-child(1) .platform,
 .board[data-shown="1"] .row:nth-child(2) .platform,
-.board[data-shown="2"] .row:nth-child(3) .platform { background: var(--poster); color: var(--ink); }
+.board[data-shown="2"] .row:nth-child(3) .platform,
+.board[data-shown="3"] .row:nth-child(4) .platform { background: var(--poster); color: var(--ink); }
 .departs {
   display: inline-flex; align-items: center; justify-content: flex-end; gap: 0.55rem;
   font-family: var(--display); font-weight: 600; font-size: 1.15rem; line-height: 1.2; color: var(--poster);
