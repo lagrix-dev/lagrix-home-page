@@ -151,3 +151,19 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   to revenue, 99% faster».
 - **Split-flap**: a still caption of several words (`SplitFlap` with one word containing spaces) keeps each word's cells in a
   `.flapGroup`, so it wraps only between words; single words and cycling words wrap by cell as before.
+
+## Step 470 (2026-10-13): why Lagrix — night city and the word train
+
+- **Scene** (`why-night.tsx`, server; after «Route built»): night sky in the board colour, one-tone skyscraper silhouettes (a fixed
+  pattern, `CITY`), ground and rails. The train: a one-tone cartoon locomotive (SVG, lit cab window and headlamp, yellow beam ahead,
+  flag «$LGX») and one wagon per word of `landing.why.answer` (a punctuation-only token rides with the previous word). The font of the
+  train is the h2 size (`.waitingTitle` clamp) — each wagon is measured by its word; >5 letters → two windows, >3 letters → two
+  wheels. A moon rim (`drop-shadow` on top edges) separates the one-tone train from the city. Words: `landing.why` (unchanged).
+- **Plate button** (470-3, `why-ride.client.tsx`, island `WhyStage`): the question is `h2 > Button(bare)`; until pressed it blinks
+  inverted once a second (CSS, only after hydration). Press (one-way): the track opens (600 ms), rails slide in left to right
+  (700 ms), 1 s later the first train. No press — no rails, no train; the answer is plain text under the plate (also without JS).
+- **Ride** (470-2): the train enters from the left edge, 80 px/s, wheels turn at the speed of travel, leaves on the right, 2 s gap,
+  next train; rAF only while the scene is on screen. Reduced motion: no blink, no transitions, the train stands at the right.
+  Once a train rides, the answer text stays for screen readers only (`:has(.whyTrack[data-live])`).
+- Guards: both files are in `ALLOWED_RAW_HEADINGS`; a control must be the ui `Button` (`check-shadcn-rules`, ✗ 470-3 build failed on
+  a raw `<button>`).
