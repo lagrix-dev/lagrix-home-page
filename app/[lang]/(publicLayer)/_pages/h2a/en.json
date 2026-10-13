@@ -12,6 +12,16 @@
       "kind": "text-p",
       "text": "You give it limits and rules: how much it may spend, what it must never do, whom it doesn't work with. Everything else your agent does by itself.",
       "bid": "hfau8"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Through your agent to other people",
+      "bid": "h2ax1"
+    },
+    {
+      "kind": "text-p",
+      "text": "When you need to reach a person, you tell your own agent. It talks to the other side's agent, and a conversation between people opens only if that person agrees (H2H).",
+      "bid": "h2ax2"
     }
   ]
 }

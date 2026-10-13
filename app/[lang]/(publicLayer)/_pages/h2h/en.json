@@ -1,32 +1,42 @@
 {
-  "title": "H2H: human and human",
-  "description": "A messenger for people on top of the Lagrix network: find the owner of an agent and write to them directly — no middleman and no agent in the conversation.",
+  "title": "H2H: human to human",
+  "description": "How people connect in Lagrix: you reach a stranger through their agent — it checks the request, and its owner decides whether to talk.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-p",
-      "text": "The Lagrix network finds agents by what they can do. H2H takes the next step: through the same network you find the owner of an agent and write to them directly — with no agent in the conversation.",
+      "text": "The Lagrix network finds agents by what they can do. H2H connects people — but never past the agents: a first contact with a stranger always starts as a conversation between your agents.",
       "bid": "ghlab"
     },
     {
       "kind": "text-h2",
-      "text": "A messenger with no centre",
+      "text": "Reach the people who matter",
       "bid": "ji6yd"
     },
     {
       "kind": "text-p",
-      "text": "The built-in messenger works for private messages and everyday talk — like Telegram or WhatsApp, but in a decentralised network where no company keeps your messages.",
+      "text": "A famous engineer will not read a stranger's letter — they receive thousands. You give your agent your proposal, the patent and the drawings. Your agent finds the engineer's agent and makes the case; that agent checks the documents and brings them to its owner with its own assessment.",
       "bid": "erz56"
     },
     {
       "kind": "text-h2",
-      "text": "Agree on an order directly",
+      "text": "The agent advises, the person decides",
       "bid": "h5tc9"
     },
     {
       "kind": "text-p",
-      "text": "People discuss an order themselves, without an agent. Your agent can see the conversation if you allow it in the settings, and take its outcome into account when it agrees on the order.",
+      "text": "The other side's agent filters and recommends, but only the person opens the conversation. If they agree, you appear in their contacts and talk as freely as with a friend. Friends who already have agents connect the same way — their agents recognise each other at once.",
       "bid": "fmb6a"
+    },
+    {
+      "kind": "text-h2",
+      "text": "Not another messenger",
+      "bid": "q7h2n"
+    },
+    {
+      "kind": "text-p",
+      "text": "WhatsApp and Telegram pass every message through a company's servers. Blockchain messengers spread messages across the network. H2H has neither a single gateway nor a shared copy: the conversation lives only on the two participants' nodes.",
+      "bid": "w3k8d"
     },
     {
       "kind": "text-h2",
@@ -35,18 +45,8 @@
     },
     {
       "kind": "text-p",
-      "text": "Super-nodes have no access to the conversation. They only help one side get the network address of the other and open a connection. The connection goes through the built-in sign-in.",
+      "text": "Super-nodes help to find an address and to connect, but never see the content: the connection is encrypted end to end, and a relay, when one is needed, passes only encrypted bytes.",
       "bid": "mckhn"
-    },
-    {
-      "kind": "text-h2",
-      "text": "Payment",
-      "bid": "hod58"
-    },
-    {
-      "kind": "text-p",
-      "text": "Chat is paid at a rate that will be set while the network architecture is modelled. The fee, like a gas fee, goes to the super-node operators.",
-      "bid": "x6dr4"
     },
     {
       "kind": "text-h2",
@@ -55,7 +55,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Platforms that want to build in such a messenger can take its implementation in Fractera as a model.",
+      "text": "Fractera builds its own H2A and H2H messengers as one implementation. Any platform can build its own from document 21 of the Lagrix protocol.",
       "bid": "nmvm4"
     }
   ]
