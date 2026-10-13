@@ -597,6 +597,8 @@
   .gateAnswerMobile { display: none; }
   /* Место под висящую табличку: зал начинается ниже неё. */
   .sign + .hall { padding-top: 10rem; }
+  /* 469: бюро стоит сразу под первым экраном — то же место под табличку плюс его собственный отступ. */
+  .sign + .desk { padding-top: 11.5rem; }
 }
 @media (prefers-reduced-motion: reduce) { .gateArrow { transition: none; } }
 
