@@ -1314,7 +1314,7 @@
    свет только жёлтый: луч фонаря, окно будки, окошки вагонов. Шрифт поезда = заголовок второго уровня (`.waitingTitle`), вагон
    меряется своим словом. Поезд стоит у правого края (сервер, без JavaScript); едет — островок 470-2. */
 .whyNight {
-  --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 72%, var(--ink)); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board));
+  --ground: 1.6rem; --city: color-mix(in oklab, var(--board-deep) 60%, var(--board)); --moon: color-mix(in oklab, var(--chalk) 38%, transparent); --rail: color-mix(in oklab, var(--chalk) 42%, var(--board));
   position: relative; display: flex; flex-direction: column; min-height: clamp(36rem, 82vh, 50rem); padding-top: 3rem; overflow: clip;
   background: linear-gradient(to bottom, var(--board-deep), var(--board) 70%); color: var(--chalk);
 }
@@ -1329,7 +1329,7 @@
 }
 .whyTrack {
   position: relative; z-index: 1; margin-top: auto; font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
-  height: calc(3.2em + 0.7rem + var(--ground) + 2rem);
+  height: calc(3.8em + 0.7rem + var(--ground) + 2rem);
 }
 /* Земля и рельсы: рельс сверху полосы, шпалы под ним. */
 .whyTrack::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--ground); background: var(--ink); }
@@ -1342,14 +1342,16 @@
 .whyTrain {
   position: absolute; bottom: calc(var(--ground) + 0.7rem); right: 4%; z-index: 1;
   display: flex; flex-direction: row-reverse; align-items: flex-end; gap: 0.3em; color: var(--ink); white-space: nowrap;
+  /* Лунный кант по верхним краям: однотонный силуэт отделяется от города, не получая второго цвета. */
+  filter: drop-shadow(0 -0.035em 0 var(--moon));
 }
 .whyLoco { position: relative; flex: none; line-height: 0; }
-.whyLoco svg { display: block; height: 3.2em; width: auto; fill: currentColor; overflow: visible; }
+.whyLoco svg { display: block; height: 3.8em; width: auto; fill: currentColor; overflow: visible; }
 .whyPole { stroke: currentColor; stroke-width: 3; }
 .whyFlag { fill: var(--chalk); }
 .whyFlagText { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 0.02em; }
 .whyLit { fill: var(--poster); filter: drop-shadow(0 0 5px oklch(from var(--poster) l c h / 0.8)); }
-.whySpoke { fill: none; stroke: var(--city); stroke-width: 2.5; stroke-linecap: round; }
+.whySpoke { fill: none; stroke: var(--moon); stroke-width: 2.5; stroke-linecap: round; }
 .whyBeam {
   position: absolute; left: calc(100% - 0.12em); top: 54%; width: 7em; height: 1.75em; pointer-events: none;
   clip-path: polygon(0 0, 100% 22%, 100% 100%, 0 26%);
@@ -1368,6 +1370,18 @@
 .wagonWord { font-family: var(--display); font-weight: 700; font-size: 1em; line-height: 1; letter-spacing: 0.01em; color: var(--chalk); }
 .wagonWheels { position: absolute; left: 0; right: 0; bottom: -0.3em; display: flex; justify-content: space-between; padding: 0 14%; }
 .wagon[data-wheels="1"] .wagonWheels { justify-content: center; }
+.wagonSpoke { position: absolute; inset: 0; margin: auto; width: 0.06em; height: 70%; background: var(--moon); }
+.wagonWheel { position: relative; }
+/* Едет (470-2): поезд от левого края, его двигает островок; ответ уходит в текст для чтения с экрана — его везут вагоны. */
+.whyTrack[data-live] .whyTrain { left: 0; right: auto; will-change: transform; }
+.whyNight:has(.whyTrack[data-live]) .whyAnswer { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.whyWheel { transform-box: view-box; }
+@keyframes whySpin { to { transform: rotate(1turn); } }
+.whyTrack[data-live] .whyWheel { animation: whySpin var(--spin-small, 1s) linear infinite paused; }
+.whyTrack[data-live] .whyWheel[data-size="big"] { animation-duration: var(--spin-big, 1.5s); }
+.whyTrack[data-live] .wagonWheel { animation: whySpin var(--spin-wagon, 0.6s) linear infinite paused; }
+.whyTrack[data-moving] .whyWheel, .whyTrack[data-moving] .wagonWheel { animation-play-state: running; }
+@media (prefers-reduced-motion: reduce) { .whyTrack .whyWheel, .whyTrack .wagonWheel { animation: none; } }
 .wagonWheel {
   width: 0.42em; height: 0.42em; border-radius: 50%; background: var(--ink);
   box-shadow: inset 0 0 0 0.06em var(--city), inset 0 0 0 0.16em var(--ink), inset 0 0 0 0.21em var(--city);

@@ -1,4 +1,5 @@
 import s from "./landing-agent.module.css"
+import { WhyRide } from "./why-ride.client"
 
 // «А ПОЧЕМУ ВСЁ-ТАКИ LAGRIX?» — НОЧНОЙ ГОРОД И ПАРОВОЗИК (шаг 470, владелец 2026-10-13): «этот блок стал выше на заднем фоне
 // появились силуэты небоскрёбов в центре висела бы надпись тот самый заголовок а потом слева направо выезжал бы паровозик …
@@ -8,7 +9,7 @@ import s from "./landing-agent.module.css"
 // будут иметь одно окошко другие … два … одни … на одном колесе другие на двух … ровно столько вагончиков сколько слов».
 // И уточнение того же дня: «слова в вагончике определяют его размер … шрифт будет такого же размера как текст в заголовках
 // второго уровня» — шрифт поезда = `.waitingTitle`, вагон меряется своим словом.
-// Сервер рисует неподвижную сцену: поезд стоит у правого края, ответ виден текстом под табличкой (без JavaScript и для поиска).
+// Сервер рисует неподвижную сцену: поезд стоит у правого края; едет — островок `why-ride.client.tsx` (470-2), ответ виден текстом под табличкой (без JavaScript и для поиска).
 // Мир вокзала ночью: небо — табло, город и поезд — один тон каждый, свет — только жёлтый (`--poster`): луч фонаря и окошки.
 
 type Words = { question: string; answer: string }
@@ -69,7 +70,7 @@ function Locomotive() {
         <rect className={s.whyLit} x={176} y={98} width={16} height={16} rx={3} />
         <path d="M168 134 h30 l10 24 h-46 z" />
         <rect x={12} y={134} width={168} height={8} rx={2} />
-        <g className={s.whyWheel} style={{ transformOrigin: "44px 156px" }}>
+        <g className={s.whyWheel} data-size="big" style={{ transformOrigin: "44px 156px" }}>
           <circle cx={44} cy={156} r={24} />
           <path className={s.whySpoke} d="M44 136 V176 M24 156 H64 M30 142 L58 170 M58 142 L30 170" />
         </g>
@@ -97,7 +98,7 @@ function Wagon({ word }: { word: string }) {
     <span className={s.wagon} data-wheels={wheels}>
       <span className={s.wagonWindows}>{Array.from({ length: windows }, (_, i) => <span key={i} className={s.wagonWindow} />)}</span>
       <span className={s.wagonWord}>{word}</span>
-      <span className={s.wagonWheels}>{Array.from({ length: wheels }, (_, i) => <span key={i} className={s.wagonWheel} />)}</span>
+      <span className={s.wagonWheels}>{Array.from({ length: wheels }, (_, i) => <span key={i} className={s.wagonWheel}><span className={s.wagonSpoke} /></span>)}</span>
     </span>
   )
 }
@@ -125,9 +126,9 @@ export function WhyNight({ w }: { w: Words }) {
         </div>
         <p data-block="f07ci" className={s.whyAnswer}>{w.answer}</p>
       </div>
-      <div data-block="wy474" className={s.whyTrack}>
+      <WhyRide>
         <WhyTrain answer={w.answer} />
-      </div>
+      </WhyRide>
     </section>
   )
 }
