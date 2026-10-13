@@ -2,7 +2,7 @@ import { buildLlmsFullTxt } from "@/lib/aio/llms";
 import { liveDocs } from "@/app/[lang]/(publicLayer)/docs/_libs/docs";
 import { SUPPORTED_LANGUAGES, SINGLE_LANG_MODE } from "@/config/translations/translations.config";
 
-// `/<язык>/llms-full.txt` — полные тексты на языке этого раздела (шаг 505).
+// `/<язык>/llms-full.txt` — тот же единый английский полный текст, что `/llms-full.txt` (468-6: русской версии нет).
 export const dynamic = "force-static";
 export const dynamicParams = false;
 // 458-9: документы Lagrix читаются с GitHub на лету — карта обновляется вместе с ними, раз в 5 минут.

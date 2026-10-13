@@ -26,6 +26,12 @@ const LLMS_EXTRA = LLMS_EXTRA_JSON as Record<string, { file: string; text: strin
 // отдаём, потому что он полезен, и говорим о нём именно так.
 //
 // Назначение формата по спецификации — ВЫВОД модели (inference), а не обучение.
+//
+// 🔒 468-6 (владелец 2026-10-13): «в документе не нужна русская версия вообще её убери … искусственный интеллект читает на английском,
+// документ должен содержать абсолютно ровно 100% всех документов». Полный текст — ОДИН и только английский: все английские страницы,
+// README и каждый документ `docs/en` репозитория lagrix-dev/lagrix. `/<язык>/llms-full.txt` отдаёт тот же английский файл, а карта
+// `llms.txt` любого языка ссылается на него и называет язык.
+export const FULL_TEXT_LANGUAGE = 'en'
 
 const SECTION_TITLES: Record<Surface['section'], { en: string; ru: string }> = {
   main: { en: 'Pages', ru: 'Страницы' },
@@ -54,8 +60,8 @@ export function buildLlmsTxt(lang: string): string {
   // Абзацы без заголовков — по спецификации здесь можно дать ориентиры, которые
   // не являются ссылками. Даём ровно два факта, которые агенту нужны раньше
   // остального: где полная версия и на каких языках существует сайт.
-  const full = `${urlFor(lang, '').replace(/\/$/, '')}/llms-full.txt`
-  out.push(`Full text of every page listed below: ${full}`, '')
+  const full = `${urlFor(FULL_TEXT_LANGUAGE, '').replace(/\/$/, '')}/llms-full.txt`
+  out.push(`Full text in English of every page and every document of this site: ${full}`, '')
   if (!SINGLE_LANG_MODE) {
     const others = SUPPORTED_LANGUAGES.filter(l => l !== lang)
       .map(l => `${urlFor(l, '').replace(/\/$/, '')}/llms.txt`)
@@ -88,8 +94,9 @@ export function buildLlmsTxt(lang: string): string {
   return out.join('\n').replace(/\n{3,}/g, '\n\n')
 }
 
-/** Полные тексты тех же страниц, одним документом. */
-export function buildLlmsFullTxt(lang: string): string {
+/** Полные тексты всех страниц и документов, одним документом и только на английском (468-6): язык маршрута не учитывается. */
+export function buildLlmsFullTxt(_routeLang?: string): string {
+  const lang = FULL_TEXT_LANGUAGE
   const meta = metaForLang(lang)
   const surfaces = publicSurfaces(lang)
   const out: string[] = [
@@ -99,7 +106,7 @@ export function buildLlmsFullTxt(lang: string): string {
     '',
     // Происхождение формата названо прямо: `llms-full.txt` — практика, а не
     // спецификация. Мы не имеем права выдавать одно за другое даже умолчанием.
-    'This file is the community `llms-full.txt` convention: the full text of every page listed in /llms.txt.',
+    'This file is the community `llms-full.txt` convention: the full text, in English, of every page of this site and of every document of the Lagrix specification.',
     '',
   ]
   for (const s of surfaces) {
