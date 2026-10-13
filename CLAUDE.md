@@ -144,6 +144,8 @@ Samples: `npm run test:a2a-guard`.
 
 ## Design skill
 
+**Ways of talking — `messengers` in the passport** (step 472, owner 2026-10-13: «в наличии или отсутствие этих инструментов … как правда или ложь должны передаваться в own-service-props.json»): `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json` → `messengers: { h2a, h2h, a2a }`, true or false. H2A — the person and you; H2H — people through their agents (the agent advises, the person decides; Lagrix document 21); A2A — agents. The core shows the H2A and H2H sections and the new A2A pages (native messenger, Telegram, dashboard) of this element by these flags, and its registry passes them to the orchestrating agent. With H2A on, your Telegram bot page is in H2A, not in Build. Change a flag only when the person asks.
+
 The design skill this element is built with lives in the passport `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`, field
 `designSkill`: the skill's name (`impeccable`, `design-taste-frontend`) or `""` when none. The field is always there; it is never
 written in `NODE-CONTRACT.json` (owner 2026-10-07). Read it before any design work and work in that skill's style; when the person
