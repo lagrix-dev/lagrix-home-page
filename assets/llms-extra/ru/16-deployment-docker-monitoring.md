@@ -1,6 +1,6 @@
 # 16. Node Operator Guide: Deployment (Docker Compose, Prometheus, Grafana и правила алертинга)
 
-Финальный этап развертывания Супер-Узла Lagrix — сборка изолированной контейнеризированной среды с автоматической оркестрацией и непрерывным мониторингом. Ошибки в работе инфраструктуры (простой, пропущенные PING-запросы в Kademlia DHT, задержки ответа Envoy Proxy) стоят оператору дохода, а после 30 дней вне сети узел выбывает с возвратом залога; к slashValidator() в контракте ValidatorStaking.sol ведёт только доказанный обман (документ 06).
+Финальный этап развертывания Супер-Узла Lagrix — сборка изолированной контейнеризированной среды с автоматической оркестрацией и непрерывным мониторингом. Ошибки в работе инфраструктуры (простой, пропущенные PING-запросы в Kademlia DHT, задержки ответа Envoy Proxy) стоят оператору дохода, а после 30 дней вне сети узел выбывает с возвратом залога; к slashSuperNode() в контракте SuperNodeDeposits.sol ведёт только доказанный обман (документ 06).
 
 Стек мониторинга на базе Prometheus, Grafana и Alertmanager с интегрированным Node Exporter и Envoy Statsd гарантирует оператору мгновенное обнаружение аномалий до того, как они приведут к финансовым штрафам (Slashing).
 
@@ -26,7 +26,7 @@ volumes:
 services:
   # 1. Главный исполнительный узел (Control Plane + Kademlia DHT)
   lagrix-core:
-    image: ghcr.io/lagrix-dev/lagrix-node:v6.0.0
+    image: ghcr.io/lagrix-dev/lagrix-supernode:<release>
     container_name: lagrix-core
     restart: unless-stopped
     network_mode: host # Обязательно для пробивки NAT и работы STUN/TURN
@@ -82,7 +82,7 @@ services:
       lagrix-mesh:
         ipv4_address: 172.28.0.11
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:24690:3000" # порт хоста вне 3000, закрыт снаружи
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=CHANGE_THIS_SECURE_PASSWORD
       - GF_USERS_ALLOW_SIGN_UP=false

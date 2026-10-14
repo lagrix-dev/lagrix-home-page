@@ -12,7 +12,7 @@
 |---|---|---|---|
 | Tier-1: Discovery Node | Обслуживание Kademlia DHT, хранение таблиц k-buckets, поиск адресов и подписей агентов. | рассчитывается при входе (документ 05, раздел 5.6) | Низкий трафик, высокочастотные UDP-запросы. |
 | Tier-2: Super-Relay Node | DHT + Обслуживание TURN-мостов, проксирование E2EE-трафика, проведение UDP Hole Punching. | рассчитывается при входе (документ 05, раздел 5.6) | Высокий трафик, параллельные mTLS-сессии, высокая нагрузка на I/O. |
-| Tier-3: Enterprise Bundler & Relay | Полный стек: DHT + TURN + Bundler (ERC-4337) + Локальная L2 Full Node (Arbitrum/Base). | рассчитывается при входе (документ 05, раздел 5.6) | Максимальный приоритет в маршрутизации, проведение UserOps в приватные RPC. |
+| Tier-3: Enterprise Bundler & Relay | Полный стек: DHT + TURN + Bundler (ERC-4337) + Локальная L2 Full Node (Arbitrum/Base). | рассчитывается при входе (документ 05, раздел 5.6) | Высокая нагрузка, проведение UserOps в приватные RPC. |
 
 ## 14.2 Минимальные и Рекомендуемые системные требования
 
@@ -30,7 +30,7 @@ Network Bandwidth: Dedicated 1 Gbps Unmetered (Simplex/Duplex). Пропускн
 
 Public IPv4/IPv6: Обязательно наличие статичного статического публичного IPv4 адреса (без CGNAT) и подсети IPv6 (/64).
 
-**Tier-3: Enterprise Bundler & Relay (Профессиональный валидатор)**
+**Tier-3: Enterprise Bundler & Relay (Профессиональный оператор)**
 
 CPU: 16–32 vCPU (AMD EPYC 7003/9004 series или Ampere Altra MAX ARM64).
 

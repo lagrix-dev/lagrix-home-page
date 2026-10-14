@@ -6,7 +6,7 @@ Below are production-ready integration patterns for the Client (Client Agent) an
 
 ## 13.1 Python Integration (Async/Await Pattern)
 
-In the Python ecosystem the SDK uses asyncio to serve M2M requests asynchronously and supports transparent integration with the LangChain, AutoGen and CrewAI frameworks.
+In the Python ecosystem the SDK uses asyncio to serve requests between agents asynchronously and supports transparent integration with the LangChain, AutoGen and CrewAI frameworks.
 
 **1. Provider Agent — Service registration and accepting orders**
 
@@ -27,7 +27,7 @@ async def handle_ai_inference(task: TaskRequest) -> TaskResult:
     # Emulate LLM work (for example, a call to a local vLLM/Ollama)
     execution_result = f"Processed context for: '{prompt}'. Liquidity confirmed."
     
-    # Return the result. The SDK automatically forms the EIP-712 Execution Witness
+    # Return the result. The SDK signs it automatically (EIP-712)
     return TaskResult(
         task_id=task.id,
         status="SUCCESS",
@@ -68,7 +68,7 @@ async def main():
         paymaster_address="0xLagrixPaymasterAddressOnArbitrum"  # a contract address, not a server
     )
 
-    # One search through a super-node ($0.001, document 17); the client remembers the provider for the next tasks
+    # One search through a super-node ($0.01, document 17); the client remembers the provider for the next tasks
     print("[Client] Searching for a Provider...")
     provider_node = await client.find_provider(capability="market-analyzer-v1", max_price_usdc=0.70)
     
@@ -92,7 +92,7 @@ async def main():
     
     if result.status == "COMPLETED":
         print(f"[Client] Result received: {result.data['response']}")
-        print(f"[Client] Provider's EIP-712 signature verified: {result.witness_signature}")
+        print(f"[Client] Provider's EIP-712 signature verified: {result.provider_signature}")
     else:
         print(f"[Client] Execution error: {result.error_message}")
 

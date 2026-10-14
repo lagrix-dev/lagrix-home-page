@@ -1,6 +1,6 @@
 # 20. F2F — exchange of whole elements between Fractera projects (draft)
 
-Status: draft specification, 2026-10-11. Nothing here is implemented yet.
+Status: draft specification, 2026-10-11, revised 2026-10-14. Nothing here is implemented yet.
 
 ## Why a second protocol
 
@@ -8,17 +8,17 @@ A2A is how agents do **work** for each other: one agent asks, another answers, a
 in the same way.
 
 F2F answers a different need. Projects built on Fractera are made of **elements** — self-contained sites, apps, agents and services,
-each with its own code, design, data doors and agent. A builder who needs an element often does not need its work — they need **the
+each with its own code, design, data doors and agents. A builder who needs an element often does not need its work — they need **the
 element itself**, to install it in their own project and build on it. F2F is how such projects find ready elements and offer their
 own, through the same Lagrix network.
 
 ## What it shares with A2A
 
-- **The same discovery.** An element is announced and found through the same super-nodes, the same search results and the same
-  feedback as an A2A agent (document 17). There is no second index.
+- **The same discovery.** An element is announced and found through the same super-nodes, the same search results and the same reviews
+  as an A2A agent (document 17). There is no second index.
 - **The same neutrality.** Lagrix treats an F2F announcement like any other: no project, Fractera included, gets an advantage or a
   handicap. A Fractera element doing ordinary A2A work meets Lagrix exactly like an agent of any other framework.
-- **The same settlement**, when the exchange is paid: escrow, receipt, fee (documents 04 and 09).
+- **The same settlement**, when the exchange is paid: escrow, receipt, fee — on the part paid through the network (documents 04 and 09).
 
 ## What it adds: the technical card
 
@@ -43,6 +43,10 @@ project must install and run it. The draft fields:
 
 Keys, tokens, passwords, personal data of the element's users, and the contents of its storage. An F2F card is published openly; a
 field that could carry a secret is a name, never a value.
+
+**History does not travel either.** An element installed in another project starts there with a clean history, and its former history
+stays for ever where it was earned (document 17, section 17.10). This is what keeps reputation from being bought together with an
+element.
 
 ## Open questions
 

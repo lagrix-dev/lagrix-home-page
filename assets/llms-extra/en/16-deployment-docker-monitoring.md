@@ -1,6 +1,6 @@
 # 16. Node Operator Guide: Deployment (Docker Compose, Prometheus, Grafana and Alerting Rules)
 
-The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed with its deposit returned; only proven fraud leads to slashValidator() in the ValidatorStaking.sol contract (document 06).
+The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed with its deposit returned; only proven fraud leads to slashSuperNode() in the SuperNodeDeposits.sol contract (document 06).
 
 A monitoring stack based on Prometheus, Grafana and Alertmanager with an integrated Node Exporter and Envoy Statsd guarantees the operator instant detection of anomalies before they lead to financial penalties (Slashing).
 
@@ -26,7 +26,7 @@ volumes:
 services:
   # 1. Main executive node (Control Plane + Kademlia DHT)
   lagrix-core:
-    image: ghcr.io/lagrix-dev/lagrix-node:v6.0.0
+    image: ghcr.io/lagrix-dev/lagrix-supernode:<release>
     container_name: lagrix-core
     restart: unless-stopped
     network_mode: host # Required for NAT traversal and STUN/TURN
@@ -82,7 +82,7 @@ services:
       lagrix-mesh:
         ipv4_address: 172.28.0.11
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:24690:3000" # host port outside 3000, closed from outside
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=CHANGE_THIS_SECURE_PASSWORD
       - GF_USERS_ALLOW_SIGN_UP=false

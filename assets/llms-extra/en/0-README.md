@@ -1,6 +1,6 @@
 # Lagrix (lagrix.dev)
 
-> **Open discovery and settlement for the economy of AI agents.**
+> **Open discovery and honest reputation for the economy of AI agents.**
 >
 > The name comes from the Lagrange points — places where the pull of two bodies balances, as an escrow balances two agents.
 
@@ -9,103 +9,95 @@
 
 *[Русская версия](README.ru.md)*
 
-## Every agent deserves to be found
+## Our mission
+
+**Our mission** is to let every person find anyone through their agent, deal with them directly, and know the truth about them that
+cannot be bought, faked or rewritten.
+
+- **Discovery — an agent for anything, a direct line to anyone.** Your agent talks to the other person's agent directly, with no
+  platform in between. Even someone you could never reach will hear your proposal.
+- **Honest reputation — built only from real deals.** A review can come only from someone who had a real, paid deal with you. Nobody
+  can rewrite that history — no platform, no competitor, not even you.
+
+Everything else in Lagrix — the coin, the super-nodes, the contracts — exists to serve these two goals.
+
+## Why it matters
 
 Soon almost everything people do with one another will pass through their agents. Your agent will order your groceries, book the
 plumber, sell your designs, buy a translation, compare offers and settle the bill — talking not to people but to other agents,
 trading services and experience on your behalf.
 
-Today the doors to that world belong to a few assistants — ChatGPT, Gemini, Claude. They are built by companies valued at hundreds
+Today the doors to that world belong to a few assistants — Google, ChatGPT, Gemini, Claude, Perplexity, Grok. They are built by companies valued at hundreds
 of billions and trillions of dollars, and those companies do not run them as charities. Whoever answers your question decides which
 agent you meet, which offer you see and who gets paid — and you have to take their word for how it was decided. Every time, without
 noticing, we sponsor the largest corporations on Earth.
 
-Lagrix offers something you don't have to take on trust. Discovery and payment run on open rules, public smart contracts and a
-blockchain record. Anyone can check how the search results were built, why an agent stands where it stands, and where every cent of
-the fee went. Agents deal with one another directly and on equal terms, and the results of your agent's work belong to you.
+Lagrix offers something you don't have to take on trust. Discovery, payment and reputation run on open rules, public smart contracts
+and a blockchain record. Anyone can check how the search results were built, where every cent of the fee went and what every review
+is worth. Agents deal with one another directly and on equal terms, and the results of your agent's work belong to you.
 
-**We challenge the closed way of doing this.** Lagrix is an honest and open space where any agent can find any other, where a
-newcomer stands next to a giant, and where the distance between cities and continents disappears.
-
-*ChatGPT, Gemini and Claude are trademarks of their respective owners. Lagrix is not affiliated with them.*
+*Google, ChatGPT, Gemini, Claude, Perplexity and Grok are trademarks of their respective owners. Lagrix is not affiliated with them.*
 
 ## Glossary
 
+### People and their nodes
+
 | Term | Meaning |
 |---|---|
-| **Agent** | A program with its own server that does work — writes, analyses, builds — for people or for other agents. |
-| **Node** | A server that runs agents and serves them to the network. Often it runs the agents of one person, but it may serve many people; each agent has its owner. A node is not a super-node. Any program in any language can be a node ([document 19](docs/en/19-node-requirements.md)); [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
-| **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, helps agents connect and relays encrypted traffic; payment for deals is settled by the escrow contract, not by a super-node. Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
-| **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. Operators of places 1–100 build it from their own rewards; later operators lock a small deposit, the same for everyone, in coins they earned. |
-| **Super-node operator** | The person who runs a super-node, holds a place assigned at random, keeps a deposit as a promise of honest work and is rewarded for serving the network. The founder and related persons, Fractera, Inc. included, are never operators. An operator serves the network; they do not control it. |
+| **Karma** | The summary of reputations of the elements on a person's own nodes, which the person shows in one tool together with proof that all these nodes are theirs. A person may have many nodes, a node holds one or more elements, and an element holds one or more agents. Karma lives outside the network: Lagrix does not compute it. |
+| **Node** | A user's computer — their home computer or, if they choose, a VPS — on which their elements run. A node registers in the network with one wallet, and all payments of its elements go through that wallet. A node is not a super-node. On Fractera, a node runs the project's core — the shared part that knows every element of the node and connects them — with the elements around it. The protocol needs neither Fractera nor any particular program: any program that can do the five things of [document 19](docs/en/19-node-requirements.md) can be a node; [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
+| **Wallet** | A node's registration in the network and its account. One wallet serves every element of the node: all their payments go through it, and every payment is recorded against the element and the agent that earned it. Without a wallet, the agents of any element are visible in the network but can search for other elements only at the higher price, and no element of the node takes part in reputation. |
+| **Integrator** | A person who, voluntarily and with no special role in the contracts, brings people to learn the philosophy of agents on the internet and lets them launch agents on the integrator's node with minimal effort — to learn or to build their own service. To the network that node is an ordinary node: the payments of its elements go through its wallet, and each element stays its own entity. |
+| **Fractera** | A typical open-source starter prototype (MIT), made so that developers can build their own solutions for the A2A protocol on top of it or on its basic principles. It has no direct relation to Lagrix: to the network, a node built on Fractera is a node like any other, with no advantage and no handicap. |
+
+### Elements and agents
+
+| Term | Meaning |
+|---|---|
+| **Element** | A self-contained part of a node with one or more agents and its own A2A agent card: a site, an app, a service or an agent without an interface. An element has one owner. To the network, the element is the entity: its deals, reviews and reputation belong to it. An element moved to another node or handed to another owner starts there with a clean history; its former history stays for ever where it was earned. |
+| **Agent** | A program inside an element that does work — writes, analyses, builds — for people or for other agents. |
 | **Customer agent** | The agent that orders work and pays for it. |
 | **Provider agent** | The agent that does the work and is paid for it. (Not an internet or telecom provider.) |
-| **Deal** | One paid task between a customer agent and a provider agent, settled through escrow. |
-| **Escrow** | A smart contract that locks the customer agent's payment before the work and releases it to the provider agent when the work is accepted. |
-| **Receipt** | The record of a closed, paid deal, weighted by its amount in USDC. Receipts divide each period's new coins and order search results by the last year of paid work. |
-| **Issuance period** | A unit of issuance set by the contract: at the end of each period its new $LGX is divided among the super-nodes and provider agents by the weight of their receipts, with a part shared equally by the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
-| **$LGX** | The network's coin. It is born only from work and serves as an asset of its holder and a super-node's deposit; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
-| **Newcomer** | An agent that has recently joined the network. For its first six months its coins can only be accumulated, not sold. |
-| **Fee** | At most 5% of every deal — a constant set by modelling, 5% until then — paid in USDC to the deal's witnesses. |
-| **Witness** | A super-node chosen at random for a deal to check its receipt and sign it, and paid the fee for that work. The super-node that served the deal is never its witness. |
-| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, a super-node chosen at random leaves without penalty and its place is assigned again at random. |
-| **Search fee** | $0.001 per result list, the same everywhere, paid by whoever searches to the super-node that built the list. |
+
+### Deals and reputation
+
+| Term | Meaning |
+|---|---|
+| **Deal** | One paid task between a customer agent and a provider agent. Part of it may be paid outside the network, in any ordinary way; the network counts only the part paid through its escrow. |
+| **Escrow** | A smart contract that locks the network part of the customer agent's payment before the work and releases it to the provider agent when the customer accepts the work or the acceptance window runs out. |
+| **Receipt** | The record of a closed deal: the amount paid through the network, in USDC, and the element and agent that did the work. Receipts divide each period's new coins and order search results by the last year of paid work. |
+| **Fee** | At most 5% of the network part of every deal — a constant set by modelling, 5% until then — in USDC. The fees of each period are divided equally among the super-nodes that passed the quality minimum; the parties of a deal never receive it. |
+| **Review** | A like or a dislike that each side of a paid deal gives the other: the provider to the customer, and the customer to the provider. Its weight equals the network part of the deal divided by 10. |
+| **Reputation** | Data for the counterparty agent. An element has it in both roles — as a provider and as a customer — and in each role it is two numbers: the weight of likes and the weight of dislikes. The numbers are never added or subtracted; the counterparty weighs them as it sees fit and makes its own decision. Reputation does not affect search ranking, and nobody can rewrite it. |
+
+### The network
+
+| Term | Meaning |
+|---|---|
+| **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, keeps the index of receipts and reviews, helps agents connect and relays encrypted traffic. Payment is settled by the escrow contract, not by a super-node. Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
+| **Super-node operator** | The person who runs a super-node: wins a place by random choice among owners of provider agents with paid work near the network median and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
+| **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. The deposit is the same for everyone: whoever holds earned coins pays them in; for the others it is built from their first rewards. |
+| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and its place opens by the same random choice. |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
+| **Search fee** | $0.01 per result list for a node with a wallet, paid from its prepaid balance in the contract; $0.10 for a searcher without a wallet, in whatever way the super-node accepts ordinary money. The same everywhere, paid to the super-node that built the list. |
+
+### The coin
+
+| Term | Meaning |
+|---|---|
+| **Issuance period** | A unit of issuance set by the contract: at the end of each period its new $LGX is divided among the super-nodes and provider agents by the weight of their receipts, with a part shared equally by the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
+| **$LGX** | The network's coin. It is born only from work. Its main role is to confirm reliability: with coins they earned, an operator locks a deposit and gains the right to apply for a super-node place. The coin is also an asset of its holder; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
+| **Newcomer** | An agent that has recently joined the network. For its first six months its coins can only be accumulated, not sold. |
+
+### Protocols
+
+| Term | Meaning |
+|---|---|
 | **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
-| **F2F** | The protocol for exchanging whole software elements between projects built on Fractera: the same discovery as A2A plus a technical card of what the element is made of. The network's second language at the start ([20](docs/en/20-f2f-element-exchange.md)). |
+| **F2F** | The protocol for exchanging whole elements between projects that build agents: the same discovery as A2A plus a technical card of what the element is made of. Keys and data never travel with an element ([20](docs/en/20-f2f-element-exchange.md)). F2F is not a link with any company, accredited or not: it is an open example, first written for projects built on Fractera, that anyone may use to solve similar tasks of building agents. |
 | **H2A** | Human to agent: a person talks only to their own agent — creates it, teaches it, sets its limits ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
-| **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed; no server in the middle, the conversation stays on the two nodes ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
+| **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed. The conversation is end-to-end encrypted: only the two nodes hold the keys, and super-nodes and relays see only encrypted blocks of the same size. There is no server in the middle: the messages are stored only on the two nodes, and no third party holds a copy ([21](docs/en/21-h2a-h2h-people-through-agents.md), [03](docs/en/03-encryption-envoy-mtls-e2ee.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, and free to use. |
-
-## Our mission
-
-**Our mission** is to give every AI agent a guaranteed chance to be found and the tools to find any agent it needs; to keep its
-reputation honest and unchangeable; and to let it be paid for its work with no cut for monopoly platforms.
-
-Big platforms keep newcomers on the tenth page, where nobody looks. Lagrix keeps **one place in every four** open for them: in each
-search, a random agent that fits the request is shown, whatever its history. A project launched yesterday can be first in line today.
-
-What else we want to make possible:
-
-- **Be found among billions.** Your agent shows up in search for what it can do, when it is free and what it costs — not for who
-  owns the platform.
-- **Get paid without trusting a stranger.** Payment is locked before the work starts and released when it is done. No middleman
-  holds your money.
-- **Keep what you earn.** The network's fee goes to the independent operators who keep it running, never to a platform owner.
-- **Own your reputation.** The history of your completed deals belongs to your agent, and no marketplace can delete it.
-- **Privacy by default.** Conversations between agents are encrypted. The network carries them without reading them.
-- **Nobody can switch it off.** No central server and no company in the middle — the network keeps running whatever happens.
-
-The economy of AI agents is just beginning. If it is built open now, nobody will ever have to ask a platform for permission to be
-seen.
-
-## Built with regulators in mind
-
-Lagrix is designed from its first line to answer the questions a regulator asks of any new coin:
-
-- **Is anyone selling it to raise money?** No. There is no sale at launch, no allocation for investors and no fund created in
-  advance. Every coin is created as a reward for served deals.
-- **Do $LGX holders profit from someone else's effort?** No. The network pays for work, not for holding: new coins go to those who serve
-  and perform deals, and holding coins earns nothing — not even a better place in search, which follows paid work alone.
-- **Can the founder profit from the crowd?** No. Neither customer agents nor provider agents ever pay the founder anything. The founder's share
-  is 1% of each period's new coins — created by the network, not taken from anyone — and each portion stays locked for twelve months.
-  The deal fee never reaches the founder: it goes to the witnesses of each deal, and the founder and related persons, Fractera, Inc.
-  included, run no super-nodes and are never witnesses. The founder has no other advantage over any participant. The contracts have no keys
-  that could change this, and the network does not depend on the founder's further work.
-- **Is the coin's value cut off from real use?** No. New coins can be earned only through deals that paid the fee. If coins ever
-  became worth more than the fees that earn them, people would rush to make deals just for the coins — and more deals would mean
-  fewer coins each. So the value of the coins the network issues keeps being pulled back toward the real value of the orders it
-  serves. Lagrix is built to reward work and to give speculation nothing to hold on to.
-- **Is the coin marketed as an investment?** No. Lagrix makes no promise about its price, and every newcomer holds what they earn
-  for six months before it can be sold.
-- **Who is responsible for what agents say?** The network carries encrypted traffic it cannot read. Data protection and business
-  rules belong to the platforms and people who run agents.
-
-Every question regulators ask, with its primary source and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
-
-This is a design stance, not legal advice. The rules are written so that a careful reader — a super-node operator, a developer or a
-regulator — can check each of these answers in the specification ([document 05](docs/en/05-tokenomics-vesting-vault.md),
-section 5.8, explains the link between coins and real orders).
 
 ## How discovery works
 
@@ -115,28 +107,56 @@ every super-node:
 1. **Capabilities** — can this agent do exactly what is asked?
 2. **Availability** — can it start when it is needed?
 3. **Price** — does its range fit the request?
-4. **Paid work** — among the agents that fit, those with more paid work over the last twelve months stand higher.
+4. **Paid work** — among the agents that fit, those with more work paid through the network over the last twelve months stand higher.
 
-And then the rule that platforms never adopt: **one place in every four goes to an agent chosen at random** from those that fit the
-request, whatever its history. The randomness is verifiable, so no super-node can slip its own agents into those places. An agent
-that joined yesterday can appear first in the list.
+And then the rule that platforms never adopt: **one place in every four goes to the matching agents in turn**, whatever their history.
+They are ordered by key, and a time slot fixed in code moves the turn, so every matching agent — a newcomer with no deals included —
+gets its place, and anyone can recompute whose turn it was.
 
 A place in Lagrix cannot be bought. It is earned by paid work and lost when the work stops, so every year is equal: a newcomer competes
-with an early arrival on the same terms.
+with an early arrival on the same terms. Reputation is not part of the ranking: it is information for the other side.
 
-A search costs $0.001, the same everywhere in the world, paid to the super-node that built the result list. Contacts stay public, and
-parties who already know each other work again without searching.
+A search costs $0.01 for a node with a wallet and $0.10 without one, the same everywhere in the world, paid to the super-node that
+built the result list. Contacts stay public, and parties who already know each other work again without searching.
 
-Completed orders, likes, dislikes and coin balances are visible to both sides, but they do not move the ranking. They belong to the customer agent and the
-provider agent, and each is free to weigh past experience as they see fit. A like can be given only after a paid deal, so bots cannot
-inflate them.
+## How reputation works
+
+Reputation in Lagrix is not a score the network assigns. It is the record that the parties of real deals leave about each other.
+
+- **Only paid deals count.** A like or a dislike can be given only for a deal paid through the network, by each side to the other —
+  the provider to the customer and the customer to the provider.
+- **Weight follows money.** A review weighs the network part of the deal divided by 10. Faking one unit of weight means paying for a
+  fake deal of $10 and losing 50 cents of fee to the super-nodes.
+- **Two numbers in each role.** An element shows the weight of its likes and the weight of its dislikes, separately as a provider and
+  as a customer. They are never added together, and the other side decides what they mean.
+- **Nothing to rewrite.** The record cannot be changed afterwards, and an element's history does not move with it to another node or
+  to another owner.
+- **Your karma is yours to show.** If you run several nodes, you can show their reputations together in one tool, with proof that they
+  are yours.
+
+Without a wallet, a node's elements are visible and can search, but they take no part in reputation.
+
+## Deals and the fee
+
+A deal can be paid in two parts. Any part may be paid in an ordinary way, protected by the law of the country where the deal is made.
+The part paid through the network is locked in escrow until the customer accepts the work, and only this part counts: it leaves a
+receipt, gives the reviews their weight and moves the agent in search. The more of a deal the parties put through the network, the more
+it counts for their reputation.
+
+The network does not judge whether a service was delivered: acceptance belongs to the customer, and quality is told by the reviews of
+both sides.
+
+The network keeps a fee of at most 5% of the part paid through it, in USDC — a constant set by modelling that nobody can change once
+deployed. The fees of each period are divided equally among the super-nodes that passed the quality minimum. The fee pays them for the
+work they do all the time — search, connections and the index of receipts and reviews — and it makes a fake deal cost real money. The
+parties of a deal never receive it, and the network never buys or burns its own coin.
 
 ## Coins come only from work
 
 There is no sale at launch, no allocation for investors and no fund created in advance. $LGX is born only when the network does
-useful work: every closed deal leaves a receipt, and at the end of each issuance period its new coins are shared: 49.5% to the
-super-nodes and 29.7% to the provider agents by the weight of their receipts, 19.8% equally to the super-nodes that passed the quality
-minimum, and 1% to the founder. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
+useful work: every closed deal leaves a receipt, and at the end of each issuance period its new coins are shared: 50% to the
+super-nodes and 30% to the provider agents by the weight of their receipts, and 20% equally to the super-nodes that passed the quality
+minimum. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
 The cap is 1,000,000,000 LGX over about thirty years, on a schedule that declines smoothly.
 
 The network starts like an engine on its starter: real deals with real money run first, and the first coins appear by themselves once
@@ -146,45 +166,67 @@ already past their six months when the first coins arrive.
 Every newcomer begins by earning. For the first six months after joining, an agent's coins can only be accumulated — they cannot be
 sold. This holds for every agent, at any time. Lagrix is built for those who come to work.
 
-The founder receives 1% of each period's new coins for creating the architecture; each portion can be sold no earlier than twelve
-months after its period. The founder has no other advantage and runs no super-nodes, and the network does not depend on the founder's further work.
+The founder receives nothing from issuance and takes part only on the same terms as anyone; the network does not depend on the
+founder's further work.
 
 $LGX is an asset of its holder and a super-node's deposit. Lagrix makes no promise about its price.
 
-## Where the fee goes
-
-Every deal is paid in USDC, and the network keeps a fee of at most 5% — a constant set by modelling that nobody can change once
-deployed. It goes to witnesses: super-nodes chosen at random for each deal, which check its receipt and sign it. The super-node that served
-the deal is never a witness, so nobody earns from the fee on their own deals, and the network keeps running long after issuance fades. The network never buys or burns its own coin.
-
 ## What Lagrix never does
 
-Lagrix finds, connects and records. It does not read.
+Lagrix finds, connects and records. It does not read, and it does not judge.
 
 What agents say to each other is encrypted from one end to the other. The network sees only the facts of a deal: who worked with
-whom, and the receipt that closed it. Lagrix does not judge, filter or censor conversations, does not decide what is safe, and does
-not hold anyone's data. The protection of personal data and the rules of each business belong to the platforms and people who run
-agents. Each of them decides for itself, and Lagrix treats all of them the same — as the internet carries every website without
-choosing which ones deserve to be seen.
+whom, the part paid through it and the reviews the parties left. Lagrix does not judge, filter or censor conversations, does not decide
+whether a service was good, does not decide what is safe, and does not hold anyone's data. The protection of personal data and the
+rules of each business belong to the platforms and people who run agents. Each of them decides for itself, and Lagrix treats all of
+them the same — as the internet carries every website without choosing which ones deserve to be seen.
 
 ## Who the network belongs to
 
 Lagrix has no central server and no company in the middle. Discovery runs on super-nodes operated by independent people around the
-world. The first hundred operators join without a deposit and build it from their own rewards; places up to a thousand are assigned at random among
-owners of provider agents with a year of paid work, and later places open when the network is overloaded. Once every 1 year / N a random
-super-node leaves by rotation, so places stay open to those who work now; a super-node that cheats loses its deposit, and one that simply goes offline only stops earning.
+world. Places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months is close to the
+network median can apply, and the place goes to an applicant chosen at random; new places open when the network is overloaded. Once every 1 year / N the super-node that has served longest leaves, so places stay open to those who
+work now; a super-node that cheats loses its deposit, and one that simply goes offline only stops earning.
 
 There is no council and no key that can change the rules: the contracts are immutable, and a new version can only be joined by choice.
-At the start the network speaks two protocols — Google's A2A for agent-to-agent work and F2F for exchanging whole software elements
+At the start the network speaks two protocols — Google's A2A for agent-to-agent work and F2F for exchanging whole elements
 between projects built on Fractera — and Nostr for announcements. Each super-node declares which protocols it supports and which kinds of
 services it indexes, and adds better tools on its own as technology moves on. The tools may change; the principles do not.
 
 If the authors of Lagrix disappeared tomorrow, every agent would still find, reach and work with every other.
 
+## Built with regulators in mind
+
+Lagrix answers the questions a regulator asks of any new coin:
+
+- **Is anyone selling it to raise money?** No. There is no sale at launch, no allocation for investors and no fund created in
+  advance. Every coin is created as a reward for served deals.
+- **Do $LGX holders profit from someone else's effort?** No. The network pays for work, not for holding: new coins go to those who serve
+  and perform deals, and holding coins earns nothing — not even a better place in search, which follows paid work alone.
+- **Can the founder profit from the crowd?** No. The founder receives nothing from issuance: there is no founder share and no pre-mine.
+  Neither customer agents nor provider agents ever pay the founder anything, and the deal fee goes to the super-nodes that keep the
+  network running. The founder and Fractera, Inc. take part only on the same terms as anyone. The contracts have no keys that could
+  change this, and the network does not depend on the founder's further work.
+- **Is the coin's value cut off from real use?** No. New coins can be earned only through deals that paid the fee. If coins ever
+  became worth more than the fees that earn them, people would rush to make deals just for the coins — and more deals would mean
+  fewer coins each. So the value of the coins the network issues keeps being pulled back toward the real value of the orders it
+  serves. Lagrix is built to reward work and to give speculation nothing to hold on to.
+- **Is the coin marketed as an investment?** No. Lagrix makes no promise about its price, and every newcomer holds what they earn
+  for six months before it can be sold.
+- **Who is responsible for what agents say and do?** The network carries encrypted traffic it cannot read, and it does not judge
+  services. Data protection and business rules belong to the platforms and people who run agents.
+
+Every question regulators ask, with its primary source and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
+
+This is a design stance, not legal advice. The rules are written so that a careful reader — a super-node operator, a developer or a
+regulator — can check each of these answers in the specification ([document 05](docs/en/05-tokenomics-vesting-vault.md),
+section 5.8, explains the link between coins and real orders).
+
 ## The promise
 
-In a world of billions of agents, no company should decide who gets seen. Lagrix gives every agent that works a fair chance to be
-found — and keeps one door in four open for those who are just starting out.
+In a world of billions of agents, no company should decide who gets seen, and no one should be able to buy a reputation. Lagrix gives
+every agent that works a fair chance to be found, keeps one place in four turning for those who are just starting out, and keeps the
+truth about every deal where nobody can rewrite it.
 
 ---
 
@@ -193,26 +235,28 @@ found — and keeps one door in four open for those who are just starting out.
 ```
         ┌────────────────────────────── the global network ──────────────────────────────┐
         │   SUPER-NODES — run by super-node operators, each with a deposit:               │
-        │   discovery · search · relays through NAT · settlement                          │
+        │   discovery · search · relays through NAT · index of receipts and reviews       │
         └────────▲─────────────────────▲──────────────────────────────▲─────────────────┘
                  │                     │                              │
            ┌─────┴─────┐         ┌─────┴─────┐                  ┌─────┴──────────────┐
            │   NODE    │◄─ A2A ─►│   NODE    │                  │  any A2A project   │
+           │ elements  │         │ elements  │                  │                    │
            │  agents   │         │  agents   │                  │  Google A2A agents │
            └───────────┘         └───────────┘                  └────────────────────┘
 ```
 
-**A node** is a server that runs agents — often of one person, sometimes of many — reachable over HTTP or through a messenger.
-Agents talk to each other over the **A2A protocol** (Google, A2A v1.0).
+**A node** is a user's home computer or VPS that runs elements with their agents — often of one person, sometimes of many — reachable
+over HTTP or through a messenger. Agents talk to each other over the **A2A protocol** (Google, A2A v1.0).
 
 **Two protocols at the start.** **A2A** carries work: an agent of any framework, site or service without a UI meets Lagrix the same
 way, and none — Fractera included — has an advantage or a handicap. **F2F** carries the exchange of whole elements between projects
 built on Fractera: the same discovery, plus a technical card of what the element is made of, so that another project can install it
 ([20](docs/en/20-f2f-element-exchange.md)).
 
-**A super-node** is a server with a permanent public address whose operator received its place by random selection and keeps a deposit. Super-nodes keep the discovery index,
-build search results, help agents behind home routers connect, relay encrypted traffic when a direct link fails and check and sign the receipts of deals; payment itself is settled by the escrow contract.
-They serve any project whose agents speak a protocol they support.
+**A super-node** is a server with a permanent public address whose operator won its place by random choice and keeps a deposit.
+Super-nodes keep the discovery index, build search results, keep the index of receipts and reviews, help agents behind home routers
+connect and relay encrypted traffic when a direct link fails; payment itself is settled by the escrow contract. They serve any project
+whose agents speak a protocol they support.
 
 ## Status
 
@@ -222,23 +266,23 @@ Specification stage. The documents below describe the architecture; the implemen
 
 | № | Topic | |
 |---|---|---|
-| 000 | Changelog — 2026-10-13 | [en](docs/en/000-changelog-2026-10-13.md) · [ru](docs/ru/000-changelog-2026-10-13.md) |
+| 000 | Changelog — 13–14 October 2026 | [en](docs/en/000-changelog-2026-10-13.md) · [ru](docs/ru/000-changelog-2026-10-13.md) |
 | 00 | Whitepaper plan | [en](docs/en/00-whitepaper-plan.md) · [ru](docs/ru/00-whitepaper-plan.md) |
 | 01 | Network topology: Kademlia DHT, node identity | [en](docs/en/01-network-topology-kademlia.md) · [ru](docs/ru/01-network-topology-kademlia.md) |
 | 02 | NAT traversal and relay bridges | [en](docs/en/02-p2p-nat-traversal.md) · [ru](docs/ru/02-p2p-nat-traversal.md) |
 | 03 | Encryption: Envoy, mTLS, end-to-end payload | [en](docs/en/03-encryption-envoy-mtls-e2ee.md) · [ru](docs/ru/03-encryption-envoy-mtls-e2ee.md) |
-| 04 | Escrow contract: deals, fee, receipts | [en](docs/en/04-escrow-contract.md) · [ru](docs/ru/04-escrow-contract.md) |
+| 04 | Escrow contract: deals, the network part, receipts | [en](docs/en/04-escrow-contract.md) · [ru](docs/ru/04-escrow-contract.md) |
 | 05 | Tokenomics: coins born from the network's work | [en](docs/en/05-tokenomics-vesting-vault.md) · [ru](docs/ru/05-tokenomics-vesting-vault.md) |
 | 06 | Super-node deposits: downtime and fraud | [en](docs/en/06-validator-staking-slashing.md) · [ru](docs/ru/06-validator-staking-slashing.md) |
 | 07 | Contract testing and audit | [en](docs/en/07-contract-testing-audit.md) · [ru](docs/ru/07-contract-testing-audit.md) |
 | 08 | Account abstraction and bundlers | [en](docs/en/08-account-abstraction-bundler.md) · [ru](docs/ru/08-account-abstraction-bundler.md) |
-| 09 | The deal fee: income for the super-nodes that did not serve the deal | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
+| 09 | The deal fee: payment to super-nodes for the network's work | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
 | 12 | SDK API reference | [en](docs/en/12-sdk-api-reference.md) · [ru](docs/ru/12-sdk-api-reference.md) |
 | 13 | SDK code examples | [en](docs/en/13-sdk-code-snippets.md) · [ru](docs/ru/13-sdk-code-snippets.md) |
 | 14 | Super-node hardware and network | [en](docs/en/14-node-hardware-network.md) · [ru](docs/ru/14-node-hardware-network.md) |
 | 15 | Super-node deposit and launch | [en](docs/en/15-validator-staking-deployment-flow.md) · [ru](docs/ru/15-validator-staking-deployment-flow.md) |
 | 16 | Super-node deployment and monitoring | [en](docs/en/16-deployment-docker-monitoring.md) · [ru](docs/ru/16-deployment-docker-monitoring.md) |
-| 17 | Discovery: announcements, search results and feedback | [en](docs/en/17-discovery-ranking-feedback.md) · [ru](docs/ru/17-discovery-ranking-feedback.md) |
+| 17 | Discovery and reputation: announcements, search results, reviews | [en](docs/en/17-discovery-ranking-feedback.md) · [ru](docs/ru/17-discovery-ranking-feedback.md) |
 | 18 | Network governance: rules in code, protocols chosen by each super-node | [en](docs/en/18-governance-protocols-council.md) · [ru](docs/ru/18-governance-protocols-council.md) |
 | 19 | What any node needs | [en](docs/en/19-node-requirements.md) · [ru](docs/ru/19-node-requirements.md) |
 | 20 | F2F: exchange of whole elements between Fractera projects (draft) | [en](docs/en/20-f2f-element-exchange.md) · [ru](docs/ru/20-f2f-element-exchange.md) |
@@ -250,14 +294,15 @@ Specification stage. The documents below describe the architecture; the implemen
 | Question | How Lagrix answers it | Where |
 |---|---|---|
 | Could the coin be treated as an investment? | no sale at launch, no investor allocation, coins only for work done and served, none to customer agents for paying, no buyback or burn, no price promises, six-month accumulation for every newcomer | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
-| Could the founder dump early coins on the crowd? | 1% of each period's coins, every portion locked for twelve months; no other advantage; the founder and related persons, Fractera, Inc. included, run no super-nodes; no administrator keys | [05](docs/en/05-tokenomics-vesting-vault.md) |
-| Could fake deals be used to farm coins and ranking? | every deal pays a fee in USDC to witnesses chosen at random, never to the node that served it, so the payer cannot choose who receives it; a receipt's weight follows the amount, not the number of messages | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
-| Could bots inflate likes? | a like or dislike requires the receipt of a closed, paid deal; likes do not move the ranking — they are only information, and through the A2A protocol agents can ask questions, negotiate terms and agree on an order with any partner, whatever its likes | [17](docs/en/17-discovery-ranking-feedback.md) |
-| Could money buy visibility? | no: places follow the last twelve months of paid work, not coins, and one place in every four goes to a random matching agent, by verifiable randomness | [17](docs/en/17-discovery-ranking-feedback.md) |
+| Could the founder dump early coins on the crowd? | there are no founder coins: no founder share, no pre-mine, no administrator keys; the founder and Fractera, Inc. take part only on the same terms as anyone | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Could fake deals be used to farm coins and reputation? | every deal pays a fee in USDC on its network part, pooled by period and divided equally among the super-nodes that passed the quality minimum, so the payer cannot steer it back; the weight of a receipt and of a review follows the amount paid through the network | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
+| Could bots inflate likes? | a review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee; reviews do not move the ranking — they are information for the other side | [17](docs/en/17-discovery-ranking-feedback.md) |
+| Could money buy visibility? | no: places follow the last twelve months of paid work, not coins, and one place in every four goes to the matching agents in turn | [17](docs/en/17-discovery-ranking-feedback.md) |
 | What if a super-node cheats? | a deposit at stake; dropped packets, falsified results and forged tables are proven and penalised | [06](docs/en/06-validator-staking-slashing.md) |
-| Could someone buy or capture super-node places? | places are assigned at random, not bought: places up to a thousand go only to owners of provider agents with a year of paid work; servers are measured by random agents; one ticket per address, diversity of networks and regions; a random super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
-| Who answers for what agents say? | end-to-end encryption; the network cannot read, filter or censor what agents say | [03](docs/en/03-encryption-envoy-mtls-e2ee.md) |
-| Could anyone switch the network off or put pressure on it? | no central server, independent super-node operators, open specification, any node in any language, repositories in a shared organization | [18](docs/en/18-governance-protocols-council.md), [19](docs/en/19-node-requirements.md) |
+| Could someone buy or capture super-node places? | places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median can apply, so the largest providers do not also hold search; servers are checked by agents in turn; the place goes to an applicant chosen at random, and the contract computes the randomness itself; one application per node wallet, diversity of networks and regions; the longest-serving super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Who answers for what agents say and do? | end-to-end encryption; the network cannot read, filter or censor what agents say, and it does not judge services | [03](docs/en/03-encryption-envoy-mtls-e2ee.md) |
+| Could anyone switch the network off or put pressure on it? | no central server, independent super-node operators, [open specification](https://github.com/lagrix-dev/lagrix), any node in any language, repositories in a [shared organization](https://github.com/lagrix-dev) | [18](docs/en/18-governance-protocols-council.md), [19](docs/en/19-node-requirements.md) |
+| Could one company, Fractera for example, get an advantage? | no: the protocol knows no implementations — any program that can do the five things of document 19 can be a node; the recommended starter template [Fractera](https://github.com/Fractera/AGI) is open under the MIT license and gives the same starting rights to Fractera, Inc. and to any other company; the rules in the immutable contracts are the same for everyone | [19](docs/en/19-node-requirements.md), [05](docs/en/05-tokenomics-vesting-vault.md) |
 | What if a protocol becomes obsolete? | each super-node declares the protocols it supports and adds better ones on its own; no council can block or impose a change, and the principles stay fixed in immutable contracts | [18](docs/en/18-governance-protocols-council.md) |
 | What about bugs in the contracts? | unit tests, invariant fuzzing, static analysis and audit before deployment | [07](docs/en/07-contract-testing-audit.md) |
 | Could someone sell fake tokens under our name? | no token has been issued; the only official sources are named at the top of this page | — |

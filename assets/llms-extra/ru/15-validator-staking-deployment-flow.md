@@ -1,14 +1,13 @@
-# 15. Node Operator Guide: Стейкинг Валидатора и Пошаговый Процесс Интеграции (Deployment Flow)
+# 15. Node Operator Guide: Залог супер-узла и Пошаговый Процесс Интеграции (Deployment Flow)
 
-Процесс активации Супер-Узла в сети Lagrix требует жесткой синхронизации между подготовкой физической/виртуальной инфраструктуры, генерацией криптографических ключей P2P-идентификации (NodeID) и ончейн-внесением гарантийного залога в смарт-контракт ValidatorStaking.sol.
+Процесс активации Супер-Узла в сети Lagrix требует жесткой синхронизации между подготовкой физической/виртуальной инфраструктуры, генерацией криптографических ключей P2P-идентификации (NodeID) и ончейн-внесением гарантийного залога в смарт-контракт SuperNodeDeposits.sol.
 
 Ниже описан полный пошаговый алгоритм ввода узла в эксплуатацию — от чистого сервера до включения в таблицу маршрутизации Kademlia DHT.
 
-**До этапа 3 у оператора должно быть место.** Места 1–100 занимаются без залога. Места 101–1 000 достаются по приглашению
-владельцам агентов-исполнителей с оплаченной работой за последний год; после 1 000 места открываются по два, когда сеть перегружена. В
-обоих случаях сервер заявителя измеряют случайные агенты, а место назначается случайным выбором; раз в 1 год / N случайный супер-узел выбывает
-по ротации, и его место заново назначается случайным выбором (документ 05, раздел 5.6). Адреса, названные основателем и связанными с ним лицами,
-включая Fractera, Inc., места занять не могут (документ 05, раздел 5.5).
+**До этапа 3 у оператора должно быть место.** Этапов и номеров мест нет. Претендуют только владельцы агентов-исполнителей, чья оплаченная
+работа за 12 месяцев лежит в окне от 0,75 до 1,25 медианы сети; сервер заявителя проверяют агенты по очереди, а место получает случайно
+выбранный претендент (обязательство и раскрытие). Новые места открываются по два, когда сеть перегружена; раз в 1 год / N по ротации уходит
+супер-узел, который дольше всех на месте, и его место открывается тем же случайным выбором (документ 05, раздел 5.6).
 
 ## 15.1 Общий сквозной процесс запуска (Deployment Flow Pipeline)
 
@@ -19,10 +18,10 @@
                                               │
                                               ▼
 [ Этап 4: Прохождение On-Chain ] ◄── [ Этап 3: Депонирование стейка ]
-  Инициализации (Staking)             в ValidatorStaking.sol
+  Инициализации (Staking)             в SuperNodeDeposits.sol
           │
           ▼
-[ Этап 5: Запуск ноды и прохождение ] ──► [ Статус: ACTIVE VALIDATOR ]
+[ Этап 5: Запуск ноды и прохождение ] ──► [ Статус: ACTIVE SUPER-NODE ]
   P2P-Handshake в Kademlia DHT
 ```
 
@@ -68,12 +67,12 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : none for places 1-100; a small fixed amount in earned coins for later places (document 05, 5.6)
+Required Deposit           : the same for everyone; earned coins, or first rewards locked until it is reached (document 05, 5.6)
 Status                     : NOT_STAKED (Pending On-Chain Stake)
 ===================================================================
 ```
 
-## 15.4 Шаг 3: Депонирование стейка в ValidatorStaking.sol
+## 15.4 Шаг 3: Депонирование стейка в SuperNodeDeposits.sol
 
 Оператор с кошелька, указанного в выводе (или через мультиподписной кошелек / Hardware Wallet), производит одобрение (Approve) и транзакцию блокировки залога в сети L2 (Arbitrum / Base).
 
@@ -83,35 +82,34 @@ CLI Скрипт внесения стейка:
 # 1. Approve токенов Lagrix для контракта стейкинга
 lagrix staking approve \
   --token-address 0xLagrixTokenAddressOnArbitrum \
-  --staking-address 0xValidatorStakingContractAddress \
+  --staking-address 0xSuperNodeDepositsContractAddress \
   --amount $REQUIRED_DEPOSIT \
   --private-key $OPERATOR_PRIVATE_KEY \
   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
 
-# 2. Вызов функции registerValidator() в смарт-контракте
+# 2. Вызов функции registerSuperNode() в смарт-контракте
 lagrix staking deposit \
-  --staking-address 0xValidatorStakingContractAddress \
+  --staking-address 0xSuperNodeDepositsContractAddress \
   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82 \
   --amount $REQUIRED_DEPOSIT \
   --private-key $OPERATOR_PRIVATE_KEY
 ```
 
-Solidity Механика под капотом ValidatorStaking.sol:
+Solidity Механика под капотом SuperNodeDeposits.sol:
 
 Смарт-контракт проверяет транзакцию, фиксирует залог и переводит статус адреса в состояние STAKED:
 
 ```solidity
-function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant {
-    require(placeWon[msg.sender], "ValidatorStaking: no place assigned");               // doc 05, 5.6
-    require(!namedFounderAddress[msg.sender], "ValidatorStaking: founder and related addresses excluded"); // doc 05, 5.5
-    require(amount >= requiredDeposit(), "ValidatorStaking: deposit below the required amount"); // doc 05, 5.6
-    require(validators[msg.sender].stakeBalance == 0, "ValidatorStaking: Already registered");
+function registerSuperNode(bytes32 nodeId, uint96 amount) external nonReentrant {
+    require(placeTaken[msg.sender], "SuperNodeDeposits: no place assigned");               // doc 05, 5.6
+    require(amount >= requiredDeposit(), "SuperNodeDeposits: deposit below the required amount"); // doc 05, 5.6
+    require(superNodes[msg.sender].stakeBalance == 0, "SuperNodeDeposits: Already registered");
 
     // Перевод токенов Lagrix на баланс контракта стейкинга
     lagrixToken.safeTransferFrom(msg.sender, address(this), amount);
 
     // Запись параметров узла в блокчейн
-    validators[msg.sender] = Validator({
+    superNodes[msg.sender] = SuperNode({
         stakeBalance: amount,
         lastActive: uint40(block.timestamp),
         slashCount: 0,
@@ -120,7 +118,7 @@ function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant 
     });
 
     nodeIdToAddress[nodeId] = msg.sender;
-    emit ValidatorRegistered(msg.sender, nodeId, amount);
+    emit SuperNodeRegistered(msg.sender, nodeId, amount);
 }
 ```
 
@@ -144,7 +142,7 @@ stun_turn_port = 3478       # NAT Traversal
 [blockchain]
 chain_id = 42161            # Arbitrum One
 rpc_url = "https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
-staking_contract = "0xValidatorStakingContractAddress"
+staking_contract = "0xSuperNodeDepositsContractAddress"
 escrow_contract = "0xA2AEscrowContractAddress"
 
 [relay]

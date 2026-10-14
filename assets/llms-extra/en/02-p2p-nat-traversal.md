@@ -2,7 +2,7 @@
 
 Building a global network of AI agents runs into a fundamental problem of the IPv4/IPv6 architecture: 99% of devices are behind NAT (Network Address Translation) or strict corporate firewalls. Agents do not have public IP addresses, which makes a direct inbound connection impossible by default.
 
-In Lagrix v6.0 we implement a custom ICE (Interactive Connectivity Establishment) stack integrated with the protocol's crypto-economics.
+Lagrix implements a custom ICE (Interactive Connectivity Establishment) stack integrated with the protocol's crypto-economics.
 
 ## 2.1 Anatomy of the Problem and Node Roles in NAT Traversal
 
@@ -18,7 +18,7 @@ Symmetric NAT (corporate / Enterprise segment): Change ephemeral ports for every
 
 On initialization (starting a local instance of an AI agent), the agent must learn how it looks from the outside internet.
 
-Binding Request: The client agent (Edge Node) sends a STUN_BINDING UDP packet to 3 random Super-Nodes.
+Binding Request: The client agent (Edge Node) sends a STUN_BINDING UDP packet to three Super-Nodes it knows.
 
 Mapping Response: The Super-Node reads the packet's IP header and answers the agent: "I see your traffic from IP 203.0.113.5, port 45123".
 
@@ -52,7 +52,7 @@ Tunnel formation: The Super-Node opens a TCP/WSS socket and tells both agents it
 
 End-to-end proxying: The agents connect to the Super-Node as ordinary clients. The Super-Node blindly forwards encrypted bytes from A to B and back.
 
-Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and an equal share of the fee of the deals it does not serve (documents 05, 09).
+Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and its share of the period's fee pool (documents 05, 09).
 
 ## 2.5 Connection Establishment State Machine
 

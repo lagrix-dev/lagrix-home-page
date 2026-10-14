@@ -1,6 +1,6 @@
 # 12. Client SDK API Reference: Спецификации gRPC и REST Interfaces
 
-Прикладной слой взаимодействия ИИ-агента с сетью Lagrix абстрагирован через два интерфейса: высокоскоростной бинарный протокол gRPC (используется по умолчанию для M2M-коммуникации с минимальными задержками) и трансляционный REST/JSON API Gateway (для интеграции с устаревшими Web2-системами, ноу-код платформами и скриптами).
+Прикладной слой взаимодействия ИИ-агента с сетью Lagrix абстрагирован через два интерфейса: высокоскоростной бинарный протокол gRPC (используется по умолчанию между агентами, с минимальными задержками) и трансляционный REST/JSON API Gateway (для интеграции с устаревшими Web2-системами, ноу-код платформами и скриптами).
 
 SDK выступает тонким клиентом, маршрутизирующим gRPC-вызовы через локальный инстанс Envoy Proxy с автоматическим контролем состояния в A2AEscrow.sol.
 
@@ -47,7 +47,7 @@ message TaskResponse {
   }
   Status status = 2;
   bytes encrypted_result = 3;      // Зашифрованный результат работы ИИ
-  bytes witness_signature = 4;     // EIP-712 Execution Witness от Исполнителя
+  bytes provider_signature = 4;    // EIP-712 подпись Исполнителя над результатом
   uint64 error_code = 5;
   string error_message = 6;
 }
@@ -94,7 +94,7 @@ Request Body:
   "amount_usdc": "5.000000",
   "max_execution_time_sec": 300,
   "payload": {
-    "model": "claude-3-5-sonnet",
+    "model": "model-of-your-choice",
     "prompt": "Analyze market orderbook data for ETH/USDC",
     "temperature": 0.2
   }
@@ -125,7 +125,7 @@ Response (200 OK):
     "analysis": "Orderbook displays heavy bid-side liquidity at $2,400",
     "confidence": 0.94
   },
-  "execution_witness": {
+  "provider_signature": {
     "r": "0x123...",
     "s": "0x456...",
     "v": 27

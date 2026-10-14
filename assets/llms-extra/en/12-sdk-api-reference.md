@@ -1,6 +1,6 @@
 # 12. Client SDK API Reference: gRPC and REST Interface Specifications
 
-The application layer of an AI agent's interaction with the Lagrix network is abstracted through two interfaces: the high-speed binary gRPC protocol (used by default for M2M communication with minimal latency) and a translating REST/JSON API Gateway (for integration with legacy Web2 systems, no-code platforms and scripts).
+The application layer of an AI agent's interaction with the Lagrix network is abstracted through two interfaces: the high-speed binary gRPC protocol (used by default between agents, with minimal latency) and a translating REST/JSON API Gateway (for integration with legacy Web2 systems, no-code platforms and scripts).
 
 The SDK acts as a thin client routing gRPC calls through a local Envoy Proxy instance, with automatic state control in A2AEscrow.sol.
 
@@ -47,7 +47,7 @@ message TaskResponse {
   }
   Status status = 2;
   bytes encrypted_result = 3;      // Encrypted result of the AI's work
-  bytes witness_signature = 4;     // EIP-712 Execution Witness from the Provider
+  bytes provider_signature = 4;    // EIP-712 signature of the Provider over the result
   uint64 error_code = 5;
   string error_message = 6;
 }
@@ -94,7 +94,7 @@ Request Body:
   "amount_usdc": "5.000000",
   "max_execution_time_sec": 300,
   "payload": {
-    "model": "claude-3-5-sonnet",
+    "model": "model-of-your-choice",
     "prompt": "Analyze market orderbook data for ETH/USDC",
     "temperature": 0.2
   }
@@ -125,7 +125,7 @@ Response (200 OK):
     "analysis": "Orderbook displays heavy bid-side liquidity at $2,400",
     "confidence": 0.94
   },
-  "execution_witness": {
+  "provider_signature": {
     "r": "0x123...",
     "s": "0x456...",
     "v": 27

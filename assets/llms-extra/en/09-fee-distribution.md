@@ -1,8 +1,8 @@
-# 9. The Deal Fee: Payment to the Witnesses of a Deal
+# 9. The Deal Fee: Payment to Super-nodes for the Network's Work
 
-The network takes a fee on every deal. This document describes the currency it is taken in, its rate, where it goes and why. The $LGX
-coin plays no part in this mechanism: the fee is money for the work of the network, while $LGX is an asset of its holder and a
-super-node's deposit (document 05).
+The network takes a fee on the part of every deal that is paid through it. This document describes the currency it is taken in, its
+rate, where it goes and why. The $LGX coin plays no part in this mechanism: the fee is money for the work of the network, while $LGX is
+an asset of its holder and a super-node's deposit (document 05).
 
 ## 9.1 Currency: USDC
 
@@ -15,62 +15,73 @@ Agents pay each other for work in USDC (document 04). The fee is taken in the sa
 | Super-nodes' income does not depend on a rate | when issuance has faded, operators keep a stable income |
 | No trading of the coin inside the mechanism | the network neither buys nor sells $LGX and does not affect its price |
 
-## 9.2 Rate and moment of collection
+## 9.2 What the fee is taken from
 
-The rate is **a constant in immutable code, set by modelling and never above 5% of the deal amount**. Until the modelling is done, it
+A deal may be paid in two parts (document 04, section 4.6). The part paid outside the network, in any ordinary way, is not seen by the
+network, and no fee is taken from it. The fee is taken only from the **network part** — the amount locked in escrow.
+
+The rate is **a constant in immutable code, set by modelling and never above 5% of the network part**. Until the modelling is done, it
 is 5%. Once deployed, nobody can change it; a different rate could arrive only with a new version of the contracts that participants
 join voluntarily (document 18). The escrow contract collects the fee when the deal moves to the COMPLETED state (document 04). If a deal
 ends in a refund (REFUNDED), no fee is taken.
 
 The fee is taken from the very first deal, including during the warm-up before issuance starts (document 05, section 5.2).
 
-## 9.3 Where the fee goes: witnesses
+## 9.3 Where the fee goes: the super-nodes that kept the network running
 
-For every deal the contract chooses **witnesses** at random among the active super-nodes. A witness checks the deal's receipt and signs
-it; the fee is divided among the witnesses who signed. The super-node that served the deal is never a witness to it, and neither is an
-address of the founder or of persons related to them (document 05, section 5.5).
-
-The warm-up changes nothing: from the first deal, the fee goes to that deal's witnesses. Nothing accumulates in the contract for later.
+The fees of an issuance period are added up in the contract. At the end of the period they are divided **in equal parts among the
+super-nodes that passed the quality minimum in that period** (document 05, section 5.6). Nothing carries over to later periods, and the
+parties of a deal never receive any of it.
 
 ```solidity
-// Sketch: witnesses are chosen for a deal; those who sign its receipt share the fee
-function _openWitnessing(bytes32 dealId, address servingNode) internal {
-    address[] memory w = _chooseWitnesses(dealId, servingNode, WITNESSES_PER_DEAL); // excludes servingNode and named founder addresses
-    witnesses[dealId] = w;
+// Sketch: the fees of a period are pooled and divided equally among the super-nodes that passed the quality minimum
+mapping(uint256 => uint256) public pooled;                            // period => USDC collected
+mapping(uint256 => mapping(address => bool)) public claimed;
+
+function _collect(uint256 period, uint256 fee) internal {             // called by the escrow on COMPLETED
+    pooled[period] += fee;
 }
 
-function sign(bytes32 dealId, bytes calldata receiptSig) external {
-    require(_isWitness(dealId, msg.sender), "LGX: not a witness of this deal");
-    require(_verifyReceipt(dealId, receiptSig), "LGX: receipt does not match the deal");
-    signed[dealId][msg.sender] = true;
-}
-
-function claimWitnessFee(bytes32 dealId) external {
-    require(signed[dealId][msg.sender] && !claimed[dealId][msg.sender], "LGX: nothing to claim");
-    claimed[dealId][msg.sender] = true;
-    usdc.safeTransfer(msg.sender, fee[dealId] / signers[dealId]);
+function claimFeeShare(uint256 period) external {
+    require(period < currentPeriod(), "LGX: period not closed");
+    require(quality.passed(period, msg.sender), "LGX: quality minimum not passed");
+    require(!claimed[period][msg.sender], "LGX: already claimed");
+    claimed[period][msg.sender] = true;
+    usdc.safeTransfer(msg.sender, pooled[period] / quality.passedCount(period));
 }
 ```
 
-The sketch leaves three things open, named in the changelog (document 000): the source of randomness behind `_chooseWitnesses`, the
-number of witnesses per deal, and what happens while the network has too few super-nodes to choose them from.
+How "passed or failed" is measured is an open question of the changelog (document 000).
 
 ## 9.4 Why this way
 
-A fee protects against fake deals only if it goes to those an attacker cannot cheaply become and cannot choose.
+The fee has two jobs at once.
 
-- **A witness is paid for work it does on that deal.** An equal share of every deal would pay every super-node from other people's work,
-  whether or not it did anything for the deal — income from the efforts of others, which is exactly what regulators look for.
-- **The payer does not choose the witnesses.** They are chosen at random, so a group that controls k of M super-nodes and routes fake deals
-  through one of them gets its fee back only when the random choice happens to land on its own nodes — on average (k−1)/(M−1) of it, and every one
-  of those nodes is a place assigned at random, not bought (document 05, section 5.6).
-- **Excluding the serving node.** Without it, a super-node could witness its own deals and take its own fee back.
-- **No pot during the warm-up.** A pot accumulated before the start would be paid out to whoever then holds super-nodes, so whoever
-  pushed the network to its start could get the cost back.
-- **One rate for everyone.** If each super-node set its own rate, each node could gain only by lowering it — down to zero, where fake
-  deals cost nothing. The ceiling of 5% is fixed; modelling may lower the rate to what checking a receipt really costs.
+- **It pays for the network's work.** Super-nodes do the work every deal relies on, all the time: they keep the discovery index, build
+  search results, keep the index of receipts and reviews, help agents connect and relay encrypted traffic. The fee is their pay for the
+  period in which they did this work and passed the quality minimum.
+- **It makes a fake deal cost money.** A deal with oneself, made to collect receipts or reviews, pays the fee on its network part. At
+  5%, one unit of review weight (document 17) costs a fake deal 50 cents.
+
+Each alternative breaks one of these jobs:
+
+| Alternative | Why it does not fit |
+|---|---|
+| Pay the fee to the super-node that served the deal | it would get its own fee back, and a deal with oneself would cost nothing |
+| Pay each deal's fee to the super-node whose turn it is | the turn is predictable, so a party could time its deal to land the fee on its own super-node |
+| Pay witnesses that check each deal | the escrow contract already checks the customer's signature; the network cannot check the service itself, so the witnesses' work would be a fiction |
+| Divide the fee by deal volume | it would return to every payer exactly what it paid, and fake deals would be free |
+| Pay the nodes of agents | nodes are cheap to multiply; whoever ran many of them would collect the fee back |
+| Burn the fee | it protects against fake deals just as well, but people's money would be destroyed and the network's work would go unpaid |
+
+Pooled by period and divided equally, the fee cannot be steered: a group that holds k of M super-nodes gets back only k/M of its own
+fee, and every one of those places was won by random choice, not bought (document 05, section 5.6).
+
+**One rate for everyone.** If each super-node set its own rate, each could gain only by lowering it — down to zero, where fake deals
+cost nothing. The ceiling of 5% is fixed; modelling may lower the rate.
 
 ## 9.5 How to talk about it
 
-The fee is payment to the super-nodes that witness a deal: they check its receipt and sign it. The amount a super-node receives is not
-known in advance and is not guaranteed by anything: it depends on which deals close in the network and on the random choice.
+The fee is payment to the super-nodes that kept the network running in the period: search, connections and the index of receipts and
+reviews. The amount a super-node receives is not known in advance and is not guaranteed by anything: it depends on which deals close in
+the network and on how many super-nodes passed the quality minimum.

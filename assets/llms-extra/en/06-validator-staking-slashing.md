@@ -1,19 +1,20 @@
 # 6. Super-node Deposits: Downtime and Fraud
 
-Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, help agents connect and check and sign
-the receipts of deals; payment itself is settled by the escrow contract (document 04). The ValidatorStaking.sol contract ties a server's behaviour in the network to its operator's deposit. The main rule of
-this document: **downtime is not fraud**. A server that goes offline simply stops earning; coins are taken only for proven fraud.
+Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, keep the index of receipts and reviews and
+help agents connect; payment itself is settled by the escrow contract (document 04). The SuperNodeDeposits.sol contract ties a server's
+behaviour in the network to its operator's deposit. The main rule of this document: **downtime is not fraud**. A server that goes offline
+simply stops earning; coins are taken only for proven fraud.
 
 ## 6.1 The deposit
 
-The deposit is set by the place the operator receives (document 05, section 5.6). Operators of places 1–100 join without a deposit:
-their first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what has accumulated.
-Later operators lock a small deposit, the same for everyone, in coins they earned.
+The deposit is the same for every operator (document 05, section 5.6; changelog entry 31). Whoever already holds earned coins locks them;
+whoever does not has its first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what
+has accumulated.
 On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
 can still be collected.
 
 ```solidity
-struct Validator {
+struct SuperNode {
     uint96 stakeBalance;    // locked deposit in LGX
     uint40 lastSeen;        // last confirmed availability
     uint40 unbondingFrom;   // start of the 14-day withdrawal (0 if none)
@@ -27,14 +28,15 @@ struct Validator {
 
 As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it is not chosen
-  as a witness, so it receives no fee; and it does not pass the period's quality minimum. It loses only income.
+- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it does not pass the
+  period's quality minimum, so it receives neither the equal share of the reward nor a share of the period's fee pool. It loses only
+  income.
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6), and the deposit is returned to the operator after the 14-day
   withdrawal. It did not cheat — it left.
-- **Rotation is not a penalty either.** Once every 1 year / N a super-node chosen at random leaves; its deposit is returned in the same
-  way (document 05, section 5.6).
+- **Rotation is not a penalty either.** Once every 1 year / N the super-node that has served longest leaves; its deposit is returned in
+  the same way, and its place opens by the same random choice (document 05, section 5.6).
 
 ## 6.3 Fraud and its proof
 
@@ -44,8 +46,8 @@ A blockchain cannot see IP packets, so fraud is proven by receipts and checks th
 agent B signs a receipt of delivery. If R accepted the packet for relaying but B's receipt is missing, agent A sends a
 `TRACE_REQUEST`; three independent neighbours confirm that R accepted the packet and did not pass it on — this forms a Fraud Proof.
 
-**Falsified results.** The random places in search results are calculated verifiably (document 17, section 17.3). A result list in
-which a random place does not match the calculation is a ready proof: the contract checks the super-node's signature on it and the
+**Falsified results.** The place given in turn in search results is calculated verifiably (document 17, section 17.3). A result list in
+which that place does not match the calculation is a ready proof: the contract checks the super-node's signature on it and the
 calculation data.
 
 **Forged tables and NodeID hijacking.** An attempt to forge Kademlia DHT records or to impersonate another node is proven by
@@ -72,7 +74,7 @@ the final number of coins ends up below 1,000,000,000 by exactly that amount.
                               [Fraud Proof]
                                       |
                                       v
-                       [ValidatorStaking.sol: slashValidator()]
+                       [SuperNodeDeposits.sol: slashSuperNode()]
                                       |
                     +-----------------+-----------------+
                     |                                   |
@@ -81,7 +83,7 @@ the final number of coins ends up below 1,000,000,000 by exactly that amount.
 
 ## 6.5 Protection against false reports
 
-So that the contract is not flooded with fake proofs, calling `slashValidator()` requires the reporter to lock a small deposit.
+So that the contract is not flooded with fake proofs, calling `slashSuperNode()` requires the reporter to lock a small deposit.
 
 - **The proof is valid:** the reporter gets the deposit back and receives half of the penalty.
 - **The proof is false:** the reporter's deposit is removed from circulation.

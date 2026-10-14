@@ -1,6 +1,6 @@
 # 8. Account Abstraction (ERC-4337): The UserOperation Structure and Bundler Infrastructure
 
-Autonomous AI agents should not manage native blockchain wallets (EOA), having to calculate gas by hand, watch their ETH/MATIC balance and sign raw base transactions. In Lagrix v6.0 we implement an Account Abstraction stack based on the ERC-4337 standard, which turns every AI agent wallet into a programmable smart account (Smart Contract Wallet).
+Autonomous AI agents should not manage native blockchain wallets (EOA), having to calculate gas by hand, watch their ETH/MATIC balance and sign raw base transactions. Lagrix implements an Account Abstraction stack based on the ERC-4337 standard, which turns every AI agent wallet into a programmable smart account (Smart Contract Wallet).
 
 This fully isolates the agent's application logic from blockchain mechanics: the agent operates on a "request-payment" abstraction in USDC, and all the work with network fees is taken over by special aggregator nodes (Bundlers) and the Paymaster contract.
 
@@ -24,7 +24,7 @@ struct UserOperation {
 }
 ```
 
-Key fields for M2M interaction:
+Key fields for payments between agents:
 
 initCode (Lazy Account Deployment): An AI agent is created instantly without transactions on the blockchain. Its smart account is generated off-chain deterministically through CREATE2. The first transaction automatically deploys the account contract thanks to the initCode field.
 
