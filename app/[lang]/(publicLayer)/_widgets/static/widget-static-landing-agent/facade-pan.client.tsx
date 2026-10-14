@@ -41,8 +41,11 @@ export function FacadePan({ labels, aria, children }: { labels: [string, string]
     if (!el) return
     const target = to === "start" ? 0 : el.scrollWidth - el.clientWidth
     if (frame.current !== null) cancelAnimationFrame(frame.current)
+    // Состояние кнопок пересчитывается и в конце сдвига: событие прокрутки приходит с отрисовкой кадра, а в скрытой вкладке её
+    // нет (замерено 2026-10-14: вид доехал до края, кнопки остались прежними).
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       el.scrollLeft = target
+      measure()
       return
     }
     const from = el.scrollLeft
@@ -53,6 +56,7 @@ export function FacadePan({ labels, aria, children }: { labels: [string, string]
       const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2
       el.scrollLeft = from + dist * e
       frame.current = k < 1 ? requestAnimationFrame(step) : null
+      if (k >= 1) measure()
     }
     frame.current = requestAnimationFrame(step)
   }
