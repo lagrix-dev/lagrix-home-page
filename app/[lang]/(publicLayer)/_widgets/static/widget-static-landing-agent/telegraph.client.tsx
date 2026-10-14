@@ -138,7 +138,7 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
 
       {/* Бегущая строка — нижний край комнаты, вплотную под сценой. Без JS — стоит и читается; ключ стучит, пока строка бежит. */}
       <div data-block="tgtkr" ref={band} className={s.tgBand}>
-        <p ref={line} key={`${shown}-${run}`} className={s.tgLine}>{w[shown].ticker}</p>
+        <p data-block="tgln1" ref={line} key={`${shown}-${run}`} className={s.tgLine}>{w[shown].ticker}</p>
       </div>
     </div>
   )
