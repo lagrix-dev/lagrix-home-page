@@ -237,3 +237,6 @@ Owner's order of screens (verbatim): «второй экран — табло �
   subtitle («Transfer to zero-day infrastructure…», `board.closing`).
 - **Order at the end** (owner): final section → yellow sign «Have a good trip to the future» (`landing.farewell`, gate-sign anatomy,
   hanging on chains from the final section) → night scene with the train → «Route built» last, only the footer below.
+- **Crab refinement (owner, same day):** crabs start 140 units apart (a crab is 77) and keep the gaps at one speed; they stay behind
+  glass — dimmed, with the hall mullions and a light tint of the lower hall glass drawn over them in the front glass layer — until
+  they reach the open doorway (`edge` = 1330 / 1550), where they come into focus.

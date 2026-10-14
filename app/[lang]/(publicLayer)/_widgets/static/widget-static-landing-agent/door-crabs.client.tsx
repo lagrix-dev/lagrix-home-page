@@ -19,13 +19,16 @@ const ROW = [798, 762, 726]
 const SCALE = 1.2
 // Сторона, откуда бежит, место в пирамиде, флажок (сторона и высота) — флажки по обе стороны пирамиды, у каждого своя высота;
 // все ниже таблички «Вход в будущее» (замерено: на 660 верхние флажки уходили под неё).
+// 477 (владелец): «крабики бегут слишком близко … между ними должно быть пространство» — старты через 140 единиц (крабик — 77),
+// скорость одна, поэтому промежутки держатся всю дорогу. «В фокусе должны появляться только тогда, когда появятся в открытых
+// дверях» — `edge` теперь край дверного проёма (1330 / 1550), а не край крыла: до него крабик за стеклом, приглушён.
 const SPEC = [
-  { start: 880, edge: 1100, tx: 1370, row: 0, flagSide: -1, flagY: 748 },
-  { start: 810, edge: 1100, tx: 1405, row: 1, flagSide: -1, flagY: 712 },
-  { start: 740, edge: 1100, tx: 1440, row: 2, flagSide: -1, flagY: 676 },
-  { start: 2000, edge: 1780, tx: 1510, row: 0, flagSide: 1, flagY: 766 },
-  { start: 2070, edge: 1780, tx: 1440, row: 0, flagSide: 1, flagY: 730 },
-  { start: 2140, edge: 1780, tx: 1475, row: 1, flagSide: 1, flagY: 694 },
+  { start: 900, edge: 1330, tx: 1370, row: 0, flagSide: -1, flagY: 748 },
+  { start: 760, edge: 1330, tx: 1405, row: 1, flagSide: -1, flagY: 712 },
+  { start: 620, edge: 1330, tx: 1440, row: 2, flagSide: -1, flagY: 676 },
+  { start: 1980, edge: 1550, tx: 1510, row: 0, flagSide: 1, flagY: 766 },
+  { start: 2120, edge: 1550, tx: 1440, row: 0, flagSide: 1, flagY: 730 },
+  { start: 2260, edge: 1550, tx: 1475, row: 1, flagSide: 1, flagY: 694 },
 ] as const
 const FLAG_INNER = { "-1": 1322, "1": 1558 } as const
 const FLAG_W = 92
@@ -75,7 +78,7 @@ export function DoorCrabs({ flag }: { flag: string }) {
       const d1 = Math.abs(sp.edge - sp.start) / v
       const d2 = Math.abs(sp.tx - sp.edge) / v
       later(t1, () => setOne(i, { x: sp.edge, dur: d1, walk: true }))
-      // Вышли из-за стекла крыла в зал — видны целиком.
+      // Вышли в открытый дверной проём — видны целиком.
       later(t1 + d1 * 1000, () => setOne(i, { x: sp.tx, o: 1, dur: d2, walk: true }))
       later(t1 + (d1 + d2) * 1000, () => setOne(i, { walk: false, dur: 0 }))
       floor = Math.max(floor, t1 + (d1 + d2) * 1000)
@@ -97,7 +100,7 @@ export function DoorCrabs({ flag }: { flag: string }) {
       return
     }
     const v = ups()
-    // Спрыгнули на пол — и бегут наружу по залу, видные целиком; в своём крыле — за стеклом, приглушённо; в конце пропадают.
+    // Спрыгнули на пол — и бегут наружу: в проёме видны целиком, дальше — за стеклом зала и крыла, приглушённо; в конце пропадают.
     // ✗ Замерено 2026-10-14: гасить прозрачность сразу — крабики исчезали за полсекунды, вместо того чтобы разбегаться.
     setCrabs((cs) => cs.map((c) => ({ ...c, y: ROW[0], dur: 0.25, walk: false })))
     SPEC.forEach((sp, i) => {

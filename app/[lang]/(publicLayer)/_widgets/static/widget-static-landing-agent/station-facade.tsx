@@ -48,6 +48,18 @@ function WingBack() {
   )
 }
 
+// Стекло зала поверх крабиков (477, владелец: «когда они появляются в центральной области, они как будто выходят из-под стекла»):
+// нижняя полоса стекла по обе стороны от дверного проёма — лёгкая тонировка и те же рамы, что у свода; проём открыт.
+function HallGlass() {
+  return (
+    <g>
+      <rect className={s.fHallTint} x="1110" y="700" width="230" height="100" />
+      <rect className={s.fHallTint} x="1540" y="700" width="230" height="100" />
+      {HALL_MULLIONS.filter((x) => x < 1330 || x > 1550).map((x) => <line key={x} className={s.fMullion} x1={x} y1="700" x2={x} y2="800" />)}
+    </g>
+  )
+}
+
 // Стекло крыла поверх растяжки: переплёты, горизонтали, блики и тонировка ровно над растяжкой (её снимает наведение).
 function WingGlass({ side }: { side: "left" | "right" }) {
   return (
@@ -184,6 +196,7 @@ export function StationFacade({ w }: { w: Facade }) {
           ))}
           {/* Стекло крыльев — поверх растяжек: они висят внутри вокзала. */}
           <svg className={s.facadeFront} viewBox={`0 0 ${W} 900`} aria-hidden="true">
+            <HallGlass />
             <WingGlass side="left" />
             <g transform={`translate(${W} 0) scale(-1 1)`}><WingGlass side="right" /></g>
           </svg>

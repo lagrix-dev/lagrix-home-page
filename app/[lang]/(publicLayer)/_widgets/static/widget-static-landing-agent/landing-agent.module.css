@@ -1844,3 +1844,6 @@
   font-family: var(--display); font-weight: 700;
 }
 .farewellText { font-size: clamp(1.3rem, 2.6vw, 2.1rem); line-height: 1.1; }
+
+/* 477: нижняя полоса стекла зала поверх крабиков — они за стеклом, пока не выйдут в открытый проём. */
+.fHallTint { fill: var(--board-deep); opacity: 0.32; }
