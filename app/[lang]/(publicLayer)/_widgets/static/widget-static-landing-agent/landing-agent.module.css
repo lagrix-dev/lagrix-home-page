@@ -1851,20 +1851,15 @@
 .tgRoom { position: relative; margin-top: 2rem; }
 /* Своя сцена, а не .roomSvg: сцену зала ожидания на узком экране прячут, а здесь таблички — переключатель, они нужны везде. */
 .tgSvg { display: block; width: 100%; height: auto; }
-.tgFrame { fill: var(--chalk); stroke: var(--ink); stroke-width: 5; }
-.tgLogo { fill: var(--board); }
-.tgPlane { fill: var(--chalk); }
+/* За стеклом окна — пиктограммы посетителей, приглушённые стеклом. */
+.tgCrowd { fill: var(--ink); opacity: 0.5; }
+.tgCrowdArm { fill: none; stroke: var(--ink); stroke-width: 12; stroke-linecap: round; }
 .tgDesk { fill: var(--board-deep); }
 .tgKeyBase { fill: var(--ink); }
 .tgKeyBar { fill: var(--ink-soft); }
 .tgKeyKnob { fill: var(--signal); }
 .tgSounder { fill: var(--board); }
 .tgTape { fill: none; stroke: var(--chalk); stroke-width: 7; stroke-linecap: round; }
-.tgTorso { fill: var(--board); }
-.tgHead { fill: color-mix(in oklab, var(--poster) 30%, var(--chalk)); stroke: var(--ink); stroke-width: 3; }
-.tgVisor { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
-.tgLeg { fill: none; stroke: var(--board-deep); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
-.tgArm { fill: none; stroke: var(--board); stroke-width: 16; stroke-linecap: round; }
 .tgPedestal { fill: var(--board-deep); }
 .tgFoot { fill: var(--ink); }
 .tgDial { fill: var(--chalk); stroke: var(--ink); stroke-width: 6; }
@@ -1884,7 +1879,7 @@
 .tgPlateCode { font-family: var(--display); font-weight: 700; font-size: 40px; fill: var(--ink); }
 .tgPlateCaption { font-family: var(--text); font-weight: 600; font-size: 14px; fill: var(--ink); }
 /* Ключ связиста: точки и тире, пока бежит строка. Ось ключа — у правого края планки. */
-.tgKeyArm, .tgHand { transform-box: view-box; transform-origin: 498px 203px; }
+.tgKeyArm, .tgHand { transform-box: view-box; transform-origin: 544px 203px; }
 .tgRoom[data-run] .tgKeyArm { animation: tgTap 1.8s steps(1, end) infinite; }
 .tgRoom[data-run] .tgHand { animation: tgHand 1.8s steps(1, end) infinite; }
 @keyframes tgTap {

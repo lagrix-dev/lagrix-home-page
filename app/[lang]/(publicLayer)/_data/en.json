@@ -163,7 +163,7 @@
     "telegraph": {
       "title": "Telegraph",
       "text": "People connected through their agents. Choose a plate — the operator will send how it works.",
-      "scene": "The telegraph room: an operator at a desk taps a telegraph key, a Telegram sign hangs on the wall, on the right an engine order telegraph with a lever and two bolted plates — H2H and H2A.",
+      "scene": "The telegraph room: an operator at a desk taps a telegraph key, people with telegram forms wait behind an arched window, on the right an engine order telegraph with a lever and two bolted plates — H2H and H2A.",
       "switchLabel": "Switch the line",
       "h2h": {
         "plate": "H2H",

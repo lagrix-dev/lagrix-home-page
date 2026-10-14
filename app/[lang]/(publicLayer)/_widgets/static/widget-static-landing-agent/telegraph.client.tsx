@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react"
 import s from "./landing-agent.module.css"
 
 // КОМНАТА «ТЕЛЕГРАФ» (владелец 2026-10-14, навык impeccable, путь «Launcher unavailable»): «место где сидит связист вывеска
@@ -27,6 +27,7 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
   const band = useRef<HTMLDivElement>(null)
   const line = useRef<HTMLParagraphElement>(null)
   const timer = useRef<number | null>(null)
+  const arch = useId()
 
   // Фокус экрана: строка и ключ оживают, когда комната видна, и замирают, когда её прокрутили.
   useEffect(() => {
@@ -92,33 +93,59 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
         <rect className={s.roomFloor} x={0} y={330} width={1000} height={22} />
         <path className={s.roomSkirt} d="M0 330 H1000" />
 
-        {/* Знак Telegram на стене — бумажный самолётик в круге, в рамке */}
-        <rect className={s.tgFrame} x={96} y={58} width={120} height={120} rx={6} />
-        <circle className={s.tgLogo} cx={156} cy={118} r={42} />
-        <path className={s.tgPlane} d="M131 116 L181 96 L173 141 L158 128 L150 138 L149 124 L172 104 L145 121 Z" />
+        {/* Окно-арка приёма телеграмм (владелец 2026-10-14: знак Telegram снят — товарный знак; «окошко в виде арки … примерно на 30%
+            больше а за этим окошком … люди как будто они подошли отправить телеграмму»). За стеклом — пиктограммы посетителей. */}
+        <defs>
+          <clipPath id={arch}>
+            <path d="M80 252 V128 A78 78 0 0 1 236 128 V252 Z" />
+          </clipPath>
+        </defs>
+        <path className={s.roomGlass} d="M80 252 V128 A78 78 0 0 1 236 128 V252 Z" />
+        <g clipPath={`url(#${arch})`} className={s.tgCrowd}>
+          <circle cx={118} cy={170} r={17} />
+          <path d="M92 252 V214 Q92 196 108 196 H128 Q144 196 144 214 V252 Z" />
+          <circle cx={198} cy={162} r={18} />
+          <path d="M170 252 V208 Q170 188 188 188 H208 Q226 188 226 208 V252 Z" />
+          <circle cx={158} cy={150} r={19} />
+          <path d="M128 252 V198 Q128 176 148 176 H168 Q188 176 188 198 V252 Z" />
+          {/* Бланк телеграммы в руке — жёлтый, как жетоны и книги пиктограмм вокзала */}
+          <path className={s.tgCrowdArm} d="M176 222 L194 232" />
+          <rect className={s.pictoAccent} x={188} y={218} width={22} height={28} rx={2} transform="rotate(-8 199 232)" />
+        </g>
+        <path className={s.roomFrame} d="M80 252 V128 A78 78 0 0 1 236 128 V252 Z M158 50 V252 M80 170 H236" />
+        <path className={s.roomSill} d="M66 258 H250" />
 
         {/* Стол связиста и телеграфный ключ */}
         <rect className={s.tgDesk} x={250} y={226} width={300} height={16} rx={3} />
         <path className={s.chairLeg} d="M270 242 V330 M530 242 V330" />
-        <rect className={s.tgKeyBase} x={420} y={212} width={86} height={14} rx={3} />
+        <rect className={s.tgKeyBase} x={466} y={212} width={86} height={14} rx={3} />
         <g className={s.tgKeyArm}>
-          <rect className={s.tgKeyBar} x={428} y={200} width={70} height={7} rx={3} />
-          <circle className={s.tgKeyKnob} cx={432} cy={196} r={8} />
+          <rect className={s.tgKeyBar} x={474} y={200} width={70} height={7} rx={3} />
+          <circle className={s.tgKeyKnob} cx={478} cy={196} r={8} />
         </g>
-        {/* Лента с отпечатанным текстом выходит из аппарата к краю стола */}
+        {/* Аппарат и лента с отпечатанным текстом к краю стола */}
         <rect className={s.tgSounder} x={330} y={190} width={56} height={36} rx={4} />
         <path className={s.tgTape} d="M330 214 C300 220 286 236 262 240" />
 
-        {/* Связист на стуле, вид сбоку: рука на ключе */}
-        <rect className={s.chairBack} x={600} y={168} width={22} height={118} rx={10} />
-        <rect className={s.chairSeat} x={540} y={270} width={84} height={18} rx={8} />
-        <path className={s.chairLeg} d="M552 288 V330 M612 288 V330" />
-        <rect className={s.tgTorso} x={556} y={168} width={50} height={104} rx={24} />
-        <path className={s.tgLeg} d="M566 272 H488 V330" />
-        <circle className={s.tgHead} cx={578} cy={142} r={26} />
-        <path className={s.tgVisor} d="M552 134 H604 M556 134 Q560 112 584 114" />
+        {/* Стул */}
+        <rect className={s.chairBack} x={604} y={164} width={22} height={122} rx={10} />
+        <rect className={s.chairSeat} x={544} y={270} width={84} height={18} rx={8} />
+        <path className={s.chairLeg} d="M556 288 V330 M616 288 V330" />
+
+        {/* Связист — вокзальная пиктограмма в профиль (как офицеры зала «нулевого дня»): весь силуэт цвета чернил, фуражка служебного
+            человека с жёлтой кокардой и просветом цвета пола, видна обувь; рука на ключе. */}
+        <g className={s.tgOperator}>
+          <path className={s.pictoInk} d="M558 182 Q558 164 576 164 H590 Q606 164 606 182 L604 270 H560 Z" />
+          <path className={s.pictoLeg} d="M572 266 H510 V312" />
+          <path className={s.pictoInk} d="M494 310 H516 Q524 310 524 318 V330 H478 Q478 318 494 314 Z" />
+          <circle className={s.pictoInk} cx={582} cy={140} r={21} />
+          <path className={s.pictoCap} d="M562 128 Q563 104 586 102 Q606 104 607 128 Z" />
+          <rect className={s.pictoCap} x={558} y={122} width={52} height={9} rx={4} />
+          <path className={s.pictoCap} d="M560 126 H538 Q540 134 556 133 Z" />
+          <circle className={s.pictoAccent} cx={566} cy={113} r={4.5} />
+        </g>
         <g className={s.tgHand}>
-          <path className={s.tgArm} d="M566 196 Q520 214 440 194" />
+          <path className={s.pictoArm} d="M578 178 L548 214 L486 200" />
         </g>
 
         {/* Машинный телеграф, вид сбоку: тумба, циферблат, рычаг к выбранной табличке */}
