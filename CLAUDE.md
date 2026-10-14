@@ -222,3 +222,15 @@ page has its snippet** at `<page>/snippet.png` — skill `page-snippet`; the bac
 **H2H Messenger and H2A Messenger** (node step 459) are protected branches `messenger-h2h`, `messenger-h2a` — architect only, entered
 from the account drawer. 🔒 Their UI is built only from ai-elements — skill `use-messenger` (gatekeeper) and `ai-elements` (vendored).
 Sending and storing messages is not built.
+
+## The protocol site — mission first, non-commercial
+
+**lagrix.dev is the non-commercial page of an open protocol, registered to its author** (owner, 2026-10-14). 🔒 The manifesto and the
+two goals — discovery and honest reputation — stand right under the first screen (the station facade, missions 1 and 2); moving them
+lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no coin sale, no listing or price talk:
+an on-ramp with a reward belongs to Fractera, not here; the On-ramp page is reference only (what it is, why, how to find a licensed
+provider by a Google search). 🔒 Every word about the network's rules comes from the protocol README glossary and changelog 000
+(`lagrix-dev/lagrix`, entries 20–30 of 14 October): the element is the entity, one wallet registers the node, a deal may be split and
+only the network part counts, the fee is pooled for super-nodes, reviews from both sides weigh the network part / 10, reputation is two
+numbers per role, a queue replaces random choice. A rule change starts with a changelog entry, then the documents, then this site; after
+a release the live site is measured for the banned raffle vocabulary and for old rules (node step 479).
