@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { ArrowLeftRight, Github, Info, Mic, SendHorizontal, TrainFront } from "lucide-react"
+import { ArrowLeftRight, Github, Info, Mic, Play, SendHorizontal, TrainFront } from "lucide-react"
 import s from "./landing-agent.module.css"
 import { useVoiceRecorder, type VoiceStrings } from "@/_tools/tool-voice-input/client/use-voice-recorder"
 import { Button } from "@/components/ui/button"
@@ -42,6 +42,10 @@ export type HelpDeskWords = {
   departure: { label: string; question: string; answer: string }
   /** Владелец: «одну кнопку отправления слева а другую кнопку назовём пересадки в пути … измени красный цвет … на другой». */
   transfer: { label: string; question: string; answer: string }
+  /** 477 (владелец 2026-10-14): две зелёные вывески-симуляции — слева «Симуляция одного проекта» над «Стоимостью поездки», справа
+   *  «Симуляция поиска важного человека»; обе пока ведут к тому же чату с Анной и парикмахерской («пока эту кнопку будет возвращать
+   *  тот же самый чат»). */
+  simulations?: { project: { label: string; href: string }; person: { label: string; href: string } }
   /** Владелец: «кнопка GitHub справа от микрофона» — открывает репозиторий проекта в новой вкладке. */
   github: { label: string; href: string }
   thinking: string
@@ -162,9 +166,21 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
     </li>
   )
 
+  // 477: зелёная вывеска-симуляция — ссылка к чату-примеру (та же цепочка, цвет «прибытие» `--go`), первая в своей колонке.
+  const sim = (block: string, item?: { label: string; href: string }) => item && (
+    <li data-block={block} className={s.deskSign} data-look="sim">
+      <span className={s.deskSignRods} aria-hidden="true" />
+      <a href={item.href} className={s.deskSignPlate}>
+        <Play className="size-5" strokeWidth={2.4} aria-hidden="true" />
+        {item.label}
+      </a>
+    </li>
+  )
+
   return (
     <div data-block="hd3g1" className={s.deskGrid}>
       <ul data-block="hd3l1" className={s.deskSigns} data-side="left">
+        {sim("hd3s7", w.simulations?.project)}
         {w.questions.slice(0, half).map((q, i) => sign(q, i))}
         {main("hd3d1", "go", w.departure)}
       </ul>
@@ -205,6 +221,9 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
           </div>
 
           <ul data-block="hd3c1" className={s.kioskChips}>
+            {w.simulations && [w.simulations.project, w.simulations.person].map((it) => (
+              <li data-block="hd3c5" key={it.label}><a href={it.href} className={s.kioskChip} data-sim="">{it.label}</a></li>
+            ))}
             <li data-block="hd3c3"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-go="" onClick={() => quick(w.departure.question, w.departure.answer)} disabled={busy}>{w.departure.label}</Button></li>
             <li data-block="hd3c4"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-transfer="" onClick={() => quick(w.transfer.question, w.transfer.answer)} disabled={busy}>{w.transfer.label}</Button></li>
             {w.questions.map((q, i) => (
@@ -248,6 +267,7 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
       </div>
 
       <ul data-block="hd3l2" className={s.deskSigns} data-side="right">
+        {sim("hd3s8", w.simulations?.person)}
         {w.questions.slice(half).map((q, i) => sign(q, i + half))}
         {main("hd3d2", "transfer", w.transfer)}
       </ul>

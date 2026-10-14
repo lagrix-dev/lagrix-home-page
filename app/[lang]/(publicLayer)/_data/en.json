@@ -7,7 +7,7 @@
       "kind": "block-hero-centered",
       "pill": "$LGX element",
       "title": "If you're an indie hacker, a Web3 builder or an AI visionary — you're invited to a private party for the makers of a fair AI internet.",
-      "description": "Not just a site template. It quickly grows into what you need: an agent that solves your tasks, an application, or automation of your business processes. You decide. All you bring is the idea; Fractera $LGX does the rest.",
+      "description": "",
       "cta": {
         "label": "Look inside",
         "href": "https://github.com/lagrix-dev/lagrix"
@@ -95,19 +95,6 @@
           ]
         }
       ]
-    },
-    "direction": {
-      "routes": [
-        "Mission 1 · Discovery",
-        "Mission 2 · Honest reputation"
-      ],
-      "ask": "Where to?",
-      "answer": "Join the movement — the information desk shows the way",
-      "answerMobile": "Join the movement",
-      "walk": "1 min",
-      "label": "To the information desk",
-      "text": "We are a movement for one simple thing: anyone on the planet can reach anyone through their agent and know the truth about them — a truth no one can buy, fake cheaply or rewrite. We offer you not a slogan but a direction, and it can only be travelled together.",
-      "line": "The internet gave everyone a voice. Bitcoin gave everyone money without a bank. Next: trust without a middleman."
     },
     "claim": "From idea to revenue, 99% faster",
     "claimHint": "You work inside an infrastructure that is already tuned for speed and surrounded by everything a product needs, before you need it: from sign-in and multiple languages to plugging in ready solutions of other developers.",
@@ -785,7 +772,17 @@
         "# Telegraph: people talk through their agents\n\nHere people reach each other by the rules of Lagrix. You talk only to your own agent — that is H2A. Agents agree with each other — that is A2A. A conversation between people — H2H — opens only after the other side's agent has checked the request and its owner has agreed.\n\n## How to reach someone who matters\n\nA famous engineer will not read a stranger's letter. You give your agent your proposal, the patent and the drawings; it finds the engineer's agent and makes the case. That agent checks the documents and brings them to its owner with its assessment. The agent advises — the person decides.\n\n## Why it is not a messenger\n\nWhatsApp and Telegram pass messages through a company's servers; blockchain messengers spread them across the network. Here there is no single gateway: the conversation is kept only on the two participants' nodes.\n\n## Who reads the conversation\n\nNobody but the two of you. Super-nodes help to find an address and connect, the connection is encrypted end to end, and a relay passes only encrypted bytes. The details are in document 21 of the protocol.",
         "# Zero-day infrastructure — an internet that belongs to people\n\nToday a few corporations own the internet: they control our money, collect everything they can about us and decide whose voice the rest will hear. Zero-day infrastructure gives the internet back to people: your site and your AI agent live on your computer, find whoever they need by themselves and agree directly — with no company in the middle, ours included.\n\n## What it is made of\n\nNodes with agents, super-nodes that keep search running and connect participants, escrow contracts, and the $LGX coin, which is born only from work.\n\n## Why «zero-day»\n\nThe network is being built now, before its launch at the end of 2026. The rules are the same for whoever comes, early or late: super-node places are assigned at random, not bought, and a place in search follows the last year of paid work.\n\n## What happens if we disappear\n\nThe network keeps running: the contracts are immutable, there is no central server, and your site and agent live on your computer.",
         "# A super-node keeps the network's search and connections\n\nA super-node is a server with a permanent address: it keeps the discovery index, builds search results, helps agents connect and witnesses deals — checks their receipts and signs them. Each one chooses which protocols it supports and what it indexes; no council stands over the operators.\n\n## How to join\n\nPlaces are assigned at random, not bought. The first hundred operators join without a deposit and build it from their rewards. Places up to a thousand go by invitation to owners of provider agents with a year of paid work, with a small deposit in coins they earned; later places open two at a time when the network is overloaded. An applicant's server is measured by random agents. Once every year divided by the number of super-nodes, a random super-node leaves without penalty and its place is assigned again at random.\n\n## What it is paid for\n\nFor its work, under rules fixed in the contracts: the deals it serves, the receipts it checks and signs as a witness, and every search result list it builds. Nobody can change these rules, and the network promises no income.\n\n## What it risks\n\nDowntime costs only income: coins are taken only for proven fraud. The founder and Fractera, Inc. may run super-nodes only on the same terms as anyone. The network launches at the end of 2026 — follow https://github.com/lagrix-dev/lagrix."
-      ]
+      ],
+      "simulations": {
+        "project": {
+          "label": "Simulation of one project",
+          "href": "#agent-chat"
+        },
+        "person": {
+          "label": "Simulation: finding an important person",
+          "href": "#agent-chat"
+        }
+      }
     },
     "waiting": {
       "title": "Waiting room",

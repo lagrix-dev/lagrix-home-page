@@ -180,25 +180,30 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   bold lines so the document keeps its own levels.
 - **Model** (`_libs/help-desk.ts`): about 150 words in the same shape, `maxOutputTokens` 900; knowledge = llms-full.
 
-## Step 477 (2026-10-14): station of the future, then the board, the yellow sign and the help desk
+## Step 477 (2026-10-14): station of the future, the board, the help desk
 
-Owner's order of screens (verbatim): «второй экран — табло … под табло сделаем жёлтую вывеску куда двигаться, третьим экраном будет
-справочная служба». The former first screen (station sign with the «Open source» H1 and the agents chat) now stands under the help desk:
-what to do with it is the owner's later decision («пока непонятно, что сделать с нашим главным экраном»).
+Owner's order of screens (verbatim): «второй экран — табло … третьим экраном будет справочная служба» and «Экран с чатом временно
+оставляем»: the former first screen (station sign with the «Open source» H1 and the agents chat) stands under the help desk for now.
 
-- **Station of the future** (`station-facade.tsx`, first screen; words `landing.facade`): a 2400 × 900 SVG drawn at the full height of
-  the first screen, so the building is wider than the screen (8 : 3) — owner: «здание вокзала, которое на 50 % уходит за габариты
-  экрана». Centre: a classical portico (Roman law: the scales of justice in the pediment and BONA FIDES on the frieze), the clock with
-  the visitor's real time (the waiting room's `ClockHands`), a glass dome with an orbit and a beacon (cosmo-station). Sides: two
-  airport glass wings with hanging banners — «Mission 1 · Discovery» on the left wing, «Mission 2 · Honest reputation» on the right.
-  The banners and the «Entrance to the future» plate are HTML placed in the drawing's coordinates (percent of the drawing, type size
-  in `cqh`), so they read, translate and reach the machine copy.
-- **Mission 1 / Mission 2 buttons** (`facade-pan.client.tsx`, owner's names): yellow tabs at the screen edges; hover or focus slides
-  the big button out — left from left to right, right from right to left — and hides it again at rest, so the station stays visible.
-  The button of the mission already in view is disabled. A click pans the building in 1.1 s (instantly under reduced motion). Without
-  JavaScript the building is a plain horizontal scroll. Phones (< 768 px): the drawing is cropped to its centre (entrance and clock),
-  the two banners follow below one after another, no buttons.
-- **Yellow sign «Where to?»** (`direction-sign.tsx`, under the board; words `landing.direction`): the gate-sign anatomy (two chains,
-  routes = the two missions, question and answer, walking time, arrow), a link to `#help-desk`; under it the movement announcement and
-  the line «The internet gave everyone a voice…».
-- The machine copy (`markdown.ts`) follows the new order: station, board, yellow sign, help desk, station sign, then the rest.
+- **Station of the future** (`station-facade.tsx`, first screen; words `landing.facade`): a 2880 × 900 SVG (16 : 5) drawn at the full
+  height of the first screen, so the building is wider than the screen. Owner's revision of the same day: «вывеска висит внутри
+  вокзала, при наведении она подсвечивается» — three layers: the building (SVG), the mission banners and the «Entrance to the future»
+  plate (HTML in the drawing's coordinates: percent and `cqh`), the glass of the wings (a second SVG over the banners: mullions,
+  reflections, tint). Each banner fills its wing's glass with an equal 48-unit margin on all four sides, two columns (number, title,
+  line | text, stops); behind the glass it is dimmed, hover lifts the tint and lights it (only where hover exists). Centre: a modern
+  glass hall — no columns — with the glowing scales of justice (owner: «весы как иконку справедливости»), BONA FIDES on the canopy,
+  the clock with the visitor's real time (`ClockHands`), the dome with the orbit and its satellite, the beacon.
+- **Mission 1 / Mission 2 buttons** (`facade-pan.client.tsx`, owner's names): yellow tabs at the screen edges; hover or focus slides the
+  big button out (left from left to right, right from right to left), at rest it hides; the mission in view is disabled; a click pans
+  the building in 1.1 s (instantly under reduced motion), and the state is recomputed at the end of the pan (scroll events do not
+  arrive in a hidden tab — measured). Without JavaScript the building is a plain horizontal scroll. Phones (< 768 px): the drawing is
+  cropped to its centre, the banners follow below, no buttons, no glass layer.
+- **Board** (second screen): «Заглянуть внутрь» moved into the board's ticker — the claim on the left, the button on the right; the text
+  «Это не просто шаблон сайта…» is removed (hero description emptied). **The old yellow sign to the chat hangs on the board** — its
+  chains touch the board's lower edge (`gateOnBoard`), arrow down: the chat is below the help desk.
+- **Help desk** (third screen): two green signs (role `--go`), first in their columns — left «Simulation of one project» (above «Trip
+  cost»), right «Simulation: finding an important person»; on phones two green chips. Both lead to the agents chat (`#agent-chat`) for
+  now — owner: «пока эту кнопку будет возвращать тот же самый чат с Анной и парикмахерской»; the chat of the second simulation is
+  future work.
+- The machine copy (`markdown.ts`) follows the page: station, board with the yellow sign, help desk with the simulations, station sign
+  and chat, then the rest.

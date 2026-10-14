@@ -45,21 +45,21 @@ export function markdown(lang: string): string {
   head(2, x.claim)
   qa(x.claimHintLabel, x.claimHint)
 
-  // 477: под табло — жёлтая вывеска «куда двигаться» и объявление движения.
-  if (x.direction) {
-    const d = x.direction
-    list(d.routes)
-    qa(d.ask, d.answer)
-    para(d.text, d.line)
+  // 477: на табло висит старая жёлтая вывеска к чату (указатель гейтов).
+  if (x.gate) {
+    list(x.gate.routes)
+    qa(x.gate.ask, x.gate.answer)
   }
 
-  // 477: справочная служба — третий экран (под табло и жёлтой вывеской); копия следует порядку страницы.
+  // 477: справочная служба — третий экран (под табло и висящей на нём жёлтой вывеской); копия следует порядку страницы.
   if (x.helpDesk) {
     const d = x.helpDesk
     // 471-3: ответы вывесок размечены «# …» / «## …» для окна бюро; в копии страницы они ниже «### вопрос», поэтому их заголовки
     // становятся жирными строками — структура документа (H2 секции, H3 вопроса) не ломается.
     const plain = (t?: string) => t?.replace(/^#{1,6}\s+(.+)$/gm, "**$1**")
     head(2, d.title)
+    // 477: зелёные вывески-симуляции бюро — ссылки к чату-примеру.
+    if (d.simulations) out.push(...[d.simulations.project, d.simulations.person].map((it) => `- [${it.label}](${it.href})`), "")
     para(d.greeting)
     d.questions.forEach((q, i) => qa(q, plain(d.answers[i])))
     qa(d.departure?.question, plain(d.departure?.answer))
@@ -74,10 +74,6 @@ export function markdown(lang: string): string {
   para(x.titleSub)
   para(x.launchBanner)
   qa(x.titleSubHintLabel, x.titleSubHint)
-  if (x.gate) {
-    list(x.gate.routes)
-    qa(x.gate.ask, x.gate.answer)
-  }
   // Чат-пример: кто что сказал, по порядку.
   if (x.chat?.items?.length) {
     head(2, x.chat.label)

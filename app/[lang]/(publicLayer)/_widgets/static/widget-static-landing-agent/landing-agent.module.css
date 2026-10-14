@@ -1691,25 +1691,26 @@
   .edgeBtn, .mission, .fTint { transition: none; }
 }
 
-/* ── 477: жёлтая вывеска «куда двигаться» под табло — анатомия указателя к гейтам; ссылка в справочную службу ─────────────── */
-.direction { padding: 0.5rem 0 3.5rem; background: var(--floor); }
-.dirSign { display: block; position: relative; padding-top: 2rem; color: var(--ink); text-decoration: none; --rod: var(--ink); }
-.dirBar {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem;
-  padding: 0.55rem 0.6rem 0.55rem 0.55rem; background: var(--poster); color: var(--ink); border-radius: var(--tile-corner);
-  box-shadow: 0 14px 26px -18px var(--shade); font-family: var(--display); font-weight: 700;
-}
-.dirExit { display: flex; flex: 1 1 auto; align-items: center; justify-content: flex-end; gap: 0.75rem; }
-.dirAnswer { display: none; font-size: 1.3rem; }
-.dirAnswerMobile { font-size: 1.1rem; }
-.dirSign:hover .gateArrow { transform: translateY(3px); }
-.dirSign:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: var(--tile-corner); }
-.dirText { margin-top: 1.8rem; max-width: 64ch; font-size: 1.2rem; line-height: 1.6; color: var(--ink); }
-.dirLine { margin-top: 0.9rem; font-family: var(--display); font-weight: 600; font-size: 1.1rem; letter-spacing: 0.02em; color: var(--ink-soft); }
+/* ── 477 (владелец 2026-10-14): табло — второй экран ────────────────────────────────────────────────────────────────────────────
+   «Кнопку заглянуть внутрь переносим в табло: слева остаётся надпись “от идеи до денег на 99 % быстрее”, справа рисуем кнопку»;
+   текст «Это не просто шаблон сайта…» под табло снят; «старая жёлтая вывеска висит на табло, буквально касаясь его цепочкой». */
+.tickerGo { margin-left: auto; height: 2.9rem; padding: 0 1.15rem; font-size: 1.15rem; }
+.gateOnBoard { margin: 0; padding-top: 1.6rem; --rod: var(--ink); }
+.gateOnBoard .gateRods::before, .gateOnBoard .gateRods::after { top: -2px; }
 @media (min-width: 1024px) {
-  .dirBar { padding: 0.7rem 1rem 0.7rem 0.7rem; }
-  .dirAnswer { display: block; }
-  .dirAnswerMobile { display: none; }
-  /* 477: вывеска станции теперь стоит под справочной службой — место под её висящую табличку к чату у зала ожидания. */
-  .sign + .waiting { padding-top: 11rem; }
+  .gateOnBoard { position: relative; z-index: auto; top: auto; left: auto; translate: none; width: auto; padding-top: 2rem; }
+  .gateOnBoard .gateUp { display: none; }
+  .gateOnBoard .gateDown { display: block; }
+  .gate.gateOnBoard:hover .gateArrow { transform: translateY(3px); }
+}
+
+/* ── 477: зелёные вывески-симуляции справочного бюро — цвет «прибытие» (`--go`), первые в своих колонках; ссылки к чату-примеру. */
+.kioskChip[data-sim] { background: var(--go); border-color: var(--go); color: var(--ink); font-weight: 700; text-decoration: none; }
+@media (min-width: 1024px) {
+  .deskSign[data-look="sim"] { --tilt: 0deg; }
+  .deskSign[data-look="sim"] .deskSignPlate {
+    display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.2rem; text-decoration: none;
+    background: var(--go); color: var(--ink); border-bottom: 4px solid oklch(from var(--go) calc(l - 0.16) c h);
+  }
+  .deskSign[data-look="sim"] .deskSignPlate:hover { background: oklch(from var(--go) calc(l - 0.05) c h); }
 }

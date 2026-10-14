@@ -23,7 +23,6 @@ import { HelpDesk } from "./help-desk.client"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
-import { DirectionSign } from "./direction-sign"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -66,9 +65,8 @@ export function LandingAgent({ lang }: { lang: string }) {
   return (
     <div data-block="cjguc" className={s.page}>
       {x.launchBanner && <LaunchBanner text={x.launchBanner} />}
-      {/* 477 (владелец 2026-10-14): первый экран — вокзал будущего; «второй экран — табло … под табло жёлтая вывеска куда двигаться,
-          третьим экраном будет справочная служба». Прежний первый экран (вывеска станции с чатом) — ниже бюро: что с ним делать,
-          владелец решит позже («пока непонятно, что сделать с нашим главным экраном»). */}
+      {/* 477 (владелец 2026-10-14): первый экран — вокзал будущего; «второй экран — табло … третьим экраном будет справочная
+          служба». Прежний первый экран (вывеска станции с чатом) — ниже бюро: «Экран с чатом временно оставляем». */}
       {x.facade && <StationFacade w={x.facade} />}
 
       <section data-block="hbbfq" className={s.hall}>
@@ -112,27 +110,50 @@ export function LandingAgent({ lang }: { lang: string }) {
                   <Button variant="bare" size="bare" type="button" className={s.hintBtn} aria-label={x.claimHintLabel} aria-describedby="agent-claim-hint">?</Button>
                   <span role="tooltip" id="agent-claim-hint" className={s.hint}>{x.claimHint}</span>
                 </span>
+                {/* 477 (владелец 2026-10-14): «кнопку заглянуть внутрь переносим в табло: слева остаётся надпись … справа рисуем кнопку». */}
+                {hero.cta && (
+                  <a href={hero.cta.href} className={`${s.go} ${s.tickerGo}`}>
+                    {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
+                    {hero.cta.label}
+                    <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
+                  </a>
+                )}
               </div>
             </div>
 
-          <div data-block="b5dcb" className={s.actions}>
-            {hero.cta && (
-              <a href={hero.cta.href} className={s.go}>
-                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
-                {hero.cta.label}
-                <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
-              </a>
-            )}
-            {hero.secondary && <a href={hero.secondary.href} className={s.alt}>{hero.secondary.label}</a>}
-          </div>
-          <p data-block="selaf" className={s.lead}>{hero.description}</p>
+          {/* Старая жёлтая вывеска к чату (владелец 2026-09-30: табло прохода к гейтам в аэропорту). 477 (владелец 2026-10-14):
+              «старая жёлтая вывеска висит на табло буквально касаясь его цепочкой» — сразу под табло, стрелка вниз (чат ниже бюро). */}
+          {x.gate && x.chat && (
+            <a data-block="g8x2k" href="#agent-chat" className={`${s.gate} ${s.gateOnBoard}`} title={x.gate.label}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <span className={s.gateBar}>
+                <span className={s.gateRoutes}>
+                  <span className={s.gateIcon} aria-hidden="true"><MessagesSquare className="size-5" strokeWidth={2.4} /></span>
+                  {x.gate.routes.map((r) => <span key={r} className={s.gateRoute}>{r}</span>)}
+                  {/* Владелец 2026-09-30: как на указателе в аэропорту — время пути. */}
+                  {x.gate.longWay && <span className={s.gateWalk}><Footprints className="size-4" aria-hidden="true" />{x.gate.longWay}</span>}
+                </span>
+                <span className={s.gateExit}>
+                  <span className={s.gateWords}>
+                    <span className={s.gateAsk}>{x.gate.ask}</span>
+                    <span className={s.gateAnswer}>{x.gate.answer}</span>
+                    <span className={s.gateAnswerMobile}>{x.gate.answerMobile}</span>
+                  </span>
+                  {x.gate.exitTime && <span className={s.gateTime}><Footprints className="size-4" aria-hidden="true" />{x.gate.exitTime}</span>}
+                  {/* Владелец 2026-09-30: стрелка — справа от текста, в конце таблички. */}
+                  <span className={s.gateArrow} aria-hidden="true">
+                    <ArrowUp className={s.gateUp} strokeWidth={3} />
+                    <ArrowDown className={s.gateDown} strokeWidth={3} />
+                  </span>
+                </span>
+              </span>
+            </a>
+          )}
         </div>
       </section>
 
-      {x.direction && <DirectionSign w={x.direction} />}
-
-      {/* 477 (владелец 2026-10-14): справочная служба — третий экран, под жёлтой вывеской «куда двигаться». Прежде (469) — сразу
-          под вывеской станции, над залом табло. */}
+      {/* 477 (владелец 2026-10-14): справочная служба — третий экран, под табло и висящей на нём жёлтой вывеской. Прежде (469) —
+          сразу под вывеской станции, над залом табло. */}
       {x.helpDesk && (
         <section data-block="xbxoz" id="help-desk" className={s.desk}>
           <div data-block="ql52w" className={s.wrap}>
@@ -203,35 +224,6 @@ export function LandingAgent({ lang }: { lang: string }) {
               </a>
             )}
           </div>
-          {/* Указатель к чату (владелец 2026-09-30): табло прохода к гейтам в аэропорту — висит на двух цепочках. Широкий экран:
-              под первым экраном, правая часть ровно под колонкой чата, стрелка вверх. Телефон: между заголовками и чатом, стрелка
-              вниз, короче. Табличка — ссылка на чат. */}
-          {x.gate && x.chat && (
-            <a data-block="g8x2k" href="#agent-chat" className={s.gate} title={x.gate.label}>
-              <span className={s.gateRods} aria-hidden="true" />
-              <span className={s.gateBar}>
-                <span className={s.gateRoutes}>
-                  <span className={s.gateIcon} aria-hidden="true"><MessagesSquare className="size-5" strokeWidth={2.4} /></span>
-                  {x.gate.routes.map((r) => <span key={r} className={s.gateRoute}>{r}</span>)}
-                  {/* Владелец 2026-09-30: как на указателе в аэропорту — время пути. */}
-                  {x.gate.longWay && <span className={s.gateWalk}><Footprints className="size-4" aria-hidden="true" />{x.gate.longWay}</span>}
-                </span>
-                <span className={s.gateExit}>
-                  <span className={s.gateWords}>
-                    <span className={s.gateAsk}>{x.gate.ask}</span>
-                    <span className={s.gateAnswer}>{x.gate.answer}</span>
-                    <span className={s.gateAnswerMobile}>{x.gate.answerMobile}</span>
-                  </span>
-                  {x.gate.exitTime && <span className={s.gateTime}><Footprints className="size-4" aria-hidden="true" />{x.gate.exitTime}</span>}
-                  {/* Владелец 2026-09-30: стрелка — справа от текста, в конце таблички. */}
-                  <span className={s.gateArrow} aria-hidden="true">
-                    <ArrowUp className={s.gateUp} strokeWidth={3} />
-                    <ArrowDown className={s.gateDown} strokeWidth={3} />
-                  </span>
-                </span>
-              </span>
-            </a>
-          )}
           {x.chat && (
             <div data-block="hs2dv" id="agent-chat" className={s.signChat}>
               <AgentChat label={x.chat.label} items={x.chat.items} contractLabels={x.chat.contractLabels} endCta={x.chat.endCta} classes={chatClasses} />
