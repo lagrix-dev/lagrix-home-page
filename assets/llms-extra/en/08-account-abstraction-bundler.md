@@ -28,11 +28,11 @@ Key fields for payments between agents:
 
 initCode (Lazy Account Deployment): An AI agent is created instantly without transactions on the blockchain. Its smart account is generated off-chain deterministically through CREATE2. The first transaction automatically deploys the account contract thanks to the initCode field.
 
-paymasterAndData: The main integration flag. Contains the address of the chosen ERC-4337 paymaster — a super-node's own or a third-party one — and its signed price: the paymaster pays the transaction's gas in its own ETH and charges the agent that price in USDC (changelog entry 37).
+paymasterAndData: The main integration flag. Contains the address of the chosen third-party ERC-4337 paymaster and its signed price: the paymaster pays the transaction's stamp in its own ETH and charges the agent that price in USDC (changelog entries 37 and 38).
 
 ## 8.2 Bundler Infrastructure: Assembling and Packing Meta-Transactions
 
-A Bundler is a specialized infrastructure node (it can be run by Super-Node operators) that listens to a separate Alt-Mempool for UserOperations.
+A Bundler is a specialized infrastructure node (a third-party one: Lagrix network participants do not carry others' transactions for a fee or sell stamps — changelog entry 38) that listens to a separate Alt-Mempool for UserOperations.
 
 ```
 [Client Agent] ---> (UserOp in USDC) ---> [Alt-Mempool (P2P)]
@@ -89,18 +89,19 @@ Session Keys: The agent's smart account makes it possible to limit permissions. 
 
 Atomic Multi-Operations: An agent can do approve(USDC) and lockFunds() in one UserOp, reducing the number of on-chain steps and saving 40% on gas.
 
-## 8.5 Who pays gas: three paths (changelog entry 37)
+## 8.5 Who pays gas (changelog entries 37 and 38)
 
-Under ERC-4337 a paymaster's deposit in the EntryPoint is the network's ether («an amount of Ether (or any L2 native currency)»), so every
-paymaster needs someone who tops it up with their own ETH. The network has no paymaster of its own, and Lagrix contracts require no
-particular one.
+Under ERC-4337 a paymaster's deposit in the EntryPoint is the network's ether («an amount of Ether (or any L2 native currency)»). The
+network has no paymaster of its own, and Lagrix contracts require no particular one.
 
-- **A super-node's paymaster.** At their choice, an operator deploys the open paymaster template, tops it up with their own ETH and signs
-  a USDC price for each operation; the agent agrees with its signature. No external price source is needed. The address is declared in
-  document 18, section 18.4; the payment goes to the operator directly, outside the fee pool.
-- **A third-party paymaster.** Any ERC-4337 paymaster works — for example Circle Paymaster: an open contract, USDC only, no sign-up; on
-  Arbitrum and Base a 10% surcharge on gas. The SDK picks the cheapest.
-- **One's own ether.** A node can always pay gas itself. No paymaster's refusal cuts a participant off from the network.
+- **Everyone pays the stamps for their own actions themselves** — in the network's ether or through a third-party gas payment service in
+  USDC, for example Circle Paymaster: an open contract, USDC only, no sign-up; on Arbitrum and Base a 10% surcharge on gas. The network
+  has no connection with such a service.
+- **Network participants do not sell stamps.** Neither nodes nor super-nodes run paymasters for others or carry others' transactions for
+  a fee: such a service could count as an exchange of crypto-assets or their transfer on behalf of clients in the sense of MiCA (Article
+  3(1)(16), (20), (26)).
+- **A super-node pays stamps only for its own actions:** redeeming batches of vouchers, collecting fees and rewards, its deposit.
+- **The fallback — one's own ether — is always open:** a third-party service's refusal does not cut a participant off from the network.
 
-$LGX is never used for gas. Micropayments — search and message delivery — never go on-chain one by one: a super-node redeems their
-vouchers in batches (document 17, section 17.8), so the gas per operation is negligible.
+$LGX is never used for stamps. Micropayments — search and message delivery — never go on-chain one by one: a super-node redeems their
+vouchers in batches (document 17, section 17.8), so the stamp per operation is negligible.

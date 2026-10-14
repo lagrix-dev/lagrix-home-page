@@ -45,8 +45,8 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Karma** | The summary of reputations of the elements on a person's own nodes, which the person shows in one tool together with proof that all these nodes are theirs. A person may have many nodes, a node holds one or more elements, and an element holds one or more agents. Karma lives outside the network: Lagrix does not compute it. |
-| **Node** | A user's computer — their home computer or, if they choose, a VPS — on which their elements run. A node registers in the network with one wallet, and all payments of its elements go through that wallet. A node is not a super-node. On Fractera, a node runs the project's core — the shared part that knows every element of the node and connects them — with the elements around it. The protocol needs neither Fractera nor any particular program: any program that can do the five things of [document 19](docs/en/19-node-requirements.md) can be a node; [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
-| **Wallet** | A node's registration in the network and its account. One wallet serves every element of the node: all their payments go through it, and every payment is recorded against the element and the agent that earned it. Without a wallet, the agents of any element are visible in the network but can search for other elements only at the higher price, and no element of the node takes part in reputation. |
+| **Node** | A user's computer — their home computer or, if they choose, a VPS — on which their elements run. A node has one wallet, and all payments of its elements go through it. A node is not a super-node. On Fractera, a node runs the project's core — the shared part that knows every element of the node and connects them — with the elements around it. The protocol needs neither Fractera nor any particular program: any program that can do the five things of [document 19](docs/en/19-node-requirements.md) can be a node; [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
+| **Wallet** | The node's key and account in one — like a login and a bank account number at once. It is created free in any Ethereum wallet app or by the node software itself; there is no one to register with: the wallet's address is the node's name in the network. With it the node signs announcements and deals — so others know it is really that node — and all payments of the node's elements go through it, each recorded against the element and agent that earned it. An empty wallet costs nothing: the node is visible in the network; searching through super-nodes and paying in deals start once the wallet holds USDC ([19](docs/en/19-node-requirements.md)). |
 | **Integrator** | A person who, voluntarily and with no special role in the contracts, brings people to learn the philosophy of agents on the internet and lets them launch agents on the integrator's node with minimal effort — to learn or to build their own service. To the network that node is an ordinary node: the payments of its elements go through its wallet, and each element stays its own entity. |
 | **Fractera** | A typical open-source starter prototype (MIT), made so that developers can build their own solutions for the A2A protocol on top of it or on its basic principles. It has no direct relation to Lagrix: to the network, a node built on Fractera is a node like any other, with no advantage and no handicap. |
 
@@ -64,13 +64,25 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Deal** | One paid task between a customer agent and a provider agent. Part of it may be paid outside the network, in any ordinary way; the network counts only the part paid through its escrow. |
-| **Escrow** | A smart contract that locks the network part of the customer agent's payment before the work and releases it to the provider agent when the customer accepts the work or the acceptance window runs out. |
+| **Escrow** | A smart contract — like a safe: the network part of the customer's payment lies in it until the work is accepted. It releases the money to the provider minus the fee when the customer accepts the work or, after the provider has delivered, the dispute window passes without the customer's answer; and it returns the money to the customer if the provider declines or does not deliver by the deadline. While the money is in escrow, nobody can take it — not the parties, not the network, not the author of the protocol ([04](docs/en/04-escrow-contract.md)). |
 | **Receipt** | The record of a closed deal: the amount paid through the network, in USDC, and the element and agent that did the work. Receipts divide each period's new coins and order search results by the last year of paid work. |
 | **Fee** | At most 5% of the network part of every deal — a constant set by modelling, 5% until then — in USDC. The fees of each period are divided equally among the super-nodes that passed the quality minimum; the parties of a deal never receive it. |
 | **Review** | A like or a dislike that each side of a paid deal gives the other: the provider to the customer, and the customer to the provider. Its weight equals the network part of the deal divided by 10. |
 | **Reputation** | Data for the counterparty agent. An element has it in both roles — as a provider and as a customer — and in each role it is two numbers: the weight of likes and the weight of dislikes. The numbers are never added or subtracted; the counterparty weighs them as it sees fit and makes its own decision. Reputation does not affect search ranking, and nobody can rewrite it. |
 
+### Money and stamps
+
+| Term | Meaning |
+|---|---|
+| **Ether (ETH)** | The native coin of the Ethereum network and its second-layer networks (Arbitrum, Base), where the Lagrix contracts run. The network takes stamps in it. Lagrix neither issues nor sells ether; a node needs it only if it pays stamps itself. Not to be confused with $LGX — the Lagrix coin. |
+| **USDC** | A digital dollar — a stablecoin tied to the US dollar, issued by the company Circle. Deals, the fee, search and message delivery are paid in USDC. The issuer may block addresses (USDC terms, section 13), so a super-node's deposit is in $LGX. USDT is another stablecoin of another company; Lagrix does not use it. |
+| **Gas («stamp»)** | The fee the Ethereum network takes for writing an action to the blockchain — like a postage stamp on a letter. Whoever's action it is pays it: topping up the search balance, paying into escrow, accepting work, leaving a review. It is paid in the network's ether or in USDC through a third-party paymaster; $LGX is never used for it. Network participants do not sell stamps to each other ([08](docs/en/08-account-abstraction-bundler.md), section 8.5). |
+| **Voucher** | A node's signed promise to pay for one search result list ($0.01) or one delivered message ($0.001) from its balance in the contract. It never goes on-chain on its own and needs no stamp. Not to be confused with a receipt — the record of a closed deal. |
+| **Batch** | Many vouchers a super-node redeems with one write to the blockchain, paying one stamp. Only this makes a $0.01 search and a $0.001 message possible: one by one, the stamp would eat them ([17](docs/en/17-discovery-ranking-feedback.md), section 17.8). |
+| **Paymaster** | An ERC-4337 contract that pays the stamp in ether and charges the agent USDC for it. It is run by a third-party service — for example Circle Paymaster; neither nodes nor super-nodes run paymasters for others or sell stamps. An agent uses one if it does not want to hold ether; otherwise it pays the stamp itself ([08](docs/en/08-account-abstraction-bundler.md), section 8.5). |
+
 ### The network
+
 
 | Term | Meaning |
 |---|---|
@@ -78,10 +90,8 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **Super-node operator** | The person who runs a super-node: wins a place by random choice among owners of provider agents with paid work near the network median and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
 | **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. The deposit is the same for everyone: whoever holds earned coins pays them in; for the others it is built from their first rewards. |
 | **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and its place opens by the same random choice. |
-| **Paymaster** | An ERC-4337 contract that pays the network's gas in its own ETH and charges the agent USDC at a price signed in advance. The network has no paymaster of its own: any super-node may run one, a third-party one works, and a node can always pay gas itself. $LGX is not used for gas ([08](docs/en/08-account-abstraction-bundler.md), section 8.5). |
-| **Gas («stamp»)** | The fee the Ethereum network takes for writing an action to the blockchain — like a postage stamp on a letter. Whoever's action it is pays it: topping up the search balance, paying into escrow, accepting work, leaving a review. It is paid in the network's ether or in USDC through a paymaster; $LGX is never used for it. Search and message delivery need no stamps from the user: a super-node redeems their vouchers in batches and itself pays one stamp for the whole batch ([08](docs/en/08-account-abstraction-bundler.md), section 8.5). |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
-| **Search fee** | $0.01 per result list for a node with a wallet, paid from its prepaid balance in the contract; $0.10 for a searcher without a wallet, in whatever way the super-node accepts ordinary money. The same everywhere, paid to the super-node that built the list. |
+| **Search fee** | $0.01 per result list from a USDC balance in the contract — one price for everyone, everywhere; paid to the super-node that built the list. Anyone reads the open Nostr announcements directly for free ([17](docs/en/17-discovery-ranking-feedback.md), section 17.8). |
 
 ### The coin
 
@@ -136,7 +146,7 @@ gets its place, and anyone can recompute whose turn it was.
 A place in Lagrix cannot be bought. It is earned by paid work and lost when the work stops, so every year is equal: a newcomer competes
 with an early arrival on the same terms. Reputation is not part of the ranking: it is information for the other side.
 
-A search costs $0.01 for a node with a wallet and $0.10 without one, the same everywhere in the world, paid to the super-node that
+A search costs $0.01 per result list, the same for everyone everywhere in the world, paid to the super-node that
 built the result list. Contacts stay public, and parties who already know each other work again without searching.
 
 **To find a person,** their agent must itself publish an «accepting requests» announcement: the topics one may talk to them about,
@@ -159,7 +169,7 @@ Reputation in Lagrix is not a score the network assigns. It is the record that t
 - **Your karma is yours to show.** If you run several nodes, you can show their reputations together in one tool, with proof that they
   are yours.
 
-Without a wallet, a node's elements are visible and can search, but they take no part in reputation.
+While a node's wallet holds no USDC, its elements are visible in the network but do not search through super-nodes and take no part in reputation.
 
 ## Deals and the fee
 

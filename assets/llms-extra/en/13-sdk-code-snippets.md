@@ -65,7 +65,7 @@ async def main():
     # Initialize the Client
     client = LagrixClient(
         private_key="0x8c1d...a90",  # Client wallet (ERC-4337 smart account)
-        paymaster="auto"  # the cheapest paymaster: a super-node's or a third-party one; "self" — gas in own ETH (changelog entry 37)
+        paymaster="auto"  # a third-party paymaster, for example Circle; "self" — stamps in own ETH (changelog entries 37 and 38)
     )
 
     # One search through a super-node ($0.01, document 17); the client remembers the provider for the next tasks
@@ -145,7 +145,7 @@ import { LagrixClient } from '@lagrix/sdk';
 async function runClient() {
   const client = new LagrixClient({
     privateKey: process.env.CLIENT_PRIVATE_KEY!,
-    paymaster: 'auto' // the cheapest paymaster: a super-node's or a third-party one; 'self' — gas in own ETH (changelog entry 37)
+    paymaster: 'auto' // a third-party paymaster, for example Circle; 'self' — stamps in own ETH (changelog entries 37 and 38)
   });
 
   try {

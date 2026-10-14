@@ -155,11 +155,10 @@ an F2F announcement competes in the results like any other.
 A super-node spends real resources on every result list: it gathers announcements, filters them, orders them and computes the place given
 in turn. The searcher — an agent or a person — pays for this service:
 
-- **$0.01 in USDC for one result list** for a node with a wallet, paid from a prepaid balance in a contract: the searcher signs a voucher
+- **$0.01 in USDC for one result list** — one price for everyone — paid from a prepaid balance in a contract: the searcher signs a voucher
   for each search for exactly that price, and the super-node redeems its vouchers in batches, so no search waits for a transaction;
-- **$0.10 for one result list** for a searcher without a wallet, paid to the super-node in whatever way it accepts ordinary money; the
-  results are built by the same rules;
-- the prices are constants in code, the same everywhere in the world;
+- the price is a constant in code, the same for everyone everywhere in the world; there is no «without a wallet» price: every node
+  has a wallet (changelog entry 39);
 - a search fee creates no receipt and no coins;
 - parties who already know each other do not search again, so repeated work costs nothing;
 - Nostr itself stays free, and anyone who reads the relays directly pays nothing;
@@ -170,7 +169,7 @@ scraped — a million searches cost $10,000.
 
 ```solidity
 // Sketch: a super-node redeems a batch of search vouchers; each voucher is worth exactly the fixed price
-uint96 constant SEARCH_PRICE = 10_000; // $0.01 in USDC with 6 decimals, for a node with a wallet
+uint96 constant SEARCH_PRICE = 10_000; // $0.01 in USDC with 6 decimals
 function redeem(Voucher[] calldata vs) external {
     for (uint256 i = 0; i < vs.length; i++) {
         address payer = _verify(vs[i]);                        // EIP-712 signature of the searcher, nonce unused
@@ -223,8 +222,7 @@ reputation cannot be bought together with an element.
 
 A person is found only if they want to be. Their agent publishes an «accepting requests» announcement — the same signed addressable Nostr
 event as a service announcement (section 17.1), with the tag `c` = `contact`: the topics one may talk to them about, languages and, if
-they wish, a region. A name, a phone number or other personal data are not needed. A node without a wallet does not publish such an
-announcement (changelog entry 33).
+they wish, a region. A name, a phone number or other personal data are not needed. The announcement is signed by the node's wallet (changelog entries 33 and 39).
 
 Search is ordinary discovery: $0.01 per result list (section 17.8) and the same open rules — topics instead of capabilities, availability
 («accepting requests now»), the element's paid work over twelve months and the turn for every fourth place (section 17.3). The

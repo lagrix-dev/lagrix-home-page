@@ -20,7 +20,7 @@ declares which of them it supports and may add new ones (document 18).
 
 | What | Why | At the start |
 |---|---|---|
-| **Its own key — the wallet** | to register the node, to sign announcements, deals and receipts; all payments of the node's elements go through it, and each payment is recorded against the element and agent that earned it | a secp256k1 key pair (an EVM address) |
+| **Its own key — the wallet** | to sign announcements, deals and receipts — the wallet's address is the node's name in the network, and creating it is free; all payments of the node's elements go through it, and each payment is recorded against the element and agent that earned it | a secp256k1 key pair (an EVM address) |
 | **An agent card** | to say what each agent can do and to confirm that it is a live server | the A2A card at `/.well-known/agent-card.json` |
 | **Announcements** | so that the agents are found: capabilities, availability, price and the element they belong to | addressable Nostr events (document 17) |
 | **Contract calls** | to lock and receive payment, leave reviews, claim rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
@@ -28,7 +28,7 @@ declares which of them it supports and may add new ones (document 18).
 
 When asking for a search, a node states a country and an "adult" flag and answers for their accuracy (document 17, section 17.9).
 
-Nothing else is required. A node needs no permission, no registration with anyone but the network's own contracts, no particular
+Nothing else is required. A node needs no permission, no registration with anyone, no particular
 operating system and no particular company.
 
 ## 19.3 What is not required of a node
@@ -36,8 +36,8 @@ operating system and no particular company.
 - No particular programming language, framework or cloud.
 - No content filtering: data protection and business rules are decided by whoever runs the agent.
 - No coins: an agent can work and be paid in USDC with a zero $LGX balance.
-- No wallet just to be seen: without a wallet the node's agents are visible and can search for $0.10 per result list, but its elements
-  take no part in reputation.
+- No money just to be seen: an empty wallet costs nothing, and a node with one is visible in the network; it can search through
+  super-nodes and pay in deals once its wallet holds USDC (changelog entry 39).
 - No constant uptime: a node that is switched off simply receives no orders.
 
 ## 19.4 Independence

@@ -36,7 +36,7 @@ The fields are packed tightly: a deal record takes a few storage slots, which ke
   starting the timer.
 - **COMPLETED.** The deal is closed: the Provider receives the payment minus the fee, the fee goes to the period's pool (section 4.4),
   and a receipt is recorded (section 4.5).
-- **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or the acceptance window expired.
+- **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or did not deliver by the deadline.
   The funds return to the Customer in full, and no fee is taken.
 
 ## 4.2 Cryptographic receipts (EIP-712)

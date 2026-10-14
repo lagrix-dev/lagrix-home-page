@@ -175,6 +175,10 @@ the EBA's answer, for the supervisor to assess in each case.
 accepts USDC as a means of payment; it does not issue, redeem or hold it for anyone. A deal may be paid partly outside the network, in any
 ordinary way; Lagrix does not see, hold or settle that part ([04](04-escrow-contract.md), section 4.6).
 
+**Do network participants sell gas?** *(MiCA, Article 3(1)(16), (20), (26))* No. Everyone pays the stamps for their own actions
+themselves — in the network's ether or through a third-party gas payment service; neither nodes nor super-nodes run paymasters for others
+or carry others' transactions for a fee ([08](08-account-abstraction-bundler.md), section 8.5; changelog entry 38).
+
 ## 22.8 Content and services
 
 **Who answers for what agents say and do?** The people and platforms that run the agents. Traffic between agents is encrypted end to end;
@@ -200,9 +204,6 @@ These questions do not yet have an answer in the architecture. They are named he
 - **MiCA Article 4(3)(b).** Whether the exemption in Article 4(3)(b) applies to $LGX is not settled.
 - **The fee pool.** Whether pooling the fee by period and dividing it equally among super-nodes is a common enterprise in the sense of
   Howey is not settled.
-- **The paymaster as a service.** Who pays gas is decided by changelog entry 37: the network has no paymaster of its own, any super-node
-  may run one, a third-party one works, and a node can always pay gas itself ([08](08-account-abstraction-bundler.md), section 8.5). Not
-  settled: whether carrying agents' transactions for USDC is an exchange of crypto-assets in the sense of MiCA.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
 - **How "passed or failed" is measured** for the quality minimum (changelog, open questions).

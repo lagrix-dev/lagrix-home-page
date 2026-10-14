@@ -12,7 +12,7 @@ The protocol divides infrastructure servers into three categories depending on t
 |---|---|---|---|
 | Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | calculated at entry (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
 | Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | calculated at entry (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
-| Tier-3: Enterprise Bundler & Relay | Full stack: DHT + TURN + Bundler and paymaster (ERC-4337, optional, changelog entry 37) + local L2 Full Node (Arbitrum/Base). | calculated at entry (document 05, section 5.6) | Heavy load, sending UserOps to private RPCs. |
+| Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | calculated at entry (document 05, section 5.6) | Heavy load. |
 
 ## 14.2 Minimum and Recommended System Requirements
 
@@ -30,7 +30,7 @@ Network Bandwidth: Dedicated 1 Gbps Unmetered (Simplex/Duplex). Bandwidth is the
 
 Public IPv4/IPv6: A static public IPv4 address (no CGNAT) and an IPv6 subnet (/64) are mandatory.
 
-**Tier-3: Enterprise Bundler & Relay (Professional operator)**
+**Tier-3: Enterprise Relay (Professional operator)**
 
 CPU: 16–32 vCPU (AMD EPYC 7003/9004 series or Ampere Altra MAX ARM64).
 

@@ -14,7 +14,7 @@ Discovery: agents publish signed announcements over Nostr; each super-node build
 capabilities, availability, price, the last twelve months of work paid through the network, and one place in every four given to the
 matching agents in turn (document 17).
 
-The search fee: $0.01 per result list for a node with a wallet and $0.10 without one, the same everywhere, paid by the searcher to the
+The search fee: $0.01 per result list, one price for everyone, the same everywhere, paid by the searcher to the
 super-node that built it; contacts stay public and Nostr stays free (document 17).
 
 Neutral transport (Mere Conduit): super-nodes do not read, filter or moderate content — agents' conversations are encrypted from
@@ -38,8 +38,8 @@ not move with it (document 17).
 
 ## Part 3. Settlement and tokenomics
 
-Account Abstraction (ERC-4337): agents pay for gas in USDC through any paymaster — a super-node's own or a third-party one — without
-holding ETH; a node can always pay gas itself; $LGX is not used for gas (document 08, changelog entry 37).
+Account Abstraction (ERC-4337): agents pay for gas in USDC through a third-party paymaster — for example Circle Paymaster — without
+holding ETH; a node can always pay gas itself; $LGX is not used for gas (document 08, changelog entries 37 and 38).
 
 Escrow with receipts and Time-Lock: the network part of a payment is locked before the work and released on the customer's signature;
 the provider is protected from a hang. A deal may be split: the part paid outside the network is protected by the law of the country

@@ -135,7 +135,7 @@ and not taken by number: places have no stages and no numbers, and the terms are
 - **A window around the median.** When a place opens, all nodes with a non-zero measure are taken and their median M is found. Nodes with
   a measure from 0.75 × M to 1.25 × M can apply. The largest providers fall outside the window: whoever earns most in the network does not
   also hold its search. The median, not the mean, because a few very large providers pull the mean but not the median.
-- **Checks by agents in turn.** An applicant's server is checked by agents of registered nodes taken in turn, not by super-nodes:
+- **Checks by agents in turn.** An applicant's server is checked by agents of the network's nodes taken in turn, not by super-nodes:
   existing super-nodes gain from having fewer competitors, so they must not be the ones who judge newcomers.
 - **Random choice with diversity.** Among applicants in the window whose servers passed the check, the place goes to one chosen at
   random, keeping diversity of networks and regions, so that one applicant with many servers cannot take many places. The contract computes

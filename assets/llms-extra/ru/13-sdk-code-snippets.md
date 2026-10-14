@@ -65,7 +65,7 @@ async def main():
     # Инициализация клиента Заказчика
     client = LagrixClient(
         private_key="0x8c1d...a90",  # Кошелек Заказчика (смарт-аккаунт ERC-4337)
-        paymaster="auto"  # самый дешёвый Paymaster: супер-узла или сторонний; "self" — газ своим ETH (журнал, запись 37)
+        paymaster="auto"  # сторонний Paymaster, например Circle; "self" — марки своим ETH (журнал, записи 37 и 38)
     )
 
     # Один поиск через супер-узел ($0,01, документ 17); клиент запоминает исполнителя для следующих задач
@@ -145,7 +145,7 @@ import { LagrixClient } from '@lagrix/sdk';
 async function runClient() {
   const client = new LagrixClient({
     privateKey: process.env.CLIENT_PRIVATE_KEY!,
-    paymaster: 'auto' // самый дешёвый Paymaster: супер-узла или сторонний; 'self' — газ своим ETH (журнал, запись 37)
+    paymaster: 'auto' // сторонний Paymaster, например Circle; 'self' — марки своим ETH (журнал, записи 37 и 38)
   });
 
   try {
