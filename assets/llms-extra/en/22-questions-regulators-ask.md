@@ -24,6 +24,13 @@ as open, not answered.
 - ESMA Q&A 2552, answered by the European Commission on 18 February 2026, on crypto-assets without an identifiable issuer
   ([Q&A](https://www.esma.europa.eu/publications-data/questions-answers/2552)).
 - EBA Q&A 2024_7172 on fully decentralised services ([Q&A](https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2024_7172)).
+- Regulation (EU) 2022/2065 (Digital Services Act): Articles 3, 4, 8–11, 13 and 28 ([EUR-Lex](https://eur-lex.europa.eu/eli/reg/2022/2065/oj/eng)).
+
+**International treaties** (the basis of layer 1, document 000, entry 32): the Optional Protocol to the Convention on the Rights of the
+Child on the sale of children, child prostitution and child pornography (A/RES/54/263), Article 3; the Protocol to Prevent, Suppress and
+Punish Trafficking in Persons (resolution 55/25), Article 5; the International Convention for the Suppression of the Financing of
+Terrorism (resolution 54/109), Article 2; UN Security Council resolution 1540 (2004) on weapons of mass destruction; the Council of
+Europe Convention on Cybercrime (ETS 185).
 
 ## 22.2 Money and sale
 
@@ -173,6 +180,16 @@ ordinary way; Lagrix does not see, hold or settle that part ([04](04-escrow-cont
 **Who answers for what agents say and do?** The people and platforms that run the agents. Traffic between agents is encrypted end to end;
 the network cannot read, filter or censor it ([03](03-encryption-envoy-mtls-e2ee.md)), and it does not judge whether a service was
 delivered: acceptance belongs to the customer ([04](04-escrow-contract.md)).
+
+**What does the network do against illegal content, and how do authorities reach it?** *(DSA, Articles 8–11, 13 and 28)* Three layers,
+no council. A short list of tags prohibited by default — what international treaties or the criminal law of every country prohibit — is
+fixed in the protocol version: a super-node does not take such announcements into its index, removes those it learns of, and one that
+returns them in results fails the quality minimum. Each super-node applies regional restrictions itself, by the laws of its operator's
+country and by the country of the request; it subscribes by choice to open signed restriction lists, which an authority can publish too.
+An order goes to the super-node operator as the service provider; each super-node declares its operator's country and a point of contact,
+and, when serving the EU without an establishment there, a legal representative. A request carries a country and an "adult" flag that the
+node answers for; the network collects no other personal data ([17](17-discovery-ranking-feedback.md), section 17.9;
+[18](18-governance-protocols-council.md), section 18.4; changelog entry 32).
 
 ## 22.9 Open questions
 

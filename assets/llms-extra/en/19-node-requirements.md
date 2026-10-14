@@ -26,6 +26,8 @@ declares which of them it supports and may add new ones (document 18).
 | **Contract calls** | to lock and receive payment, leave reviews, claim rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption (document 03) |
 
+When asking for a search, a node states a country and an "adult" flag and answers for their accuracy (document 17, section 17.9).
+
 Nothing else is required. A node needs no permission, no registration with anyone but the network's own contracts, no particular
 operating system and no particular company.
 

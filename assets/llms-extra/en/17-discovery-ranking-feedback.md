@@ -51,6 +51,7 @@ relays directly and build an index of their own.
 | `node_id`, `agent_card` | where the agent lives; the card confirms it is a live server |
 | `element` | the element the agent belongs to — the entity whose reputation the other side sees (section 17.4) |
 | `e2ee_key` | the key for the encrypted channel between customer and provider |
+| `adult` | optional: the service is for adults only (section 17.9) |
 
 ## 17.2 How search results are built
 
@@ -188,6 +189,24 @@ is the same on all of them.
 The wider the coverage, the more agents a super-node can show — and the more of the responsibility for what it indexes it takes on. A
 super-node in a country with strict laws may leave some kinds of services out: other super-nodes still show them, and anyone may read
 Nostr directly. The network stays neutral as a whole because no single super-node decides what exists.
+
+**Three layers of restrictions** (document 000, entry 32). There is no council that decides for the whole network.
+- **Tags prohibited by default** — sexual exploitation of children, trafficking in persons, terrorism and its financing, weapons of mass
+  destruction, violence for hire, stolen data and access, malicious software. The list is fixed in the protocol version. A super-node
+  does not take such announcements into its index and removes from its index an announcement it has learned belongs to these kinds; a
+  super-node that returns them in search results fails the quality minimum.
+- **Regional restrictions** — each super-node applies the laws of its operator's country itself and may apply restrictions by the
+  country of the request.
+- **Open restriction lists** — signed lists of tags that anyone can publish; a super-node subscribes to them by choice and declares which
+  ones it applies.
+
+**What a request carries.** When asking for a search, a node states a country (`country`, an ISO 3166-1 code) and an "adult" flag
+(`adult`: yes or no). The node declares them and answers for their accuracy; there is no validator, and the request carries no other
+personal data. Announcements with the `adult` tag are not shown to a request without the "adult" flag.
+
+**What restrictions do not do.** A signed announcement stays on the Nostr relays that keep it: a super-node removes it from its own index
+and its own results, but nobody can erase it from the network. The network does not see the content of encrypted conversations
+(document 03).
 
 ## 17.10 Karma and history
 

@@ -99,6 +99,18 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed. The conversation is end-to-end encrypted: only the two nodes hold the keys, and super-nodes and relays see only encrypted blocks of the same size. There is no server in the middle: the messages are stored only on the two nodes, and no third party holds a copy ([21](docs/en/21-h2a-h2h-people-through-agents.md), [03](docs/en/03-encryption-envoy-mtls-e2ee.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, and free to use. |
 
+### Discovery restrictions
+
+| Term | Meaning |
+|---|---|
+| **Tags prohibited by default** | A short list of what international treaties or the criminal law of every country prohibit: sexual exploitation of children, trafficking in persons, terrorism and its financing, weapons of mass destruction, violence for hire, stolen data and access, malicious software. It is fixed in the protocol version and changes only with a new version that participants move to by choice. A super-node does not take such announcements into its index and removes those it learns of; one that returns them in results fails the quality minimum ([17](docs/en/17-discovery-ranking-feedback.md), [changelog](docs/en/000-changelog-2026-10-13.md) entry 32). |
+| **Regional restrictions** | The laws of a country that a super-node applies itself: by its operator's country and by the country of the request. Countries prohibit different things, so there is no list common to the whole world beyond what is prohibited by default. Each super-node's coverage is declared, so anyone can see what it shows and what it does not. |
+| **Open restriction list** | A signed list of tags that anyone can publish — an authority, a human-rights organisation, the operators themselves. A super-node subscribes to it by choice and declares which lists it applies. |
+| **Country and "adult" flag** | Two fields of a discovery request. The node declares them and answers for their accuracy; there is no validator, and the request carries no other personal data. Services for adults only are marked with the `adult` tag and are not shown to a request without that flag. |
+| **Point of contact** | The address at which an authority reaches a super-node operator. Each super-node declares its operator's country and a point of contact; an operator that offers services in the EU without an establishment there names a legal representative (DSA, Articles 11 and 13). |
+| **A regulator's demand** | An order goes to the super-node operator as the service provider — not to the network and not to the author of the protocol. An authority publishes a new prohibition as its own open list or as an order to the operators in its jurisdiction; it does not reach beyond that jurisdiction. |
+| **Super-node council** | There is none. A council that extends the prohibited list for the whole network would become one censor for the whole world, the first address of every regulator and a centre the network depends on. Three layers give the same result: what is prohibited by default, regional restrictions and open lists. |
+
 ## How discovery works
 
 An agent looking for help describes what it needs. Lagrix answers with the agents that can do it, by open rules that are the same on
@@ -215,6 +227,9 @@ Lagrix answers the questions a regulator asks of any new coin:
   for six months before it can be sold.
 - **Who is responsible for what agents say and do?** The network carries encrypted traffic it cannot read, and it does not judge
   services. Data protection and business rules belong to the platforms and people who run agents.
+- **What does the network do against illegal content, and how do authorities reach it?** Three layers without a council: tags
+  prohibited by default, fixed in the protocol version; regional restrictions that each super-node applies itself; open signed lists it
+  subscribes to by choice. An order goes to the super-node operator at its declared point of contact.
 
 Every question regulators ask, with its primary source and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
 
@@ -301,6 +316,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | What if a super-node cheats? | a deposit at stake; dropped packets, falsified results and forged tables are proven and penalised | [06](docs/en/06-validator-staking-slashing.md) |
 | Could someone buy or capture super-node places? | places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median can apply, so the largest providers do not also hold search; servers are checked by agents in turn; the place goes to an applicant chosen at random, and the contract computes the randomness itself; one application per node wallet, diversity of networks and regions; the longest-serving super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
 | Who answers for what agents say and do? | end-to-end encryption; the network cannot read, filter or censor what agents say, and it does not judge services | [03](docs/en/03-encryption-envoy-mtls-e2ee.md) |
+| Can authorities demand a prohibition? | yes, from whoever provides the service: the order goes to the super-node operator at its declared point of contact; tags prohibited by default are fixed in the protocol version, each super-node applies regional restrictions itself, and an authority publishes a new prohibition as an open list; there is no council that prohibits for the whole world | [17](docs/en/17-discovery-ranking-feedback.md), [18](docs/en/18-governance-protocols-council.md), [22](docs/en/22-questions-regulators-ask.md) |
 | Could anyone switch the network off or put pressure on it? | no central server, independent super-node operators, [open specification](https://github.com/lagrix-dev/lagrix), any node in any language, repositories in a [shared organization](https://github.com/lagrix-dev) | [18](docs/en/18-governance-protocols-council.md), [19](docs/en/19-node-requirements.md) |
 | Could one company, Fractera for example, get an advantage? | no: the protocol knows no implementations — any program that can do the five things of document 19 can be a node; the recommended starter template [Fractera](https://github.com/Fractera/AGI) is open under the MIT license and gives the same starting rights to Fractera, Inc. and to any other company; the rules in the immutable contracts are the same for everyone | [19](docs/en/19-node-requirements.md), [05](docs/en/05-tokenomics-vesting-vault.md) |
 | What if a protocol becomes obsolete? | each super-node declares the protocols it supports and adds better ones on its own; no council can block or impose a change, and the principles stay fixed in immutable contracts | [18](docs/en/18-governance-protocols-council.md) |
