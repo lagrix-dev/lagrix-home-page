@@ -64,6 +64,9 @@ const ALLOWED_RAW_HEADINGS = new Set([
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "why-night.tsx"),
   // Тот же вопрос — кнопка-табличка в островке сцены (шаг 470-3).
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "why-ride.client.tsx"),
+  // Вокзал будущего того же лендинга (шаг 477): растяжки миссий на стеклянных крыльях — заголовки в оформлении страницы, кегль от
+  // высоты рисунка (cqh), а не шкалы примитива.
+  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "station-facade.tsx"),
 ])
 
 // 🔒 ПОЛЯ ВВОДА УМЕНЬШАЮТ ТЕКСТ НАМЕРЕННО — И ЭТО НЕ ТА ОШИБКА, ЧТО ИЩЕТ СТОРОЖ.

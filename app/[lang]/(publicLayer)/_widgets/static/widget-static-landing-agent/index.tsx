@@ -22,6 +22,8 @@ import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
+import { StationFacade } from "./station-facade"
+import { DirectionSign } from "./direction-sign"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -64,6 +66,81 @@ export function LandingAgent({ lang }: { lang: string }) {
   return (
     <div data-block="cjguc" className={s.page}>
       {x.launchBanner && <LaunchBanner text={x.launchBanner} />}
+      {/* 477 (владелец 2026-10-14): первый экран — вокзал будущего; «второй экран — табло … под табло жёлтая вывеска куда двигаться,
+          третьим экраном будет справочная служба». Прежний первый экран (вывеска станции с чатом) — ниже бюро: что с ним делать,
+          владелец решит позже («пока непонятно, что сделать с нашим главным экраном»). */}
+      {x.facade && <StationFacade w={x.facade} />}
+
+      <section data-block="hbbfq" className={s.hall}>
+        <div data-block="rkprp" className={s.wrap}>
+            <div data-block="qvj57" className={s.board} data-board data-shown="0">
+              <div data-block="n0hnr" className={s.boardTop}>
+                <span className={s.boardLabel}>{b.from}</span>
+                <span className={s.origin}>
+                  <span className={s.srOnly}>{b.fromValue}</span>
+                  <SplitFlap words={[b.fromValue]} className={s.flapWord} />
+                </span>
+              </div>
+              <div data-block="jm9w0" className={s.display} aria-hidden="true">
+                <span className={s.displayLabel}>{b.destination}</span>
+                <SplitFlap words={outcomes.map((o) => o.name)} className={s.displayField} announce />
+              </div>
+              <div data-block="nmzw1" className={s.boardHead} aria-hidden="true">
+                <span>{b.destination}</span>
+                <span className={s.colPlatform}>{b.platform}</span>
+                <span className={s.colDeparts}>{b.departs}</span>
+              </div>
+              <ol data-block="d6ywe" className={s.rows}>
+                {outcomes.map((o, i) => (
+                  <li data-block="mpdyz" key={o.name} className={s.row}>
+                    <div data-block="n5go1" className={s.dest}>
+                      <span className={s.srOnly}>{o.name}</span>
+                      <SplitFlap words={[o.name]} className={s.flapWord} />
+                      <span className={s.via}>{o.text}</span>
+                    </div>
+                    <span className={s.platform} aria-label={`${b.platform} ${i + 1}`}>{i + 1}</span>
+                    <span className={s.departs}>
+                      <span className={s.lamp} aria-hidden="true" />
+                      {b.when}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <div data-block="mdkza" className={s.ticker}>
+                <span>{x.claim}</span>
+                <span className={s.hintWrap}>
+                  <Button variant="bare" size="bare" type="button" className={s.hintBtn} aria-label={x.claimHintLabel} aria-describedby="agent-claim-hint">?</Button>
+                  <span role="tooltip" id="agent-claim-hint" className={s.hint}>{x.claimHint}</span>
+                </span>
+              </div>
+            </div>
+
+          <div data-block="b5dcb" className={s.actions}>
+            {hero.cta && (
+              <a href={hero.cta.href} className={s.go}>
+                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
+                {hero.cta.label}
+                <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
+              </a>
+            )}
+            {hero.secondary && <a href={hero.secondary.href} className={s.alt}>{hero.secondary.label}</a>}
+          </div>
+          <p data-block="selaf" className={s.lead}>{hero.description}</p>
+        </div>
+      </section>
+
+      {x.direction && <DirectionSign w={x.direction} />}
+
+      {/* 477 (владелец 2026-10-14): справочная служба — третий экран, под жёлтой вывеской «куда двигаться». Прежде (469) — сразу
+          под вывеской станции, над залом табло. */}
+      {x.helpDesk && (
+        <section data-block="xbxoz" id="help-desk" className={s.desk}>
+          <div data-block="ql52w" className={s.wrap}>
+            <HelpDesk w={x.helpDesk} lang={lang} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
+          </div>
+        </section>
+      )}
+
       {/* Первый экран (слово владельца, 333-16): на широком — две колонки во всю высоту первого экрана; слева табличка
           «Открытый код» в верхнем левом углу, название и подзаголовок; справа чат агентов прямо на фоне таблички. */}
       <section data-block="adzil" className={s.sign}>
@@ -160,74 +237,6 @@ export function LandingAgent({ lang }: { lang: string }) {
               <AgentChat label={x.chat.label} items={x.chat.items} contractLabels={x.chat.contractLabels} endCta={x.chat.endCta} classes={chatClasses} />
             </div>
           )}
-        </div>
-      </section>
-
-      {/* 469 (владелец 2026-10-13): «Под эту вывеску я прошу переместить вверх справочную службу» — сразу под первым экраном
-          (под указателем к чату), над залом табло. Прежде (348–349) — третья секция снизу. */}
-      {x.helpDesk && (
-        <section data-block="xbxoz" id="help-desk" className={s.desk}>
-          <div data-block="ql52w" className={s.wrap}>
-            <HelpDesk w={x.helpDesk} lang={lang} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
-          </div>
-        </section>
-      )}
-
-      <section data-block="hbbfq" className={s.hall}>
-        <div data-block="rkprp" className={s.wrap}>
-            <div data-block="qvj57" className={s.board} data-board data-shown="0">
-              <div data-block="n0hnr" className={s.boardTop}>
-                <span className={s.boardLabel}>{b.from}</span>
-                <span className={s.origin}>
-                  <span className={s.srOnly}>{b.fromValue}</span>
-                  <SplitFlap words={[b.fromValue]} className={s.flapWord} />
-                </span>
-              </div>
-              <div data-block="jm9w0" className={s.display} aria-hidden="true">
-                <span className={s.displayLabel}>{b.destination}</span>
-                <SplitFlap words={outcomes.map((o) => o.name)} className={s.displayField} announce />
-              </div>
-              <div data-block="nmzw1" className={s.boardHead} aria-hidden="true">
-                <span>{b.destination}</span>
-                <span className={s.colPlatform}>{b.platform}</span>
-                <span className={s.colDeparts}>{b.departs}</span>
-              </div>
-              <ol data-block="d6ywe" className={s.rows}>
-                {outcomes.map((o, i) => (
-                  <li data-block="mpdyz" key={o.name} className={s.row}>
-                    <div data-block="n5go1" className={s.dest}>
-                      <span className={s.srOnly}>{o.name}</span>
-                      <SplitFlap words={[o.name]} className={s.flapWord} />
-                      <span className={s.via}>{o.text}</span>
-                    </div>
-                    <span className={s.platform} aria-label={`${b.platform} ${i + 1}`}>{i + 1}</span>
-                    <span className={s.departs}>
-                      <span className={s.lamp} aria-hidden="true" />
-                      {b.when}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              <div data-block="mdkza" className={s.ticker}>
-                <span>{x.claim}</span>
-                <span className={s.hintWrap}>
-                  <Button variant="bare" size="bare" type="button" className={s.hintBtn} aria-label={x.claimHintLabel} aria-describedby="agent-claim-hint">?</Button>
-                  <span role="tooltip" id="agent-claim-hint" className={s.hint}>{x.claimHint}</span>
-                </span>
-              </div>
-            </div>
-
-          <div data-block="b5dcb" className={s.actions}>
-            {hero.cta && (
-              <a href={hero.cta.href} className={s.go}>
-                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
-                {hero.cta.label}
-                <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
-              </a>
-            )}
-            {hero.secondary && <a href={hero.secondary.href} className={s.alt}>{hero.secondary.label}</a>}
-          </div>
-          <p data-block="selaf" className={s.lead}>{hero.description}</p>
         </div>
       </section>
 

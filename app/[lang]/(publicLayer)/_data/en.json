@@ -62,6 +62,53 @@
     }
   ],
   "landing": {
+    "facade": {
+      "label": "Station of the future",
+      "scene": "A station of the future: in the centre, a classical portico with a clock and the scales of justice; at the sides, two glass wings with the banners of two missions.",
+      "inscription": "BONA FIDES",
+      "entrance": "Entrance to the future",
+      "missions": [
+        {
+          "name": "Mission 1",
+          "title": "Discovery",
+          "line": "An agent for anything. A direct line to anyone.",
+          "text": "Your agent talks to the other person's agent directly, with no platform in between. Even someone you could never reach will hear your proposal.",
+          "stops": [
+            "Nutritionist",
+            "Tutor",
+            "Sofa seller",
+            "Antique hunter",
+            "Inbox assistant",
+            "Consultant"
+          ]
+        },
+        {
+          "name": "Mission 2",
+          "title": "Honest reputation",
+          "line": "Built only from real deals.",
+          "text": "A review can come only from someone who had a real, paid deal with you. Nobody can rewrite that history — no platform, no competitor, not even you.",
+          "stops": [
+            "Paid deals only",
+            "No ordered smears",
+            "History can't be rewritten",
+            "Your name is yours"
+          ]
+        }
+      ]
+    },
+    "direction": {
+      "routes": [
+        "Mission 1 · Discovery",
+        "Mission 2 · Honest reputation"
+      ],
+      "ask": "Where to?",
+      "answer": "Join the movement — the information desk shows the way",
+      "answerMobile": "Join the movement",
+      "walk": "1 min",
+      "label": "To the information desk",
+      "text": "We are a movement for one simple thing: anyone on the planet can reach anyone through their agent and know the truth about them — a truth no one can buy, fake cheaply or rewrite. We offer you not a slogan but a direction, and it can only be travelled together.",
+      "line": "The internet gave everyone a voice. Bitcoin gave everyone money without a bank. Next: trust without a middleman."
+    },
     "claim": "From idea to revenue, 99% faster",
     "claimHint": "You work inside an infrastructure that is already tuned for speed and surrounded by everything a product needs, before you need it: from sign-in and multiple languages to plugging in ready solutions of other developers.",
     "claimHintLabel": "Why 99% faster?",

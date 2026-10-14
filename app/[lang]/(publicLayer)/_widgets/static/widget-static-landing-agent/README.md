@@ -179,3 +179,26 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   in the window from its question (long answers are read from the top). The machine copy (`markdown.ts`) turns those headings into
   bold lines so the document keeps its own levels.
 - **Model** (`_libs/help-desk.ts`): about 150 words in the same shape, `maxOutputTokens` 900; knowledge = llms-full.
+
+## Step 477 (2026-10-14): station of the future, then the board, the yellow sign and the help desk
+
+Owner's order of screens (verbatim): «второй экран — табло … под табло сделаем жёлтую вывеску куда двигаться, третьим экраном будет
+справочная служба». The former first screen (station sign with the «Open source» H1 and the agents chat) now stands under the help desk:
+what to do with it is the owner's later decision («пока непонятно, что сделать с нашим главным экраном»).
+
+- **Station of the future** (`station-facade.tsx`, first screen; words `landing.facade`): a 2400 × 900 SVG drawn at the full height of
+  the first screen, so the building is wider than the screen (8 : 3) — owner: «здание вокзала, которое на 50 % уходит за габариты
+  экрана». Centre: a classical portico (Roman law: the scales of justice in the pediment and BONA FIDES on the frieze), the clock with
+  the visitor's real time (the waiting room's `ClockHands`), a glass dome with an orbit and a beacon (cosmo-station). Sides: two
+  airport glass wings with hanging banners — «Mission 1 · Discovery» on the left wing, «Mission 2 · Honest reputation» on the right.
+  The banners and the «Entrance to the future» plate are HTML placed in the drawing's coordinates (percent of the drawing, type size
+  in `cqh`), so they read, translate and reach the machine copy.
+- **Mission 1 / Mission 2 buttons** (`facade-pan.client.tsx`, owner's names): yellow tabs at the screen edges; hover or focus slides
+  the big button out — left from left to right, right from right to left — and hides it again at rest, so the station stays visible.
+  The button of the mission already in view is disabled. A click pans the building in 1.1 s (instantly under reduced motion). Without
+  JavaScript the building is a plain horizontal scroll. Phones (< 768 px): the drawing is cropped to its centre (entrance and clock),
+  the two banners follow below one after another, no buttons.
+- **Yellow sign «Where to?»** (`direction-sign.tsx`, under the board; words `landing.direction`): the gate-sign anatomy (two chains,
+  routes = the two missions, question and answer, walking time, arrow), a link to `#help-desk`; under it the movement announcement and
+  the line «The internet gave everyone a voice…».
+- The machine copy (`markdown.ts`) follows the new order: station, board, yellow sign, help desk, station sign, then the rest.

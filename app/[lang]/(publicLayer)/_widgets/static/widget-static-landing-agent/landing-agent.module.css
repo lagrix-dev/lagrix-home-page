@@ -1529,3 +1529,162 @@
   .lampGlow, .lampDome, .xrLamp { animation: none !important; }
   .xrRow { transition: none; }
 }
+
+/* ── 477 (владелец 2026-10-14): ВОКЗАЛ БУДУЩЕГО — первый экран ─────────────────────────────────────────────────────────────────
+   Здание шире экрана: рисунок 2400 × 900 стоит во всю высоту первого экрана, его ширина — по пропорции (8 : 3), лишнее уходит
+   вправо за край, вид двигается горизонтальной прокруткой (без JavaScript — сам посетитель, с ним — кнопки «Миссия 1/2»).
+   Растяжки миссий и вывеска входа — HTML в координатах рисунка: проценты от рисунка, кегль — от высоты рисунка (cqh). Цвета —
+   только роли вокзала. Телефон: рисунок обрезан по центру (вход и часы), растяжки идут под ним одна за другой, кнопок нет. */
+.facade { position: relative; background: var(--flapc); color: var(--chalk); border-bottom: 6px solid var(--chalk); }
+.facadeStage { position: relative; }
+.facadeView {
+  height: calc(100svh - 3.5rem - 1px); min-height: 34rem; max-height: 64rem;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.facadeView::-webkit-scrollbar { display: none; }
+.facadeTrack { position: relative; height: 100%; aspect-ratio: 8 / 3; container-type: size; }
+.facadeArt { position: absolute; inset: 0; }
+.facadeSvg { display: block; width: 100%; height: 100%; }
+
+.fSkyTop { stop-color: var(--flapc); }
+.fSkyBottom { stop-color: var(--board); }
+.fStar { fill: var(--chalk); }
+.fPlanet { fill: var(--poster); fill-opacity: 0.13; }
+.fPlanetRing { fill: none; stroke: var(--poster); stroke-opacity: 0.4; stroke-width: 3; }
+.fMoon { fill: var(--chalk); fill-opacity: 0.85; }
+.fGround { fill: var(--board-deep); }
+.fEdge { stroke: var(--chalk); stroke-opacity: 0.35; stroke-width: 3; }
+.fPaving { stroke: var(--chalk); stroke-opacity: 0.07; stroke-width: 2; }
+.fSpill { fill: var(--poster); fill-opacity: 0.16; }
+.fGlassTop { stop-color: var(--board-deep); }
+.fGlassBottom { stop-color: color-mix(in oklab, var(--poster) 30%, var(--board)); }
+.fReflect { fill: var(--chalk); fill-opacity: 0.05; }
+.fMullion { stroke: var(--chalk); stroke-opacity: 0.3; stroke-width: 3; }
+.fTransom { stroke: var(--chalk); stroke-opacity: 0.18; stroke-width: 2; }
+.fTree { fill: none; stroke: var(--chalk); stroke-opacity: 0.55; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.fRoof { fill: var(--chalk); }
+.fRoofEdge { fill: color-mix(in oklab, var(--chalk) 65%, var(--board)); }
+.fCable { stroke: var(--chalk); stroke-opacity: 0.8; stroke-width: 2; }
+.fStone { fill: var(--chalk); }
+.fStoneShade { fill: color-mix(in oklab, var(--chalk) 80%, var(--board)); }
+.fStoneDeep { fill: color-mix(in oklab, var(--chalk) 35%, var(--board)); }
+.fDoorIn { stop-color: var(--poster); }
+.fDoorOut { stop-color: color-mix(in oklab, var(--poster) 45%, var(--board-deep)); }
+.fDoorFrame { fill: none; stroke: var(--chalk); stroke-width: 6; }
+.fFlute { stroke: color-mix(in oklab, var(--chalk) 70%, var(--board)); stroke-width: 2; }
+.fInscription { fill: var(--board); font-family: var(--display); font-weight: 700; font-size: 25px; letter-spacing: 0.55em; }
+.fEmblem { fill: none; stroke: var(--board); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.fEmblemPin { fill: var(--board); }
+.fClockFace { fill: var(--poster); }
+.fClockRim { fill: none; stroke: var(--ink); stroke-width: 6; }
+.fClockTick { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.fClockPin { fill: var(--ink); }
+.fDome { fill: var(--poster); fill-opacity: 0.16; stroke: var(--chalk); stroke-opacity: 0.8; stroke-width: 3; }
+.fDomeGrid { fill: none; stroke: var(--chalk); stroke-opacity: 0.35; stroke-width: 2; }
+.fSpire { stroke: var(--chalk); stroke-width: 4; stroke-linecap: round; }
+.fBeacon { fill: var(--poster); }
+.fBeaconGlow { fill: var(--poster); opacity: 0.25; transform-box: fill-box; transform-origin: center; animation: fBeacon 2.6s ease-in-out infinite; }
+@keyframes fBeacon { 0%, 100% { opacity: 0.1; scale: 0.8; } 50% { opacity: 0.4; scale: 1.25; } }
+.fOrbitBack { fill: none; stroke: var(--poster); stroke-opacity: 0.3; stroke-width: 3; }
+.fOrbitFront { fill: none; stroke: var(--poster); stroke-opacity: 0.85; stroke-width: 3; }
+.fSat { fill: var(--chalk); }
+
+/* Вывеска входа: эмалевая табличка на двух цепочках под антаблементом, как «Open source» на вывеске станции. */
+.facadeEntrance { position: absolute; z-index: 2; left: 50%; top: 48%; translate: -50% 0; padding-top: 3cqh; --rod: var(--chalk); }
+.entranceRods::before, .entranceRods::after {
+  content: ""; position: absolute; top: 0; width: 3px; height: 3cqh;
+  background: repeating-linear-gradient(to bottom, var(--rod) 0 5px, transparent 5px 8px);
+}
+.entranceRods::before { left: 18%; }
+.entranceRods::after { right: 18%; }
+.entrancePlate {
+  display: inline-flex; align-items: center; gap: 0.6em; padding: 0.5em 1.1em 0.5em 0.55em; white-space: nowrap;
+  background: var(--chalk); color: var(--board); border-radius: var(--tile-corner);
+  box-shadow: inset 0 0 0 2px var(--chalk), inset 0 0 0 4px var(--board), 0 4px 0 var(--board-deep);
+  font-family: var(--display); font-weight: 700; font-size: max(1rem, 2.5cqh); line-height: 1; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.entranceMark { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; background: var(--board); color: var(--chalk); border-radius: var(--tile-corner); }
+
+/* Растяжки миссий на стеклянных стенах крыльев: жёлтая ткань с тёмным подгибом сверху, висит на двух тросах рисунка. */
+.mission {
+  position: absolute; z-index: 2; top: 41.3%; width: 26.67%;
+  padding: 2.2cqh 2.4cqh 2.6cqh; background: var(--poster); color: var(--ink); border-top: 0.8cqh solid var(--ink);
+  border-radius: 0 0 var(--tile-corner) var(--tile-corner); box-shadow: 0 2cqh 4cqh -2.5cqh var(--shade); font-family: var(--text);
+}
+.mission[data-side="left"] { left: 5.42%; }
+.mission[data-side="right"] { right: 5.42%; }
+.missionKicker { display: flex; align-items: center; gap: 0.6em; font-family: var(--display); font-weight: 700; font-size: max(0.95rem, 2.2cqh); line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; }
+.missionNum { display: inline-grid; place-items: center; width: 1.8em; height: 1.8em; background: var(--ink); color: var(--poster); border-radius: var(--tile-corner); }
+.missionTitle { margin-top: 1.2cqh; font-family: var(--display); font-weight: 700; font-size: max(1.8rem, 5.4cqh); line-height: 0.98; }
+.missionLine { margin-top: 0.8cqh; font-family: var(--display); font-weight: 600; font-size: max(1.05rem, 2.6cqh); line-height: 1.15; }
+.missionText { margin-top: 1.2cqh; font-size: max(0.95rem, 2cqh); line-height: 1.45; color: var(--ink-soft); }
+.missionStops { display: flex; flex-wrap: wrap; gap: 0.8cqh; margin-top: 1.6cqh; padding: 0; list-style: none; }
+.missionStops li {
+  padding: 0.45em 0.7em; background: var(--ink); color: var(--poster); border-radius: var(--tile-corner);
+  font-family: var(--display); font-weight: 600; font-size: max(0.85rem, 1.75cqh); line-height: 1; white-space: nowrap;
+}
+
+/* Кнопки «Миссия 1» и «Миссия 2» (слово владельца): жёлтые ярлычки у краёв экрана; наведение или фокус выдвигает крупную кнопку
+   — левую слева направо, правую справа налево; в покое она уходит за край и не закрывает вокзал. Миссия в фокусе — недоступна. */
+.edgeBtn {
+  position: absolute; z-index: 4; top: 50%; display: inline-flex; align-items: stretch; height: 5.2rem; padding: 0; border: 0;
+  background: var(--poster); color: var(--ink); cursor: pointer; box-shadow: 0 12px 28px -14px var(--shade);
+  font-family: var(--display); font-weight: 800; font-size: 2.3rem; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
+}
+.edgeBtn[data-side="left"] { left: 0; border-radius: 0 var(--tile-corner) var(--tile-corner) 0; transform: translate(calc(-100% + 3.6rem), -50%); }
+.edgeBtn[data-side="right"] { right: 0; border-radius: var(--tile-corner) 0 0 var(--tile-corner); transform: translate(calc(100% - 3.6rem), -50%); }
+.edgeBtn:not(:disabled):hover, .edgeBtn:focus-visible { transform: translate(0, -50%); }
+.edgeBtn:disabled { opacity: 0.45; cursor: default; }
+.edgeBtn:focus-visible { outline: 3px solid var(--chalk); outline-offset: 3px; }
+.edgeLabel { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0 1.2rem 0 1.6rem; }
+.edgeBtn[data-side="right"] .edgeLabel { padding: 0 1.6rem 0 1.2rem; }
+.edgeTab { display: grid; place-items: center; width: 3.6rem; flex: none; }
+.edgeNum { display: inline-grid; place-items: center; width: 2.3rem; height: 2.3rem; background: var(--ink); color: var(--poster); border-radius: var(--tile-corner); font-size: 1.35rem; letter-spacing: 0; }
+
+@media (max-width: 767px) {
+  .facadeView { height: auto; min-height: 0; max-height: none; overflow: visible; }
+  .facadeTrack { height: auto; aspect-ratio: auto; container-type: normal; padding-bottom: 1.5rem; }
+  .facadeArt { position: relative; inset: auto; height: 56svh; overflow: hidden; }
+  .facadeSvg { position: absolute; top: 0; left: 50%; height: 100%; width: calc(56svh * 8 / 3); translate: -50% 0; }
+  .facadeEntrance { padding-top: 1.4rem; }
+  .entranceRods::before, .entranceRods::after { height: 1.4rem; }
+  .entrancePlate { font-size: 0.95rem; }
+  .mission { position: relative; top: auto; width: auto; margin: 1rem 1rem 0; padding: 1rem 1.1rem 1.2rem; border-top-width: 0.4rem; }
+  .mission[data-side="left"], .mission[data-side="right"] { left: auto; right: auto; }
+  .missionKicker { font-size: 0.95rem; }
+  .missionTitle { margin-top: 0.6rem; font-size: 1.9rem; }
+  .missionLine { margin-top: 0.4rem; font-size: 1.1rem; }
+  .missionText { margin-top: 0.6rem; font-size: 1rem; }
+  .missionStops { gap: 0.4rem; margin-top: 0.8rem; }
+  .missionStops li { font-size: 0.85rem; }
+  .edgeBtn { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fBeaconGlow { animation: none; }
+  .fSat { display: none; }
+  .edgeBtn { transition: none; }
+}
+
+/* ── 477: жёлтая вывеска «куда двигаться» под табло — анатомия указателя к гейтам; ссылка в справочную службу ─────────────── */
+.direction { padding: 0.5rem 0 3.5rem; background: var(--floor); }
+.dirSign { display: block; position: relative; padding-top: 2rem; color: var(--ink); text-decoration: none; --rod: var(--ink); }
+.dirBar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem;
+  padding: 0.55rem 0.6rem 0.55rem 0.55rem; background: var(--poster); color: var(--ink); border-radius: var(--tile-corner);
+  box-shadow: 0 14px 26px -18px var(--shade); font-family: var(--display); font-weight: 700;
+}
+.dirExit { display: flex; flex: 1 1 auto; align-items: center; justify-content: flex-end; gap: 0.75rem; }
+.dirAnswer { display: none; font-size: 1.3rem; }
+.dirAnswerMobile { font-size: 1.1rem; }
+.dirSign:hover .gateArrow { transform: translateY(3px); }
+.dirSign:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: var(--tile-corner); }
+.dirText { margin-top: 1.8rem; max-width: 64ch; font-size: 1.2rem; line-height: 1.6; color: var(--ink); }
+.dirLine { margin-top: 0.9rem; font-family: var(--display); font-weight: 600; font-size: 1.1rem; letter-spacing: 0.02em; color: var(--ink-soft); }
+@media (min-width: 1024px) {
+  .dirBar { padding: 0.7rem 1rem 0.7rem 0.7rem; }
+  .dirAnswer { display: block; }
+  .dirAnswerMobile { display: none; }
+  /* 477: вывеска станции теперь стоит под справочной службой — место под её висящую табличку к чату у зала ожидания. */
+  .sign + .waiting { padding-top: 11rem; }
+}

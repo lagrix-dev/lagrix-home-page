@@ -27,33 +27,33 @@ export function markdown(lang: string): string {
     if (q && a) out.push(`### ${q.trim()}`, "", a.trim(), "")
   }
 
-  // Первый экран: табличка H1 (453-2, звёздочки в данных — выделение, в Markdown — жирный), приглашение, подсказка, указатель к чату.
-  const plate = (x as typeof x & { openSource?: string }).openSource
-  if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
-  para(x.titleSub)
-  para(x.launchBanner)
-  qa(x.titleSubHintLabel, x.titleSubHint)
-  if (x.gate) {
-    list(x.gate.routes)
-    qa(x.gate.ask, x.gate.answer)
+  // 477 (владелец 2026-10-14): первый экран — вокзал будущего: вывеска входа и растяжки двух миссий на крыльях.
+  if (x.facade) {
+    const f = x.facade
+    head(2, f.label)
+    para(f.entrance)
+    for (const m of f.missions) {
+      head(3, `${m.name} · ${m.title}`)
+      para(m.line, m.text)
+      list(m.stops)
+    }
   }
-  // 467-4: строка табло «Отправление из» — видна на первом экране.
+
+  // 467-4: строка табло «Отправление из» — видна на табло.
   if (x.board?.from && x.board.fromValue) list([`${x.board.from}: ${x.board.fromValue}`])
 
-  // Чат-пример: кто что сказал, по порядку.
-  if (x.chat?.items?.length) {
-    head(2, x.chat.label)
-    for (const m of x.chat.items) {
-      // 456: протокол реплики — как на значке чата (у гостя сайта — слова из данных, у остальных — код протокола).
-      const badge = m.contract === "guest" ? x.chat.contractLabels.guest : m.contract
-      if (m.text) out.push(`**${m.who}** (${badge}): ${m.text.trim()}`, "")
-      if (m.steps?.length) list(m.steps)
-      if (m.checks?.length) list(m.checks)
-    }
-    if (x.chat.endCta) out.push(`[${x.chat.endCta.label}](${x.chat.endCta.href})`, "")
+  head(2, x.claim)
+  qa(x.claimHintLabel, x.claimHint)
+
+  // 477: под табло — жёлтая вывеска «куда двигаться» и объявление движения.
+  if (x.direction) {
+    const d = x.direction
+    list(d.routes)
+    qa(d.ask, d.answer)
+    para(d.text, d.line)
   }
 
-  // 469: справочное бюро на странице — сразу под первым экраном, над табло; копия следует порядку страницы.
+  // 477: справочная служба — третий экран (под табло и жёлтой вывеской); копия следует порядку страницы.
   if (x.helpDesk) {
     const d = x.helpDesk
     // 471-3: ответы вывесок размечены «# …» / «## …» для окна бюро; в копии страницы они ниже «### вопрос», поэтому их заголовки
@@ -67,8 +67,29 @@ export function markdown(lang: string): string {
     if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
   }
 
-  head(2, x.claim)
-  qa(x.claimHintLabel, x.claimHint)
+  // Вывеска станции (прежний первый экран, с 477 — под справочной службой): табличка H1 (453-2, звёздочки — выделение, в Markdown —
+  // жирный), приглашение, подсказка, указатель к чату.
+  const plate = (x as typeof x & { openSource?: string }).openSource
+  if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
+  para(x.titleSub)
+  para(x.launchBanner)
+  qa(x.titleSubHintLabel, x.titleSubHint)
+  if (x.gate) {
+    list(x.gate.routes)
+    qa(x.gate.ask, x.gate.answer)
+  }
+  // Чат-пример: кто что сказал, по порядку.
+  if (x.chat?.items?.length) {
+    head(2, x.chat.label)
+    for (const m of x.chat.items) {
+      // 456: протокол реплики — как на значке чата (у гостя сайта — слова из данных, у остальных — код протокола).
+      const badge = m.contract === "guest" ? x.chat.contractLabels.guest : m.contract
+      if (m.text) out.push(`**${m.who}** (${badge}): ${m.text.trim()}`, "")
+      if (m.steps?.length) list(m.steps)
+      if (m.checks?.length) list(m.checks)
+    }
+    if (x.chat.endCta) out.push(`[${x.chat.endCta.label}](${x.chat.endCta.href})`, "")
+  }
 
   if (x.waiting) {
     head(2, x.waiting.title)

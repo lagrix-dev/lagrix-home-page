@@ -9,6 +9,10 @@ export type Link = { label: string; href: string }
 type Block = { kind: string; id?: string; title?: string; text?: string; pill?: string; description?: string; cta?: Link; secondary?: Link }
 
 export type LandingExtra = {
+  /** 477 (владелец 2026-10-14): вокзал будущего — первый экран; портик с часами и весами, два стеклянных крыла с растяжками миссий. */
+  facade?: { label: string; scene: string; inscription: string; entrance: string; missions: { name: string; title: string; line: string; text: string; stops: string[] }[] }
+  /** 477: жёлтая вывеска «куда двигаться» под табло — ведёт в справочную службу; под ней объявление движения. */
+  direction?: { routes: string[]; ask: string; answer: string; answerMobile: string; walk: string; label: string; text: string; line: string }
   titleSub: string
   /** 453: полоса при прокрутке — «Запуск запланирован на конец 2026». */
   launchBanner?: string
