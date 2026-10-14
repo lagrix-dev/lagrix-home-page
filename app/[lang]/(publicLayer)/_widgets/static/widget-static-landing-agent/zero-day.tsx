@@ -8,6 +8,7 @@ import { ZeroDayStage } from "./zero-day-stage.client"
 // ПИКТОГРАММАМИ — так рисуют людей на указателях вокзалов и аэропортов, и так уже идут пассажиры у нижней кромки экрана. Силуэт
 // цвета чернил (`--ink`) без лица; профессию говорит один знак: фуражка с жёлтой кокардой, причёска, колпак повара, кепка и ключ,
 // пучок и жёлтая книга. Просвет между фуражкой и головой — цвет пола (`--floor`), как белые зазоры на пиктограммах.
+// Овчарка снята владельцем 2026-10-14: «персонажи полицейских оставить, собаку убрать».
 
 const STRIPES = [44, 84, 124, 164, 204, 244, 284, 324]
 
@@ -68,20 +69,6 @@ function Officers({ label, mirror }: { label?: string; mirror?: boolean }) {
         <Figure cx={184} />
         <Cap cx={184} />
         <path className={s.pictoAccent} d="M194 140 H208 V151 Q201 159 194 151 Z" />
-      </g>
-
-      {/* Немецкая овчарка пиктограммой: стоячие уши, длинная морда, спина уходит вниз к крупу, пушистый хвост опущен. */}
-      <g>
-        <path className={s.pictoTail} d="M258 286 Q236 300 238 334" />
-        <path className={s.pictoInk} d="M252 300 Q250 276 274 272 L328 262 Q348 262 350 282 L346 304 Q300 314 262 310 Z" />
-        <path className={s.pictoInk} d="M324 272 L338 230 Q346 214 362 216 L382 232 Q386 242 374 244 L356 246 Q350 264 346 282 Z" />
-        <path className={s.pictoInk} d="M338 220 L342 194 L354 216 Z" />
-        <path className={s.pictoInk} d="M350 216 L358 192 L364 214 Z" />
-        <circle className={s.pictoGap} cx={356} cy={228} r={2.6} />
-        <path className={s.pictoPaw} d="M338 300 L340 352" />
-        <path className={s.pictoPaw} d="M324 302 L322 352" />
-        <path className={s.pictoPaw} d="M270 300 L260 328 L266 352" />
-        <path className={s.pictoPaw} d="M284 304 L280 330 L286 352" />
       </g>
     </svg>
   )

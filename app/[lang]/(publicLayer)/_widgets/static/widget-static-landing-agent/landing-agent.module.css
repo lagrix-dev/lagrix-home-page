@@ -1816,34 +1816,26 @@
 .pictoTool { fill: none; stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
 .pictoGap { fill: var(--floor); }
 
-/* ── 477: картина финальной секции в стиле вокзала (`closing-art.tsx`) — в прежнем окне картинки справа. ─────────────────────── */
-.cArt { display: block; width: 100%; height: 100%; }
-.cRoute[data-tone="poster"] { --tone: var(--poster); }
-.cRoute[data-tone="go"] { --tone: var(--go); }
-.cRoute[data-tone="ring"] { --tone: var(--ring); }
-.cRouteGlow { fill: none; stroke: var(--tone); stroke-opacity: 0.22; stroke-width: 14; stroke-linecap: round; }
-.cRouteLine { fill: none; stroke: var(--tone); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 5px var(--tone)); }
-.cModule { fill: var(--board-deep); stroke: var(--chalk); stroke-width: 3; }
-.cWindow { fill: var(--poster); }
-.cStripe { fill: color-mix(in oklab, var(--chalk) 35%, var(--board-deep)); }
-.cAntenna { stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; }
-.cRing { fill: none; stroke: var(--poster); stroke-width: 12; }
-.cRingGlow { fill: none; stroke: var(--poster); stroke-opacity: 0.18; stroke-width: 34; }
-.cRingInner { fill: none; stroke: var(--chalk); stroke-opacity: 0.35; stroke-width: 3; }
-.cSpoke { stroke: var(--chalk); stroke-opacity: 0.5; stroke-width: 4; }
-.cHub { fill: color-mix(in oklab, var(--poster) 22%, var(--board-deep)); stroke: var(--chalk); stroke-width: 3; }
-.cShip { fill: var(--chalk); }
-@media (prefers-reduced-motion: reduce) { .cShip { display: none; } }
-
-/* ── 477: жёлтая вывеска «Счастливого пути в будущее» — висит на цепочках от нижнего края «Конвейера» над ночной сценой. ──────── */
-.farewell { display: flex; justify-content: center; padding: 0 1rem 2.6rem; background: linear-gradient(to bottom, var(--board), var(--board-deep)); }
-.farewellSign { position: relative; padding-top: 2rem; --rod: var(--chalk); }
+/* ── 477: жёлтая вывеска «Счастливого пути в будущее» — во всю ширину секции, как вывеска на табло (слово владельца), на цепочках;
+   фон — светлый пол: верх ночной сцены уходит в светлое (владелец: «уходить кверху в светлый градиент, чтобы отделить границу»). */
+.farewell { padding: 0 0 2.4rem; background: var(--floor); }
+.farewellSign { position: relative; padding-top: 2rem; --rod: var(--ink); }
 .farewellBar {
-  display: inline-flex; align-items: center; gap: 1rem; margin: 0; padding: 0.7rem 0.8rem 0.7rem 0.7rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 0; padding: 0.7rem 0.8rem 0.7rem 0.7rem;
   background: var(--poster); color: var(--ink); border-radius: var(--tile-corner); box-shadow: 0 14px 26px -18px var(--shade);
   font-family: var(--display); font-weight: 700;
 }
+.farewellLead { display: inline-flex; align-items: center; gap: 0.9rem; min-width: 0; }
 .farewellText { font-size: clamp(1.3rem, 2.6vw, 2.1rem); line-height: 1.1; }
 
 /* 477: нижняя полоса стекла зала поверх крабиков — они за стеклом, пока не выйдут в открытый проём. */
 .fHallTint { fill: var(--board-deep); opacity: 0.32; }
+
+/* 477 (владелец 2026-10-14): ночная сцена «А почему всё-таки Lagrix?» кверху уходит в светлое — граница с секцией выше видна. */
+.whyNight { background: linear-gradient(to bottom, var(--floor) 0, color-mix(in oklab, var(--floor) 35%, var(--board-deep)) 14%, var(--board-deep) 32%, var(--board) 78%); }
+
+/* 477: текст секции «Пересаживайся на инфраструктуру нулевого дня» — по центру. */
+.departCenter { text-align: center; }
+.departCenter .departTitle { margin-inline: auto; }
+.departCenter .departText { margin-inline: auto; }
+.departCenter .routeTo { justify-content: center; }

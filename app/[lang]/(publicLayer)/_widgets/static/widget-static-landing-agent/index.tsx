@@ -7,6 +7,7 @@ import "@fontsource/barlow/600.css"
 import "@fontsource-variable/jetbrains-mono"
 import { ArrowDown, ArrowRight, ArrowUp, Check, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
 import { landingWords, type LandingExtra } from "./words"
+import { StaticImage } from "@/components/media/static-image.server"
 import s from "./landing-agent.module.css"
 import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
@@ -22,7 +23,6 @@ import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
 import { FirstScreen } from "./first-screen"
-import { ClosingArt } from "./closing-art"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -341,14 +341,25 @@ export function LandingAgent({ lang }: { lang: string }) {
 
       <section data-block="xsind" className={s.depart}>
         {x.closingImage && (
-          // Как на главной (333-11): на широком экране картина справа во всю высоту экрана, левая половина уходит в цвет табло.
-          // 477 (владелец 2026-10-14): растр `agi-journey.jpg` заменён рисунком в стиле вокзала (`closing-art.tsx`), смысл тот же.
+          // Как на главной (333-11): на широком экране картинка справа во всю высоту экрана, ширина — по её пропорции;
+          // правая половина видна целиком, левая уходит в цвет табло. 477: рисунок в стиле вокзала владелец отклонил («не выдерживает
+          // критики, вернее предыдущее изображение») — снова растр `agi-journey.jpg`.
           <div data-block="do4s8" className={s.departArt}>
-            <ClosingArt label={x.closingImage.alt} />
+            <StaticImage src={x.closingImage.src} alt={x.closingImage.alt} fill sizes="(min-width: 1024px) 180vh, 1px" className={s.departImg} />
           </div>
         )}
-        <div data-block="j6lny" className={s.wrap}>
-          <h2 data-block="cxgfo" className={s.departTitle}>{b.closing}</h2>
+        {/* 477 (владелец 2026-10-14): текст секции «Пересаживайся на инфраструктуру нулевого дня» — по центру; слова «инфраструктуру
+            нулевого дня» — выделением, как прежде на первом экране, и ссылкой к разделу «Инфраструктура нулевого дня». */}
+        <div data-block="j6lny" className={`${s.wrap} ${s.departCenter}`}>
+          <h2 data-block="cxgfo" className={s.departTitle}>
+            {x.titleSubLink && b.closing.includes(x.titleSubLink.text) ? (
+              <>
+                {b.closing.slice(0, b.closing.indexOf(x.titleSubLink.text))}
+                <a href={x.titleSubLink.href} className={s.subLink}>{x.titleSubLink.text}</a>
+                {b.closing.slice(b.closing.indexOf(x.titleSubLink.text) + x.titleSubLink.text.length)}
+              </>
+            ) : b.closing}
+          </h2>
           {/* Владелец 2026-09-30, «очень аккуратно»: назначение маршрута — узкая строка табло между заголовком и текстом. */}
           {x.route && (
             <p data-block="krxcw" className={s.routeTo}>
@@ -370,13 +381,17 @@ export function LandingAgent({ lang }: { lang: string }) {
           пути в будущее”» — вывеска висит на цепочках от нижнего края «Конвейера» над ночной сценой с поездом. */}
       {x.farewell && (
         <section data-block="iwna2" className={s.farewell}>
-          <div data-block="ik01i" className={s.farewellSign}>
-            <span className={s.gateRods} aria-hidden="true" />
-            <p data-block="mngh2" className={s.farewellBar}>
-              <span className={s.gateIcon} aria-hidden="true"><TrainFront className="size-5" strokeWidth={2.4} /></span>
-              <span className={s.farewellText}>{x.farewell.text}</span>
-              <span className={s.gateArrow} aria-hidden="true"><ArrowDown strokeWidth={3} /></span>
-            </p>
+          <div className={s.wrap}>
+            <div data-block="ik01i" className={s.farewellSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <p data-block="mngh2" className={s.farewellBar}>
+                <span className={s.farewellLead}>
+                  <span className={s.gateIcon} aria-hidden="true"><TrainFront className="size-5" strokeWidth={2.4} /></span>
+                  <span className={s.farewellText}>{x.farewell.text}</span>
+                </span>
+                <span className={s.gateArrow} aria-hidden="true"><ArrowDown strokeWidth={3} /></span>
+              </p>
+            </div>
           </div>
         </section>
       )}
