@@ -192,6 +192,7 @@ export function LandingAgent({ lang }: { lang: string }) {
               </li>
             ))}
           </ol>
+          {x.canNote && <p data-block="cn480" className={s.posterNote}>{x.canNote}</p>}
         </div>
       </section>
 

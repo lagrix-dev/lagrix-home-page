@@ -96,6 +96,7 @@ export function markdown(lang: string): string {
   }
 
   list(x.cards)
+  if (x.canNote) para(x.canNote)
 
   if (x.ticket) {
     head(2, x.ticket.kicker)

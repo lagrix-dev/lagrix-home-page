@@ -33,6 +33,8 @@ export type LandingExtra = {
   claimHint: string
   claimHintLabel: string
   cards: string[]
+  /** Сноска под табло «Что в итоге» (владелец 2026-10-14): путь честного исполнителя к месту супер-узла, запись 31 журнала. */
+  canNote?: string
   chips: string[]
   /** Секция «Fractera vs LLM» (владелец 2026-09-30): два табло — пеший маршрут и магистраль; станций карты ровно четыре. */
   compare?: {
