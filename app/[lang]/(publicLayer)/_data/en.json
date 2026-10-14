@@ -92,10 +92,10 @@
           "stops": [
             "Paid deals only",
             "No smears",
-            "History can't be rewritten",
-            "100% privacy",
             "Absolute rating",
-            "Personal brand"
+            "History can't be rewritten",
+            "Personal brand",
+            "100% privacy"
           ]
         }
       ],
