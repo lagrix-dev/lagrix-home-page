@@ -17,14 +17,15 @@ import { CrabShape } from "./crab"
 const SPEED = 80
 const ROW = [798, 762, 726]
 const SCALE = 1.2
-// Сторона, откуда бежит, место в пирамиде, флажок (сторона и высота) — флажки по обе стороны пирамиды, у каждого своя высота.
+// Сторона, откуда бежит, место в пирамиде, флажок (сторона и высота) — флажки по обе стороны пирамиды, у каждого своя высота;
+// все ниже таблички «Вход в будущее» (замерено: на 660 верхние флажки уходили под неё).
 const SPEC = [
-  { start: 880, edge: 1100, tx: 1370, row: 0, flagSide: -1, flagY: 740 },
-  { start: 810, edge: 1100, tx: 1405, row: 1, flagSide: -1, flagY: 700 },
-  { start: 740, edge: 1100, tx: 1440, row: 2, flagSide: -1, flagY: 660 },
-  { start: 2000, edge: 1780, tx: 1510, row: 0, flagSide: 1, flagY: 760 },
-  { start: 2070, edge: 1780, tx: 1440, row: 0, flagSide: 1, flagY: 720 },
-  { start: 2140, edge: 1780, tx: 1475, row: 1, flagSide: 1, flagY: 680 },
+  { start: 880, edge: 1100, tx: 1370, row: 0, flagSide: -1, flagY: 748 },
+  { start: 810, edge: 1100, tx: 1405, row: 1, flagSide: -1, flagY: 712 },
+  { start: 740, edge: 1100, tx: 1440, row: 2, flagSide: -1, flagY: 676 },
+  { start: 2000, edge: 1780, tx: 1510, row: 0, flagSide: 1, flagY: 766 },
+  { start: 2070, edge: 1780, tx: 1440, row: 0, flagSide: 1, flagY: 730 },
+  { start: 2140, edge: 1780, tx: 1475, row: 1, flagSide: 1, flagY: 694 },
 ] as const
 const FLAG_INNER = { "-1": 1322, "1": 1558 } as const
 const FLAG_W = 92
@@ -39,6 +40,9 @@ export function DoorCrabs({ flag }: { flag: string }) {
   const [doors, setDoors] = useState(false)
   const [flags, setFlags] = useState(false)
   const active = useRef(false)
+  // Последнее назначенное положение каждого крабика — от него считается путь наружу.
+  const now = useRef(crabs)
+  now.current = crabs
 
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
 
@@ -93,14 +97,19 @@ export function DoorCrabs({ flag }: { flag: string }) {
       return
     }
     const v = ups()
-    // Спрыгнули на пол — и наружу, по своим крыльям, за стекло.
+    // Спрыгнули на пол — и бегут наружу по залу, видные целиком; в своём крыле — за стеклом, приглушённо; в конце пропадают.
+    // ✗ Замерено 2026-10-14: гасить прозрачность сразу — крабики исчезали за полсекунды, вместо того чтобы разбегаться.
     setCrabs((cs) => cs.map((c) => ({ ...c, y: ROW[0], dur: 0.25, walk: false })))
-    later(280, () => setCrabs((cs) => cs.map((c, i) => {
-      const out = SPEC[i].start < 1440 ? 300 : 2580
-      return { ...c, x: out, dur: Math.abs(out - c.x) / v, walk: true, o: 0 }
-    })))
-    later(700, () => setDoors(false))
-    later(280 + 9000, () => { if (!active.current) setCrabs(hidden()) })
+    SPEC.forEach((sp, i) => {
+      const from = now.current[i]?.x ?? sp.tx
+      const out = sp.start < 1440 ? 300 : 2580
+      const d1 = Math.abs(sp.edge - from) / v
+      const d2 = Math.abs(out - sp.edge) / v
+      later(280, () => setOne(i, { x: sp.edge, dur: d1, walk: true, o: 1 }))
+      later(280 + d1 * 1000, () => setOne(i, { x: out, dur: d2, walk: true, o: 0.5 }))
+      later(280 + (d1 + d2) * 1000, () => setOne(i, { o: 0, walk: false, dur: 0 }))
+    })
+    later(900, () => setDoors(false))
   }
 
   return (
