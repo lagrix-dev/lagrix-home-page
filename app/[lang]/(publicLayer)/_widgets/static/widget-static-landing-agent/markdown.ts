@@ -27,7 +27,14 @@ export function markdown(lang: string): string {
     if (q && a) out.push(`### ${q.trim()}`, "", a.trim(), "")
   }
 
-  // 477 (владелец 2026-10-14): первый экран — вокзал будущего: вывеска входа и растяжки двух миссий на крыльях.
+  // 477 (владелец 2026-10-14): первый экран — бейдж (H1) и надпись «Инфраструктура нулевого дня»; заголовок страницы пишет сборщик
+  // из блока героя. Звёздное небо — рисунок, слов в нём нет.
+  const plate = (x as typeof x & { openSource?: string }).openSource
+  if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
+  para(x.zeroDay?.title)
+  para(x.launchBanner)
+
+  // 477: второй экран — вокзал будущего: вывеска входа и растяжки двух миссий на крыльях.
   if (x.facade) {
     const f = x.facade
     head(2, f.label)
@@ -67,14 +74,7 @@ export function markdown(lang: string): string {
     if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
   }
 
-  // Вывеска станции (прежний первый экран, с 477 — под справочной службой): табличка H1 (453-2, звёздочки — выделение, в Markdown —
-  // жирный), приглашение, подсказка, указатель к чату.
-  const plate = (x as typeof x & { openSource?: string }).openSource
-  if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
-  para(x.titleSub)
-  para(x.launchBanner)
-  qa(x.titleSubHintLabel, x.titleSubHint)
-  // Чат-пример: кто что сказал, по порядку.
+  // Чат-пример (477: играет в окне бюро по зелёным вывескам-симуляциям): кто что сказал, по порядку.
   if (x.chat?.items?.length) {
     head(2, x.chat.label)
     for (const m of x.chat.items) {

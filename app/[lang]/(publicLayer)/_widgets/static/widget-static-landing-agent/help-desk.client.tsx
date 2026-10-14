@@ -8,6 +8,7 @@ import s from "./landing-agent.module.css"
 import { useVoiceRecorder, type VoiceStrings } from "@/_tools/tool-voice-input/client/use-voice-recorder"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { AgentChat, type AgentChatClass } from "./agent-chat.client"
 
 // 350: запись не длиннее 20 секунд (слово владельца); та же граница стоит в двери `/<lang>/api/help-desk/voice` (размер файла).
 const VOICE_SECONDS = 20
@@ -92,7 +93,14 @@ function Rich({ text }: { text: string }) {
   ))}</>
 }
 
-export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: string; voiceWords: VoiceStrings }) {
+// 477 (владелец 2026-10-14): «нажатие на кнопку симуляция одного проекта или симуляция важного человека должно запускать чат внутри
+// справочного бюро». Симуляция — тот же чат агентов (Анна и салон), что стоял на прежнем первом экране: окно бюро показывает его
+// с начала при каждом нажатии; вопрос с вывески или набранное сообщение возвращают окно к разговору с бюро.
+type SimChat = Pick<Parameters<typeof AgentChat>[0], "label" | "items" | "contractLabels"> & { back?: string }
+
+export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDeskWords; lang: string; voiceWords: VoiceStrings; sim?: SimChat; chatClasses?: Partial<Record<AgentChatClass, string>> }) {
+  const [simRun, setSimRun] = useState<number | null>(null)
+  const startSim = () => setSimRun((n) => (n ?? 0) + 1)
   const [text, setText] = useState("")
   const input = useRef<HTMLInputElement>(null)
   const log = useRef<HTMLDivElement>(null)
@@ -126,12 +134,14 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
   const ask = (q: string) => {
     const t = q.trim()
     if (!t || busy) return
+    setSimRun(null)
     if (error) clearError()
     void sendMessage({ text: t })
   }
   // Вывеска — готовый ответ прямо в ленту.
   const quick = (q: string, answer: string) => {
     if (busy) return
+    setSimRun(null)
     if (error) clearError()
     const n = Date.now().toString(36)
     setMessages((prev) => [
@@ -167,20 +177,27 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
   )
 
   // 477: зелёная вывеска-симуляция — ссылка к чату-примеру (та же цепочка, цвет «прибытие» `--go`), первая в своей колонке.
-  const sim = (block: string, item?: { label: string; href: string }) => item && (
+  const simSign = (block: string, item?: { label: string; href: string }) => item && (
     <li data-block={block} className={s.deskSign} data-look="sim">
       <span className={s.deskSignRods} aria-hidden="true" />
-      <a href={item.href} className={s.deskSignPlate}>
-        <Play className="size-5" strokeWidth={2.4} aria-hidden="true" />
-        {item.label}
-      </a>
+      {sim ? (
+        <Button variant="bare" size="bare" type="button" className={s.deskSignPlate} onClick={startSim}>
+          <Play className="size-5" strokeWidth={2.4} aria-hidden="true" />
+          {item.label}
+        </Button>
+      ) : (
+        <a href={item.href} className={s.deskSignPlate}>
+          <Play className="size-5" strokeWidth={2.4} aria-hidden="true" />
+          {item.label}
+        </a>
+      )}
     </li>
   )
 
   return (
     <div data-block="hd3g1" className={s.deskGrid}>
       <ul data-block="hd3l1" className={s.deskSigns} data-side="left">
-        {sim("hd3s7", w.simulations?.project)}
+        {simSign("hd3s7", w.simulations?.project)}
         {w.questions.slice(0, half).map((q, i) => sign(q, i))}
         {main("hd3d1", "go", w.departure)}
       </ul>
@@ -195,34 +212,45 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
         </div>
 
         <div data-block="hd3b1" className={s.kioskBody}>
-          <div data-block="hd3w1" ref={log} className={s.kioskWindow} aria-live="polite">
-            <p data-block="hd3m1" className={s.kioskMsg}>
-              <span className={s.kioskWho}>{w.who}</span>
-              {w.greeting}
-            </p>
-            {messages.map((m) => (
-              <p data-block="hd3m2" key={m.id} data-mid={m.id} className={s.kioskMsg} data-me={m.role === "user" ? "" : undefined}>
-                <span className={s.kioskWho}>{m.role === "user" ? w.you : w.who}</span>
-                {m.role === "user" ? <Linked text={textOf(m)} /> : <Rich text={textOf(m)} />}
-              </p>
-            ))}
-            {status === "submitted" && (
-              <p data-block="hd3m3" className={s.kioskMsg} data-wait="">
+          {simRun !== null && sim ? (
+            <div data-block="hd3s9" className={s.kioskSimWindow}>
+              <AgentChat key={simRun} label={sim.label} items={sim.items} contractLabels={sim.contractLabels} classes={chatClasses} />
+            </div>
+          ) : (
+            <div data-block="hd3w1" ref={log} className={s.kioskWindow} aria-live="polite">
+              <p data-block="hd3m1" className={s.kioskMsg}>
                 <span className={s.kioskWho}>{w.who}</span>
-                {w.thinking}
+                {w.greeting}
               </p>
-            )}
-            {failure && (
-              <p data-block="hd3m4" className={s.kioskMsg} data-fail="">
-                <span className={s.kioskWho}>{w.who}</span>
-                {failure}
-              </p>
-            )}
-          </div>
+              {messages.map((m) => (
+                <p data-block="hd3m2" key={m.id} data-mid={m.id} className={s.kioskMsg} data-me={m.role === "user" ? "" : undefined}>
+                  <span className={s.kioskWho}>{m.role === "user" ? w.you : w.who}</span>
+                  {m.role === "user" ? <Linked text={textOf(m)} /> : <Rich text={textOf(m)} />}
+                </p>
+              ))}
+              {status === "submitted" && (
+                <p data-block="hd3m3" className={s.kioskMsg} data-wait="">
+                  <span className={s.kioskWho}>{w.who}</span>
+                  {w.thinking}
+                </p>
+              )}
+              {failure && (
+                <p data-block="hd3m4" className={s.kioskMsg} data-fail="">
+                  <span className={s.kioskWho}>{w.who}</span>
+                  {failure}
+                </p>
+              )}
+            </div>
+          )}
+          {simRun !== null && sim?.back && (
+            <Button variant="bare" size="bare" type="button" className={s.kioskBack} onClick={() => setSimRun(null)}>{sim.back}</Button>
+          )}
 
           <ul data-block="hd3c1" className={s.kioskChips}>
             {w.simulations && [w.simulations.project, w.simulations.person].map((it) => (
-              <li data-block="hd3c5" key={it.label}><a href={it.href} className={s.kioskChip} data-sim="">{it.label}</a></li>
+              <li data-block="hd3c5" key={it.label}>{sim
+                ? <Button variant="bare" size="bare" type="button" className={s.kioskChip} data-sim="" onClick={startSim}>{it.label}</Button>
+                : <a href={it.href} className={s.kioskChip} data-sim="">{it.label}</a>}</li>
             ))}
             <li data-block="hd3c3"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-go="" onClick={() => quick(w.departure.question, w.departure.answer)} disabled={busy}>{w.departure.label}</Button></li>
             <li data-block="hd3c4"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-transfer="" onClick={() => quick(w.transfer.question, w.transfer.answer)} disabled={busy}>{w.transfer.label}</Button></li>
@@ -267,7 +295,7 @@ export function HelpDesk({ w, lang, voiceWords }: { w: HelpDeskWords; lang: stri
       </div>
 
       <ul data-block="hd3l2" className={s.deskSigns} data-side="right">
-        {sim("hd3s8", w.simulations?.person)}
+        {simSign("hd3s8", w.simulations?.person)}
         {w.questions.slice(half).map((q, i) => sign(q, i + half))}
         {main("hd3d2", "transfer", w.transfer)}
       </ul>

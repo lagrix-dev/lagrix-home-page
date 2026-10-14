@@ -776,11 +776,11 @@
       "simulations": {
         "project": {
           "label": "Simulation of one project",
-          "href": "#agent-chat"
+          "href": "#help-desk"
         },
         "person": {
           "label": "Simulation: finding an important person",
-          "href": "#agent-chat"
+          "href": "#help-desk"
         }
       }
     },

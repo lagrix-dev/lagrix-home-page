@@ -67,6 +67,8 @@ const ALLOWED_RAW_HEADINGS = new Set([
   // Вокзал будущего того же лендинга (шаг 477): растяжки миссий на стеклянных крыльях — заголовки в оформлении страницы, кегль от
   // высоты рисунка (cqh), а не шкалы примитива.
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "station-facade.tsx"),
+  // Новый первый экран того же лендинга (шаг 477): бейдж (H1) и заголовок во всю ширину на звёздном небе — в оформлении страницы.
+  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "first-screen.tsx"),
 ])
 
 // 🔒 ПОЛЯ ВВОДА УМЕНЬШАЮТ ТЕКСТ НАМЕРЕННО — И ЭТО НЕ ТА ОШИБКА, ЧТО ИЩЕТ СТОРОЖ.

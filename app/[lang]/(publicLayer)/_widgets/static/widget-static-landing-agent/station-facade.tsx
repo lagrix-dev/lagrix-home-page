@@ -3,6 +3,7 @@ import s from "./landing-agent.module.css"
 import { FacadePan } from "./facade-pan.client"
 import { ClockHands } from "./clock-hands.client"
 import type { LandingExtra } from "./words"
+import { starField } from "./stars"
 
 // ВОКЗАЛ БУДУЩЕГО — ПЕРВЫЙ ЭКРАН ГЛАВНОЙ (узел, шаг 477). Владелец 2026-10-14: «здание вокзала, которое на 50 % уходит за габариты
 // экрана … конечно же часы … космовокзал будущего … от центрального входа висит вывеска входа в будущее … два широких крыла …
@@ -18,12 +19,8 @@ import type { LandingExtra } from "./words"
 type Facade = NonNullable<LandingExtra["facade"]>
 
 const W = 2880
-// Звёзды — постоянный рисунок (детерминированный ряд), а не данные.
-const STARS: [number, number, number, number][] = (() => {
-  let seed = 7
-  const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647
-  return Array.from({ length: 84 }, () => [Math.round(r() * W), Math.round(r() * 300), +(1 + r() * 1.8).toFixed(1), +(0.35 + r() * 0.6).toFixed(2)])
-})()
+// Звёзды — общий ряд неба вокзала (`stars.ts`): тот же, что у первого экрана.
+const STARS = starField(84, W, 300)
 
 // Крыло: стекло x 50…1090, верх 336…340, пол 800. Растяжка внутри — отступ 48 со всех сторон: x 98…1042, y 388…752.
 const WING_GLASS = "50,336 1090,340 1090,800 50,800"

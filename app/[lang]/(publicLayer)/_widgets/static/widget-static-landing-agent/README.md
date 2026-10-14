@@ -212,3 +212,12 @@ Owner's order of screens (verbatim): «второй экран — табло �
   island; without JavaScript both light); the «Entrance to the future» plate is a link to the board (`#board`); on wide screens the
   help desk kiosk stretches to the height of the row set by the sign columns and the chat window takes the free space (at least the
   former 17rem).
+- **New first screen** (`first-screen.tsx`, owner 2026-10-14: «создаём новый первый экран взамен того, который мы удалим»): the
+  «Open source» plate (H1) centred, the title across the full width, the label «Zero-day infrastructure» (the zero-day section title,
+  link to `#zero-day`), on the same starry sky as the station (`stars.ts` — one star field for both; the sky colour is the top of
+  the facade sky, so the border is invisible). Height: the device screen minus the header. The station becomes the second screen,
+  the board the third. **The former first screen (station sign with the chat) is removed**; the old yellow sign on the board now
+  leads to the help desk.
+- **Simulations in the help desk** (owner: «нажатие на кнопку симуляции … должно запускать чат внутри справочного бюро»): the green
+  signs (and phone chips) are buttons; each press plays the agents chat (Anna and the salon) from the start inside the kiosk window,
+  at the window size; a question sign, a typed message or the green «Ask the information desk» button returns to the desk dialogue.

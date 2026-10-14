@@ -5,9 +5,8 @@ import "@fontsource/barlow/400.css"
 import "@fontsource/barlow/500.css"
 import "@fontsource/barlow/600.css"
 import "@fontsource-variable/jetbrains-mono"
-import { ArrowDown, ArrowRight, ArrowUp, Check, Code, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
+import { ArrowDown, ArrowRight, ArrowUp, Check, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
 import { landingWords, type LandingExtra } from "./words"
-import { AgentChat } from "./agent-chat.client"
 import { StaticImage } from "@/components/media/static-image.server"
 import s from "./landing-agent.module.css"
 import { SplitFlap } from "./split-flap.client"
@@ -23,6 +22,7 @@ import { HelpDesk } from "./help-desk.client"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
+import { FirstScreen } from "./first-screen"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -36,7 +36,8 @@ const BARS: [number, number][] = (() => {
   return out
 })()
 
-// Чат агентов главной (333-12) — тот же островок, свой вид: классы этого виджета вместо классов главной.
+// Чат агентов (333-12) — тот же островок, свой вид: классы этого виджета вместо классов главной. 477: играет в окне справочного
+// бюро по зелёным вывескам-симуляциям (прежний первый экран с чатом снят владельцем).
 const chatClasses = {
   chat: s.chat, chatHead: s.chatHead, chatDot: s.chatDot, chatLog: s.chatLog, chatContent: s.chatContent,
   chatMsg: s.chatMsg, msgMeta: s.msgMeta, msgMetaRight: s.msgMetaRight, msgWho: s.msgWho, msgAvatar: s.msgAvatar,
@@ -60,13 +61,14 @@ export function LandingAgent({ lang }: { lang: string }) {
   // 469 (владелец 2026-10-13): четвёртое направление «Мессенджер» — табло держит до четырёх строк (подсветка пути в CSS — до 4).
   const outcomes = x.outcomes.slice(0, 4)
   const openSource = (x as LandingExtra & { openSource?: string }).openSource
-  const TitleTag = openSource ? "p" : "h1"
 
   return (
     <div data-block="cjguc" className={s.page}>
       {x.launchBanner && <LaunchBanner text={x.launchBanner} />}
-      {/* 477 (владелец 2026-10-14): первый экран — вокзал будущего; «второй экран — табло … третьим экраном будет справочная
-          служба». Прежний первый экран (вывеска станции с чатом) — ниже бюро: «Экран с чатом временно оставляем». */}
+      {/* 477 (владелец 2026-10-14): новый первый экран — бейдж в центре, заголовок во всю ширину, надпись «Инфраструктура нулевого
+          дня» на звёздном небе вокзала; «вторым экраном становится вокзал и всё, что ниже». Прежний первый экран (вывеска станции с
+          чатом) снят: чат играет в справочном бюро. */}
+      <FirstScreen title={hero.title} titleMark={x.titleMark} plate={openSource} sub={x.zeroDay ? { text: x.zeroDay.title, href: "#zero-day" } : undefined} />
       {x.facade && <StationFacade w={x.facade} />}
 
       <section data-block="hbbfq" id="board" className={`${s.hall} ${s.boardHall}`}>
@@ -124,7 +126,7 @@ export function LandingAgent({ lang }: { lang: string }) {
           {/* Старая жёлтая вывеска к чату (владелец 2026-09-30: табло прохода к гейтам в аэропорту). 477 (владелец 2026-10-14):
               «старая жёлтая вывеска висит на табло буквально касаясь его цепочкой» — сразу под табло, стрелка вниз (чат ниже бюро). */}
           {x.gate && x.chat && (
-            <a data-block="g8x2k" href="#agent-chat" className={`${s.gate} ${s.gateOnBoard}`} title={x.gate.label}>
+            <a data-block="g8x2k" href="#help-desk" className={`${s.gate} ${s.gateOnBoard}`} title={x.gate.label}>
               <span className={s.gateRods} aria-hidden="true" />
               <span className={s.gateBar}>
                 <span className={s.gateRoutes}>
@@ -157,80 +159,10 @@ export function LandingAgent({ lang }: { lang: string }) {
       {x.helpDesk && (
         <section data-block="xbxoz" id="help-desk" className={s.desk}>
           <div data-block="ql52w" className={s.wrap}>
-            <HelpDesk w={x.helpDesk} lang={lang} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
+            <HelpDesk w={x.helpDesk} lang={lang} sim={x.chat ? { label: x.chat.label, items: x.chat.items, contractLabels: x.chat.contractLabels, back: x.chat.endCta?.label } : undefined} chatClasses={chatClasses} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
           </div>
         </section>
       )}
-
-      {/* Первый экран (слово владельца, 333-16): на широком — две колонки во всю высоту первого экрана; слева табличка
-          «Открытый код» в верхнем левом углу, название и подзаголовок; справа чат агентов прямо на фоне таблички. */}
-      <section data-block="adzil" className={s.sign}>
-        <div data-block="d0prw" className={`${s.wrap} ${s.signGrid}`}>
-          <div data-block="b4u43" className={s.signMain}>
-            <div data-block="r9ng5" className={s.signRow}>
-              {/* Длинный заголовок (слово владельца 2026-09-29, ~200 знаков) — меньший кегль, чтобы первый экран его вместил. */}
-              {/* «ты приглашен» (слово владельца 2026-09-29) — белая эмалевая плашка с внутренней рамкой и бликом, как табличка;
-                  слова берутся из данных (`landing.titleMark`), первое вхождение в заголовке. */}
-              {/* SEO (владелец 2026-09-30, ТЗ от Google): H1 — бейдж «Open-source фреймворк AI-агентов для Web3-разработки», манифест —
-                  абзац; классы и data-block те же. Нет бейджа — H1 остаётся на манифесте, страница без H1 не бывает. */}
-              <TitleTag data-block="akqbz" className={s.signTitle} data-long={hero.title.length > 60 ? "" : undefined}>
-                {x.titleMark && hero.title.includes(x.titleMark) ? (
-                  <>
-                    {hero.title.slice(0, hero.title.indexOf(x.titleMark))}
-                    <span className={s.titleMark}>{x.titleMark}</span>
-                    {hero.title.slice(hero.title.indexOf(x.titleMark) + x.titleMark.length)}
-                  </>
-                ) : hero.title}
-              </TitleTag>
-              {openSource && (
-                // Эмалевая табличка на стене вокзала: белая эмаль, кант цвета табло, квадрат-«платформа» со знаком кода.
-                <h1 data-block="eehho" className={s.plate}>
-                  <span className={s.plateMark} aria-hidden="true"><Code className="size-4" strokeWidth={2.5} /></span>
-                  {/* Слово владельца 2026-09-29: главные слова (в данных — между звёздочками: Open-source, AI, Web3) —
-                      основным шрифтом и крупнее, остальное — мельче: эффект выделения, а не занижения. */}
-                  <span className={s.plateText}>
-                    {openSource.split(/\*([^*]+)\*/).map((part, i) => (i % 2 ? <strong key={i} className={s.plateKey}>{part}</strong> : part))}
-                  </span>
-                </h1>
-              )}
-            </div>
-            <p data-block="fh05d" className={s.signSub}>
-              {/* 453 (владелец 2026-10-11): «инфраструктуру нулевого дня» — ссылка инверсией цвета темы, как «?», к секции ниже. */}
-              {x.titleSubLink && x.titleSub.includes(x.titleSubLink.text) ? (
-                <>
-                  {x.titleSub.slice(0, x.titleSub.indexOf(x.titleSubLink.text))}
-                  <a href={x.titleSubLink.href} className={s.subLink}>{x.titleSubLink.text}</a>
-                  {x.titleSub.slice(x.titleSub.indexOf(x.titleSubLink.text) + x.titleSubLink.text.length)}
-                </>
-              ) : x.titleSub}
-              {/* Слово владельца 2026-09-30: [?] у подзаголовка — как у «От идеи до enterprise-продукта…» на табло. */}
-              {x.titleSubHint && (
-                <span className={`${s.hintWrap} ${s.subHint}`}>
-                  <Button variant="bare" size="bare" type="button" className={s.hintBtn} aria-label={x.titleSubHintLabel} aria-describedby="agent-sub-hint">?</Button>
-                  <span role="tooltip" id="agent-sub-hint" className={s.hint}>
-                    {x.titleSubHint.split("\n\n").map((t) => <span key={t} className={s.hintPara}>{t}</span>)}
-                  </span>
-                </span>
-              )}
-            </p>
-            {/* 342 (владелец 2026-09-30): «add CTA to first screen as another red button» — та же кнопка, что под табло
-                (слова и адрес подписки — `hero.cta`), на первом экране. */}
-            {hero.cta && (
-              <a data-block="p342c" href={hero.cta.href} className={`${s.go} ${s.signGo}`}>
-                {/* 453: кнопка ведёт в репозиторий Lagrix — иконка GitHub слева. */}
-                {hero.cta.href.startsWith("https://github.com/") && <Github className="size-5" strokeWidth={2.2} aria-hidden="true" />}
-                {hero.cta.label}
-                <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
-              </a>
-            )}
-          </div>
-          {x.chat && (
-            <div data-block="hs2dv" id="agent-chat" className={s.signChat}>
-              <AgentChat label={x.chat.label} items={x.chat.items} contractLabels={x.chat.contractLabels} endCta={x.chat.endCta} classes={chatClasses} />
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Зал ожидания (владелец 2026-10-01): под табло, над «Оркестрацией AI-агентов…». Слова — `landing.waiting`. */}
       {x.waiting && (

@@ -1739,3 +1739,40 @@
   .kioskBody { flex: 1; grid-template-rows: minmax(17rem, 1fr); grid-auto-rows: auto; }
   .kioskWindow { height: auto; min-height: 0; }
 }
+
+/* ── 477 (владелец 2026-10-14): НОВЫЙ ПЕРВЫЙ ЭКРАН — бейдж в центре, заголовок во всю ширину, надпись «Инфраструктура нулевого
+   дня»; фон — звёзды неба вокзала (`stars.ts`), цвет — верх неба фасада, поэтому граница с вокзалом не видна. Высота — весь
+   экран устройства без шапки (3.5rem + 1px, как у фасада). */
+.cosmos {
+  position: relative; display: grid; place-items: center; overflow: hidden;
+  min-height: calc(100svh - 3.5rem - 1px); background: var(--flapc); color: var(--chalk); text-align: center;
+}
+.cosmosSky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cosmosInner { position: relative; z-index: 1; display: grid; justify-items: center; gap: 2.4rem; width: calc(100% - 2rem); padding: 3rem 0; }
+.cosmosPlate { margin: 0; font-size: clamp(1.05rem, 1.6vw, 1.45rem); }
+.cosmosTitle {
+  width: 100%; font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 4.4vw, 5.2rem); line-height: 1.06;
+  letter-spacing: -0.01em; text-wrap: balance;
+}
+.cosmosSub {
+  display: inline-block; padding: 0.3em 0.75em; border-radius: var(--tile-corner); text-decoration: none;
+  background: var(--poster); color: var(--ink); font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 2.2vw, 2rem);
+  transition: transform 0.25s var(--ease);
+}
+.cosmosSub:hover { transform: translateY(-2px); }
+.cosmosSub:focus-visible { outline: 3px solid var(--chalk); outline-offset: 3px; }
+
+/* ── 477: симуляция в окне справочного бюро — чат агентов на месте ленты бюро, та же высота; кнопка возврата к разговору с бюро. */
+.kioskSimWindow {
+  position: relative; height: 17rem; overflow: hidden; border-radius: var(--tile-corner);
+  background: var(--flapc); box-shadow: inset 0 2px 14px color-mix(in oklab, black 45%, transparent);
+}
+.kioskSimWindow .chat { inset: 0.9rem; }
+.kioskBack {
+  justify-self: start; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--go);
+  background: transparent; color: var(--go); font-family: var(--text); font-weight: 700; font-size: 0.9rem; cursor: pointer;
+}
+.kioskBack:hover { background: var(--go); color: var(--ink); }
+.kioskBack:focus-visible { outline: 3px solid var(--poster); outline-offset: 2px; }
+@media (max-width: 640px) { .kioskSimWindow { height: 14rem; } }
+@media (min-width: 1024px) { .kioskSimWindow { height: auto; min-height: 0; } }
