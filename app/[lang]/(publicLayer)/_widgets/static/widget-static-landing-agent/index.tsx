@@ -192,11 +192,17 @@ export function LandingAgent({ lang }: { lang: string }) {
               </li>
             ))}
           </ol>
-          {x.canNote && <p data-block="cn480" className={s.posterNote}>{x.canNote}</p>}
+          {x.canNote && (
+            <p data-block="cn480" className={s.posterNote}>
+              {x.canNote.split("{link}")[0]}
+              {x.canNoteLink && <a href="#ticket" className={s.posterNoteLink}>{x.canNoteLink}</a>}
+              {x.canNote.split("{link}")[1]}
+            </p>
+          )}
         </div>
       </section>
 
-      <section data-block="hedd3" className={s.hall}>
+      <section data-block="hedd3" id="ticket" className={s.hall}>
         <div data-block="c1jfw" className={s.wrap}>
           <div data-block="xud3c" className={s.ticket}>
             <div data-block="jc5dc" className={s.ticketMain}>

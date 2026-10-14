@@ -658,6 +658,7 @@
 .posterSub { margin-top: 2.1rem; line-height: 1.2; }
 .posterSub + .timetable { margin-top: 0.3rem; }
 .posterNote { margin-top: 1.2rem; font-size: 0.98rem; line-height: 1.6; color: var(--ink-soft); }
+.posterNoteLink { font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 
 /* ── Билет «под капотом» (владелец 2026-09-30, навык impeccable): анатомия настоящего билета ─────────────────────────────────
    Шапка цвета табло через всю основную часть, поля посадочного, корешок со штрихкодом и «сохраняется до конца поездки», вырезы
