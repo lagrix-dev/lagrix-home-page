@@ -1844,3 +1844,67 @@
 .departCenter .departTitle { margin-inline: auto; }
 .departCenter .departText { margin-inline: auto; }
 .departCenter .routeTo { justify-content: center; }
+
+/* ── Комната «Телеграф» (владелец 2026-10-14, impeccable): связист за ключом, машинный телеграф с рычагом, таблички H2H и H2A на
+   болтах, светящаяся бегущая строка по нижнему краю. Роли — те же, что у зала ожидания; одно движение — строка и ключ. ─────────── */
+.telegraph { padding: 4.5rem 0 3rem; }
+.tgRoom { position: relative; margin-top: 2rem; }
+.tgFrame { fill: var(--chalk); stroke: var(--ink); stroke-width: 5; }
+.tgLogo { fill: var(--board); }
+.tgPlane { fill: var(--chalk); }
+.tgDesk { fill: var(--board-deep); }
+.tgKeyBase { fill: var(--ink); }
+.tgKeyBar { fill: var(--ink-soft); }
+.tgKeyKnob { fill: var(--signal); }
+.tgSounder { fill: var(--board); }
+.tgTape { fill: none; stroke: var(--chalk); stroke-width: 7; stroke-linecap: round; }
+.tgTorso { fill: var(--board); }
+.tgHead { fill: color-mix(in oklab, var(--poster) 30%, var(--chalk)); stroke: var(--ink); stroke-width: 3; }
+.tgVisor { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
+.tgLeg { fill: none; stroke: var(--board-deep); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+.tgArm { fill: none; stroke: var(--board); stroke-width: 16; stroke-linecap: round; }
+.tgPedestal { fill: var(--board-deep); }
+.tgFoot { fill: var(--ink); }
+.tgDial { fill: var(--chalk); stroke: var(--ink); stroke-width: 6; }
+.tgDialTicks { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.tgLeverArm { stroke: var(--ink); stroke-width: 10; stroke-linecap: round; }
+.tgLeverGrip { fill: var(--signal); }
+/* Рычаг поворачивается вокруг оси циферблата к той табличке, что выбрана. */
+.tgLever { transform-box: view-box; transform-origin: 830px 200px; transform: rotate(-30deg); transition: transform 0.7s var(--ease); }
+.tgRoom[data-mode="h2a"] .tgLever { transform: rotate(30deg); }
+/* Таблички на болтах: выбранная горит цветом афиши, вторая — металл стены. */
+.tgPlate { cursor: pointer; outline: none; }
+.tgPlateFace { fill: var(--floor); stroke: var(--ink-soft); stroke-width: 2; transition: fill 0.3s var(--ease); }
+.tgPlate[data-on] .tgPlateFace { fill: var(--poster); stroke: var(--ink); }
+.tgPlate:hover .tgPlateFace { stroke: var(--ink); }
+.tgPlate:focus-visible .tgPlateFace { stroke: var(--signal); stroke-width: 4; }
+.tgBolt { fill: var(--ink-soft); }
+.tgPlateCode { font-family: var(--display); font-weight: 700; font-size: 40px; fill: var(--ink); }
+.tgPlateCaption { font-family: var(--text); font-weight: 600; font-size: 14px; fill: var(--ink); }
+/* Ключ связиста: точки и тире, пока бежит строка. Ось ключа — у правого края планки. */
+.tgKeyArm, .tgHand { transform-box: view-box; transform-origin: 498px 203px; }
+.tgRoom[data-run] .tgKeyArm { animation: tgTap 1.8s steps(1, end) infinite; }
+.tgRoom[data-run] .tgHand { animation: tgHand 1.8s steps(1, end) infinite; }
+@keyframes tgTap {
+  0%, 8%, 20%, 28%, 58%, 66%, 100% { transform: rotate(0deg); }
+  4%, 12%, 22%, 36%, 44%, 60%, 74%, 84% { transform: rotate(-4deg); }
+}
+@keyframes tgHand {
+  0%, 8%, 20%, 28%, 58%, 66%, 100% { transform: translateY(0); }
+  4%, 12%, 22%, 36%, 44%, 60%, 74%, 84% { transform: translateY(3px); }
+}
+/* Бегущая строка: полоса табло под сценой, крупные светящиеся буквы цвета афиши, справа налево. */
+.tgBand { position: relative; overflow: hidden; margin-top: -1px; padding: 0.45rem 0 0.55rem; background: var(--board-deep); border-radius: 0 0 var(--tile-corner) var(--tile-corner); }
+.tgLine {
+  display: inline-block; margin: 0; padding-left: 1rem; white-space: nowrap; font-family: var(--display); font-weight: 700;
+  font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem); line-height: 1.1; letter-spacing: 0.01em; color: var(--poster);
+  text-shadow: 0 0 0.3em color-mix(in oklab, var(--poster) 70%, transparent), 0 0 1.1em color-mix(in oklab, var(--poster) 35%, transparent);
+}
+.tgRoom[data-run] .tgLine { padding-left: 0; animation: tgRun var(--dur, 30s) linear infinite; }
+@keyframes tgRun { from { transform: translateX(var(--from, 100%)); } to { transform: translateX(var(--to, -100%)); } }
+@media (prefers-reduced-motion: reduce) {
+  .tgLever, .tgPlateFace { transition: none; }
+  .tgRoom[data-run] .tgKeyArm, .tgRoom[data-run] .tgHand { animation: none; }
+  .tgRoom[data-run] .tgLine { animation: none; padding-left: 1rem; }
+  .tgLine { white-space: normal; }
+}

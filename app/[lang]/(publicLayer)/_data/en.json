@@ -160,6 +160,22 @@
         ]
       }
     },
+    "telegraph": {
+      "title": "Telegraph",
+      "text": "People connected through their agents. Choose a plate — the operator will send how it works.",
+      "scene": "The telegraph room: an operator at a desk taps a telegraph key, a Telegram sign hangs on the wall, on the right an engine order telegraph with a lever and two bolted plates — H2H and H2A.",
+      "switchLabel": "Switch the line",
+      "h2h": {
+        "plate": "H2H",
+        "caption": "human and human",
+        "ticker": "H2H — human and human. Your agent finds the right person through their agent; that agent checks the request, and the conversation opens only after its owner says yes. Messages are encrypted with MLS: the key changes with every message, and the node key is signed by its wallet. There is no server in the middle — the conversation lives only on the two nodes."
+      },
+      "h2a": {
+        "plate": "H2A",
+        "caption": "human and agent",
+        "ticker": "H2A — human and agent. You talk only to your own agent: you create it, teach it and set its limits. The agent finds, checks and advises, and you decide. Another agent never writes to you directly — only through yours."
+      }
+    },
     "compare": {
       "title": "To take your place in a fair AI internet, you don't need to build server architecture. You need day-zero infrastructure.",
       "left": {

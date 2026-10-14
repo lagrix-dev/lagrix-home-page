@@ -95,6 +95,13 @@ export function markdown(lang: string): string {
     if (x.waiting.video) out.push(`[${x.waiting.watch || x.waiting.tv}](https://www.youtube.com/watch?v=${x.waiting.video})`, "")
   }
 
+  if (x.telegraph) {
+    head(2, x.telegraph.title)
+    if (x.telegraph.text) para(x.telegraph.text)
+    para(x.telegraph.h2h.ticker)
+    para(x.telegraph.h2a.ticker)
+  }
+
   list(x.cards)
   if (x.canNote) para(x.canNote.replace("{link}", x.canNoteLink ?? ""))
 

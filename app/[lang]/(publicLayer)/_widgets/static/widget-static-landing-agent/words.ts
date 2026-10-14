@@ -39,6 +39,8 @@ export type LandingExtra = {
   canNoteLink?: string
   chips: string[]
   /** Секция «Fractera vs LLM» (владелец 2026-09-30): два табло — пеший маршрут и магистраль; станций карты ровно четыре. */
+  /** 481-3 (владелец 2026-10-14): комната «Телеграф» — H2H и H2A, рычаг машинного телеграфа и бегущая строка. */
+  telegraph?: { title: string; text?: string } & import("./telegraph.client").TelegraphWords
   compare?: {
     title: string
     sub?: string

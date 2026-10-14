@@ -18,6 +18,7 @@ import { Walkers } from "./walkers.client"
 import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
+import { TelegraphRoom } from "./telegraph.client"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
@@ -176,6 +177,22 @@ export function LandingAgent({ lang }: { lang: string }) {
               </div>
             </div>
             <WaitingRoom on={x.waiting.on} off={x.waiting.off} tv={x.waiting.tv} scene={x.waiting.scene} video={x.waiting.video} watch={x.waiting.watch} ui={appDialogUi(lang)} />
+          </div>
+        </section>
+      )}
+
+      {/* Телеграф (владелец 2026-10-14): комната связиста после зала ожидания — H2H и H2A, рычаг и бегущая строка. Слова — `landing.telegraph`. */}
+      {x.telegraph && (
+        <section data-block="tgsec" id="telegraph" className={s.telegraph}>
+          <div data-block="tgwrp" className={s.wrap}>
+            <div data-block="tgsgn" className={s.waitingSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <div data-block="tgplt" className={s.waitingPlate}>
+                <h2 data-block="tgtit" className={s.waitingTitle}>{x.telegraph.title}</h2>
+                {x.telegraph.text && <p data-block="tgtxt" className={s.waitingText}>{x.telegraph.text}</p>}
+              </div>
+            </div>
+            <TelegraphRoom w={x.telegraph} />
           </div>
         </section>
       )}
