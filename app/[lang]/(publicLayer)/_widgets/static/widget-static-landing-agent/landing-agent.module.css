@@ -1292,13 +1292,15 @@
 /* ── Билет на станцию «Супер-узловая» (454-7, владелец 2026-10-12, навык impeccable) ─────────────────────────────────────────
    Анатомия настоящего билета: маршрут «откуда → куда» с поездом на пунктире пути, поля, правила поездки мелким шрифтом, как
    на обороте. Кнопка — снаружи, под билетом (в билете ей не место). */
-.ticketRoute { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; align-items: end; gap: 1rem; margin-top: 1.4rem; }
-.routeEnd { display: grid; gap: 0.3rem; min-width: 0; }
+/* Владелец 2026-10-14: путь идёт по осевой линии названий станций, а не по верху контейнера — две строки сетки (подписи и
+   названия), концы маршрута делят их через subgrid, путь стоит во второй строке по центру. */
+.ticketRoute { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; grid-template-rows: auto auto; column-gap: 1rem; row-gap: 0.3rem; margin-top: 1.4rem; }
+.routeEnd { display: grid; grid-row: 1 / span 2; grid-template-rows: subgrid; row-gap: 0.3rem; align-items: center; min-width: 0; }
 .routeEnd:last-child { text-align: right; }
 .routeLabel { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 .routeFrom { font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.05; }
 .routeTrack {
-  position: relative; display: grid; place-items: center; height: 2.6rem; margin-bottom: 0.35rem; color: var(--board);
+  position: relative; display: grid; place-items: center; grid-row: 2; align-self: center; height: 2.6rem; color: var(--board);
   background: linear-gradient(90deg, var(--ink) 55%, transparent 0) repeat-x center / 14px 2px;
 }
 .routeTrack svg { padding: 0 0.5rem; background: var(--chalk); box-sizing: content-box; }
@@ -1311,9 +1313,10 @@
 }
 .rulesList li::marker { font-family: var(--mono); font-weight: 700; color: var(--ink); }
 @media (max-width: 560px) {
-  .ticketRoute { grid-template-columns: 1fr; gap: 0.4rem; }
+  .ticketRoute { grid-template-columns: 1fr; grid-template-rows: none; gap: 0.4rem; }
+  .routeEnd { grid-row: auto; grid-template-rows: none; }
   .routeEnd:last-child { text-align: left; }
-  .routeTrack { height: 1.8rem; justify-content: start; justify-items: start; background-position: left center; }
+  .routeTrack { grid-row: auto; height: 1.8rem; justify-content: start; justify-items: start; background-position: left center; }
 }
 
 .rulesOne { margin-top: 0.6rem; max-width: 70ch; font-family: var(--text); font-size: 0.88rem; line-height: 1.45; color: var(--ink-soft); }
