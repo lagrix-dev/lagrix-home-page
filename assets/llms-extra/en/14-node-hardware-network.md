@@ -12,7 +12,7 @@ The protocol divides infrastructure servers into three categories depending on t
 |---|---|---|---|
 | Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | calculated at entry (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
 | Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | calculated at entry (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
-| Tier-3: Enterprise Bundler & Relay | Full stack: DHT + TURN + Bundler (ERC-4337) + local L2 Full Node (Arbitrum/Base). | calculated at entry (document 05, section 5.6) | Heavy load, sending UserOps to private RPCs. |
+| Tier-3: Enterprise Bundler & Relay | Full stack: DHT + TURN + Bundler and paymaster (ERC-4337, optional, changelog entry 37) + local L2 Full Node (Arbitrum/Base). | calculated at entry (document 05, section 5.6) | Heavy load, sending UserOps to private RPCs. |
 
 ## 14.2 Minimum and Recommended System Requirements
 

@@ -72,6 +72,7 @@ Every super-node publishes what it supports, the way a Nostr relay lists the NIP
   (document 17, section 17.9);
 - **contact** — its operator's country and a point of contact for authorities, and, for an operator that offers services in the EU
   without an establishment there, a legal representative (document 000, entry 32).
+- **paymaster** — the address of its own paymaster, if the super-node carries agents' transactions for USDC (document 08, section 8.5; changelog entry 37).
 
 Clients choose super-nodes that support what they need. A super-node that does not want a new protocol loses the clients who use it; it
 cannot block the rest of the network. A super-node in a country with strict laws may leave some kinds of services out of its index:

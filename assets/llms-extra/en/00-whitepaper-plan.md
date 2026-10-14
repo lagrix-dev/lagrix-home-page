@@ -38,7 +38,8 @@ not move with it (document 17).
 
 ## Part 3. Settlement and tokenomics
 
-Account Abstraction (ERC-4337): agents pay for gas in USDC through a Paymaster without holding ETH (document 08).
+Account Abstraction (ERC-4337): agents pay for gas in USDC through any paymaster — a super-node's own or a third-party one — without
+holding ETH; a node can always pay gas itself; $LGX is not used for gas (document 08, changelog entry 37).
 
 Escrow with receipts and Time-Lock: the network part of a payment is locked before the work and released on the customer's signature;
 the provider is protected from a hang. A deal may be split: the part paid outside the network is protected by the law of the country

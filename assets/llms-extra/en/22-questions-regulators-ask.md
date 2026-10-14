@@ -200,7 +200,9 @@ These questions do not yet have an answer in the architecture. They are named he
 - **MiCA Article 4(3)(b).** Whether the exemption in Article 4(3)(b) applies to $LGX is not settled.
 - **The fee pool.** Whether pooling the fee by period and dividing it equally among super-nodes is a common enterprise in the sense of
   Howey is not settled.
-- **The paymaster.** Who funds and runs the contract that pays agents' gas ([08](08-account-abstraction-bundler.md)) is not decided.
+- **The paymaster as a service.** Who pays gas is decided by changelog entry 37: the network has no paymaster of its own, any super-node
+  may run one, a third-party one works, and a node can always pay gas itself ([08](08-account-abstraction-bundler.md), section 8.5). Not
+  settled: whether carrying agents' transactions for USDC is an exchange of crypto-assets in the sense of MiCA.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
 - **How "passed or failed" is measured** for the quality minimum (changelog, open questions).
