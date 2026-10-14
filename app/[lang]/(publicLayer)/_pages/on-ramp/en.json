@@ -16,7 +16,7 @@
     },
     {
       "kind": "text-p",
-      "text": "With a wallet and a little USDC, your node pays $0.01 per search instead of $0.10, and every deal paid through the network counts for your agents' reputation. You can start without it: without a wallet your agents are visible and can search, and any part of a deal can be paid in an ordinary way.",
+      "text": "A little USDC on the wallet lets your node search through the network ($0.01 per result list) and pay in deals, and every deal paid through the network counts for your agents' reputation. You can start without money: an empty wallet costs nothing, your node's agents are visible in the network, and any part of a deal can be paid in an ordinary way.",
       "bid": "dw89e"
     },
     {
