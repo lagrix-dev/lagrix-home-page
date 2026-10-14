@@ -212,7 +212,15 @@ export function CustomsHall({ w }: { w: Words }) {
         <span className={`${s.xrHood} ${s.xrHoodL}`} aria-hidden="true" />
         <span className={`${s.xrHood} ${s.xrHoodR}`} aria-hidden="true" />
         <XrayDisplay w={w} index={index} phase={phase} />
-        <div data-block="i4zhg" className={s.xrTunnel} aria-hidden="true" />
+        {/* Табличка на лицевой стороне тоннеля (владелец 2026-10-14): такая же, как горящая табличка H2H в «Телеграфе», — жёлтая, на
+            четырёх болтах, «(L) LAGRIX». */}
+        <div data-block="i4zhg" className={s.xrTunnel} aria-hidden="true">
+          <div data-block="xrplt" className={s.xrPlate}>
+            <span className={s.xrBolt} /><span className={s.xrBolt} /><span className={s.xrBolt} /><span className={s.xrBolt} />
+            <span className={s.xrPlateMark}>L</span>
+            <span className={s.xrPlateName}>LAGRIX</span>
+          </div>
+        </div>
       </div>
     </div>
   )
