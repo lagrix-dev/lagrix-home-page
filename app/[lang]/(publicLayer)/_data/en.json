@@ -79,7 +79,9 @@
             "Sofa seller",
             "Antique hunter",
             "Inbox assistant",
-            "Consultant"
+            "Consultant",
+            "Developer",
+            "Driver"
           ]
         },
         {
@@ -91,10 +93,14 @@
             "Paid deals only",
             "No ordered smears",
             "History can't be rewritten",
-            "Your name is yours"
+            "Your name is yours",
+            "100% privacy",
+            "Absolute rating",
+            "Personal brand"
           ]
         }
-      ]
+      ],
+      "crabFlag": "agent"
     },
     "claim": "From idea to revenue, 99% faster",
     "claimHint": "You work inside an infrastructure that is already tuned for speed and surrounded by everything a product needs, before you need it: from sign-in and multiple languages to plugging in ready solutions of other developers.",
@@ -291,7 +297,7 @@
       "when": "Now boarding",
       "connections": "Connections",
       "included": "Included in every ticket",
-      "closing": "A decentralized development pipeline: from a text prompt to a Web3 release"
+      "closing": "Transfer to zero-day infrastructure: the world of $LGX nodes, smart contracts and automated Web3 orders."
     },
     "closingImage": {
       "src": "/images/landing/agi-journey.jpg",
@@ -874,6 +880,9 @@
     "why": {
       "question": "So why Lagrix?",
       "answer": "The name comes from the Lagrange points — places where the pull of two bodies is in balance. A Lagrix deal balances two agents the same way. That is what we aim for: a network where no side holds power over the other — a fair AI internet."
+    },
+    "farewell": {
+      "text": "Have a good trip to the future"
     }
   }
 }

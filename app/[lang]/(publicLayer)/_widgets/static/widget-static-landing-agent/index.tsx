@@ -7,7 +7,6 @@ import "@fontsource/barlow/600.css"
 import "@fontsource-variable/jetbrains-mono"
 import { ArrowDown, ArrowRight, ArrowUp, Check, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
 import { landingWords, type LandingExtra } from "./words"
-import { StaticImage } from "@/components/media/static-image.server"
 import s from "./landing-agent.module.css"
 import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
@@ -23,6 +22,7 @@ import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
 import { FirstScreen } from "./first-screen"
+import { ClosingArt } from "./closing-art"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { voiceStrings } from "@/lib/i18n/voice-field.i18n"
 import { Button } from "@/components/ui/button"
@@ -341,10 +341,10 @@ export function LandingAgent({ lang }: { lang: string }) {
 
       <section data-block="xsind" className={s.depart}>
         {x.closingImage && (
-          // Как на главной (333-11): на широком экране картинка справа во всю высоту экрана, ширина — по её пропорции;
-          // правая половина видна целиком, левая уходит в цвет табло. Размытое превью (base64) и webp/avif — StaticImage.
+          // Как на главной (333-11): на широком экране картина справа во всю высоту экрана, левая половина уходит в цвет табло.
+          // 477 (владелец 2026-10-14): растр `agi-journey.jpg` заменён рисунком в стиле вокзала (`closing-art.tsx`), смысл тот же.
           <div data-block="do4s8" className={s.departArt}>
-            <StaticImage src={x.closingImage.src} alt={x.closingImage.alt} fill sizes="(min-width: 1024px) 180vh, 1px" className={s.departImg} />
+            <ClosingArt label={x.closingImage.alt} />
           </div>
         )}
         <div data-block="j6lny" className={s.wrap}>
@@ -366,8 +366,25 @@ export function LandingAgent({ lang }: { lang: string }) {
           )}
         </div>
       </section>
-      {/* «Маршрут построен» (владелец 2026-09-30): последняя строка страницы — линия метро от станции отправления к станции
-          назначения; между ними — пересадка (станций три). */}
+      {/* 477 (владелец 2026-10-14): «соединить с экраном Конвейер … но разделить их жёлтой вывеской в том же стиле … надпись “Счастливого
+          пути в будущее”» — вывеска висит на цепочках от нижнего края «Конвейера» над ночной сценой с поездом. */}
+      {x.farewell && (
+        <section data-block="iwna2" className={s.farewell}>
+          <div data-block="ik01i" className={s.farewellSign}>
+            <span className={s.gateRods} aria-hidden="true" />
+            <p data-block="mngh2" className={s.farewellBar}>
+              <span className={s.gateIcon} aria-hidden="true"><TrainFront className="size-5" strokeWidth={2.4} /></span>
+              <span className={s.farewellText}>{x.farewell.text}</span>
+              <span className={s.gateArrow} aria-hidden="true"><ArrowDown strokeWidth={3} /></span>
+            </p>
+          </div>
+        </section>
+      )}
+      {/* 470 (владелец 2026-10-13): «А почему всё-таки Lagrix?» — ночная сцена: силуэты города, табличка-вопрос, паровозик со словами
+          ответа. 477 (владелец 2026-10-14): поднята на секцию выше — сразу под «Конвейером» и жёлтой вывеской. */}
+      {x.why && <WhyNight w={x.why} />}
+      {/* «Маршрут построен» (владелец 2026-09-30): линия метро от станции отправления к станции назначения; между ними — пересадка.
+          477 (владелец 2026-10-14): «теперь становится самой последней, ниже неё только футер». */}
       {x.routeBuilt && (
         <section data-block="hpza2" className={s.built}>
           <div data-block="fhxaj" className={s.wrap}>
@@ -397,9 +414,6 @@ export function LandingAgent({ lang }: { lang: string }) {
           </div>
         </section>
       )}
-      {/* 470 (владелец 2026-10-13): «А почему всё-таки Lagrix?» — отдельная ночная сцена после «Маршрута построен»: силуэты города,
-          табличка-вопрос, паровозик со словами ответа (456-2 был обычным текстом в конце «Маршрута»). */}
-      {x.why && <WhyNight w={x.why} />}
       {/* Пассажиры у нижней кромки окна (владелец 2026-09-30) — только в браузере, после 10 с покоя. */}
       <Walkers />
     </div>

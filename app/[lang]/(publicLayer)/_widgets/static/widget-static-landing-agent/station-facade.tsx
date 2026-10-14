@@ -2,6 +2,7 @@ import { DoorOpen } from "lucide-react"
 import s from "./landing-agent.module.css"
 import { FacadePan } from "./facade-pan.client"
 import { ClockHands } from "./clock-hands.client"
+import { DoorCrabs } from "./door-crabs.client"
 import type { LandingExtra } from "./words"
 import { starField } from "./stars"
 
@@ -122,7 +123,7 @@ export function StationFacade({ w }: { w: Facade }) {
               <path className={s.fRoof} d="M 1250 554 L 1630 554 L 1652 580 L 1228 580 Z" />
               <text className={s.fInscription} x="1440" y="573" textAnchor="middle">{w.inscription}</text>
               <rect x="1340" y="600" width="200" height="200" fill="url(#fct-door)" />
-              <path className={s.fDoorFrame} d="M 1340 800 L 1340 600 L 1540 600 L 1540 800 M 1390 600 L 1390 800 M 1440 600 L 1440 800 M 1490 600 L 1490 800" />
+              <path className={s.fDoorFrame} d="M 1340 800 L 1340 600 L 1540 600 L 1540 800" />
               <rect className={s.fStoneShade} x="1230" y="792" width="420" height="8" />
 
               {/* Знак справедливости — весы светящейся линией в стекле свода. */}
@@ -152,6 +153,8 @@ export function StationFacade({ w }: { w: Facade }) {
                 </circle>
               </g>
             </svg>
+            {/* 477 (владелец 2026-10-14): двери открываются при наведении, крабики Claude Code собираются пирамидой с флажками. */}
+            <DoorCrabs flag={w.crabFlag ?? "agent"} />
             <div data-block="hbekx" className={s.facadeEntrance}>
               <span className={s.entranceRods} aria-hidden="true" />
               {/* 477 (владелец 2026-10-14): «при нажатии на кнопку входа в будущее происходит прокрутка вниз на страницу табло». */}

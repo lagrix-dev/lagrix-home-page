@@ -155,13 +155,14 @@ export function markdown(lang: string): string {
   if (x.route) list([`${x.route.label}: ${x.route.value}`])
   para(x.closingText)
   if (x.closingImage?.alt) list([x.closingImage.alt])
+  // 477: жёлтая вывеска между «Конвейером» и ночной сценой; поезд «А почему всё-таки Lagrix?»; «Маршрут построен» — последним.
+  para(x.farewell?.text)
+  if (x.why) qa(x.why.question, x.why.answer)
   if (x.routeBuilt) {
     const r = x.routeBuilt
     head(3, r.title)
     list([`${r.from.label}: ${r.from.station}`, r.via ? `${r.via.label}: ${r.via.station}` : undefined, `${r.to.label}: ${r.to.station}`])
   }
-  // 456-2: «А почему всё-таки Lagrix?»
-  if (x.why) qa(x.why.question, x.why.answer)
 
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim()
 }

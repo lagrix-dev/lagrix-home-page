@@ -10,7 +10,9 @@ type Block = { kind: string; id?: string; title?: string; text?: string; pill?: 
 
 export type LandingExtra = {
   /** 477 (владелец 2026-10-14): вокзал будущего — первый экран; портик с часами и весами, два стеклянных крыла с растяжками миссий. */
-  facade?: { label: string; scene: string; inscription: string; entrance: string; missions: { name: string; title: string; line: string; text: string; stops: string[] }[] }
+  facade?: { label: string; scene: string; inscription: string; entrance: string; missions: { name: string; title: string; line: string; text: string; stops: string[] }[]; crabFlag?: string }
+  /** 477: жёлтая вывеска между «Конвейером» и ночной сценой с поездом — «Счастливого пути в будущее». */
+  farewell?: { text: string }
   titleSub: string
   /** 453: полоса при прокрутке — «Запуск запланирован на конец 2026». */
   launchBanner?: string

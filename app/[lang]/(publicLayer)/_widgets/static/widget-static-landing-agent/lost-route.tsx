@@ -1,4 +1,5 @@
 import s from "./landing-agent.module.css"
+import { CrabShape } from "./crab"
 
 // «ПЕШИЙ МАРШРУТ» (секция «Fractera vs LLM»). Владелец 2026-09-30: чаты хороши на коротком маршруте, но части проекта из разных
 // мест не связать — пути идут параллельно, сливаются в один и в момент слияния заходят в тупик. Квадрат 600×600, как карта справа,
@@ -85,25 +86,9 @@ function Pole({ x, from, to }: { x: number; from: number; to: number }) {
   return <path className={s.lostPole} d={`M${x} ${from} V${to}`} />
 }
 
-// Крабик в духе знака Claude Code: квадратное тело, два глаза, клешни по бокам, четыре ножки.
+// Крабик в духе знака Claude Code — общий рисунок `crab.tsx` (477: оранжевый, тот же, что у дверей вокзала).
 function Crab({ x, y }: { x: number; y: number }) {
-  return (
-    <g>
-      <g className={s.lostCrab}>
-        <rect x={x - 22} y={y - 30} width={44} height={24} />
-        <rect x={x - 32} y={y - 24} width={10} height={10} />
-        <rect x={x + 22} y={y - 24} width={10} height={10} />
-        <rect x={x - 18} y={y - 6} width={5} height={8} />
-        <rect x={x - 8} y={y - 6} width={5} height={8} />
-        <rect x={x + 3} y={y - 6} width={5} height={8} />
-        <rect x={x + 13} y={y - 6} width={5} height={8} />
-      </g>
-      <g className={s.lostEye}>
-        <rect x={x - 11} y={y - 24} width={5} height={8} />
-        <rect x={x + 6} y={y - 24} width={5} height={8} />
-      </g>
-    </g>
-  )
+  return <g transform={`translate(${x} ${y})`}><CrabShape body={s.lostCrab} eye={s.lostEye} /></g>
 }
 
 // Голубой человечек ChatGPT: тот же квадратный род, что крабик, но выше и на двух ножках; руки опущены.

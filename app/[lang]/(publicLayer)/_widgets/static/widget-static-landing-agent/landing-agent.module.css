@@ -422,7 +422,9 @@
   --ring: oklch(from var(--primary) 0.74 0.18 calc(h + 122));
   /* Сноски продуктов Claude на левой схеме (владелец 2026-09-30): терракотовый, узнаваемый как цвет Claude, — сдвигом от `--primary`. */
   --claude: var(--ring);
-  --claude: oklch(from var(--primary) 0.67 0.13 calc(h + 107));
+  /* 477 (владелец 2026-10-14): крабик Claude Code — «перерисовать в оранжевый цвет»: был приглушённый рыже-коричневый (L 0.67,
+     C 0.13); теперь чистый оранжевый. */
+  --claude: oklch(from var(--primary) 0.72 0.19 calc(h + 124));
   --mono: var(--font-mono-user, "JetBrains Mono Variable"), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --scan: repeating-linear-gradient(180deg, color-mix(in oklab, var(--chalk) 5%, transparent) 0 1px, transparent 1px 4px);
 }
@@ -1778,3 +1780,67 @@
 .kioskBack:focus-visible { outline: 3px solid var(--poster); outline-offset: 2px; }
 @media (max-width: 640px) { .kioskSimWindow { height: 14rem; } }
 @media (min-width: 1024px) { .kioskSimWindow { height: auto; min-height: 0; } }
+
+/* ── 477 (владелец 2026-10-14): КРАБИКИ У ДВЕРЕЙ ВОКЗАЛА — слой поверх рисунка фасада, под растяжками и стеклом крыльев. ─────────── */
+.facadeCrabs { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: visible; }
+.doorZone { position: absolute; z-index: 2; left: 46.53%; top: 72.2%; width: 6.94%; height: 16.7%; cursor: pointer; }
+.doorLeaf { transition: transform 0.8s var(--ease); }
+.doorLeaf rect { fill: color-mix(in oklab, var(--board-deep) 70%, transparent); stroke: var(--chalk); stroke-width: 4; }
+.doorLeaf line { stroke: var(--chalk); stroke-opacity: 0.45; stroke-width: 3; }
+.doorCrab { transition-property: transform, opacity; transition-timing-function: linear, ease; }
+.crabBody rect { fill: var(--claude); }
+.crabLeg rect { fill: var(--claude); transform-box: fill-box; }
+.crabEye rect { fill: var(--ink); }
+.doorCrab[data-walk] .crabLeg rect:nth-child(odd) { animation: crabStep 0.22s ease-in-out infinite alternate; }
+.doorCrab[data-walk] .crabLeg rect:nth-child(even) { animation: crabStep 0.22s ease-in-out infinite alternate-reverse; }
+@keyframes crabStep { from { translate: 0 0; } to { translate: 0 -4px; } }
+.crabFlag { opacity: 0; transition: opacity 0.4s var(--ease); }
+.crabFlag[data-on] { opacity: 1; }
+.crabFlag line { stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; }
+.crabFlag rect { fill: var(--poster); stroke: var(--ink); stroke-width: 2; }
+.crabFlag text { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: 0.04em; }
+@media (max-width: 767px) { .facadeCrabs, .doorZone { display: none; } }
+@media (prefers-reduced-motion: reduce) { .doorLeaf, .doorCrab, .crabFlag { transition: none; } .doorCrab .crabLeg rect { animation: none; } }
+
+/* ── 477: персонажи «Инфраструктуры нулевого дня» — вокзальные пиктограммы: силуэт чернилами, знак профессии — постер или мел,
+   просвет цвета пола между фуражкой и головой. ──────────────────────────────────────────────────────────────────────────────── */
+.pictoInk { fill: var(--ink); }
+.pictoArm { fill: none; stroke: var(--ink); stroke-width: 18; stroke-linecap: round; }
+.pictoLeg { fill: none; stroke: var(--ink); stroke-width: 22; stroke-linecap: round; }
+.pictoPaw { fill: none; stroke: var(--ink); stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; }
+.pictoTail { fill: none; stroke: var(--ink); stroke-width: 12; stroke-linecap: round; }
+.pictoCap { fill: var(--ink); stroke: var(--floor); stroke-width: 4; }
+.pictoAccent { fill: var(--poster); }
+.pictoAccentBook { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }
+.pictoChalk { fill: var(--chalk); stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.pictoTool { fill: none; stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+.pictoGap { fill: var(--floor); }
+
+/* ── 477: картина финальной секции в стиле вокзала (`closing-art.tsx`) — в прежнем окне картинки справа. ─────────────────────── */
+.cArt { display: block; width: 100%; height: 100%; }
+.cRoute[data-tone="poster"] { --tone: var(--poster); }
+.cRoute[data-tone="go"] { --tone: var(--go); }
+.cRoute[data-tone="ring"] { --tone: var(--ring); }
+.cRouteGlow { fill: none; stroke: var(--tone); stroke-opacity: 0.22; stroke-width: 14; stroke-linecap: round; }
+.cRouteLine { fill: none; stroke: var(--tone); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 5px var(--tone)); }
+.cModule { fill: var(--board-deep); stroke: var(--chalk); stroke-width: 3; }
+.cWindow { fill: var(--poster); }
+.cStripe { fill: color-mix(in oklab, var(--chalk) 35%, var(--board-deep)); }
+.cAntenna { stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; }
+.cRing { fill: none; stroke: var(--poster); stroke-width: 12; }
+.cRingGlow { fill: none; stroke: var(--poster); stroke-opacity: 0.18; stroke-width: 34; }
+.cRingInner { fill: none; stroke: var(--chalk); stroke-opacity: 0.35; stroke-width: 3; }
+.cSpoke { stroke: var(--chalk); stroke-opacity: 0.5; stroke-width: 4; }
+.cHub { fill: color-mix(in oklab, var(--poster) 22%, var(--board-deep)); stroke: var(--chalk); stroke-width: 3; }
+.cShip { fill: var(--chalk); }
+@media (prefers-reduced-motion: reduce) { .cShip { display: none; } }
+
+/* ── 477: жёлтая вывеска «Счастливого пути в будущее» — висит на цепочках от нижнего края «Конвейера» над ночной сценой. ──────── */
+.farewell { display: flex; justify-content: center; padding: 0 1rem 2.6rem; background: linear-gradient(to bottom, var(--board), var(--board-deep)); }
+.farewellSign { position: relative; padding-top: 2rem; --rod: var(--chalk); }
+.farewellBar {
+  display: inline-flex; align-items: center; gap: 1rem; margin: 0; padding: 0.7rem 0.8rem 0.7rem 0.7rem;
+  background: var(--poster); color: var(--ink); border-radius: var(--tile-corner); box-shadow: 0 14px 26px -18px var(--shade);
+  font-family: var(--display); font-weight: 700;
+}
+.farewellText { font-size: clamp(1.3rem, 2.6vw, 2.1rem); line-height: 1.1; }

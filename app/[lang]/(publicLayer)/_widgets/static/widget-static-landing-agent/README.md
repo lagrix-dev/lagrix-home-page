@@ -221,3 +221,19 @@ Owner's order of screens (verbatim): «второй экран — табло �
 - **Simulations in the help desk** (owner: «нажатие на кнопку симуляции … должно запускать чат внутри справочного бюро»): the green
   signs (and phone chips) are buttons; each press plays the agents chat (Anna and the salon) from the start inside the kiosk window,
   at the window size; a question sign, a typed message or the green «Ask the information desk» button returns to the desk dialogue.
+- **Crabs at the doors** (`door-crabs.client.tsx`, `crab.tsx`; owner 2026-10-14): hovering the central doors slides the two glass leaves
+  open; six Claude Code crabs (three from each wing) run behind the wing glass at the walkers' speed (80 px/s of screen, converted
+  to drawing units), become fully visible in the hall, stack into a 3-2-1 pyramid in the doorway and, a second later, raise yellow
+  «agent» flags at six different heights on both sides of the pyramid (`landing.facade.crabFlag`); leaving the doors makes them
+  jump down and run back out. Wide screens only; reduced motion shows the pyramid with flags at once. The crab is one drawing for
+  the whole landing (`CrabShape`), orange (`--claude` re-pointed from a muted brown to a clear orange), the lost-route crab included.
+- **Banner badges**: Mission 1 adds «Developer», «Driver»; Mission 2 adds «100% privacy», «Absolute rating», «Personal brand».
+- **Zero-day characters** (owner: «как будто не соответствуют по стилю»): redrawn as station pictograms — ink silhouettes without
+  faces, one profession sign each (cap with a yellow badge, bob, chef's toque, cap and wrench, bun and a yellow book), a floor-coloured
+  gap between cap and head; the German Shepherd as a pictogram too. Layout and the unlock animation are unchanged.
+- **Final section** (owner: «изображение по всем смысловым характеристикам правильное, но мы используем другой стиль»): the raster
+  `agi-journey.jpg` is replaced by `closing-art.tsx` — the same meaning (ring station with a dome, agent and service modules, glowing
+  routes, ships, planet) drawn flat in the station palette, with the shared star field. Its title is now the former first-screen
+  subtitle («Transfer to zero-day infrastructure…», `board.closing`).
+- **Order at the end** (owner): final section → yellow sign «Have a good trip to the future» (`landing.farewell`, gate-sign anatomy,
+  hanging on chains from the final section) → night scene with the train → «Route built» last, only the footer below.
