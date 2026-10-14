@@ -381,7 +381,7 @@ export function LandingAgent({ lang }: { lang: string }) {
           пути в будущее”» — вывеска висит на цепочках от нижнего края «Конвейера» над ночной сценой с поездом. */}
       {x.farewell && (
         <section data-block="iwna2" className={s.farewell}>
-          <div className={s.wrap}>
+          <div data-block="yaha4" className={s.wrap}>
             <div data-block="ik01i" className={s.farewellSign}>
               <span className={s.gateRods} aria-hidden="true" />
               <p data-block="mngh2" className={s.farewellBar}>
