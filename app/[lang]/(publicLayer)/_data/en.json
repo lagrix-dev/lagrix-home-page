@@ -64,7 +64,7 @@
   "landing": {
     "facade": {
       "label": "Station of the future",
-      "scene": "A station of the future: in the centre, a classical portico with a clock and the scales of justice; at the sides, two glass wings with the banners of two missions.",
+      "scene": "A station of the future: in the centre, a glass hall with a clock, a dome on an orbit and the glowing scales of justice; at the sides, two glass wings with the banners of two missions hanging behind the glass.",
       "inscription": "BONA FIDES",
       "entrance": "Entrance to the future",
       "missions": [
