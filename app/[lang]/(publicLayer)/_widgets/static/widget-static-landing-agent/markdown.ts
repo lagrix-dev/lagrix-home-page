@@ -149,12 +149,7 @@ export function markdown(lang: string): string {
     list(x.outcomes.map((o) => `**${o.name}** — ${o.text}`))
   }
 
-  // 467-4: заголовок финальной секции на странице — `board.closing` (`closingTitle` не рисуется нигде); назначение маршрута и
-  // подпись картинки — как на странице.
-  head(2, x.board?.closing || x.closingTitle)
-  if (x.route) list([`${x.route.label}: ${x.route.value}`])
-  para(x.closingText)
-  if (x.closingImage?.alt) list([x.closingImage.alt])
+  // 477 (владелец 2026-10-14): финальная секция «Пересаживайся на инфраструктуру нулевого дня…» снята со страницы — и отсюда.
   // 477: жёлтая вывеска между «Конвейером» и ночной сценой; поезд «А почему всё-таки Lagrix?»; «Маршрут построен» — последним.
   para(x.farewell?.text)
   if (x.why) qa(x.why.question, x.why.answer)

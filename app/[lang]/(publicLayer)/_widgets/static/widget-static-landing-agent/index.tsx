@@ -7,7 +7,6 @@ import "@fontsource/barlow/600.css"
 import "@fontsource-variable/jetbrains-mono"
 import { ArrowDown, ArrowRight, ArrowUp, Check, Footprints, Github, MessagesSquare, Ticket, TrainFront } from "lucide-react"
 import { landingWords, type LandingExtra } from "./words"
-import { StaticImage } from "@/components/media/static-image.server"
 import s from "./landing-agent.module.css"
 import { SplitFlap } from "./split-flap.client"
 import { TransitMap } from "./transit-map.client"
@@ -339,44 +338,7 @@ export function LandingAgent({ lang }: { lang: string }) {
           таможню». Слова — `landing.customs`. */}
       {x.customs && <Customs w={x.customs} />}
 
-      <section data-block="xsind" className={s.depart}>
-        {x.closingImage && (
-          // Как на главной (333-11): на широком экране картинка справа во всю высоту экрана, ширина — по её пропорции;
-          // правая половина видна целиком, левая уходит в цвет табло. 477: рисунок в стиле вокзала владелец отклонил («не выдерживает
-          // критики, вернее предыдущее изображение») — снова растр `agi-journey.jpg`.
-          <div data-block="do4s8" className={s.departArt}>
-            <StaticImage src={x.closingImage.src} alt={x.closingImage.alt} fill sizes="(min-width: 1024px) 180vh, 1px" className={s.departImg} />
-          </div>
-        )}
-        {/* 477 (владелец 2026-10-14): текст секции «Пересаживайся на инфраструктуру нулевого дня» — по центру; слова «инфраструктуру
-            нулевого дня» — выделением, как прежде на первом экране, и ссылкой к разделу «Инфраструктура нулевого дня». */}
-        <div data-block="j6lny" className={`${s.wrap} ${s.departCenter}`}>
-          <h2 data-block="cxgfo" className={s.departTitle}>
-            {x.titleSubLink && b.closing.includes(x.titleSubLink.text) ? (
-              <>
-                {b.closing.slice(0, b.closing.indexOf(x.titleSubLink.text))}
-                <a href={x.titleSubLink.href} className={s.subLink}>{x.titleSubLink.text}</a>
-                {b.closing.slice(b.closing.indexOf(x.titleSubLink.text) + x.titleSubLink.text.length)}
-              </>
-            ) : b.closing}
-          </h2>
-          {/* Владелец 2026-09-30, «очень аккуратно»: назначение маршрута — узкая строка табло между заголовком и текстом. */}
-          {x.route && (
-            <p data-block="krxcw" className={s.routeTo}>
-              <span className={s.routeLine} aria-hidden="true" />
-              <span className={s.routeLabel}>{x.route.label}</span>
-              <span className={s.routeValue}>{x.route.value}</span>
-            </p>
-          )}
-          <p data-block="tanth" className={s.departText}>{x.closingText}</p>
-          {hero.cta && (
-            <a href={hero.cta.href} className={s.go}>
-              {hero.cta.label}
-              <ArrowRight className="size-5" strokeWidth={2} aria-hidden="true" />
-            </a>
-          )}
-        </div>
-      </section>
+      {/* 477 (владелец 2026-10-14): секция «Пересаживайся на инфраструктуру нулевого дня…» (бывший «Конвейер») снята целиком. */}
       {/* 477 (владелец 2026-10-14): «соединить с экраном Конвейер … но разделить их жёлтой вывеской в том же стиле … надпись “Счастливого
           пути в будущее”» — вывеска висит на цепочках от нижнего края «Конвейера» над ночной сценой с поездом. */}
       {x.farewell && (
