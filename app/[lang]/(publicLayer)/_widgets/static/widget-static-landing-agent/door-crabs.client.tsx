@@ -31,7 +31,10 @@ const SPEC = [
   { start: 2260, edge: 1550, tx: 1475, row: 1, flagSide: 1, flagY: 694 },
 ] as const
 const FLAG_INNER = { "-1": 1322, "1": 1558 } as const
-const FLAG_W = 92
+const FLAG_W = 120
+// Вырез ласточкиного хвоста на свободном конце флажка (владелец 2026-10-14: «задней частью является не прямоугольник а вогнутая часть
+// треугольника»).
+const NOTCH = 16
 
 type Crab = { x: number; y: number; o: number; dur: number; walk: boolean }
 const hidden = (): Crab[] => SPEC.map((c) => ({ x: c.start, y: ROW[0], o: 0, dur: 0, walk: false }))
@@ -127,19 +130,6 @@ export function DoorCrabs({ flag }: { flag: string }) {
           <rect x={1440} y={602} width={98} height={198} />
           <line x1={1489} y1={602} x2={1489} y2={800} />
         </g>
-        {/* Флажки — позади крабиков: древко от клешни к флажку, флажок снаружи пирамиды, у каждого своя высота. */}
-        {SPEC.map((sp, i) => {
-          const c = crabs[i]
-          const inner = FLAG_INNER[String(sp.flagSide) as "-1" | "1"]
-          const x0 = sp.flagSide < 0 ? inner - FLAG_W : inner
-          return (
-            <g key={`f${i}`} className={s.crabFlag} data-on={flags ? "" : undefined}>
-              <line x1={c.x + sp.flagSide * 30 * SCALE} y1={c.y - 22 * SCALE} x2={inner} y2={sp.flagY - 8} />
-              <rect x={x0} y={sp.flagY} width={FLAG_W} height={26} />
-              <text x={x0 + FLAG_W / 2} y={sp.flagY + 18} textAnchor="middle">{flag}</text>
-            </g>
-          )
-        })}
         {crabs.map((c, i) => (
           <g
             key={i}
@@ -152,6 +142,24 @@ export function DoorCrabs({ flag }: { flag: string }) {
             </g>
           </g>
         ))}
+      </svg>
+      {/* Флажки — отдельным слоем ПОВЕРХ стекла и тени фасада (владелец 2026-10-14: флажки были «частично в тени», а крабики освещены):
+          крабики стоят в проёме, где фасад прозрачен, а флажки выходят за проём. Древко от клешни, свободный конец — ласточкин хвост. */}
+      <svg className={`${s.facadeSvg} ${s.facadeFlags}`} viewBox="0 0 2880 900" aria-hidden="true">
+        {SPEC.map((sp, i) => {
+          const c = crabs[i]
+          const inner = FLAG_INNER[String(sp.flagSide) as "-1" | "1"]
+          const fly = inner + sp.flagSide * FLAG_W
+          const y = sp.flagY, h = 26
+          const shape = `M${inner} ${y} H${fly} L${fly - sp.flagSide * NOTCH} ${y + h / 2} L${fly} ${y + h} H${inner} Z`
+          return (
+            <g key={`f${i}`} className={s.crabFlag} data-on={flags ? "" : undefined}>
+              <line x1={c.x + sp.flagSide * 30 * SCALE} y1={c.y - 22 * SCALE} x2={inner} y2={y - 8} />
+              <path d={shape} />
+              <text x={inner + sp.flagSide * (FLAG_W - NOTCH) / 2} y={y + 18} textAnchor="middle">{flag}</text>
+            </g>
+          )
+        })}
       </svg>
       <div data-block="t2igg" className={s.doorZone} aria-hidden="true" onMouseEnter={enter} onMouseLeave={leave} onClick={() => { if (window.matchMedia("(hover: none)").matches) { if (active.current) leave(); else enter() } }} />
     </>

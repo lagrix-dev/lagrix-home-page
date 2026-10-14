@@ -99,7 +99,7 @@
           ]
         }
       ],
-      "crabFlag": "agent"
+      "crabFlag": "I'm an agent"
     },
     "claim": "From idea to revenue, 99% faster",
     "claimHint": "You work inside an infrastructure that is already tuned for speed and surrounded by everything a product needs, before you need it: from sign-in and multiple languages to plugging in ready solutions of other developers.",

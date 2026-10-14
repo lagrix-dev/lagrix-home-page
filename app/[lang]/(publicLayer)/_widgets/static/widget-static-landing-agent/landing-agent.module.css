@@ -1805,6 +1805,7 @@
 
 /* ── 477 (владелец 2026-10-14): КРАБИКИ У ДВЕРЕЙ ВОКЗАЛА — слой поверх рисунка фасада, под растяжками и стеклом крыльев. ─────────── */
 .facadeCrabs { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: visible; }
+.facadeFlags { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: visible; }
 .doorZone { position: absolute; z-index: 2; left: 46.53%; top: 72.2%; width: 6.94%; height: 16.7%; cursor: pointer; }
 .doorLeaf { transition: transform 0.8s var(--ease); }
 .doorLeaf rect { fill: color-mix(in oklab, var(--board-deep) 70%, transparent); stroke: var(--chalk); stroke-width: 4; }
@@ -1819,7 +1820,7 @@
 .crabFlag { opacity: 0; transition: opacity 0.4s var(--ease); }
 .crabFlag[data-on] { opacity: 1; }
 .crabFlag line { stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; }
-.crabFlag rect { fill: var(--poster); stroke: var(--ink); stroke-width: 2; }
+.crabFlag path { fill: var(--poster); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
 .crabFlag text { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: 0.04em; }
 @media (max-width: 767px) { .facadeCrabs, .doorZone { display: none; } }
 @media (prefers-reduced-motion: reduce) { .doorLeaf, .doorCrab, .crabFlag { transition: none; } .doorCrab .crabLeg rect { animation: none; } }
