@@ -48,8 +48,12 @@ requests to bring, which to decline without asking.
    address, never the content.
 2. **Connecting.** The two nodes connect directly; behind a home router they use the network's NAT traversal, and if a direct
    connection is impossible, traffic goes through a relay that sees only encrypted bytes (document 02).
-3. **Encrypting.** The connection is encrypted end to end (document 03). Super-nodes and relays cannot read it.
-4. **Keeping.** The history stays on each participant's node. No one else holds a copy.
+3. **Encrypting.** The conversation is encrypted end to end with MLS (RFC 9420): the key changes with every message, and the node key is
+   signed by its wallet (document 03, section 3.5). Super-nodes and relays cannot read it.
+4. **Delivering.** A direct connection is free. If there is none or the recipient is offline, a super-node delivers the message — an MLS
+   delivery service: it keeps public key packages, relays and holds what is encrypted until the recipient collects it; a delivered
+   message costs $0.001 from the sender's prepaid balance (changelog entry 33).
+5. **Keeping.** The history stays on each participant's node. No one else holds a copy.
 
 ## Advantages
 
@@ -74,7 +78,5 @@ gets an advantage. Fractera builds its own H2A and H2H messengers as one impleme
 
 ## Open questions
 
-- **Payment for a person-to-person connection and for relaying it.** Relay payment is open for the whole network (changelog 000).
-- **Delivery when one side is offline** — whether a node may ask a third party to hold an encrypted message, and on what terms.
 - **The format of a contact request** — who asks, why, what is attached, and the agent's assessment.
 - **Withdrawing a contact** — how a person removes someone their agent once brought.

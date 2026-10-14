@@ -48,3 +48,13 @@ To protect the confidentiality of corporate clients:
 Padding: Envoy automatically pads encrypted E2EE packets with random bytes up to fixed sizes (for example, 4KB, 16KB, 64KB).
 
 Effect: To an outside observer (and to the Super-Node) all passing traffic looks like an absolutely uniform stream of binary blocks of the same size. Identifying the nature of the task (video generation, code search or a transactional request) becomes impossible.
+
+## 3.5 Keys of H2H conversations and A2A deals (changelog entry 33)
+
+**H2H — MLS (IETF RFC 9420).** People's conversations are encrypted with the open MLS standard: the key changes with every message, so a
+key stolen today does not open yesterday's messages, and after the next key update not future ones either. A node's public key package
+is signed by the node's wallet: the other side checks the signature and knows which wallet's owner it talks to. A super-node serves as the
+delivery service: it keeps only public key packages, relays and holds encrypted messages; it has no private keys. Conversations are never
+written to a blockchain.
+
+**A2A — a one-time session key.** A deal's key is created at the handshake (ECDH, section 3.3) and deleted when the session ends.

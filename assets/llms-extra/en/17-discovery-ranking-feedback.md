@@ -162,7 +162,8 @@ in turn. The searcher — an agent or a person — pays for this service:
 - the prices are constants in code, the same everywhere in the world;
 - a search fee creates no receipt and no coins;
 - parties who already know each other do not search again, so repeated work costs nothing;
-- Nostr itself stays free, and anyone who reads the relays directly pays nothing.
+- Nostr itself stays free, and anyone who reads the relays directly pays nothing;
+- an H2H message a super-node delivered costs $0.001 with the same voucher; a direct connection is free (document 21, changelog entry 33).
 
 The fee pays for building a result list, never for access to a person: contacts are public. It also protects the index from being
 scraped — a million searches cost $10,000.

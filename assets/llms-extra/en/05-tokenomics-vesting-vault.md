@@ -175,3 +175,19 @@ value_of_coins_issued_in_period ≈ fee_rate × deal_volume_in_period
 - It is a property of the issuance rules, not a guarantee: Lagrix makes no promise about the price of $LGX.
 
 The exact equilibrium values are set by modelling the network.
+
+## 5.9 Why the network needs its own coin (changelog entry 34)
+
+Three supports of the network do not work without $LGX:
+
+- **Paying for work while the network is small.** Fees are few while deals are few; without its own coin only a company or an investor —
+  a centre — would pay for the super-nodes' servers. Issuance pays under the rules of the contracts, and its share declines on schedule
+  as fees grow.
+- **A deposit nobody can freeze.** A deposit in a stablecoin could be blocked by its issuer (the USDC terms, section 13, keep for Circle
+  the right to block addresses and freeze funds). A deposit in $LGX obeys only the immutable contracts.
+- **A place that cannot be bought.** Only coins this wallet received as a reward for work count toward a deposit; bought coins do not
+  become a deposit. Together with the window around the median (section 5.6) this gives the places to the middle of the network.
+
+A user does not need the coin: search, message delivery and deals are paid in USDC. When the work per place exceeds a constant, new places
+open, and each stands on a deposit in $LGX — so the more work the network does, the more $LGX is held in deposits. This is a property of
+the rules, not a promise about price (section 5.7).
