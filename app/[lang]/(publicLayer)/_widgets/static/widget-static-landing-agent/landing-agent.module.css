@@ -1849,6 +1849,8 @@
    болтах, светящаяся бегущая строка по нижнему краю. Роли — те же, что у зала ожидания; одно движение — строка и ключ. ─────────── */
 .telegraph { padding: 4.5rem 0 3rem; }
 .tgRoom { position: relative; margin-top: 2rem; }
+/* Своя сцена, а не .roomSvg: сцену зала ожидания на узком экране прячут, а здесь таблички — переключатель, они нужны везде. */
+.tgSvg { display: block; width: 100%; height: auto; }
 .tgFrame { fill: var(--chalk); stroke: var(--ink); stroke-width: 5; }
 .tgLogo { fill: var(--board); }
 .tgPlane { fill: var(--chalk); }
@@ -1907,4 +1909,8 @@
   .tgRoom[data-run] .tgKeyArm, .tgRoom[data-run] .tgHand { animation: none; }
   .tgRoom[data-run] .tgLine { animation: none; padding-left: 1rem; }
   .tgLine { white-space: normal; }
+}
+@media (max-width: 560px) {
+  .tgPlateCaption { display: none; }
+  .tgPlateCode { font-size: 46px; }
 }

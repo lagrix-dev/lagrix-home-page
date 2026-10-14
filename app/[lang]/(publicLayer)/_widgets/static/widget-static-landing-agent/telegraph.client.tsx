@@ -88,8 +88,8 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
 
   return (
     <div data-block="tgrom" ref={room} className={s.tgRoom} data-mode={mode} data-run={run && visible ? "" : undefined}>
-      <svg viewBox="0 0 1000 420" className={s.roomSvg} role="img" aria-label={w.scene}>
-        <rect className={s.roomFloor} x={0} y={330} width={1000} height={90} />
+      <svg viewBox="0 0 1000 352" className={s.tgSvg} role="img" aria-label={w.scene}>
+        <rect className={s.roomFloor} x={0} y={330} width={1000} height={22} />
         <path className={s.roomSkirt} d="M0 330 H1000" />
 
         {/* Знак Telegram на стене — бумажный самолётик в круге, в рамке */}
