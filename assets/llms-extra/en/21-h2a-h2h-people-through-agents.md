@@ -44,8 +44,8 @@ requests to bring, which to decline without asking.
 
 ## How a conversation travels
 
-1. **Finding.** The person's agent finds the other agent through the network's discovery (document 17): the super-node gives an
-   address, never the content.
+1. **Finding.** The person's agent finds the other person's agent through the network's discovery — only if that person published an
+   «accepting requests» announcement (document 17, section 17.11): the super-node gives an address, never the content.
 2. **Connecting.** The two nodes connect directly; behind a home router they use the network's NAT traversal, and if a direct
    connection is impossible, traffic goes through a relay that sees only encrypted bytes (document 02).
 3. **Encrypting.** The conversation is encrypted end to end with MLS (RFC 9420): the key changes with every message, and the node key is
@@ -78,5 +78,6 @@ gets an advantage. Fractera builds its own H2A and H2H messengers as one impleme
 
 ## Open questions
 
-- **The format of a contact request** — who asks, why, what is attached, and the agent's assessment.
+- **The exact fields of a contact request** — who asks, why, what is attached, and the agent's assessment: the content is set by
+  changelog entry 36, the fields at implementation.
 - **Withdrawing a contact** — how a person removes someone their agent once brought.

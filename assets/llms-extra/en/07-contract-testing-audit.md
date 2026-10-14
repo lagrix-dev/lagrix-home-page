@@ -9,7 +9,7 @@ Slither static analysis.
 |---|---|---|
 | A2AEscrow.sol | deals, receipts, Time-Lock, fee deduction, the `Receipt` event | 04 |
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
-| PeriodIssuance.sol | the warm-up threshold, issuance by period on the schedule, the reward split by receipts | 05 |
+| PeriodIssuance.sol | the warm-up threshold, the availability part (a share of the remainder per period), the work part (the counter V with a half-volume and a speed limit), the split by receipts | 05 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
 | LagrixToken.sol | the coin, the supply cap, the six-month rule, the period reward split | 05 |
 | SuperNodeDeposits.sol | deposits, removal, penalties, false reports | 06 |
@@ -29,7 +29,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the network part divided by 10; a second review of the same deal by the same side is rejected.
 - `test_SixMonthRule()` — a coin transfer earlier than 180 days after joining is rejected; after that it passes.
 - `test_PeriodReward_Split()` — 50% to super-nodes and 30% to provider agents by receipt weight, 20% equally to super-nodes that passed the quality minimum, accurate to 1 wei.
-- `test_NoAdminFunctions()` — no function changes a rate, a price, a threshold or the schedule after deployment.
+- `test_NoAdminFunctions()` — no function changes a rate, a price, a threshold, the half-volume, the availability share or the limit after deployment.
 - `test_Downtime_NoSlash()` — an unavailable node is not penalised and after 30 days is removed with its deposit returned.
 - `test_Slashing_HalfToReporter_HalfRemoved()` — half of a penalty to the reporter, half removed from circulation.
 
@@ -61,6 +61,9 @@ amounts — and checks invariants that must hold for any sequence of calls:
 3. **Supply cap.** No more than 1,000,000,000 LGX are ever created.
 4. **No founder share.** No address receives new coins except through receipts and the quality minimum.
 5. **Deposit accounting.** The sum of all super-nodes' deposits equals the total recorded in the staking contract.
+6. **Speed limit.** In a period the work part issues no more than a constant share of its remainder, and the counter V does not grow
+   beyond the volume that this issuance paid for.
+7. **Two parts.** What the availability part has issued never exceeds 200,000,000 LGX, and the work part never exceeds 800,000,000 LGX.
 
 ```solidity
 function invariant_EscrowSolvency() public view {

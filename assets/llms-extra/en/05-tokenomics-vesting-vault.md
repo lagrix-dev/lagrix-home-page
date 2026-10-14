@@ -12,10 +12,10 @@ not fixed below are set once, by modelling, before deployment.
 
 | Property | Value |
 |---|---|
-| Issuance cap | 1,000,000,000 LGX over about 30 years |
-| How coins appear | only as the reward of an issuance period, divided by the receipts of that period (section 5.2) |
+| Issuance cap | 1,000,000,000 LGX; no end date — issuance approaches the cap and never reaches it (section 5.2) |
+| How coins appear | only as the reward of an issuance period: the work part by the period's receipts, the availability part equally to super-nodes that passed the quality minimum (section 5.2) |
 | Sale at launch | none: no presale, no investor allocation, no fund created in advance |
-| Issuance schedule | declines smoothly, so issuance fades rather than stopping on a cliff; the exact shape is set by modelling |
+| Issuance speed | follows paid work and never exceeds the speed limit; there is no calendar, issuance fades rather than stopping on a cliff; the constants are set by modelling (section 5.2) |
 | Start of issuance | after the warm-up: a threshold of deal volume paid through the network and a minimum number of super-nodes (section 5.2) |
 | Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), paid to the super-nodes that kept the network running (section 5.3, document 09) |
 | What the coin is for | an asset of its holder and the deposit of a super-node operator; it does not buy a place in search |
@@ -34,18 +34,38 @@ of a completed, paid deal for the customer, the provider and the super-node it p
 the work. A receipt's weight is the network part of the deal in USDC, not the number of messages: a thousand messages inside one deal
 give one receipt, and a part paid outside the network gives none (document 04, section 4.6).
 
-**Issuance period.** A block of Lagrix is a period set by the contract, not something found. At the end of every period the contract
-issues that period's reward from the schedule and divides it by the weight of the receipts closed in the period. Nobody can find,
-forge or add a period, and a receipt cannot be forged: it is the closing of a paid deal.
+**Issuance period.** A block of Lagrix is a period set by the contract, not something found. Nobody can find, forge or add a period,
+and a receipt cannot be forged: it is the closing of a paid deal. Issuance has two parts (changelog entry 35).
 
-**Splitting the reward.**
+**The availability part — 200,000,000 LGX (20%).** At the end of every period the contract issues a constant small share of what is still
+unissued in this part and divides it equally among the super-nodes that passed the quality minimum in this period (section 5.6). It pays
+for servers while work is scarce and declines by itself.
 
-| Who | Share of the reward | How it is distributed |
+**The work part — 800,000,000 LGX (80%).** Its issuance follows the counter V — the sum of the network parts of deals in USDC closed in
+escrow since issuance began:
+
+```
+issued_work(V) = 800,000,000 × (1 − 2^(−V / H))
+```
+
+H is the «half-volume» constant: every H of paid work issues half of what is still left in this part. At the end of a period the contract
+issues the difference between the formula's values before and after the period and divides it by the weight of the period's receipts: 50
+parts of 80 to super-nodes, 30 of 80 to provider agents.
+
+**The speed limit.** The work part never issues more in a period than a constant share of its remainder. Work above the limit in that
+period does not move the counter V: inflated volume issues nothing extra and does not bring the end closer. A period without paid work
+issues nothing from the work part — its remainder waits.
+
+| Who | Share of all issuance | From where and how |
 |---|---|---|
-| Super-nodes, by work | 50% | in proportion to the weight of the receipts of the deals they served in this period |
-| Provider agents | 30% | in proportion to the weight of the receipts of their paid work in this period |
-| Super-nodes, equally | 20% | in equal parts to the super-nodes that passed the quality minimum in this period (section 5.6) |
-| **Total** | **100%** | |
+| Super-nodes, by work | 50% | the work part: by the weight of the receipts of the deals they served in the period |
+| Provider agents | 30% | the work part: by the weight of the receipts of their paid work in the period |
+| Super-nodes, equally | 20% | the availability part: equally to those that passed the quality minimum in the period (section 5.6) |
+| **Total** | **100%** | over the network's whole life; within a period the shares vary — availability is steady, work varies |
+
+While the network is small, issuance follows work and is deferred, not lost; when the network is large — no faster than the limit, as a
+smooth decline with no end date. The cap is never reached. The constants — H, the availability share and the limit share per period — are
+set by modelling; after deployment nobody changes them.
 
 Coins go to those who do the work and those who serve it. Customer agents receive no coins: a customer who received coins for paying for
 a service would in effect be buying coins with that payment.
@@ -147,7 +167,7 @@ modelling. How "passed or failed" is measured and how the contract finds the med
 ## 5.7 What $LGX does not have
 
 - No sale of coins at launch and no allocation for investors.
-- No fund created in advance and no keys that let anyone create coins outside the issuance schedule.
+- No fund created in advance and no keys that let anyone create coins outside the issuance rules.
 - No mechanism whose only purpose is price.
 - No place in search: ranking follows paid work, not coins (document 17).
 - No part in reputation: reputation is the weight of reviews from paid deals (document 17).
@@ -158,14 +178,14 @@ modelling. How "passed or failed" is measured and how the contract finds the med
 The rules of this document tie the issuance of coins to the volume of real deals. The link comes from the rules themselves, not from
 promises.
 
-**The link through the fee.** New coins go to receipts, and every receipt is a deal from which a fee in USDC was deducted and paid to
-the super-nodes of the network (document 09). If the value of the coins issued per dollar of deals rises above the fee rate, it becomes
-profitable to make deals only for the receipts: pay the fee and get more back in coins. Such receipts multiply, and each receipt earns
-fewer coins — until the profit disappears. So the value of the new coins the network issues in a period tends toward the fee's share of
-the deal volume in that period:
+**The link through the fee.** Coins of the work part go to receipts, and every receipt is a deal from which a fee in USDC was deducted and
+paid to the super-nodes of the network (document 09). If the value of the coins a dollar of receipts brings rises above the fee on that
+dollar, it becomes profitable to make deals only for the receipts. While issuance follows work, such deals move the counter and each next
+dollar brings fewer coins; when issuance hits the limit, extra deals only share the same issuance of the period. Either way the profit
+disappears. So the value of the work part's coins issued in a period tends toward the fee's share of the deal volume in that period:
 
 ```
-value_of_coins_issued_in_period ≈ fee_rate × deal_volume_in_period
+value_of_work_coins_issued_in_period ≈ fee_rate × deal_volume_in_period
 ```
 
 **What this link does not do.**
@@ -181,8 +201,7 @@ The exact equilibrium values are set by modelling the network.
 Three supports of the network do not work without $LGX:
 
 - **Paying for work while the network is small.** Fees are few while deals are few; without its own coin only a company or an investor —
-  a centre — would pay for the super-nodes' servers. Issuance pays under the rules of the contracts, and its share declines on schedule
-  as fees grow.
+  a centre — would pay for the super-nodes' servers. The availability part of issuance pays for servers under the rules of the contracts and declines by itself as fees grow (section 5.2).
 - **A deposit nobody can freeze.** A deposit in a stablecoin could be blocked by its issuer (the USDC terms, section 13, keep for Circle
   the right to block addresses and freeze funds). A deposit in $LGX obeys only the immutable contracts.
 - **A place that cannot be bought.** Only coins this wallet received as a reward for work count toward a deposit; bought coins do not

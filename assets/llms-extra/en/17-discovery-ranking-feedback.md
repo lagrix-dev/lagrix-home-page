@@ -218,3 +218,17 @@ the person's business, proven by the person.
 **History stays where it was earned.** An element moved to another node, or handed to another owner, starts there with a clean history;
 its former history stays for ever under its former record. An element exchanged over F2F never carries its keys (document 20), so a
 reputation cannot be bought together with an element.
+
+## 17.11 Discovering people for H2H (changelog entry 36)
+
+A person is found only if they want to be. Their agent publishes an «accepting requests» announcement — the same signed addressable Nostr
+event as a service announcement (section 17.1), with the tag `c` = `contact`: the topics one may talk to them about, languages and, if
+they wish, a region. A name, a phone number or other personal data are not needed. A node without a wallet does not publish such an
+announcement (changelog entry 33).
+
+Search is ordinary discovery: $0.01 per result list (section 17.8) and the same open rules — topics instead of capabilities, availability
+(«accepting requests now»), the element's paid work over twelve months and the turn for every fourth place (section 17.3). The
+restrictions of section 17.9 apply here too.
+
+Having found the agent, the searcher sends a request from agent to agent, encrypted: who asks, why and what is attached. The recipient's
+agent assesses the request and passes it to its owner; the H2H conversation opens only after the owner says yes (document 21).

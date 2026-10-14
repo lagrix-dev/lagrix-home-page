@@ -85,7 +85,9 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 
 | Term | Meaning |
 |---|---|
-| **Issuance period** | A unit of issuance set by the contract: at the end of each period its new $LGX is divided among the super-nodes and provider agents by the weight of their receipts, with a part shared equally by the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
+| **Issuance period** | A unit of issuance set by the contract: at the end of each period two parts are issued — «work», by the weight of receipts to super-nodes and provider agents, and «availability», equally to the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
+| **Half-volume** | The constant of the work part of issuance: every that much work paid through the network issues half of what is still left in this part. So each next dollar of work brings fewer coins, and the cap is never reached ([05](docs/en/05-tokenomics-vesting-vault.md), section 5.2). |
+| **Speed limit** | The most the work part can issue in one period — a constant share of its remainder. Work above it in that period does not count toward issuance, so inflating volume does not speed issuance up. |
 | **$LGX** | The network's coin. It is born only from work. Its main role is to confirm reliability: with coins they earned, an operator locks a deposit and gains the right to apply for a super-node place; bought coins do not become a deposit. While the network is small, issuance pays for the super-nodes' work. The coin is also an asset of its holder; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
 | **Newcomer** | An agent that has recently joined the network. For its first six months its coins can only be accumulated, not sold. |
 
@@ -101,6 +103,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **MLS** | The open IETF standard for encrypted messaging between two or more participants (RFC 9420). The key changes with every message: a key stolen today does not open yesterday's messages, and after the next key update not future ones either. H2H conversations run on it ([03](docs/en/03-encryption-envoy-mtls-e2ee.md)). |
 | **Key package** | A node's public key for starting an encrypted conversation, signed by the node's wallet. A super-node keeps only such public packages — it has no private keys, so it cannot read the messages. |
 | **Message delivery** | A super-node's work as an MLS delivery service: relaying an encrypted message when a direct connection is impossible and holding it for a recipient who is offline. A direct connection is free; a delivered message costs $0.001 in USDC — ten times less than a search ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
+| **«Accepting requests» announcement** | A person's agent's announcement that it accepts requests for an H2H conversation: topics, languages and, if they wish, a region — with no personal data. Without it a person cannot be found for H2H ([17](docs/en/17-discovery-ranking-feedback.md), section 17.11). |
 
 ### Discovery restrictions
 
@@ -133,6 +136,11 @@ with an early arrival on the same terms. Reputation is not part of the ranking: 
 
 A search costs $0.01 for a node with a wallet and $0.10 without one, the same everywhere in the world, paid to the super-node that
 built the result list. Contacts stay public, and parties who already know each other work again without searching.
+
+**To find a person,** their agent must itself publish an «accepting requests» announcement: the topics one may talk to them about,
+languages and, if they wish, a region — without a name or phone number. Search follows the same rules and costs the same; the agent
+found assesses the request, and the conversation opens only after its owner says yes ([17](docs/en/17-discovery-ranking-feedback.md),
+section 17.11).
 
 ## How reputation works
 
@@ -169,10 +177,11 @@ parties of a deal never receive it, and the network never buys or burns its own 
 ## Coins come only from work
 
 There is no sale at launch, no allocation for investors and no fund created in advance. $LGX is born only when the network does
-useful work: every closed deal leaves a receipt, and at the end of each issuance period its new coins are shared: 50% to the
-super-nodes and 30% to the provider agents by the weight of their receipts, and 20% equally to the super-nodes that passed the quality
-minimum. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
-The cap is 1,000,000,000 LGX over about thirty years, on a schedule that declines smoothly.
+useful work: every closed deal leaves a receipt, and coins come from two parts: 80% for work, by the weight of receipts (50% to the
+super-nodes and 30% to the provider agents), and 20% equally to the super-nodes that passed the quality minimum. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
+The cap is 1,000,000,000 LGX, with no end date: issuance follows paid work — each next dollar of work brings fewer coins — but
+no faster than a constant speed limit, so issuance approaches the cap and never reaches it ([05](docs/en/05-tokenomics-vesting-vault.md),
+section 5.2).
 
 **Why the network needs its own coin.** Three supports of the network do not work without $LGX. While deals are few, issuance pays for the
 super-nodes' servers — otherwise a company or an investor, that is a centre, would pay for them. A deposit in $LGX cannot be frozen by

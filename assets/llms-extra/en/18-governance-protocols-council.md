@@ -47,7 +47,7 @@ once have decided is either a constant or a formula in code:
 | Search fee | $0.01 per result list with a wallet, $0.10 without one, constants (document 17) |
 | Weight of a review | the network part of the deal divided by 10, a constant (document 17) |
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |
-| Issuance | a smoothly declining schedule up to the cap, divided by period (document 05) |
+| Issuance | two parts up to the cap with no end date: availability — a share of the remainder per period, work — by the counter of paid work with a speed limit (document 05) |
 | Start of issuance | a threshold of volume paid through the network and a minimum number of super-nodes, constants (document 05) |
 | Super-node entry and deposit | a window around the median of paid work and random choice; formulas of network size and load (document 05, section 5.6) |
 

@@ -48,8 +48,9 @@ A fee in USDC, a constant of at most 5% of the network part, set by modelling: p
 super-nodes that passed the quality minimum (document 09).
 
 Issuance for work: $LGX coins are born only as the reward of an issuance period, divided by the receipts of served deals; no mining; the
-cap is 1,000,000,000 LGX over ~30 years on a smoothly declining schedule; shares: 50% super-nodes by receipts, 30% provider agents
-by receipts, 20% equally to super-nodes that passed the quality minimum; no founder share; customer agents receive no coins (document 05).
+cap is 1,000,000,000 LGX with no end date: 20% is the availability part (a constant share of its remainder per period, equally to
+super-nodes that passed the quality minimum), 80% is the work part (by the counter of paid work with a half-volume and a speed limit;
+50% super-nodes and 30% provider agents by receipts); no founder share; customer agents receive no coins (document 05).
 
 The warm-up start: the network works on real deals and takes the fee from the first one; issuance opens by itself after a threshold of
 volume paid through the network and a minimum number of super-nodes (document 05).
