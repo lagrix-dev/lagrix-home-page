@@ -157,10 +157,11 @@ export function StationFacade({ w }: { w: Facade }) {
             </svg>
             <div data-block="hbekx" className={s.facadeEntrance}>
               <span className={s.entranceRods} aria-hidden="true" />
-              <p data-block="igu49" className={s.entrancePlate}>
+              {/* 477 (владелец 2026-10-14): «при нажатии на кнопку входа в будущее происходит прокрутка вниз на страницу табло». */}
+              <a data-block="igu49" href="#board" className={s.entrancePlate}>
                 <span className={s.entranceMark} aria-hidden="true"><DoorOpen className="size-[0.9em]" strokeWidth={2.4} /></span>
                 {w.entrance}
-              </p>
+              </a>
             </div>
           </div>
           {w.missions.slice(0, 2).map((m, i) => (

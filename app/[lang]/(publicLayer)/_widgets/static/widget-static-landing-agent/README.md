@@ -207,3 +207,8 @@ Owner's order of screens (verbatim): «второй экран — табло �
   future work.
 - The machine copy (`markdown.ts`) follows the page: station, board with the yellow sign, help desk with the simulations, station sign
   and chat, then the rest.
+- **Owner corrections (same day, «Абсолютно идеально, несколько поправок»):** the tab of the mission in view disappears (slides
+  out past the edge), not just dims; hover lights only the banner of the wing in view (`data-focus` on the stage, set by the buttons
+  island; without JavaScript both light); the «Entrance to the future» plate is a link to the board (`#board`); on wide screens the
+  help desk kiosk stretches to the height of the row set by the sign columns and the chat window takes the free space (at least the
+  former 17rem).

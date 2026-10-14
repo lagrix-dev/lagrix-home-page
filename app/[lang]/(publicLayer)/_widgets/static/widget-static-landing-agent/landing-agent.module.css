@@ -1611,6 +1611,9 @@
   box-shadow: inset 0 0 0 2px var(--chalk), inset 0 0 0 4px var(--board), 0 4px 0 var(--board-deep);
   font-family: var(--display); font-weight: 700; font-size: max(0.95rem, 2.3cqh); line-height: 1; letter-spacing: 0.08em; text-transform: uppercase;
 }
+.entrancePlate { text-decoration: none; cursor: pointer; transition: transform 0.25s var(--ease); }
+.entrancePlate:hover { transform: translateY(-2px); }
+.entrancePlate:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
 .entranceMark { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; background: var(--board); color: var(--chalk); border-radius: var(--tile-corner); }
 
 /* Растяжки миссий внутри стекла крыльев: x 98…1042 и 1838…2782, y 388…752 из 2880 × 900 — отступ 48 со всех сторон. Две колонки:
@@ -1639,11 +1642,14 @@
 /* За стеклом растяжка приглушена; наведение «проявляет» и подсвечивает её (только там, где наведение есть). */
 @media (hover: hover) and (min-width: 768px) {
   .mission { filter: brightness(0.72) saturate(0.82); }
-  .mission:hover { filter: none; box-shadow: 0 0 0 3px var(--poster), 0 0 5cqh color-mix(in oklab, var(--poster) 60%, transparent); }
-  .mission[data-side="left"]:hover ~ .facadeFront .fGlassFront[data-side="left"] .fTint,
-  .mission[data-side="right"]:hover ~ .facadeFront .fGlassFront[data-side="right"] .fTint { opacity: 0; }
-  .mission[data-side="left"]:hover ~ .facadeFront .fGlassFront[data-side="left"] :is(.fMullion, .fTransom),
-  .mission[data-side="right"]:hover ~ .facadeFront .fGlassFront[data-side="right"] :is(.fMullion, .fTransom) { stroke-opacity: 0.1; }
+  /* 477 (владелец): «когда в фокусе левый экран, подсветка правого баннера становится невозможной … и наоборот» — подсветка только у
+     растяжки крыла в кадре (`data-focus` ставит островок кнопок); без JavaScript атрибута нет — подсвечиваются обе. */
+  .facadeStage:is([data-focus="left"], [data-focus="both"], :not([data-focus])) .mission[data-side="left"]:hover,
+  .facadeStage:is([data-focus="right"], [data-focus="both"], :not([data-focus])) .mission[data-side="right"]:hover { filter: none; box-shadow: 0 0 0 3px var(--poster), 0 0 5cqh color-mix(in oklab, var(--poster) 60%, transparent); }
+  .facadeStage:is([data-focus="left"], [data-focus="both"], :not([data-focus])) .mission[data-side="left"]:hover ~ .facadeFront .fGlassFront[data-side="left"] .fTint,
+  .facadeStage:is([data-focus="right"], [data-focus="both"], :not([data-focus])) .mission[data-side="right"]:hover ~ .facadeFront .fGlassFront[data-side="right"] .fTint { opacity: 0; }
+  .facadeStage:is([data-focus="left"], [data-focus="both"], :not([data-focus])) .mission[data-side="left"]:hover ~ .facadeFront .fGlassFront[data-side="left"] :is(.fMullion, .fTransom),
+  .facadeStage:is([data-focus="right"], [data-focus="both"], :not([data-focus])) .mission[data-side="right"]:hover ~ .facadeFront .fGlassFront[data-side="right"] :is(.fMullion, .fTransom) { stroke-opacity: 0.1; }
 }
 @media (hover: none) { .fTint { opacity: 0; } }
 
@@ -1653,12 +1659,18 @@
   position: absolute; z-index: 4; top: 50%; display: inline-flex; align-items: stretch; height: 5.2rem; padding: 0; border: 0;
   background: var(--poster); color: var(--ink); cursor: pointer; box-shadow: 0 12px 28px -14px var(--shade);
   font-family: var(--display); font-weight: 800; font-size: 2.3rem; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
-  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
+  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease), visibility 0s;
 }
 .edgeBtn[data-side="left"] { left: 0; border-radius: 0 var(--tile-corner) var(--tile-corner) 0; transform: translate(calc(-100% + 3.6rem), -50%); }
 .edgeBtn[data-side="right"] { right: 0; border-radius: var(--tile-corner) 0 0 var(--tile-corner); transform: translate(calc(100% - 3.6rem), -50%); }
 .edgeBtn:not(:disabled):hover, .edgeBtn:focus-visible { transform: translate(0, -50%); }
-.edgeBtn:disabled { opacity: 0.45; cursor: default; }
+.edgeBtn:disabled {
+  /* 477 (владелец): «когда в фокусе левый экран — кнопка единицы должна исчезать … правый — двойка»: ярлычок уезжает за край. */
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease), visibility 0s 0.45s;
+}
+.edgeBtn[data-side="left"]:disabled { transform: translate(-100%, -50%); }
+.edgeBtn[data-side="right"]:disabled { transform: translate(100%, -50%); }
 .edgeBtn:focus-visible { outline: 3px solid var(--chalk); outline-offset: 3px; }
 .edgeLabel { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0 1.2rem 0 1.6rem; }
 .edgeBtn[data-side="right"] .edgeLabel { padding: 0 1.6rem 0 1.2rem; }
@@ -1713,4 +1725,17 @@
     background: var(--go); color: var(--ink); border-bottom: 4px solid oklch(from var(--go) calc(l - 0.16) c h);
   }
   .deskSign[data-look="sim"] .deskSignPlate:hover { background: oklch(from var(--go) calc(l - 0.05) c h); }
+}
+
+/* 477 (владелец 2026-10-14): «Вход в будущее» ведёт к табло — место под шапку и полосу запуска над ним. */
+.boardHall { scroll-margin-top: calc(3.5rem + 3rem); }
+
+/* 477 (владелец 2026-10-14): «растянуть высоту справочного бюро на всю высоту этого контейнера … не будет пустого пространства …
+   видимое пространство чата станет нормальной высоты». Широкий экран: киоск тянется на высоту ряда (её задают колонки вывесок),
+   окно чата забирает всё свободное место, не меньше прежних 17rem. */
+@media (min-width: 1024px) {
+  .deskGrid { align-items: stretch; }
+  .kiosk { display: flex; flex-direction: column; }
+  .kioskBody { flex: 1; grid-template-rows: minmax(17rem, 1fr); grid-auto-rows: auto; }
+  .kioskWindow { height: auto; min-height: 0; }
 }

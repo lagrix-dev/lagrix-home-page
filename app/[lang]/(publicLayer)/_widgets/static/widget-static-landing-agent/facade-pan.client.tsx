@@ -61,8 +61,12 @@ export function FacadePan({ labels, aria, children }: { labels: [string, string]
     frame.current = requestAnimationFrame(step)
   }
 
+  // 477 (владелец 2026-10-14): какое крыло в кадре — от этого зависят обе правки: ярлычок этой миссии исчезает, подсветка
+  // растяжки другого крыла при наведении невозможна. Без JavaScript атрибута нет — тогда подсвечиваются обе.
+  const focus = !edge ? undefined : edge.none ? "both" : edge.start ? "left" : edge.end ? "right" : "mid"
+
   return (
-    <div data-block="zkewq" className={s.facadeStage}>
+    <div data-block="zkewq" className={s.facadeStage} data-focus={focus}>
       <div data-block="fmn8u" ref={view} className={s.facadeView}>{children}</div>
       {edge && !edge.none && (
         <>

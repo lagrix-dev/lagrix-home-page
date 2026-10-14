@@ -69,7 +69,7 @@ export function LandingAgent({ lang }: { lang: string }) {
           служба». Прежний первый экран (вывеска станции с чатом) — ниже бюро: «Экран с чатом временно оставляем». */}
       {x.facade && <StationFacade w={x.facade} />}
 
-      <section data-block="hbbfq" className={s.hall}>
+      <section data-block="hbbfq" id="board" className={`${s.hall} ${s.boardHall}`}>
         <div data-block="rkprp" className={s.wrap}>
             <div data-block="qvj57" className={s.board} data-board data-shown="0">
               <div data-block="n0hnr" className={s.boardTop}>
