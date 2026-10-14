@@ -1751,8 +1751,10 @@
 .cosmosInner { position: relative; z-index: 1; display: grid; justify-items: center; gap: 2.4rem; width: calc(100% - 2rem); padding: 3rem 0; }
 .cosmosPlate { margin: 0; font-size: clamp(1.05rem, 1.6vw, 1.45rem); }
 .cosmosTitle {
-  width: 100%; font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 4.4vw, 5.2rem); line-height: 1.06;
-  letter-spacing: -0.01em; text-wrap: balance;
+  /* «Заголовок, который растягивается на всю ширину экрана» (владелец): строки заполняют ширину (без выравнивания длины строк),
+     кегль растёт с шириной экрана. */
+  width: 100%; font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 5.2vw, 6.4rem); line-height: 1.04;
+  letter-spacing: -0.01em; text-wrap: pretty;
 }
 .cosmosSub {
   display: inline-block; padding: 0.3em 0.75em; border-radius: var(--tile-corner); text-decoration: none;
