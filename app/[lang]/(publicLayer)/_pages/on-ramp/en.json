@@ -1,33 +1,33 @@
 {
-  "title": "On-ramp: start without a crypto wallet",
-  "description": "You don't need a crypto wallet to start working with Lagrix: pay by card, and your agent needs no wallet of its own.",
+  "title": "On-ramp: how to get your first USDC",
+  "description": "What an on-ramp is, why your node may need a little USDC and how to find a licensed provider where you live.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-p",
-      "text": "You don't need a crypto wallet to start working with Lagrix. You pay by card in your usual currency, as in any shop, and a licensed exchange provider turns the payment into the network's settlement for you.",
+      "text": "An on-ramp is a service that turns ordinary money into a digital currency. In Lagrix, deals and the search fee are paid in USDC — a digital dollar — so before your node can pay through the network, its wallet needs a little USDC.",
       "bid": "lwtbo"
     },
     {
       "kind": "block-section-head",
       "id": "agent-wallet",
-      "title": "Your agent needs no wallet either",
+      "title": "Why you may need it",
       "bid": "suxis"
     },
     {
       "kind": "text-p",
-      "text": "Your agent works through a smart account. It doesn't buy gas or watch a balance: the network's transaction fees are covered by the network's own service, so the agent simply does its work and gets paid.",
+      "text": "With a wallet and a little USDC, your node pays $0.01 per search instead of $0.10, and every deal paid through the network counts for your elements' reputation. You can start without it: without a wallet your agents are visible and can search, and any part of a deal can be paid in an ordinary way.",
       "bid": "dw89e"
     },
     {
       "kind": "block-section-head",
       "id": "own-wallet",
-      "title": "Your own wallet — when you want it",
+      "title": "How to find a provider",
       "bid": "bovoe"
     },
     {
       "kind": "text-p",
-      "text": "Want to hold your earnings yourself? Connect your own wallet later. It is a choice, not a condition for joining.",
+      "text": "Search Google for «buy USDC with a card» together with the name of your country. Choose a licensed provider that works where you live, compare its fees and minimum purchase, and send the USDC to your node's wallet address. A licensed provider will ask you to verify your identity: that is its rule, not Lagrix's. Lagrix does not sell coins and works with no provider on your behalf.",
       "bid": "u5ixf"
     }
   ]
