@@ -4,11 +4,10 @@ Activating a Super-Node in the Lagrix network requires strict synchronization be
 
 Below is the full step-by-step algorithm for putting a node into operation — from a clean server to inclusion in the Kademlia DHT routing table.
 
-**Before stage 3, the operator must hold a place.** Places have no stages and no numbers. Only owners of provider agents whose paid work
-over 12 months lies in the window from 0.75 to 1.25 of the network median can apply; the applicant's server is checked by agents in turn,
-and the place goes to an applicant chosen at random (commit and reveal). New places open two at a time when the network is overloaded;
-once every 1 year / N the super-node that has served longest leaves by rotation and its place opens by the same random choice (document
-05, section 5.6).
+**Before stage 3, the operator must hold a place** (document 05, section 5.6). Places go by random choice among owners of provider
+agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median. The chosen applicant receives an
+invitation and has **48 hours** to prepare the server (stages 1 and 2), start it and submit it for the check by agents in turn. Once the
+server passes, stages 3–5 make it an active super-node; if it is not ready in time or fails, the invitation passes to the next applicant.
 
 ## 15.1 End-to-End Launch Process (Deployment Flow Pipeline)
 

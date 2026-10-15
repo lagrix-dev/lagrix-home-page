@@ -81,9 +81,8 @@ issuance is triggered by volume, not by a person (changelog entries 2, 6 and 25)
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no governance tokens and no votes. Super-node places are won by random choice, not bought, and the longest-serving super-node
-leaves by rotation once every year divided by the number of super-nodes, so no group can hold a block of places for ever
-([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15, 16, 30 and 31).
+No. There are no governance tokens and no votes. Super-node places are assigned by random choice, not bought, and places rotate, so no
+group can hold a block of places for ever ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 31 and 40).
 
 **Is a super-node's reward payment for services or profit from others' efforts?** *(Release 33-11412: rewards to miners and node
 operators are "payments … in exchange for services it provides"; the reward structure is "predetermined by the protocol")*
@@ -109,13 +108,15 @@ this pool counts as a common enterprise is listed in section 22.9.
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
 No. The founder receives nothing from issuance: there is no founder share and no pre-mine, and no key issues coins or changes a rule. The
 founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only by
-the same random choice, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18).
+the same random choice, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18). At the launch of the
+network the founder also takes on public commitments of their own: one publicly named node, no deals with themselves, and the rewards
+earned while fewer than ten super-nodes pass the quality minimum transferred to an address without a key (changelog entry 41).
 
 **Can the founder earn by warming up the network?** *(the case of an author who controls the early network)*
 No. During the warm-up no coins are issued and receipts closed then never earn coins. Every deal pays its fee into the pool of its period,
-which goes to the super-nodes that passed the quality minimum in that period. A founder who pushed the network to its start with deals of
-their own would pay the fee on every one of them and get back no coins and only the share of any super-nodes they hold on the same terms
-as anyone.
+which goes to the super-nodes that passed the quality minimum in that period. The founder's elements make no deals with each other, and
+until ten super-nodes pass the quality minimum in a period every $LGX the founder receives is transferred to an address without a key
+(changelog entry 41).
 
 **Does the network depend on the founder's further work?** *(Release 33-11412: reliance on the issuer's efforts)*
 No. The specification is open, any program in any language can be a node or a super-node ([19](19-node-requirements.md)), and the
@@ -129,14 +130,15 @@ rules.
 Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
 the quality minimum, so the payer cannot steer the fee back to itself. A receipt's weight and a review's weight follow the amount paid
 through the network, not the number of messages. A group that controls k of M super-nodes gets back k/M of its own fee, and each of those
-places was won by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
+places was assigned by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
 No place can be bought, and places have no stages and no numbers. Only owners of provider agents whose paid work over 12 months lies in
 the window from 0.75 to 1.25 of the network median can apply — one application per node wallet; the largest providers fall outside the
-window. An applicant's server is checked by agents in turn, not by super-nodes, and the place goes to an applicant chosen at random with
-diversity of networks and regions; the contract computes the randomness itself, with no oracle. New places open two at a time when the
-network is overloaded ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entry 31).
+window. The contract puts applicants in a random order with diversity of networks and regions, computing the randomness itself with no oracle;
+the first receives an invitation, and its server is checked by agents in turn, not by super-nodes. There are always at least ten places;
+beyond them, new places open two at a time when the network is overloaded ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog
+entries 31 and 40).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
 A review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee.
@@ -206,4 +208,5 @@ These questions do not yet have an answer in the architecture. They are named he
   Howey is not settled.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
-- **How "passed or failed" is measured** for the quality minimum (changelog, open questions).
+- **How "passed or failed" is measured** for the quality minimum, and how the network's overload and the checks under load are measured
+  (changelog, open questions).

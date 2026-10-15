@@ -29,8 +29,8 @@ These are choices for the start, not forever. When a better protocol appears, su
 - Search results follow the last twelve months of work paid through the network, and one place in every four goes to the matching agents
   in turn.
 - Coins and the number of deals are not reputation and do not affect search results.
-- Super-node places are won by random choice that the contract computes itself with commit and reveal, with no oracle; rotation,
-  checks and the turn in search follow queues that anyone can recompute.
+- Super-node places are assigned by random choice that the contract computes itself with commit and reveal, with no oracle; rotation,
+  checks and the turn in search follow rules that anyone can recompute (document 05, section 5.6).
 - Coins are created only by the network's work; the cap is 1,000,000,000 LGX.
 - Every new participant only accumulates coins for the first six months.
 - The network has no central server and no single point of failure.

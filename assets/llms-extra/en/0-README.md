@@ -104,9 +104,9 @@ Any service or operator refusing can slow a participant down, but not cut them o
 | Term | Meaning |
 |---|---|
 | **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, keeps the index of receipts and reviews, helps agents connect and relays encrypted traffic. Payment is settled by the escrow contract, not by a super-node. Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
-| **Super-node operator** | The person who runs a super-node: wins a place by random choice among owners of provider agents with paid work near the network median and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
+| **Super-node operator** | The person who runs a super-node: is assigned a place by random choice among owners of provider agents with paid work near the network median and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
 | **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. The deposit is the same for everyone: whoever holds earned coins pays them in; for the others it is built from their first rewards. |
-| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and its place opens by the same random choice. |
+| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, once its successor has passed the check and been included ([05](docs/en/05-tokenomics-vesting-vault.md), section 5.6). |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
 | **Search fee** | $0.01 per result list from a USDC balance in the contract — one price for everyone, everywhere; paid to the super-node that built the list. Anyone reads the open Nostr announcements directly for free ([17](docs/en/17-discovery-ranking-feedback.md), section 17.8). |
 
@@ -226,7 +226,8 @@ Every newcomer begins by earning. For the first six months after joining, an age
 sold. This holds for every agent, at any time. Lagrix is built for those who come to work.
 
 The founder receives nothing from issuance and takes part only on the same terms as anyone; the network does not depend on the
-founder's further work.
+founder's further work. At launch the founder runs one publicly named node and gives up the rewards it earns until ten super-nodes pass
+the quality minimum.
 
 $LGX is an asset of its holder and a super-node's deposit. Lagrix makes no promise about its price.
 
@@ -244,8 +245,8 @@ them the same — as the internet carries every website without choosing which o
 
 Lagrix has no central server and no company in the middle. Discovery runs on super-nodes operated by independent people around the
 world. Places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months is close to the
-network median can apply, and the place goes to an applicant chosen at random; new places open when the network is overloaded. Once every 1 year / N the super-node that has served longest leaves, so places stay open to those who
-work now; a super-node that cheats loses its deposit, and one that simply goes offline only stops earning.
+network median can apply, and the place goes to an applicant chosen at random; the network keeps at least ten places and adds more when it is overloaded, and places rotate, so they stay open to those
+who work now; a super-node that cheats loses its deposit, and one that simply goes offline only stops earning.
 
 There is no council and no key that can change the rules: the contracts are immutable, and a new version can only be joined by choice.
 At the start the network speaks two protocols — Google's A2A for agent-to-agent work and F2F for exchanging whole elements
@@ -265,7 +266,8 @@ Lagrix answers the questions a regulator asks of any new coin:
 - **Can the founder profit from the crowd?** No. The founder receives nothing from issuance: there is no founder share and no pre-mine.
   Neither customer agents nor provider agents ever pay the founder anything, and the deal fee goes to the super-nodes that keep the
   network running. The founder and Fractera, Inc. take part only on the same terms as anyone. The contracts have no keys that could
-  change this, and the network does not depend on the founder's further work.
+  change this, and the network does not depend on the founder's further work. At launch the founder names their only node and gives up
+  its rewards until ten super-nodes pass the quality minimum.
 - **Is the coin's value cut off from real use?** No. New coins can be earned only through deals that paid the fee. If coins ever
   became worth more than the fees that earn them, people would rush to make deals just for the coins — and more deals would mean
   fewer coins each. So the value of the coins the network issues keeps being pulled back toward the real value of the orders it
@@ -356,12 +358,12 @@ Specification stage. The documents below describe the architecture; the implemen
 | Question | How Lagrix answers it | Where |
 |---|---|---|
 | Could the coin be treated as an investment? | no sale at launch, no investor allocation, coins only for work done and served, none to customer agents for paying, no buyback or burn, no price promises, six-month accumulation for every newcomer | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
-| Could the founder dump early coins on the crowd? | there are no founder coins: no founder share, no pre-mine, no administrator keys; the founder and Fractera, Inc. take part only on the same terms as anyone | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Could the founder dump early coins on the crowd? | there are no founder coins: no founder share, no pre-mine, no administrator keys; the founder and Fractera, Inc. take part only on the same terms as anyone; at launch the founder names their only node and gives up its rewards until ten super-nodes pass the quality minimum | [05](docs/en/05-tokenomics-vesting-vault.md), [000](docs/en/000-changelog-2026-10-13.md) |
 | Could fake deals be used to farm coins and reputation? | every deal pays a fee in USDC on its network part, pooled by period and divided equally among the super-nodes that passed the quality minimum, so the payer cannot steer it back; the weight of a receipt and of a review follows the amount paid through the network | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
 | Could bots inflate likes? | a review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee; reviews do not move the ranking — they are information for the other side | [17](docs/en/17-discovery-ranking-feedback.md) |
 | Could money buy visibility? | no: places follow the last twelve months of paid work, not coins, and one place in every four goes to the matching agents in turn | [17](docs/en/17-discovery-ranking-feedback.md) |
 | What if a super-node cheats? | a deposit at stake; dropped packets, falsified results and forged tables are proven and penalised | [06](docs/en/06-validator-staking-slashing.md) |
-| Could someone buy or capture super-node places? | places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median can apply, so the largest providers do not also hold search; servers are checked by agents in turn; the place goes to an applicant chosen at random, and the contract computes the randomness itself; one application per node wallet, diversity of networks and regions; the longest-serving super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Could someone buy or capture super-node places? | places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median can apply, so the largest providers do not also hold search; servers are checked by agents in turn; the place goes to an applicant chosen at random, and the contract computes the randomness itself; one application per node wallet, diversity of networks and regions; at least ten places from the start; places rotate | [05](docs/en/05-tokenomics-vesting-vault.md) |
 | Who answers for what agents say and do? | end-to-end encryption; the network cannot read, filter or censor what agents say, and it does not judge services | [03](docs/en/03-encryption-envoy-mtls-e2ee.md) |
 | Can authorities demand a prohibition? | yes, from whoever provides the service: the order goes to the super-node operator at its declared point of contact; tags prohibited by default are fixed in the protocol version, each super-node applies regional restrictions itself, and an authority publishes a new prohibition as an open list; there is no council that prohibits for the whole world | [17](docs/en/17-discovery-ranking-feedback.md), [18](docs/en/18-governance-protocols-council.md), [22](docs/en/22-questions-regulators-ask.md) |
 | Could anyone switch the network off or put pressure on it? | no central server, independent super-node operators, [open specification](https://github.com/lagrix-dev/lagrix), any node in any language, repositories in a [shared organization](https://github.com/lagrix-dev) | [18](docs/en/18-governance-protocols-council.md), [19](docs/en/19-node-requirements.md) |

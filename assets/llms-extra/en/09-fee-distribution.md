@@ -75,7 +75,7 @@ Each alternative breaks one of these jobs:
 | Burn the fee | it protects against fake deals just as well, but people's money would be destroyed and the network's work would go unpaid |
 
 Pooled by period and divided equally, the fee cannot be steered: a group that holds k of M super-nodes gets back only k/M of its own
-fee, and every one of those places was won by random choice, not bought (document 05, section 5.6).
+fee, and every one of those places was assigned by random choice, not bought (document 05, section 5.6).
 
 **One rate for everyone.** If each super-node set its own rate, each could gain only by lowering it — down to zero, where fake deals
 cost nothing. The ceiling of 5% is fixed; modelling may lower the rate.

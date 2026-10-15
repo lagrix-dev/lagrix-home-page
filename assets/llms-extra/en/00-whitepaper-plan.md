@@ -61,15 +61,16 @@ volume paid through the network and a minimum number of super-nodes (document 05
 No councils: the contracts are immutable; new rules arrive only as a new version that participants join voluntarily; each super-node
 declares its protocols and its coverage (document 18).
 
-The founder: no share of issuance; the founder and Fractera, Inc. take part only on the same terms as anyone (document 05).
+The founder: no share of issuance; the founder and Fractera, Inc. take part only on the same terms as anyone (document 05). At launch
+the founder takes on public commitments of their own (document 000, entry 41).
 
 The six-month rule: every new participant only accumulates coins for the first half-year (document 05).
 
-Super-node entry: no stages and no place numbers; only owners of provider agents whose paid work over 12 months lies in the window from
-0.75 to 1.25 of the network median can apply; the place goes to an applicant chosen at random (commit and reveal, no oracle) with
-diversity of networks and regions; the deposit is the same for everyone; new places open two at a time when the network is overloaded;
-servers and the quality minimum checked by agents in turn; the longest-serving super-node leaves by
-rotation once every 1 year / N (document 05).
+Super-node entry: no stages and no place numbers; at least ten places from the start; only owners of provider agents whose paid work
+over 12 months lies in the window from 0.75 to 1.25 of the network median can apply; the contract puts applicants in a random order
+(commit and reveal, no oracle) with diversity of networks and regions, and the first receives an invitation with 48 hours to pass the
+server check by agents in turn; the deposit is the same for everyone; beyond ten, places open two at a time when the network is
+overloaded; places rotate with a handover (document 05, section 5.6).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.
 

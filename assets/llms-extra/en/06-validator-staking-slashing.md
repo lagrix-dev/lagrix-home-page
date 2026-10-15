@@ -35,8 +35,8 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6), and the deposit is returned to the operator after the 14-day
   withdrawal. It did not cheat — it left.
-- **Rotation is not a penalty either.** Once every 1 year / N the super-node that has served longest leaves; its deposit is returned in
-  the same way, and its place opens by the same random choice (document 05, section 5.6).
+- **Leaving by rotation or by overload is not a penalty either.** The deposit is returned in the same way; the rules are in document 05,
+  section 5.6.
 
 ## 6.3 Fraud and its proof
 
