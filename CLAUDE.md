@@ -231,7 +231,7 @@ Sending and storing messages is not built.
 
 **lagrix.dev is the non-commercial page of an open protocol, registered to its author** (owner, 2026-10-14). 🔒 The manifesto and the
 two goals — discovery and honest reputation — stand right under the first screen (the station facade, missions 1 and 2); moving them
-lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no token talk, no listing or price talk (the network has no coin of its own — changelog entry 42):
+lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no token talk, no listing or price talk (the network's money is USDC — changelog entry 42):
 an on-ramp with a reward belongs to Fractera, not here; the On-ramp page is reference only (what it is, why, how to find a licensed
 provider by a Google search). 🔒 Every word about the network's rules comes from the protocol README glossary and changelog 000
 (`lagrix-dev/lagrix`, entries 20–45): the element is the entity, one wallet registers the node, a deal may be split and only the
