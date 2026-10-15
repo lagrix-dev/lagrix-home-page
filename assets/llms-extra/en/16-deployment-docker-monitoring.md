@@ -1,8 +1,8 @@
 # 16. Node Operator Guide: Deployment (Docker Compose, Prometheus, Grafana and Alerting Rules)
 
-The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed with its deposit returned; only proven fraud leads to slashSuperNode() in the SuperNodeDeposits.sol contract (document 06).
+The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed without a mark; only a proven violation leads to proveViolation() in the SuperNodeRegistry.sol contract (document 06).
 
-A monitoring stack based on Prometheus, Grafana and Alertmanager with an integrated Node Exporter and Envoy Statsd guarantees the operator instant detection of anomalies before they lead to financial penalties (Slashing).
+A monitoring stack based on Prometheus, Grafana and Alertmanager with an integrated Node Exporter and Envoy Statsd guarantees the operator instant detection of anomalies before they cost the operator income or its place.
 
 ## 16.1 Containerization Manifest (docker-compose.yml)
 
@@ -138,7 +138,7 @@ scrape_configs:
 
 ## 16.3 Alerting Rules (alerts.yml)
 
-The alerting system must fire an alarm instantly when conditions arise that threaten the operator's stake:
+The alerting system must fire an alarm instantly when conditions arise that threaten the operator's income or place:
 
 ```yaml
 groups:
@@ -222,6 +222,6 @@ Network Health: Number of active neighbors in k-buckets, status of PING checks f
 
 Relay Throughput: Rate of encrypted E2EE traffic pumped in Mbit/s, number of active TURN sessions.
 
-Financial Accounting: the super-node's accumulated share of deal fees and search fees in USDC, its $LGX period rewards and the state of its deposit.
+Financial Accounting: the super-node's accumulated share of deal fees, search fees and delivery fees in USDC.
 
-Slashing Risk Metrics: Counter of recorded anomalies and a timer until the stake can be safely withdrawn (Unbonding Countdown).
+Place Risk Metrics: Counter of recorded anomalies and of periods in a row with a failed quality minimum.

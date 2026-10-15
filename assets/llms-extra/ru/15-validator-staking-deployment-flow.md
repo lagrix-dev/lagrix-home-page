@@ -1,6 +1,6 @@
-# 15. Node Operator Guide: Залог супер-узла и Пошаговый Процесс Интеграции (Deployment Flow)
+# 15. Node Operator Guide: Регистрация места супер-узла и Пошаговый Процесс Интеграции (Deployment Flow)
 
-Процесс активации Супер-Узла в сети Lagrix требует жесткой синхронизации между подготовкой физической/виртуальной инфраструктуры, генерацией криптографических ключей P2P-идентификации (NodeID) и ончейн-внесением гарантийного залога в смарт-контракт SuperNodeDeposits.sol.
+Процесс активации Супер-Узла в сети Lagrix требует жесткой синхронизации между подготовкой физической/виртуальной инфраструктуры, генерацией криптографических ключей P2P-идентификации (NodeID) и ончейн-регистрацией места в смарт-контракте SuperNodeRegistry.sol. Залога у супер-узла нет (документ 05, раздел 5.4).
 
 Ниже описан полный пошаговый алгоритм ввода узла в эксплуатацию — от чистого сервера до включения в таблицу маршрутизации Kademlia DHT.
 
@@ -18,8 +18,8 @@
 [ Этап 1: Подготовка сервера ] ──► [ Этап 2: Генерация Node Key ]
                                               │
                                               ▼
-[ Этап 4: Прохождение On-Chain ] ◄── [ Этап 3: Депонирование стейка ]
-  Инициализации (Staking)             в SuperNodeDeposits.sol
+[ Этап 4: Настройка узла ] ◄── [ Этап 3: Регистрация места ]
+  (node.toml)                     в SuperNodeRegistry.sol
           │
           ▼
 [ Этап 5: Запуск ноды и прохождение ] ──► [ Статус: ACTIVE SUPER-NODE ]
@@ -50,7 +50,7 @@ lagrix --version
 
 ## 15.3 Шаг 2: Криптографическая инициализация и Вычисление Node ID
 
-Узел генерирует секьюрный ключ P2P-сессии (secp256k1). Идентификатор NodeID детерминированно привязывается к EVM-адресу, с которого будет производиться стейкинг.
+Узел генерирует секьюрный ключ P2P-сессии (secp256k1). Идентификатор NodeID детерминированно привязывается к EVM-адресу кошелька узла, с которого будет зарегистрировано место.
 
 ```bash
 # Генерация нового изолированного ключа P2P-идентификации узла
@@ -68,58 +68,45 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : the same for everyone; earned coins, or first rewards locked until it is reached (document 05, 5.6)
-Status                     : NOT_STAKED (Pending On-Chain Stake)
+Place                      : assigned by invitation (document 05, 5.6)
+Status                     : NOT_REGISTERED (Pending On-Chain Registration)
 ===================================================================
 ```
 
-## 15.4 Шаг 3: Депонирование стейка в SuperNodeDeposits.sol
+## 15.4 Шаг 3: Регистрация места в SuperNodeRegistry.sol
 
-Оператор с кошелька, указанного в выводе (или через мультиподписной кошелек / Hardware Wallet), производит одобрение (Approve) и транзакцию блокировки залога в сети L2 (Arbitrum / Base).
+Оператор с кошелька узла, указанного в выводе (или через мультиподписной кошелек / Hardware Wallet), отправляет одну транзакцию
+регистрации в сети L2 (Arbitrum / Base). Ничего не одобряется и не блокируется: залога у супер-узла нет. Газ этой транзакции оператор
+платит сам (документ 08).
 
-CLI Скрипт внесения стейка:
+CLI Скрипт регистрации:
 
 ```bash
-# 1. Approve токенов Lagrix для контракта стейкинга
-lagrix staking approve \
-  --token-address 0xLagrixTokenAddressOnArbitrum \
-  --staking-address 0xSuperNodeDepositsContractAddress \
-  --amount $REQUIRED_DEPOSIT \
-  --private-key $OPERATOR_PRIVATE_KEY \
-  --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
-
-# 2. Вызов функции registerSuperNode() в смарт-контракте
-lagrix staking deposit \
-  --staking-address 0xSuperNodeDepositsContractAddress \
-  --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82 \
-  --amount $REQUIRED_DEPOSIT \
-  --private-key $OPERATOR_PRIVATE_KEY
+# Привязка NodeID к месту, полученному по приглашению
+lagrix supernode register   --registry-address 0xSuperNodeRegistryContractAddress   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82   --private-key $OPERATOR_PRIVATE_KEY   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
 ```
 
-Solidity Механика под капотом SuperNodeDeposits.sol:
+Solidity Механика под капотом SuperNodeRegistry.sol:
 
-Смарт-контракт проверяет транзакцию, фиксирует залог и переводит статус адреса в состояние STAKED:
+Смарт-контракт проверяет, что у кошелька есть назначенное место и нет отметки «доказанное нарушение», и переводит статус адреса в
+состояние ACTIVE:
 
 ```solidity
-function registerSuperNode(bytes32 nodeId, uint96 amount) external nonReentrant {
-    require(placeTaken[msg.sender], "SuperNodeDeposits: no place assigned");               // doc 05, 5.6
-    require(amount >= requiredDeposit(), "SuperNodeDeposits: deposit below the required amount"); // doc 05, 5.6
-    require(superNodes[msg.sender].stakeBalance == 0, "SuperNodeDeposits: Already registered");
-
-    // Перевод токенов Lagrix на баланс контракта стейкинга
-    lagrixToken.safeTransferFrom(msg.sender, address(this), amount);
+function registerSuperNode(bytes32 nodeId) external nonReentrant {
+    require(placeTaken[msg.sender], "SuperNodeRegistry: no place assigned");                 // doc 05, 5.6
+    require(!provenViolation[msg.sender], "SuperNodeRegistry: proven violation");            // doc 05, 5.4
+    require(!superNodes[msg.sender].active, "SuperNodeRegistry: Already registered");
 
     // Запись параметров узла в блокчейн
     superNodes[msg.sender] = SuperNode({
-        stakeBalance: amount,
-        lastActive: uint40(block.timestamp),
-        slashCount: 0,
-        blacklisted: false,
+        includedAt: uint40(block.timestamp),
+        lastSeen: uint40(block.timestamp),
+        active: true,
         pubKeyAddress: msg.sender
     });
 
     nodeIdToAddress[nodeId] = msg.sender;
-    emit SuperNodeRegistered(msg.sender, nodeId, amount);
+    emit SuperNodeRegistered(msg.sender, nodeId);
 }
 ```
 
@@ -143,7 +130,7 @@ stun_turn_port = 3478       # NAT Traversal
 [blockchain]
 chain_id = 42161            # Arbitrum One
 rpc_url = "https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
-staking_contract = "0xSuperNodeDepositsContractAddress"
+registry_contract = "0xSuperNodeRegistryContractAddress"
 escrow_contract = "0xA2AEscrowContractAddress"
 
 [relay]
@@ -157,7 +144,7 @@ prometheus_port = 9090
 
 ## 15.6 Шаг 5: Запуск службы и Первичное Рукопожатие (P2P Handshake)
 
-Узел запускается как системная служба, производит ончейн-верификацию своего стейка и рассылает PING сообщения ближайшим bootstrap-узлам сети Kademlia DHT.
+Узел запускается как системная служба, производит ончейн-проверку своего места и рассылает PING сообщения ближайшим bootstrap-узлам сети Kademlia DHT.
 
 ```bash
 # Запуск узла через CLI
@@ -174,7 +161,7 @@ lagrix status
      Loaded: loaded (/etc/systemd/system/lagrix-node.service; enabled)
      Active: active (running) since Fri 2026-10-09 18:01:00 WEST; 12s ago
 
-[INFO] On-Chain Deposit Verified: required amount locked (Tx: 0x3f1a...b92)
+[INFO] On-Chain Place Verified: place registered (Tx: 0x3f1a...b92)
 [INFO] P2P Transport initialized on 203.0.113.195:4001 (UDP)
 [INFO] Envoy mTLS Sidecar started on 203.0.113.195:443 (TCP)
 [INFO] Connecting to Bootstrap Nodes...

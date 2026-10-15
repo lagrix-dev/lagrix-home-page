@@ -1,8 +1,8 @@
 # 9. The Deal Fee: Payment to Super-nodes for the Network's Work
 
 The network takes a fee on the part of every deal that is paid through it. This document describes the currency it is taken in, its
-rate, where it goes and why. The $LGX coin plays no part in this mechanism: the fee is money for the work of the network, while $LGX is
-an asset of its holder and a super-node's deposit (document 05).
+rate, where it goes and why. The network has no coin of its own: the fee is money for the work of the network (document 05; changelog entry
+42).
 
 ## 9.1 Currency: USDC
 
@@ -10,10 +10,9 @@ Agents pay each other for work in USDC (document 04). The fee is taken in the sa
 
 | Why USDC | What it gives |
 |---|---|
-| The fee costs real money from day one | a fake deal with oneself costs the fee on its amount even while $LGX does not yet exist |
+| The fee costs real money from day one | a fake deal with oneself costs the fee on its amount from the very first deal |
 | Payouts make sense to people | "10 cents came in", with no conversion at a rate |
-| Super-nodes' income does not depend on a rate | when issuance has faded, operators keep a stable income |
-| No trading of the coin inside the mechanism | the network neither buys nor sells $LGX and does not affect its price |
+| Super-nodes' income does not depend on a rate | operators are paid in the same dollars their servers cost |
 
 ## 9.2 What the fee is taken from
 
@@ -25,13 +24,15 @@ is 5%. Once deployed, nobody can change it; a different rate could arrive only w
 join voluntarily (document 18). The escrow contract collects the fee when the deal moves to the COMPLETED state (document 04). If a deal
 ends in a refund (REFUNDED), no fee is taken.
 
-The fee is taken from the very first deal, including during the warm-up before issuance starts (document 05, section 5.2).
+The fee is taken from the very first deal. How it applies to a cancelled order (document 04, section 4.3) is an open question of the
+changelog (document 000).
 
 ## 9.3 Where the fee goes: the super-nodes that kept the network running
 
-The fees of an issuance period are added up in the contract. At the end of the period they are divided **in equal parts among the
+The fees of a period are added up in the contract. At the end of the period they are divided **in equal parts among the
 super-nodes that passed the quality minimum in that period** (document 05, section 5.6). Nothing carries over to later periods, and the
-parties of a deal never receive any of it.
+parties of a deal never receive any of it. The reward to whoever proves a violation by a super-node (document 06, section 6.4) is also
+paid from the fees; its size is set by modelling.
 
 ```solidity
 // Sketch: the fees of a period are pooled and divided equally among the super-nodes that passed the quality minimum
@@ -43,9 +44,9 @@ function _collect(uint256 period, uint256 fee) internal {             // called 
 }
 
 function claimFeeShare(uint256 period) external {
-    require(period < currentPeriod(), "LGX: period not closed");
-    require(quality.passed(period, msg.sender), "LGX: quality minimum not passed");
-    require(!claimed[period][msg.sender], "LGX: already claimed");
+    require(period < currentPeriod(), "Fees: period not closed");
+    require(quality.passed(period, msg.sender), "Fees: quality minimum not passed");
+    require(!claimed[period][msg.sender], "Fees: already claimed");
     claimed[period][msg.sender] = true;
     usdc.safeTransfer(msg.sender, pooled[period] / quality.passedCount(period));
 }
@@ -60,8 +61,8 @@ The fee has two jobs at once.
 - **It pays for the network's work.** Super-nodes do the work every deal relies on, all the time: they keep the discovery index, build
   search results, keep the index of receipts and reviews, help agents connect and relay encrypted traffic. The fee is their pay for the
   period in which they did this work and passed the quality minimum.
-- **It makes a fake deal cost money.** A deal with oneself, made to collect receipts or reviews, pays the fee on its network part. At
-  5%, one unit of review weight (document 17) costs a fake deal 50 cents.
+- **It makes a fake deal cost money.** A deal with oneself, made to collect receipts or reviews, pays the fee on its network part. A
+  review weighs exactly the fee paid on its deal (document 17), so one unit of review weight costs a fake deal one dollar of fees.
 
 Each alternative breaks one of these jobs:
 

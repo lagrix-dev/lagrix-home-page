@@ -1,6 +1,6 @@
-# 15. Node Operator Guide: The Super-node Deposit and the Step-by-Step Integration Process (Deployment Flow)
+# 15. Node Operator Guide: Registering a Super-node Place and the Step-by-Step Integration Process (Deployment Flow)
 
-Activating a Super-Node in the Lagrix network requires strict synchronization between preparing the physical/virtual infrastructure, generating the cryptographic P2P identity keys (NodeID) and depositing the guarantee stake on-chain into the SuperNodeDeposits.sol smart contract.
+Activating a Super-Node in the Lagrix network requires strict synchronization between preparing the physical/virtual infrastructure, generating the cryptographic P2P identity keys (NodeID) and registering the place on-chain in the SuperNodeRegistry.sol smart contract. A super-node holds no deposit (document 05, section 5.4).
 
 Below is the full step-by-step algorithm for putting a node into operation — from a clean server to inclusion in the Kademlia DHT routing table.
 
@@ -17,8 +17,8 @@ Activating a Super-Node consists of five sequential stages:
 [ Stage 1: Server preparation ] ──► [ Stage 2: Node Key generation ]
                                               │
                                               ▼
-[ Stage 4: On-Chain Initialization ] ◄── [ Stage 3: Stake deposit ]
-  (Staking)                               into SuperNodeDeposits.sol
+[ Stage 4: Node configuration ] ◄── [ Stage 3: Place registration ]
+  (node.toml)                          in SuperNodeRegistry.sol
           │
           ▼
 [ Stage 5: Node launch and passing ] ──► [ Status: ACTIVE SUPER-NODE ]
@@ -49,7 +49,7 @@ lagrix --version
 
 ## 15.3 Step 2: Cryptographic Initialization and Computing the Node ID
 
-The node generates a secure P2P session key (secp256k1). The NodeID identifier is deterministically bound to the EVM address from which the staking will be made.
+The node generates a secure P2P session key (secp256k1). The NodeID identifier is deterministically bound to the EVM address of the node's wallet, from which the place will be registered.
 
 ```bash
 # Generate a new isolated P2P node identity key
@@ -67,58 +67,45 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : the same for everyone; earned coins, or first rewards locked until it is reached (document 05, 5.6)
-Status                     : NOT_STAKED (Pending On-Chain Stake)
+Place                      : assigned by invitation (document 05, 5.6)
+Status                     : NOT_REGISTERED (Pending On-Chain Registration)
 ===================================================================
 ```
 
-## 15.4 Step 3: Depositing the Stake into SuperNodeDeposits.sol
+## 15.4 Step 3: Registering the Place in SuperNodeRegistry.sol
 
-From the wallet shown in the output (or through a multisig wallet / Hardware Wallet), the operator performs an approval (Approve) and a stake-locking transaction on the L2 network (Arbitrum / Base).
+From the node's wallet shown in the output (or through a multisig wallet / Hardware Wallet), the operator sends one registration
+transaction on the L2 network (Arbitrum / Base). Nothing is approved or locked: a super-node holds no deposit. The operator pays the
+gas of this transaction itself (document 08).
 
-Stake deposit CLI script:
+Registration CLI script:
 
 ```bash
-# 1. Approve Lagrix tokens for the staking contract
-lagrix staking approve \
-  --token-address 0xLagrixTokenAddressOnArbitrum \
-  --staking-address 0xSuperNodeDepositsContractAddress \
-  --amount $REQUIRED_DEPOSIT \
-  --private-key $OPERATOR_PRIVATE_KEY \
-  --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
-
-# 2. Call the registerSuperNode() function in the smart contract
-lagrix staking deposit \
-  --staking-address 0xSuperNodeDepositsContractAddress \
-  --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82 \
-  --amount $REQUIRED_DEPOSIT \
-  --private-key $OPERATOR_PRIVATE_KEY
+# Bind the NodeID to the place assigned by invitation
+lagrix supernode register   --registry-address 0xSuperNodeRegistryContractAddress   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82   --private-key $OPERATOR_PRIVATE_KEY   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
 ```
 
-Solidity mechanics under the hood of SuperNodeDeposits.sol:
+Solidity mechanics under the hood of SuperNodeRegistry.sol:
 
-The smart contract checks the transaction, records the stake and moves the address status to STAKED:
+The smart contract checks that the wallet holds an assigned place and carries no «proven violation» mark, and moves the address status to
+ACTIVE:
 
 ```solidity
-function registerSuperNode(bytes32 nodeId, uint96 amount) external nonReentrant {
-    require(placeTaken[msg.sender], "SuperNodeDeposits: no place assigned");               // doc 05, 5.6
-    require(amount >= requiredDeposit(), "SuperNodeDeposits: deposit below the required amount"); // doc 05, 5.6
-    require(superNodes[msg.sender].stakeBalance == 0, "SuperNodeDeposits: Already registered");
-
-    // Transfer Lagrix tokens to the staking contract balance
-    lagrixToken.safeTransferFrom(msg.sender, address(this), amount);
+function registerSuperNode(bytes32 nodeId) external nonReentrant {
+    require(placeTaken[msg.sender], "SuperNodeRegistry: no place assigned");                 // doc 05, 5.6
+    require(!provenViolation[msg.sender], "SuperNodeRegistry: proven violation");            // doc 05, 5.4
+    require(!superNodes[msg.sender].active, "SuperNodeRegistry: Already registered");
 
     // Write node parameters to the blockchain
     superNodes[msg.sender] = SuperNode({
-        stakeBalance: amount,
-        lastActive: uint40(block.timestamp),
-        slashCount: 0,
-        blacklisted: false,
+        includedAt: uint40(block.timestamp),
+        lastSeen: uint40(block.timestamp),
+        active: true,
         pubKeyAddress: msg.sender
     });
 
     nodeIdToAddress[nodeId] = msg.sender;
-    emit SuperNodeRegistered(msg.sender, nodeId, amount);
+    emit SuperNodeRegistered(msg.sender, nodeId);
 }
 ```
 
@@ -142,7 +129,7 @@ stun_turn_port = 3478       # NAT Traversal
 [blockchain]
 chain_id = 42161            # Arbitrum One
 rpc_url = "https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
-staking_contract = "0xSuperNodeDepositsContractAddress"
+registry_contract = "0xSuperNodeRegistryContractAddress"
 escrow_contract = "0xA2AEscrowContractAddress"
 
 [relay]
@@ -156,7 +143,7 @@ prometheus_port = 9090
 
 ## 15.6 Step 5: Starting the Service and the First Handshake (P2P Handshake)
 
-The node starts as a system service, verifies its stake on-chain and sends PING messages to the nearest bootstrap nodes of the Kademlia DHT network.
+The node starts as a system service, verifies its place on-chain and sends PING messages to the nearest bootstrap nodes of the Kademlia DHT network.
 
 ```bash
 # Start the node via CLI
@@ -173,7 +160,7 @@ Example of successful output:
      Loaded: loaded (/etc/systemd/system/lagrix-node.service; enabled)
      Active: active (running) since Fri 2026-10-09 18:01:00 WEST; 12s ago
 
-[INFO] On-Chain Deposit Verified: required amount locked (Tx: 0x3f1a...b92)
+[INFO] On-Chain Place Verified: place registered (Tx: 0x3f1a...b92)
 [INFO] P2P Transport initialized on 203.0.113.195:4001 (UDP)
 [INFO] Envoy mTLS Sidecar started on 203.0.113.195:443 (TCP)
 [INFO] Connecting to Bootstrap Nodes...

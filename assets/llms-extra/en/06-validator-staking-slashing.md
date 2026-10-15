@@ -1,50 +1,43 @@
-# 6. Super-node Deposits: Downtime and Fraud
+# 6. Super-nodes: Downtime and Proven Violations
 
 Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, keep the index of receipts and reviews and
-help agents connect; payment itself is settled by the escrow contract (document 04). The SuperNodeDeposits.sol contract ties a server's
-behaviour in the network to its operator's deposit. The main rule of this document: **downtime is not fraud**. A server that goes offline
-simply stops earning; coins are taken only for proven fraud.
+help agents connect; payment itself is settled by the escrow contract (document 04). The SuperNodeRegistry.sol contract keeps the
+super-node places and the record of proven violations. A super-node holds no deposit (document 05, section 5.4): what it has at stake is
+its place and its reputation. The main rule of this document: **downtime is not a violation**. A server that goes offline simply stops
+earning; a mark is added only for a proven violation.
 
-## 6.1 The deposit
-
-The deposit is the same for every operator (document 05, section 5.6; changelog entry 31). Whoever already holds earned coins locks them;
-whoever does not has its first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what
-has accumulated.
-On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
-can still be collected.
+## 6.1 What the contract keeps
 
 ```solidity
 struct SuperNode {
-    uint96 stakeBalance;    // locked deposit in LGX
+    uint40 includedAt;      // when the place was taken (rotation order)
     uint40 lastSeen;        // last confirmed availability
-    uint40 unbondingFrom;   // start of the 14-day withdrawal (0 if none)
-    uint16 slashCount;      // number of proven violations
-    bool   blacklisted;     // permanently excluded for forgery
+    bool   active;          // holds a place now
     address pubKeyAddress;  // address bound to the NodeID
 }
+mapping(address => bool) public provenViolation;  // node wallet => permanent mark; such a node may not hold a place again
 ```
 
-## 6.2 Downtime is not fraud
+The mark belongs to the node's wallet and is shown on every element of that node (document 17). It is never removed.
+
+## 6.2 Downtime is not a violation
 
 As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it does not pass the
-  period's quality minimum, so it receives neither the equal share of the reward nor a share of the period's fee pool. It loses only
-  income.
+- **While the node is unavailable,** it serves nobody, so it does not pass the period's quality minimum and receives no share of the
+  period's fee pool and no search or delivery fees. It loses only income.
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
-  reopens on the terms of the day it reopens (document 05, section 5.6), and the deposit is returned to the operator after the 14-day
-  withdrawal. It did not cheat — it left.
-- **Leaving by rotation or by overload is not a penalty either.** The deposit is returned in the same way; the rules are in document 05,
-  section 5.6.
+  reopens on the terms of the day it reopens (document 05, section 5.6). It receives no mark: it did not cheat — it left.
+- **Leaving by rotation or by overload is not a penalty either;** the rules are in document 05, section 5.6.
 
-## 6.3 Fraud and its proof
+## 6.3 Violations and their proof
 
-A blockchain cannot see IP packets, so fraud is proven by receipts and checks that anyone can repeat.
+A blockchain cannot see IP packets, so a violation is proven by receipts and checks that anyone can repeat.
 
 **Packet dropping.** A customer (agent A) sends traffic to a provider (agent B) through super-node R. Agent A signs the packet;
 agent B signs a receipt of delivery. If R accepted the packet for relaying but B's receipt is missing, agent A sends a
-`TRACE_REQUEST`; three independent neighbours confirm that R accepted the packet and did not pass it on — this forms a Fraud Proof.
+`TRACE_REQUEST`; three independent neighbours confirm that R accepted the packet and did not pass it on — this forms a proof.
 
 **Falsified results.** The place given in turn in search results is calculated verifiably (document 17, section 17.3). A result list in
 which that place does not match the calculation is a ready proof: the contract checks the super-node's signature on it and the
@@ -53,39 +46,41 @@ calculation data.
 **Forged tables and NodeID hijacking.** An attempt to forge Kademlia DHT records or to impersonate another node is proven by
 signatures that do not match the node's key.
 
-## 6.4 Penalties
+## 6.4 What a proven violation costs
 
-| Violation | Proof | Penalty |
+| Violation | Proof | Consequence |
 |---|---|---|
-| Downtime | unavailability to neighbours | **none**; the node loses income and after 30 days is removed with its deposit returned |
-| Packet dropping | Fraud Proof with a missing receipt | 10% of the deposit |
-| Falsified results | results that do not match the verifiable calculation | 25% of the deposit |
-| Forged tables, NodeID hijacking | signatures that do not match | 100% of the deposit and permanent exclusion |
+| Downtime | unavailability to neighbours | **none**; the node loses income and after 30 days is removed without a mark |
+| Packet dropping | a proof with a missing receipt | the «proven violation» mark, removal, no place ever again |
+| Falsified results | results that do not match the verifiable calculation | the same |
+| Forged tables, NodeID hijacking | signatures that do not match | the same |
 
-**Where the taken coins go.** Half goes to whoever proved the violation: a reward for keeping the network honest. The other half is
-removed from circulation for good — as in Bitcoin, where an unclaimed reward is simply lost. No new coins are issued to replace it, so
-the final number of coins ends up below 1,000,000,000 by exactly that amount.
+A proven violation adds a permanent, visible «proven violation» mark to the node's wallet and to all its elements; the node leaves its
+place at once and may not hold a super-node place again. Nothing is erased: the mark is a new event in the record, and the node's earlier
+history stays as it was (document 05, section 5.4). Whoever proved the violation receives a reward in USDC from the fees; its size is set
+by modelling.
 
 ```
 [Customer agent] --(packet)--> [Super-node R] --X (dropped)--> [Provider agent]
        |                                                              |
        +---------------- (TRACE_REQUEST, waiting for receipt) --------+
                                       |
-                              [Fraud Proof]
+                                   [Proof]
                                       |
                                       v
-                       [SuperNodeDeposits.sol: slashSuperNode()]
+                   [SuperNodeRegistry.sol: proveViolation()]
                                       |
                     +-----------------+-----------------+
                     |                                   |
-          (50% to whoever proved it)        (50% removed from circulation)
+     (mark on the wallet and its elements,    (reward in USDC from the fees
+      removal, no place again)                  to whoever proved it)
 ```
 
 ## 6.5 Protection against false reports
 
-So that the contract is not flooded with fake proofs, calling `slashSuperNode()` requires the reporter to lock a small deposit.
+So that the contract is not flooded with fake proofs, calling `proveViolation()` requires the reporter to lock a small amount of USDC.
 
-- **The proof is valid:** the reporter gets the deposit back and receives half of the penalty.
-- **The proof is false:** the reporter's deposit is removed from circulation.
+- **The proof is valid:** the reporter gets the amount back and receives the reward.
+- **The proof is false:** the amount is lost for good — sent to an address whose key nobody has, so that nobody gains from a false report.
 
-Honest work pays better than risking the deposit, and a false report costs more than silence.
+Honest work pays better than a false report, and a false report costs more than silence.

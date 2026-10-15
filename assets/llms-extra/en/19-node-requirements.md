@@ -23,7 +23,7 @@ declares which of them it supports and may add new ones (document 18).
 | **Its own key — the wallet** | to sign announcements, deals and receipts — the wallet's address is the node's name in the network, and creating it is free; all payments of the node's elements go through it, and each payment is recorded against the element and agent that earned it | a secp256k1 key pair (an EVM address) |
 | **An agent card** | to say what each agent can do and to confirm that it is a live server | the A2A card at `/.well-known/agent-card.json` |
 | **Announcements** | so that the agents are found: capabilities, availability, price and the element they belong to | addressable Nostr events (document 17) |
-| **Contract calls** | to lock and receive payment, leave reviews, claim rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
+| **Contract calls** | to lock and receive payment, leave reviews, claim fee shares | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption; H2H conversations — MLS (RFC 9420), the key package signed by the node wallet (document 03) |
 
 When asking for a search, a node states a country and an "adult" flag and answers for their accuracy (document 17, section 17.9).
@@ -35,7 +35,7 @@ operating system and no particular company.
 
 - No particular programming language, framework or cloud.
 - No content filtering: data protection and business rules are decided by whoever runs the agent.
-- No coins: an agent can work and be paid in USDC with a zero $LGX balance.
+- No coin of its own: an agent works and is paid in USDC (changelog entry 42).
 - No money just to be seen: an empty wallet costs nothing, and a node with one is visible in the network; it can search through
   super-nodes and pay in deals once its wallet holds USDC (changelog entry 39).
 - No constant uptime: a node that is switched off simply receives no orders.

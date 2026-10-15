@@ -1,19 +1,17 @@
 # 7. Smart Contract Testing and Audit: Foundry, Slither and Fuzzing
 
-Lagrix smart contracts handle real money (USDC) and $LGX coins. A bug in a contract is dangerous: the contracts are immutable, with no
+Lagrix smart contracts handle real money (USDC). A bug in a contract is dangerous: the contracts are immutable, with no
 administrator or upgrade key (document 18), so a deployed contract cannot be fixed at all — a bug is closed only by a new version that
 participants move to. Every contract therefore passes three layers of checks before deployment: Foundry tests, invariant fuzzing and
 Slither static analysis.
 
 | Contract | What it does | Document |
 |---|---|---|
-| A2AEscrow.sol | deals, receipts, Time-Lock, fee deduction, the `Receipt` event | 04 |
+| A2AEscrow.sol | deals, receipts, Time-Lock, cancellation, fee deduction, the `Receipt` event | 04 |
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
-| PeriodIssuance.sol | the warm-up threshold, the availability part (a share of the remainder per period), the work part (the counter V with a half-volume and a speed limit), the split by receipts | 05 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
-| LagrixToken.sol | the coin, the supply cap, the six-month rule, the period reward split | 05 |
-| SuperNodeDeposits.sol | deposits, removal, penalties, false reports | 06 |
-| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the network part divided by 10, per element and role | 17 |
+| SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
+| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, likes burned by cancellations | 17 |
 
 ## 7.1 Unit and integration tests (Foundry)
 
@@ -24,14 +22,13 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_EIP712_SignatureReplay()` — a signature cannot be reused with another `taskId` or nonce.
 - `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate of the network part (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
 - `test_FeePool_EqualShares()` — the fees of a period go into its pool and are divided equally among the super-nodes that passed the quality minimum; the parties of a deal and super-nodes that failed the minimum receive nothing; nothing carries over to the next period.
-- `test_WarmUp_NoIssuanceBeforeThreshold()` — no reward is issued before the paid-volume threshold and the minimum number of super-nodes; warm-up receipts earn nothing afterwards.
 - `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
-- `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the network part divided by 10; a second review of the same deal by the same side is rejected.
-- `test_SixMonthRule()` — a coin transfer earlier than 180 days after joining is rejected; after that it passes.
-- `test_PeriodReward_Split()` — 50% to super-nodes and 30% to provider agents by receipt weight, 20% equally to super-nodes that passed the quality minimum, accurate to 1 wei.
-- `test_NoAdminFunctions()` — no function changes a rate, a price, a threshold, the half-volume, the availability share or the limit after deployment.
-- `test_Downtime_NoSlash()` — an unavailable node is not penalised and after 30 days is removed with its deposit returned.
-- `test_Slashing_HalfToReporter_HalfRemoved()` — half of a penalty to the reporter, half removed from circulation.
+- `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the fee paid on the deal; a second review of the same deal by the same side is rejected.
+- `test_Reputation_CountAndSum()` — every indicator updates its count and its sum together; a review, a like or a dislike, removes the deal from «unreviewed».
+- `test_Cancel_RefundByLikes()` — a cancellation within the dispute window refunds `min(likeWeight, amount)`, burns the same weight as a new event, sends the rest to the provider and records a cancelled order for both; a customer without likes gets nothing back.
+- `test_NoAdminFunctions()` — no function changes a rate, a price or a threshold after deployment.
+- `test_Downtime_NoMark()` — an unavailable node is not penalised and after 30 days is removed without a mark.
+- `test_ProvenViolation_MarkAndReward()` — a valid proof adds a permanent mark to the node's wallet, removes it from its place, blocks any new place and pays the reporter's reward in USDC; a false proof loses the reporter's locked amount.
 
 ```solidity
 // Example: Time-Lock in A2AEscrow.t.sol
@@ -58,20 +55,22 @@ amounts — and checks invariants that must hold for any sequence of calls:
 
 1. **Escrow solvency.** The escrow contract's USDC balance is never below the sum of all locked deals.
 2. **Fee solvency.** FeeDistributor's USDC balance is never below the unclaimed part of the period pools.
-3. **Supply cap.** No more than 1,000,000,000 LGX are ever created.
-4. **No founder share.** No address receives new coins except through receipts and the quality minimum.
-5. **Deposit accounting.** The sum of all super-nodes' deposits equals the total recorded in the staking contract.
-6. **Speed limit.** In a period the work part issues no more than a constant share of its remainder, and the counter V does not grow
-   beyond the volume that this issuance paid for.
-7. **Two parts.** What the availability part has issued never exceeds 200,000,000 LGX, and the work part never exceeds 800,000,000 LGX.
+3. **No founder share.** No address receives fees except super-nodes that passed the quality minimum and the rewards for proven
+   violations.
+4. **Marks are permanent.** Once set, a «proven violation» mark is never cleared, and a marked wallet never holds a place.
+5. **Burned weight.** The weight an element has burned never exceeds the weight of the likes it has received.
 
 ```solidity
 function invariant_EscrowSolvency() public view {
     assertGe(usdc.balanceOf(address(escrow)), escrow.totalLockedFunds(), "Escrow is insolvent");
 }
 
-function invariant_SupplyCap() public view {
-    assertLe(token.totalMinted(), 1_000_000_000 * 10**18, "Supply cap exceeded");
+function invariant_MarkedNeverActive() public view {
+    for (uint256 i; i < handler.markedCount(); i++) {
+        address wallet = handler.marked(i);
+        assertTrue(registry.provenViolation(wallet), "Mark was cleared");
+        assertFalse(registry.isActiveSuperNode(wallet), "Marked wallet holds a place");
+    }
 }
 ```
 

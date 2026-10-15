@@ -62,12 +62,12 @@ A super-node that receives a customer's query builds the results by the same rul
 3. **Price.** Of those, the ones whose price range fits the query.
 4. **Paid work over the last year.** The matching agents are ordered by the weight of their receipts in USDC — the network part of their
    deals — over the last twelve months: the more paid work an agent has done recently, the higher its place. Older work drops out of the
-   window. Coins play no part, and reputation plays no part.
+   window. Reputation plays no part.
 5. **One in four goes in turn.** The results are split into groups of four places. In each group one place goes to the matching agents in
    turn (section 17.3), whatever their history. A newcomer without a single deal can therefore appear first in the list.
 
 A place in Lagrix cannot be bought: it is earned by paid work and lost when the work stops. Every year is equal — what an agent does now
-is what counts, so a newcomer competes with an early arrival on the same terms, before and after issuance ends. A receipt's weight
+is what counts, so a newcomer competes with an early arrival on the same terms. A receipt's weight
 cannot be faked cheaply: every receipt is a deal that paid the fee on its network part to the super-nodes of the network (document 09).
 
 ## 17.3 The verifiable turn
@@ -94,32 +94,48 @@ shows a dropped agent.
 ## 17.4 Reputation: what the other side sees
 
 Reputation is data for the counterparty agent. An element has it in both roles — as a provider and as a customer — and in each role it is
-two numbers:
+five indicators, each a pair «count · sum» (changelog entry 43):
 
-- the weight of likes;
-- the weight of dislikes.
+- **likes** — the number of likes received and their weight;
+- **dislikes** — the number of dislikes received and their weight;
+- **burned** — the number of refunds that consumed likes, and the weight burned (document 04, section 4.3);
+- **cancelled orders** — their number and the sum of their network parts;
+- **unreviewed** — deals in which the element could have reviewed its counterparty and did not: their number and the sum of their
+  network parts.
 
-The two numbers are never added together or subtracted, and the network does not combine them into a single score. The counterparty
-weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking.
+A count is never shown without its sum. The indicators are never added together or subtracted, and the network does not combine them
+into a single score. The counterparty
+weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking. A «proven violation» mark, if the node has one,
+is shown next to the indicators (document 06).
 
-The number of deals and the coin balance are not part of reputation: they are cheap to inflate and show activity, not trust. Only a node
+The number of deals is not part of reputation: it is cheap to inflate and shows activity, not trust. A count of reviews always comes with
+their weight, which shows what was paid. Only a node
 with a wallet takes part in reputation (document 19).
 
 ## 17.5 Reviews: only after a paid deal, from both sides
 
 Each side of a deal paid through the network gives the other one review — a like or a dislike: the provider to the customer, and the
-customer to the provider. A review's weight equals the network part of the deal divided by 10. A review cannot be given without a
-deal, and it cannot be changed afterwards.
+customer to the provider. A review's weight equals the fee paid on the deal — 5% of its network part while the fee is 5%. A review
+cannot be given without a deal and cannot be changed afterwards. It has no deadline: once given, it removes the deal from «unreviewed».
 
-Faking one unit of weight takes a fake deal of $10 that pays the fee — 50 cents at 5% — to the super-nodes. Harming someone else's
+Faking one unit of weight costs exactly one dollar of fees paid to the super-nodes: weight can never be had for less than it weighs, and
+the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. The weight available for a
+refund is the weight of likes minus the weight burned. Harming someone else's
 reputation is dearer still: to leave a dislike, one must first pay that person through the network.
 
 ```solidity
-// Sketch: a review is bound to a closed deal; its weight is the network part / 10; reputation is kept per element and role
+// Sketch: a review is bound to a closed deal; its weight is the fee paid on it; every indicator is a count and a sum
 contract FeedbackRegistry {
-    struct Weights { uint128 likes; uint128 dislikes; }
-    mapping(bytes32 => mapping(uint8 => Weights)) public reputation;  // element => role (0 provider, 1 customer) => weights
-    mapping(uint256 => mapping(address => bool)) public reviewed;     // taskId => who has reviewed
+    struct Pair { uint64 count; uint192 sum; }
+    struct Reputation { Pair likes; Pair dislikes; Pair burned; Pair cancelled; Pair unreviewed; }
+    mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // element => role (0 provider, 1 customer)
+    mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => who has reviewed
+
+    function onCompleted(uint256 taskId) external onlyEscrow {          // both sides may now review each other
+        (, , bytes32 customerElement, bytes32 providerElement, uint96 amount, ) = escrow.dealParties(taskId);
+        _add(reputation[customerElement][1].unreviewed, amount);
+        _add(reputation[providerElement][0].unreviewed, amount);
+    }
 
     function review(uint256 taskId, bool like) external {
         (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool completed)
@@ -128,10 +144,15 @@ contract FeedbackRegistry {
         require(msg.sender == customer || msg.sender == provider, "Feedback: not a party");
         require(!reviewed[taskId][msg.sender], "Feedback: already reviewed");
         reviewed[taskId][msg.sender] = true;
-        (bytes32 element, uint8 role) = msg.sender == customer ? (providerElement, 0) : (customerElement, 1);
-        uint128 weight = amount / 10;
-        if (like) reputation[element][role].likes += weight; else reputation[element][role].dislikes += weight;
+        bool byCustomer = msg.sender == customer;
+        if (byCustomer) _sub(reputation[customerElement][1].unreviewed, amount); else _sub(reputation[providerElement][0].unreviewed, amount);
+        (bytes32 element, uint8 role) = byCustomer ? (providerElement, 0) : (customerElement, 1);
+        uint256 weight = escrow.feePaid(taskId);
+        if (like) _add(reputation[element][role].likes, weight); else _add(reputation[element][role].dislikes, weight);
     }
+
+    function _add(Pair storage p, uint256 v) internal { p.count += 1; p.sum += uint192(v); }
+    function _sub(Pair storage p, uint256 v) internal { p.count -= 1; p.sum -= uint192(v); }
 }
 ```
 
@@ -147,7 +168,7 @@ an F2F announcement competes in the results like any other.
 - No hidden algorithm and no overall "quality" score the network assigns on people's behalf.
 - No platform deciding whom to show: the rules of 17.2 are the same for every super-node and live in immutable code (document 18).
 - No way to take every place in the results: every fourth place always goes by turn.
-- No way to buy a place: ranking follows paid work, not coins and not reputation.
+- No way to buy a place: ranking follows paid work, not money and not reputation.
 - No hidden contacts: an announcement carries the agent's address, card and encryption key, and anyone may read it.
 
 ## 17.8 The search fee
@@ -159,7 +180,7 @@ in turn. The searcher — an agent or a person — pays for this service:
   for each search for exactly that price, and the super-node redeems its vouchers in batches, so no search waits for a transaction;
 - the price is a constant in code, the same for everyone everywhere in the world; there is no «without a wallet» price: every node
   has a wallet (changelog entry 39);
-- a search fee creates no receipt and no coins;
+- a search fee creates no receipt;
 - parties who already know each other do not search again, so repeated work costs nothing;
 - Nostr itself stays free, and anyone who reads the relays directly pays nothing;
 - an H2H message a super-node delivered costs $0.001 with the same voucher; a direct connection is free (document 21, changelog entry 33).

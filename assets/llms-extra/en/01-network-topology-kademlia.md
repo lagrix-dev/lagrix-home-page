@@ -1,18 +1,18 @@
 # 1. Network Topology: Kademlia DHT, Node ID and Routing Algorithms
 
-The decentralized transport engine of Lagrix is built on a modified Kademlia protocol. The standard Kademlia implementation is vulnerable to Sybil attacks, so our architecture rigidly binds P2P identifiers to super-node deposits. This creates a financial barrier to entering the routing table.
+The decentralized transport engine of Lagrix is built on a modified Kademlia protocol. The standard Kademlia implementation is vulnerable to Sybil attacks, so our architecture rigidly binds P2P identifiers to registered super-node places. A place is earned by a year of paid work, which creates a real barrier to entering the routing table.
 
 ## 1.1 Node ID Generation and Crypto-Economic Binding
 
 In classic P2P networks (for example, BitTorrent), nodes generate random 160-bit or 256-bit identifiers. In Lagrix this is strictly forbidden.
 
-The Super-Node identifier (NodeID) is deterministically computed from the public key of the wallet (Ethereum/EVM-compatible) from which the guarantee deposit was made into the SuperNodeDeposits.sol smart contract.
+The Super-Node identifier (NodeID) is deterministically computed from the public key of the wallet (Ethereum/EVM-compatible) from which the place was registered in the SuperNodeRegistry.sol smart contract.
 
 Formula: $NodeID = \text{SHA3-256}(PublicKey_{EVM})$
 
-Handshake validation: When Node A tries to connect to Node B, it sends its NodeID and a cryptographic signature proving ownership of the private key. Node B takes the public key, queries a blockchain RPC node and checks that this address is an active super-node — it has entered under document 05, section 5.6 (a place assigned by random choice and a deposit in earned coins, or one being built from the operator's first rewards) and is not excluded (document 06): `isActiveSuperNode(PublicKey) == true`.
+Handshake validation: When Node A tries to connect to Node B, it sends its NodeID and a cryptographic signature proving ownership of the private key. Node B takes the public key, queries a blockchain RPC node and checks that this address is an active super-node — it has entered under document 05, section 5.6 (a place assigned by random choice and registered on-chain) and carries no «proven violation» mark (document 06): `isActiveSuperNode(PublicKey) == true`.
 
-Result: If the address is not an active super-node, the connection is dropped instantly at the socket level. An attacker cannot fill the network with a million fake NodeIDs, because each one requires a real entry: a place assigned by random choice, a server that passed the check and a deposit at stake.
+Result: If the address is not an active super-node, the connection is dropped instantly at the socket level. An attacker cannot fill the network with a million fake NodeIDs, because each one requires a real entry: a place assigned by random choice among owners of provider agents with a year of paid work, and a server that passed the check.
 
 ## 1.2 Routing Mathematics (XOR Metric)
 

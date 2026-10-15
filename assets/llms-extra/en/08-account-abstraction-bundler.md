@@ -100,10 +100,10 @@ network has no paymaster of its own, and Lagrix contracts require no particular 
 - **Network participants do not sell stamps.** Neither nodes nor super-nodes run paymasters for others or carry others' transactions for
   a fee: such a service could count as an exchange of crypto-assets or their transfer on behalf of clients in the sense of MiCA (Article
   3(1)(16), (20), (26)).
-- **A super-node pays stamps only for its own actions:** redeeming batches of vouchers, collecting fees and rewards, its deposit.
+- **A super-node pays stamps only for its own actions:** redeeming batches of vouchers, collecting its share of the fees, registering its place.
 - **The fallback — one's own ether — is always open:** a third-party service's refusal does not cut a participant off from the network.
 
-$LGX is never used for stamps. Micropayments — search and message delivery — never go on-chain one by one: a super-node redeems their
+Micropayments — search and message delivery — never go on-chain one by one: a super-node redeems their
 vouchers in batches (document 17, section 17.8), so the stamp per operation is negligible.
 
 **Stamp price measured — 14 October 2026, 23:54 UTC.** A simple USDC transfer: Arbitrum One — median **$0.0028** (21 transfers, from

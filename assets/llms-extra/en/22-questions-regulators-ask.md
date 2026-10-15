@@ -1,7 +1,9 @@
 # 22. Questions Regulators Ask
 
-Lagrix is designed to answer the questions regulators ask of a new crypto asset. This document lists those questions, names the primary
-source each one comes from and gives the network's answer in full, with a link to the document where the rule lives.
+Lagrix is designed to answer the questions regulators ask of an open network that holds payments in escrow and helps people and agents
+find each other. The network has no crypto-asset of its own: its money is USDC, issued by a third party (changelog
+[000](000-changelog-2026-10-13.md), entry 42). This document lists the questions, names the primary source each one comes from and gives
+the network's answer in full, with a link to the document where the rule lives.
 
 This is a statement of design, not legal advice. It does not say that Lagrix complies with any law: whether it does is decided by
 regulators and courts on the facts, and in the United States the Commission states plainly that the analysis "depends on the specific
@@ -18,11 +20,8 @@ as open, not answered.
   the staff's 2019 framework.
 
 **European Union.**
-- Regulation (EU) 2023/1114 on markets in crypto-assets (MiCA): Article 3 (definitions), Article 4 (offers to the public of
-  crypto-assets other than asset-referenced and e-money tokens) and recital 22 (services provided in a fully decentralised manner)
-  ([ESMA single rulebook](https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-4-offers-public-crypto-assets-other)).
-- ESMA Q&A 2552, answered by the European Commission on 18 February 2026, on crypto-assets without an identifiable issuer
-  ([Q&A](https://www.esma.europa.eu/publications-data/questions-answers/2552)).
+- Regulation (EU) 2023/1114 on markets in crypto-assets (MiCA): Article 3 (definitions) and recital 22 (services provided in a fully
+  decentralised manner) ([ESMA single rulebook](https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-3-definitions)).
 - EBA Q&A 2024_7172 on fully decentralised services ([Q&A](https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2024_7172)).
 - Regulation (EU) 2022/2065 (Digital Services Act): Articles 3, 4, 8–11, 13 and 28 ([EUR-Lex](https://eur-lex.europa.eu/eli/reg/2022/2065/oj/eng)).
 
@@ -34,38 +33,17 @@ Europe Convention on Cybercrime (ETS 185).
 
 ## 22.2 Money and sale
 
-**Is anyone selling the coin to raise money?** *(Howey: investment of money; MiCA, Article 4)*
-No. There is no sale at launch, no presale, no allocation for investors and no fund created in advance. There is no pre-mine and no key
-that can create coins: every $LGX is issued by the contract at the end of an issuance period and divided by the receipts of paid deals
-closed in that period ([05](05-tokenomics-vesting-vault.md), section 5.2; changelog [000](000-changelog-2026-10-13.md), entry 2).
+**Does the network issue or sell a crypto-asset of its own?** *(Howey: investment of money)*
+No. The network has no coin of its own: no issuance, no sale, no presale, no allocation for investors and no fund created in advance
+([05](05-tokenomics-vesting-vault.md), section 5.7; changelog entry 42). Its money is USDC, which Lagrix neither issues nor redeems.
 
-**Does anyone receive coins in exchange for paying money?** *(Howey: investment of money; Release 33-11412 on airdrops — no money,
-goods, services or other consideration given to the issuer)*
-No. Customer agents pay for services and receive services; they receive no coins. Coins go only to provider agents for work they did and
-to super-nodes for deals they served and for meeting the quality minimum ([05](05-tokenomics-vesting-vault.md), section 5.2; changelog
-entry 14). Paying for a service never buys coins.
+**Does anyone receive an asset in exchange for paying money?** *(Howey: investment of money)*
+No. A customer pays for a service and receives the service. Reviews and reputation are records of paid deals, not assets: they cannot be
+transferred or sold, and an element's history does not move with it (changelog entries 28 and 43).
 
-**Does holding the coin earn anything?** *(Howey: expectation of profits)*
-No. Holding $LGX earns no income, no place in search and no reputation: search results are ordered by the weight of work paid through the
-network over the last twelve months, and reputation is the weight of reviews from paid deals ([17](17-discovery-ranking-feedback.md);
-changelog entries 3, 4 and 26). $LGX is an asset of its holder and the deposit of a super-node operator.
-
-**Does the project push early buyers toward speculation?** *(Howey: expectation of profits)*
-The rules work against it. For the first six months after joining, every participant can only accumulate coins: they cannot be sold or
-transferred, at any time in the network's life ([05](05-tokenomics-vesting-vault.md), section 5.4). Receipts closed during the warm-up
-earn no coins at all, so the earliest period is not the cheapest time to collect coins (changelog entry 6). No document promises a price.
-
-**Is the coin's value cut off from the system's use?** *(Release 33-11412: a digital commodity derives its value from the programmatic
-operation of a crypto system)*
-No. Coins are issued only against receipts of paid deals, each of which paid the network fee on its network part. If the coins issued per
-dollar of deals were worth more than the fee, making deals just for receipts would pay — such receipts would multiply and each would earn
-fewer coins. The value of newly issued coins therefore tends toward the fee's share of real deal volume
-([05](05-tokenomics-vesting-vault.md), section 5.8). This is a property of the rules, not a guarantee of any price.
-
-**Does the system work before the coin appears?** *(Release 33-11412: a functional crypto system)*
-Yes, by construction. The network starts on real deals with real money; issuance begins by itself only after a threshold of volume paid
-through the network and a minimum number of super-nodes (changelog entries 6 and 23). The first coin cannot appear before the system is in
-use.
+**Does taking part promise a profit?** *(Howey: expectation of profits)*
+No. There is no asset whose price could rise. Providers are paid by their customers for their work, and super-nodes are paid fees for the
+work they do (section 22.3). No document promises any income.
 
 ## 22.3 Efforts of others and control
 
@@ -74,97 +52,82 @@ Nobody can. The contracts are immutable: no administrator key, no upgrade key, n
 no council and no vote. New rules can arrive only as a new version of the contracts that participants join by choice (changelog entry 1;
 [18](18-governance-protocols-council.md)). After deployment there is nothing left to manage.
 
-**Is there a central party that distributes rewards?** *(Release 33-11412: a functional system "does not have a central party that
+**Is there a central party that distributes payments?** *(Release 33-11412: a functional system "does not have a central party that
 oversees participation or distributes rewards to users")*
-No. The contract issues each period's reward and divides it by formula, and it divides each period's fee pool by formula too. The start of
-issuance is triggered by volume, not by a person (changelog entries 2, 6 and 25).
+No. The escrow contract releases each deal's payment on the customer's signature or after the dispute window, and the contract divides
+each period's fee pool by formula among the super-nodes that passed the quality minimum ([04](04-escrow-contract.md),
+[09](09-fee-distribution.md); changelog entries 24 and 25).
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
 No. There are no governance tokens and no votes. Super-node places are assigned by random choice, not bought, and places rotate, so no
 group can hold a block of places for ever ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 31 and 40).
 
-**Is a super-node's reward payment for services or profit from others' efforts?** *(Release 33-11412: rewards to miners and node
-operators are "payments … in exchange for services it provides"; the reward structure is "predetermined by the protocol")*
+**Is a super-node's income payment for services or profit from others' efforts?** *(Release 33-11412: payments to node operators "in
+exchange for services it provides", with a structure "predetermined by the protocol")*
 Payment for services, fixed in code:
-- 50% of each period's issuance is divided among super-nodes by the weight of the deals each one served;
-- 20% is divided equally among the super-nodes that passed the period's quality minimum — payment for staying available and good
-  enough, which cannot be enlarged with fake volume;
 - the deal fee of each period is divided equally among the super-nodes that passed that period's quality minimum — payment for the work
-  every deal relies on: search, connections and the index of receipts and reviews ([09](09-fee-distribution.md); changelog entry 25).
+  every deal relies on: search, connections and the index of receipts and reviews ([09](09-fee-distribution.md); changelog entry 25);
+- the search fee is paid to the super-node that built the result list, and the delivery fee to the super-node that delivered the message
+  ([17](17-discovery-ranking-feedback.md), section 17.8; changelog entries 33 and 39).
 A super-node receives the fee only for a period in which it kept the network running and passed the quality minimum.
 
-**Is a provider's reward payment for work?** *(Release 33-11412)*
-Yes. 30% of each period's issuance is divided among provider agents by the weight of the receipts of their paid work.
+**Is a provider's income payment for work?** Yes. The customer pays the provider for the service through escrow; the network takes its
+fee and nothing else ([04](04-escrow-contract.md), section 4.4).
 
 **Is there a common enterprise — a shared pot?** *(Howey; Release 33-11412: the common enterprise element must be satisfied)*
-The network has no pot that grows with deposits and is shared among holders of the coin. Each period's issuance follows a schedule fixed
-before deployment and is divided by each participant's own receipts. The fee pool of each period is shared only among the super-nodes
-that worked in that period and is emptied at its end; holders of $LGX receive nothing from it (changelog entries 2, 14 and 25). Whether
-this pool counts as a common enterprise is listed in section 22.9.
+The network has no pot that grows with deposits and is shared among investors. The fee pool of each period is shared only among the
+super-nodes that worked in that period and is emptied at its end (changelog entry 25). Whether this pool counts as a common enterprise is
+listed in section 22.9.
 
 ## 22.4 The founder
 
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
-No. The founder receives nothing from issuance: there is no founder share and no pre-mine, and no key issues coins or changes a rule. The
-founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only by
-the same random choice, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18). At the launch of the
-network the founder also takes on public commitments of their own: one publicly named node, no deals with themselves, and the rewards
-earned while fewer than ten super-nodes pass the quality minimum transferred to an address without a key (changelog entry 41).
+No. The founder receives no share of anything, and no key changes a rule. The founder and persons related to them, Fractera, Inc.
+included, take part only on the same terms as anyone — a super-node place only by the same random choice, provider agents paid by the same
+rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entries 18 and 42).
 
-**Can the founder earn by warming up the network?** *(the case of an author who controls the early network)*
-No. During the warm-up no coins are issued and receipts closed then never earn coins. Every deal pays its fee into the pool of its period,
-which goes to the super-nodes that passed the quality minimum in that period. The founder's elements make no deals with each other, and
-until ten super-nodes pass the quality minimum in a period every $LGX the founder receives is transferred to an address without a key
-(changelog entry 41).
+**Can the founder earn while the network is small?** *(the case of an author who controls the early network)*
+No more than the rules allow anyone, and at launch less. The founder takes on public commitments of their own: one publicly named node, no
+deals between the founder's own elements, and, until ten super-nodes pass the quality minimum in a period, no share of the fees — it stays
+in the pool of the other super-nodes (changelog entries 41 and 42).
 
 **Does the network depend on the founder's further work?** *(Release 33-11412: reliance on the issuer's efforts)*
 No. The specification is open, any program in any language can be a node or a super-node ([19](19-node-requirements.md)), and the
-contracts cannot be changed. Before the contracts are deployed on a main network, the protocol and the contracts move to the MIT License,
-so nobody stands at the gate of the network (changelog entry 18). If the authors of Lagrix disappeared, the network would run by the same
-rules.
+contracts cannot be changed. The protocol is under the MIT License, so nobody stands at the gate of the network (changelog entry 42). If
+the authors of Lagrix disappeared, the network would run by the same rules.
 
 ## 22.5 Market integrity
 
-**Can receipts, ranking and reviews be farmed with deals with oneself?** *(Howey: manipulation; market integrity)*
+**Can rankings and reviews be farmed with deals with oneself?** *(market integrity)*
 Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
-the quality minimum, so the payer cannot steer the fee back to itself. A receipt's weight and a review's weight follow the amount paid
-through the network, not the number of messages. A group that controls k of M super-nodes gets back k/M of its own fee, and each of those
-places was assigned by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
+the quality minimum, so the payer cannot steer the fee back to itself. A review weighs exactly the fee paid on its deal, so a unit of
+review weight costs a dollar of fees, and the right to a refund bought with likes never costs less than the refund itself
+([17](17-discovery-ranking-feedback.md), section 17.5; changelog entry 42). A group that controls k of M super-nodes gets back k/M of its own
+fee, and each of those places was assigned by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
 No place can be bought, and places have no stages and no numbers. Only owners of provider agents whose paid work over 12 months lies in
 the window from 0.75 to 1.25 of the network median can apply — one application per node wallet; the largest providers fall outside the
 window. The contract puts applicants in a random order with diversity of networks and regions, computing the randomness itself with no oracle;
-the first receives an invitation, and its server is checked by agents in turn, not by super-nodes. There are always at least ten places;
-beyond them, new places open two at a time when the network is overloaded ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog
-entries 31 and 40).
+the first receives an invitation, and its server is checked by agents in turn, not by super-nodes. A node with a «proven violation» mark
+can never hold a place ([05](05-tokenomics-vesting-vault.md), sections 5.4 and 5.6; changelog entries 31, 40 and 42).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
-A review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee.
-Reviews do not move the ranking ([17](17-discovery-ranking-feedback.md)).
+A review requires a deal paid through the network, and its weight is the fee paid on it, so a fake unit of weight costs a real dollar.
+Every indicator is shown as a count together with its sum, so many tiny deals are visible as such. Reviews do not move the ranking
+([17](17-discovery-ranking-feedback.md); changelog entry 43).
 
 ## 22.6 The European Union (MiCA)
 
-**Is there an offer of crypto-assets to the public?** *(MiCA, Article 3(1)(12) and Article 4)*
-The project offers no $LGX for sale: there is no sale, no presale and no fee or benefit received from anyone in exchange for the coin. Coins
-are created only as rewards for work done in the network.
-
-**Who answers if the coin is admitted to trading in the EU?** *(MiCA, Article 4(4) and Article 5; ESMA Q&A 2552)*
-Lagrix does not seek admission of $LGX to trading and announces no intention to do so. Under the Commission's answer to Q&A 2552, a
-trading platform that admits a crypto-asset makes its own assessment of whether an identifiable issuer exists.
-
-**The project's own rule.** Nobody acting for the project — the founder, persons related to them or Fractera, Inc. — announces an
-intention to seek admission of $LGX to trading, creates or funds a market for $LGX on any exchange, centralised or decentralised, or
-speaks about its future price. Under MiCA, Article 4(4), a single communication of an intention to seek admission to trading would
-end the exemptions of Article 4; under the Commission's answer to ESMA Q&A 2671, listing a crypto-asset on a decentralised exchange in
-the Union could amount to an offer to the public.
+**Is there an offer of crypto-assets to the public?** *(MiCA, Article 3(1)(12))*
+The network has no crypto-asset of its own to offer (changelog entry 42). It accepts USDC, issued by a third party, as a means of payment.
 
 **Do super-nodes hold or transfer clients' crypto-assets?** *(MiCA, Article 3(1)(17), custody; Article 3(1)(26), transfer services)*
-No. A deal's payment is locked and released by the escrow contract: on the customer's signature, or after a dispute window if the
-customer stays silent ([04](04-escrow-contract.md)). The fee pool is held by the contract and claimed by each super-node for itself. No
-super-node holds a client's funds or the keys to them. Super-nodes keep the discovery index, help agents connect and relay encrypted
-traffic.
+No. A deal's payment is locked and released by the escrow contract: on the customer's signature, after the dispute window if the customer
+stays silent, or partly back to the customer if the customer cancels ([04](04-escrow-contract.md)). The fee pool is held by the contract
+and claimed by each super-node for itself. No super-node holds a client's funds or the keys to them. Super-nodes keep the discovery index,
+help agents connect and relay encrypted traffic.
 
 **Is the network fully decentralised?** *(MiCA, recital 22; EBA Q&A 2024_7172)*
 The contracts have no administrator keys, there is no council and no vote, super-node operators are independent and rotate, and the
@@ -173,9 +136,10 @@ the EBA's answer, for the supervisor to assess in each case.
 
 ## 22.7 Payments
 
-**Which currency settles deals?** Deals and the fee are paid in USDC ([04](04-escrow-contract.md), [09](09-fee-distribution.md)). Lagrix
-accepts USDC as a means of payment; it does not issue, redeem or hold it for anyone. A deal may be paid partly outside the network, in any
-ordinary way; Lagrix does not see, hold or settle that part ([04](04-escrow-contract.md), section 4.6).
+**Which currency settles deals?** Deals, the fee, search and message delivery are paid in USDC ([04](04-escrow-contract.md),
+[09](09-fee-distribution.md), [17](17-discovery-ranking-feedback.md)). Lagrix accepts USDC as a means of payment; it does not issue, redeem
+or hold it for anyone. A deal may be paid partly outside the network, in any ordinary way; Lagrix does not see, hold or settle that part
+([04](04-escrow-contract.md), section 4.6).
 
 **Do network participants sell gas?** *(MiCA, Article 3(1)(16), (20), (26))* No. Everyone pays the stamps for their own actions
 themselves — in the network's ether or through a third-party gas payment service; neither nodes nor super-nodes run paymasters for others
@@ -201,9 +165,9 @@ node answers for; the network collects no other personal data ([17](17-discovery
 
 These questions do not yet have an answer in the architecture. They are named here rather than answered:
 
-- **An identifiable issuer under MiCA.** The founder writes and deploys the contracts. Whether this makes an identifiable issuer in the
-  sense of recital 22 and the Commission's answer to Q&A 2552 is not settled.
-- **MiCA Article 4(3)(b).** Whether the exemption in Article 4(3)(b) applies to $LGX is not settled.
+- **Escrow as custody or transfer.** The escrow contract holds the network part of a deal until acceptance. Whether an immutable contract
+  that holds funds in this way is custody or a transfer service in the sense of MiCA, Article 3(1)(17) and (26), or money transmission
+  under national law, is not settled.
 - **The fee pool.** Whether pooling the fee by period and dividing it equally among super-nodes is a common enterprise in the sense of
   Howey is not settled.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not

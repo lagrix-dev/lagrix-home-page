@@ -2,17 +2,17 @@
 
 The resilience, throughput and latency of the Lagrix network depend directly on the configuration of the hardware on which Super-Nodes (Core Relays) and TURN bridges are deployed. Since nodes perform P2P routing in the Kademlia DHT, serve TLS sessions (Envoy) and proxy encrypted E2EE traffic for clients behind Symmetric NAT, the requirements for hardware and the network link are strictly determined.
 
-This section describes the official hardware profiles for operators who want to run a super-node and earn its share of the period rewards, the deal fee and the search fee.
+This section describes the official hardware profiles for operators who want to run a super-node and earn its share of the deal fee, the search fee and the delivery fee.
 
 ## 14.1 Node Tier Profiles
 
 The protocol divides infrastructure servers into three categories depending on the roles they perform in the network:
 
-| Node profile | Purpose and role | Deposit | Target load |
+| Node profile | Purpose and role | Entry | Target load |
 |---|---|---|---|
-| Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | calculated at entry (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
-| Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | calculated at entry (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
-| Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | calculated at entry (document 05, section 5.6) | Heavy load. |
+| Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | no deposit; a place earned by paid work (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
+| Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | no deposit; a place earned by paid work (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
+| Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | no deposit; a place earned by paid work (document 05, section 5.6) | Heavy load. |
 
 ## 14.2 Minimum and Recommended System Requirements
 

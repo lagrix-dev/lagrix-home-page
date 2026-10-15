@@ -13,7 +13,7 @@ born from it (document 05), the reviews of both sides are bound to it (document 
 The escrow logic is a strict finite state machine.
 
 ```solidity
-enum TaskState { UNINITIALIZED, LOCKED, COMMITTED, COMPLETED, REFUNDED }
+enum TaskState { UNINITIALIZED, LOCKED, COMMITTED, COMPLETED, REFUNDED, CANCELLED }
 
 struct Task {
     uint96 amount;        // the network part of the payment, in USDC (up to $79 billion, 96 bits are enough)
@@ -38,6 +38,9 @@ The fields are packed tightly: a deal record takes a few storage slots, which ke
   and a receipt is recorded (section 4.5).
 - **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or did not deliver by the deadline.
   The funds return to the Customer in full, and no fee is taken.
+- **CANCELLED.** The Customer did not accept the delivered work and cancelled the order within the dispute window (section 4.3). The
+  refund is at most the weight of the Customer's likes as a customer, and the same weight of likes burns; the Provider receives the rest,
+  and a «cancelled order» is recorded for both sides (document 17; changelog entry 42).
 
 ## 4.2 Cryptographic receipts (EIP-712)
 
@@ -61,6 +64,11 @@ A Customer could receive the result, go offline and never send the signature, fr
 - **Commitment.** Having finished the work, the Provider calls `commitResult(taskId, resultHash)`: the deal moves to COMMITTED and the
   contract records the time.
 - **Dispute window.** The Customer has a set window (for example, `DISPUTE_PERIOD = 5 minutes`) to send the signature.
+- **Cancellation.** Within the same window the Customer may refuse the result and call `cancelOrder(taskId)` instead of signing. The
+  contract reads the Customer's like weight as a customer (document 17), returns `min(likeWeight, amount)` to the Customer, burns the
+  same weight of likes as a new event and sends the rest to the Provider; the deal moves to CANCELLED. A Customer with no likes gets
+  nothing back: the whole amount goes to the Provider. Whether the fee is taken from the Provider's part and whether a cancelled order
+  leaves a receipt and reviews are open questions (document 000).
 - **Automatic closing.** When the window has passed, the Provider calls `claimTimeout(taskId)`. The contract checks
   `block.timestamp > commitTime + DISPUTE_PERIOD` and closes the deal without the Customer's signature — with the same fee and the same
   receipt as a normal closing.
@@ -75,8 +83,7 @@ When a deal moves to COMPLETED, the contract splits the network part:
 | The network fee | at most 5%, set by modelling | into the pool of the current period, divided among super-nodes under document 09 |
 
 The pool of each period is divided in equal parts among the super-nodes that passed the quality minimum in that period; the parties of
-the deal never receive it (document 09). The fee is taken from the very first deal, including the warm-up before issuance starts
-(document 05, section 5.2).
+the deal never receive it (document 09). The fee is taken from the very first deal (document 05, section 5.3).
 
 ## 4.5 The receipt and the participants' history
 
@@ -97,13 +104,12 @@ event Receipt(
 
 - **The receipt.** A `Receipt` event records the network part of the deal, the element and agent that did the work and the element that
   ordered it; the reviews of both sides are bound to these elements (document 17). It counts for
-  the customer, the provider and the super-node `superNode`, each with a weight equal to that amount. Receipts divide each issuance
-  period's reward (document 05, section 5.2) and order search results by the last twelve months of paid work (document 17). Which
+  the customer, the provider and the super-node `superNode`, each with a weight equal to that amount. Receipts order search results by
+  the last twelve months of paid work (document 17) and measure the paid work that opens a super-node place (document 05, section 5.6). Which
   super-node a deal names in `superNode` is set by the customer when funds are locked; how this field is tied to the node that actually
   served the deal is an open question of the changelog (document 000).
 - **The participants' history.** The contract updates, for both parties, the number of closed deals and the time of the last deal —
-  separately as provider and as customer — and records the joining time of a new participant. The six-month rule (document 05) relies on
-  this data. The number of deals is history, not reputation (document 17).
+  separately as provider and as customer. The number of deals is history, not reputation (document 17).
 
 ## 4.6 The network part of a deal
 
@@ -111,8 +117,8 @@ A deal may be paid in two parts. The parties may pay any part outside the networ
 
 - **The network sees only its part.** Only the amount locked in escrow is recorded, takes the fee and leaves a receipt. The part paid
   outside the network leaves no trace in Lagrix.
-- **Only the network part counts.** The weight of the receipt, the weight of both sides' reviews, the place in search, issuance and the
-  warm-up threshold all follow the network part.
+- **Only the network part counts.** The weight of the receipt, the weight of both sides' reviews, and the place in search all follow
+  the network part.
 - **Protection differs.** The network part is protected by escrow until acceptance. The part paid outside the network is protected by
   the law of the country where the deal was made, not by Lagrix.
 
