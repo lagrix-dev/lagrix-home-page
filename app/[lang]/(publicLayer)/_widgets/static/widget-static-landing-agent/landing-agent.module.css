@@ -2105,7 +2105,7 @@
 .asInfoClose:hover { background: var(--poster); }
 
 @media (max-width: 560px) {
-  .asRoad { height: 330px; --sign-w: 46cqw; --pole: 44cqh; --pig-w: 22cqw; --truck-w: 50cqw; --truck-r: -10cqw; --sy: calc(37cqh - var(--it) / 2); }
+  .asRoad { height: 330px; --sign-w: 46cqw; --pole: 44cqh; --pig-w: 22cqw; --truck-w: 56cqw; --truck-r: -14cqw; --sy: calc(37cqh - var(--it) / 2); }
 }
 @media (prefers-reduced-motion: reduce) {
   .asRoad[data-run] .asFly, .asRoad[data-run] .asCoin, .asRoad[data-run] .asPig { animation: none; }
