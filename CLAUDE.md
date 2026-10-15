@@ -234,3 +234,13 @@ provider by a Google search). 🔒 Every word about the network's rules comes fr
 only the network part counts, the fee is pooled for super-nodes, reviews from both sides weigh the network part / 10, reputation is two
 numbers per role, a queue replaces random choice. A rule change starts with a changelog entry, then the documents, then this site; after
 a release the live site is measured for the banned raffle vocabulary and for old rules (node step 479).
+
+## The site is temporarily closed (node step 488)
+
+Owner, 2026-10-15: «публичный страницу делай доступную только по паролю архитектора … закрыть от индексации сайт». While
+`config/site-access.json` carries `"site": "architect"`, `proxy.ts` (siteAccessGate) shows the site only to the owner at this machine and
+to a signed-in architect: a visitor who is not signed in goes to sign-in (registration gives the role user), a signed-in user without the
+role gets the page «Сайт временно закрыт» (403). Pages, branch doors `/<lang>/…/api/…`, llms*.txt, sitemap.xml and the A2A card are
+closed; `/api/*` doors keep their own gates; robots.txt stays open on purpose, every response carries `X-Robots-Tag: noindex, nofollow`.
+The node makes no Cloudflare copy of a closed site (`agi-code/scripts/static-copy.mjs`). To open the site: `"site": null`, deploy,
+then refresh the copy. Do not open it without the owner's word.

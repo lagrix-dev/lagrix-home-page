@@ -391,8 +391,11 @@ async function siteAccessGate(request: NextRequest): Promise<NextResponse | null
     request.cookies.get("__Secure-authjs.session-token") ??
     request.cookies.get("fractera-ticket");
   if (!hasSession) {
-    // Относительный адрес: за туннелем `nextUrl` несёт `localhost:<порт>`, а браузер посетителя должен остаться на этом домене.
-    return new NextResponse(null, { status: 307, headers: { location: `/login?lang=${lang}&requireRole=user` } });
+    // Хост и протокол — из заголовков туннеля: `nextUrl` за ним несёт `localhost:<порт>`. ✗ 488-3: относительный адрес прокси
+    // Next не принимает (`ERR_INVALID_URL`, каждая страница отвечала 500).
+    const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? request.nextUrl.host;
+    const proto = request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol.replace(":", "");
+    return NextResponse.redirect(`${proto}://${host}/login?lang=${lang}&requireRole=user`, 307);
   }
   const session = await getSession(request).catch(() => null);
   if (session?.roles?.includes(SITE_ROLE)) return null;
