@@ -9,9 +9,11 @@
 // No network, or GitHub refuses → the last copy stays, the build goes on and says so (===DOCS_SYNC_OFFLINE===).
 // A document deleted in the repository disappears from both copies on the next successful sync.
 //
-// CLOSED REPOSITORY (node step 489, owner 2026-10-15: «переводи синхронизацию на токен, закрываю репозитории»). A read-only
-// fine-grained token of lagrix-dev (Contents: Read-only) lives in `data/docs-sync/.env` (`LAGRIX_DOCS_TOKEN=`, outside git,
-// saved by the architect on «Site settings») or in the environment. With it every call goes to api.github.com with
+// CLOSED REPOSITORY (node step 489, owner 2026-10-15: «переводи синхронизацию на токен, закрываю репозитории»; «у нас есть место
+// где мы добавляем ключ GitHub»). The token is the element's OWN GitHub token — the one the person saves on the element's
+// GitHub page of the core (`/<lang>/<element>/build/github`, field «token»): the core keeps it in `<SERVICE_DATA_DIR>/github/.env`
+// (`GITHUB_TOKEN=`, outside git; SERVICE_DATA_DIR comes from the environment or `.env.local`, written by the installer).
+// For lagrix it is a fine-grained token of lagrix-dev with Contents: Read-only on lagrix. With it every call goes to api.github.com with
 // `Authorization: Bearer`, and files come from `GET /repos/{repo}/contents/{path}` with `application/vnd.github.raw+json`
 // (docs.github.com: «Returns the raw file contents»; raw.githubusercontent.com does not serve a private repository without a key).
 // No token → the old keyless path. The token is never printed.
@@ -30,13 +32,15 @@ const offline = (why) => {
 }
 
 const src = JSON.parse(fs.readFileSync(SOURCE, 'utf8'))
-const TOKEN_FILE = path.join(ROOT, 'data', 'docs-sync', '.env')
-const readToken = () => {
-  if (process.env.LAGRIX_DOCS_TOKEN?.trim()) return process.env.LAGRIX_DOCS_TOKEN.trim()
+const envLine = (file, key) => {
   try {
-    const line = fs.readFileSync(TOKEN_FILE, 'utf8').split(/\r?\n/).find((l) => l.startsWith('LAGRIX_DOCS_TOKEN='))
-    return line?.slice('LAGRIX_DOCS_TOKEN='.length).trim() || null
+    const line = fs.readFileSync(file, 'utf8').split(/\r?\n/).find((l) => l.startsWith(`${key}=`))
+    return line?.slice(key.length + 1).trim() || null
   } catch { return null }
+}
+const readToken = () => {
+  const dataDir = process.env.SERVICE_DATA_DIR?.trim() || envLine(path.join(ROOT, '.env.local'), 'SERVICE_DATA_DIR')
+  return dataDir ? envLine(path.join(dataDir, 'github', '.env'), 'GITHUB_TOKEN') : null
 }
 const token = readToken()
 const auth = token ? { authorization: `Bearer ${token}`, 'x-github-api-version': '2022-11-28' } : {}
