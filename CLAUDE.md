@@ -214,7 +214,11 @@ architecture»: find the removing commit, ask the person, restore from git histo
 
 **`/docs` is the `lagrix-dev/lagrix` repository, read live** (node step 458): an edit or a new document on GitHub reaches the site
 within about five minutes with no rebuild — `app/[lang]/(publicLayer)/docs/_libs/docs.ts` `liveDocs()`, README of the branch in
-`docs/_libs/README.md`. The pages are blog posts (`createContentPost`): breadcrumbs, table of contents, cover, «Next». **Every public
+`docs/_libs/README.md`. **The repository is private** (node step 489): the build (`scripts/sync-lagrix-docs.mjs`) and the live
+reading both use the element's own GitHub token — the person saves it in the «token» field of the core's GitHub page of this
+element (`/<lang>/lagrix/build/github`; kept in `<SERVICE_DATA_DIR>/github/.env`). It is a fine-grained token of `lagrix-dev`, only
+`lagrix`, Contents: Read-only — so it cannot push this element's code. No token or a refused one → the last copy stays
+(`===DOCS_SYNC_OFFLINE===`, `===DOCS_LIVE_FALLBACK===`). Never add a second token field. The pages are blog posts (`createContentPost`): breadcrumbs, table of contents, cover, «Next». **Every public
 page has its snippet** at `<page>/snippet.png` — skill `page-snippet`; the background is `public/images/snippet/background.webp`.
 
 ## Messengers
