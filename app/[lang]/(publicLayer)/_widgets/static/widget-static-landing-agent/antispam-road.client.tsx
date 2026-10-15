@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react"
+import { Button } from "@/components/ui/button"
 import s from "./landing-agent.module.css"
 
 // СЦЕНА «A2A АНТИСПАМ» (владелец 2026-10-15, шаг 498, навык impeccable, путь «Launcher unavailable»): «комната а2а антиспам … в этот раз
@@ -85,7 +86,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
       </div>
 
       {/* Аварийный придорожный телефон на опоре — слева от копилки, позади летящих писем. Кнопка открывает окно справки. */}
-      <button type="button" data-block="asphn" className={s.asPhone} popoverTarget={info} aria-label={w.phoneLabel}>
+      <Button variant="bare" size="bare" type="button" data-block="asphn" className={s.asPhone} popoverTarget={info} aria-label={w.phoneLabel}>
         <svg viewBox="0 0 70 210" aria-hidden="true" className={s.asPhoneSvg}>
           <rect className={s.asPhonePost} x={29} y={86} width={12} height={124} rx={3} />
           <path className={s.asPhoneRoof} d="M4 14 L35 2 L66 14 Z" />
@@ -97,7 +98,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
             <path className={s.asHandsetBody} d="M10 24 q-8 0 -8 9 v22 q0 9 8 9 h3 v-8 h-3 q-2 0 -2 -3 v-18 q0 -3 2 -3 h3 v-8 Z" />
           </g>
         </svg>
-      </button>
+      </Button>
 
       {/* Копилка-хрюша — всегда в центре низа. Щель сверху. */}
       <div data-block="aspig" className={s.asPig} aria-hidden="true">
@@ -161,7 +162,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
         <p data-block="zr27r" className={s.asInfoText}>{w.info}</p>
         <div data-block="c44gv" className={s.asInfoActions}>
           <a className={s.asInfoMore} href={docHref}>{w.more}</a>
-          <button type="button" className={s.asInfoClose} popoverTarget={info} popoverTargetAction="hide">{w.close}</button>
+          <Button variant="bare" size="bare" type="button" className={s.asInfoClose} popoverTarget={info} popoverTargetAction="hide">{w.close}</Button>
         </div>
       </div>
     </div>
