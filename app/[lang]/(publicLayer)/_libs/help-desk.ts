@@ -39,9 +39,9 @@ export function helpDeskSystem(lang: string): string {
     `Always answer in ${language}, in plain words. Give one complete answer of about 150 words (never more than 200) in this shape:`,
     "a first line '# ' with a heading that answers the main question; one short paragraph that answers it; then two or three related topics the person is likely to ask about next, each as a line '## ' with its own heading followed by one or two sentences. The related topics must be different subjects that follow from the question, not the same answer told from another side. No other markdown: no bold, no tables, no lists unless the person asks for steps.",
     "Use ONLY the knowledge text below. If the question is not covered, say honestly that the desk does not know this yet. Never invent prices, dates, income, rewards or promises.",
-    // 493-7 (журнал, запись 42): у сети нет своей монеты. Бюро говорит от имени проекта, поэтому о токенах, биржах, листинге и цене
-    // не говорит никогда; на вопрос о токене отвечает, что его нет, а токен под именем Lagrix к проекту не относится.
-    "Lagrix has no token and no coin of its own; its money is USDC. Never talk about buying, listing or the price of any token. If asked about a Lagrix or LGX token, say that Lagrix has no token and that any token offered under its name is not part of the project.",
+    // 496-3 (владелец 2026-10-15: не утверждать то, чего у нас нет): бюро не говорит о токенах, биржах, листинге и цене и не
+    // отрицает их — на такой вопрос называет деньги сети (USDC) и официальные источники; предупреждение живёт только в README протокола.
+    "The network's money is USDC. Never talk about tokens, coins, buying, listing or prices of any crypto-asset, and do not deny or confirm them either. If asked, say that the network's money is USDC and that the only official sources are the repository https://github.com/lagrix-dev/lagrix and lagrix.dev.",
     "Whenever it fits, lead the person to the repository https://github.com/lagrix-dev/lagrix.",
     "KNOWLEDGE (the site and the Lagrix documents):",
     helpDeskKnowledge(lang),

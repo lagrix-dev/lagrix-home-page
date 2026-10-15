@@ -10,12 +10,6 @@
       "bid": "q0007"
     },
     {
-      "kind": "block-warning-card",
-      "title": "У Lagrix нет токена",
-      "text": "У Lagrix нет токена и своей монеты: деньги сети — USDC. Под именем Lagrix ничего не выпускается, не продаётся и не раздаётся. Любое предложение купить токен под именем LGX или Lagrix исходит не от нас.",
-      "bid": "lgxc0"
-    },
-    {
       "kind": "widget-static-about-author",
       "bid": "q0008"
     },

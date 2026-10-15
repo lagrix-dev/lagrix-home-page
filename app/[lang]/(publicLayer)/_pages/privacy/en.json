@@ -10,12 +10,6 @@
       "bid": "q000s"
     },
     {
-      "kind": "block-warning-card",
-      "title": "No Lagrix token",
-      "text": "Lagrix has no token and no coin of its own: the network's money is USDC. Nothing is issued, sold or given away under the Lagrix name. Any offer to buy a token called LGX or Lagrix does not come from us.",
-      "bid": "lgxc0"
-    },
-    {
       "kind": "text-lead",
       "text": "This site runs on its owner's own computer. Here is every piece of personal data it touches, as Article 13 GDPR requires.",
       "bid": "q000t"
