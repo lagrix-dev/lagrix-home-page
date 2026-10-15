@@ -9,6 +9,8 @@ import { getSession } from "@/lib/auth/get-session";
 import { authBaseFromHost, connectedDomainAuthBase, projectsBaseFromHost, publicAuthBaseFor } from "@/lib/auth-base-server";
 import { authUrl as nodeAuthUrl } from "@/lib/microservices/urls";
 import { temporaryAddressPage } from "@/lib/auth/temporary-address.page";
+import { siteClosedPage } from "@/lib/auth/site-closed.page";
+import siteAccess from "@/config/site-access.json";
 import {
   SUPPORTED_LANGUAGES,
   DEFAULT_LANGUAGE,
@@ -357,7 +359,53 @@ function languageRouter(request: NextRequest): NextResponse {
   return withLangCookie(NextResponse.redirect(url), lang, request);
 }
 
+// ── Ворота САЙТА (шаг узла 488) ──────────────────────────────────────────────
+//
+// Слово владельца 2026-10-15: «публичный страницу делай доступную только по паролю архитектора переадресация на
+// регистрацию и всё зарегистрированный пользователь получит роль пользователь и всё равно ничего не увидит»; и «Сайту
+// добавляй тк запрещающий индексацию». Включатель — `config/site-access.json` (`"site": "architect"`); снять замок —
+// `"site": null` и развёртывание. Ядро по тому же файлу не делает копию сайта в Cloudflare (`static-copy.mjs`, 488-1).
+//
+// 🔒 ЗАКРЫТО ВСЁ, КРОМЕ ДВЕРЕЙ `/api/*` (у них свои ворота) И robots.txt: страницы на всех языках, двери веток
+// `/<язык>/…/api/…` (чат бюро), `llms*.txt`, карта сайта, визитка A2A. Пропуск: хозяин за этой машиной и вошедший с ролью.
+// Не вошёл → вход центра (там же регистрация, роль `user`); вошёл без роли → 403 «Сайт временно закрыт», без содержимого.
+// 🛑 Режим без домена и временный адрес здесь НЕ исключения (в отличие от ворот архитектора): вход там не работает, и
+// исключение открыло бы сайт каждому, у кого ссылка. Хозяина узнаёт правило хозяина за машиной.
+// 🔒 robots.txt НЕ закрывается: Google не читает noindex на адресе, закрытом в robots.txt, и держал бы старые страницы
+// в выдаче. Запрет индексации — заголовок `X-Robots-Tag` на каждом ответе (обёртка `proxy` ниже).
+const SITE_ROLE: string | null = (siteAccess as { site?: string | null }).site ?? null;
+// Адреса с точкой, которые маска ниже иначе пропустила бы мимо прокси.
+const SITE_FILES = /^\/(?:[a-z]{2}\/)?llms(?:-full)?\.txt$|^\/sitemap\.xml$|^\/\.well-known\/agent-card\.json$/;
+
+async function siteAccessGate(request: NextRequest): Promise<NextResponse | null> {
+  if (!SITE_ROLE) return null;
+  const { pathname } = request.nextUrl;
+  if (pathname.startsWith("/api") || AUTH_FORM_PATHS.has(pathname)) return null;
+  if (isOwnerAtMachine(request)) return null;
+
+  const first = pathname.split("/")[1];
+  const langRaw = SUPPORTED_LANGUAGES.includes(first) ? first : request.cookies.get(LOCALE_COOKIE)?.value ?? DEFAULT_LANGUAGE;
+  const lang = SUPPORTED_LANGUAGES.includes(langRaw) ? langRaw : DEFAULT_LANGUAGE;
+  const hasSession =
+    request.cookies.get("authjs.session-token") ??
+    request.cookies.get("__Secure-authjs.session-token") ??
+    request.cookies.get("fractera-ticket");
+  if (!hasSession) {
+    // Относительный адрес: за туннелем `nextUrl` несёт `localhost:<порт>`, а браузер посетителя должен остаться на этом домене.
+    return new NextResponse(null, { status: 307, headers: { location: `/login?lang=${lang}&requireRole=user` } });
+  }
+  const session = await getSession(request).catch(() => null);
+  if (session?.roles?.includes(SITE_ROLE)) return null;
+  return new NextResponse(siteClosedPage(lang), { status: 403, headers: { "content-type": "text/html; charset=utf-8" } });
+}
+
 export async function proxy(request: NextRequest): Promise<NextResponse> {
+  const response = await route(request);
+  if (SITE_ROLE) response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  return response;
+}
+
+async function route(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
 
   // ── Job −1: ВИТРИНА НЕ ПРИНИМАЕТ ЗАПИСЬ (256-3) ──────────────────────────
@@ -559,6 +607,12 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     return apiAuthGate(request);
   }
 
+  // Job 1.2 — ворота сайта (488): закрытый сайт видит только хозяин за машиной и вошедший с ролью.
+  const siteGate = await siteAccessGate(request);
+  if (siteGate) return siteGate;
+  // Адреса с точкой идут к своим маршрутам как есть — языковой роутер им не нужен.
+  if (SITE_FILES.test(pathname)) return NextResponse.next();
+
   // Job 1.5 — ворота СТРАНИЦ слоя архитектора.
   const architectGate = await architectPagesGate(request);
   if (architectGate) return architectGate;
@@ -653,6 +707,15 @@ async function architectPagesGate(request: NextRequest): Promise<NextResponse | 
 // Match API routes (for the auth gate) AND content pages (for language routing).
 // Exclude Next internals and any file with an extension (static assets, the
 // webmanifest, favicons) — those are served directly.
+// 488: адреса с точкой, которые несут содержимое сайта, — явно, чтобы их видели ворота сайта (`SITE_FILES`).
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon\\.ico|.*\\..*).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon\\.ico|.*\\..*).*)",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/:lang/llms.txt",
+    "/:lang/llms-full.txt",
+    "/sitemap.xml",
+    "/.well-known/agent-card.json",
+  ],
 };
