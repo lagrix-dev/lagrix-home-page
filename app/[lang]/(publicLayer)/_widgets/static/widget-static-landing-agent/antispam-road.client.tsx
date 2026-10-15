@@ -106,6 +106,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
           <path className={s.asPigTail} d="M22 72 q-16 -6 -12 -20 q4 -10 12 -4" />
           <rect className={s.asPigLeg} x={46} y={112} width={22} height={30} rx={6} />
           <rect className={s.asPigLeg} x={124} y={112} width={22} height={30} rx={6} />
+          <path className={s.asPigEarBack} d="M110 40 L118 12 L136 38 Z" />
           <ellipse className={s.asPigBody} cx={98} cy={80} rx={80} ry={54} />
           <path className={s.asPigEar} d="M132 36 L144 8 L158 40 Z" />
           <ellipse className={s.asPigSnout} cx={176} cy={86} rx={18} ry={22} />
@@ -119,26 +120,25 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
       {/* Грузовик в стиле паровоза — у правого края; кузов открыт к копилке, надпись на борту кузова. */}
       <div data-block="astrk" className={s.asTruck}>
         <svg viewBox="0 0 340 200" aria-hidden="true" className={s.asTruckSvg}>
-          <path className={s.asSteam} d="M282 22 q-8 -14 6 -18 q10 -10 22 0 q14 -2 12 12 q8 10 -6 14 q-6 10 -20 4 q-14 4 -14 -12 Z" />
+          <path className={s.asSteam} d="M286 40 q-8 -12 4 -16 q8 -9 19 0 q12 -2 10 10 q7 9 -5 12 q-5 8 -17 3 q-12 3 -11 -9 Z" />
           <rect className={s.asTruckBox} x={8} y={70} width={162} height={80} rx={4} />
           <path className={s.asTruckBoxRim} d="M8 74 H170" />
-          <rect className={s.asTruckCab} x={170} y={40} width={58} height={110} rx={6} />
-          <rect className={s.asTruckWindow} x={182} y={54} width={34} height={30} rx={4} />
-          <rect className={s.asTruckBoiler} x={226} y={84} width={92} height={66} rx={10} />
-          <path className={s.asTruckBand} d="M252 84 V150 M282 84 V150" />
-          <path className={s.asTruckChimney} d="M282 84 V44 H276 L272 30 H310 L306 44 H300 V84 Z" />
-          <circle className={s.asTruckFront} cx={318} cy={117} r={22} />
-          <circle className={s.asTruckLamp} cx={318} cy={117} r={8} />
-          <path className={s.asTruckCatcher} d="M300 150 L338 150 L330 168 L300 168 Z" />
-          <rect className={s.asTruckFrame} x={8} y={150} width={300} height={10} rx={3} />
-          {[66, 196, 272].map((x) => (
-            <g key={x} className={s.asWheel} transform={`translate(${x} 166)`}>
-              <circle className={s.asWheelRim} r={28} />
-              <path className={s.asWheelSpokes} d="M0 -22 V22 M-22 0 H22 M-15.5 -15.5 L15.5 15.5 M-15.5 15.5 L15.5 -15.5" />
-              <circle className={s.asWheelHub} r={6} />
+          <path className={s.asTruckCab} d="M174 150 V62 Q174 48 188 48 H222 Q236 48 236 62 V150 Z" />
+          <rect className={s.asTruckWindow} x={188} y={60} width={36} height={32} rx={5} />
+          <rect className={s.asTruckBoiler} x={234} y={92} width={86} height={58} rx={16} />
+          <path className={s.asTruckBand} d="M258 92 V150 M284 92 V150" />
+          <path className={s.asTruckChimney} d="M296 92 V70 H292 L289 58 H315 L312 70 H308 V92 Z" />
+          <circle className={s.asTruckLamp} cx={318} cy={112} r={8} />
+          <rect className={s.asTruckFrame} x={8} y={146} width={316} height={10} rx={3} />
+          <rect className={s.asTruckBumper} x={300} y={144} width={36} height={12} rx={4} />
+          {[72, 272].map((x) => (
+            <g key={x} className={s.asWheel} transform={`translate(${x} 168)`}>
+              <circle className={s.asWheelTyre} r={26} />
+              <circle className={s.asWheelRim} r={16} />
+              <path className={s.asWheelSpokes} d="M0 -12 V12 M-12 0 H12 M-8.5 -8.5 L8.5 8.5 M-8.5 8.5 L8.5 -8.5" />
+              <circle className={s.asWheelHub} r={4.5} />
             </g>
           ))}
-          <path className={s.asTruckRod} d="M66 180 H272" />
         </svg>
         <div data-block="jnbdc" className={s.asTruckText}>
           <span className={s.asTruckTitle}>{w.truckTitle}</span>
