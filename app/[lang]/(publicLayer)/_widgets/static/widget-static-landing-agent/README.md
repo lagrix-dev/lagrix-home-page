@@ -240,3 +240,26 @@ Owner's order of screens (verbatim): «второй экран — табло �
 - **Crab refinement (owner, same day):** crabs start 140 units apart (a crab is 77) and keep the gaps at one speed; they stay behind
   glass — dimmed, with the hall mullions and a light tint of the lower hall glass drawn over them in the front glass layer — until
   they reach the open doorway (`edge` = 1330 / 1550), where they come into focus.
+
+## Step 498 (2026-10-15): A2A antispam and the spam bin of the Telegraph
+
+Owner, verbatim: «в комнате телеграф на пол можно поставить большой мусорное ведро на котором написать табличку спам … чтобы оно
+моргала … третье бегущая строка» and «нужна комната а2а антиспам … грузовичок который в целом оформлен в стиле паровоза … копилкой в
+виде хрюши … дорожную указатель на одной ножке … старый телефон типа таксофон … справа всплывает информационное окно».
+
+- **Spam bin** (`telegraph.client.tsx`, words `landing.telegraph.spam` — `plate`, `label`, `ticker`): an SVG button on the floor
+  between the chair and the engine order telegraph; its plate blinks until the spam line is chosen; the lever goes to neutral; the
+  third ticker runs after the same one-second pause. `prefers-reduced-motion` — no blinking.
+- **A2A antispam scene** (`antispam-road.client.tsx`, words `landing.antispam`, section `#a2a-antispam` right after the Telegraph):
+  HTML layers in a `container-type: size` box, everything in `cqw`/`cqh`, so the piggy bank stays at the bottom centre at any
+  width (measured offset 0 px at 1440 and 390). The road sign on one leg on the left points to the lorry on the right; letters
+  and parcels fly from the arrow over the piggy bank (a coin drops from each), then into the lorry's box. The flight runs only
+  while the scene is on screen; without JavaScript and with reduced motion the scene is one still frame.
+- **The lorry, not a locomotive** (owner: «я просил грузовичок а ты нарисовал паровозик»): cab in front, a boiler-like hood with
+  bands and a little chimney, two road wheels; on the phone it enters from the right edge (`--truck-r` negative) so its lettering
+  stays readable. **The piglet has two ears** (owner).
+- **The help phone** opens a native `popover` on the right — one paragraph and the link to protocol document 23
+  (`/<lang>/docs/23-spam-and-the-price-of-a-first-contact`); it works without JavaScript, Escape and a click outside close it.
+  Controls are the shadcn `Button` with `variant="bare"` (a raw `<button>` fails the build — `check-shadcn-rules`).
+- The texts describe the direction of document 23 — not a rule of the protocol yet: the rule is designed with the network's
+  contracts (owner: «это решение это часть архитектуры блокчейн мы его ещё не проектировали»).
