@@ -234,9 +234,12 @@ two goals — discovery and honest reputation — stand right under the first sc
 lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no token talk, no listing or price talk (the network has no coin of its own — changelog entry 42):
 an on-ramp with a reward belongs to Fractera, not here; the On-ramp page is reference only (what it is, why, how to find a licensed
 provider by a Google search). 🔒 Every word about the network's rules comes from the protocol README glossary and changelog 000
-(`lagrix-dev/lagrix`, entries 20–43): the element is the entity, one wallet registers the node, a deal may be split and only the
-network part counts, the fee is pooled for super-nodes, a review weighs the fee paid on its deal, reputation is five count-and-sum
-indicators per role (entry 43), super-node places go by random choice (entries 31, 40), there is no coin and no deposit (entry 42). A rule change starts with a changelog entry, then the documents, then this site; after
+(`lagrix-dev/lagrix`, entries 20–45): the element is the entity, one wallet registers the node, a deal may be split and only the
+network part counts, the fee is pooled for super-nodes, a review weighs the fee paid on its deal, reputation is six count-and-sum
+indicators per role plus the proven-violation mark (entries 43, 44), super-node places go by random choice (entries 31, 40), super-node
+requirements grow with a warning before an early exit (entry 45). 🔒 Do not state what the network does not have (owner 2026-10-15): the
+one warning about fake tokens lives only in the protocol README. 🔒 The help desk «Glossary» sign is the README glossary, built at every
+build (`@glossary` in `_data`, `words.ts`) — never a hand copy. A rule change starts with a changelog entry, then the documents, then this site; after
 a release the live site is measured for the banned raffle vocabulary and for old rules (node step 479).
 
 ## The site is temporarily closed (node step 488)
