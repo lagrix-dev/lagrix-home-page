@@ -2022,11 +2022,11 @@
 .asPigTail { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
 .asPigNostril, .asPigEye { fill: var(--ink); }
 .asPigSlot { fill: var(--ink); }
-/* 498-2: ценник «+ ваш тариф» на боку копилки — бумажная наклейка цвета мела с дырочкой, чуть наискосок. */
+/* 498-2: ценник «+ ваш тариф» на боку копилки — бумажная наклейка цвета мела, чуть наискосок. */
 .asTag {
-  position: absolute; left: 12%; top: 50%; rotate: -7deg; padding: 0.12em 0.5em 0.14em 1.1em; white-space: nowrap;
+  position: absolute; left: 12%; top: 50%; rotate: -7deg; padding: 0.12em 0.55em 0.14em; white-space: nowrap;
   font-family: var(--display); font-weight: 700; font-size: max(9.5px, calc(var(--pig-w) * 0.1)); line-height: 1.1; color: var(--ink);
-  background: radial-gradient(circle at 0.5em 50%, var(--ink) 0 0.16em, transparent 0.17em) var(--chalk);
+  background: var(--chalk);
   border: 2px solid var(--ink); border-radius: 3px;
 }
 
@@ -2111,6 +2111,7 @@
 .asInfoClose:hover { background: var(--poster); }
 
 @media (max-width: 560px) {
+  .asSignBottom { white-space: normal; }
   .asRoad { height: 330px; --sign-w: 46cqw; --pole: 44cqh; --pig-w: 22cqw; --truck-w: 56cqw; --truck-r: -14cqw; --sy: calc(37cqh - var(--it) / 2); }
 }
 @media (prefers-reduced-motion: reduce) {
