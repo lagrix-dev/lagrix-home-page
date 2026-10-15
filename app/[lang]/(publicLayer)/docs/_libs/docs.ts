@@ -1,4 +1,6 @@
 import "server-only"
+import { readFileSync } from "node:fs"
+import { join } from "node:path"
 import DOCS from "./docs.generated.json"
 import { INDEXED_LANGUAGES } from "@/config/translations/translations.config"
 
@@ -24,9 +26,23 @@ let data = DOCS as Docs
 export const LIVE_REVALIDATE = 300
 const API = "https://api.github.com"
 const RAW = "https://raw.githubusercontent.com"
-const GH_HEADERS = { accept: "application/vnd.github+json", "user-agent": "fractera-docs-live" }
+// 🔒 ЗАКРЫТЫЙ РЕПОЗИТОРИЙ (шаг узла 489): тот же ключ, что у сборки, — свой ключ GitHub элемента со страницы GitHub ядра
+// (`<SERVICE_DATA_DIR>/github/.env`). С ним запросы идут с `Authorization`, файлы — через API contents (raw.githubusercontent.com
+// закрытый репозиторий без ключа не отдаёт). Без ключа — прежний путь без ключа. Читается при каждом чтении: замена ключа
+// на странице GitHub действует без перезапуска.
+function ghToken(): string | null {
+  const dir = process.env.SERVICE_DATA_DIR?.trim()
+  if (!dir) return null
+  try {
+    const line = readFileSync(join(dir, "github", ".env"), "utf8").split(/\r?\n/).find((l) => l.startsWith("GITHUB_TOKEN="))
+    return line?.slice("GITHUB_TOKEN=".length).trim() || null
+  } catch { return null }
+}
 
 async function readLive(): Promise<Docs> {
+  const token = ghToken()
+  const auth: Record<string, string> = token ? { authorization: `Bearer ${token}`, "x-github-api-version": "2022-11-28" } : {}
+  const GH_HEADERS = { accept: "application/vnd.github+json", "user-agent": "fractera-docs-live", ...auth }
   const src = SOURCE as { repo: string; branch: string; readme: string | Record<string, string>; docsDir: string; languages: string[] }
   const readmes: Record<string, string> = typeof src.readme === "string" ? { en: src.readme } : src.readme
   // Последний коммит ветки: его хэш делает дальнейшие адреса неизменными, его дата — дата документов.
@@ -39,7 +55,10 @@ async function readLive(): Promise<Docs> {
   if (tree.truncated) throw new Error("tree truncated")
   const blobs = tree.tree.filter((t) => t.type === "blob").map((t) => t.path)
   const raw = async (p: string) => {
-    const r = await fetch(`${RAW}/${src.repo}/${commit.sha}/${p.split("/").map(encodeURIComponent).join("/")}`, { cache: "force-cache" })
+    const enc = p.split("/").map(encodeURIComponent).join("/")
+    const r = token
+      ? await fetch(`${API}/repos/${src.repo}/contents/${enc}?ref=${commit.sha}`, { headers: { ...GH_HEADERS, accept: "application/vnd.github.raw+json" }, cache: "force-cache" })
+      : await fetch(`${RAW}/${src.repo}/${commit.sha}/${enc}`, { cache: "force-cache" })
     if (!r.ok) throw new Error(`${p} ${r.status}`)
     return r.text()
   }
