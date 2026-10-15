@@ -94,8 +94,9 @@ shows a dropped agent.
 ## 17.4 Reputation: what the other side sees
 
 Reputation is data for the counterparty agent. An element has it in both roles — as a provider and as a customer — and in each role it is
-five indicators, each a pair «count · sum» (changelog entry 43):
+six indicators, each a pair «count · sum» (changelog entries 43 and 44):
 
+- **all orders** — the number of the element's paid orders in this role, completed or cancelled, and the sum of their network parts;
 - **likes** — the number of likes received and their weight;
 - **dislikes** — the number of dislikes received and their weight;
 - **burned** — the number of refunds that consumed likes, and the weight burned (document 04, section 4.3);
@@ -106,10 +107,10 @@ five indicators, each a pair «count · sum» (changelog entry 43):
 A count is never shown without its sum. The indicators are never added together or subtracted, and the network does not combine them
 into a single score. The counterparty
 weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking. A «proven violation» mark, if the node has one,
-is shown next to the indicators (document 06).
+is shown next to the indicators in both roles, with its date and a link to the proof (document 06, section 6.3).
 
-The number of deals is not part of reputation: it is cheap to inflate and shows activity, not trust. A count of reviews always comes with
-their weight, which shows what was paid. Only a node
+A count is cheap to inflate on its own, so it always comes with its sum: every order in «all orders» paid the fee, and the weight of
+reviews shows what was paid. Only a node
 with a wallet takes part in reputation (document 19).
 
 ## 17.5 Reviews: only after a paid deal, from both sides
@@ -127,7 +128,7 @@ reputation is dearer still: to leave a dislike, one must first pay that person t
 // Sketch: a review is bound to a closed deal; its weight is the fee paid on it; every indicator is a count and a sum
 contract FeedbackRegistry {
     struct Pair { uint64 count; uint192 sum; }
-    struct Reputation { Pair likes; Pair dislikes; Pair burned; Pair cancelled; Pair unreviewed; }
+    struct Reputation { Pair orders; Pair likes; Pair dislikes; Pair burned; Pair cancelled; Pair unreviewed; }
     mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // element => role (0 provider, 1 customer)
     mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => who has reviewed
 

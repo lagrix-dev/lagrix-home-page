@@ -2,8 +2,8 @@
 
 Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, keep the index of receipts and reviews and
 help agents connect; payment itself is settled by the escrow contract (document 04). The SuperNodeRegistry.sol contract keeps the
-super-node places and the record of proven violations. A super-node holds no deposit (document 05, section 5.4): what it has at stake is
-its place and its reputation. The main rule of this document: **downtime is not a violation**. A server that goes offline simply stops
+super-node places and the record of proven violations. What a super-node has at stake is its place and its reputation (document 05,
+section 5.4). The main rule of this document: **downtime is not a violation**. A server that goes offline simply stops
 earning; a mark is added only for a proven violation.
 
 ## 6.1 What the contract keeps
@@ -29,6 +29,7 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6). It receives no mark: it did not cheat — it left.
+- **Leaving early after an unanswered capacity warning** is not a penalty either: there is no mark (changelog entry 45).
 - **Leaving by rotation or by overload is not a penalty either;** the rules are in document 05, section 5.6.
 
 ## 6.3 Violations and their proof

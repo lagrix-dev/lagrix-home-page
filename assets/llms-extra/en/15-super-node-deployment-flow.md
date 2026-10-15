@@ -1,6 +1,6 @@
 # 15. Node Operator Guide: Registering a Super-node Place and the Step-by-Step Integration Process (Deployment Flow)
 
-Activating a Super-Node in the Lagrix network requires strict synchronization between preparing the physical/virtual infrastructure, generating the cryptographic P2P identity keys (NodeID) and registering the place on-chain in the SuperNodeRegistry.sol smart contract. A super-node holds no deposit (document 05, section 5.4).
+Activating a Super-Node in the Lagrix network requires strict synchronization between preparing the physical/virtual infrastructure, generating the cryptographic P2P identity keys (NodeID) and registering the place on-chain in the SuperNodeRegistry.sol smart contract.
 
 Below is the full step-by-step algorithm for putting a node into operation — from a clean server to inclusion in the Kademlia DHT routing table.
 
@@ -75,7 +75,7 @@ Status                     : NOT_REGISTERED (Pending On-Chain Registration)
 ## 15.4 Step 3: Registering the Place in SuperNodeRegistry.sol
 
 From the node's wallet shown in the output (or through a multisig wallet / Hardware Wallet), the operator sends one registration
-transaction on the L2 network (Arbitrum / Base). Nothing is approved or locked: a super-node holds no deposit. The operator pays the
+transaction on the L2 network (Arbitrum / Base). The operator pays the
 gas of this transaction itself (document 08).
 
 Registration CLI script:

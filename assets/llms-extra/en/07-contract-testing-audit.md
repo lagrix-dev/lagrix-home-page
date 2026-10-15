@@ -25,6 +25,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
 - `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the fee paid on the deal; a second review of the same deal by the same side is rejected.
 - `test_Reputation_CountAndSum()` — every indicator updates its count and its sum together; a review, a like or a dislike, removes the deal from «unreviewed».
+- `test_Reputation_AllOrders()` — every paid order adds to «all orders» of both sides, completed or cancelled; a proven-violation mark on the node's wallet shows on every element of the node.
 - `test_Cancel_RefundByLikes()` — a cancellation within the dispute window refunds `min(likeWeight, amount)`, burns the same weight as a new event, sends the rest to the provider and records a cancelled order for both; a customer without likes gets nothing back.
 - `test_NoAdminFunctions()` — no function changes a rate, a price or a threshold after deployment.
 - `test_Downtime_NoMark()` — an unavailable node is not penalised and after 30 days is removed without a mark.

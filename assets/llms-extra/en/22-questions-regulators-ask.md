@@ -1,8 +1,7 @@
 # 22. Questions Regulators Ask
 
 Lagrix is designed to answer the questions regulators ask of an open network that holds payments in escrow and helps people and agents
-find each other. The network has no crypto-asset of its own: its money is USDC, issued by a third party (changelog
-[000](000-changelog-2026-10-13.md), entry 42). This document lists the questions, names the primary source each one comes from and gives
+find each other. Its money is USDC, issued by a third party. This document lists the questions, names the primary source each one comes from and gives
 the network's answer in full, with a link to the document where the rule lives.
 
 This is a statement of design, not legal advice. It does not say that Lagrix complies with any law: whether it does is decided by
@@ -33,16 +32,16 @@ Europe Convention on Cybercrime (ETS 185).
 
 ## 22.2 Money and sale
 
-**Does the network issue or sell a crypto-asset of its own?** *(Howey: investment of money)*
-No. The network has no coin of its own: no issuance, no sale, no presale, no allocation for investors and no fund created in advance
-([05](05-tokenomics-vesting-vault.md), section 5.7; changelog entry 42). Its money is USDC, which Lagrix neither issues nor redeems.
+**Does anyone sell anything to raise money?** *(Howey: investment of money)*
+No. There is no sale, no presale, no allocation for investors and no fund created in advance. The network's money is USDC, which Lagrix
+neither issues nor redeems ([05](05-fees-and-reputation.md)).
 
 **Does anyone receive an asset in exchange for paying money?** *(Howey: investment of money)*
 No. A customer pays for a service and receives the service. Reviews and reputation are records of paid deals, not assets: they cannot be
 transferred or sold, and an element's history does not move with it (changelog entries 28 and 43).
 
 **Does taking part promise a profit?** *(Howey: expectation of profits)*
-No. There is no asset whose price could rise. Providers are paid by their customers for their work, and super-nodes are paid fees for the
+No. Providers are paid by their customers for their work, and super-nodes are paid fees for the
 work they do (section 22.3). No document promises any income.
 
 ## 22.3 Efforts of others and control
@@ -60,8 +59,8 @@ each period's fee pool by formula among the super-nodes that passed the quality 
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no governance tokens and no votes. Super-node places are assigned by random choice, not bought, and places rotate, so no
-group can hold a block of places for ever ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 31 and 40).
+No. There are no votes. Super-node places are assigned by random choice, not bought, and places rotate, so no
+group can hold a block of places for ever ([05](05-fees-and-reputation.md), section 5.6; changelog entries 31 and 40).
 
 **Is a super-node's income payment for services or profit from others' efforts?** *(Release 33-11412: payments to node operators "in
 exchange for services it provides", with a structure "predetermined by the protocol")*
@@ -85,7 +84,7 @@ listed in section 22.9.
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
 No. The founder receives no share of anything, and no key changes a rule. The founder and persons related to them, Fractera, Inc.
 included, take part only on the same terms as anyone — a super-node place only by the same random choice, provider agents paid by the same
-rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entries 18 and 42).
+rules ([05](05-fees-and-reputation.md), section 5.5; changelog entries 18 and 42).
 
 **Can the founder earn while the network is small?** *(the case of an author who controls the early network)*
 No more than the rules allow anyone, and at launch less. The founder takes on public commitments of their own: one publicly named node, no
@@ -111,7 +110,7 @@ No place can be bought, and places have no stages and no numbers. Only owners of
 the window from 0.75 to 1.25 of the network median can apply — one application per node wallet; the largest providers fall outside the
 window. The contract puts applicants in a random order with diversity of networks and regions, computing the randomness itself with no oracle;
 the first receives an invitation, and its server is checked by agents in turn, not by super-nodes. A node with a «proven violation» mark
-can never hold a place ([05](05-tokenomics-vesting-vault.md), sections 5.4 and 5.6; changelog entries 31, 40 and 42).
+can never hold a place ([05](05-fees-and-reputation.md), sections 5.4 and 5.6; changelog entries 31, 40 and 42).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
 A review requires a deal paid through the network, and its weight is the fee paid on it, so a fake unit of weight costs a real dollar.
@@ -121,7 +120,7 @@ Every indicator is shown as a count together with its sum, so many tiny deals ar
 ## 22.6 The European Union (MiCA)
 
 **Is there an offer of crypto-assets to the public?** *(MiCA, Article 3(1)(12))*
-The network has no crypto-asset of its own to offer (changelog entry 42). It accepts USDC, issued by a third party, as a means of payment.
+Lagrix makes no offer to the public: it accepts USDC, issued by a third party, as a means of payment.
 
 **Do super-nodes hold or transfer clients' crypto-assets?** *(MiCA, Article 3(1)(17), custody; Article 3(1)(26), transfer services)*
 No. A deal's payment is locked and released by the escrow contract: on the customer's signature, after the dispute window if the customer

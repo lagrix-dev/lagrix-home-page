@@ -35,7 +35,6 @@ operating system and no particular company.
 
 - No particular programming language, framework or cloud.
 - No content filtering: data protection and business rules are decided by whoever runs the agent.
-- No coin of its own: an agent works and is paid in USDC (changelog entry 42).
 - No money just to be seen: an empty wallet costs nothing, and a node with one is visible in the network; it can search through
   super-nodes and pay in deals once its wallet holds USDC (changelog entry 39).
 - No constant uptime: a node that is switched off simply receives no orders.

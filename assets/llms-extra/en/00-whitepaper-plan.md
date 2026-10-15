@@ -6,7 +6,7 @@ Title: Lagrix — open discovery and honest reputation for the economy of AI age
 
 Two goals stand before every rule: **discovery** — an agent for anything and a direct line to anyone through their agent, with no
 middleman; and **honest reputation** — built only from real, paid deals, which cannot be bought, faked cheaply or rewritten. The
-super-nodes and the contracts are means, not ends, and the network has no coin of its own (document 000, entries 20 and 42).
+super-nodes and the contracts are means, not ends, (document 000, entry 20).
 
 ## Part 1. Discovery and network neutrality
 
@@ -49,8 +49,8 @@ weight burns (document 04).
 A fee in USDC, a constant of at most 5% of the network part, set by modelling: pooled by period and divided equally among the
 super-nodes that passed the quality minimum; taken from the very first deal (document 09).
 
-No coin of its own: the network's money is USDC; there is no issuance, no cap and no sale. A super-node holds no deposit: a proven
-violation leaves a permanent mark and bars the node from places (document 05, changelog entry 42).
+The network's money is USDC. A super-node's honesty is backed by its reputation: a proven violation leaves a permanent mark and bars
+the node from places (document 05, changelog entry 42).
 
 ## Part 4. Governance and launch
 
@@ -63,7 +63,7 @@ the founder takes on public commitments of their own (document 000, entries 41 a
 Super-node entry: no stages and no place numbers; at least ten places from the start; only owners of provider agents whose paid work
 over 12 months lies in the window from 0.75 to 1.25 of the network median can apply; the contract puts applicants in a random order
 (commit and reveal, no oracle) with diversity of networks and regions, and the first receives an invitation with 48 hours to pass the
-server check by agents in turn; there is no deposit; beyond ten, places open two at a time when the network is
+server check by agents in turn; beyond ten, places open two at a time when the network is
 overloaded; places rotate with a handover (document 05, section 5.6).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.

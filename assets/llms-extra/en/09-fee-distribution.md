@@ -1,8 +1,7 @@
 # 9. The Deal Fee: Payment to Super-nodes for the Network's Work
 
 The network takes a fee on the part of every deal that is paid through it. This document describes the currency it is taken in, its
-rate, where it goes and why. The network has no coin of its own: the fee is money for the work of the network (document 05; changelog entry
-42).
+rate, where it goes and why. The fee is money for the work of the network (document 05).
 
 ## 9.1 Currency: USDC
 

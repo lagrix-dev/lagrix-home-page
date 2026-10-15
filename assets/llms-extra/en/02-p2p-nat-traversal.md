@@ -6,7 +6,7 @@ Lagrix implements a custom ICE (Interactive Connectivity Establishment) stack in
 
 ## 2.1 Anatomy of the Problem and Node Roles in NAT Traversal
 
-In classic Web2 this problem is solved with centralized STUN/TURN servers from Google or Twilio. In our architecture this role is taken over by decentralized Super-Nodes (Core Relays), which have dedicated "white" (public) IP addresses, because their operators put up a stake and maintain the infrastructure.
+In classic Web2 this problem is solved with centralized STUN/TURN servers from Google or Twilio. In our architecture this role is taken over by decentralized Super-Nodes (Core Relays), which have dedicated "white" (public) IP addresses, and their operators maintain the infrastructure.
 
 NAT types the protocol works with:
 

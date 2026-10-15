@@ -1,4 +1,5 @@
 import { branchRoot } from "@/lib/page-tree"
+import DOCS from "../../../docs/_libs/docs.generated.json"
 
 // СЛОВА ЛЕНДИНГА — ОДНА КОПИЯ НА ТРИ ОФОРМЛЕНИЯ (330-4, 330-5). Главная (`landing`), «Дизайн 1» (`landing-taste`) и
 // «Дизайн 2» (`landing-impeccable`) рисуют одно и то же задание по-разному: слова каждого берутся отсюда, из данных главной
@@ -106,6 +107,29 @@ function section(blocks: Block[], id: string): { title: string; texts: string[] 
   return { title: blocks[at].title ?? "", texts }
 }
 
+// 496-4 (владелец 2026-10-15: «на вкладке Глоссари сильно отстает от оригинала, долга быть функция которая синхронизирует … при
+// пересборке»). Ответ вывески «Глоссарий» в данных несёт метку GLOSSARY вместо ручной копии; на её место встаёт раздел «## Glossary» /
+// «## Словарь» README протокола из копии, которую каждая сборка обновляет (`scripts/sync-lagrix-docs.mjs` → docs.generated.json).
+// Подразделы «### …» становятся «## …» окна бюро, строки таблицы — «Термин — значение», ссылки — «текст (адрес)».
+const GLOSSARY = "@glossary"
+function glossaryFromReadme(lang: string): string {
+  const readmes = DOCS.readme as Record<string, string>
+  const readme = readmes[lang] ?? readmes.en ?? ""
+  const start = readme.search(/^## (Glossary|Словарь)\s*$/m)
+  if (start < 0) return ""
+  const rest = readme.slice(start).split(/\r?\n/).slice(1)
+  const end = rest.findIndex((l) => /^## /.test(l))
+  const text = (t: string) => t.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_: string, a: string, h: string) => (/^https?:/.test(h) ? `${a} (${h})` : a))
+  const out: string[] = []
+  for (const line of end < 0 ? rest : rest.slice(0, end)) {
+    const sub = line.match(/^### (.+)$/)
+    if (sub) { out.push("", `## ${sub[1].trim()}`, ""); continue }
+    const row = line.match(/^\| \*\*(.+?)\*\* \| (.+) \|\s*$/)
+    if (row) out.push(`${text(row[1])} — ${text(row[2])}`)
+  }
+  return out.join("\n").trim()
+}
+
 /** Слова лендинга на языке `lang`; нет данных — `null` (виджет не рисует ничего, страница не падает). */
 export function landingWords(lang: string): LandingWords | null {
   const root = branchRoot("(publicLayer)")
@@ -116,10 +140,14 @@ export function landingWords(lang: string): LandingWords | null {
   const blocks = words.blocks ?? []
   const hero = blocks.find((b) => b.kind === "block-hero-centered")
   if (!hero || !words.landing) return null
+  const desk = words.landing.helpDesk
+  const x = desk && desk.answers.some((a) => a.includes(GLOSSARY))
+    ? { ...words.landing, helpDesk: { ...desk, answers: desk.answers.map((a) => a.replace(GLOSSARY, () => glossaryFromReadme(lang))) } }
+    : words.landing
   return {
     hero: { pill: hero.pill, title: hero.title ?? "", description: hero.description ?? "", cta: hero.cta, secondary: hero.secondary },
     can: section(blocks, "what-it-can-do"),
     hood: section(blocks, "under-the-hood"),
-    x: words.landing,
+    x,
   }
 }

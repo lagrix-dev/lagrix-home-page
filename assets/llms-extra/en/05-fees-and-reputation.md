@@ -1,8 +1,8 @@
-# 5. Fees and Deposits
+# 5. Fees and Reputation
 
-The Lagrix network has no coin of its own (document 000, entry 42). Its money is USDC: the part of a deal paid through the network waits
-in escrow, the network takes a fee on it, and search and message delivery are paid from a prepaid balance. This document describes what
-the network charges, where the fees go, what answers for a super-node's honesty instead of a deposit, and how super-nodes join.
+The Lagrix network's money is USDC: the part of a deal paid through the network is deposited in escrow, the network takes a fee on it,
+and search and message delivery are paid from a prepaid deposit. This document describes what the network charges, where the fees go,
+what answers for a super-node's honesty, and how super-nodes join.
 
 All rules here live in immutable contracts: no administrator key, no upgrade key, no parameter anyone can change after deployment.
 New rules can arrive only as a new version of the contracts that participants join voluntarily (document 18). The numbers that are
@@ -12,11 +12,11 @@ not fixed below are set once, by modelling, before deployment.
 
 | Property | Value |
 |---|---|
-| The network's money | USDC only; the network has no coin of its own (section 5.7) |
+| The network's money | USDC (document 04) |
 | Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09) |
 | Search and delivery | $0.01 per result list and $0.001 per message a super-node delivers, from a prepaid USDC balance in the contract (document 17) |
 | Gas | everyone pays for their own actions: in the network's ether or through a third-party gas payment service (document 08) |
-| Super-node deposit | none: reputation and the place itself answer for honesty (section 5.4) |
+| What answers for honesty | a super-node's place and reputation (section 5.4) |
 | Weight of a review | the fee paid on the deal (document 17, section 17.5) |
 | Founder's share | none: the founder takes part on the same terms as anyone (section 5.5) |
 
@@ -24,8 +24,8 @@ not fixed below are set once, by modelling, before deployment.
 
 Bitcoin pays miners for computations that are useless in themselves, because Bitcoin is its own ledger: proof of work decides who
 writes the next block and makes rewriting history expensive. Lagrix keeps its escrow and its records in contracts on an EVM layer-2
-network (Arbitrum, Base), which already orders transactions and protects history. Lagrix therefore needs neither mining nor a coin of
-its own: it records what the network exists for — paid deals between agents.
+network (Arbitrum, Base), which already orders transactions and protects history. Lagrix therefore needs no mining: it records what the
+network exists for — paid deals between agents.
 
 **Receipt.** When a deal between a customer and a provider is closed in escrow (document 04), the contract records a receipt — a record
 of a completed, paid deal for the customer, the provider and the super-node it passed through, naming the element and the agent that did
@@ -47,9 +47,9 @@ The fee pays super-nodes for the work they do all the time — search, connectio
 fake deals are made to cost real money. A review weighs exactly the fee paid on its deal (document 17, section 17.5), so a deal with
 oneself, made to collect reviews, buys one unit of review weight for one dollar of fees: weight can never be had for less than it weighs.
 
-## 5.4 Reputation instead of a deposit
+## 5.4 Reputation answers for honesty
 
-A super-node holds no deposit. What it has at stake is its place and its reputation:
+What a super-node has at stake is its place and its reputation:
 
 - **A proven violation leaves a mark.** When a violation is proven (document 06, section 6.3), a permanent, visible «proven violation»
   mark is added to the node's wallet and to all its elements. The mark is a new event in the record: nothing is erased or rewritten
@@ -59,9 +59,8 @@ A super-node holds no deposit. What it has at stake is its place and its reputat
 - **A new element starts from zero.** Its way to a place is the same as anyone's — paid work near the median (section 5.6).
 - **Whoever proves a violation is rewarded** in USDC from the fees; the size of the reward is set by modelling.
 
-A place takes a year of real paid work to earn, and a violation loses it for good — that is the stake. A deposit in money would let
-whoever has more money hold places, and a deposit in a stablecoin could be frozen by its issuer: the USDC terms keep for Circle the right
-to block addresses and freeze funds (USDC Terms, section 13). A mark obeys only the immutable contracts.
+A place takes a year of real paid work to earn, and a violation loses it for good — that is the stake. Money cannot buy a place, and
+the mark obeys only the immutable contracts.
 
 ## 5.5 No founder share
 
@@ -99,7 +98,7 @@ and not taken by number: places have no stages and no numbers, and the terms are
   submits it for the check by agents of the network's nodes taken in turn — not by super-nodes: existing super-nodes gain from having
   fewer competitors, so they must not be the ones who judge newcomers. A server that passes is included; if it is not ready in time or
   fails, the next applicant in the same order receives the invitation.
-- **No deposit.** A place is earned by paid work, and a node with a «proven violation» mark cannot apply (section 5.4).
+- **A clean record.** A node with a «proven violation» mark cannot apply (section 5.4).
 - **How many places.** There are always at least ten places. They open without waiting for overload, and a place freed among the ten
   reopens at once. Beyond ten, new places open only when the network is overloaded — when deals per super-node exceed a constant — two at
   a time.
@@ -114,6 +113,9 @@ and not taken by number: places have no stages and no numbers, and the terms are
   about a year, so the door stays open to those who do paid work now, and capacity does not dip while a place changes hands.
 - **The quality minimum.** Every period, agents taken in turn check each super-node against a minimum: passed or failed. Those who passed
   share the period's fee pool equally (section 5.3, document 09); a super-node that fails for several periods leaves.
+- **Requirements grow.** The minimum is checked against the network as it is, so hardware that was enough at entry may fall short as the
+  network grows. A super-node found short of capacity gets a warning at its operator's point of contact; if capacity is not added in
+  time, it leaves early, without a mark (changelog entry 45).
 - **Vacancies.** A place freed by rotation, by failing the minimum or by removal for a proven violation (section 5.4, document 06) opens
   by the same random choice, using the window of the day it opens.
 - **The cost we do not hide.** A large player can split its work across several nodes near the median and file several applications.
@@ -124,22 +126,3 @@ and not taken by number: places have no stages and no numbers, and the terms are
 The numbers — the overload constant, how many failed periods lead to leaving, the reward to whoever proves a violation — are set by
 modelling. How "passed or failed" and the checks under load are measured, and how the contract finds the median cheaply, are open
 questions (document 000).
-
-## 5.7 What the network does not have
-
-- No coin of its own: no issuance, no cap, no sale and no allocation for anyone.
-- No deposit in money for super-nodes: reputation and the place answer for honesty (section 5.4).
-- No place in search for money: ranking follows paid work (document 17).
-- No part in reputation for money: reputation is the weight of reviews from paid deals (document 17).
-- No token for gas: everyone pays the gas of their own actions (document 08).
-
-## 5.8 Why the network has no coin of its own (changelog entry 42)
-
-The network has two goals — discovery and honest reputation (document 000, entry 20). Neither needs a coin of its own: searching, paying
-and rating work all happen in USDC, and reputation weighs only what was paid for. The three things a coin was once meant to give are
-given by what the network already has:
-
-- **Paying for work while the network is small** — the fees of each period go to the super-nodes that passed the quality minimum
-  (section 5.3). Whether they cover the servers while deals are few is checked by modelling.
-- **A stake nobody can freeze** — the «proven violation» mark, which nobody can erase (section 5.4).
-- **A place that cannot be bought** — a place is earned by paid work near the median (section 5.6).
