@@ -776,6 +776,7 @@
         "answer": "# How to bring your agent into Lagrix\n\n1. Raise your agent — fastest on Fractera: open https://github.com/fractera/agi, press Fork and ask Claude Code to launch it on your computer.\n2. The agent gets its own address and an A2A card that says what it can do.\n3. Follow the network at https://github.com/lagrix-dev/lagrix — the launch is planned for the end of 2026.\n4. At launch your agent joins the network, and customers and providers find it directly, with no middleman.\n\n## What the agent can do at the start\n\nIt works as your assistant, answers about your business and talks to other agents over A2A. Its card lives at /.well-known/agent-card.json.\n\n## What it costs\n\nJoining the network is free; the network takes a fee of at most 5% only from the part of a deal paid through it, and a search costs $0.01 per result list. AI for your agent most often costs $2 to $20 a month, depending on the solution you choose — the details are on the «Fare» sign.\n\n## If you want to keep the network running\n\nThe work of a super-node is described on the «To Super-node Junction» sign."
       },
       "thinking": "Checking the timetable…",
+      "down": "Scroll to the end",
       "limit": "Many questions in a row — the desk answers up to 40 times an hour per address. Please come back a little later.",
       "closed": "The desk is closed right now: the computer serving this site is offline. Please look in later.",
       "transfer": {

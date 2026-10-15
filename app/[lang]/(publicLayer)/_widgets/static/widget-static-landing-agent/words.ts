@@ -54,7 +54,7 @@ export type LandingExtra = {
   /** Финал (владелец 2026-09-30): «назначение маршрута» у последней секции и отдельная строка «Маршрут построен» в самом конце. */
   route?: { label: string; value: string }
   /** Справочное бюро (узел, шаг 348): киоск с чатом и вывесками вопросов. */
-  helpDesk?: { title: string; hours: string; greeting: string; who: string; you: string; placeholder: string; send: string; mic: string; questions: string[]; answers: string[]; departure: { label: string; question: string; answer: string }; transfer: { label: string; question: string; answer: string }; github: { label: string; href: string }; thinking: string; limit: string; closed: string; simulations?: { project: { label: string; href: string }; person: { label: string; href: string } } }
+  helpDesk?: { title: string; hours: string; greeting: string; who: string; you: string; placeholder: string; send: string; mic: string; questions: string[]; answers: string[]; departure: { label: string; question: string; answer: string }; transfer: { label: string; question: string; answer: string }; github: { label: string; href: string }; thinking: string; down?: string; limit: string; closed: string; simulations?: { project: { label: string; href: string }; person: { label: string; href: string } } }
   /** 456-2: «А почему всё-таки Lagrix?» — вопрос и короткий ответ после «Маршрут построен». */
   why?: { question: string; answer: string }
   routeBuilt?: { title: string; from: { label: string; station: string }; via?: { label: string; station: string; go?: { label: string; aria: string } }; to: { label: string; station: string } }

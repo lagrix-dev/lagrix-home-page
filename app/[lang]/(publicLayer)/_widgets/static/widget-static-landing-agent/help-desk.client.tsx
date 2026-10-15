@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { ArrowLeftRight, Github, Info, Mic, Play, SendHorizontal, TrainFront } from "lucide-react"
+import { ArrowDown, ArrowLeftRight, Github, Info, Mic, Play, SendHorizontal, TrainFront } from "lucide-react"
 import s from "./landing-agent.module.css"
 import { useVoiceRecorder, type VoiceStrings } from "@/_tools/tool-voice-input/client/use-voice-recorder"
 import { Button } from "@/components/ui/button"
@@ -50,6 +50,8 @@ export type HelpDeskWords = {
   /** Владелец: «кнопка GitHub справа от микрофона» — открывает репозиторий проекта в новой вкладке. */
   github: { label: string; href: string }
   thinking: string
+  /** 496-5: подпись кнопки «вниз до конца» ленты. */
+  down?: string
   limit: string
   closed: string
 }
@@ -104,6 +106,9 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
   const [text, setText] = useState("")
   const input = useRef<HTMLInputElement>(null)
   const log = useRef<HTMLDivElement>(null)
+  // 496-5 (владелец 2026-10-15): лента держит свою высоту и прокручивается внутри; пока конец ленты не виден — кнопка «вниз до конца».
+  const [down, setDown] = useState(false)
+  const measure = () => { const b = log.current; if (b) setDown(b.scrollHeight - b.scrollTop - b.clientHeight > 24) }
   const transport = useMemo(() => new DefaultChatTransport({ api: `/${lang}/api/help-desk`, body: { lang } }), [lang])
   const { messages, sendMessage, setMessages, status, error, clearError } = useChat({ transport })
   const busy = status === "submitted" || status === "streaming"
@@ -129,6 +134,8 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
     }
     box.scrollTo({ top: box.scrollHeight, behavior: "smooth" })
   }, [messages, status, error])
+  // Новая карточка, которая не сдвинула ленту, не даёт события прокрутки — кнопку «вниз» пересчитываем и так.
+  useEffect(() => { measure() }, [messages, status, error]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Набранный вопрос — модели (дверь, предел).
   const ask = (q: string) => {
@@ -217,7 +224,7 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
               <AgentChat key={simRun} label={sim.label} items={sim.items} contractLabels={sim.contractLabels} classes={chatClasses} />
             </div>
           ) : (
-            <div data-block="hd3w1" ref={log} className={s.kioskWindow} aria-live="polite">
+            <div data-block="hd3w1" ref={log} className={s.kioskWindow} aria-live="polite" onScroll={measure}>
               <p data-block="hd3m1" className={s.kioskMsg}>
                 <span className={s.kioskWho}>{w.who}</span>
                 {w.greeting}
@@ -239,6 +246,12 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
                   <span className={s.kioskWho}>{w.who}</span>
                   {failure}
                 </p>
+              )}
+              {down && (
+                <Button data-block="hd3w2" variant="bare" size="bare" type="button" className={s.kioskDown} aria-label={w.down} title={w.down}
+                  onClick={() => log.current?.scrollTo({ top: log.current.scrollHeight, behavior: "smooth" })}>
+                  <ArrowDown aria-hidden className="size-4" />
+                </Button>
               )}
             </div>
           )}
