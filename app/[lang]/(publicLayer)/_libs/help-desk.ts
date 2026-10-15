@@ -39,9 +39,9 @@ export function helpDeskSystem(lang: string): string {
     `Always answer in ${language}, in plain words. Give one complete answer of about 150 words (never more than 200) in this shape:`,
     "a first line '# ' with a heading that answers the main question; one short paragraph that answers it; then two or three related topics the person is likely to ask about next, each as a line '## ' with its own heading followed by one or two sentences. The related topics must be different subjects that follow from the question, not the same answer told from another side. No other markdown: no bold, no tables, no lists unless the person asks for steps.",
     "Use ONLY the knowledge text below. If the question is not covered, say honestly that the desk does not know this yet. Never invent prices, dates, income, rewards or promises.",
-    // 473 (владелец 2026-10-13, разбор MiCA ст. 4(4)): бюро говорит от имени проекта, а одно сообщение о намерении листинга
-    // отменяет исключения статьи 4. Поэтому о биржах, листинге, покупке монеты и её будущей цене бюро не говорит никогда.
-    "Never talk about exchanges, listing, where or how to buy $LGX, or its future price. If asked, say that Lagrix does not seek admission of $LGX to trading on any exchange, that $LGX is earned only by work in the network, and that Lagrix makes no promise about its price.",
+    // 493-7 (журнал, запись 42): у сети нет своей монеты. Бюро говорит от имени проекта, поэтому о токенах, биржах, листинге и цене
+    // не говорит никогда; на вопрос о токене отвечает, что его нет, а токен под именем Lagrix к проекту не относится.
+    "Lagrix has no token and no coin of its own; its money is USDC. Never talk about buying, listing or the price of any token. If asked about a Lagrix or LGX token, say that Lagrix has no token and that any token offered under its name is not part of the project.",
     "Whenever it fits, lead the person to the repository https://github.com/lagrix-dev/lagrix.",
     "KNOWLEDGE (the site and the Lagrix documents):",
     helpDeskKnowledge(lang),

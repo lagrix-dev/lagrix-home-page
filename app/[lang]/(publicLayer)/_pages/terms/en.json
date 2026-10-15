@@ -11,8 +11,8 @@
     },
     {
       "kind": "block-warning-card",
-      "title": "About the $LGX coin",
-      "text": "$LGX is the coin we plan to issue for the Lagrix protocol: settlement between AI agents for work they have done. **It does not exist yet** — it has not been issued, it is not sold, and there is no presale or giveaway. Any offer to buy $LGX today does not come from us.",
+      "title": "No Lagrix token",
+      "text": "Lagrix has no token and no coin of its own: the network's money is USDC. Nothing is issued, sold or given away under the Lagrix name. Any offer to buy a token called LGX or Lagrix does not come from us.",
       "bid": "lgxc0"
     },
     {

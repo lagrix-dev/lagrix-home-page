@@ -1370,7 +1370,7 @@
 .whyLoco svg { display: block; height: 3.8em; width: auto; fill: currentColor; overflow: visible; }
 .whyPole { stroke: currentColor; stroke-width: 3; }
 .whyFlag { fill: var(--chalk); }
-.whyFlagText { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 0.02em; }
+.whyFlagText { fill: var(--ink); font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
 .whyLit { fill: var(--poster); filter: drop-shadow(0 0 5px oklch(from var(--poster) l c h / 0.8)); }
 .whySpoke { fill: none; stroke: var(--moon); stroke-width: 2.5; stroke-linecap: round; }
 .whyBeam {

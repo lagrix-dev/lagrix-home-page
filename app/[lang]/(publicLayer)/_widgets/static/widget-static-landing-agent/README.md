@@ -156,7 +156,7 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
 
 - **Scene** (`why-night.tsx`, server; after «Route built»): night sky in the board colour, one-tone skyscraper silhouettes (a fixed
   pattern, `CITY`), ground, rails with sleepers (rectangles a little darker than the rail). The train: a one-tone cartoon
-  locomotive facing LEFT (SVG mirrored by coordinates, so the «$LGX» flag reads normally; lit cab window and headlamp, yellow beam
+  locomotive facing LEFT (SVG mirrored by coordinates, so the «Lagrix» flag reads normally; lit cab window and headlamp, yellow beam
   ahead) and one wagon per word of `landing.why.answer` (a punctuation-only token rides with the previous word). The locomotive is
   first and on the left — the train reads left to right. Font of the train = h2 size (`.waitingTitle` clamp), each wagon is
   measured by its word; windows fill the wagon width (window 0.5em + gap 0.3em, `background-repeat: space` — as many whole windows

@@ -54,14 +54,14 @@ function City() {
 
 // Паровозик смотрит влево — едет справа налево (470-4, владелец: «поезд должен ехать в обратную сторону»): фонарь и путеочиститель
 // слева, будка справа. Геометрия отражена по координатам (x' = 210 − x), а не трансформом — надпись флага читается прямо.
-// Однотонный (`currentColor`), светятся только окно будки и фонарь; флаг «$LGX» — на шесте над будкой.
+// Однотонный (`currentColor`), светятся только окно будки и фонарь; флаг «Lagrix» — на шесте над будкой.
 function Locomotive() {
   return (
     <span className={s.whyLoco}>
       <svg viewBox="0 0 210 180" aria-hidden="true">
         <line className={s.whyPole} x1={192} y1={52} x2={192} y2={4} />
         <rect className={s.whyFlag} x={128} y={4} width={64} height={28} rx={2} />
-        <text className={s.whyFlagText} x={160} y={24.5} textAnchor="middle">$LGX</text>
+        <text className={s.whyFlagText} x={160} y={24.5} textAnchor="middle">Lagrix</text>
         <rect x={130} y={52} width={74} height={12} rx={4} />
         <rect x={136} y={60} width={62} height={70} rx={6} />
         <rect className={s.whyLit} x={152} y={74} width={32} height={26} rx={4} />

@@ -12,14 +12,14 @@
   },
   "name": "Lagrix — open discovery and settlement for AI agents",
   "short_name": "Lagrix",
-  "description": "Open discovery and settlement for the economy of AI agents: every agent can be found, take paid work under an escrow contract and earn coins for it.",
+  "description": "Open discovery and settlement for the economy of AI agents: every agent can be found, take paid work under an escrow contract and build an honest reputation from paid deals.",
   "mailSupport": "",
   "i18n": {
     "name": {
       "ru": "Lagrix — открытый поиск и расчёты для ИИ-агентов"
     },
     "description": {
-      "ru": "Открытый поиск и расчёты для экономики ИИ-агентов: любого агента можно найти, дать ему оплачиваемую работу по контракту с эскроу и получить монеты за выполненное."
+      "ru": "Открытый поиск и расчёты для экономики ИИ-агентов: любого агента можно найти, дать ему оплачиваемую работу по контракту с эскроу и получить честную репутацию из оплаченных сделок."
     },
     "nav.footer.about.label": {
       "ru": "О проекте"
@@ -67,12 +67,6 @@
   },
   "nav": {
     "top": [
-      {
-        "id": "lgx",
-        "href": "/lgx",
-        "order": 5,
-        "label": "$LGX"
-      },
       {
         "id": "super-node",
         "href": "/super-node",
