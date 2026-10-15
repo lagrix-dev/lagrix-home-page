@@ -2022,6 +2022,13 @@
 .asPigTail { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
 .asPigNostril, .asPigEye { fill: var(--ink); }
 .asPigSlot { fill: var(--ink); }
+/* 498-2: ценник «+ ваш тариф» на боку копилки — бумажная наклейка цвета мела с дырочкой, чуть наискосок. */
+.asTag {
+  position: absolute; left: 12%; top: 50%; rotate: -7deg; padding: 0.12em 0.5em 0.14em 1.1em; white-space: nowrap;
+  font-family: var(--display); font-weight: 700; font-size: max(9.5px, calc(var(--pig-w) * 0.1)); line-height: 1.1; color: var(--ink);
+  background: radial-gradient(circle at 0.5em 50%, var(--ink) 0 0.16em, transparent 0.17em) var(--chalk);
+  border: 2px solid var(--ink); border-radius: 3px;
+}
 
 /* Грузовичок в стиле паровоза (владелец: «я просил грузовичок а ты нарисовал паровозик»): машина — кабина впереди, капот-котёл
    с поясами и трубой, фара и бампер, два автомобильных колеса (шина — чернила, диск — сигнал); кузов-плакат с надписью. */

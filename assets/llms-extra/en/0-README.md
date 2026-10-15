@@ -331,6 +331,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | 20 | F2F: exchange of whole elements between Fractera projects (draft) | [en](docs/en/20-f2f-element-exchange.md) · [ru](docs/ru/20-f2f-element-exchange.md) |
 | 21 | H2A and H2H: people talk through their agents | [en](docs/en/21-h2a-h2h-people-through-agents.md) · [ru](docs/ru/21-h2a-h2h-people-through-agents.md) |
 | 22 | Questions regulators ask: primary sources and full answers | [en](docs/en/22-questions-regulators-ask.md) · [ru](docs/ru/22-questions-regulators-ask.md) |
+| 23 | Spam and the price of a first contact: the classic approach and ours (a design direction) | [en](docs/en/23-spam-and-the-price-of-a-first-contact.md) · [ru](docs/ru/23-spam-and-the-price-of-a-first-contact.md) |
 
 ## How we address the risks
 

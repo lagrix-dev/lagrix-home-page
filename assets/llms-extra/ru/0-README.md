@@ -332,6 +332,7 @@ Lagrix отвечает на вопросы, которые регулятор �
 | 20 | F2F: обмен целыми элементами между проектами Fractera (черновик) | [ru](docs/ru/20-f2f-element-exchange.md) · [en](docs/en/20-f2f-element-exchange.md) |
 | 21 | H2A и H2H: люди говорят через своих агентов | [ru](docs/ru/21-h2a-h2h-people-through-agents.md) · [en](docs/en/21-h2a-h2h-people-through-agents.md) |
 | 22 | Вопросы регуляторов: первоисточники и полные ответы | [ru](docs/ru/22-questions-regulators-ask.md) · [en](docs/en/22-questions-regulators-ask.md) |
+| 23 | Спам и цена первого контакта: классический подход и наш (направление проектирования) | [ru](docs/ru/23-spam-and-the-price-of-a-first-contact.md) · [en](docs/en/23-spam-and-the-price-of-a-first-contact.md) |
 
 ## Как мы отвечаем на риски
 

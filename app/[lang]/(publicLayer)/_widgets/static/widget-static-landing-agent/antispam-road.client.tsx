@@ -23,6 +23,8 @@ export type AntispamWords = {
   scene: string
   signTop: string
   signBottom: string
+  /** 498-2: the price tag on the piggy bank — the recipient's own rate on top of the network's floor. */
+  tag: string
   truckTitle: string
   truckSub: string
   phoneLabel: string
@@ -100,7 +102,8 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
         </svg>
       </Button>
 
-      {/* Копилка-хрюша — всегда в центре низа. Щель сверху. */}
+      {/* Копилка-хрюша — всегда в центре низа. Щель сверху. 498-2 (владелец: «0.01 это ограничитель самой архитектуры, но каждый агент в
+          праве ставить поверх этой цены еще и собственный тариф»): копилка — адресата, на боку ценник «+ ваш тариф». */}
       <div data-block="aspig" className={s.asPig} aria-hidden="true">
         <svg viewBox="0 0 200 150" className={s.asPigSvg}>
           <path className={s.asPigTail} d="M22 72 q-16 -6 -12 -20 q4 -10 12 -4" />
@@ -115,6 +118,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
           <circle className={s.asPigEye} cx={146} cy={64} r={6} />
           <rect className={s.asPigSlot} x={76} y={24} width={44} height={8} rx={4} />
         </svg>
+        <span className={s.asTag}>{w.tag}</span>
       </div>
 
       {/* Грузовик в стиле паровоза — у правого края; кузов открыт к копилке, надпись на борту кузова. */}
