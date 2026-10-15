@@ -124,14 +124,12 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
       {/* Грузовик в стиле паровоза — у правого края; кузов открыт к копилке, надпись на борту кузова. */}
       <div data-block="astrk" className={s.asTruck}>
         <svg viewBox="0 0 340 200" aria-hidden="true" className={s.asTruckSvg}>
-          <path className={s.asSteam} d="M286 40 q-8 -12 4 -16 q8 -9 19 0 q12 -2 10 10 q7 9 -5 12 q-5 8 -17 3 q-12 3 -11 -9 Z" />
           <rect className={s.asTruckBox} x={8} y={70} width={162} height={80} rx={4} />
           <path className={s.asTruckBoxRim} d="M8 74 H170" />
           <path className={s.asTruckCab} d="M174 150 V62 Q174 48 188 48 H222 Q236 48 236 62 V150 Z" />
           <rect className={s.asTruckWindow} x={188} y={60} width={36} height={32} rx={5} />
           <rect className={s.asTruckBoiler} x={234} y={92} width={86} height={58} rx={16} />
           <path className={s.asTruckBand} d="M258 92 V150 M284 92 V150" />
-          <path className={s.asTruckChimney} d="M296 92 V70 H292 L289 58 H315 L312 70 H308 V92 Z" />
           <circle className={s.asTruckLamp} cx={318} cy={112} r={8} />
           <rect className={s.asTruckFrame} x={8} y={146} width={316} height={10} rx={3} />
           <rect className={s.asTruckBumper} x={300} y={144} width={36} height={12} rx={4} />

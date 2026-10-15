@@ -2031,17 +2031,15 @@
 }
 
 /* Грузовичок в стиле паровоза (владелец: «я просил грузовичок а ты нарисовал паровозик»): машина — кабина впереди, капот-котёл
-   с поясами и трубой, фара и бампер, два автомобильных колеса (шина — чернила, диск — сигнал); кузов-плакат с надписью. */
+   с поясами (трубы нет — владелец: «у авто не должно быть трубы как у паровоза»), фара и бампер, два автомобильных колеса (шина — чернила, диск — сигнал); кузов-плакат с надписью. */
 .asTruck { position: absolute; right: var(--truck-r); bottom: 6cqh; width: var(--truck-w); z-index: 1; }
 .asTruckSvg { display: block; width: 100%; height: auto; }
-.asSteam { fill: var(--chalk); stroke: var(--ink-soft); stroke-width: 2; }
 .asTruckBox { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }
 .asTruckBoxRim { stroke: var(--ink); stroke-width: 5; }
 .asTruckCab { fill: var(--board-deep); }
 .asTruckWindow { fill: var(--poster); }
 .asTruckBoiler { fill: var(--board); }
 .asTruckBand { stroke: var(--board-deep); stroke-width: 6; }
-.asTruckChimney { fill: var(--ink); }
 .asTruckLamp { fill: var(--poster); }
 .asTruckFrame { fill: var(--ink); }
 .asWheelTyre { fill: var(--ink); }

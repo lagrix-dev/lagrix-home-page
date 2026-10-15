@@ -256,7 +256,7 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   and parcels fly from the arrow over the piggy bank (a coin drops from each), then into the lorry's box. The flight runs only
   while the scene is on screen; without JavaScript and with reduced motion the scene is one still frame.
 - **The lorry, not a locomotive** (owner: «я просил грузовичок а ты нарисовал паровозик»): cab in front, a boiler-like hood with
-  bands and a little chimney, two road wheels; on the phone it enters from the right edge (`--truck-r` negative) so its lettering
+  bands and no chimney (owner: «у авто не должно быть трубы как у паровоза»), two road wheels; on the phone it enters from the right edge (`--truck-r` negative) so its lettering
   stays readable. **The piglet has two ears** (owner).
 - **The help phone** opens a native `popover` on the right — one paragraph and the link to protocol document 23
   (`/<lang>/docs/23-spam-and-the-price-of-a-first-contact`); it works without JavaScript, Escape and a click outside close it.
