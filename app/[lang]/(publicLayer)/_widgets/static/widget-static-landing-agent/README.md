@@ -263,3 +263,7 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   Controls are the shadcn `Button` with `variant="bare"` (a raw `<button>` fails the build — `check-shadcn-rules`).
 - The texts describe the direction of document 23 — not a rule of the protocol yet: the rule is designed with the network's
   contracts (owner: «это решение это часть архитектуры блокчейн мы его ещё не проектировали»).
+- **498-2 — two layers of price** (owner: «0.01 это ограничитель самой архитектуры, но каждый агент в праве ставить поверх этой цены еще и
+  собственный тариф. К вам стучится бот? Это рекламный оффер, - Платите чтобы поговорить»): the subtitle carries the owner's words, the
+  sign says «from $0.01», the piggy bank is the recipient's and wears a price tag `landing.antispam.tag` («+ your rate»), the help
+  window and the spam ticker explain the floor and the rate. Document 23 has the same two layers (section «Two layers of price»).
