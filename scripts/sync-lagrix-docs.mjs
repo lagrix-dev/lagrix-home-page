@@ -8,6 +8,13 @@
 //   2. `assets/llms-extra/<lang>/` — what llms-full.txt carries (scripts/build-llms-extra.mjs, runs after this one).
 // No network, or GitHub refuses → the last copy stays, the build goes on and says so (===DOCS_SYNC_OFFLINE===).
 // A document deleted in the repository disappears from both copies on the next successful sync.
+//
+// CLOSED REPOSITORY (node step 489, owner 2026-10-15: «переводи синхронизацию на токен, закрываю репозитории»). A read-only
+// fine-grained token of lagrix-dev (Contents: Read-only) lives in `data/docs-sync/.env` (`LAGRIX_DOCS_TOKEN=`, outside git,
+// saved by the architect on «Site settings») or in the environment. With it every call goes to api.github.com with
+// `Authorization: Bearer`, and files come from `GET /repos/{repo}/contents/{path}` with `application/vnd.github.raw+json`
+// (docs.github.com: «Returns the raw file contents»; raw.githubusercontent.com does not serve a private repository without a key).
+// No token → the old keyless path. The token is never printed.
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -23,8 +30,19 @@ const offline = (why) => {
 }
 
 const src = JSON.parse(fs.readFileSync(SOURCE, 'utf8'))
+const TOKEN_FILE = path.join(ROOT, 'data', 'docs-sync', '.env')
+const readToken = () => {
+  if (process.env.LAGRIX_DOCS_TOKEN?.trim()) return process.env.LAGRIX_DOCS_TOKEN.trim()
+  try {
+    const line = fs.readFileSync(TOKEN_FILE, 'utf8').split(/\r?\n/).find((l) => l.startsWith('LAGRIX_DOCS_TOKEN='))
+    return line?.slice('LAGRIX_DOCS_TOKEN='.length).trim() || null
+  } catch { return null }
+}
+const token = readToken()
+const auth = token ? { authorization: `Bearer ${token}`, 'x-github-api-version': '2022-11-28' } : {}
+console.log(`===DOCS_SYNC_AUTH=== ${token ? 'read token (…' + token.slice(-4) + ')' : 'no token — keyless'}`)
 const api = `https://api.github.com/repos/${src.repo}/git/trees/${encodeURIComponent(src.branch)}?recursive=1`
-const treeRes = await fetch(api, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'fractera-docs-sync' }, signal: AbortSignal.timeout(20_000) }).catch(() => null)
+const treeRes = await fetch(api, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'fractera-docs-sync', ...auth }, signal: AbortSignal.timeout(20_000) }).catch(() => null)
 if (!treeRes || !treeRes.ok) offline(`tree ${treeRes ? treeRes.status : 'no answer'}`)
 const tree = await treeRes.json()
 if (tree.truncated) offline('tree truncated')
@@ -34,10 +52,14 @@ const blobs = tree.tree.filter((t) => t.type === 'blob').map((t) => t.path)
 // README of each language (458-1): { en: 'README.md', ru: 'README.ru.md' }; an old single string still works.
 const readmes = typeof src.readme === 'string' ? { en: src.readme } : src.readme
 const wanted = blobs.filter((p) => Object.values(readmes).includes(p) || src.languages.some((l) => p.startsWith(`${src.docsDir}/${l}/`) && p.endsWith('.md')))
-const raw = (p) => `https://raw.githubusercontent.com/${src.repo}/${src.branch}/${p.split('/').map(encodeURIComponent).join('/')}`
+const enc = (p) => p.split('/').map(encodeURIComponent).join('/')
+const raw = (p) => token
+  ? `https://api.github.com/repos/${src.repo}/contents/${enc(p)}?ref=${encodeURIComponent(src.branch)}`
+  : `https://raw.githubusercontent.com/${src.repo}/${src.branch}/${enc(p)}`
+const rawHeaders = token ? { accept: 'application/vnd.github.raw+json', 'user-agent': 'fractera-docs-sync', ...auth } : {}
 const files = {}
 for (const p of wanted) {
-  const r = await fetch(raw(p), { signal: AbortSignal.timeout(20_000) }).catch(() => null)
+  const r = await fetch(raw(p), { headers: rawHeaders, signal: AbortSignal.timeout(20_000) }).catch(() => null)
   if (!r || !r.ok) offline(`${p} ${r ? r.status : 'no answer'}`)
   files[p] = await r.text()
 }
@@ -47,7 +69,7 @@ const titleOf = (md) => (md.match(/^#\s+(.+)$/m)?.[1] ?? '').trim()
 // 458-4: date of the last commit of the branch — the documents' «modified» date (JSON-LD TechArticle). One more API call;
 // no answer → the previous copy's date stays (or today's, on a first sync).
 const prevCopy = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : null
-const commitRes = await fetch(`https://api.github.com/repos/${src.repo}/commits/${encodeURIComponent(src.branch)}`, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'fractera-docs-sync' }, signal: AbortSignal.timeout(20_000) }).catch(() => null)
+const commitRes = await fetch(`https://api.github.com/repos/${src.repo}/commits/${encodeURIComponent(src.branch)}`, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'fractera-docs-sync', ...auth }, signal: AbortSignal.timeout(20_000) }).catch(() => null)
 const commit = commitRes && commitRes.ok ? await commitRes.json() : null
 const updatedAt = commit?.commit?.committer?.date ?? prevCopy?.source?.updatedAt ?? new Date().toISOString()
 const out = { source: { repo: src.repo, branch: src.branch, updatedAt, syncedAt: new Date().toISOString() }, readme: {}, languages: {} }
