@@ -42,6 +42,8 @@ export type LandingExtra = {
   /** Секция «Fractera vs LLM» (владелец 2026-09-30): два табло — пеший маршрут и магистраль; станций карты ровно четыре. */
   /** 481-3 (владелец 2026-10-14): комната «Телеграф» — H2H и H2A, рычаг машинного телеграфа и бегущая строка. */
   telegraph?: { title: string; text?: string } & import("./telegraph.client").TelegraphWords
+  /** 498 (владелец 2026-10-15): сцена «A2A антиспам» — открытая дорога, копилка, грузовик-паровоз, указатель, аварийный телефон. */
+  antispam?: import("./antispam-road.client").AntispamWords
   compare?: {
     title: string
     sub?: string

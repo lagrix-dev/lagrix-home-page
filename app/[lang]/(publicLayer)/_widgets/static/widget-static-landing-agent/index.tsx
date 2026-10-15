@@ -19,6 +19,7 @@ import { VersusTabs } from "./versus-tabs.client"
 import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { TelegraphRoom } from "./telegraph.client"
+import { AntispamRoad } from "./antispam-road.client"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
@@ -193,6 +194,23 @@ export function LandingAgent({ lang }: { lang: string }) {
               </div>
             </div>
             <TelegraphRoom w={x.telegraph} />
+          </div>
+        </section>
+      )}
+
+      {/* A2A антиспам (владелец 2026-10-15, шаг 498): открытое пространство после «Телеграфа» — письма и посылки платят за проезд над
+          копилкой и уезжают в грузовик; телефон открывает справку со ссылкой на документ 23 протокола. Слова — `landing.antispam`. */}
+      {x.antispam && (
+        <section data-block="assec" id="a2a-antispam" className={s.antispam}>
+          <div data-block="aswrp" className={s.wrap}>
+            <div data-block="assgp" className={s.waitingSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <div data-block="asplt" className={s.waitingPlate}>
+                <h2 data-block="astit" className={s.waitingTitle}>{x.antispam.title}</h2>
+                {x.antispam.text && <p data-block="astxt" className={s.waitingText}>{x.antispam.text}</p>}
+              </div>
+            </div>
+            <AntispamRoad w={x.antispam} docHref={`/${lang}/docs/23-spam-and-the-price-of-a-first-contact`} />
           </div>
         </section>
       )}

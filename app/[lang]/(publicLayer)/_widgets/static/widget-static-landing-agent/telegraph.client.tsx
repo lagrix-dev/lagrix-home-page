@@ -11,11 +11,16 @@ import s from "./landing-agent.module.css"
 // Мир — тот же вокзал (DIRECTION.md): плоская сцена в ролях табло, как зал ожидания. Одно авторское движение — бегущая строка с ключом
 // связиста; рычаг машинного телеграфа поворачивается к выбранной табличке. Без JavaScript строка стоит на месте и читается целиком;
 // при «уменьшить движение» строка не бежит, а печатается на месте.
+//
+// 498 (владелец 2026-10-15): «в комнате телеграф на пол можно поставить большой мусорное ведро на котором написать табличку спам но
+// реализовать это как кнопку например чтобы оно моргала и тогда если пользователь нажмёт эту кнопку то появится третье бегущая строка
+// рассказывающая как мы защищаем от спама в мессенджере». Ведро стоит на полу между стулом и машинным телеграфом; табличка мигает,
+// пока строка о спаме не выбрана; рычаг при этом встаёт в нейтраль.
 
 export type TelegraphMode = { plate: string; caption: string; ticker: string }
-export type TelegraphWords = { scene: string; switchLabel: string; h2h: TelegraphMode; h2a: TelegraphMode }
+export type TelegraphWords = { scene: string; switchLabel: string; h2h: TelegraphMode; h2a: TelegraphMode; spam?: { plate: string; label: string; ticker: string } }
 
-type Key = "h2h" | "h2a"
+type Key = "h2h" | "h2a" | "spam"
 const SPEED = 150 // пикселей в секунду — строка бежит быстрее поезда, но её удобно читать
 
 export function TelegraphRoom({ w }: { w: TelegraphWords }) {
@@ -65,7 +70,7 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
 
   useEffect(() => () => { if (timer.current !== null) window.clearTimeout(timer.current) }, [])
 
-  const plate = (k: Key, x: number) => (
+  const plate = (k: "h2h" | "h2a", x: number) => (
     <g
       className={s.tgPlate}
       transform={`translate(${x} 22)`}
@@ -161,11 +166,38 @@ export function TelegraphRoom({ w }: { w: TelegraphWords }) {
 
         {plate("h2h", 660)}
         {plate("h2a", 850)}
+
+        {/* Ведро «Спам» на полу — кнопка третьей строки. Корпус шире кверху, рёбра, крышка с ручкой; табличка на болтах мигает. */}
+        {w.spam && (
+          <g
+            className={s.tgBin}
+            role="button"
+            tabIndex={0}
+            aria-pressed={mode === "spam"}
+            aria-label={w.spam.label}
+            data-on={mode === "spam" ? "" : undefined}
+            onClick={() => pick("spam")}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick("spam") } }}
+          >
+            <path className={s.tgBinBody} d="M652 232 H772 L762 330 H662 Z" />
+            <path className={s.tgBinRib} d="M682 246 L686 318 M712 246 V318 M742 246 L738 318" />
+            <rect className={s.tgBinLid} x={644} y={220} width={136} height={14} rx={5} />
+            <path className={s.tgBinHandle} d="M696 220 V208 H728 V220" />
+            <g className={s.tgBinPlate}>
+              <rect className={s.tgBinPlateFace} x={664} y={256} width={96} height={40} rx={3} />
+              <circle className={s.tgBolt} cx={671} cy={263} r={3} />
+              <circle className={s.tgBolt} cx={753} cy={263} r={3} />
+              <circle className={s.tgBolt} cx={671} cy={289} r={3} />
+              <circle className={s.tgBolt} cx={753} cy={289} r={3} />
+              <text className={s.tgBinCode} x={712} y={285} textAnchor="middle">{w.spam.plate}</text>
+            </g>
+          </g>
+        )}
       </svg>
 
       {/* Бегущая строка — нижний край комнаты, вплотную под сценой. Без JS — стоит и читается; ключ стучит, пока строка бежит. */}
       <div data-block="tgtkr" ref={band} className={s.tgBand}>
-        <p data-block="tgln1" ref={line} key={`${shown}-${run}`} className={s.tgLine}>{w[shown].ticker}</p>
+        <p data-block="tgln1" ref={line} key={`${shown}-${run}`} className={s.tgLine}>{(w[shown] ?? w.h2h).ticker}</p>
       </div>
     </div>
   )

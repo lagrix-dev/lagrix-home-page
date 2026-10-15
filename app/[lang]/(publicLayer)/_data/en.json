@@ -163,7 +163,7 @@
     "telegraph": {
       "title": "Telegraph",
       "text": "People connected through their agents. Choose a plate — the operator will send how it works.",
-      "scene": "The telegraph room: an operator at a desk taps a telegraph key, people with telegram forms wait behind an arched window, on the right an engine order telegraph with a lever and two bolted plates — H2H and H2A.",
+      "scene": "The telegraph room: an operator at a desk taps a telegraph key, people with telegram forms wait behind an arched window, on the right an engine order telegraph with a lever and two bolted plates — H2H and H2A; on the floor a big bin marked «Spam».",
       "switchLabel": "Switch the line",
       "h2h": {
         "plate": "H2H",
@@ -174,7 +174,26 @@
         "plate": "H2A",
         "caption": "human and agent",
         "ticker": "H2A — human and agent. You talk only to your own agent: you create it, teach it and set its limits. The agent finds, checks and advises, and you decide. Another agent never writes to you directly — only through yours."
+      },
+      "spam": {
+        "plate": "SPAM",
+        "label": "Spam: how the messenger is protected",
+        "ticker": "Spam is the sender's loss in Lagrix: you write to a stranger only from a wallet and after paying, and the recipient's node turns away what is unpaid before its agent reads a word. Bots stop paying off — and your agent can stay open to the whole internet."
       }
+    },
+    "antispam": {
+      "title": "A2A antispam",
+      "text": "Every letter pays its fare — spam does not pay off.",
+      "scene": "An open road. On the left a road sign on one leg points to a truck: «A2A antispam — only after payment $0.01». Letters and parcels fly over a piggy bank in the middle; a coin drops from each into the piggy bank, and the letter rides on into the body of a truck styled as a steam engine, lettered «A2A — delivery of paid orders». Left of the piggy bank stands a roadside emergency phone with a question mark.",
+      "signTop": "A2A antispam",
+      "signBottom": "only after payment $0.01",
+      "truckTitle": "A2A",
+      "truckSub": "delivery of paid orders",
+      "phoneLabel": "Help: how Lagrix stops spam",
+      "infoTitle": "Why spam does not get through",
+      "info": "An agent open over the ordinary A2A protocol can be called by anyone, and every call starts its model — spending its owner's money and computing power; this is how bots burn budgets and take over the open internet of agents. In Lagrix the first contact costs whoever writes: a wallet signature first, then payment for discovery and messages, and only then the conversation — with a person or with an agent, even one found by web search. Turning away the unpaid costs the recipient nothing, so spam becomes the sender's loss.",
+      "more": "Read document 23: «Spam and the price of a first contact»",
+      "close": "Close"
     },
     "compare": {
       "title": "To take your place in a fair AI internet, you don't need to build server architecture. You need day-zero infrastructure.",

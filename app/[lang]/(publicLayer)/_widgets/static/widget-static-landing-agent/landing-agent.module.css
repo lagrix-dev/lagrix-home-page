@@ -1903,6 +1903,23 @@
 .tgBolt { fill: var(--ink-soft); }
 .tgPlateCode { font-family: var(--display); font-weight: 700; font-size: 40px; fill: var(--ink); }
 .tgPlateCaption { font-family: var(--text); font-weight: 600; font-size: 14px; fill: var(--ink); }
+/* 498: ведро «Спам» — кнопка третьей строки. Табличка мигает (жёлтый ↔ мел), пока строка о спаме не выбрана; выбрана — горит ровно.
+   Рычаг в нейтрали. */
+.tgRoom[data-mode="spam"] .tgLever { transform: rotate(0deg); }
+.tgBin { cursor: pointer; outline: none; }
+.tgBinBody { fill: var(--ink-soft); }
+.tgBinRib { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; opacity: 0.55; }
+.tgBinLid { fill: var(--ink); }
+.tgBinHandle { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linejoin: round; }
+.tgBinPlateFace { fill: var(--poster); stroke: var(--ink); stroke-width: 2; }
+.tgBinCode { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: 0.06em; fill: var(--ink); }
+.tgBin:not([data-on]) .tgBinPlateFace { animation: tgBinBlink 1.4s steps(1, end) infinite; }
+.tgBin:hover .tgBinBody { fill: var(--ink); }
+.tgBin:focus-visible .tgBinPlateFace { stroke: var(--signal); stroke-width: 4; }
+.tgBin[data-on] .tgBinPlateFace { stroke: var(--signal); stroke-width: 3; }
+@keyframes tgBinBlink { 0%, 100% { fill: var(--poster); } 50% { fill: var(--chalk); } }
+@media (prefers-reduced-motion: reduce) { .tgBin:not([data-on]) .tgBinPlateFace { animation: none; } }
+
 /* Ключ связиста: точки и тире, пока бежит строка. Ось ключа — у правого края планки. */
 .tgKeyArm, .tgHand { transform-box: view-box; transform-origin: 544px 203px; }
 .tgRoom[data-run] .tgKeyArm { animation: tgTap 1.8s steps(1, end) infinite; }
@@ -1933,4 +1950,162 @@
 @media (max-width: 560px) {
   .tgPlateCaption { display: none; }
   .tgPlateCode { font-size: 46px; }
+}
+
+
+/* ── A2A АНТИСПАМ (владелец 2026-10-15, шаг 498) ────────────────────────────────────────────────────────────────────────────────
+   Открытое пространство в ролях вокзала: дорога — табло, указатель — табло с плакатной строкой, грузовик-паровоз — табло, плакат и
+   сигнал (красные колёса), копилка — сигнал, разбавленный мелом, монетки — плакат. Одно авторское движение — полёт писем над копилкой.
+   Контейнер — size: всё меряется в cqw/cqh, поэтому хрюша в центре низа при любой ширине, а траектории сходятся с кузовом и щелью. */
+.antispam { padding: 4.5rem 0 3rem; }
+.asRoad {
+  position: relative; margin-top: 2rem; overflow: hidden; height: clamp(340px, 40vw, 480px); container-type: size;
+  border-radius: var(--tile-corner);
+  background: linear-gradient(to bottom, var(--chalk), color-mix(in oklab, var(--poster) 16%, var(--chalk)));
+  --sign-w: min(30cqw, 290px);
+  --pig-w: min(24cqw, 38cqh);
+  --truck-w: min(36cqw, 78cqh);
+  --ph: clamp(30px, 6cqw, 64px);
+  --it: clamp(26px, 5cqw, 54px);
+  --cn: calc(var(--it) * 0.42);
+  --sx: calc(2cqw + var(--sign-w) - var(--it));
+  --sy: calc(66cqh - var(--it) * 2.4);
+  --px: calc(50cqw - var(--it) / 2);
+  --slot: calc(93cqh - var(--pig-w) * 0.63);
+  --tx: calc(98cqw - var(--truck-w) * 0.74 - var(--it) / 2);
+  --ty: calc(94cqh - var(--truck-w) * 0.382);
+}
+.asSr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.asRoadBand { position: absolute; inset: auto 0 0; height: 12cqh; background: var(--board-deep); border-top: 6px solid color-mix(in oklab, var(--board) 22%, var(--floor)); }
+.asRoadBand::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4px; translate: 0 -50%; opacity: 0.7;
+  background: repeating-linear-gradient(90deg, var(--chalk) 0 28px, transparent 28px 56px);
+}
+
+/* Указатель на одной ноге: табличка-стрелка цвета табло, верх — мел, низ — плакатная строка. */
+.asSign { position: absolute; left: 2cqw; bottom: 10cqh; width: var(--sign-w); z-index: 2; display: flex; flex-direction: column; }
+.asSignPlate {
+  display: flex; flex-direction: column; gap: 0.2em; padding: 0.6em 22% 0.65em 0.85em; background: var(--board); color: var(--chalk);
+  clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+}
+.asSignTop { font-family: var(--display); font-weight: 700; font-size: clamp(15px, 2.7cqw, 32px); line-height: 1; letter-spacing: 0.01em; }
+.asSignBottom { font-family: var(--display); font-weight: 600; font-size: clamp(11px, 1.7cqw, 20px); line-height: 1.1; color: var(--poster); }
+.asSignPole { width: clamp(8px, 1.2cqw, 14px); height: 24cqh; margin-left: 16%; background: var(--ink-soft); border-radius: 0 0 3px 3px; }
+
+/* Аварийный телефон: будка цвета плаката под красной крышей, знак вопроса на меловом круге; наведение — трубка дрожит. */
+.asPhone {
+  position: absolute; bottom: 9cqh; left: calc(50cqw - var(--pig-w) / 2 - var(--ph) - 1.5cqw); width: var(--ph); z-index: 1;
+  padding: 0; border: 0; background: none; cursor: pointer;
+}
+.asPhoneSvg { display: block; width: 100%; height: auto; }
+.asPhonePost { fill: var(--ink-soft); }
+.asPhoneRoof { fill: var(--signal); }
+.asPhoneBox { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }
+.asPhoneFace { fill: var(--chalk); stroke: var(--ink); stroke-width: 2.5; }
+.asPhoneMark { font-family: var(--display); font-weight: 800; font-size: 28px; fill: var(--ink); }
+.asPhoneCord { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
+.asHandsetBody { fill: var(--ink); }
+.asHandset { transform-box: fill-box; transform-origin: 50% 0; }
+.asPhone:hover .asHandset, .asPhone:focus-visible .asHandset { animation: asRing 0.14s linear infinite; }
+.asPhone:hover .asPhoneBox { stroke: var(--signal); }
+.asPhone:focus-visible { outline: 3px solid var(--signal); outline-offset: 4px; border-radius: 6px; }
+@keyframes asRing { 0%, 100% { rotate: 0deg; } 25% { rotate: -9deg; } 75% { rotate: 9deg; } }
+
+/* Копилка: сигнал, разбавленный мелом; щель цвета чернил. Вздрагивает, когда в неё падает монетка. */
+.asPig { position: absolute; left: 50%; bottom: 7cqh; width: var(--pig-w); translate: -50% 0; transform-origin: 50% 100%; z-index: 2; }
+.asPigSvg { display: block; width: 100%; height: auto; }
+.asPigBody, .asPigSnout, .asPigEar, .asPigLeg { fill: color-mix(in oklab, var(--signal) 32%, var(--chalk)); stroke: var(--ink); stroke-width: 4; }
+.asPigTail { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.asPigNostril, .asPigEye { fill: var(--ink); }
+.asPigSlot { fill: var(--ink); }
+
+/* Грузовик в стиле паровоза: кузов-плакат с надписью, будка и котёл цвета табло, труба и рама — чернила, колёса — сигнал. */
+.asTruck { position: absolute; right: 2cqw; bottom: 6cqh; width: var(--truck-w); z-index: 2; }
+.asTruckSvg { display: block; width: 100%; height: auto; }
+.asSteam { fill: var(--chalk); stroke: var(--ink-soft); stroke-width: 2; }
+.asTruckBox { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }
+.asTruckBoxRim { stroke: var(--ink); stroke-width: 5; }
+.asTruckCab { fill: var(--board-deep); }
+.asTruckWindow { fill: var(--poster); }
+.asTruckBoiler { fill: var(--board); }
+.asTruckBand { stroke: var(--board-deep); stroke-width: 6; }
+.asTruckChimney { fill: var(--ink); }
+.asTruckFront { fill: var(--board-deep); stroke: var(--ink); stroke-width: 3; }
+.asTruckLamp { fill: var(--poster); }
+.asTruckCatcher { fill: var(--signal); }
+.asTruckFrame { fill: var(--ink); }
+.asWheelRim { fill: var(--signal); stroke: var(--ink); stroke-width: 4; }
+.asWheelSpokes { stroke: var(--ink); stroke-width: 3; }
+.asWheelHub { fill: var(--ink); }
+.asTruckRod { stroke: var(--ink-soft); stroke-width: 6; stroke-linecap: round; }
+.asTruckText {
+  position: absolute; left: 3.5%; top: 37%; width: 46%; height: 38%; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.1em; text-align: center; color: var(--ink); pointer-events: none;
+}
+.asTruckTitle { font-family: var(--display); font-weight: 800; font-size: max(13px, calc(var(--truck-w) * 0.09)); line-height: 1; }
+.asTruckSub { font-family: var(--display); font-weight: 600; font-size: max(8.5px, calc(var(--truck-w) * 0.04)); line-height: 1.05; text-wrap: balance; }
+
+/* Письма и посылки, монетки. Без движения — один кадр: письмо над копилкой, монетка в падении, посылка над кузовом, письмо у стрелки. */
+.asFly { position: absolute; left: 0; top: 0; width: var(--it); z-index: 3; will-change: transform; }
+.asItemSvg { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 6px var(--shade)); }
+.asEnvelope { fill: var(--chalk); stroke: var(--ink); stroke-width: 3; }
+.asEnvelopeFold { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.asParcel { fill: color-mix(in oklab, var(--poster) 45%, var(--floor)); stroke: var(--ink); stroke-width: 3; }
+.asParcelLid { stroke: var(--ink); stroke-width: 3; }
+.asParcelTape { stroke: var(--board); stroke-width: 6; }
+.asStamp { fill: var(--signal); }
+.asFly[data-i="0"] { transform: translate(var(--px), calc(var(--slot) - var(--it) * 2)) rotate(4deg); }
+.asFly[data-i="1"] { transform: translate(var(--tx), calc(var(--ty) - var(--it) * 1.2)) rotate(-4deg); }
+.asFly[data-i="2"] { transform: translate(calc(var(--sx) + 3cqw), var(--sy)) rotate(-8deg); }
+.asFly[data-i="3"] { opacity: 0; }
+.asCoin {
+  position: absolute; left: 0; top: 0; width: var(--cn); height: var(--cn); z-index: 3; opacity: 0; border-radius: 50%;
+  background: var(--poster); box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 calc(var(--cn) * 0.2) color-mix(in oklab, var(--poster) 60%, var(--chalk));
+}
+.asCoin[data-i="0"] { opacity: 1; transform: translate(calc(50cqw - var(--cn) / 2), calc(var(--slot) - var(--it) * 0.7)); }
+
+.asRoad[data-run] .asFly { animation: asFly 6s infinite; animation-delay: calc(var(--i) * -1.5s); }
+.asRoad[data-run] .asCoin { animation: asCoin 6s infinite; animation-delay: calc(var(--i) * -1.5s); }
+.asRoad[data-run] .asPig { animation: asPig 1.5s infinite; }
+@keyframes asFly {
+  0% { opacity: 0; transform: translate(var(--sx), calc(var(--sy) + var(--it) * 0.8)) rotate(-10deg) scale(0.7); animation-timing-function: cubic-bezier(0.3, 0.6, 0.4, 1); }
+  8% { opacity: 1; transform: translate(calc(var(--sx) + 3cqw), var(--sy)) rotate(-8deg) scale(1); animation-timing-function: ease-in-out; }
+  38% { transform: translate(var(--px), calc(var(--slot) - var(--it) * 1.9)) rotate(-3deg); animation-timing-function: ease-in-out; }
+  52% { opacity: 1; transform: translate(var(--px), calc(var(--slot) - var(--it) * 2.1)) rotate(4deg); animation-timing-function: ease-in-out; }
+  80% { transform: translate(calc(var(--tx) - 3cqw), calc(var(--ty) - var(--it) * 2.6)) rotate(10deg); animation-timing-function: ease-in; }
+  94% { opacity: 1; transform: translate(var(--tx), calc(var(--ty) - var(--it) * 0.7)) rotate(0deg) scale(0.92); }
+  100% { opacity: 0; transform: translate(var(--tx), calc(var(--ty) + var(--it) * 0.1)) scale(0.8); }
+}
+@keyframes asCoin {
+  0%, 41% { opacity: 0; transform: translate(calc(50cqw - var(--cn) / 2), calc(var(--slot) - var(--it) * 1.2)); }
+  43% { opacity: 1; transform: translate(calc(50cqw - var(--cn) / 2), calc(var(--slot) - var(--it) * 1.2)); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  54% { opacity: 1; transform: translate(calc(50cqw - var(--cn) / 2), calc(var(--slot) - var(--cn) * 0.3)); }
+  57%, 100% { opacity: 0; transform: translate(calc(50cqw - var(--cn) / 2), calc(var(--slot) + var(--cn) * 0.3)); }
+}
+@keyframes asPig { 0%, 12%, 30%, 100% { scale: 1 1; } 18% { scale: 1.03 0.95; } }
+
+/* Окно справки — справа, цвета табло; один абзац и ссылка в документацию. */
+.asInfo {
+  position: fixed; inset: auto; top: 50%; right: max(1rem, 3vw); translate: 0 -50%; margin: 0; width: min(26rem, calc(100vw - 2rem));
+  padding: 1.3rem 1.4rem 1.2rem; border: 0; border-radius: var(--tile-corner); background: var(--board); color: var(--chalk);
+  box-shadow: 0 24px 48px -20px var(--shade);
+}
+.asInfo:popover-open { animation: asInfoIn 0.45s var(--ease); }
+.asInfo::backdrop { background: transparent; }
+@keyframes asInfoIn { from { opacity: 0; translate: 2rem -50%; } to { opacity: 1; translate: 0 -50%; } }
+.asInfoTitle { font-family: var(--display); font-weight: 700; font-size: 1.6rem; line-height: 1.05; color: var(--poster); text-wrap: balance; }
+.asInfoText { margin-top: 0.6rem; font-family: var(--text); font-size: 1rem; line-height: 1.5; color: var(--chalk); }
+.asInfoActions { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; justify-content: space-between; }
+.asInfoMore { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--poster); text-decoration: underline; text-underline-offset: 0.2em; }
+.asInfoMore:focus-visible, .asInfoClose:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
+.asInfoClose { font-family: var(--display); font-weight: 700; font-size: 1rem; padding: 0.35rem 0.9rem; border: 0; border-radius: var(--tile-corner); background: var(--chalk); color: var(--ink); cursor: pointer; }
+.asInfoClose:hover { background: var(--poster); }
+
+@media (max-width: 560px) {
+  .asRoad { height: 380px; --sign-w: 33cqw; --pig-w: 26cqw; --truck-w: 36cqw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .asRoad[data-run] .asFly, .asRoad[data-run] .asCoin, .asRoad[data-run] .asPig { animation: none; }
+  .asPhone:hover .asHandset, .asPhone:focus-visible .asHandset, .asInfo:popover-open { animation: none; }
 }
