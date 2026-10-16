@@ -128,6 +128,11 @@ function MegaDropdown({ group, groupHref, childHref }: { group: ShellGroup; grou
         forceMount
         style={left === undefined ? undefined : { left }}
         className="data-[state=closed]:hidden md:fixed! md:top-[calc(100%+0.25rem)]! md:mt-0! md:w-fit!"
+        // 🔒 `forceMount` держит смонтированными ВСЕ списки, и у каждого живёт слой Radix, закрывающий меню по нажатию «снаружи».
+        // Нажатие по ссылке открытого списка для остальных — снаружи: меню закрывалось на pointerdown, список прятался, клик уходил в
+        // body, и ни один пункт не открывался. ✗ Оплачено владельцем 2026-10-16: «i not can wee new pages». Закрытый список молчит.
+        onPointerDownOutside={(e) => { if (content.current?.dataset.state !== "open") e.preventDefault() }}
+        onFocusOutside={(e) => { if (content.current?.dataset.state !== "open") e.preventDefault() }}
       >
         <ul className={`grid max-h-[70vh] gap-1 overflow-y-auto overscroll-contain p-1 ${columnsOf(count)}`}>
           <MegaCard href={groupHref} title={group.label} description={group.description} strong />
