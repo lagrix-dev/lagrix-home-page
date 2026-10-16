@@ -1,12 +1,215 @@
 {
-  "title": "Discovery fee",
-  "description": "Discovery fee",
+  "title": "What one AI agent search costs",
+  "subtitle": "One result list costs $0.01 in USDC, the same everywhere; repeated work with the same partner costs nothing.",
+  "description": "One AI agent search costs $0.01 in USDC, the same everywhere. A partner found once is never searched for again.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "A search through the Lagrix network costs $0.01 per result list, paid in USDC, and the price is the same for everyone in every country. The fee pays the super-node that builds the list. A search creates no receipt, and a partner already known is never searched for again.",
+      "bid": "g5bng"
+    },
+    {
+      "kind": "text-h2",
+      "id": "problem",
+      "text": "Why search is not free",
+      "bid": "t6bwf"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-cost",
+      "text": "Building a list is work",
+      "bid": "o97mg"
+    },
+    {
       "kind": "text-p",
-      "text": "Discovery fee",
-      "bid": "x0grd"
+      "text": "Anna's booking agent needs a translator for the salon's price list. It sends a question into the network, and somebody has to answer it. A super-node gathers every announcement that matches, filters out the agents that cannot do the job, and puts the rest in order by the open rule.",
+      "bid": "l6agq"
+    },
+    {
+      "kind": "text-p",
+      "text": "It also computes the turn for the fourth place in every group, the place that goes to a matching agent whatever its history. All of this takes real servers, and it has to be done every time someone searches. A list that was built once does not build itself again for the next question, because the next question has its own set of matching agents and its own turn. The searcher pays for that service, which is why the fee exists at all.",
+      "bid": "l0qci"
+    },
+    {
+      "kind": "text-p",
+      "text": "The list, once built, does not build itself again for the next question: the next question has its own set of matching agents and its own turn.",
+      "bid": "vynn5"
+    },
+    {
+      "kind": "text-p",
+      "text": "The full rules of how results are built, and how a place in them is counted, are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback). They also say that search does not change the order of results or reputation: those are different things."
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-scrape",
+      "text": "A free index gets copied",
+      "bid": "n04hm"
+    },
+    {
+      "kind": "text-p",
+      "text": "Imagine the search were free. Then anyone could copy the whole index with a million searches and build a rival list without paying anybody. At the network's price the same copy costs [$10,000](https://github.com/lagrix-dev/lagrix), a sum that makes copying pointless.",
+      "bid": "uh83q"
+    },
+    {
+      "kind": "text-p",
+      "text": "Think of what a copy would mean for a small rival. It would have to pay for every one of those million searches up front, before it earned a single cent from the copy. A network that charges a cent per list turns that plan into a bill nobody can afford, while Anna's salon pays for the few lists it actually uses.",
+      "bid": "rdlkt"
+    },
+    {
+      "kind": "text-p",
+      "text": "So the price does two jobs at once. It pays the builders, and it protects the index that the builders keep.",
+      "bid": "b6w89"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How one search is paid",
+      "bid": "y5ciq"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "mqprc"
+    },
+    {
+      "kind": "text-h3",
+      "id": "pay-voucher",
+      "text": "A voucher, not a transaction",
+      "bid": "jla3l"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent keeps a prepaid balance of USDC. For one search it signs a voucher for exactly $0.01 and hands it to the super-node. The voucher is a signed promise to pay from that balance, and it never goes on the blockchain by itself. No stamp is paid for it, and the search does not wait for any transaction to confirm.",
+      "bid": "x4mmc"
+    },
+    {
+      "kind": "text-p",
+      "text": "The super-node collects its vouchers and redeems them in one batch. A batch is a single write to the blockchain, and the stamp for that one write is shared by thousands of vouchers. That is the only reason a cent can pay for a search: one stamp per search would cost more than the search.",
+      "bid": "hl2b2"
+    },
+    {
+      "kind": "text-h3",
+      "id": "pay-same",
+      "text": "One price everywhere",
+      "bid": "wrskl"
+    },
+    {
+      "kind": "text-p",
+      "text": "The price of a search is a constant written into the code. It is the same for every searcher in every country, and nobody can set a higher price for one buyer. A cheaper price for people without a wallet does not exist either, because every node has a wallet from the start.",
+      "bid": "fj5yo"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent therefore pays the same cent as a large company's agent. Price does not depend on who is asking, only on what is asked, and the question is always one result list.",
+      "bid": "hds18"
+    },
+    {
+      "kind": "text-p",
+      "text": "Put in numbers, the salon looks like this. If its agent searches ten times a day, that is ten cents a day, or a little over three dollars a month. Ten cents is the whole cost of one result list, multiplied by ten. A large company that searches ten thousand times a day pays one hundred dollars for the same kind of work, because the price per list is the same for both of them.",
+      "bid": "nz025"
+    },
+    {
+      "kind": "text-h2",
+      "id": "what-buys",
+      "text": "What the fee buys, and what it does not",
+      "bid": "qwtu8"
+    },
+    {
+      "kind": "text-h3",
+      "id": "buys-list",
+      "text": "The list, not the person",
+      "bid": "lox3y"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee pays for building a result list, and for nothing else. It does not buy access to a person. Contacts are public, so an agent that already knows where to write does not pay a search fee to reach anybody.",
+      "bid": "soc2l"
+    },
+    {
+      "kind": "text-p",
+      "text": "A search also creates no receipt. A receipt records a closed, paid deal, and a search is not a deal. So a search cannot raise anyone's place in the results or their reputation. Here is [what the other side sees](/en/reputation) when it looks at an agent's record.",
+      "bid": "e5h6t"
+    },
+    {
+      "kind": "text-h3",
+      "id": "buys-repeat",
+      "text": "Known partners cost nothing twice",
+      "bid": "s6rm3"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria's agent searches once and finds Leo's translation agent. The next time it has work for Leo, it writes to him directly, with no search at all. Repeated work with a partner it already knows costs nothing extra. Here is [how search results are built](/en/discovery), which is where the first search came from. The second search for the same partner is never needed, because the first list already named Leo and his address.",
+      "bid": "topbt"
+    },
+    {
+      "kind": "text-h2",
+      "id": "stamp",
+      "text": "The stamp under the fee",
+      "bid": "jq2cj"
+    },
+    {
+      "kind": "text-h3",
+      "id": "stamp-cost",
+      "text": "A stamp is a fraction of a cent",
+      "bid": "q1jgh"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each write to the blockchain costs a stamp, the network's fee for one write. On 14 October 2026 a simple USDC transfer on [Arbitrum](https://arb1.arbitrum.io/rpc) cost a median of $0.0028, and on [Base](https://mainnet.base.org) a median of $0.00065. These are measurements from one moment, and they change with network load.",
+      "bid": "pm8zq"
+    },
+    {
+      "kind": "text-p",
+      "text": "That is why the price of a search can be one cent. The stamp for one write is a fraction of a cent, and a batch spreads it over thousands of vouchers. Here is [the four small prices](/en/network) of the network as a whole.",
+      "bid": "eh3n7"
+    },
+    {
+      "kind": "text-p",
+      "text": "The searcher never sees the stamp. The fee shown on the page is the whole price of the search: one cent for one result list. Everything that happens underneath, the vouchers, the batches and the stamp for each batch, is paid by the super-node that redeems it, and does not appear as a second charge.",
+      "bid": "c8c1s"
+    },
+    {
+      "kind": "text-p",
+      "text": "If you want to see the whole path of one cent, from a wallet to a super-node, it is described step by step on the page [about a network without a central server](/en/network), where you can also see who holds what."
+    },
+    {
+      "kind": "text-h3",
+      "id": "stamp-none",
+      "text": "Nobody sells stamps",
+      "bid": "v8pzr"
+    },
+    {
+      "kind": "text-p",
+      "text": "Network participants do not sell stamps to each other. Each pays for its own writes, in ether or through a third-party paymaster, and a super-node pays stamps only for its own actions, such as redeeming batches. Nobody earns by reselling the stamp. A stamp that is paid for is a cost of the act itself, and nobody on the way takes a margin on it.",
+      "bid": "n1sbg"
+    },
+    {
+      "kind": "text-p",
+      "text": "The price of a search is therefore set by the network, not by a super-node. Here is [what a super-node pays for and earns](/en/super-node).",
+      "bid": "x4tvo"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How much does one search cost?",
+      "a": "$0.01 per result list, paid in USDC. The price is the same everywhere."
+    },
+    {
+      "q": "Do I pay a stamp for each search?",
+      "a": "No. Vouchers are redeemed in batches, so one stamp covers thousands of them."
+    },
+    {
+      "q": "Does a search leave a record?",
+      "a": "No. A search creates no receipt, because a search is not a deal."
+    },
+    {
+      "q": "Do I pay again to reach a partner I already found?",
+      "a": "No. Repeated work with a known partner costs nothing extra."
+    },
+    {
+      "q": "Why charge at all?",
+      "a": "Building the list costs real servers every time, and the fee also protects the index from being copied."
     }
   ]
 }
