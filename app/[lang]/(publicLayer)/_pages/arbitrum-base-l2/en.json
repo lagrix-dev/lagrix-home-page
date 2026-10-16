@@ -1,12 +1,217 @@
 {
-  "title": "Arbitrum and Base L2",
-  "description": "Arbitrum and Base L2",
+  "title": "Arbitrum vs Base for AI agent payments",
+  "subtitle": "Lagrix contracts run on both networks: stamps of a fraction of a cent, dollars in USDC, and no operator able to shut a payment out for good.",
+  "description": "Arbitrum and Base compared for AI agent payments in Lagrix: measured stamps, USDC on both, and forced inclusion within 12 or 24 hours.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "Arbitrum and Base are two second-layer networks on top of Ethereum, and the Lagrix contracts run on both. A stamp on either costs a fraction of a cent: measured, $0.0028 on Arbitrum and $0.00065 on Base. Each has one operator who can delay a payment but not shut it out: through Ethereum it gets in within 12 hours on Base and 24 on Arbitrum.",
+      "bid": "unnjs"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "How agents pick a network now",
+      "bid": "fbhcb"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-many",
+      "text": "Many networks, one digital dollar",
+      "bid": "w6tkk"
+    },
+    {
       "kind": "text-p",
-      "text": "Arbitrum and Base L2",
-      "bid": "hvmxs"
+      "text": "Agents now pay each other in digital dollars. In September 2025 Google announced [AP2 with an extension for agent payments in crypto](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol), and stablecoins moved from a niche into everyday plans for agent builders.",
+      "bid": "lsadj"
+    },
+    {
+      "kind": "text-p",
+      "text": "The most common digital dollar is USDC. The company Circle issues it natively on many networks, Arbitrum and Base among them, and [one USDC can be redeemed for one US dollar](https://www.usdc.com). So a dollar is a dollar on either network, and the question becomes which network the agent should live on.",
+      "bid": "zdgpm"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo runs a translation agent. Anna's «Bella» salon is about to pay it $100 for a price list in three languages. Before the first cent moves, Leo wants to know where that payment will travel and who could stand in its way. If the payment can be stopped, the work he does for Anna is at risk too.",
+      "bid": "kh1q0"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-operator",
+      "text": "Cheap networks with one operator",
+      "bid": "dfo89"
+    },
+    {
+      "kind": "text-p",
+      "text": "Second-layer networks are cheap partly because one operator, called the sequencer, puts their transactions in order. One operator is fast. It also raises a fair question for Leo: what if that operator decides not to take his payment?",
+      "bid": "fs7ek"
+    },
+    {
+      "kind": "text-p",
+      "text": "Promises from a marketing page would not help him here. The answer has to come from each network's own documentation, and it has to come in hours. The sections below give exactly that, network by network.",
+      "bid": "roro3"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How the second layer works in Lagrix",
+      "bid": "xew84"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "xmc1s"
+    },
+    {
+      "kind": "text-h3",
+      "id": "l2-what",
+      "text": "A cheaper layer on top of Ethereum",
+      "bid": "wt2i9"
+    },
+    {
+      "kind": "text-p",
+      "text": "The Ethereum main network is kept by many independent validators, and writing to it directly is expensive. A second-layer network works on top of it. It writes transactions far more cheaply and then settles its results against the main network, so the main network still keeps the final record. Think of the main network as a public registry and the second layer as a busy office that files its papers there in bundles.",
+      "bid": "ggmx9"
+    },
+    {
+      "kind": "text-p",
+      "text": "In March 2024 the Dencun upgrade made storing second-layer data on Ethereum much cheaper, and the price of a write on these networks fell to a fraction of a cent. Here is [how Ethereum gas works for agents](/en/ethereum-l1).",
+      "bid": "co8ay"
+    },
+    {
+      "kind": "text-h3",
+      "id": "l2-both",
+      "text": "The same contracts on both networks",
+      "bid": "ms90p"
+    },
+    {
+      "kind": "text-p",
+      "text": "The Lagrix contracts run on Arbitrum and on Base. On both, each write to the blockchain costs a stamp paid in ether, the Ethereum network's own currency. An agent that holds only dollars can pay stamps in USDC through a third-party service called a paymaster. The paymaster adds its own charge for this, and own ether stays the fallback.",
+      "bid": "ucgaw"
+    },
+    {
+      "kind": "text-p",
+      "text": "Follow Anna's order. Step one: her agent locks $100 in USDC in the escrow contract, a safe that neither side can open alone. Step two: Leo's agent delivers the translation. Step three: Anna's agent accepts it, and the contract pays Leo the $100 minus the $5 fee. Here is [how escrow payments in USDC work](/en/web3-payments).",
+      "bid": "hx60q"
+    },
+    {
+      "kind": "text-h2",
+      "id": "compare",
+      "text": "Arbitrum and Base side by side",
+      "bid": "s1tap"
+    },
+    {
+      "kind": "text-h3",
+      "id": "compare-cost",
+      "text": "The price of a stamp",
+      "bid": "elfqu"
+    },
+    {
+      "kind": "text-p",
+      "text": "The stamp was measured for Lagrix on 14 October 2026 on the official public nodes of both networks. A simple USDC transfer cost a median of $0.0028 on Arbitrum One and $0.00065 on Base. Base was the cheaper of the two that day.",
+      "bid": "i2dog"
+    },
+    {
+      "kind": "text-p",
+      "text": "Now count Anna's deal. It needs at least two writes, locking the money and accepting the work. At simple-transfer prices that is about $0.0056 on Arbitrum and $0.0013 on Base. Escrow actions are heavier than a simple transfer, so the real stamps will be somewhat higher. Even so, both are tiny next to the $5 fee on the same deal.",
+      "bid": "q6jsh"
+    },
+    {
+      "kind": "text-h3",
+      "id": "compare-base",
+      "text": "Base on the OP Stack",
+      "bid": "qdkbe"
+    },
+    {
+      "kind": "text-p",
+      "text": "Base is built on the OP Stack, an open set of programs for second-layer networks. Its sequencer orders transactions, and normally it simply takes Leo's payment along with everyone else's.",
+      "bid": "hkfn1"
+    },
+    {
+      "kind": "text-p",
+      "text": "If it ever ignores a transaction, Leo's agent can send it through the Ethereum main network instead. According to the [OP Stack documentation on forced transactions](https://docs.optimism.io/stack/transactions/forced-transaction), such a transaction is included once the sequencer resumes or the 12-hour sequencing window expires. The longest Leo waits is half a day. That is long for a translation, yet it is a fixed limit written into the network's rules, not left to anyone's goodwill.",
+      "bid": "ay27r"
+    },
+    {
+      "kind": "text-h3",
+      "id": "compare-arbitrum",
+      "text": "Arbitrum One",
+      "bid": "i84ez"
+    },
+    {
+      "kind": "text-p",
+      "text": "Arbitrum One is the second network where the Lagrix contracts run. Its sequencer can be bypassed as well: the contract that receives its transactions, the Sequencer Inbox, has a method called forceInclusion for exactly this purpose.",
+      "bid": "qgyzm"
+    },
+    {
+      "kind": "text-p",
+      "text": "The [Arbitrum documentation on the sequencer](https://docs.arbitrum.io/how-arbitrum-works/sequencer) sets the delay window at 7200 blocks, which is 24 hours. On Arbitrum the longest Leo waits is a day. The window is longer than on Base, and the guarantee is the same: a delay, never a closed door.",
+      "bid": "wnsst"
+    },
+    {
+      "kind": "text-h2",
+      "id": "same",
+      "text": "What stays the same on both networks",
+      "bid": "bt8gi"
+    },
+    {
+      "kind": "text-h3",
+      "id": "same-dollar",
+      "text": "The same dollar and the same stamp currency",
+      "bid": "kf1wp"
+    },
+    {
+      "kind": "text-p",
+      "text": "Whichever network carries Anna's payment, the money is USDC issued natively by Circle, and the stamps are paid in ether. The rules of the escrow contract are the same Lagrix rules on both. For Leo, the dollar he is paid is the same dollar on either network.",
+      "bid": "eyx7l"
+    },
+    {
+      "kind": "text-p",
+      "text": "There is one difference between the two currencies that matters. Circle, as the issuer, can block USDC on an address. Ether has no such function, so Leo's node can always keep a little ether and pay its own stamps, and no paymaster refusing him can cut him off.",
+      "bid": "j6x6x"
+    },
+    {
+      "kind": "text-h3",
+      "id": "same-safety",
+      "text": "What an operator cannot do",
+      "bid": "eo37f"
+    },
+    {
+      "kind": "text-p",
+      "text": "A sequencer can delay Leo's payment. It cannot shut it out for good: through the Ethereum main network the payment gets in within 12 hours on Base and within 24 hours on Arbitrum. While the money lies in escrow, nobody can take it, and that includes the operator.",
+      "bid": "nyfix"
+    },
+    {
+      "kind": "text-p",
+      "text": "For an agent, a slowed payment is an annoyance, while a closed door would end its work. Both networks give Leo the first and spare him the second. Here is [the whole stack of one deal](/en/technology), and the full rules for stamps are in [document 8 of the protocol](/en/docs/08-account-abstraction-bundler).",
+      "bid": "yu9s5"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which is cheaper, Arbitrum or Base?",
+      "a": "In the measurement for Lagrix, Base: $0.00065 against $0.0028 for a simple USDC transfer. Both are fractions of a cent."
+    },
+    {
+      "q": "Is USDC native on both networks?",
+      "a": "Yes. Circle issues USDC natively on Arbitrum and on Base."
+    },
+    {
+      "q": "Can the sequencer block my payment?",
+      "a": "It can delay it, not block it. Through Ethereum the payment gets in within 12 hours on Base and 24 hours on Arbitrum."
+    },
+    {
+      "q": "Do I need ether on these networks?",
+      "a": "Stamps are paid in ether. An agent that holds only dollars can pay them in USDC through a third-party paymaster."
+    },
+    {
+      "q": "Are Arbitrum and Base part of Ethereum?",
+      "a": "They are second-layer networks that write on their own and settle their results against the Ethereum main network."
+    },
+    {
+      "q": "Can the operator take the money from escrow?",
+      "a": "No. While the money lies in escrow, nobody can take it: not the parties, not the network and not the operator."
     }
   ]
 }
