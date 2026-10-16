@@ -1,5 +1,16 @@
 import { surfaceFor } from './surfaces'
 import { SUPPORTED_LANGUAGES } from '@/config/translations/translations.config'
+import { urlFor } from '@/lib/seo/alternates'
+
+/**
+ * Заголовки КАЖДОЙ копии Markdown (507-3): тип и канонический адрес — страница, копией которой она является. Для не-HTML Google
+ * берёт канонический адрес из заголовка `Link: <…>; rel="canonical"` (developers.google.com/search/docs/crawling-indexing/
+ * consolidate-duplicate-urls); без него копия — второй адрес того же текста. Одна функция на все маршруты копий: дети и
+ * главная (`markdownRoute`), `/docs` и каждый документ — правило в одном месте, а не в трёх из четырёх.
+ */
+export function markdownHeaders(lang: string, subPath: string): HeadersInit {
+  return { 'Content-Type': 'text/markdown; charset=utf-8', Link: `<${urlFor(lang, subPath)}>; rel="canonical"` }
+}
 
 // Общая начинка markdown-маршрута (шаг 505).
 //
@@ -33,7 +44,7 @@ export function markdownRoute(subPath: string) {
       return new Response(surface.body(), {
         // `text/markdown` — тип, о котором просит спецификация: агент должен
         // понять формат до разбора, а не по содержимому.
-        headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+        headers: markdownHeaders(lang, subPath),
       })
     },
   }

@@ -1,4 +1,5 @@
 import { blocksToMarkdown, faqToMarkdown } from './blocks-to-markdown'
+import { getPostBodyUi } from '@/lib/content/post-body-ui'
 import { urlFor, mdUrlFor } from '@/lib/seo/alternates'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { branchChildren, branchRoot, wordsIn } from '@/lib/page-tree'
@@ -75,8 +76,19 @@ export function publicSurfaces(lang: string): Surface[] {
       title: page.title.split("%SITE%").join(home.siteName),
       description: page.description.split("%SITE%").join(home.siteName),
       section: 'legal',
-      body: () =>
-        [`# ${page.title.split("%SITE%").join(home.siteName)}`, "", `> ${page.description.split("%SITE%").join(home.siteName)}`, '', blocksToMarkdown(page.blocks, home.siteName, widgetText(lang))].join('\n').trim(),
+      // 507-3: копия несёт то же, что страница: подзаголовок под H1 и вопросы FAQ в конце. ✗ До этого `faqToMarkdown` был
+      // импортирован и не вызван — у страницы с четырьмя вопросами в `index.md` их было ноль (зонд прибора 2026-10-16).
+      body: () => {
+        const site = (s: string) => s.split("%SITE%").join(home.siteName)
+        const faq = faqToMarkdown(page.faq?.map((f) => ({ q: site(f.q), a: site(f.a) })), getPostBodyUi(lang).faqTitle)
+        return [
+          `# ${site(page.title)}`, "",
+          ...(page.subtitle ? [site(page.subtitle), ""] : []),
+          `> ${site(page.description)}`, '',
+          blocksToMarkdown(page.blocks, home.siteName, widgetText(lang)),
+          ...(faq ? ['', faq] : []),
+        ].join('\n').trim()
+      },
     })
   }
 

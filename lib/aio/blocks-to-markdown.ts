@@ -111,7 +111,8 @@ export function blocksToMarkdown(blocks: Block[], siteName: string, widget?: Wid
  * `{ question, answer }`: типы поймали это на сборке, и подгонять надо код под
  * каталог, а не наоборот — каталог читают ещё и разметка страницы, и JSON-LD.
  */
-export function faqToMarkdown(faq?: FaqPair[]): string {
+export function faqToMarkdown(faq?: FaqPair[], title = 'FAQ'): string {
   if (!faq?.length) return ''
-  return ['## FAQ', '', ...faq.flatMap(f => [`### ${f.q}`, '', f.a, ''])].join('\n').trim()
+  // 507-3: заголовок — тот же, что печатает страница на своём языке («Частые вопросы»), а не английская подпись в русской копии.
+  return [`## ${title}`, '', ...faq.flatMap(f => [`### ${f.q}`, '', f.a, ''])].join('\n').trim()
 }

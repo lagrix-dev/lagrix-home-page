@@ -1,4 +1,5 @@
 import { urlFor } from "@/lib/seo/alternates"
+import { markdownHeaders } from "@/lib/aio/md-route"
 import { liveDocs, readme, withSiteLinks } from "../_libs/docs"
 import { WIDGET_MARKDOWN } from "../_widgets/markdown"
 
@@ -11,5 +12,5 @@ export async function GET(_req: Request, { params }: { params: Promise<{ lang: s
   const { lang } = await params
   await liveDocs()
   const body = [withSiteLinks(readme(lang), lang, urlFor).trimEnd(), WIDGET_MARKDOWN["widget-static-docs-list"](lang)].join("\n\n")
-  return new Response(body + "\n", { headers: { "Content-Type": "text/markdown; charset=utf-8" } })
+  return new Response(body + "\n", { headers: markdownHeaders(lang, "/docs") })
 }

@@ -31,6 +31,8 @@ export type PageMeta = {
   /** 431: страница предлагает услугу — разметка schema.org `Service` вместо `Article`. Название и описание — слова страницы
    *  на её языке; здесь только то, что не переводится. Нет поля — обычная статья. */
   service?: ServiceMeta
+  /** 507-3: slug страницы-хаба той же ветки — крошки «Главная → хаб → страница». Адрес страницы не меняется (плоский). */
+  parent?: string
 }
 
 export type ServiceMeta = {
@@ -46,6 +48,8 @@ export type ServiceMeta = {
 
 export type PageWords = {
   title: string
+  /** 507-3: подзаголовок под H1 — обещание страницы одной фразой. */
+  subtitle?: string
   description: string
   keywords?: string
   blocks: Block[]
@@ -126,6 +130,7 @@ export function wordsIn(page: TreePage, lang: string): PageWords {
   const o = page.overrides[lang] ?? {}
   return {
     title: o.title ?? page.en.title,
+    subtitle: o.subtitle ?? page.en.subtitle,
     description: o.description ?? page.en.description,
     keywords: o.keywords ?? page.en.keywords ?? '',
     blocks: o.blocks ?? page.en.blocks,

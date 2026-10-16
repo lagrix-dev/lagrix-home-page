@@ -283,7 +283,7 @@ export function createContentPage<C extends ContentPageContent>(config: ContentP
           title={c.title}
           subtitle={c.subtitle}
           titleInBody={titleInBody}
-          heroImage={meta.heroImage}
+          heroImage={meta.heroImage?.replace('{lang}', lang)}
           heroAlt={c.title}
           hero={hero?.(lang)}
           afterHero={afterHero?.(lang)}

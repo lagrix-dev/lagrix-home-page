@@ -1,4 +1,5 @@
 import { urlFor } from "@/lib/seo/alternates"
+import { markdownHeaders } from "@/lib/aio/md-route"
 import { DOCS_LANGUAGES, allSlugs, docOf, liveDocs, withSiteLinks } from "../../_libs/docs"
 
 // Markdown-двойник документа (для агентов, node step 457-3): текст репозитория, ссылки — на полные адреса этого сайта.
@@ -17,5 +18,5 @@ export async function GET(_req: Request, { params }: { params: Promise<{ lang: s
   await liveDocs()
   const found = docOf(lang, doc)
   if (!found) return new Response("Not found", { status: 404 })
-  return new Response(withSiteLinks(found.doc.text, found.lang, urlFor), { headers: { "Content-Type": "text/markdown; charset=utf-8" } })
+  return new Response(withSiteLinks(found.doc.text, found.lang, urlFor), { headers: markdownHeaders(lang, `/docs/${doc}`) })
 }

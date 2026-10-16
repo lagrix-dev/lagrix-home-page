@@ -98,7 +98,8 @@ function contentOf(page: TreePage, lang: string, segments: string[]) {
     const text = b.text.replace('{roles}', roles)
     return text === b.text ? b : { ...b, text }
   })
-  return { title: fill(w.title), description: fill(w.description), keywords: w.keywords ?? '', blocks, faq: fill(w.faq) }
+  // 507-3: подзаголовок под H1 — из данных страницы (шапка его уже умела печатать, данные его не передавали).
+  return { title: fill(w.title), subtitle: fill(w.subtitle), description: fill(w.description), keywords: w.keywords ?? '', blocks, faq: fill(w.faq) }
 }
 
 type Crumb = { label: string; href?: string }
@@ -172,12 +173,15 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
     if (!page) return null
     const root = branchRoot(...opts.segments)
     // 402: страница внутри папки роли — в крошках между корнем ветки и страницей стоит страница роли.
-    const parentSlug = slug.includes('/') ? slug.split('/')[0] : null
+    // 507-3: плоская страница с `meta.parent` — так же стоит её хаб («Главная → хаб → страница»); адрес страницы не меняется.
+    const parentSlug = slug.includes('/') ? slug.split('/')[0] : page.meta.parent && page.meta.parent !== slug ? page.meta.parent : null
     const parent = parentSlug ? branchChild(opts.segments, parentSlug) : null
+    const sub = `${opts.subPath}/${slug}`
     const factory = createContentPage({
       data: { overrides: page.overrides },
       closedBranch: !isPublic(opts.segments),
-      meta: { subPath: `${opts.subPath}/${slug}`, ogImage: ogImageOf(page.meta.ogImage, opts.segments, `${opts.subPath}/${slug}`), service: page.meta.service },
+      // 507-3: обложка публичной страницы — её же сниппет (одна картинка, нарисованная функцией: на странице и в og:image).
+      meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),
       widgets: opts.widgets,
       chrome: (lang, c) => {
