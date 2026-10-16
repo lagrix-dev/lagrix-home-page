@@ -1,12 +1,206 @@
 {
-  "title": "Ethereum L1",
-  "description": "Ethereum L1",
+  "title": "Ethereum gas for AI agents: who pays the stamp",
+  "subtitle": "In Lagrix each write to the blockchain costs a stamp of a fraction of a cent, and an agent pays it in ether or in dollars through a paymaster.",
+  "description": "Gas for AI agents in Lagrix: which actions need a stamp, who pays it, own ether or a USDC paymaster, and measured prices of a fraction of a cent.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "Every write to the blockchain costs a stamp, called gas, paid in ether. In Lagrix the stamp is a fraction of a cent and does not depend on the amount. Rare actions, such as paying into escrow, are paid by whoever acts. Frequent ones, such as searches, travel in batches with one stamp for thousands.",
+      "bid": "njth4"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "How agents meet gas now",
+      "bid": "t30y9"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-gas",
+      "text": "Gas in plain words",
+      "bid": "uxtc3"
+    },
+    {
       "kind": "text-p",
-      "text": "Ethereum L1",
-      "bid": "m3ccd"
+      "text": "A blockchain is a shared record that many computers keep at once. Every new line in it is a write: a payment locked, a job accepted, a review left. Someone has to pay the computers for keeping that line forever.",
+      "bid": "s3w2y"
+    },
+    {
+      "kind": "text-p",
+      "text": "That payment is gas. Think of it as a stamp on a letter: one write, one stamp. It is paid in ether, the Ethereum network's own currency, and the network sets its price. The amount inside the letter does not matter, so recording a $3 deal costs the same stamp as recording a $3,000 deal.",
+      "bid": "e159m"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each write also proves something. Once Anna's payment is locked, anyone can check later that it was locked, by whom and when. The stamp is the price of that proof, and it is paid only once.",
+      "bid": "v9w6g"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-dollars",
+      "text": "Agents that hold only dollars",
+      "bid": "tsafa"
+    },
+    {
+      "kind": "text-p",
+      "text": "Agents have started to pay for things on their own. In September 2025 Google announced [AP2 together with an extension for crypto payments](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol), built with Coinbase, the Ethereum Foundation and MetaMask. Paying an agent in digital dollars became an ordinary idea almost overnight.",
+      "bid": "zkn09"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo runs a translation agent, and his customers pay it in USDC, a digital dollar. His agent has never held ether. Its first payment on the blockchain asks for a stamp, and the stamp wants a currency the agent does not have. Lagrix answers two questions here: which actions need a stamp, and who pays it. Without such answers, an agent that earns dollars would have to buy ether before it could take its very first order.",
+      "bid": "tnzud"
+    },
+    {
+      "kind": "text-h2",
+      "id": "who-pays",
+      "text": "Who pays the stamp in Lagrix",
+      "bid": "m9uuv"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "flvc9"
+    },
+    {
+      "kind": "text-h3",
+      "id": "pay-rare",
+      "text": "Rare actions: you pay your own",
+      "bid": "a5yli"
+    },
+    {
+      "kind": "text-p",
+      "text": "Some actions happen once per deal, and each is its own write. Topping up the search balance, paying into escrow, delivering the work, accepting it and leaving a review all belong here. The rule is simple: whoever acts pays the stamp.",
+      "bid": "rvpqm"
+    },
+    {
+      "kind": "text-p",
+      "text": "Follow one order. Step one: Anna's salon orders a translation, and her agent locks the payment in escrow, so Anna's agent pays that stamp. Step two: Leo's agent delivers the work and records the delivery, so Leo's agent pays his stamp. Step three: each of them leaves a review and pays for their own line.",
+      "bid": "gyjma"
+    },
+    {
+      "kind": "text-p",
+      "text": "Nobody pays stamps for anyone else. Network participants do not sell stamps to each other, and neither nodes nor super-nodes run gas services for other people. Each line therefore belongs to the one who wrote it, and its cost is never shifted onto someone who did not choose to write it.",
+      "bid": "ugl4k"
+    },
+    {
+      "kind": "text-h3",
+      "id": "pay-frequent",
+      "text": "Frequent actions: one stamp for a batch",
+      "bid": "nx5cz"
+    },
+    {
+      "kind": "text-p",
+      "text": "Other actions happen all the time. A search costs $0.01, and a message delivered by the network costs $0.001. Written to the blockchain one by one, each would cost about as much in stamps as the payment itself.",
+      "bid": "f8ulo"
+    },
+    {
+      "kind": "text-p",
+      "text": "So they never go one by one. Step one: Leo's agent signs a voucher, a promise to pay from its balance in the contract. Step two: a super-node, one of the network's search servers, collects thousands of vouchers. Step three: it redeems them in one batch and pays one stamp for all of them. Leo's agent pays no stamp for its searches at all. Here is [how the search fee works](/en/search-fee).",
+      "bid": "rsx56"
+    },
+    {
+      "kind": "text-h2",
+      "id": "ways",
+      "text": "Two ways to pay a stamp",
+      "bid": "vdeaj"
+    },
+    {
+      "kind": "text-h3",
+      "id": "ways-own",
+      "text": "Your own ether",
+      "bid": "f6s3x"
+    },
+    {
+      "kind": "text-p",
+      "text": "The first way is direct. Leo's node keeps a little ether and pays its own stamps. No service stands in between, and nobody has to approve the payment. How much is a little? At a stamp of about $0.003, one dollar of ether covers more than three hundred writes, which lasts an agent many deals.",
+      "bid": "soytw"
+    },
+    {
+      "kind": "text-p",
+      "text": "This way cannot be switched off. Ether has no function to block an address, and the main network is kept by many independent validators rather than one company. A small balance of ether is the fallback that stays open whatever else happens.",
+      "bid": "hqm6w"
+    },
+    {
+      "kind": "text-h3",
+      "id": "ways-paymaster",
+      "text": "A paymaster in dollars",
+      "bid": "zmhz0"
+    },
+    {
+      "kind": "text-p",
+      "text": "The second way suits an agent that holds only dollars. A paymaster is a third-party contract under the ERC-4337 standard. It pays the stamp in its own ether and charges the agent in USDC, so Leo's agent never touches ether at all.",
+      "bid": "qbrmg"
+    },
+    {
+      "kind": "text-p",
+      "text": "Take Circle Paymaster as an example: it accepts USDC only, needs no sign-up, and adds a 10% surcharge on gas on Arbitrum and Base. The surcharge is the price of convenience: Leo's agent never holds a second currency, and its owner never has to buy one. On a stamp of $0.003 Leo pays $0.0033. The node chooses its way and can switch at any time. If the paymaster ever refuses, Leo buys a little ether and carries on.",
+      "bid": "nw7rw"
+    },
+    {
+      "kind": "text-h2",
+      "id": "price",
+      "text": "What a stamp costs",
+      "bid": "pzqdd"
+    },
+    {
+      "kind": "text-h3",
+      "id": "price-measured",
+      "text": "Measured on two networks",
+      "bid": "b30xs"
+    },
+    {
+      "kind": "text-p",
+      "text": "The price was measured for Lagrix on 14 October 2026 on the official public nodes. A simple USDC transfer cost a median of $0.0028 on Arbitrum One and $0.00065 on Base. Both are fractions of a cent.",
+      "bid": "lb5dk"
+    },
+    {
+      "kind": "text-p",
+      "text": "Treat these numbers as a one-minute snapshot. The price moves with the load on the network and with the rate of ether. Locking money into escrow and accepting work are heavier than a simple transfer, so their stamps cost more, though still a small part of a cent. Compare that with Anna's whole order: the fee on a $100 deal is $5, so the stamps are the smallest line on her bill. Here is [how Arbitrum and Base differ](/en/arbitrum-base-l2).",
+      "bid": "y0wv9"
+    },
+    {
+      "kind": "text-h3",
+      "id": "price-layers",
+      "text": "The main network and the second layer",
+      "bid": "jmf34"
+    },
+    {
+      "kind": "text-p",
+      "text": "The Ethereum main network is where many independent validators keep the shared record. Writing there directly is the most expensive option. Second-layer networks such as Arbitrum and Base write far more cheaply and settle their results against the main network. For Leo this means he never has to think about the main network at all: his agent works on the second layer, and the main network quietly keeps the record honest.",
+      "bid": "nmlw3"
+    },
+    {
+      "kind": "text-p",
+      "text": "In March 2024 the [Dencun upgrade](https://ethereum.org/en/history/) made storing second-layer data much cheaper. That is why the Lagrix contracts run on the second layer and the stamp stays at a fraction of a cent. Here is [the whole stack of one deal](/en/technology), and the full rules are in [document 8 of the protocol](/en/docs/08-account-abstraction-bundler).",
+      "bid": "mhpa4"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does an AI agent need ether?",
+      "a": "Only to pay stamps itself. A paymaster can pay the stamp and charge the agent in USDC instead."
+    },
+    {
+      "q": "Who pays gas for a search?",
+      "a": "The super-node, with one stamp for a whole batch of vouchers. The searcher pays no stamp at all."
+    },
+    {
+      "q": "Can gas be paid in USDC?",
+      "a": "Yes, through a third-party paymaster. Circle Paymaster, for example, adds a 10% surcharge on gas."
+    },
+    {
+      "q": "Does gas depend on the deal amount?",
+      "a": "No. A $3 deal and a $3,000 deal cost the same stamp."
+    },
+    {
+      "q": "What if the paymaster refuses?",
+      "a": "Pay with your own ether. Ether has no function to block an address, so this way always stays open."
+    },
+    {
+      "q": "How much ether should my agent keep?",
+      "a": "A little. At about $0.003 per stamp, one dollar of ether covers more than three hundred writes."
     }
   ]
 }
