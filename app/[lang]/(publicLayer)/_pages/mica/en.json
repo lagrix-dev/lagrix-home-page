@@ -1,12 +1,210 @@
 {
-  "title": "MiCA",
-  "description": "MiCA",
+  "title": "MiCA and AI agent payments: who holds the money",
+  "subtitle": "Step by step through one payment in Lagrix: a contract holds the funds, nobody acts on a client's behalf, and the supervisor decides.",
+  "description": "How MiCA terms meet AI agent payments in Lagrix: escrow held by a contract, no custody by super-nodes, no gas sold to others. A design, not advice.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "MiCA regulates services such as holding or transferring crypto-assets on behalf of clients. In Lagrix a payment between agents is locked and released by an immutable contract, no super-node holds a client's funds or keys, and nobody sells gas to others. Whether the network is fully decentralised in MiCA's sense is for the supervisor to assess.",
+      "bid": "jsrig"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "What MiCA regulates",
+      "bid": "gefp7"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-terms",
+      "text": "Services on behalf of clients",
+      "bid": "j3pmd"
+    },
+    {
       "kind": "text-p",
-      "text": "MiCA",
-      "bid": "kvs3o"
+      "text": "Leo lives in the European Union. He runs a node there, and on it a translation agent that Anna's «Bella» salon is about to pay $100. Before he starts, Leo wants to understand one regulation above all others: MiCA, the EU Regulation 2023/1114 on markets in crypto-assets.",
+      "bid": "thkdw"
+    },
+    {
+      "kind": "text-p",
+      "text": "[MiCA's Article 3](https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-3-definitions) lists crypto-asset services. Custody is the safekeeping or controlling of crypto-assets, or of the means of access to them, on behalf of clients. Transfer services move crypto-assets on behalf of clients, and exchange services swap them for money or for other assets.",
+      "bid": "w6h7v"
+    },
+    {
+      "kind": "text-p",
+      "text": "Read those definitions again and one phrase keeps returning: on behalf of clients. The question for Leo is therefore simple to ask. At any step of Anna's payment, does someone hold her money or move it for her?",
+      "bid": "f175u"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-decentral",
+      "text": "Fully decentralised services",
+      "bid": "p91ia"
+    },
+    {
+      "kind": "text-p",
+      "text": "MiCA also speaks about services with nobody in the middle. The European Banking Authority answered in its [Q&A 2024_7172](https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2024_7172) that crypto-asset services provided in a fully decentralised manner, without any intermediary, do not fall within the scope of MiCA.",
+      "bid": "uo0at"
+    },
+    {
+      "kind": "text-p",
+      "text": "The regulation does not define what fully decentralised means, so the supervisor assesses each case. In its [2026 consultation on reviewing MiCA](https://finance.ec.europa.eu/document/download/62be7015-f066-4fac-b74e-71bacdbcc9f5_en?filename=2026-mica-review-targeted-consultation-document_en.pdf) the European Commission listed possible signs of a service that is not fully decentralised: an identifiable intermediary, control through administrator keys, concentrated governance. These are options under discussion, not rules. They matter to Leo because MiCA reaches whoever acts as an intermediary, and the design tries to leave no such role to anyone.",
+      "bid": "gec6b"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How one payment fits these terms",
+      "bid": "u4byc"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "f7mrc"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fit-offer",
+      "text": "USDC from a third party",
+      "bid": "cz1m3"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna pays in USDC, a digital dollar issued by the company Circle. Lagrix makes no offer of crypto-assets to the public. It simply accepts USDC, issued by someone else, as a means of payment.",
+      "bid": "olw7t"
+    },
+    {
+      "kind": "text-p",
+      "text": "Lagrix does not issue USDC, does not redeem it and does not hold it for anyone. If Anna wants dollars in her bank account, she deals with Circle or with whatever service she already uses, and the network plays no part in it.",
+      "bid": "ra6p5"
+    },
+    {
+      "kind": "text-p",
+      "text": "For Leo the consequence is practical. He is paid in a dollar that someone else issues and answers for, and the network only carries the record of the deal.",
+      "bid": "zdrb8"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fit-escrow",
+      "text": "A contract holds the payment",
+      "bid": "jobzb"
+    },
+    {
+      "kind": "text-p",
+      "text": "Step one: Anna's agent locks $100 in the escrow contract, a program on the blockchain that works like a safe. Step two: the contract releases the money to Leo when Anna signs her acceptance, or after the dispute window if she stays silent. Step three: if she cancels, part of the money goes back to her under the published rule.",
+      "bid": "vp6jd"
+    },
+    {
+      "kind": "text-p",
+      "text": "Step four: the fee, $5 on this deal, goes into a pool that the contract itself holds, and each super-node claims its own share from it. At none of these steps does a super-node hold Anna's money or the keys to it, and at none of them does Leo's node act on her behalf. The contracts themselves have no administrator key. Here is [how escrow payments work](/en/web3-payments).",
+      "bid": "bgmaf"
+    },
+    {
+      "kind": "text-h2",
+      "id": "gas",
+      "text": "Gas without a middleman",
+      "bid": "gv6vn"
+    },
+    {
+      "kind": "text-h3",
+      "id": "gas-self",
+      "text": "Everyone pays their own stamps",
+      "bid": "tbln9"
+    },
+    {
+      "kind": "text-p",
+      "text": "Every write to the blockchain costs a stamp, paid in ether, and whoever acts pays it. Anna pays the stamp for locking her payment. Leo pays the stamp for recording his delivery.",
+      "bid": "fa9kx"
+    },
+    {
+      "kind": "text-p",
+      "text": "Neither nodes nor super-nodes sell stamps to others or carry other people's transactions for a fee. The protocol names the reason openly: such a service could count as exchanging crypto-assets or transferring them on behalf of clients, in the sense of MiCA's Article 3(1)(16), (20) and (26). So the rule keeps every participant out of that role. On Anna's order that means two writes, two stamps and two payers, with nobody in between who takes Anna's dollars to buy ether for her. Here is [how Ethereum gas works for agents](/en/ethereum-l1).",
+      "bid": "crgi5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "gas-paymaster",
+      "text": "A third-party paymaster is a choice",
+      "bid": "hzq2e"
+    },
+    {
+      "kind": "text-p",
+      "text": "An agent that holds only dollars can still pay its stamps through a third-party paymaster, a service that pays the stamp in ether and charges the agent in USDC. Circle Paymaster is one example.",
+      "bid": "kc92r"
+    },
+    {
+      "kind": "text-p",
+      "text": "The network has no connection with such a service. Leo chooses whether to use one, and his own ether stays the fallback that nobody can switch off. If the paymaster refuses him one day, nothing in the network changes: he buys a little ether and pays the next stamp himself.",
+      "bid": "l89fr"
+    },
+    {
+      "kind": "text-h2",
+      "id": "decentral",
+      "text": "The fully decentralised question",
+      "bid": "cpjer"
+    },
+    {
+      "kind": "text-h3",
+      "id": "dec-design",
+      "text": "What the design shows",
+      "bid": "svkeh"
+    },
+    {
+      "kind": "text-p",
+      "text": "Compare Lagrix with the signs the Commission is discussing. The contracts have no administrator keys, so nobody can change a rule after deployment. There is no council and no vote, so governance is not concentrated anywhere.",
+      "bid": "f67ax"
+    },
+    {
+      "kind": "text-p",
+      "text": "The operators of super-nodes are independent people whose places are assigned by random choice and rotate. The network does not depend on any company's domain or server: if one operator leaves, Anna and Leo carry on through the others. Leo's own node is one of many, and it holds his keys and nobody else's.",
+      "bid": "q3rkv"
+    },
+    {
+      "kind": "text-h3",
+      "id": "dec-who",
+      "text": "Who decides",
+      "bid": "si2x6"
+    },
+    {
+      "kind": "text-p",
+      "text": "None of this settles the question by itself. Under the EBA's answer, whether a network is fully decentralised is for the supervisor to assess, case by case and on the facts. What the design does is make those facts easy to see: Leo can show a supervisor the contract code, the published rules and the record of each deal.",
+      "bid": "or4jl"
+    },
+    {
+      "kind": "text-p",
+      "text": "[Document 22 of the protocol](/en/docs/22-questions-regulators-ask) lists the questions regulators ask, with their sources, and names the ones the design leaves to supervisors and courts, among them whether an escrow contract that holds funds counts as custody. This page is a statement of design, not legal advice. Here are [all regulator questions](/en/regulators) in one place.",
+      "bid": "cd5fo"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does running a Lagrix node make me a crypto-asset service provider?",
+      "a": "In the design, no node or super-node holds or transfers a client's funds, and nobody sells gas. The supervisor assesses each case."
+    },
+    {
+      "q": "Who holds the money during a deal?",
+      "a": "The escrow contract. It locks the payment and releases it by rules written in code."
+    },
+    {
+      "q": "Does Lagrix offer crypto-assets to the public?",
+      "a": "No. It accepts USDC, issued by a third party, as a means of payment."
+    },
+    {
+      "q": "Can a super-node pay gas for my agent?",
+      "a": "No. Participants do not sell stamps. Use your own ether or a third-party paymaster."
+    },
+    {
+      "q": "Is Lagrix fully decentralised under MiCA?",
+      "a": "The design has no administrator keys, no council and rotating operators. Whether that is fully decentralised is for the supervisor to assess."
+    },
+    {
+      "q": "Does Lagrix hold USDC for anyone?",
+      "a": "No. It does not issue, redeem or hold USDC. It accepts USDC as a means of payment."
+    },
+    {
+      "q": "Is this legal advice?",
+      "a": "No. It describes how Lagrix is designed. The supervisor decides on the facts of each case."
     }
   ]
 }
