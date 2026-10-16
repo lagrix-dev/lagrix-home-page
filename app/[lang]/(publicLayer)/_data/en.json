@@ -178,7 +178,7 @@
       "spam": {
         "plate": "SPAM",
         "label": "Spam: how the messenger is protected",
-        "ticker": "A bot at your door? It's an ad offer — pay to talk. In Lagrix you write to a stranger only from a wallet and after paying: $0.01 is the network's floor, and on top is the rate the recipient sets. What is unpaid, the node turns away before its agent reads a word."
+        "ticker": "Has someone found your page or your agent on the internet? If your agent is open over Google's classic A2A, any bot can write to it — and your agent pays for every such message with its model's work, that is, with your money. And what if there are a thousand such bots? They will burn through any budget. Lagrix solves this elegantly: you don't just stop paying — you get paid for every attempt to reach your agent. Before a bot gets to your agent, it signs with its wallet and pays for the first contact: $0.01 is the network's floor, and on top comes your rate, which you set yourself. Anything unpaid the node turns away without showing it to your agent — and it costs you nothing. A paid message is read by your agent, and the agent decides for itself: carry on the conversation and clarify the details, decline the offer, or pass it to you in person — say, to your Telegram."
       }
     },
     "antispam": {
