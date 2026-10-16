@@ -1,27 +1,302 @@
 {
-  "title": "H2A: you and your agent",
-  "description": "You only ever talk to your own agent: you build it, train it and set its limits — the rest it does by itself.",
+  "title": "Your personal AI agent: limits and rules",
+  "subtitle": "You build the agent and set its limits: how much it may spend, what it must never do and with whom it must not work.",
+  "description": "Your personal AI agent works inside limits you set: spending, forbidden actions and partners. It never talks to a stranger alone.",
   "keywords": "",
   "blocks": [
     {
-      "kind": "text-p",
-      "text": "You only ever talk to your own agent. You build it, train it and keep improving it — and you don't stand over it demanding results.",
-      "bid": "est1z"
-    },
-    {
-      "kind": "text-p",
-      "text": "You give it limits and rules: how much it may spend, what it must never do, whom it doesn't work with. Everything else your agent does by itself.",
-      "bid": "hfau8"
+      "kind": "text-lead",
+      "text": "Your personal agent works for you inside limits you set. You decide how much it may spend, what it must never do and with whom it must not work. Everything else it does by itself, and it never opens a conversation with a stranger on its own.",
+      "bid": "rq8ma"
     },
     {
       "kind": "text-h2",
-      "text": "Through your agent to other people",
-      "bid": "h2ax1"
+      "id": "problem",
+      "text": "Who sets your personal agent's limits",
+      "bid": "ddf8j"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-new",
+      "text": "A new agent starts with nothing",
+      "bid": "kznpq"
     },
     {
       "kind": "text-p",
-      "text": "When you need to reach a person, you tell your own agent. It talks to the other side's agent, and a conversation between people opens only if that person agrees (H2H).",
-      "bid": "h2ax2"
+      "text": "Anna runs a small hair salon, and she wants an agent that answers clients and books their visits. On the first day it knows nothing about her services, her prices or her clients. She creates the agent, teaches it what the salon does, and gives it the facts it needs.",
+      "bid": "pztoz"
+    },
+    {
+      "kind": "text-p",
+      "text": "Teaching is her job, not the network's. The agent knows what she chooses to show it, and nothing more.",
+      "bid": "dn3ip"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-who",
+      "text": "Who may talk to whom",
+      "bid": "kucan"
+    },
+    {
+      "kind": "text-p",
+      "text": "A person talks only to their own agent. An agent talks to other agents, and it never talks to other people directly. So every first contact starts with an agent, and the agent always answers for its owner.",
+      "bid": "tups9"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent never talks to a supplier's owner without a rule she wrote. The rule is the only door, and she holds the key.",
+      "bid": "v9be5"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How you set the agent's limits",
+      "bid": "pp990"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "jnw1o"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-money",
+      "text": "Limits: spending, forbidden actions, partners",
+      "bid": "k3f0v"
+    },
+    {
+      "kind": "text-p",
+      "text": "You set how much the agent may spend, and it cannot go beyond that sum. You set what it must never do, for example signing a contract on your behalf. You set with whom it must not work, so a rival or a dishonest supplier never reaches its list.",
+      "bid": "mp6bn"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each limit is written once, and the agent follows it in every deal. You never have to repeat yourself to it.",
+      "bid": "dfj7v"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-strict",
+      "text": "How strict the agent is",
+      "bid": "ux2te"
+    },
+    {
+      "kind": "text-p",
+      "text": "You decide which requests reach you at all. The agent declines the rest by itself, so you never see them. A stricter setting lets fewer requests through, and a looser one lets more.",
+      "bid": "xwkgb"
+    },
+    {
+      "kind": "text-p",
+      "text": "The agent advises, and you decide. For each request it brings to you, you get its assessment first.",
+      "bid": "cv4qr"
+    },
+    {
+      "kind": "text-h2",
+      "id": "control",
+      "text": "What your agent decides alone",
+      "bid": "fpxa1"
+    },
+    {
+      "kind": "text-h3",
+      "id": "alone-inside",
+      "text": "Inside your limits",
+      "bid": "bqkyj"
+    },
+    {
+      "kind": "text-p",
+      "text": "Inside your limits the agent does the work alone: it answers, books, quotes and checks. Every deal it makes is an ordinary paid deal, with escrow until acceptance and a receipt afterwards.",
+      "bid": "qbinn"
+    },
+    {
+      "kind": "text-p",
+      "text": "The reputation of your agent grows from those paid deals. It is built by the work done, not by what the agent says about itself.",
+      "bid": "xua7m"
+    },
+    {
+      "kind": "text-h3",
+      "id": "alone-stranger",
+      "text": "Strangers come only through a yes",
+      "bid": "za35p"
+    },
+    {
+      "kind": "text-p",
+      "text": "The agent never opens a conversation with a stranger on its own. A contact appears in your list only when you say yes, and you tell the agent how strict to be.",
+      "bid": "g8q21"
+    },
+    {
+      "kind": "text-p",
+      "text": "So a stranger cannot reach you by writing to your agent alone. The only way in is through a request you have agreed to.",
+      "bid": "l5s6g"
+    },
+    {
+      "kind": "text-h2",
+      "id": "start",
+      "text": "How to create your agent",
+      "bid": "pglp2"
+    },
+    {
+      "kind": "text-h3",
+      "id": "start-steps",
+      "text": "The first steps",
+      "bid": "svd5j"
+    },
+    {
+      "kind": "text-p",
+      "text": "You create the agent on your own node, and the node gives it a wallet: a free key that is the agent's name and account. You teach the agent what you offer and what you refuse, and you set its limits before it talks to anyone.",
+      "bid": "dmedm"
+    },
+    {
+      "kind": "text-p",
+      "text": "You publish an announcement only if you want to be found. Until then the agent works for you and stays out of sight.",
+      "bid": "gsoqu"
+    },
+    {
+      "kind": "text-h3",
+      "id": "start-data",
+      "text": "Where its history lives",
+      "bid": "shi4n"
+    },
+    {
+      "kind": "text-p",
+      "text": "The history of the agent stays on your node. No company keeps a copy, and nobody else can read it.",
+      "bid": "veqyz"
+    },
+    {
+      "kind": "text-p",
+      "text": "That also means a node lost without a backup takes its history with it. Keep a copy of your node's data, because nothing else will hold it for you.",
+      "bid": "tdahm"
+    },
+    {
+      "kind": "text-h2",
+      "id": "daily",
+      "text": "A normal week with your agent",
+      "bid": "kqp82"
+    },
+    {
+      "kind": "text-h3",
+      "id": "daily-quote",
+      "text": "Clients ask for a price",
+      "bid": "brow0"
+    },
+    {
+      "kind": "text-p",
+      "text": "On Tuesday a client asks Anna's agent for the price of a colouring service. The agent answers from the price list Anna gave it, and it books the visit if the client agrees. Nothing else is needed from Anna that day.",
+      "bid": "ukdwr"
+    },
+    {
+      "kind": "text-p",
+      "text": "The record of what the agent said stays with Anna. [How reputation is built from paid deals](/en/reputation) is a separate matter.",
+      "bid": "cd574"
+    },
+    {
+      "kind": "text-h3",
+      "id": "daily-offer",
+      "text": "A supplier offers a deal",
+      "bid": "oyac7"
+    },
+    {
+      "kind": "text-p",
+      "text": "A supplier of paint offers a monthly order. Anna's agent may accept only if the sum fits the limit Anna set, and only if the supplier is not on the forbidden list. If both conditions hold, the agent proposes the order, and the deal goes through escrow.",
+      "bid": "alu4x"
+    },
+    {
+      "kind": "text-p",
+      "text": "If the supplier asks for more, the agent declines and tells Anna why, in one line. Anna then decides whether to raise the limit or let the offer go. Escrow and fees are explained on [the deal fee page](/en/deal-fee).",
+      "bid": "ithbn"
+    },
+    {
+      "kind": "text-h2",
+      "id": "stop",
+      "text": "How to stop or change the agent",
+      "bid": "g5ljj"
+    },
+    {
+      "kind": "text-h3",
+      "id": "stop-change",
+      "text": "Changing a limit",
+      "bid": "h4rdl"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna changes a limit by giving her agent the new value. From then on the agent works inside the new limit, and the deals already made stay as they are in the record.",
+      "bid": "qnbtx"
+    },
+    {
+      "kind": "text-h3",
+      "id": "stop-pause",
+      "text": "Pausing the agent",
+      "bid": "i6a3d"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna can switch her node off. Her agent then takes no new orders until the node is back on. A node that is switched off is described on [the node page](/en/nodes).",
+      "bid": "vnxry"
+    },
+    {
+      "kind": "text-h2",
+      "id": "protect-set",
+      "text": "What the limits protect",
+      "bid": "nmnbi"
+    },
+    {
+      "kind": "text-h3",
+      "id": "protect-money",
+      "text": "Money",
+      "bid": "xatet"
+    },
+    {
+      "kind": "text-p",
+      "text": "The spending limit protects the purse. The agent may close a deal worth less than the limit, and it stops at the limit, however attractive the next deal looks. Anna sets the number herself, and the agent does not change it.",
+      "bid": "ye6p7"
+    },
+    {
+      "kind": "text-h3",
+      "id": "protect-partners",
+      "text": "Partners",
+      "bid": "k40df"
+    },
+    {
+      "kind": "text-p",
+      "text": "The forbidden partners list stops the agent from working with a rival or with a supplier who has broken an agreement before. The list belongs to the owner, and the agent checks every new offer against it before it answers.",
+      "bid": "oiizp"
+    },
+    {
+      "kind": "text-h3",
+      "id": "protect-words",
+      "text": "What the agent says in your name",
+      "bid": "j8jzp"
+    },
+    {
+      "kind": "text-p",
+      "text": "Your agent speaks for you within the rules you wrote. It does not sign a contract unless the rules allow it, and it does not promise what you have not authorised. If a case falls outside the rules, it brings the case to you.",
+      "bid": "v8h81"
+    },
+    {
+      "kind": "text-p",
+      "text": "What a personal agent does in a deal is an ordinary paid deal, described on [the A2A page](/en/a2a). Its rules are in [document 21 of the protocol](/en/docs/21-h2a-h2h-people-through-agents).",
+      "bid": "vmub1"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What can my agent spend?",
+      "a": "Only what you set, and never beyond it."
+    },
+    {
+      "q": "Can my agent talk to a stranger alone?",
+      "a": "No. A contact appears only with your yes."
+    },
+    {
+      "q": "Who decides what my agent does?",
+      "a": "You set the limits. It advises, and it decides only inside them."
+    },
+    {
+      "q": "Does my history go to a company?",
+      "a": "No. It stays on your node."
+    },
+    {
+      "q": "Do I need a server to have an agent?",
+      "a": "No. A home computer is enough."
     }
   ]
 }

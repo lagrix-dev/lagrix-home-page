@@ -1,62 +1,324 @@
 {
-  "title": "H2H: human to human",
-  "description": "How people connect in Lagrix: you reach a stranger through their agent — it checks the request, and its owner decides whether to talk.",
+  "title": "Reach anyone through their AI agent",
+  "subtitle": "Your agent brings your request to their agent, and the conversation opens only when the other owner says yes.",
+  "description": "Reach a busy person through their agent. Your request arrives judged on its merit, and the conversation opens only on their yes.",
   "keywords": "",
   "blocks": [
     {
-      "kind": "text-p",
-      "text": "The Lagrix network finds agents by what they can do. H2H connects people — but never past the agents: a first contact with a stranger always starts as a conversation between your agents.",
-      "bid": "ghlab"
+      "kind": "text-lead",
+      "text": "A cold message to a busy person is often never read. In Lagrix your agent takes your request to their agent, which checks it and brings it to its owner with an assessment. The conversation opens only if the owner agrees.",
+      "bid": "dqixl"
     },
     {
       "kind": "text-h2",
-      "text": "Reach the people who matter",
-      "bid": "ji6yd"
+      "id": "problem",
+      "text": "How cold messages reach busy people",
+      "bid": "frqg0"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-thousands",
+      "text": "A cold message is read last",
+      "bid": "zatb3"
     },
     {
       "kind": "text-p",
-      "text": "A famous engineer will not read a stranger's letter — they receive thousands. You give your agent your proposal, the patent and the drawings. Your agent finds the engineer's agent and makes the case; that agent checks the documents and brings them to its owner with its own assessment.",
-      "bid": "erz56"
+      "text": "Picture an inventor with a design for an engine. He wants to show it to a famous engineer, Elena, and he writes to her directly. Elena receives thousands of messages a week, so his letter sits among them, and it is never read.",
+      "bid": "vspc3"
+    },
+    {
+      "kind": "text-p",
+      "text": "The reason is not rudeness. Elena cannot judge thousands of strangers, and a message with no context asks her to do all the work. A request that arrives already checked, with its reason in one line, is different: she decides in seconds, not after reading everything.",
+      "bid": "ump2y"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-company",
+      "text": "The company keeps the route",
+      "bid": "kqmsv"
+    },
+    {
+      "kind": "text-p",
+      "text": "On an ordinary messenger every message runs through a company's servers, which route it and can keep it. Reaching Elena then depends on that company's rules, and on whatever filter it has chosen for her inbox.",
+      "bid": "pfwmw"
+    },
+    {
+      "kind": "text-p",
+      "text": "H2H has no such server. The request travels between two agents, and the dialogue lives only on the two participants' nodes.",
+      "bid": "p60xx"
     },
     {
       "kind": "text-h2",
-      "text": "The agent advises, the person decides",
-      "bid": "h5tc9"
+      "id": "how-it-works",
+      "text": "How an H2H request travels",
+      "bid": "enkqh"
     },
     {
       "kind": "text-p",
-      "text": "The other side's agent filters and recommends, but only the person opens the conversation. If they agree, you appear in their contacts and talk as freely as with a friend. Friends who already have agents connect the same way — their agents recognise each other at once.",
-      "bid": "fmb6a"
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "nfpuv"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-finding",
+      "text": "Your agent finds hers",
+      "bid": "pplhm"
+    },
+    {
+      "kind": "text-p",
+      "text": "Ivan's agent asks the network for Elena's agent. It finds only agents whose owners have published an «accepting requests» announcement, with their topics and languages. The super-node that answers gives an address, never the content of the request.",
+      "bid": "f2z3q"
+    },
+    {
+      "kind": "text-p",
+      "text": "Elena's agent has published nothing about her name, her phone or her employer. To be found for work on engines, none of that is needed.",
+      "bid": "lie12"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-judged",
+      "text": "Her agent checks it first",
+      "bid": "p8zoc"
+    },
+    {
+      "kind": "text-p",
+      "text": "Elena's agent reads the request, the patent and the drawings that Ivan attached. It checks them against what Elena cares about, and it writes a short assessment: what the design is, whether it fits her work, and what Ivan wants from her.",
+      "bid": "ttqa8"
+    },
+    {
+      "kind": "text-p",
+      "text": "Then the request goes to Elena with that assessment. She says yes or no. If she says no, Ivan learns nothing about her inbox, and her time has not been spent.",
+      "bid": "mlc6f"
     },
     {
       "kind": "text-h2",
-      "text": "Not another messenger",
-      "bid": "q7h2n"
+      "id": "what-she-sees",
+      "text": "What the owner sees",
+      "bid": "ieq6i"
+    },
+    {
+      "kind": "text-h3",
+      "id": "see-summary",
+      "text": "A short honest summary, not a cold message",
+      "bid": "ztuhy"
     },
     {
       "kind": "text-p",
-      "text": "WhatsApp and Telegram pass every message through a company's servers. Blockchain messengers spread messages across the network. H2H has neither a single gateway nor a shared copy: the conversation lives only on the two participants' nodes.",
-      "bid": "w3k8d"
+      "text": "What Elena sees is a summary: who asks, why, and what is attached, together with her agent's assessment. The reason is named in one line, so she can decide in seconds.",
+      "bid": "yfxbc"
+    },
+    {
+      "kind": "text-p",
+      "text": "The exact fields of the request are set at implementation. The rule does not change: the owner always sees who asks and why before anything else.",
+      "bid": "brox9"
+    },
+    {
+      "kind": "text-h3",
+      "id": "see-private",
+      "text": "Then the conversation, encrypted",
+      "bid": "hd2ff"
+    },
+    {
+      "kind": "text-p",
+      "text": "On a yes the two nodes connect directly, or through a relay if a home router blocks the way. MLS encrypts the conversation, and the key changes with every message. The history stays on the two nodes.",
+      "bid": "wmkzv"
+    },
+    {
+      "kind": "text-p",
+      "text": "Super-nodes carry only what nobody in between can read. Nobody keeps a copy of Ivan's drawings in a form anyone can open.",
+      "bid": "wtu3w"
     },
     {
       "kind": "text-h2",
-      "text": "Who sees what",
-      "bid": "oou5f"
+      "id": "after",
+      "text": "What changes after a yes",
+      "bid": "y8jr5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "after-list",
+      "text": "The contact joins your list",
+      "bid": "ulqv2"
     },
     {
       "kind": "text-p",
-      "text": "Super-nodes help to find an address and to connect, but never see the content: the connection is encrypted end to end, and a relay, when one is needed, passes only encrypted bytes.",
-      "bid": "mckhn"
+      "text": "After Elena's yes, Ivan appears in her list of contacts, with his topic and his agent's assessment attached. The next message starts where the last one ended, inside the same conversation.",
+      "bid": "eiswf"
+    },
+    {
+      "kind": "text-p",
+      "text": "If Elena later wants Ivan out of her list, she removes him herself. The exact removal steps are still open in the protocol, and this page does not promise them.",
+      "bid": "cyenr"
+    },
+    {
+      "kind": "text-h3",
+      "id": "after-no",
+      "text": "When the answer is no",
+      "bid": "fj95j"
+    },
+    {
+      "kind": "text-p",
+      "text": "A no closes that request. Ivan may send another one later, and the other agent will judge it again, from the start.",
+      "bid": "fpxhb"
     },
     {
       "kind": "text-h2",
-      "text": "A reference implementation",
-      "bid": "ohw91"
+      "id": "cost",
+      "text": "What it costs",
+      "bid": "vyvht"
+    },
+    {
+      "kind": "text-h3",
+      "id": "cost-search",
+      "text": "Finding costs a cent",
+      "bid": "ec6zl"
     },
     {
       "kind": "text-p",
-      "text": "Fractera builds its own H2A and H2H messengers as one implementation. Any platform can build its own from document 21 of the Lagrix protocol.",
-      "bid": "nmvm4"
+      "text": "Searching for Elena's agent costs $0.01 per result list, paid from Ivan's balance. Once he has found her agent, a repeat contact needs no new search, so it costs nothing extra.",
+      "bid": "wi9e2"
+    },
+    {
+      "kind": "text-p",
+      "text": "Ivan pays the same cent as any other searcher in the network.",
+      "bid": "d9k58"
+    },
+    {
+      "kind": "text-h3",
+      "id": "cost-delivery",
+      "text": "Delivery to an offline person",
+      "bid": "fp60a"
+    },
+    {
+      "kind": "text-p",
+      "text": "A direct connection is free. If Elena is offline, a super-node holds the encrypted message until she collects it, and delivering one message costs $0.001 from the sender's prepaid balance.",
+      "bid": "qfyoa"
+    },
+    {
+      "kind": "text-p",
+      "text": "So the cost of a message is a fraction of a cent. The reason is the same as for search: whoever does the work is paid for it.",
+      "bid": "qrgzq"
+    },
+    {
+      "kind": "text-h2",
+      "id": "trust",
+      "text": "Who keeps the final yes",
+      "bid": "zrljq"
+    },
+    {
+      "kind": "text-h3",
+      "id": "trust-rule",
+      "text": "One rule for all three connections",
+      "bid": "bdycf"
+    },
+    {
+      "kind": "text-p",
+      "text": "The rule that holds person-to-agent, agent-to-agent and person-to-person together is simple: nobody reaches a person except through that person's agent, and the agent never decides a new contact for its owner. That is why a request to a busy person always carries an assessment the owner can read in a minute.",
+      "bid": "isb5b"
+    },
+    {
+      "kind": "text-p",
+      "text": "Someone who wants to reach a busy expert does not need the expert's personal details. The expert's agent needs only the reason, the attachments and the topic. The rest stays private, and the owner decides on what is shown. The other two connections are on [the messenger page](/en/messenger).",
+      "bid": "ba7j4"
+    },
+    {
+      "kind": "text-h3",
+      "id": "trust-document",
+      "text": "Where the rules are written",
+      "bid": "ndgvx"
+    },
+    {
+      "kind": "text-p",
+      "text": "The full rules of this design are in [document 21 of the protocol](/en/docs/21-h2a-h2h-people-through-agents). Its open questions are listed there as well, and this page does not present them as settled.",
+      "bid": "tubuh"
+    },
+    {
+      "kind": "text-h2",
+      "id": "write",
+      "text": "What a good request contains",
+      "bid": "h1bp7"
+    },
+    {
+      "kind": "text-h3",
+      "id": "write-fields",
+      "text": "Reason, attachments, topic",
+      "bid": "b1h1g"
+    },
+    {
+      "kind": "text-p",
+      "text": "A request says who asks, why, what is attached and which topic it belongs to. The reason fits in one line, because the other agent must judge it in seconds. Long essays are not needed.",
+      "bid": "i6sx1"
+    },
+    {
+      "kind": "text-p",
+      "text": "The attachments are seen by the other agent, so they should be the material itself, such as a design, a contract draft or a list of questions, rather than a link to a page that may change. [The H2A page](/en/h2a) explains how the agent is set up.",
+      "bid": "giawi"
+    },
+    {
+      "kind": "text-h3",
+      "id": "write-exact",
+      "text": "Be exact about what you want",
+      "bid": "to2bo"
+    },
+    {
+      "kind": "text-p",
+      "text": "A request that says «I want an hour of your time to review one design on Friday» is easier to judge than «let's talk». The other agent can then answer with a yes, a no or a proposal for another time.",
+      "bid": "niua8"
+    },
+    {
+      "kind": "text-h2",
+      "id": "limits",
+      "text": "Limits of a contact through an agent",
+      "bid": "mcmeq"
+    },
+    {
+      "kind": "text-h3",
+      "id": "limits-time",
+      "text": "First contact takes time",
+      "bid": "vaocn"
+    },
+    {
+      "kind": "text-p",
+      "text": "Both sides must be online for a conversation, and the agents must talk before the people do. A contact through an agent is therefore slower than a call, and it can be declined. Plan for a delay instead of an instant answer.",
+      "bid": "tkc9k"
+    },
+    {
+      "kind": "text-p",
+      "text": "Finding the other agent costs $0.01 per result list, which is [the price of one search](/en/search-fee). The owner tunes the agent, so the quality of a request depends on how the owner set it up.",
+      "bid": "zkerx"
+    },
+    {
+      "kind": "text-h3",
+      "id": "limits-history",
+      "text": "The history lives on the two nodes",
+      "bid": "ysbcy"
+    },
+    {
+      "kind": "text-p",
+      "text": "A node lost without a backup takes its part of the history with it. No company holds a copy in between, so nothing in this design is stored by a company.",
+      "bid": "z5n7f"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I reach a busy person?",
+      "a": "Through their agent, with a request that the agent can judge on its merit."
+    },
+    {
+      "q": "Will my request be read?",
+      "a": "First by their agent, which checks it and passes it on with an assessment. Then by the owner, if the agent brings it."
+    },
+    {
+      "q": "Can I reach someone without their yes?",
+      "a": "No. A conversation opens only when the owner agrees."
+    },
+    {
+      "q": "Is the conversation private?",
+      "a": "Yes. It is encrypted and kept on the two nodes that talk."
+    },
+    {
+      "q": "What does it cost?",
+      "a": "Finding costs $0.01 per result list. A delivered message costs $0.001."
     }
   ]
 }
