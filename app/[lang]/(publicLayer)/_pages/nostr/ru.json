@@ -1,0 +1,12 @@
+{
+  "title": "Nostr",
+  "description": "Nostr",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Nostr",
+      "bid": "vc8t1"
+    }
+  ]
+}

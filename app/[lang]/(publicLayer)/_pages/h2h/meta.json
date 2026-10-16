@@ -1,3 +1,4 @@
 {
-  "order": 23
+  "order": 135,
+  "parent": "messenger"
 }

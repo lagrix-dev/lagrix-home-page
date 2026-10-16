@@ -1,0 +1,12 @@
+{
+  "title": "Transaction fee",
+  "description": "Transaction fee",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Transaction fee",
+      "bid": "z5633"
+    }
+  ]
+}

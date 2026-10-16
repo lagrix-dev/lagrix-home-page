@@ -1,0 +1,12 @@
+{
+  "title": "Отмена заказа",
+  "description": "Отмена заказа",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Отмена заказа",
+      "bid": "li192"
+    }
+  ]
+}

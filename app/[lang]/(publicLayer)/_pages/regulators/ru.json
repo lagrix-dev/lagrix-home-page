@@ -1,0 +1,12 @@
+{
+  "title": "Регуляторы",
+  "description": "Регуляторы",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Регуляторы",
+      "bid": "fnd2p"
+    }
+  ]
+}

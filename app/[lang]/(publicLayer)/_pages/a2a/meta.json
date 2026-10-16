@@ -1,3 +1,4 @@
 {
-  "order": 20
+  "order": 101,
+  "parent": "discovery"
 }

@@ -1,0 +1,12 @@
+{
+  "title": "Мессенджер",
+  "description": "Мессенджер",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Мессенджер",
+      "bid": "m4sqj"
+    }
+  ]
+}

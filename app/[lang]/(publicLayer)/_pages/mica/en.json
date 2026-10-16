@@ -1,0 +1,12 @@
+{
+  "title": "MiCA",
+  "description": "MiCA",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "MiCA",
+      "bid": "kvs3o"
+    }
+  ]
+}

@@ -4,10 +4,9 @@
   "keywords": "",
   "blocks": [
     {
-      "kind": "block-section-head",
-      "id": "a2a",
-      "title": "A2A",
-      "bid": "u3e9r"
+      "kind": "text-p",
+      "text": "A2A",
+      "bid": "n83cu"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "title": "Web2",
+  "description": "Web2",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Web2",
+      "bid": "sbot2"
+    }
+  ]
+}

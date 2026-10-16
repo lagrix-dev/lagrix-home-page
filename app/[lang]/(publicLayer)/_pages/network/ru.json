@@ -1,0 +1,12 @@
+{
+  "title": "Сеть",
+  "description": "Сеть",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Сеть",
+      "bid": "msgg2"
+    }
+  ]
+}

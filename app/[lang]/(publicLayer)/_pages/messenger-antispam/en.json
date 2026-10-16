@@ -1,0 +1,12 @@
+{
+  "title": "Messenger antispam",
+  "description": "Messenger antispam",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Messenger antispam",
+      "bid": "aiwyo"
+    }
+  ]
+}

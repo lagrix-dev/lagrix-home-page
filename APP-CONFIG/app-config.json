@@ -39,17 +39,119 @@
     "nav.footer.accessibility.label": {
       "ru": "Доступность"
     },
-    "nav.top.super-node.label": {
-      "ru": "Супер-узел"
-    },
-    "nav.top.nodes.label": {
-      "ru": "Узлы"
-    },
     "nav.top.docs.label": {
       "ru": "Документация"
     },
     "nav.footer.support.label": {
       "ru": "Поддержать проект"
+    },
+    "nav.top.discovery.label": {
+      "ru": "Обнаружение"
+    },
+    "nav.top.a2a.label": {
+      "ru": "A2A"
+    },
+    "nav.top.f2f.label": {
+      "ru": "F2F"
+    },
+    "nav.top.a2a-antispam.label": {
+      "ru": "Антиспам A2A"
+    },
+    "nav.top.reputation.label": {
+      "ru": "Репутация"
+    },
+    "nav.top.likes-and-dislikes.label": {
+      "ru": "Лайки и дизлайки"
+    },
+    "nav.top.order-cancellation.label": {
+      "ru": "Отмена заказа"
+    },
+    "nav.top.missed-reviews.label": {
+      "ru": "Отказ от отзыва"
+    },
+    "nav.top.network.label": {
+      "ru": "Сеть"
+    },
+    "nav.top.nodes.label": {
+      "ru": "Узлы"
+    },
+    "nav.top.super-node.label": {
+      "ru": "Супер-узлы"
+    },
+    "nav.top.search-fee.label": {
+      "ru": "Комиссия за обнаружение"
+    },
+    "nav.top.deal-fee.label": {
+      "ru": "Комиссия за транзакции"
+    },
+    "nav.top.on-ramp.label": {
+      "ru": "On-ramp"
+    },
+    "nav.top.messenger.label": {
+      "ru": "Мессенджер"
+    },
+    "nav.top.h2h.label": {
+      "ru": "H2H"
+    },
+    "nav.top.h2a.label": {
+      "ru": "H2A"
+    },
+    "nav.top.messenger-antispam.label": {
+      "ru": "Антиспам мессенджера"
+    },
+    "nav.top.payments.label": {
+      "ru": "Платежи"
+    },
+    "nav.top.web3-payments.label": {
+      "ru": "Web3"
+    },
+    "nav.top.web2-payments.label": {
+      "ru": "Web2"
+    },
+    "nav.top.refunds.label": {
+      "ru": "Возврат"
+    },
+    "nav.top.technology.label": {
+      "ru": "Технология"
+    },
+    "nav.top.ethereum-l1.label": {
+      "ru": "Эфир L1"
+    },
+    "nav.top.arbitrum-base-l2.label": {
+      "ru": "Arbitrum и Base L2"
+    },
+    "nav.top.nostr.label": {
+      "ru": "Nostr"
+    },
+    "nav.top.regulators.label": {
+      "ru": "Регуляторы"
+    },
+    "nav.top.mica.label": {
+      "ru": "MiCA"
+    },
+    "nav.top.sec.label": {
+      "ru": "SEC"
+    },
+    "nav.footer.discovery.label": {
+      "ru": "Обнаружение"
+    },
+    "nav.footer.reputation.label": {
+      "ru": "Репутация"
+    },
+    "nav.footer.network.label": {
+      "ru": "Сеть"
+    },
+    "nav.footer.messenger.label": {
+      "ru": "Мессенджер"
+    },
+    "nav.footer.payments.label": {
+      "ru": "Платежи"
+    },
+    "nav.footer.technology.label": {
+      "ru": "Технология"
+    },
+    "nav.footer.regulators.label": {
+      "ru": "Регуляторы"
     }
   },
   "og": {
@@ -68,55 +170,243 @@
   "nav": {
     "top": [
       {
-        "id": "super-node",
-        "href": "/super-node",
+        "id": "discovery",
+        "href": "/discovery",
         "order": 10,
-        "label": "Super-node"
+        "label": "Discovery",
+        "children": [
+          {
+            "id": "a2a",
+            "href": "/a2a",
+            "order": 10,
+            "label": "A2A"
+          },
+          {
+            "id": "f2f",
+            "href": "/f2f",
+            "order": 20,
+            "label": "F2F"
+          },
+          {
+            "id": "a2a-antispam",
+            "href": "/a2a-antispam",
+            "order": 30,
+            "label": "A2A antispam"
+          }
+        ]
       },
       {
-        "id": "nodes",
-        "href": "/nodes",
+        "id": "reputation",
+        "href": "/reputation",
         "order": 20,
-        "label": "Nodes"
+        "label": "Reputation",
+        "children": [
+          {
+            "id": "likes-and-dislikes",
+            "href": "/likes-and-dislikes",
+            "order": 10,
+            "label": "Likes and dislikes"
+          },
+          {
+            "id": "order-cancellation",
+            "href": "/order-cancellation",
+            "order": 20,
+            "label": "Order cancellation"
+          },
+          {
+            "id": "missed-reviews",
+            "href": "/missed-reviews",
+            "order": 30,
+            "label": "Missed reviews"
+          }
+        ]
       },
       {
-        "id": "a2a",
-        "href": "/a2a",
+        "id": "network",
+        "href": "/network",
         "order": 30,
-        "label": "A2A"
+        "label": "Network",
+        "children": [
+          {
+            "id": "nodes",
+            "href": "/nodes",
+            "order": 10,
+            "label": "Nodes"
+          },
+          {
+            "id": "super-node",
+            "href": "/super-node",
+            "order": 20,
+            "label": "Super-nodes"
+          },
+          {
+            "id": "search-fee",
+            "href": "/search-fee",
+            "order": 30,
+            "label": "Discovery fee"
+          },
+          {
+            "id": "deal-fee",
+            "href": "/deal-fee",
+            "order": 40,
+            "label": "Transaction fee"
+          },
+          {
+            "id": "on-ramp",
+            "href": "/on-ramp",
+            "order": 50,
+            "label": "On-ramp"
+          }
+        ]
       },
       {
-        "id": "f2f",
-        "href": "/f2f",
-        "order": 35,
-        "label": "F2F"
-      },
-      {
-        "id": "h2a",
-        "href": "/h2a",
+        "id": "messenger",
+        "href": "/messenger",
         "order": 40,
-        "label": "H2A"
+        "label": "Messenger",
+        "children": [
+          {
+            "id": "h2h",
+            "href": "/h2h",
+            "order": 10,
+            "label": "H2H"
+          },
+          {
+            "id": "h2a",
+            "href": "/h2a",
+            "order": 20,
+            "label": "H2A"
+          },
+          {
+            "id": "messenger-antispam",
+            "href": "/messenger-antispam",
+            "order": 30,
+            "label": "Messenger antispam"
+          }
+        ]
       },
       {
-        "id": "h2h",
-        "href": "/h2h",
-        "order": 42,
-        "label": "H2H"
-      },
-      {
-        "id": "on-ramp",
-        "href": "/on-ramp",
+        "id": "payments",
+        "href": "/payments",
         "order": 50,
-        "label": "On-ramp"
+        "label": "Payments",
+        "children": [
+          {
+            "id": "web3-payments",
+            "href": "/web3-payments",
+            "order": 10,
+            "label": "Web3"
+          },
+          {
+            "id": "web2-payments",
+            "href": "/web2-payments",
+            "order": 20,
+            "label": "Web2"
+          },
+          {
+            "id": "refunds",
+            "href": "/refunds",
+            "order": 30,
+            "label": "Refunds"
+          }
+        ]
+      },
+      {
+        "id": "technology",
+        "href": "/technology",
+        "order": 60,
+        "label": "Technology",
+        "children": [
+          {
+            "id": "ethereum-l1",
+            "href": "/ethereum-l1",
+            "order": 10,
+            "label": "Ethereum L1"
+          },
+          {
+            "id": "arbitrum-base-l2",
+            "href": "/arbitrum-base-l2",
+            "order": 20,
+            "label": "Arbitrum and Base L2"
+          },
+          {
+            "id": "nostr",
+            "href": "/nostr",
+            "order": 30,
+            "label": "Nostr"
+          }
+        ]
+      },
+      {
+        "id": "regulators",
+        "href": "/regulators",
+        "order": 70,
+        "label": "Regulators",
+        "children": [
+          {
+            "id": "mica",
+            "href": "/mica",
+            "order": 10,
+            "label": "MiCA"
+          },
+          {
+            "id": "sec",
+            "href": "/sec",
+            "order": 20,
+            "label": "SEC"
+          }
+        ]
       },
       {
         "id": "docs",
         "href": "/docs",
-        "order": 60,
+        "order": 100,
         "label": "Docs"
       }
     ],
     "footer": [
+      {
+        "id": "discovery",
+        "href": "/discovery",
+        "order": 1,
+        "label": "Discovery"
+      },
+      {
+        "id": "reputation",
+        "href": "/reputation",
+        "order": 2,
+        "label": "Reputation"
+      },
+      {
+        "id": "network",
+        "href": "/network",
+        "order": 3,
+        "label": "Network"
+      },
+      {
+        "id": "messenger",
+        "href": "/messenger",
+        "order": 4,
+        "label": "Messenger"
+      },
+      {
+        "id": "payments",
+        "href": "/payments",
+        "order": 5,
+        "label": "Payments"
+      },
+      {
+        "id": "technology",
+        "href": "/technology",
+        "order": 6,
+        "label": "Technology"
+      },
+      {
+        "id": "regulators",
+        "href": "/regulators",
+        "order": 7,
+        "label": "Regulators"
+      },
       {
         "id": "about",
         "href": "/about",

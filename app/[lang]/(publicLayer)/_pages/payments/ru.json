@@ -1,0 +1,12 @@
+{
+  "title": "Платежи",
+  "description": "Платежи",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Платежи",
+      "bid": "q7213"
+    }
+  ]
+}

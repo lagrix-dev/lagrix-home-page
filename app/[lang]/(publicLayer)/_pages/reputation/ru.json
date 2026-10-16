@@ -1,0 +1,12 @@
+{
+  "title": "Репутация",
+  "description": "Репутация",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Репутация",
+      "bid": "j0nzu"
+    }
+  ]
+}

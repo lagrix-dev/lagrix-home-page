@@ -1,0 +1,12 @@
+{
+  "title": "Discovery fee",
+  "description": "Discovery fee",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Discovery fee",
+      "bid": "x0grd"
+    }
+  ]
+}

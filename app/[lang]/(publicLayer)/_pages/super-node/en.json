@@ -1,13 +1,12 @@
 {
-  "title": "Super-node",
-  "description": "Super-node",
+  "title": "Super-nodes",
+  "description": "Super-nodes",
   "keywords": "",
   "blocks": [
     {
-      "kind": "block-section-head",
-      "id": "super-node",
-      "title": "Super-node",
-      "bid": "pu22i"
+      "kind": "text-p",
+      "text": "Super-nodes",
+      "bid": "dmyps"
     }
   ]
 }

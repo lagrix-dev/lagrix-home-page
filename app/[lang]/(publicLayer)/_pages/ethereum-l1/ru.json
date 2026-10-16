@@ -1,0 +1,12 @@
+{
+  "title": "Эфир L1",
+  "description": "Эфир L1",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Эфир L1",
+      "bid": "m3ccd"
+    }
+  ]
+}

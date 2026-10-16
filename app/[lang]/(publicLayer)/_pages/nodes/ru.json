@@ -4,10 +4,9 @@
   "keywords": "",
   "blocks": [
     {
-      "kind": "block-section-head",
-      "id": "nodes",
-      "title": "Узлы",
-      "bid": "p3xn2"
+      "kind": "text-p",
+      "text": "Узлы",
+      "bid": "k7bhb"
     }
   ]
 }

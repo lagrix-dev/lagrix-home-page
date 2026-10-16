@@ -1,0 +1,12 @@
+{
+  "title": "Regulators",
+  "description": "Regulators",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Regulators",
+      "bid": "fnd2p"
+    }
+  ]
+}

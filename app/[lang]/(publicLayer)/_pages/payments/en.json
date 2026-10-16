@@ -1,0 +1,12 @@
+{
+  "title": "Payments",
+  "description": "Payments",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-p",
+      "text": "Payments",
+      "bid": "q7213"
+    }
+  ]
+}

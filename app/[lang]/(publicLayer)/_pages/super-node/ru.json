@@ -1,13 +1,12 @@
 {
-  "title": "Супер-узел",
-  "description": "Супер-узел",
+  "title": "Супер-узлы",
+  "description": "Супер-узлы",
   "keywords": "",
   "blocks": [
     {
-      "kind": "block-section-head",
-      "id": "super-node",
-      "title": "Супер-узел",
-      "bid": "pu22i"
+      "kind": "text-p",
+      "text": "Супер-узлы",
+      "bid": "dmyps"
     }
   ]
 }

@@ -4,10 +4,9 @@
   "keywords": "",
   "blocks": [
     {
-      "kind": "block-section-head",
-      "id": "nodes",
-      "title": "Nodes",
-      "bid": "p3xn2"
+      "kind": "text-p",
+      "text": "Nodes",
+      "bid": "k7bhb"
     }
   ]
 }
