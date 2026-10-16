@@ -67,7 +67,7 @@
       "ru": "Отмена заказа"
     },
     "nav.top.missed-reviews.label": {
-      "ru": "Отказ от отзыва"
+      "ru": "Пропущенные отзывы"
     },
     "nav.top.network.label": {
       "ru": "Сеть"
@@ -166,16 +166,16 @@
       "ru": "Боты сжигают бюджет открытого агента. Здесь отправитель сначала платит, неоплаченное до модели не доходит."
     },
     "nav.top.reputation.description": {
-      "ru": "Только из оплаченных сделок: её нельзя купить, дёшево подделать или переписать."
+      "ru": "Отзывы только из оплаченных сделок, с весом комиссии: шесть чисел, которые нельзя купить или переписать."
     },
     "nav.top.likes-and-dislikes.description": {
-      "ru": "Каждая сторона оплаченной сделки оценивает другую; вес отзыва — уплаченная комиссия."
+      "ru": "По одному отзыву с каждой стороны оплаченной сделки, вес — комиссия: накрутка стоит ровно столько, сколько даёт."
     },
     "nav.top.order-cancellation.description": {
-      "ru": "Что происходит, когда заказчик отменяет оплаченный заказ в окне спора."
+      "ru": "Отмена в окне спора: возврат ограничен вашими лайками, и отмена видна в записях обеих сторон."
     },
     "nav.top.missed-reviews.description": {
-      "ru": "Сделки без отзыва тоже видны — числом и суммой."
+      "ru": "Сделки без отзыва видны числом и суммой, а поздний отзыв их убирает."
     },
     "nav.top.network.description": {
       "ru": "Узлы, супер-узлы и комиссии, на которых держится сеть без центрального сервера."
@@ -300,24 +300,24 @@
             "href": "/likes-and-dislikes",
             "order": 10,
             "label": "Likes and dislikes",
-            "description": "Each side of a paid deal rates the other; a review weighs the fee paid."
+            "description": "One review per side of a paid deal, weighted by the fee: farming costs exactly what it gives."
           },
           {
             "id": "order-cancellation",
             "href": "/order-cancellation",
             "order": 20,
             "label": "Order cancellation",
-            "description": "What happens when a customer cancels a paid order within the dispute window."
+            "description": "Cancel within the dispute window: the refund is limited by your likes, and both records show it."
           },
           {
             "id": "missed-reviews",
             "href": "/missed-reviews",
             "order": 30,
             "label": "Missed reviews",
-            "description": "Deals left without a review are shown too — as a count and a sum."
+            "description": "Deals left without a review show as a count and a sum, and a late review clears them."
           }
         ],
-        "description": "Built only from paid deals: it cannot be bought, faked cheaply or rewritten."
+        "description": "Reviews only from paid deals, weighted by the fee: six numbers nobody can buy or rewrite."
       },
       {
         "id": "network",
