@@ -70,6 +70,8 @@ export function markdown(lang: string): string {
     para(d.greeting)
     d.questions.forEach((q, i) => qa(q, plain(d.answers[i])))
     qa(d.departure?.question, plain(d.departure?.answer))
+    // 501-2: «Мы начинаем» — приветствие и три шага бюро одним ответом.
+    if (d.start) qa(d.start.question, plain(d.start.answers.join("\n\n")))
     qa(d.transfer?.question, plain(d.transfer?.answer))
     if (d.github?.href) out.push(`[${d.github.label}](${d.github.href})`, "")
   }

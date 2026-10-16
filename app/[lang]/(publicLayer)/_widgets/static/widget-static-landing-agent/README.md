@@ -291,3 +291,12 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   send 5% into the period's pool, and `landing.chat.meter` counts «Network · Sellers». The closing stamp of both simulations names who spent
   what and what super-nodes got: pay for work (searches, deliveries) to the one that did it, and the fee pool shared equally by the 255 of
   256 super-nodes that passed the quality minimum (document 05, 5.3). The numbers of the network are fictional, like the characters.
+- **501-2 — what the owner found missing**: Anna's agent first asks «build it together for free, but slower — or buy ready-made in Lagrix,
+  faster but paid; what budget?» (Anna: $160); after the elements work it moves her to her own domain (registrar link, «leave the page open,
+  I'll set up the DNS», then «visible 24 hours a day even with the laptop off, but bookings need the laptop on»); after deals both sides
+  leave reviews weighing the fee paid; later site work is free («the site is yours, I'll do it myself»). In the person simulation the $50
+  first-contact rate is an ordinary A2A deal with escrow (document 21): Marcus gets $47.50, $2.50 goes to the pool, the reviews weigh $2.50.
+  **«Let's start»** (`landing.helpDesk.start`) — a road sign with a swallowtail, last on the left, pointing at the desk (`data-look="start"`,
+  a chip on phones): the desk writes a welcome, three steps «how to do it and what you should see» and an invitation to ask here
+  (`begin()` adds the visitor's line and the answers at once; the window stands at the visitor's line). The kiosk grows with the taller
+  left column and the desk window keeps its inner scroll (`contain: size`, 496-5).

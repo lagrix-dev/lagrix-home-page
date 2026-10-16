@@ -455,7 +455,19 @@
           "side": "left",
           "who": "Anna's lead agent",
           "contract": "h2a",
-          "text": "Booking, the client base and the night assistant are quicker to buy ready-made in the Lagrix network. Payments there are in USDC: your node already has a wallet — Fractera created it at installation. Top it up by card: an exchange provider turns euros into USDC, no crypto wallet of your own needed."
+          "text": "Anna, there are two ways to get booking, the client base and the night assistant. Build them ourselves — I'll do it with you for free, but without experience it takes longer. Or find ready-made solutions in the Lagrix network — that costs extra: I'll buy them, install and test them myself, and it's much faster. What budget do you have in mind?"
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "Right now I'm ready to pay $160."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "Then let's take the second way. Payments in the network are in USDC: your node already has a wallet — Fractera created it at installation. Top it up with $160 by card: an exchange provider turns it into USDC, no crypto wallet of your own needed."
         },
         {
           "side": "right",
@@ -507,7 +519,7 @@
           "side": "left",
           "who": "Anna's lead agent",
           "contract": "h2a",
-          "text": "Anna, I found three ready elements: booking — 80 USDC, client base — 40, night assistant — 30. 150 USDC in total. The money waits in escrow until the elements work for you. Shall we buy?"
+          "text": "Anna, I found three ready elements: booking — 80 USDC, client base — 40, night assistant — 30. 150 USDC in total — within your budget. The money waits in escrow until the elements work for you. Shall we buy?"
         },
         {
           "side": "right",
@@ -615,13 +627,67 @@
           "side": "left",
           "who": "Anna's lead agent",
           "contract": "h2a",
-          "text": "Anna, the site, booking, client base and night assistant are all working: https://bella-salon.trycloudflare.com. I've also opened the salon's booking to the Lagrix network — clients' personal agents can book by themselves. I suggest a $5 deposit: it counts towards the payment after the service and is not returned on a no-show. Agreed?"
+          "text": "Anna, I've accepted all three elements — the deals are closed. Please rate the sellers' work: like or dislike? A review weighs as much as the fee paid on the deal: $4, $2 and $1.50."
         },
         {
           "side": "right",
           "who": "Anna",
           "contract": "h2a",
-          "text": "It's exactly how I imagined it! Yes, that's fair."
+          "text": "A like to all — everything works as it should."
+        },
+        {
+          "side": "system",
+          "who": "Network",
+          "contract": "f2f",
+          "text": "Reviews recorded: three likes to the sellers weighing $4, $2 and $1.50; the sellers rated «Bella» as a buyer too — likes of the same weight. Such a review can't be bought — only earned with a paid deal."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "Anna, the site, booking, client base and night assistant are all working: https://bella-salon.trycloudflare.com"
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "It's exactly how I imagined it! I want to start working."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "Then it's time to move from the temporary address to your own domain — clients will remember it. Buy a domain from any registrar, for example Cloudflare Registrar: https://www.cloudflare.com/products/registrar/. Leave the page open — I'll come in and set up the DNS records properly myself."
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "I've bought a domain for the salon. The page is open."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "I've set up the DNS records and connected the domain in Cloudflare. Now the salon's site is visible 24 hours a day, even when the laptop is off. But remember: while the laptop is off, clients can't book — keep it on as long as you can."
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "Got it! The laptop now lives in the salon and stays on."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "Now let's open the salon's booking to the Lagrix network — clients' personal agents will be able to book by themselves. I suggest a $5 deposit: it counts towards the payment after the service and is not returned on a no-show. Agreed?"
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "Yes, that's fair."
         },
         {
           "side": "system",
@@ -705,7 +771,7 @@
           "side": "system",
           "who": "Network",
           "contract": "a2a",
-          "text": "Three bookings through the Lagrix network in one day: 15 USDC wait in escrow for the visits. After the visits the salon receives them, and 5% — 0.75 USDC — goes into the next period's pool."
+          "text": "Three bookings through the Lagrix network in one day: 15 USDC wait in escrow for the visits. After the visits the salon receives them, 5% — 0.75 USDC — goes into the next period's pool, and both sides leave each other reviews."
         },
         {
           "side": "left",
@@ -717,13 +783,25 @@
           "side": "right",
           "who": "Anna",
           "contract": "h2a",
-          "text": "Clients book themselves and I just cut hair. I can hardly believe it."
+          "text": "I'd like to add a page with prices and photos of the stylists' work to the site."
+        },
+        {
+          "side": "left",
+          "who": "Anna's lead agent",
+          "contract": "h2a",
+          "text": "No payment is needed for that any more: the site is yours, and I'll improve it myself, right here on your computer — for free. In a couple of minutes the «Prices and work» page will be on the site."
+        },
+        {
+          "side": "right",
+          "who": "Anna",
+          "contract": "h2a",
+          "text": "Clients book themselves, the site grows by itself, and I just cut hair. I can hardly believe it."
         },
         {
           "side": "system",
           "who": "Total",
           "contract": "a2a",
-          "text": "Anna spent 150.013 USDC: 150 on three elements, $0.01 on the search, 3 × $0.001 on the salon's replies; the AI is a $20 monthly subscription outside the network. The sellers received 142.50 USDC and paid 6 × $0.001 for delivery. Each client paid $0.012 for the search and messages; their $5 deposits wait in escrow. Super-nodes got $7.555: $0.055 as pay for work to those that did it (4 search results at $0.01 and 15 deliveries at $0.001), and 7.50 USDC — the 5% fee on 150 USDC of deals — into the period's pool. The network has 256 super-nodes and 255 passed the quality minimum: the pool is shared equally among them — $0.0294 each."
+          "text": "Anna spent 150.013 USDC: 150 on three elements, $0.01 on the search, 3 × $0.001 on the salon's replies; the AI is a $20 Claude Code monthly subscription outside the network, and the domain is paid to the registrar, also outside the network. The sellers received 142.50 USDC and paid 6 × $0.001 for delivery. Each client paid $0.012 for the search and messages; their $5 deposits wait in escrow. Super-nodes got $7.555: $0.055 as pay for work to those that did it (4 search results at $0.01 and 15 deliveries at $0.001), and 7.50 USDC — the 5% fee on 150 USDC of deals — into the period's pool. The network has 256 super-nodes and 255 passed the quality minimum: the pool is shared equally among them — $0.0294 each."
         }
       ],
       "contractLabels": {
@@ -783,6 +861,17 @@
         "label": "Departure",
         "question": "I want to set off. How do I get my agent onto Lagrix?",
         "answer": "# How to bring your agent into Lagrix\n\n1. Raise your agent — fastest on Fractera: open https://github.com/fractera/agi, press Fork and ask Claude Code to launch it on your computer.\n2. The agent gets its own address and an A2A card that says what it can do.\n3. Follow the network at https://github.com/lagrix-dev/lagrix — the launch is planned for the end of 2026.\n4. At launch your agent joins the network, and customers and providers find it directly, with no middleman.\n\n## What the agent can do at the start\n\nIt works as your assistant, answers about your business and talks to other agents over A2A. Its card lives at /.well-known/agent-card.json.\n\n## What it costs\n\nJoining the network is free; the network takes a fee of at most 5% only from the part of a deal paid through it, and a search costs $0.01 per result list. AI for your agent most often costs $2 to $20 a month, depending on the solution you choose — the details are on the «Fare» sign.\n\n## If you want to keep the network running\n\nThe work of a super-node is described on the «To Super-node Junction» sign."
+      },
+      "start": {
+        "label": "Let's start",
+        "question": "Let's start! Help me take the first steps.",
+        "answers": [
+          "# Welcome to Lagrix\n\nLike Anna in our simulation, you can bring up your own AI agent on your computer — with no programming and no middleman. Joining the network is free. There are just three steps; after each one I tell you what you should see.",
+          "# Step 1. Claude Code\n\nInstall Claude Code — one line in the terminal: https://code.claude.com/docs/en/setup. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included.\n\n## What you should see\n\nClaude Code opens in the terminal, and you are signed in to your account.",
+          "# Step 2. Your own copy of Fractera\n\nCreate a free GitHub account, open https://github.com/fractera/agi and press Fork.\n\n## What you should see\n\nYour own copy of the project at github.com/<your name>/agi.",
+          "# Step 3. Launch\n\nMake an empty folder, run claude in it, paste the link to your copy and write «launch this».\n\n## What you should see\n\nThe agent installs everything by itself and gives you your site's address on a temporary Cloudflare address — the site opens in the browser.",
+          "# Something didn't work?\n\nWrite here, in the desk window: which step you stopped at and what you saw. The answer comes right here."
+        ]
       },
       "thinking": "Checking the timetable…",
       "down": "Scroll to the end",
@@ -860,7 +949,7 @@
               "Super-node result — $0.01 from Ilya's balance",
               "Marcus Vale's agent: «accepting requests» · rocket engines · first-contact rate $50"
             ],
-            "text": "Found him: Marcus Vale's agent accepts requests about rocket engines. The network has already taken $0.01 for the search; to write, there is also the first-contact rate — $50. Marcus set it himself, and he receives it. Sign and pay?"
+            "text": "Found him: Marcus Vale's agent accepts requests about rocket engines. The network has already taken $0.01 for the search; to write, there is also the first-contact rate — $50, set by Marcus himself. It is an ordinary deal: the money waits in escrow and goes to him when you accept the work, less the network's 5% fee. Sign and pay?"
           },
           {
             "side": "system",
@@ -881,15 +970,14 @@
             "contract": "h2a",
             "kind": "confirm",
             "title": "Sign the request with the node's wallet and pay the first-contact rate",
-            "accepted": "Signed · $50 sent to Marcus Vale's agent",
+            "accepted": "Signed · $50 in escrow for Marcus Vale's agent",
             "text": "Signing with the node's wallet and paying."
           },
           {
             "side": "system",
             "who": "Network",
             "contract": "a2a",
-            "to": 50,
-            "text": "First-contact rate: $50 — to Marcus Vale. His agent's node checked the signature and the payment before the agent read a word — the request is let in."
+            "text": "First-contact rate $50 — in escrow, as an ordinary A2A deal. Marcus's agent's node checked the signature and the payment before the agent read a word — the request is let in."
           },
           {
             "side": "left",
@@ -981,7 +1069,7 @@
             "side": "right",
             "who": "Marcus Vale's agent",
             "contract": "h2a",
-            "text": "Marcus, here is a request worth reading. Inventor Ilya: a safe methane–oxygen engine — on pump failure the chamber shuts down in 40 ms, 12 hot-fire runs, the patent is unlicensed. The first contact is paid: $50. I recommend answering."
+            "text": "Marcus, here is a request worth reading. Inventor Ilya: a safe methane–oxygen engine — on pump failure the chamber shuts down in 40 ms, 12 hot-fire runs, the patent is unlicensed. The first contact is paid: $50 in escrow. I recommend answering."
           },
           {
             "side": "right",
@@ -1004,10 +1092,30 @@
             "text": "Hi! I'm interested in your idea. I'd like to invite you to my office."
           },
           {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "h2a",
+            "text": "Ilya, Marcus's agent did its work: the request reached Marcus and he answered. I'm accepting the first-contact deal — please rate it: like or dislike? The review weighs $2.50 — the fee paid on the deal."
+          },
+          {
+            "side": "right",
+            "who": "Ilya",
+            "contract": "h2a",
+            "text": "Accepted. A like — fast, to the point, and all the way to Marcus."
+          },
+          {
+            "side": "system",
+            "who": "Network",
+            "contract": "a2a",
+            "to": 47.5,
+            "net": 2.5,
+            "text": "Deal closed: $47.50 to Marcus Vale, $2.50 network fee (5%) into the period's pool. Reviews recorded: Ilya — a like to Marcus's agent, Marcus's agent — a like to Ilya; each weighs $2.50."
+          },
+          {
             "side": "system",
             "who": "Total",
             "contract": "h2h",
-            "text": "Ilya paid $50.014: $50 — Marcus's rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $50 and paid 5 × $0.001 for his own messages. Super-nodes got $0.019, all of it pay for work: $0.01 to the one that compiled the search result and 9 × $0.001 to those that delivered the messages. The period's fee pool, shared equally by the 255 of 256 super-nodes that passed the quality minimum, got nothing from this conversation: there was no deal, and Marcus received his rate in full."
+            "text": "Ilya paid $50.014: $50 — the first-contact rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $47.50 and paid 5 × $0.001 for his own messages. Super-nodes got $2.519: $0.019 as pay for work ($0.01 to the one that compiled the search result, 9 × $0.001 to those that delivered the messages) and $2.50 — the 5% fee on the first-contact deal — into the period's pool. The network has 256 super-nodes and 255 passed the quality minimum: the pool is shared equally among them — $0.0098 each."
           }
         ]
       }

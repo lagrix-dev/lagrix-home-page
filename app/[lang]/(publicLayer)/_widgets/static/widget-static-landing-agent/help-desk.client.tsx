@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { ArrowDown, ArrowLeftRight, Github, Info, Mic, Play, SendHorizontal, TrainFront } from "lucide-react"
+import { ArrowDown, ArrowLeftRight, ChevronRight, Github, Info, Mic, Play, SendHorizontal, TrainFront } from "lucide-react"
 import s from "./landing-agent.module.css"
 import { useVoiceRecorder, type VoiceStrings } from "@/_tools/tool-voice-input/client/use-voice-recorder"
 import { Button } from "@/components/ui/button"
@@ -43,6 +43,9 @@ export type HelpDeskWords = {
   departure: { label: string; question: string; answer: string }
   /** Владелец: «одну кнопку отправления слева а другую кнопку назовём пересадки в пути … измени красный цвет … на другой». */
   transfer: { label: string; question: string; answer: string }
+  /** 501-2 (владелец 2026-10-16): «Мы начинаем» — дорожный указатель с ласточкиным хвостом, последний слева. Бюро пишет приветствие,
+   *  три шага «как сделать и что должно получиться» и приглашение спросить здесь же — дальше разговор с бюро обычный. */
+  start?: { label: string; question: string; answers: string[] }
   /** 477 (владелец 2026-10-14): две зелёные вывески-симуляции — слева «Симуляция одного проекта» над «Стоимостью поездки», справа
    *  «Симуляция поиска важного человека»; обе пока ведут к тому же чату с Анной и парикмахерской («пока эту кнопку будет возвращать
    *  тот же самый чат»). */
@@ -130,8 +133,10 @@ export function HelpDesk({ w, lang, voiceWords, sims, chatClasses }: { w: HelpDe
     if (last?.role === "assistant") {
       if (last.id === shown.current) return
       shown.current = last.id
-      const prev = messages[messages.length - 2]
-      const el = box.querySelector<HTMLElement>(`[data-mid="${prev?.role === "user" ? prev.id : last.id}"]`)
+      // 501-2: несколько готовых ответов подряд («Мы начинаем») встают с реплики посетителя, а не с последнего ответа.
+      let k = messages.length - 2
+      while (k >= 0 && messages[k].role !== "user") k--
+      const el = box.querySelector<HTMLElement>(`[data-mid="${k >= 0 ? messages[k].id : last.id}"]`)
       if (el) box.scrollTo({ top: box.scrollTop + el.getBoundingClientRect().top - box.getBoundingClientRect().top - 8, behavior: "smooth" })
       return
     }
@@ -158,6 +163,18 @@ export function HelpDesk({ w, lang, voiceWords, sims, chatClasses }: { w: HelpDe
       ...prev,
       { id: `q-${n}`, role: "user", parts: [{ type: "text", text: q }] },
       { id: `a-${n}`, role: "assistant", parts: [{ type: "text", text: answer }] },
+    ])
+  }
+  // 501-2: «Мы начинаем» — реплика посетителя и несколько ответов бюро подряд; дальше человек спрашивает в том же окне.
+  const begin = (q: string, answers: string[]) => {
+    if (busy) return
+    setSimRun(null)
+    if (error) clearError()
+    const n = Date.now().toString(36)
+    setMessages((prev) => [
+      ...prev,
+      { id: `q-${n}`, role: "user", parts: [{ type: "text", text: q }] },
+      ...answers.map((text, i) => ({ id: `a-${n}-${i}`, role: "assistant" as const, parts: [{ type: "text" as const, text }] })),
     ])
   }
   const submit = () => {
@@ -210,6 +227,15 @@ export function HelpDesk({ w, lang, voiceWords, sims, chatClasses }: { w: HelpDe
         {simSign("hd3s7", "project", w.simulations?.project)}
         {w.questions.slice(0, half).map((q, i) => sign(q, i))}
         {main("hd3d1", "go", w.departure)}
+        {w.start && (
+          <li data-block="hd3s0" className={s.deskSign} data-look="start">
+            <span className={s.deskSignRods} aria-hidden="true" />
+            <Button variant="bare" size="bare" type="button" className={s.deskSignPlate} onClick={() => begin(w.start!.question, w.start!.answers)} disabled={busy}>
+              {w.start.label}
+              <ChevronRight className="size-5" strokeWidth={2.6} aria-hidden="true" />
+            </Button>
+          </li>
+        )}
       </ul>
 
       <div data-block="hd3k1" className={s.kiosk}>
@@ -269,6 +295,7 @@ export function HelpDesk({ w, lang, voiceWords, sims, chatClasses }: { w: HelpDe
                 : <a href={it.href} className={s.kioskChip} data-sim="">{it.label}</a>}</li>
             ))}
             <li data-block="hd3c3"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-go="" onClick={() => quick(w.departure.question, w.departure.answer)} disabled={busy}>{w.departure.label}</Button></li>
+            {w.start && <li data-block="hd3c6"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-start="" onClick={() => begin(w.start!.question, w.start!.answers)} disabled={busy}>{`${w.start.label} ›`}</Button></li>}
             <li data-block="hd3c4"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-transfer="" onClick={() => quick(w.transfer.question, w.transfer.answer)} disabled={busy}>{w.transfer.label}</Button></li>
             {w.questions.map((q, i) => (
               <li data-block="hd3c2" key={q}><Button variant="bare" size="bare" type="button" className={s.kioskChip} onClick={() => quick(q, w.answers[i] ?? "")} disabled={busy}>{q}</Button></li>
