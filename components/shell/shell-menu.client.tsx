@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -86,15 +86,49 @@ function MegaItem({ lang, group }: { lang: string; group: ShellGroup }) {
     )
   }
 
+  return <MegaDropdown group={group} groupHref={groupHref} childHref={childHref} />
+}
+
+// 507 (владелец: «Добавь горизонтальный скролл если эти новые кнопки не помещаются»): полоса кнопок прокручивается, а у
+// прокручиваемого блока выпавший вниз список обрезался бы. Поэтому список — `fixed`: шапка с `backdrop-blur` держит его своим
+// блоком, и он выходит из прокрутки полосы. 🔒 Левый край списка — ПОД СВОЕЙ КНОПКОЙ (сдвинут влево, только если иначе вылезет за
+// экран). ✗ Оплачено владельцем 2026-10-16: список стоял по центру шапки, курсор по пути к нему проходил над соседними кнопками и
+// открывал их меню — «ни одну кнопку выбрать невозможно».
+function MegaDropdown({ group, groupHref, childHref }: { group: ShellGroup; groupHref: string; childHref: (c: ShellChild) => string }) {
+  const trigger = useRef<HTMLButtonElement>(null)
+  const content = useRef<HTMLDivElement>(null)
+  const [left, setLeft] = useState<number | undefined>(undefined)
+
+  useEffect(() => {
+    const el = content.current
+    if (!el) return
+    const place = () => {
+      const t = trigger.current
+      if (!t || el.dataset.state !== "open") return
+      const box = (t.closest("[data-project-header]") as HTMLElement | null)?.getBoundingClientRect()
+      const tr = t.getBoundingClientRect()
+      const width = el.offsetWidth
+      const origin = box?.left ?? 0
+      const room = (box?.width ?? window.innerWidth) - width - 8
+      setLeft(Math.max(8, Math.min(tr.left - origin, room)))
+    }
+    const watch = new MutationObserver(place)
+    watch.observe(el, { attributes: true, attributeFilter: ["data-state"] })
+    window.addEventListener("resize", place)
+    return () => { watch.disconnect(); window.removeEventListener("resize", place) }
+  }, [])
+
   // Первая карточка — сам хаб (название и его описание), затем его страницы.
   const count = group.children.length + 1
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="h-8 px-3">{group.label}</NavigationMenuTrigger>
-      {/* 507 (владелец: «Добавь горизонтальный скролл если эти новые кнопки не помещаются»): полоса кнопок прокручивается, а у
-          прокручиваемого блока выпавший вниз список обрезался бы. Поэтому список — `fixed`: шапка с `backdrop-blur` держит его
-          своим блоком, и он встаёт ровно под ней по центру её ширины, вне прокрутки полосы. */}
-      <NavigationMenuContent forceMount className="data-[state=closed]:hidden md:fixed! md:inset-x-0! md:mx-auto! md:top-[calc(100%+0.25rem)]! md:mt-0! md:w-fit!">
+      <NavigationMenuTrigger ref={trigger} className="h-8 px-3">{group.label}</NavigationMenuTrigger>
+      <NavigationMenuContent
+        ref={content}
+        forceMount
+        style={left === undefined ? undefined : { left }}
+        className="data-[state=closed]:hidden md:fixed! md:top-[calc(100%+0.25rem)]! md:mt-0! md:w-fit!"
+      >
         <ul className={`grid max-h-[70vh] gap-1 overflow-y-auto overscroll-contain p-1 ${columnsOf(count)}`}>
           <MegaCard href={groupHref} title={group.label} description={group.description} strong />
           {group.children.map((c) => (
