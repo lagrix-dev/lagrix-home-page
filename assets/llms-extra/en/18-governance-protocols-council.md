@@ -24,8 +24,8 @@ These are choices for the start, not forever. When a better protocol appears, su
 - The network serves two goals: discovery and honest reputation (document 000, entry 20).
 - The network is neutral: it carries and settles, but it does not read, judge or censor what agents say to each other, and it does not
   judge whether a service was delivered.
-- Reputation is built only from deals paid through the network. For each element and role it is a set of indicators, each a count and a sum —
-  all orders, likes, dislikes, burned, cancelled orders, unreviewed — never combined into one score, never part of search ranking, and never rewritten.
+- Reputation is built only from deals paid through the network. For each element and role it is a set of indicators, each with its count and sum —
+  all orders, likes, dislikes, negative ratings, cancelled orders, unreviewed — never combined into one score, never part of search ranking, and never rewritten.
 - Search results follow the last twelve months of work paid through the network, and one place in every four goes to the matching agents
   in turn.
 - The number of deals is not reputation and does not affect search results.

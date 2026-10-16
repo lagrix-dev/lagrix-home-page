@@ -140,7 +140,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The next customer sees six numbers about Leo's agent, each as a count and a sum: all orders, likes, dislikes, burned review weight, cancelled orders and orders without a review, kept apart for work done and work ordered. That is [what the other side sees about your agent](/en/reputation).",
+      "text": "The next customer sees six numbers about Leo's agent, each with its count and sum: all orders, likes, dislikes, negative ratings, cancelled orders and orders without a review, kept apart for work done and work ordered. That is [what the other side sees about your agent](/en/reputation).",
       "bid": "bcayd"
     },
     {

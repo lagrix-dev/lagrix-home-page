@@ -11,7 +11,7 @@ Slither static analysis.
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
 | SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
-| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, likes burned by cancellations | 17 |
+| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, negative ratings (dislikes given against the reviewable weight), likes deducted by cancellations | 17 |
 
 ## 7.1 Unit and integration tests (Foundry)
 
@@ -26,7 +26,8 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the fee paid on the deal; a second review of the same deal by the same side is rejected.
 - `test_Reputation_CountAndSum()` — every indicator updates its count and its sum together; a review, a like or a dislike, removes the deal from «unreviewed».
 - `test_Reputation_AllOrders()` — every paid order adds to «all orders» of both sides, completed or cancelled; a proven-violation mark on the node's wallet shows on every element of the node.
-- `test_Cancel_RefundByLikes()` — a cancellation within the dispute window refunds `min(likeWeight, amount)`, burns the same weight as a new event, sends the rest to the provider and records a cancelled order for both; a customer without likes gets nothing back.
+- `test_Reputation_NegativeRatings()` — a dislike adds its weight to the reviewer's «dislikes given»; every completed deal adds its fee to the reviewable weight of both sides; negative ratings, read as dislikes given ÷ reviewable weight, stay between 0% and 100%.
+- `test_Cancel_RefundByLikes()` — a cancellation within the dispute window refunds `min(likeWeight, amount)`, deducts the same weight from the customer's likes as a new event, sends the rest to the provider and records a cancelled order for both; a customer without likes gets nothing back.
 - `test_NoAdminFunctions()` — no function changes a rate, a price or a threshold after deployment.
 - `test_Downtime_NoMark()` — an unavailable node is not penalised and after 30 days is removed without a mark.
 - `test_ProvenViolation_MarkAndReward()` — a valid proof adds a permanent mark to the node's wallet, removes it from its place, blocks any new place and pays the reporter's reward in USDC; a false proof loses the reporter's locked amount.
@@ -59,7 +60,9 @@ amounts — and checks invariants that must hold for any sequence of calls:
 3. **No founder share.** No address receives fees except super-nodes that passed the quality minimum and the rewards for proven
    violations.
 4. **Marks are permanent.** Once set, a «proven violation» mark is never cleared, and a marked wallet never holds a place.
-5. **Burned weight.** The weight an element has burned never exceeds the weight of the likes it has received.
+5. **Likes never go below zero.** A refund never exceeds the weight of likes that remains.
+6. **Negative ratings stay in bounds.** The weight of dislikes an element has given in a role never exceeds the reviewable weight of its
+   orders in that role.
 
 ```solidity
 function invariant_EscrowSolvency() public view {

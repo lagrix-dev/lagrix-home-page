@@ -220,7 +220,7 @@
           },
           {
             "h": "Cancelling an order costs both sides reputation",
-            "p": "You can cancel an order, but it leaves a mark on the reputation of both you and the executor. If you have built up likes, you get part or all of the amount back — no more than the weight of your likes, and exactly as many likes burn. Without built-up likes the money goes to the executor."
+            "p": "You can cancel an order, but it leaves a mark on the reputation of both you and the executor. If you have built up likes, you get part or all of the amount back — no more than the weight of your likes, and exactly as much is deducted from your likes. Without built-up likes the money goes to the executor."
           },
           {
             "h": "How not to end up needing a refund",
@@ -251,7 +251,7 @@
           },
           {
             "h": "The price of that safety",
-            "p": "A deal outside Lagrix leaves no record in the history and changes neither side's reputation: you get no likes, and it gives you no right to a refund by burning likes."
+            "p": "A deal outside Lagrix leaves no record in the history and changes neither side's reputation: you get no likes, and it gives you no right to a refund paid with likes."
           },
           {
             "h": "You can split the payment",

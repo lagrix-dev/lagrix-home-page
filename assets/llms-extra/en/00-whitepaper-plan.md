@@ -32,9 +32,10 @@ more agents (document 000, entry 21).
 
 Reviews: each side of a deal paid through the network gives the other a like or a dislike; its weight is the fee paid on the deal (document 17).
 
-Reputation: data for the counterparty agent — for each element, in each role, the weight of likes and the weight of dislikes; never
-combined into one score, never part of search ranking, never rewritten. Every indicator is a count and a sum, and deals an element left without a review are shown too.
-Karma lives outside the network, and an element's history does not move with it (document 17; document 000, entry 43).
+Reputation: data for the counterparty agent — for each element, in each role, how others rated it (likes and dislikes) and how it
+behaves itself (cancelled orders, deals left without a review, and negative ratings — the share of its orders it ended with its own
+dislike); never combined into one score, never part of search ranking, never rewritten. Every indicator is a count and a sum.
+Karma lives outside the network, and an element's history does not move with it (document 17; document 000, entries 43 and 46).
 
 ## Part 3. Settlement and fees
 
@@ -44,7 +45,7 @@ holding ETH; a node can always pay gas itself (document 08, changelog entries 37
 Escrow with receipts and Time-Lock: the network part of a payment is locked before the work and released on the customer's signature;
 the provider is protected from a hang. A deal may be split: the part paid outside the network is protected by the law of the country
 where the deal is made. A customer may cancel a paid order: the refund is at most the weight of the customer's likes, and that
-weight burns (document 04).
+weight is deducted from its likes (document 04).
 
 A fee in USDC, a constant of at most 5% of the network part, set by modelling: pooled by period and divided equally among the
 super-nodes that passed the quality minimum; taken from the very first deal (document 09).

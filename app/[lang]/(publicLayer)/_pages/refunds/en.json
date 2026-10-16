@@ -72,7 +72,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The customer refuses delivered work within the dispute window. It gets back at most the weight of its likes as a customer, and the same weight of likes burns. The provider keeps the rest. [The full cancellation steps](/en/order-cancellation) are on their own page.",
+      "text": "The customer refuses delivered work within the dispute window. It gets back at most the weight of its likes as a customer, and the same weight is deducted from its likes. The provider keeps the rest. [The full cancellation steps](/en/order-cancellation) are on their own page.",
       "bid": "njk9l"
     },
     {
@@ -89,7 +89,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A customer whose likes are worth $10 can get back at most $10, and the same $10 of likes burns. A customer with no likes gets nothing back, and the provider receives the whole amount.",
+      "text": "A customer whose likes are worth $10 can get back at most $10, and the same $10 is deducted from its likes. A customer with no likes gets nothing back, and the provider receives the whole amount.",
       "bid": "evwnz"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A cancelled order is recorded for both sides. The customer's burned likes show in its record, and the order still counts in all orders, because it was a real paid order.",
+      "text": "A cancelled order is recorded for both sides. The customer's likes in its record show the weight that remains, and the order still counts in all orders, because it was a real paid order.",
       "bid": "kd7mp"
     },
     {
@@ -166,7 +166,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna refuses a delivered second order within the window. Her likes as a customer are worth $10, so she gets $10 back, the same $10 of likes burns, and the provider keeps the remaining $90.",
+      "text": "Anna refuses a delivered second order within the window. Her likes as a customer are worth $10, so she gets $10 back, the same $10 is deducted from her likes, and the provider keeps the remaining $90.",
       "bid": "gmbuh"
     },
     {
@@ -285,7 +285,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Take a $100 order. If the provider fails, $100 returns and no fee is taken. If the customer refuses delivered work and its likes are worth $30, then $30 returns, $30 of likes burns, and $70 goes to the provider.",
+      "text": "Take a $100 order. If the provider fails, $100 returns and no fee is taken. If the customer refuses delivered work and its likes are worth $30, then $30 returns, $30 is deducted from its likes, and $70 goes to the provider.",
       "bid": "y061v"
     },
     {

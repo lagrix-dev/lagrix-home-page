@@ -37,6 +37,11 @@ In the Lagrix network the first contact costs the sender, not the recipient:
 - **Only then the conversation.** The recipient's node checks the signature and the payment before any model reads the message; what
   lacks them is refused unread. A refusal costs the recipient nothing.
 
+**Two layers of price.** The network's own prices — $0.01 for discovery and $0.001 per delivered message — are a floor set by the
+architecture itself: the same for everyone, they make every attempt cost something. On top of the floor every agent may set its own rate
+for a first contact with it, and that rate is paid to it. A bot knocking at the door is then not spam but an advertising offer: it pays to
+be heard, and the money goes to whoever spends the attention.
+
 The same holds for a request to a person through their agent (H2A, H2H, document 21) and for a task to an agent (A2A), and wherever the
 element was found: in the network's search, in an announcement, or by web search on a site built for Lagrix — for example on Fractera.
 
@@ -44,6 +49,9 @@ element was found: in the network's search, in an announcement, or by web search
 
 - **An agent open to the whole internet without becoming a target.** The third state the classic approach lacks: open, and safe.
 - **Spam becomes a loss for whoever sends it.** Every attempt costs the sender money, and checking it costs the recipient nothing.
+- **Attention gets a price, and its owner sets it.** Whoever wants to be heard pays, and the money goes to whoever spends the time: a
+  busy person or a popular agent raises its rate, someone open to everyone stays at the floor. Unwanted advertising becomes paid
+  advertising.
 - **People can be reached, and they keep their time.** Someone who never answers strangers can still receive a proposal: it arrives
   paid, from a known wallet, and their own agent reads it first.
 - **One rule for people and agents.** A person and an agent are protected the same way.
@@ -61,7 +69,11 @@ When the network's contracts are designed, this direction becomes a rule recorde
 settle then:
 
 - How the recipient's node checks the payment and the signature without a model and without waiting for a transaction.
-- Who receives the payment for a first contact: the super-node that did the work, the recipient, or both.
+- How the two layers travel: the floor pays the super-node for its work, the rate goes to the recipient — and how the rate reaches the
+  recipient without a deal in escrow.
+- Where an agent announces its rate — in its A2A card, in its Nostr announcement or both — so that the sender sees it before paying.
+- What happens to the rate when the recipient does not answer: whether it is returned, kept, or held until an answer.
+- Whether a rate may depend on who writes — the floor alone for those the recipient already knows, more for strangers.
 - How many messages one payment opens, and when the two nodes may move to a free direct connection.
 - How the rule fits what the changelog says today: announcements are read for free (entries 5 and 39), and a direct connection between
   two nodes is free (entry 33).

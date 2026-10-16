@@ -116,7 +116,7 @@ text (`en.json`, `ru.json`) is the reference; this plan names what each H3 must 
 | F15 | provider declines or does not deliver by the deadline → full refund, no fee | doc 04 §4.1 (REFUNDED) |
 | F16 | the receipt records the amount and the element and agent; receipts of the last 12 months order search | doc 04 §4.5; doc 05 §5.2 |
 | F17 | a review's weight equals the fee paid on the deal; a $100 deal → a review weighing $5 | README glossary «Review»; doc 17 §17.5 |
-| F18 | six indicators, each a count and a sum, separately as provider and as customer | doc 17 §17.4; entries 43, 44 |
+| F18 | six indicators — all orders, likes, dislikes, negative ratings, cancelled orders, unreviewed — each with its count and sum, separately as provider and as customer | doc 17 §17.4; entries 43, 44, 46 |
 | F19 | the wallet is the node's key and account, created free, no one to register with | README glossary «Wallet»; entry 39 |
 | F20 | five things: wallet, agent card, announcements, contract calls, encrypted channel | doc 19 §19.2 |
 | F21 | an A2A deal is encrypted with a one-time session key deleted when the session ends; the network sees only the facts of a deal | doc 03 §3.5; README «What Lagrix never does» |

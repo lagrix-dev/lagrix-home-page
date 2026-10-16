@@ -94,18 +94,20 @@ shows a dropped agent.
 ## 17.4 Reputation: what the other side sees
 
 Reputation is data for the counterparty agent. An element has it in both roles — as a provider and as a customer — and in each role it is
-six indicators, each a pair «count · sum» (changelog entries 43 and 44):
+six indicators (changelog entries 43, 44 and 46). Five of them are a pair «count · sum»; negative ratings are a percent, shown with
+the count and the weight behind it:
 
 - **all orders** — the number of the element's paid orders in this role, completed or cancelled, and the sum of their network parts;
-- **likes** — the number of likes received and their weight;
+- **likes** — the number of likes received and their weight, less the weight deducted for refunds (document 04, section 4.3);
 - **dislikes** — the number of dislikes received and their weight;
-- **burned** — the number of refunds that consumed likes, and the weight burned (document 04, section 4.3);
+- **negative ratings** — how the element rates its partners: the weight of the dislikes it gave in this role divided by the weight of
+  all its orders in this role in which it could leave a review, as a percent, with the count and the weight of those dislikes next to it;
 - **cancelled orders** — their number and the sum of their network parts;
 - **unreviewed** — deals in which the element could have reviewed its counterparty and did not: their number and the sum of their
   network parts.
 
 A count is never shown without its sum. The indicators are never added together or subtracted, and the network does not combine them
-into a single score. The counterparty
+into a single score; negative ratings describe only the reviews the element gave, not its reputation as a whole. The counterparty
 weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking. A «proven violation» mark, if the node has one,
 is shown next to the indicators in both roles, with its date and a link to the proof (document 06, section 6.3).
 
@@ -120,15 +122,16 @@ customer to the provider. A review's weight equals the fee paid on the deal — 
 cannot be given without a deal and cannot be changed afterwards. It has no deadline: once given, it removes the deal from «unreviewed».
 
 Faking one unit of weight costs exactly one dollar of fees paid to the super-nodes: weight can never be had for less than it weighs, and
-the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. The weight available for a
-refund is the weight of likes minus the weight burned. Harming someone else's
+the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. A refund is deducted from the weight of likes as a new
+event with its date, so the weight shown is the weight available for the next refund. Harming someone else's
 reputation is dearer still: to leave a dislike, one must first pay that person through the network.
 
 ```solidity
-// Sketch: a review is bound to a closed deal; its weight is the fee paid on it; every indicator is a count and a sum
+// Sketch: a review is bound to a closed deal; its weight is the fee paid on it; every indicator is a count and a sum;
+// negative ratings are read as dislikesGiven.sum / reviewable
 contract FeedbackRegistry {
     struct Pair { uint64 count; uint192 sum; }
-    struct Reputation { Pair orders; Pair likes; Pair dislikes; Pair burned; Pair cancelled; Pair unreviewed; }
+    struct Reputation { Pair orders; Pair likes; Pair dislikes; Pair dislikesGiven; Pair cancelled; Pair unreviewed; uint192 reviewable; }
     mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // element => role (0 provider, 1 customer)
     mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => who has reviewed
 
@@ -136,6 +139,9 @@ contract FeedbackRegistry {
         (, , bytes32 customerElement, bytes32 providerElement, uint96 amount, ) = escrow.dealParties(taskId);
         _add(reputation[customerElement][1].unreviewed, amount);
         _add(reputation[providerElement][0].unreviewed, amount);
+        uint192 fee = uint192(escrow.feePaid(taskId));                    // the base of negative ratings, for both sides
+        reputation[customerElement][1].reviewable += fee;
+        reputation[providerElement][0].reviewable += fee;
     }
 
     function review(uint256 taskId, bool like) external {
@@ -150,6 +156,9 @@ contract FeedbackRegistry {
         (bytes32 element, uint8 role) = byCustomer ? (providerElement, 0) : (customerElement, 1);
         uint256 weight = escrow.feePaid(taskId);
         if (like) _add(reputation[element][role].likes, weight); else _add(reputation[element][role].dislikes, weight);
+        if (!like) {                                                       // the reviewer's own negative ratings
+            if (byCustomer) _add(reputation[customerElement][1].dislikesGiven, weight); else _add(reputation[providerElement][0].dislikesGiven, weight);
+        }
     }
 
     function _add(Pair storage p, uint256 v) internal { p.count += 1; p.sum += uint192(v); }

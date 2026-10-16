@@ -238,7 +238,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Locked holds the whole network part. Committed holds the same amount, and only the timer or the signature can move it. Completed pays the provider and books the fee. Refunded returns the whole amount. Cancelled returns at most the weight of the likes and burns the same weight.",
+      "text": "Locked holds the whole network part. Committed holds the same amount, and only the timer or the signature can move it. Completed pays the provider and books the fee. Refunded returns the whole amount. Cancelled returns at most the weight of the likes and deducts the same weight from them.",
       "bid": "tmdbx"
     },
     {

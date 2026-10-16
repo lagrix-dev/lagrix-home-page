@@ -39,8 +39,8 @@ The fields are packed tightly: a deal record takes a few storage slots, which ke
 - **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or did not deliver by the deadline.
   The funds return to the Customer in full, and no fee is taken.
 - **CANCELLED.** The Customer did not accept the delivered work and cancelled the order within the dispute window (section 4.3). The
-  refund is at most the weight of the Customer's likes as a customer, and the same weight of likes burns; the Provider receives the rest,
-  and a «cancelled order» is recorded for both sides (document 17; changelog entry 42).
+  refund is at most the weight of the Customer's likes as a customer, and the same weight is deducted from its likes; the Provider receives the rest,
+  and a «cancelled order» is recorded for both sides (document 17; changelog entries 42 and 46).
 
 ## 4.2 Cryptographic receipts (EIP-712)
 
@@ -65,8 +65,8 @@ A Customer could receive the result, go offline and never send the signature, fr
   contract records the time.
 - **Dispute window.** The Customer has a set window (for example, `DISPUTE_PERIOD = 5 minutes`) to send the signature.
 - **Cancellation.** Within the same window the Customer may refuse the result and call `cancelOrder(taskId)` instead of signing. The
-  contract reads the Customer's like weight as a customer (document 17), returns `min(likeWeight, amount)` to the Customer, burns the
-  same weight of likes as a new event and sends the rest to the Provider; the deal moves to CANCELLED. A Customer with no likes gets
+  contract reads the Customer's like weight as a customer (document 17), returns `min(likeWeight, amount)` to the Customer, deducts
+  the same weight from its likes as a new event with its date and sends the rest to the Provider; the deal moves to CANCELLED. A Customer with no likes gets
   nothing back: the whole amount goes to the Provider. Whether the fee is taken from the Provider's part and whether a cancelled order
   leaves a receipt and reviews are open questions (document 000).
 - **Automatic closing.** When the window has passed, the Provider calls `claimTimeout(taskId)`. The contract checks
