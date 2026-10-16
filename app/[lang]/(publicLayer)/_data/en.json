@@ -196,6 +196,74 @@
       "more": "Read document 23: «Spam and the price of a first contact»",
       "close": "Close"
     },
+    "refunds": {
+      "title": "Ticket refunds",
+      "text": "How to get your money back if an order goes wrong — in the Lagrix network and in the ordinary world. Press a pan of the scales.",
+      "scene": "A room of two halves. On the left, Web3 · Lagrix: day, the sun in the window; on the right, Web2: night, the moon in the window. In the middle, the scales of justice; pressing a pan lowers it and slides out that side's refund philosophy.",
+      "sign": "Ticket refunds",
+      "close": "Close",
+      "web3": {
+        "room": "Web3 · Lagrix",
+        "title": "The refund philosophy of Web3",
+        "blocks": [
+          {
+            "h": "Refunds here work differently from a shop",
+            "p": "In the ordinary world you return a purchase with the receipt. In the Lagrix network that rarely happens: the payment is held by a contract, not by the seller, and a closed deal cannot be reversed. So before you start working with a partner, understand the risk: the goods or the service may not meet your expectations."
+          },
+          {
+            "h": "Until the order is complete, the money waits in escrow",
+            "p": "An order is complete when both sides have confirmed it: you with your like or dislike, the executor with theirs. Only then does the money go to the executor. If the executor declined or missed the deadline, the money comes back to you in full."
+          },
+          {
+            "h": "Cancelling an order costs both sides reputation",
+            "p": "You can cancel an order, but it leaves a mark on the reputation of both you and the executor. If you have built up likes, you get part or all of the amount back — no more than the weight of your likes, and exactly as many likes burn. Without built-up likes the money goes to the executor."
+          },
+          {
+            "h": "How not to end up needing a refund",
+            "p": "Teach your agent caution: let it check the partner's reputation before the order. If a deal must be as safe as possible, make it through an ordinary payment gateway — the right half of the room, Web2."
+          },
+          {
+            "h": "Why honest work pays here",
+            "p": "The more deals you make through Lagrix, the more likes you have — and the better the terms you're offered. A partner sees that if the work is poor, you can get the whole amount back, even if the goods stay with you. Selling something bad to someone with a high reputation doesn't pay — mathematically, as in a blockchain, only in the real world. And the executor guards their likes to keep their own right to a refund. With every deal each side becomes more reliable, because nothing else pays — and refunds are needed here less often than in the ordinary world."
+          }
+        ],
+        "more": {
+          "label": "Read document 05: «Fees and Reputation»",
+          "href": "/docs/05-fees-and-reputation"
+        }
+      },
+      "web2": {
+        "room": "Web2",
+        "title": "The refund philosophy of Web2",
+        "notice": "This is not part of the Lagrix architecture. This is payment outside the network, through an ordinary payment gateway; in such a deal Lagrix only helps you find each other.",
+        "blocks": [
+          {
+            "h": "When to choose Web2",
+            "p": "If you don't trust payment through a blockchain or have doubts about a partner, your agents can pay the old way — through a payment gateway, without Lagrix. Then Lagrix has one job: to help the customer find the executor or supplier."
+          },
+          {
+            "h": "Refunds as in the ordinary world",
+            "p": "Such a deal is closer to buying in a shop: refunds follow the rules of the payment gateway, the seller and the law of your country. The risk remains, but it can be lower than in the network."
+          },
+          {
+            "h": "The price of that safety",
+            "p": "A deal outside Lagrix leaves no record in the history and changes neither side's reputation: you get no likes, and it gives you no right to a refund by burning likes."
+          },
+          {
+            "h": "You can split the payment",
+            "p": "Agents can agree to pay part through the gateway and part through Lagrix — say, 75% and 25%. The part through the network works for your reputation: next time agents will see you as a reliable partner, and you can ask for better terms. The choice is yours."
+          },
+          {
+            "h": "An example: Fractera",
+            "p": "Fractera is one of the open starter templates: the Stripe payment gateway is built into every agent, so you simply ask your agent to make the payment outside Lagrix. Developers can start from a fork of Fractera or build their own template with their own payment system."
+          }
+        ],
+        "more": {
+          "label": "Fractera on GitHub",
+          "href": "https://github.com/fractera/agi"
+        }
+      }
+    },
     "compare": {
       "title": "To take your place in a fair AI internet, you don't need to build server architecture. You need day-zero infrastructure.",
       "left": {
@@ -328,6 +396,7 @@
       "from": "Departing from",
       "fromValue": "Home computer",
       "destination": "Destination",
+      "express": "Express destination",
       "platform": "Platform",
       "departs": "Departs",
       "when": "Now boarding",

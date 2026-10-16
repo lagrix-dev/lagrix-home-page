@@ -111,6 +111,33 @@ export function markdown(lang: string): string {
     if (x.telegraph.text) para(x.telegraph.text)
     para(x.telegraph.h2h.ticker)
     para(x.telegraph.h2a.ticker)
+    // 502: строка ведра «Спам» (498) в копию не попадала — закон 467-4.
+    para(x.telegraph.spam?.ticker)
+  }
+
+  // 502: сцена «A2A антиспам» (498) в копии отсутствовала — закон 467-4; окно справки — абзацем, ссылка на документ 23.
+  if (x.antispam) {
+    const a = x.antispam
+    head(2, a.title)
+    para(a.text)
+    list([a.scene])
+    head(3, a.infoTitle)
+    para(a.info)
+    out.push(`[${a.more}](/${lang}/docs/23-spam-and-the-price-of-a-first-contact)`, "")
+  }
+
+  // 502: комната «Возврат билетов» — обе философии возврата целиком.
+  if (x.refunds) {
+    const r = x.refunds
+    head(2, r.title)
+    para(r.text)
+    list([r.scene])
+    for (const side of [r.web3, r.web2]) {
+      head(3, side.title)
+      if (side.notice) para(`**${side.notice}**`)
+      for (const b of side.blocks) para(`**${b.h}**`, b.p)
+      out.push(`[${side.more.label}](${side.more.href.startsWith("/") ? `/${lang}${side.more.href}` : side.more.href})`, "")
+    }
   }
 
   list(x.cards)

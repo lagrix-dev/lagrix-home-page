@@ -300,3 +300,24 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   a chip on phones): the desk writes a welcome, three steps «how to do it and what you should see» and an invitation to ask here
   (`begin()` adds the visitor's line and the answers at once; the window stands at the visitor's line). The kiosk grows with the taller
   left column and the desk window keeps its inner scroll (`contain: size`, 496-5).
+
+## Step 502 (2026-10-16): the «Ticket refunds» room
+
+`refund-room.client.tsx`, words `landing.refunds` (section `#ticket-refunds`, after «A2A antispam»). A room of two halves: Web3 · Lagrix on the
+left (day, the sun in the window), Web2 on the right (night, the moon), windows near the edges, the scales of justice in the middle under
+the hanging sign. Wide screens: each pan is a button; pressing it tilts the beam (`--tilt`, the pans counter-rotate so they hang straight)
+and slides that side's refund philosophy in from its edge, over the middle and the scales, with its own scroll; Escape or ✕ closes. Below
+900 px — the comparison switch (`versusSwitch`, default Web3): the scales lean to the chosen side and its text stands under the room. Both
+texts are always in the HTML and in the markdown copy. Each side: `room`, `title`, optional red `notice` (Web2: «not part of the Lagrix
+architecture»), `blocks` (heading + paragraph), `more` (a path starting with «/» gets the page language). Headings use the typography
+primitives `H3`/`H4` (`check-typography`).
+The markdown copy now also carries the «Spam» line of the Telegraph and the «A2A antispam» scene (both were missing since 498).
+
+## Step 506 (2026-10-16): «Express destination» on the board
+
+The board display label is `landing.board.express` («Направление экспресса» / «Express destination»; the column head keeps
+`destination`), followed by `express.tsx`: a bullet-train nose on the right, the body fading left into speed lines and wind dots; the
+lines run left, the dots flicker, the train stands; reduced motion — one frame. The speed-line gradient is in user units: an
+`objectBoundingBox` gradient on a zero-height line is not painted at all.
+
+The transit map's ring name runs on a 228°–312° arc (366 units): on 235°–305° (305) the Russian name (320) lost its last letter.

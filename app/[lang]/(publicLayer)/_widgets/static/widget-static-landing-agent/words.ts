@@ -44,6 +44,7 @@ export type LandingExtra = {
   telegraph?: { title: string; text?: string } & import("./telegraph.client").TelegraphWords
   /** 498 (владелец 2026-10-15): сцена «A2A антиспам» — открытая дорога, копилка, грузовик-паровоз, указатель, аварийный телефон. */
   antispam?: import("./antispam-road.client").AntispamWords
+  refunds?: import("./refund-room.client").RefundWords
   compare?: {
     title: string
     sub?: string
@@ -78,7 +79,7 @@ export type LandingExtra = {
   board: {
     from: string
     fromValue: string
-    destination: string
+    destination: string; express?: string
     platform: string
     departs: string
     when: string

@@ -20,6 +20,8 @@ import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { TelegraphRoom } from "./telegraph.client"
 import { AntispamRoad } from "./antispam-road.client"
+import { RefundRoom } from "./refund-room.client"
+import { Express } from "./express"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
 import { StationFacade } from "./station-facade"
@@ -83,7 +85,8 @@ export function LandingAgent({ lang }: { lang: string }) {
                 </span>
               </div>
               <div data-block="jm9w0" className={s.display} aria-hidden="true">
-                <span className={s.displayLabel}>{b.destination}</span>
+                {/* 506 (владелец 2026-10-16): «Направление экспресса» и мчащийся экспресс — «показать что мы поедем быстро». */}
+                <span className={s.displayLabel}>{b.express ?? b.destination}<Express /></span>
                 <SplitFlap words={outcomes.map((o) => o.name)} className={s.displayField} announce />
               </div>
               <div data-block="nmzw1" className={s.boardHead} aria-hidden="true">
@@ -216,6 +219,23 @@ export function LandingAgent({ lang }: { lang: string }) {
               </div>
             </div>
             <AntispamRoad w={x.antispam} docHref={`/${lang}/docs/23-spam-and-the-price-of-a-first-contact`} />
+          </div>
+        </section>
+      )}
+
+      {/* 502 (владелец 2026-10-16): «Возврат билетов» — комната Web3 · Lagrix (день) и Web2 (ночь), весы закона; нажатие на чашу
+          выдвигает философию возврата своей стороны. Слова — `landing.refunds`. */}
+      {x.refunds && (
+        <section data-block="rfsec" id="ticket-refunds" className={s.refunds}>
+          <div data-block="rfwrp" className={s.wrap}>
+            <div data-block="rfsgp" className={s.waitingSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <div data-block="rfplt" className={s.waitingPlate}>
+                <h2 data-block="rftit" className={s.waitingTitle}>{x.refunds.title}</h2>
+                {x.refunds.text && <p data-block="rftxt" className={s.waitingText}>{x.refunds.text}</p>}
+              </div>
+            </div>
+            <RefundRoom w={x.refunds} lang={lang} />
           </div>
         </section>
       )}
