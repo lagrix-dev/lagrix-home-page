@@ -54,11 +54,13 @@ A production build is always the whole app; the only lever is how many route fil
 ## Adding a page — files of data, no code
 
 ```
-<branch>/_pages/<slug>/meta.json   { "order": 30, "roles": ["buyer"] }
+<branch>/_pages/<slug>/meta.json   { "order": 30, "roles": ["buyer"], "parent": "<hub slug>" }
 <branch>/_pages/<slug>/en.json     { "title": "…", "description": "…", "keywords": "", "blocks": [ { "kind": "text-p", "text": "…" } ] }
 <branch>/_pages/<slug>/ru.json     { "title": "…", "description": "…", "blocks": [ … ] }
 ```
 
+- `en.json` may carry `subtitle` (the line under the H1) and `faq` (open questions, `FAQPage` markup); `parent` in `meta.json`
+  puts a hub between Home and the page in the breadcrumbs (node step 507-3). A public child shows its own snippet as the cover.
 - The address is the branch plus the folder: `/<lang>/account/<slug>`; for the public branch `/<lang>/<slug>`. A page of a role
   folder: `/<lang>/account/<role>/<page>` (two levels at most).
 - `en.json` is required; every other language overrides it. A language without its file shows English.

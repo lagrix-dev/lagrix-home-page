@@ -39,7 +39,7 @@ text change before telling the person the change is live. Every page has `en.jso
 
 ```
 app/[lang]/(publicLayer)/_pages/<slug>/meta.json
-{ "order": 30 }
+{ "order": 30, "parent": "<hub slug>" }
 
 app/[lang]/(publicLayer)/_pages/<slug>/en.json
 {
@@ -62,6 +62,12 @@ app/[lang]/(publicLayer)/_pages/<slug>/ru.json
   ]
 }
 ```
+
+A public page is a document (node step 507-3): breadcrumbs «Home → hub → page» when `meta.json` names its hub in `parent` (the
+address stays flat), the H1 from `title`, the line under it from `subtitle`, the cover — its own `snippet.png` drawn by the snippet
+function, the table of contents from `text-h2`/`text-h3`, the body, then `faq` as open questions with `FAQPage` markup. Its Markdown copy
+`<page>/index.md` carries the subtitle and the FAQ and answers with `Link: <page>; rel="canonical"`. A link inside the text names the
+language: `[…](/en/escrow)` — `/escrow` answers 307.
 
 The page answers at `/<lang>/<slug>`. Block kinds — `lib/content/blocks/types.ts`; a missing kind is taken from the Blocks
 element (`npx shadcn add @fractera/<name>`).
