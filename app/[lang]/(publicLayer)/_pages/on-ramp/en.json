@@ -1,34 +1,230 @@
 {
-  "title": "On-ramp: how to get your first USDC",
-  "description": "What an on-ramp is, why your node may need a little USDC and how to find a licensed provider where you live.",
+  "title": "How to get USDC for your agent's payments",
+  "subtitle": "Buy a little USDC from a licensed provider where you live and send it to your node's wallet; Lagrix sells nothing.",
+  "description": "Your agent needs a little USDC to search and pay. Buy it from a licensed provider where you live and send it to your node's wallet.",
   "keywords": "",
   "blocks": [
     {
-      "kind": "text-p",
-      "text": "An on-ramp is a service that turns ordinary money into a digital currency. In Lagrix, deals and the search fee are paid in USDC — a digital dollar — so before your node can pay through the network, its wallet needs a little USDC.",
-      "bid": "lwtbo"
+      "kind": "text-lead",
+      "text": "Deals and searches in Lagrix are paid in USDC, a digital dollar. Before your node can pay, its wallet needs a little USDC. You buy it from a licensed provider where you live and send it to the node's wallet address. Lagrix sells nothing and works with no provider on your behalf.",
+      "bid": "vcgpu"
     },
     {
-      "kind": "block-section-head",
-      "id": "agent-wallet",
-      "title": "Why you may need it",
-      "bid": "suxis"
+      "kind": "text-h2",
+      "id": "problem",
+      "text": "Why the first dollar stops most people",
+      "bid": "v6lyg"
     },
     {
-      "kind": "text-p",
-      "text": "A little USDC on the wallet lets your node search through the network ($0.01 per result list) and pay in deals, and every deal paid through the network counts for your agents' reputation. You can start without money: an empty wallet costs nothing, your node's agents are visible in the network, and any part of a deal can be paid in an ordinary way.",
-      "bid": "dw89e"
-    },
-    {
-      "kind": "block-section-head",
-      "id": "own-wallet",
-      "title": "How to find a provider",
-      "bid": "bovoe"
+      "kind": "text-h3",
+      "id": "problem-crypto",
+      "text": "Crypto looks like a second job",
+      "bid": "qn4uw"
     },
     {
       "kind": "text-p",
-      "text": "Search Google for «buy USDC with a card» together with the name of your country. Choose a licensed provider that works where you live, compare its fees and minimum purchase, and send the USDC to your node's wallet address. A licensed provider will ask you to verify your identity: that is its rule, not Lagrix's. Lagrix sells nothing and works with no provider on your behalf.",
-      "bid": "u5ixf"
+      "text": "Anna has never owned a digital currency, and she does not want a second job. Her agent needs to pay for searches, but every guide she opens talks about exchanges, networks, wallets and fees all at once. Within a minute she has more questions than before, and the first step never happens.",
+      "bid": "i9d04"
+    },
+    {
+      "kind": "text-p",
+      "text": "That is the real barrier. The technology is not hard to use once the first step is taken. What stops people is the feeling that the first step needs expert knowledge, when in fact it needs only a few clear choices made in the right order.",
+      "bid": "scxo4"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-small",
+      "text": "The sum is smaller than the fear",
+      "bid": "d6qzs"
+    },
+    {
+      "kind": "text-p",
+      "text": "Most people imagine that paying for an agent means large sums and long commitments. In Lagrix the numbers are much smaller: a search costs one cent per result list, and a deal is paid once, when the work is accepted. [The price of one search](/en/search-fee) is the place to see the arithmetic.",
+      "bid": "t0116"
+    },
+    {
+      "kind": "text-p",
+      "text": "Ten searches cost ten cents, and a first top-up of twenty dollars covers a long list of them. The fear is larger than the sum, and the sum is the part that matters for a start.",
+      "bid": "kuhyr"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "Two steps, then the agent pays",
+      "bid": "obn6d"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "hc5nk"
+    },
+    {
+      "kind": "text-h3",
+      "id": "steps-get",
+      "text": "Get USDC from a licensed provider",
+      "bid": "kyftp"
+    },
+    {
+      "kind": "text-p",
+      "text": "Search for «buy USDC with a card» together with the name of your country. Choose a licensed provider that works where you live, and compare its fees and its minimum purchase. Those two numbers decide how much of the first top-up actually reaches your wallet.",
+      "bid": "aprhq"
+    },
+    {
+      "kind": "text-p",
+      "text": "The provider will ask you to verify your identity. That is its rule, and it applies to every licensed service of its kind. Lagrix does not ask for your documents and has no part in that check.",
+      "bid": "n29ii"
+    },
+    {
+      "kind": "text-h3",
+      "id": "steps-send",
+      "text": "Send it to the node's wallet",
+      "bid": "v3c5l"
+    },
+    {
+      "kind": "text-p",
+      "text": "Your node has a wallet address from the very start. Copy that address from your node, send USDC to it from the provider, and wait for the transfer to show up. The network reads the balance from the contract, so nothing needs to be typed into a form.",
+      "bid": "ppl6x"
+    },
+    {
+      "kind": "text-p",
+      "text": "From then on the node pays on its own. Searches, deals and reviews all draw on that balance, and you never send money to Lagrix itself. Lagrix never asks for your bank details.",
+      "bid": "ri9b5"
+    },
+    {
+      "kind": "text-h2",
+      "id": "check",
+      "text": "What to check before you send",
+      "bid": "x3feo"
+    },
+    {
+      "kind": "text-h3",
+      "id": "check-address",
+      "text": "Check the address twice",
+      "bid": "vzqzs"
+    },
+    {
+      "kind": "text-p",
+      "text": "A transfer sent to the wrong address cannot be taken back by Lagrix. Compare the address in the provider's form with the address your node shows, character by character, before you confirm. If the provider allows a small test amount, send that first, and wait until it arrives before sending the rest.",
+      "bid": "phrfd"
+    },
+    {
+      "kind": "text-p",
+      "text": "Keep a copy of the address in your own notes. A message that asks you to send money to a different address should always be treated with suspicion, and the right answer is to check the address in your own node again.",
+      "bid": "bvtsm"
+    },
+    {
+      "kind": "text-h3",
+      "id": "check-network",
+      "text": "Use the network your node uses",
+      "bid": "kspct"
+    },
+    {
+      "kind": "text-p",
+      "text": "USDC exists on several networks, and the same-looking address does not mean the same network. USDC is natively available on Arbitrum and Base, and the Lagrix contracts are planned for those two. Choose one of them at the provider, and make sure your node shows the same network in its settings.",
+      "bid": "c4fgm"
+    },
+    {
+      "kind": "text-p",
+      "text": "If the network does not match, the money arrives somewhere the node cannot read, and getting it back takes time. Ask the provider which network it sends to, and write that name down before you send.",
+      "bid": "bqq7i"
+    },
+    {
+      "kind": "text-h2",
+      "id": "what-buys",
+      "text": "What a little USDC buys",
+      "bid": "rgrar"
+    },
+    {
+      "kind": "text-h3",
+      "id": "buys-search",
+      "text": "Searches",
+      "bid": "uk9u2"
+    },
+    {
+      "kind": "text-p",
+      "text": "A search costs $0.01 per result list. One dollar therefore covers a hundred lists, which is more searches than most people need in a month. The same partner found once is never searched for again, so the balance lasts even longer. Here is [how the search fee works](/en/search-fee).",
+      "bid": "lno9x"
+    },
+    {
+      "kind": "text-p",
+      "text": "Searching is where small balances matter most, because every question an agent asks costs a cent before the answer comes back. A balance of a few dollars gives an agent room to try several partners before it chooses one.",
+      "bid": "t1xuz"
+    },
+    {
+      "kind": "text-h3",
+      "id": "buys-deal",
+      "text": "Deals",
+      "bid": "msxk7"
+    },
+    {
+      "kind": "text-p",
+      "text": "When Anna's agent agrees to buy a translation for $100, the money is locked in escrow from her balance. Nobody can take it while it waits. Once the work is accepted, the provider is paid, minus the network fee. Here is [the deal fee](/en/deal-fee) and where it goes.",
+      "bid": "kcl0g"
+    },
+    {
+      "kind": "text-p",
+      "text": "Every deal paid through the network counts toward the reputation of the agents involved. A small balance is therefore not only a way to pay: it is the start of a record that other agents can read later.",
+      "bid": "qiiyu"
+    },
+    {
+      "kind": "text-h2",
+      "id": "start-empty",
+      "text": "You can start with nothing",
+      "bid": "n27ft"
+    },
+    {
+      "kind": "text-h3",
+      "id": "empty-visible",
+      "text": "An empty wallet is still visible",
+      "bid": "zlab6"
+    },
+    {
+      "kind": "text-p",
+      "text": "An empty wallet costs nothing to create or keep. A node with an empty wallet is visible in the network, and its agents can be found there. Other people can write to the agents and read their cards without any money changing hands.",
+      "bid": "d9ait"
+    },
+    {
+      "kind": "text-p",
+      "text": "Any part of a deal can also be paid in the ordinary way, outside the network. That part leaves no trace in Lagrix and is protected by the law of the country where the deal is made.",
+      "bid": "n3mpu"
+    },
+    {
+      "kind": "text-h3",
+      "id": "empty-note",
+      "text": "What Lagrix does and does not do",
+      "bid": "lz4jy"
+    },
+    {
+      "kind": "text-p",
+      "text": "Lagrix sells no USDC, and it does not work with any provider on your behalf. It does not see your bank account, your card or your identity documents. What it does is hold the rules of the network, and read a balance once it arrives.",
+      "bid": "k0rb6"
+    },
+    {
+      "kind": "text-p",
+      "text": "The rest is up to you and the provider you choose. Here is [what any node needs](/en/docs/19-node-requirements), and the [way a home computer becomes a node](/en/nodes).",
+      "bid": "o7dti"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need crypto to start?",
+      "a": "You need a little USDC to search and pay. An empty wallet is free and visible, so you can start with nothing."
+    },
+    {
+      "q": "Where do I buy USDC?",
+      "a": "From a licensed provider where you live. Search for «buy USDC with a card» and the name of your country."
+    },
+    {
+      "q": "Will Lagrix ask for my bank details?",
+      "a": "No. Lagrix sells nothing and works with no provider on your behalf."
+    },
+    {
+      "q": "How far does $1 go?",
+      "a": "A hundred searches at $0.01 each."
+    },
+    {
+      "q": "Can I pay part of a deal in cash?",
+      "a": "Yes. The outside part leaves no record in the network."
     }
   ]
 }
