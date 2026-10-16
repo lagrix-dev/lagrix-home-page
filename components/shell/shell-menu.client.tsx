@@ -2,15 +2,17 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 import type { ShellChild, ShellGroup } from "./shell-types"
 import { shellHref } from "./shell-href"
 import { useShellMe } from "./shell-me.client"
@@ -34,51 +36,70 @@ export function useVisibleGroups(groups: ShellGroup[], meUrl: string): ShellGrou
   })
 }
 
-function MenuDropdown({ lang, group }: { lang: string; group: ShellGroup }) {
+// 507 — МЕГА-МЕНЮ (владелец 2026-10-16: «Посмотри на вкладки контент выпадающем меню представляет из себя название и описание.
+// Название одна строчка описание две. Так и надо»; «заголовки с описанием и структуры их распределения в один два или три колонки,
+// также если вкладок очень много так как у документов так ещё и внутренние прокрутки»). Вид — shadcn Navigation Menu.
+// 🔒 Содержимое списка смонтировано всегда (`forceMount`) и скрыто, пока закрыто: ссылки на страницы стоят в HTML, и поисковик
+// их видит. ✗ До этого группа рисовалась кнопкой без адреса, а пункты появлялись только после нажатия — для поиска их не было.
+
+/** Колонки по числу карточек: до 4 — одна, до 8 — две, больше — три; ширина ограничена экраном. */
+function columnsOf(count: number): string {
+  if (count <= 4) return "w-[min(22rem,calc(100vw-2rem))] grid-cols-1"
+  if (count <= 8) return "w-[min(36rem,calc(100vw-2rem))] grid-cols-2"
+  return "w-[min(54rem,calc(100vw-2rem))] grid-cols-3"
+}
+
+function MegaCard({ href, title, description, strong }: { href: string; title: string; description?: string; strong?: boolean }) {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link href={href} className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+          <span className={`block truncate text-sm leading-tight ${strong ? "font-semibold" : "font-medium"}`}>{title}</span>
+          {description && <span className="mt-1.5 line-clamp-2 block text-sm leading-snug text-muted-foreground">{description}</span>}
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  )
+}
+
+function MegaItem({ lang, group, alignEnd }: { lang: string; group: ShellGroup; alignEnd: boolean }) {
   const groupHref = shellHref(lang, group.href, `/${lang}/${group.slug}`)
   const childHref = (c: ShellChild) => (c.href ? shellHref(lang, c.href, "") : `${groupHref}/${c.slug}`)
 
   if (group.inert) {
     return (
-      <span aria-disabled="true" className={buttonVariants({ variant: "ghost", size: "sm", className: "cursor-default opacity-60 hover:bg-transparent" })}>
-        {group.label}
-      </span>
+      <NavigationMenuItem>
+        <span aria-disabled="true" className={buttonVariants({ variant: "ghost", size: "sm", className: "cursor-default opacity-60 hover:bg-transparent" })}>
+          {group.label}
+        </span>
+      </NavigationMenuItem>
     )
   }
 
   if (!group.childrenAsDropdown || group.children.length === 0) {
     return (
-      <Link href={groupHref} className={buttonVariants({ variant: "ghost", size: "sm" })}>
-        {group.label}
-      </Link>
+      <NavigationMenuItem>
+        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+          <Link href={groupHref}>{group.label}</Link>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
     )
   }
 
+  // Первая карточка — сам хаб (название и его описание), затем его страницы.
+  const count = group.children.length + 1
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-1">
-          {group.label}
-          <ChevronDown />
-        </Button>
-      </DropdownMenuTrigger>
-      {/* Полный текст ссылки без обрезки (владелец, 2026-08-12); ширина ограничена экраном. */}
-      <DropdownMenuContent align="start" className="w-[min(22rem,calc(100vw-2rem))] max-h-[600px] overflow-y-auto">
-        <DropdownMenuItem asChild>
-          <Link href={groupHref} className="font-semibold whitespace-normal break-words leading-snug">
-            {group.label}
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        {group.children.map((c) => (
-          <DropdownMenuItem key={c.slug} asChild>
-            <Link href={childHref(c)} className="whitespace-normal break-words leading-snug py-1.5">
-              {c.title}
-            </Link>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className="h-8 px-3">{group.label}</NavigationMenuTrigger>
+      <NavigationMenuContent forceMount className={`data-[state=closed]:hidden ${alignEnd ? "md:right-0 md:left-auto" : ""}`}>
+        <ul className={`grid max-h-[70vh] gap-1 overflow-y-auto overscroll-contain p-1 ${columnsOf(count)}`}>
+          <MegaCard href={groupHref} title={group.label} description={group.description} strong />
+          {group.children.map((c) => (
+            <MegaCard key={c.slug} href={childHref(c)} title={c.title} description={c.description} />
+          ))}
+        </ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
   )
 }
 
@@ -88,11 +109,14 @@ export function DesktopNav({ lang, groups, meUrl }: { lang: string; groups: Shel
   return (
     <>
       <span className="hidden min-[780px]:block h-5 w-px bg-border" aria-hidden />
-      <nav className="hidden min-[780px]:flex items-center gap-3 flex-wrap">
-        {visible.map((g) => (
-          <MenuDropdown key={g.slug} lang={lang} group={g} />
-        ))}
-      </nav>
+      <NavigationMenu viewport={false} className="hidden min-[780px]:flex max-w-none flex-none justify-start">
+        <NavigationMenuList className="flex-wrap justify-start gap-1">
+          {visible.map((g, i) => (
+            // Две последние группы открываются к правому краю, чтобы широкий список не уходил за экран.
+            <MegaItem key={g.slug} lang={lang} group={g} alignEnd={i >= visible.length - 2} />
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
     </>
   )
 }
@@ -146,6 +170,7 @@ export function MobileMenu({ lang, groups, label, meUrl }: { lang: string; group
                         className="py-2 pl-4 text-sm font-medium text-foreground hover:text-foreground transition-colors whitespace-normal break-words leading-snug"
                       >
                         {c.title}
+                        {c.description && <span className="mt-0.5 line-clamp-2 block text-xs font-normal text-muted-foreground">{c.description}</span>}
                       </Link>
                     ))}
                   </div>

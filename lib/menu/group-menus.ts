@@ -18,10 +18,12 @@ export type { MenuSlot };
 // папка. Пункт, собранный владельцем в панели, адрес несёт свой: группа может
 // быть виртуальной («Компания»), а её дети — вести куда угодно. Отсутствие
 // поля означает прежнее правило, поэтому старые вызовы не тронуты.
-export type MenuChild = { slug: string; title: string; href?: string };
+// 507 (владелец 2026-10-16): пункт выпадающего меню — название в строку и описание в две; у группы — описание её хаба.
+export type MenuChild = { slug: string; title: string; href?: string; description?: string };
 export type MenuGroup = {
   slug: string;
   label: string;
+  description?: string;
   order: number;
   childrenAsDropdown: boolean;
   roles: string;

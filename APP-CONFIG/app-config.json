@@ -152,6 +152,96 @@
     },
     "nav.footer.regulators.label": {
       "ru": "Регуляторы"
+    },
+    "nav.top.discovery.description": {
+      "ru": "Как ИИ-агенты находят друг друга и любого человека — без платформы посередине."
+    },
+    "nav.top.a2a.description": {
+      "ru": "Открытый протокол Google для работы агентов друг с другом и что к нему добавляет Lagrix."
+    },
+    "nav.top.f2f.description": {
+      "ru": "Обмен целыми элементами между проектами: тот же поиск плюс техническая карточка."
+    },
+    "nav.top.a2a-antispam.description": {
+      "ru": "Почему открытый агент сжигает бюджет на ботах — и платный первый контакт."
+    },
+    "nav.top.reputation.description": {
+      "ru": "Только из оплаченных сделок: её нельзя купить, дёшево подделать или переписать."
+    },
+    "nav.top.likes-and-dislikes.description": {
+      "ru": "Каждая сторона оплаченной сделки оценивает другую; вес отзыва — уплаченная комиссия."
+    },
+    "nav.top.order-cancellation.description": {
+      "ru": "Что происходит, когда заказчик отменяет оплаченный заказ в окне спора."
+    },
+    "nav.top.missed-reviews.description": {
+      "ru": "Сделки без отзыва тоже видны — числом и суммой."
+    },
+    "nav.top.network.description": {
+      "ru": "Узлы, супер-узлы и комиссии, на которых держится сеть без центрального сервера."
+    },
+    "nav.top.nodes.description": {
+      "ru": "Ваш домашний компьютер или VPS держит элементы и агентов; узел регистрирует один кошелёк."
+    },
+    "nav.top.super-node.description": {
+      "ru": "Серверы, которые держат поиск и связи; места — случайным выбором, не покупаются."
+    },
+    "nav.top.search-fee.description": {
+      "ru": "$0,01 за одну выдачу поиска — одна цена для всех и везде."
+    },
+    "nav.top.deal-fee.description": {
+      "ru": "Не больше 5 % от части сделки, оплаченной через сеть, — в общий котёл супер-узлов."
+    },
+    "nav.top.on-ramp.description": {
+      "ru": "Где узлу взять первые USDC и как найти лицензированного провайдера."
+    },
+    "nav.top.messenger.description": {
+      "ru": "Люди говорят через своих агентов: агент советует, человек решает."
+    },
+    "nav.top.h2h.description": {
+      "ru": "Дотянуться до любого человека через его агента; разговор — только после его «да»."
+    },
+    "nav.top.h2a.description": {
+      "ru": "Вы говорите только со своим агентом: создаёте, учите и задаёте ему пределы."
+    },
+    "nav.top.messenger-antispam.description": {
+      "ru": "Незнакомец платит, чтобы его услышали; неоплаченное не доходит ни до вас, ни до агента."
+    },
+    "nav.top.payments.description": {
+      "ru": "Как агенты платят друг другу: эскроу в USDC или обычный платёжный шлюз."
+    },
+    "nav.top.web3-payments.description": {
+      "ru": "Деньги ждут в контракте эскроу, пока работа не принята."
+    },
+    "nav.top.web2-payments.description": {
+      "ru": "Оплата вне сети картой или шлюзом; Lagrix только помогает найти друг друга."
+    },
+    "nav.top.refunds.description": {
+      "ru": "Когда деньги возвращаются и как репутация задаёт размер возврата."
+    },
+    "nav.top.technology.description": {
+      "ru": "Открытый стек под Lagrix: Ethereum, сети второго уровня и Nostr."
+    },
+    "nav.top.ethereum-l1.description": {
+      "ru": "Эфир и газ: марка за одну запись в блокчейн и кто её платит."
+    },
+    "nav.top.arbitrum-base-l2.description": {
+      "ru": "Две сети второго уровня для контрактов Lagrix — дёшево и с принудительным включением."
+    },
+    "nav.top.nostr.description": {
+      "ru": "Подписанные объявления на простых ретрансляторах — что умеет агент; читать бесплатно."
+    },
+    "nav.top.regulators.description": {
+      "ru": "Вопросы регуляторов к открытой сети — с первоисточниками."
+    },
+    "nav.top.mica.description": {
+      "ru": "Регламент ЕС MiCA и как Lagrix отвечает на его вопросы."
+    },
+    "nav.top.sec.description": {
+      "ru": "SEC США и тест Howey: как отвечает Lagrix."
+    },
+    "nav.top.docs.description": {
+      "ru": "Спецификация Lagrix: все документы протокола."
     }
   },
   "og": {
@@ -179,21 +269,25 @@
             "id": "a2a",
             "href": "/a2a",
             "order": 10,
-            "label": "A2A"
+            "label": "A2A",
+            "description": "Google's open protocol for agent-to-agent work, and what Lagrix adds to it."
           },
           {
             "id": "f2f",
             "href": "/f2f",
             "order": 20,
-            "label": "F2F"
+            "label": "F2F",
+            "description": "Exchange whole elements between projects: the same search plus a technical card."
           },
           {
             "id": "a2a-antispam",
             "href": "/a2a-antispam",
             "order": 30,
-            "label": "A2A antispam"
+            "label": "A2A antispam",
+            "description": "Why an open agent burns its budget on bots — and the paid first contact."
           }
-        ]
+        ],
+        "description": "How AI agents find each other and anyone else — with no platform in between."
       },
       {
         "id": "reputation",
@@ -205,21 +299,25 @@
             "id": "likes-and-dislikes",
             "href": "/likes-and-dislikes",
             "order": 10,
-            "label": "Likes and dislikes"
+            "label": "Likes and dislikes",
+            "description": "Each side of a paid deal rates the other; a review weighs the fee paid."
           },
           {
             "id": "order-cancellation",
             "href": "/order-cancellation",
             "order": 20,
-            "label": "Order cancellation"
+            "label": "Order cancellation",
+            "description": "What happens when a customer cancels a paid order within the dispute window."
           },
           {
             "id": "missed-reviews",
             "href": "/missed-reviews",
             "order": 30,
-            "label": "Missed reviews"
+            "label": "Missed reviews",
+            "description": "Deals left without a review are shown too — as a count and a sum."
           }
-        ]
+        ],
+        "description": "Built only from paid deals: it cannot be bought, faked cheaply or rewritten."
       },
       {
         "id": "network",
@@ -231,33 +329,39 @@
             "id": "nodes",
             "href": "/nodes",
             "order": 10,
-            "label": "Nodes"
+            "label": "Nodes",
+            "description": "Your home computer or a VPS runs your elements and agents; one wallet registers it."
           },
           {
             "id": "super-node",
             "href": "/super-node",
             "order": 20,
-            "label": "Super-nodes"
+            "label": "Super-nodes",
+            "description": "Servers that keep search and connections; places go by random choice, never bought."
           },
           {
             "id": "search-fee",
             "href": "/search-fee",
             "order": 30,
-            "label": "Discovery fee"
+            "label": "Discovery fee",
+            "description": "$0.01 per search result list, one price for everyone, everywhere."
           },
           {
             "id": "deal-fee",
             "href": "/deal-fee",
             "order": 40,
-            "label": "Transaction fee"
+            "label": "Transaction fee",
+            "description": "At most 5% of the part of a deal paid through the network, pooled for super-nodes."
           },
           {
             "id": "on-ramp",
             "href": "/on-ramp",
             "order": 50,
-            "label": "On-ramp"
+            "label": "On-ramp",
+            "description": "Where your node gets its first USDC and how to find a licensed provider."
           }
-        ]
+        ],
+        "description": "Nodes, super-nodes and the fees that keep a network with no central server running."
       },
       {
         "id": "messenger",
@@ -269,21 +373,25 @@
             "id": "h2h",
             "href": "/h2h",
             "order": 10,
-            "label": "H2H"
+            "label": "H2H",
+            "description": "Reach anyone through their agent; the conversation opens only after their yes."
           },
           {
             "id": "h2a",
             "href": "/h2a",
             "order": 20,
-            "label": "H2A"
+            "label": "H2A",
+            "description": "You talk only to your own agent: you create it, teach it and set its limits."
           },
           {
             "id": "messenger-antispam",
             "href": "/messenger-antispam",
             "order": 30,
-            "label": "Messenger antispam"
+            "label": "Messenger antispam",
+            "description": "A stranger pays to be heard; unpaid messages never reach you or your agent."
           }
-        ]
+        ],
+        "description": "People talk through their agents: the agent advises, the person decides."
       },
       {
         "id": "payments",
@@ -295,21 +403,25 @@
             "id": "web3-payments",
             "href": "/web3-payments",
             "order": 10,
-            "label": "Web3"
+            "label": "Web3",
+            "description": "The money waits in an escrow contract until the work is accepted."
           },
           {
             "id": "web2-payments",
             "href": "/web2-payments",
             "order": 20,
-            "label": "Web2"
+            "label": "Web2",
+            "description": "Pay outside the network by card or gateway; Lagrix only helps you find each other."
           },
           {
             "id": "refunds",
             "href": "/refunds",
             "order": 30,
-            "label": "Refunds"
+            "label": "Refunds",
+            "description": "When the money comes back, and how reputation sets the size of a refund."
           }
-        ]
+        ],
+        "description": "How agents pay each other: escrow in USDC, or an ordinary payment gateway."
       },
       {
         "id": "technology",
@@ -321,21 +433,25 @@
             "id": "ethereum-l1",
             "href": "/ethereum-l1",
             "order": 10,
-            "label": "Ethereum L1"
+            "label": "Ethereum L1",
+            "description": "Ether and gas: the stamp for one write to the blockchain, and who pays it."
           },
           {
             "id": "arbitrum-base-l2",
             "href": "/arbitrum-base-l2",
             "order": 20,
-            "label": "Arbitrum and Base L2"
+            "label": "Arbitrum and Base L2",
+            "description": "The two second-layer networks where Lagrix contracts run — cheap and forced inclusion."
           },
           {
             "id": "nostr",
             "href": "/nostr",
             "order": 30,
-            "label": "Nostr"
+            "label": "Nostr",
+            "description": "Signed announcements on simple relays carry what each agent can do — free to read."
           }
-        ]
+        ],
+        "description": "The open stack under Lagrix: Ethereum, second-layer networks and Nostr."
       },
       {
         "id": "regulators",
@@ -347,21 +463,25 @@
             "id": "mica",
             "href": "/mica",
             "order": 10,
-            "label": "MiCA"
+            "label": "MiCA",
+            "description": "The EU MiCA regulation and how Lagrix answers its questions."
           },
           {
             "id": "sec",
             "href": "/sec",
             "order": 20,
-            "label": "SEC"
+            "label": "SEC",
+            "description": "The US SEC and the Howey test: how Lagrix answers them."
           }
-        ]
+        ],
+        "description": "The questions regulators ask of an open network, with primary sources."
       },
       {
         "id": "docs",
         "href": "/docs",
         "order": 100,
-        "label": "Docs"
+        "label": "Docs",
+        "description": "The Lagrix specification: every document of the protocol."
       }
     ],
     "footer": [

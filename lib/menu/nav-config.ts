@@ -1,6 +1,7 @@
 import "server-only";
 import { getAppConfig, configValueForLang } from "@/config/app-config";
 import type { MenuGroup, MenuChild } from "./group-menus";
+import { docsFor, titleOf, descriptionOf } from "@/app/[lang]/(publicLayer)/docs/_libs/docs";
 
 // ВЕРХНЕЕ МЕНЮ ИЗ НАСТРОЕК ПАНЕЛИ (2026-08-12).
 //
@@ -37,8 +38,25 @@ type RawItem = {
   href?: unknown;
   order?: unknown;
   label?: unknown;
+  description?: unknown;
   children?: unknown;
 };
+
+/** 507: описание пункта на языке — перевод `nav.<slot>.<id>.description`, иначе базовое значение; пусто — описания нет. */
+function descriptionFor(slot: NavSlot, id: string, base: unknown, lang: string): string | undefined {
+  const translated = configValueForLang(`nav.${slot}.${id}.description`, lang).trim();
+  const own = typeof base === "string" ? base.trim() : "";
+  return translated || own || undefined;
+}
+
+/**
+ * 507 (владелец 2026-10-16: «Аналогичное выпадающее меню нужно для документов. Перечисление всех документов»): у пункта `docs`
+ * без своих детей дети — все документы протокола на языке страницы, с названием и описанием из самого документа. Список
+ * порождается, а не пишется руками: новый документ в репозитории появляется в меню сам.
+ */
+function docsChildren(lang: string): MenuChild[] {
+  return docsFor(lang).map((d) => ({ slug: d.slug, title: titleOf(d.text), href: `/docs/${d.slug}`, description: descriptionOf(d.text) }));
+}
 
 /**
  * 🔒 ПРЕДЕЛ ДЛИНЫ — ТОЛЬКО У КНОПОК В ПОЛОСЕ (владелец, 2026-08-12).
@@ -82,6 +100,7 @@ function toChild(slot: NavSlot, raw: RawItem, lang: string): MenuChild | null {
     slug: id,
     href,
     title: labelFor(slot, id, typeof raw.label === "string" ? raw.label : "", href, lang, true),
+    description: descriptionFor(slot, id, raw.description, lang),
   };
 }
 
@@ -140,9 +159,10 @@ export function navGroupsFromConfig(slot: NavSlot, lang: string): MenuGroup[] | 
     if (!id) continue;
 
     const href = typeof entry.href === "string" ? entry.href : "";
-    const children = Array.isArray(entry.children)
+    const own = Array.isArray(entry.children)
       ? (entry.children as RawItem[]).map((c) => toChild(slot, c, lang)).filter((c): c is MenuChild => c !== null)
       : [];
+    const children = slot === "top" && id === "docs" && own.length === 0 ? docsChildren(lang) : own;
 
     // Группа без собственного адреса ведёт на первого ребёнка: заголовок,
     // ведущий в никуда, — обещание, которого интерфейс не сдержит.
@@ -153,6 +173,7 @@ export function navGroupsFromConfig(slot: NavSlot, lang: string): MenuGroup[] | 
       slug: id,
       href: target,
       label: labelFor(slot, id, typeof entry.label === "string" ? entry.label : "", target, lang),
+      description: descriptionFor(slot, id, entry.description, lang),
       order: typeof entry.order === "number" ? entry.order : 0,
       childrenAsDropdown: children.length > 0,
       // Кандидатами в меню становятся только публичные маршруты — отбор делает

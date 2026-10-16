@@ -10,11 +10,14 @@
 // правят. Папка не читает НИ ОДНОГО конфига: всё, что она рисует, приходит объектом `ShellData` — у сайта из
 // его настроек (`lib/shell/site-shell-data.ts`), у служб из статической двери сайта `/api/shell/<язык>`.
 
-export type ShellChild = { slug: string; title: string; href?: string }
+/** 507: `description` — вторая строка пункта мега-меню (до двух строк); нет — пункт из одного названия. */
+export type ShellChild = { slug: string; title: string; href?: string; description?: string }
 
 export type ShellGroup = {
   slug: string
   label: string
+  /** 507: описание хаба — первая карточка его выпадающего списка. */
+  description?: string
   order: number
   childrenAsDropdown: boolean
   roles: string
