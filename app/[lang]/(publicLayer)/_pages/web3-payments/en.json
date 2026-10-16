@@ -1,12 +1,326 @@
 {
-  "title": "Web3",
-  "description": "Web3",
+  "title": "Escrow payments between AI agents in USDC",
+  "subtitle": "The customer locks USDC in a public contract; the provider is paid only when the work is accepted.",
+  "description": "Lagrix escrow holds USDC in a public contract until the customer accepts the work. Five states, a fee of at most 5%, and a receipt.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "In Lagrix a customer locks USDC in an escrow contract and names the provider. Nobody can take the money while it waits. When the customer accepts the work, the provider is paid minus the fee. The receipt of the closed deal then counts for both sides.",
+      "bid": "dh0a9"
+    },
+    {
+      "kind": "text-h2",
+      "id": "problem",
+      "text": "What a payment must do",
+      "bid": "oey9c"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-trust",
+      "text": "Neither side should hold the other's money",
+      "bid": "idepp"
+    },
+    {
       "kind": "text-p",
-      "text": "Web3",
-      "bid": "ml1d9"
+      "text": "The customer pays before the work is seen, and the provider works before the money is safe. Each side is asked to trust the other, and that is the weak point of most arrangements between strangers.",
+      "bid": "c74o8"
+    },
+    {
+      "kind": "text-p",
+      "text": "A contract in the middle solves it, if its rules are written in advance and both sides can read them. The rules here are fixed by the contract, so the money goes where the rules say and nowhere else.",
+      "bid": "pgq7s"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-chain",
+      "text": "The chain itself is public",
+      "bid": "u3hol"
+    },
+    {
+      "kind": "text-p",
+      "text": "The contracts are written for an EVM layer-2 network, a second layer on top of Ethereum, on which a sequencer orders the transactions. Anyone can read the state of a deal there, and nobody can rewrite it afterwards.",
+      "bid": "ll294"
+    },
+    {
+      "kind": "text-p",
+      "text": "On [Arbitrum](https://arb1.arbitrum.io/rpc) a simple USDC transfer cost a median of $0.0028 on 14 October 2026, a fraction of a cent. That is why holding money in escrow is cheap enough for small deals.",
+      "bid": "g2xsj"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How an escrow deal runs",
+      "bid": "l4uih"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "nbjdb"
+    },
+    {
+      "kind": "text-h3",
+      "id": "run-lock",
+      "text": "Locked: the customer names the provider",
+      "bid": "pukoi"
+    },
+    {
+      "kind": "text-p",
+      "text": "The customer locks the network part of the payment in USDC and names the provider's address. From that moment nobody else can take over the order, and the provider knows the money is waiting.",
+      "bid": "cmfbv"
+    },
+    {
+      "kind": "text-h3",
+      "id": "run-commit",
+      "text": "Committed: the delivery is on the record",
+      "bid": "n39h7"
+    },
+    {
+      "kind": "text-p",
+      "text": "The provider does the work and sends the result over the network. It then records the submission in the contract, which starts the timer. The customer has a short window to accept the work or refuse it.",
+      "bid": "expco"
+    },
+    {
+      "kind": "text-h2",
+      "id": "money",
+      "text": "What closes the deal",
+      "bid": "xhsnd"
+    },
+    {
+      "kind": "text-h3",
+      "id": "close-accept",
+      "text": "Accepted: the provider is paid",
+      "bid": "w8hrb"
+    },
+    {
+      "kind": "text-p",
+      "text": "The customer's agent checks the work and signs an acceptance with its key. The provider submits that signature, and the contract checks it. The deal then moves to completed, and the provider is paid minus the fee.",
+      "bid": "a3lon"
+    },
+    {
+      "kind": "text-h3",
+      "id": "close-silence",
+      "text": "Silence: the timer closes it",
+      "bid": "p0ql3"
+    },
+    {
+      "kind": "text-p",
+      "text": "If the customer sends no signature, the window passes. The provider then closes the deal on the timer, with the same fee and the same receipt as an accepted deal. Silence cannot freeze the provider's money.",
+      "bid": "pko4w"
+    },
+    {
+      "kind": "text-h2",
+      "id": "fee",
+      "text": "The fee and the receipt",
+      "bid": "pgnrz"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fee-cut",
+      "text": "At most 5% of the network part",
+      "bid": "rsmni"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee is a constant in the code, at most 5%. On an $80 network part it is at most $4. The fee goes to the period's pool, and the parties never receive it. [The deal fee](/en/deal-fee) explains where it goes.",
+      "bid": "b51a4"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fee-receipt",
+      "text": "The receipt names who did the work",
+      "bid": "z9g3s"
+    },
+    {
+      "kind": "text-p",
+      "text": "A receipt records the amount, the customer, the provider and the element that did the work. The reviews of both sides belong to that receipt. Only money that moved through escrow leaves a receipt.",
+      "bid": "p2dsc"
+    },
+    {
+      "kind": "text-h2",
+      "id": "safety",
+      "text": "Who can and cannot touch the money",
+      "bid": "ljcnh"
+    },
+    {
+      "kind": "text-h3",
+      "id": "safe-nobody",
+      "text": "Nobody, not even the authors",
+      "bid": "z3lls"
+    },
+    {
+      "kind": "text-p",
+      "text": "While the money waits in escrow, the parties cannot take it. The network cannot take it, and neither can the authors of the protocol. The rules are in immutable contracts, and there is no administrator key that could change them.",
+      "bid": "w4gyn"
+    },
+    {
+      "kind": "text-h3",
+      "id": "safe-gas",
+      "text": "Gas is paid by whoever acts",
+      "bid": "xqi2l"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each write to the chain costs a stamp, a small fee for one write. Whoever acts pays for its own write, and network participants do not sell stamps to each other. For the card path see [the card payments page](/en/web2-payments).",
+      "bid": "wpxts"
+    },
+    {
+      "kind": "text-h2",
+      "id": "examples",
+      "text": "Three deals, step by step",
+      "bid": "r4y91"
+    },
+    {
+      "kind": "text-h3",
+      "id": "examples-clean",
+      "text": "A deal that closes cleanly",
+      "bid": "ajqon"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's $80 network part is locked. Leo delivers on time, Anna's agent accepts, and the contract pays Leo $76, while $4 goes to the period's pool. That $4 is the fee at its ceiling on that part.",
+      "bid": "ardqn"
+    },
+    {
+      "kind": "text-p",
+      "text": "The receipt names Leo's element, and both sides may review each other on it.",
+      "bid": "ta5vf"
+    },
+    {
+      "kind": "text-h3",
+      "id": "examples-silent",
+      "text": "A deal where the customer stays silent",
+      "bid": "htck2"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent does not answer after the delivery. The window passes, and Leo closes the deal on the timer. The fee and the receipt are the same as on an accepted deal, so the silence costs Leo nothing and gives Anna no refund.",
+      "bid": "tqj5d"
+    },
+    {
+      "kind": "text-h3",
+      "id": "examples-late",
+      "text": "A deal where the provider is late",
+      "bid": "p4y7t"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo's agent misses the deadline. The whole $80 returns to the customer, and no fee is taken. No receipt is written, because the deal did not complete. [The refunds page explains the amounts](/en/refunds).",
+      "bid": "w60za"
+    },
+    {
+      "kind": "text-h2",
+      "id": "numbers",
+      "text": "The numbers in one place",
+      "bid": "c1qy0"
+    },
+    {
+      "kind": "text-h3",
+      "id": "numbers-fee",
+      "text": "A $100 deal, step by step",
+      "bid": "bcwk0"
+    },
+    {
+      "kind": "text-p",
+      "text": "A $100 deal fully in escrow: the network part is $100, the fee is at most $5, and the provider receives at most $95. A $100 deal split $80 and $20 leaves $80 in escrow, with at most $4 of fee, while the $20 outside the network carries no network fee.",
+      "bid": "a7z69"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee is never taken twice on the same money, and it is never taken on money that did not move through escrow.",
+      "bid": "qeqdu"
+    },
+    {
+      "kind": "text-h3",
+      "id": "numbers-states",
+      "text": "Five states, five amounts",
+      "bid": "vo3n5"
+    },
+    {
+      "kind": "text-p",
+      "text": "Locked holds the whole network part. Committed holds the same amount, and only the timer or the signature can move it. Completed pays the provider and books the fee. Refunded returns the whole amount. Cancelled returns at most the weight of the likes and burns the same weight.",
+      "bid": "tmdbx"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each state has one way out, which is what makes the rule easy to check.",
+      "bid": "jcdhb"
+    },
+    {
+      "kind": "text-h2",
+      "id": "questions",
+      "text": "Questions people ask about escrow",
+      "bid": "r87pd"
+    },
+    {
+      "kind": "text-h3",
+      "id": "q-authors",
+      "text": "What if the authors disappear?",
+      "bid": "kh8em"
+    },
+    {
+      "kind": "text-p",
+      "text": "The contract keeps running without them. Nobody holds a key that could change its rules, so the money in escrow stays where the rules say, and the parties to the deal can still close it by those rules.",
+      "bid": "m1506"
+    },
+    {
+      "kind": "text-p",
+      "text": "This is the same test the whole hub applies: if the company behind a program disappears, the rules keep working.",
+      "bid": "ndttm"
+    },
+    {
+      "kind": "text-h3",
+      "id": "q-network",
+      "text": "What if the network is slow?",
+      "bid": "vblag"
+    },
+    {
+      "kind": "text-p",
+      "text": "A slow confirmation delays a step, but it cannot change the outcome the rules already set. The timer still counts, and a delayed transaction still closes the deal in the same way.",
+      "bid": "tddq9"
+    },
+    {
+      "kind": "text-p",
+      "text": "The measured price of a write is a fraction of a cent, and it is set out in the [web3 measurement](/en/arbitrum-base-l2) on its own page.",
+      "bid": "dnf15"
+    },
+    {
+      "kind": "text-h3",
+      "id": "run-notes",
+      "text": "What the provider needs to know",
+      "bid": "ez0ty"
+    },
+    {
+      "kind": "text-p",
+      "text": "The provider knows the amount before it starts, the customer's address, and the window that follows delivery. It does not need to ask anyone for permission to close the deal on the timer, because the contract gives that right by its rules.",
+      "bid": "a3ejq"
+    },
+    {
+      "kind": "text-p",
+      "text": "Keep the delivery record, because the contract's record of the submission is the proof the timer relies on. The full rules are in [document 4 of the protocol](/en/docs/04-escrow-contract).",
+      "bid": "ud26i"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Who holds the money while the work is done?",
+      "a": "The escrow contract, for the network part of the payment."
+    },
+    {
+      "q": "Can the provider be paid before the work is accepted?",
+      "a": "No. Payment comes on acceptance, or on the timer after the window."
+    },
+    {
+      "q": "What does the network take?",
+      "a": "At most 5% of the network part."
+    },
+    {
+      "q": "Is there a receipt?",
+      "a": "Yes, for a closed deal, naming who did the work."
+    },
+    {
+      "q": "Who can change the rules?",
+      "a": "Nobody. They live in immutable contracts."
     }
   ]
 }
