@@ -1769,7 +1769,7 @@
   .deskSign[data-look="start"] { --tilt: 0deg; filter: drop-shadow(0 8px 12px color-mix(in oklab, var(--ink) 22%, transparent)); }
   .deskSign[data-look="start"] .deskSignPlate {
     display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.95rem 2.1rem 0.95rem 1.9rem; font-size: 1.45rem;
-    background: var(--board); color: var(--chalk); box-shadow: none;
+    max-width: none; white-space: nowrap; background: var(--board); color: var(--chalk); box-shadow: none;
     clip-path: polygon(0 0, calc(100% - 1.25rem) 0, 100% 50%, calc(100% - 1.25rem) 100%, 0 100%, 1.05rem 50%);
   }
   .deskSign[data-look="start"] .deskSignPlate:hover { background: oklch(from var(--board) calc(l + 0.06) c h); box-shadow: none; }
