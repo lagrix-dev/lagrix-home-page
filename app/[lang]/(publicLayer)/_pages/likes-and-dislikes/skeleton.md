@@ -77,14 +77,20 @@ needs a payment first, how likes as a customer turn into a right to a refund.
   thousand tiny deals; 2) his likes read «1000 · $0.50» (F8); 3) a buyer's agent sees a thousand likes weighing fifty cents next to Sam's
   «2 · $6» and draws its own conclusion; 4) the network itself does not judge (F9).
 
-### H2 `dislikes` — en «Dislikes and refunds» · ru «Дизлайки и возвраты»
+### H2 `dislikes` — en «Dislikes, refunds and negative ratings» · ru «Дизлайки, возвраты и негативные оценки» (step 511, entry 46)
 - H3 `dislikes-cost` «A dislike costs a payment first» · «Дизлайк сначала стоит оплаты» — chain: 1) the rival wants to hurt Sam;
   2) first he must buy Sam's work through the network (F11); 3) Sam is paid for it; 4) the dislike weighs the fee of that deal; 5) the next
   buyer sees one dislike among Sam's likes, each with its sum (F8).
 - H3 `dislikes-refund` «Likes you earn as a customer» · «Лайки, которые вы зарабатываете как заказчик» — chain: 1) Anna's salon also
-  collects likes as a customer, from providers it paid (F12); 2) if Anna cancels an order she did not accept, she gets back at most the
-  weight of those likes, and the same weight burns (F12); 3) the right to a $1 refund costs at least $1 of fees (F13) →
+  collects likes as a customer, from providers it paid (F12); 2) she paid two providers $100 each, both liked her → her likes weigh $10;
+  3) if she cancels an order she did not accept, she gets back at most $10, and those $10 are deducted from her likes as a new, dated
+  event (F12); 4) the right to a $1 refund costs at least $1 of fees (F13) →
   [what an order cancellation does to both sides](/<lang>/order-cancellation); full rules → [document 17](/<lang>/docs/17-discovery-ranking-feedback).
+- H3 `dislikes-given` «How an element rates its partners» · «Как элемент оценивает партнёров» — chain (F14): 1) one more line shows how
+  an element treats its partners: negative ratings; 2) before taking Anna's next order, Sam's agent opens her record as a customer;
+  3) ten orders of $100, fee $5 each → the orders she could review weigh $50; 4) one dislike on one of them, $5 → «10% · 1 · $5»;
+  5) another customer, same ten orders, six dislikes weighing $30 → «60% · 6 · $30»; 6) Sam sees how likely each is to dislike his work
+  and decides whether to take the order; deals left silent show in «unreviewed».
 
 ## 7. Facts
 | № | statement | source |
@@ -100,10 +106,11 @@ needs a payment first, how likes as a customer turn into a right to a refund.
 | F9 | indicators never added or subtracted; the counterparty decides; the network does not judge | doc 17 §17.4; doc 04 §4.2 |
 | F10 | faking one unit of weight costs one dollar of fees; weight is never cheaper than it weighs | doc 17 §17.5; doc 05 §5.3 |
 | F11 | to leave a dislike one must first pay that person through the network | doc 17 §17.5 |
-| F12 | cancellation: refund at most the customer's like weight as a customer, the same weight burns; likes available = likes − burned | doc 04 §4.3; doc 17 §17.5 |
+| F12 | cancellation: refund at most the customer's like weight as a customer, the same weight is deducted from its likes as a new, dated event | doc 04 §4.3; doc 17 §17.5; entry 46 |
 | F13 | the right to a refund bought with likes never costs less than the refund | doc 17 §17.5; entry 42 «Why» |
+| F14 | negative ratings: the weight of the dislikes an element gave in a role ÷ the weight of its orders in that role it could review, as a percent, with count · weight next to it; deals left silent stay in «unreviewed» | entry 46; doc 17 §17.4 |
 
-Numbers: «$100», «$5», «5%», «5 %», «$10», «$20», «$1», «$6», «$50», «$1,000», «$0.50», «$0,50»
+Numbers: «$100», «$5», «5%», «5 %», «$10», «$20», «$1», «$6», «$50», «$1,000», «$0.50», «$0,50», «10%», «10 %», «60%», «60 %», «$30»
 
 ## 8. Questions to the owner
 none.
@@ -123,9 +130,10 @@ none.
 3. en «Can I change my review later?» · ru «Можно ли потом изменить отзыв?» — no; it has no deadline, but once given it stays — F7
 4. en «Can a competitor flood me with dislikes?» · ru «Может ли конкурент завалить меня дизлайками?» — only by paying you for real work each time — F11
 5. en «What are likes as a customer for?» · ru «Зачем заказчику лайки?» — they are the limit of what he can get back if he cancels an order — F12
+6. en «Can I see how an element rates others?» · ru «Видно ли, как элемент оценивает других?» — yes: negative ratings, the share of its orders by weight that ended with its own dislike — F14
 
 ## 11. Words
-Glossary: review, like, dislike, weight, fee, receipt, burned, cancelled order. Traps: never «rating» for Lagrix; «tokens» banned; ru
+Glossary: review, like, dislike, weight, fee, receipt, negative ratings, cancelled order («burned» is gone — entry 46). Traps: never «rating» for reputation as a whole («negative ratings» is the name of one indicator); «tokens» banned; ru
 amounts with spaces are read badly by the probe — write «тысячу долларов» for $1,000 in Russian.
 
 ## 12. Unique value

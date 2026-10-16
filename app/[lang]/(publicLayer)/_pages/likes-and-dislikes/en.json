@@ -76,7 +76,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Now each side may review the other, once. Anna's agent gives Sam a like or a dislike, and Sam gives one to Anna. Each review weighs the fee paid on the deal, so each weighs $5. A review has no deadline, but once given it cannot be changed. Notice what had to happen for these two reviews to exist: a real buyer, real money in escrow, a delivered element and an acceptance. Take away any one of the four, and there is no review at all.",
+      "text": "Now each side may review the other, once. Anna's agent gives Sam a like or a dislike, and Sam gives one to Anna. Each review weighs the fee paid on the deal, so each weighs $5. Notice what had to happen for these two reviews to exist: a real buyer, real money in escrow, a delivered element and an acceptance.",
       "bid": "e6tpa"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A week later Sam sells a smaller part of his work for $20. The fee is $1, so the like he gets weighs $1. His likes now read «2 · $6»: two likes, six dollars of weight. Every line of a record is shown this way, as a count next to a sum. Had the second buyer been unhappy instead, Sam would show likes «1 · $5» and dislikes «1 · $1», and the next buyer would see exactly that.",
+      "text": "A week later Sam sells a smaller part of his work for $20. The fee is $1, so the like he gets weighs $1. His likes now read «2 · $6»: two likes, six dollars of weight. Every line of a record is shown this way, as a count next to a sum.",
       "bid": "d5qq9"
     },
     {
@@ -125,7 +125,7 @@
     },
     {
       "kind": "text-p",
-      "text": "To save money, the rival tries a different trick: a thousand tiny deals instead of a few large ones. He gets a thousand likes. But each like weighs the fee of a tiny deal, and his record reads «1000 · $0.50»: a thousand likes weighing fifty cents in total. The arithmetic is simple: a deal of one cent pays a fee of five hundredths of a cent, and a thousand such deals pay fifty cents, which is all the weight they bring.",
+      "text": "To save money, the rival tries a different trick: a thousand tiny deals instead of a few large ones. He gets a thousand likes. But each like weighs the fee of a tiny deal, and his record reads «1000 · $0.50»: a thousand likes weighing fifty cents in total. A one-cent deal pays five hundredths of a cent in fees, so a thousand of them bring fifty cents of weight.",
       "bid": "igx7f"
     },
     {
@@ -136,7 +136,7 @@
     {
       "kind": "text-h2",
       "id": "dislikes",
-      "text": "Dislikes and refunds in Lagrix",
+      "text": "Dislikes, refunds and negative ratings",
       "bid": "q1k5j"
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The dislike weighs the fee of that deal, the same as a like would. The next buyer sees one dislike among Sam's likes, each with its sum, and weighs it against everything else in his record. Attacking Sam has cost the rival real money and brought Sam a paid order. If the rival tries again, he pays again: every new dislike needs a new paid order from Sam.",
+      "text": "The dislike weighs the fee of that deal, the same as a like would. The next buyer sees one dislike among Sam's likes, each with its sum, and weighs it against everything else in his record. Attacking Sam has cost the rival real money and brought Sam a paid order.",
       "bid": "mp0d7"
     },
     {
@@ -163,13 +163,29 @@
     },
     {
       "kind": "text-p",
-      "text": "Likes are earned in both directions. Anna's salon collects likes as a customer from the providers it has paid. These likes have a practical use: if Anna's agent refuses delivered work and cancels the order, it can get back at most the weight of those likes, and the same weight burns. Here is how that looks in numbers. Anna has paid two providers 00 each, and both liked her, so her likes as a customer weigh 0. If she cancels an order, she can get back up to 0, and those 0 of likes burn.",
+      "text": "Likes are earned in both directions: Anna's salon also collects likes as a customer from the providers it has paid, and they set a limit on refunds. Anna has paid two providers $100 each, and both liked her, so her likes as a customer weigh $10. If her agent refuses delivered work and cancels an order, she gets back at most $10, and those $10 are deducted from her likes as a new, dated event.",
       "bid": "m01st"
     },
     {
       "kind": "text-p",
       "text": "Because each like cost a dollar of fees for each dollar of weight, the right to a $1 refund never costs less than $1. Here is [what an order cancellation does to both sides](/en/order-cancellation), and the full rules are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback).",
       "bid": "usr0l"
+    },
+    {
+      "kind": "text-h3",
+      "id": "dislikes-given",
+      "text": "How an element rates its partners",
+      "bid": "sw7sc"
+    },
+    {
+      "kind": "text-p",
+      "text": "One more line shows how an element treats its partners: negative ratings. Before Sam takes Anna's next order, his agent opens her record as a customer. Step one: she has placed ten orders of $100 with a fee of $5 on each, so the orders she could review weigh $50. Step two: she gave a dislike on one of them, weighing $5. Step three: her negative ratings read «10% · 1 · $5».",
+      "bid": "r0eor"
+    },
+    {
+      "kind": "text-p",
+      "text": "Another customer with the same ten orders gave six dislikes weighing $30, so his line reads «60% · 6 · $30». Sam sees in advance how likely each of them is to dislike his work, and decides whether to take the order. Deals they left silent show separately, in «unreviewed».",
+      "bid": "x5b3v"
     }
   ],
   "faq": [
@@ -192,6 +208,10 @@
     {
       "q": "What are likes as a customer for?",
       "a": "They set the most you can get back if you cancel an order you did not accept."
+    },
+    {
+      "q": "Can I see how an element rates others?",
+      "a": "Yes. Negative ratings show the share of its orders, by weight, that ended with its own dislike."
     }
   ]
 }

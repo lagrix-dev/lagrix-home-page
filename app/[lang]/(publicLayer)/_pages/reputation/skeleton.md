@@ -77,8 +77,8 @@ words, ru ≥ 1000. Web4 definition verbatim as the first paragraph of H2 `how-i
 
 ### H2 `what-you-see` — en «What the other side sees» · ru «Что видит другая сторона»
 - H3 `see-six` «Six numbers, each with its sum» · «Шесть чисел, и у каждого сумма» — chain: 1) Anna's agent opens Leo's record as a
-  provider (F9); 2) all orders: how many and for how much; 3) likes and dislikes: how many and what they weigh; 4) burned: likes spent on
-  refunds; 5) cancelled orders; 6) unreviewed: deals where Leo left no review (F9); 7) every count comes with its sum, so a thousand likes
+  provider (F9); 2) all orders: how many and for how much; 3) likes and dislikes: how many and what they weigh; 4) negative ratings: the share of Leo's
+  orders, by weight, that he ended with his own dislike (F9; a refund has no line — it is deducted from the customer's likes); 5) cancelled orders; 6) unreviewed: deals where Leo left no review (F9); 7) every count comes with its sum, so a thousand likes
   weighing a few cents in total show farming at once (F10). Links → [what an order cancellation does to both sides](/<lang>/order-cancellation),
   [what a missed review tells the other side](/<lang>/missed-reviews).
 - H3 `see-roles` «Two roles, one mark» · «Две роли и одна отметка» — chain: 1) the same element has a record as a provider and as a customer:
@@ -90,7 +90,7 @@ words, ru ≥ 1000. Web4 definition verbatim as the first paragraph of H2 `how-i
   adds the six numbers into one score (F12); 2) Anna's agent weighs them as it sees fit; 3) reputation plays no part in the order of search
   results: the order follows paid work (F13) → [how search results are built](/<lang>/discovery).
 - H3 `rules-history` «Nothing is rewritten, and history does not travel» · «Ничего не переписывается, и история не переезжает» — chain:
-  1) a burned like or a mark is a new event; nothing is erased (F14); 2) an element moved to another node or sold starts with a clean
+  1) a refund deducted from likes or a mark is a new event; nothing is erased (F14); 2) an element moved to another node or sold starts with a clean
   history (F15); 3) a person who runs several nodes may show their reputations together, with proof they are theirs; the network does not
   compute it (F16). Full rules → [document 17](/<lang>/docs/17-discovery-ranking-feedback).
 
@@ -105,12 +105,12 @@ words, ru ≥ 1000. Web4 definition verbatim as the first paragraph of H2 `how-i
 | F6 | a closed deal leaves a receipt | doc 05 §5.2; doc 04 §4.5 |
 | F7 | each side gives one review, like or dislike, only for a deal paid through the network; weight = fee paid; $100 → $5; cannot be changed; no deadline | doc 17 §17.5; README glossary «Review» |
 | F8 | faking one unit of weight costs one dollar of fees; to leave a dislike one must first pay that person through the network | doc 17 §17.5; doc 05 §5.3 |
-| F9 | six indicators per role (provider, customer), each «count · sum»: all orders, likes, dislikes, burned, cancelled, unreviewed | doc 17 §17.4; entries 43, 44 |
+| F9 | six indicators per role (provider, customer): all orders, likes, dislikes, negative ratings (a percent with count · weight of the dislikes given), cancelled, unreviewed | doc 17 §17.4; entries 43, 44, 46 |
 | F10 | a count never without its sum; a thousand likes weighing 50 cents in total reveal farming | entry 43 «Why»; doc 17 §17.4 |
 | F11 | proven violation mark on all elements of the node, both roles, with date and proof | doc 17 §17.4; entry 44 |
 | F12 | indicators never added or subtracted, no single score; the counterparty decides | doc 17 §17.4 |
 | F13 | reputation takes no part in ranking; ranking follows paid work of the last 12 months | doc 17 §17.2 |
-| F14 | burning and marks are new events; history is not rewritten | entry 42; doc 05 §5.4 |
+| F14 | refunds deducted from likes and marks are new events; history is not rewritten | entries 42, 46; doc 05 §5.4 |
 | F15 | an element moved or handed to another owner starts with a clean history | doc 17 §17.10 |
 | F16 | karma: a person shows reputations of their own nodes together with proof; the network does not compute it | doc 17 §17.10 |
 
@@ -138,7 +138,7 @@ none — every statement is in the protocol or a primary source.
 5. en «Does reputation come with an agent I buy?» · ru «Переходит ли репутация вместе с купленным агентом?» — no; it starts with a clean history — F15
 
 ## 11. Words
-Glossary: review, like, dislike, weight, fee, receipt, escrow, reputation, all orders, burned, cancelled order, unreviewed, proven
+Glossary: review, like, dislike, weight, fee, receipt, escrow, reputation, all orders, negative ratings, cancelled order, unreviewed, proven
 violation, element, karma. Traps: «rating»/«score» only for what others do — Lagrix has no score; «tokens/токены» banned; the network
 does not judge quality; do not name the FTC rule as protecting Lagrix users (it is US law about fake reviews in general).
 

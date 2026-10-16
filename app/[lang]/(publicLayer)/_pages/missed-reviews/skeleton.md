@@ -43,10 +43,10 @@ other side, what it does not affect.
 - menu item en: name «Missed reviews» · description «Deals left without a review show as a count and a sum, and a late review clears them.»
   ru: name «Пропущенные отзывы» · description «Сделки без отзыва видны числом и суммой, а поздний отзыв их убирает.»
 - lead en: «In Lagrix a buyer who leaves no review is not invisible. When a paid deal closes, it enters the «unreviewed» line of both sides,
-  shown as a count and a sum, and stays there until that side gives a like or a dislike. There is no deadline, nothing burns, and search
+  shown as a count and a sum, and stays there until that side gives a like or a dislike. There is no deadline, no money moves, and search
   is not affected.»
   ru: «В Lagrix покупатель, который не оставил отзыв, не невидим. Когда оплаченная сделка закрывается, она попадает в строку «без отзыва» у
-  обеих сторон — числом и суммой — и остаётся там, пока сторона не поставит лайк или дизлайк. Срока нет, ничего не сгорает, и на выдачу
+  обеих сторон — числом и суммой — и остаётся там, пока сторона не поставит лайк или дизлайк. Срока нет, деньги не двигаются, и на выдачу
   это не влияет.»
 
 ## 6. Body plan
@@ -87,7 +87,7 @@ looks at Leo's record. en ≥ 1240 words, ru ≥ 1000.
 - H3 `not-search` «It does not move search or places» · «Не влияет на выдачу и места» — chain: 1) search follows paid work over the last
   12 months, with or without reviews (F12) → [how search results are built](/<lang>/discovery); 2) a super-node place is earned by paid
   work, which counts with or without a review (F9).
-- H3 `not-penalty` «It is not a penalty» · «Это не штраф» — chain: 1) no fee, no deadline, nothing burns (F6); 2) it is never added to or
+- H3 `not-penalty` «It is not a penalty» · «Это не штраф» — chain: 1) no fee and no deadline; unlike a cancellation, no likes are deducted (F6); 2) it is never added to or
   subtracted from other lines; there is no single score (F11) → [what the other side sees](/<lang>/reputation); 3) it is information
   for both sides: Leo sees how much of his work with others he left unrated (F9); full rules → [document 17](/<lang>/docs/17-discovery-ranking-feedback).
 

@@ -39,17 +39,17 @@ limit is the customer's likes, what both records show afterwards.
 - title en: «How to cancel an order with an AI agent» · ru: «Как отменить заказ у ИИ-агента»
 - subtitle en: «In Lagrix a customer may cancel within the dispute window and get back at most the weight of its likes as a customer; the provider keeps the rest.»
   ru: «В Lagrix заказчик может отменить заказ в окне спора и вернуть не больше веса своих лайков заказчика; остальное получает исполнитель.»
-- description en: «Cancel an agent's order in Lagrix: the refund is at most your likes as a customer, the same weight burns, and both records show the cancelled order.»
-  ru: «Отмена заказа у агента в Lagrix: вернуть можно не больше веса ваших лайков заказчика, столько же сгорает, а отмена видна в записях обеих сторон.»
+- description en: «Cancel an agent's order in Lagrix: the refund is at most your likes as a customer, that weight leaves your likes, and both records show the cancelled order.»
+  ru: «Отмена заказа у агента в Lagrix: вернуть можно не больше веса ваших лайков заказчика, столько же вычтется из лайков, а отмена видна в записях обеих сторон.»
 - cover alt en: «Escrow splits a cancelled $100 order: $10 back to the customer, the rest to the provider»
   ru: «Эскроу делит отменённый заказ на $100: $10 заказчику, остальное исполнителю»
 - menu item en: name «Order cancellation» · description «Cancel within the dispute window: the refund is limited by your likes, and both records show it.»
   ru: name «Отмена заказа» · description «Отмена в окне спора: возврат ограничен вашими лайками, и отмена видна в записях обеих сторон.»
 - lead en: «In Lagrix a customer who refuses delivered work may cancel the order within the dispute window. It gets back at most the weight of
-  its likes as a customer, the same weight of likes burns, and the provider receives the rest. If the provider declines or misses the
+  its likes as a customer, the same weight is deducted from its likes, and the provider receives the rest. If the provider declines or misses the
   deadline, the customer gets everything back and no fee is taken.»
   ru: «В Lagrix заказчик, который не принимает сданную работу, может отменить заказ в окне спора. Он вернёт не больше веса своих лайков
-  заказчика, столько же лайков сгорит, а остальное получит исполнитель. Если исполнитель откажется или не успеет к сроку, заказчику
+  заказчика, столько же вычтется из его лайков, а остальное получит исполнитель. Если исполнитель откажется или не успеет к сроку, заказчику
   вернётся всё, и комиссию не возьмут.»
 
 ## 6. Body plan
@@ -79,7 +79,7 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 ### H2 `cancel` — en «How a cancellation works, step by step» · ru «Как работает отмена, шаг за шагом»
 - H3 `cancel-steps` «The refund is limited by your likes» · «Возврат ограничен вашими лайками» — chain: 1) Leo delivered; Anna's agent
   refuses the result within the dispute window and cancels (F8); 2) the contract reads Anna's likes as a customer: $10 (F8); 3) it returns
-  $10 to Anna, never more than the order itself (F8); 4) the same $10 of likes burn (F8); 5) the rest of the payment goes to Leo (F8);
+  $10 to Anna, never more than the order itself (F8); 4) the same $10 are deducted from her likes (F8); 5) the rest of the payment goes to Leo (F8);
   6) a cancelled order is recorded for both of them (F9).
 - H3 `cancel-why` «Why the limit is likes» · «Почему предел — лайки» — chain: 1) a customer with no likes gets nothing back, and the whole
   amount goes to the provider (F8); 2) otherwise anyone could order work, take the result and cancel for free; 3) each dollar of likes
@@ -87,11 +87,11 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
   4) the network never judges who was right: acceptance belongs to the customer (F11).
 
 ### H2 `record` — en «What a cancellation leaves in the record» · ru «Что отмена оставляет в записи»
-- H3 `record-lines` «Cancelled and burned» · «Отменённые и сгоревшие» — chain: 1) Anna's record as a customer: cancelled orders
-  «1 · $100», burned «1 · $10» (F9, F12); 2) Leo's record as a provider: cancelled orders «1 · $100» (F9); 3) the order still counts in
-  «all orders» for both (F12); 4) nothing is erased: the burn is a new event (F13).
+- H3 `record-lines` «Cancelled orders and remaining likes» · «Отменённые заказы и оставшиеся лайки» — chain: 1) Anna's record as a
+  customer: cancelled orders «1 · $100», likes «2 · $0» — two reviews earned, no weight left (F9, F12); 2) Leo's record as a provider: cancelled orders «1 · $100» (F9); 3) the order still counts in
+  «all orders» for both (F12); 4) nothing is erased: the deduction is a new, dated event (F13).
 - H3 `record-read` «How the next side reads it» · «Как это читает следующая сторона» — chain: 1) the next provider sees Anna's cancelled
-  and burned lines before taking her order; 2) three cancellations out of three hundred orders and three out of four are different
+  orders and remaining likes before taking her order; 2) three cancellations out of three hundred orders and three out of four are different
   stories (F14) → [what the other side sees](/<lang>/reputation); 3) the full state machine of escrow → [document 4](/<lang>/docs/04-escrow-contract).
 
 ## 7. Facts
@@ -104,15 +104,15 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 | F5 | the provider records delivery (COMMITTED) and a dispute window opens; after it the provider closes the deal without the customer's signature, with the same fee and receipt | doc 04 §4.3 |
 | F6 | on acceptance: provider gets payment minus the fee (5%), the fee goes to the period's pool, a receipt is recorded | doc 04 §4.1, §4.4 |
 | F7 | provider declines for any reason, which the network does not judge, or misses the deadline → full refund, no fee (REFUNDED) | doc 04 §4.1 |
-| F8 | cancellation within the window: refund = min(customer's like weight as a customer, amount); the same weight burns; the rest to the provider; no likes → nothing back | doc 04 §4.3; README glossary «Cancelled order» |
+| F8 | cancellation within the window: refund = min(customer's like weight as a customer, amount); the same weight is deducted from the customer's likes; the rest to the provider; no likes → nothing back | doc 04 §4.3; README glossary «Cancelled order» |
 | F9 | a «cancelled order» is recorded for both sides | doc 04 §4.1; entry 42 |
 | F10 | the right to a refund bought with likes never costs less than the refund | doc 17 §17.5; entry 42 «Why» |
 | F11 | the network never judges whether a service was delivered; acceptance belongs to the customer | doc 04 §4.2 |
-| F12 | indicators: burned (refunds that consumed likes, weight burned), cancelled orders (count, sum of network parts), all orders includes cancelled | doc 17 §17.4 |
-| F13 | burning is a new event; history is not rewritten | entry 42 |
+| F12 | indicators: likes (count, weight less refunds), cancelled orders (count, sum of network parts), all orders includes cancelled; «burned» is not an indicator | doc 17 §17.4; entry 46 |
+| F13 | the deduction is a new, dated event; history is not rewritten | entries 42, 46 |
 | F14 | three cancelled out of three hundred and three out of four are different stories | entry 44 «Why» |
 
-Numbers: «$100», «$5», «$10», «$90», «5%», «5 %», «35%», «35 %», «$1»
+Numbers: «$100», «$5», «$10», «$90», «5%», «5 %», «35%», «35 %», «$1», «$0»
 
 ## 8. Questions to the owner
 none for the page; the open protocol question is kept off the page (see the top of this file).
@@ -134,10 +134,10 @@ none for the page; the open protocol question is kept off the page (see the top 
 5. en «Will others see that I cancelled?» · ru «Увидят ли другие, что я отменил?» — yes, a cancelled order is recorded for both sides — F9
 
 ## 11. Words
-Glossary: cancelled order, dispute window, refund, burned, escrow, like, customer, provider, all orders. Traps: «cancellation» ≠
+Glossary: cancelled order, dispute window, refund, escrow, like, customer, provider, all orders. Traps: «cancellation» ≠
 «refund» (refund = provider declined or late); never «the network decides who is right»; do not state what happens to the fee, the receipt
 or reviews on a cancelled order; «tokens» banned; ru «2026 года» → «2026-го».
 
 ## 12. Unique value
-- The rule known before the order, in numbers: $100 order, $10 of likes → $10 back, $10 burns, the rest to the provider.
+- The rule known before the order, in numbers: $100 order, $10 of likes → $10 back, $10 deducted from likes, the rest to the provider.
 - Four endings side by side, so a reader sees which one is a refund and which one is a cancellation.

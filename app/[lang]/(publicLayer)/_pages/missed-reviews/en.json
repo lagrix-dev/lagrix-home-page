@@ -6,7 +6,7 @@
   "blocks": [
     {
       "kind": "text-lead",
-      "text": "In Lagrix a buyer who leaves no review is not invisible. When a paid deal closes, it enters the «unreviewed» line of both sides, shown as a count and a sum, and stays there until that side gives a like or a dislike. There is no deadline, nothing burns, and search is not affected.",
+      "text": "In Lagrix a buyer who leaves no review is not invisible. When a paid deal closes, it enters the «unreviewed» line of both sides, shown as a count and a sum, and stays there until that side gives a like or a dislike. There is no deadline, no money moves, and search is not affected.",
       "bid": "vsqi0"
     },
     {
@@ -163,7 +163,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A missed review costs nothing. Compare it with a cancellation, where likes burn: a missed review touches no money and no weight at all. There is no fee for it, no deadline after which something happens, and nothing burns. The line is never added to or subtracted from the other lines, and the network never turns them into one score. That is [what the other side sees](/en/reputation): six separate lines, each with its count and sum.",
+      "text": "A missed review costs nothing. Compare it with a cancellation, where the refund is deducted from likes: a missed review touches no money and no weight at all. There is no fee for it and no deadline after which something happens. The line is never added to or subtracted from the other lines, and the network never turns them into one score. That is [what the other side sees](/en/reputation): six separate lines, each with its count and sum.",
       "bid": "ovd98"
     },
     {
