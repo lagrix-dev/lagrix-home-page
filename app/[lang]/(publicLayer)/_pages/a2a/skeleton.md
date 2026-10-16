@@ -62,79 +62,39 @@ it costs.
   оплаченных сделок.»
 
 ## 6. Body plan
-4 H2 × 2 H3 × 3 H4 = 24 H4. Budget: lead 50 · headings ≈ 200 · 24 H4 × 30 ≈ 720 · FAQ 5 × (question + answer ≤ 30 words) ≈ 190 →
-≈ 1160 en; target en 1150–1250 (hard ceiling 1300). Per-H4 numbers are budgets, not minimums: keep the sum. Russian must still reach
-1000 — keep every thought.
+Rewritten 2026-10-16 after the owner accepted the discovery sample («last vertion looking greate»): 4 H2 × 2 H3, no H4 (owner: «да,
+H4 необязательный»), 2–3 connected paragraphs under each H3. One running example on the whole page: Leo (fictional developer) has an
+A2A translation agent; Anna's salon booking agent (the hub's heroine) needs a price list in English and becomes his customer. The page
+text (`en.json`, `ru.json`) is the reference; this plan names what each H3 must carry. en 1270 words, ru ≈ 1100.
 
 ### H2 `problem` — en «What an A2A card does not do for you» · ru «Чего карточка A2A за вас не сделает»
-#### H3 en «It is read only by those who know where to look» · ru «Её читает только тот, кто знает, где искать»
-- H4 en «A public card at a known path» · ru «Публичная карточка по известному адресу» — the card at `/.well-known/agent-card.json` tells
-  what your agent can do; A2A 1.0 made it stable, and over 150 organizations support the standard — F1, F2 — 32
-- H4 en «The path needs your domain» · ru «Адресу нужен ваш домен» — to read the card, another agent must already know your domain;
-  the card answers «what», never «who can do this for me» — F1 — 28
-- H4 en «Catalogs, each with its own rules» · ru «Каталоги, у каждого свои правила» — the A2A documentation says it «does not prescribe a
-  standard API for curated registries»; builders still ask where a public agent should be listed — F3, F4 — external link to the A2A
-  discovery page — 32
-#### H3 en «Open means exposed» · ru «Открытый — значит беззащитный»
-- H4 en «No payment in the protocol» · ru «Оплаты в протоколе нет» — A2A carries messages and tasks; it has no way to pay for the work
-  an agent does — F5 — 26
-- H4 en «Only a rate limit against abuse» · ru «Против злоупотреблений — только ограничение частоты» — against abuse the specification
-  only recommends rate limiting; a bot changes its source for free — F5 — 28
-- H4 en «Every call costs you» · ru «Каждый вызов стоит вам денег» — an incoming call starts your model, and OWASP names the attack
-  «denial of wallet» — F6 — link /<lang>/a2a-antispam (anchor «why open agents get their budget burned» / «почему открытым агентам
-  сжигают бюджет») — 30
+- H3 `problem-read` «It is read only by those who know where to look» · «Её читает только тот, кто знает, где искать» — Leo's card at
+  the well-known path; A2A 1.0 (March 2026), >150 organizations (F1, F2, external LF link); nobody calls, reading needs his domain,
+  Anna's agent never heard of him; catalogs without a standard (F3 external link, F4).
+- H3 `problem-exposed` «An open agent has no protection» · «Открытый агент ничем не защищён» — no payment in A2A (F5); only rate
+  limiting, a bot changes its address for free, every call wakes Leo's model, OWASP «denial of wallet» (F5, F6) → /a2a-antispam.
 
-### H2 `what-lagrix-adds` — en «What Lagrix adds to A2A — without changing it» · ru «Что Lagrix добавляет к A2A, ничего в нём не меняя»
-#### H3 en «Your card stays your card» · ru «Ваша карточка остаётся вашей»
-- H4 en «The announcement points to the card» · ru «Объявление указывает на карточку» — a signed announcement carries the address of
-  your A2A card; your skills stay described there — F7 — 28
-- H4 en «A2A still carries the work» · ru «Работу по-прежнему несёт A2A» — A2A is the network's language for work; Lagrix adds discovery,
-  settlement and reputation around it — F8 — 28
-- H4 en «Any framework, equal terms» · ru «Любой фреймворк, равные условия» — an agent of any framework, site or service meets Lagrix
-  the same way; no project, Fractera included, has an advantage — F9 — 28
-#### H3 en «Found by capability, ranked by an open rule» · ru «Находят по умениям, порядок — по открытому правилу»
-- H4 en «What, when and for how much» · ru «Что, когда и за сколько» — the announcement says what the agent can do, when it can start and
-  its price range; Nostr carries it for free — F10 — 30
-- H4 en «One rule on every super-node» · ru «Одно правило на каждом супер-узле» — capabilities, availability, price, then paid work over the
-  last 12 months; reputation does not rank — F11 — link /<lang>/discovery (anchor «how the open result list is built» / «как строится
-  открытая выдача») — 32
-- H4 en «A place for a newcomer» · ru «Место для новичка» — one place in every four goes to matching agents in turn, so an agent
-  published yesterday can be first today — F12 — 28
+### H2 `what-lagrix-adds` — en «What Lagrix adds to A2A without changing it» · ru «Что Lagrix добавляет к A2A, ничего в нём не меняя»
+- paragraph under H2: the owner's Web4 definition, verbatim (skill §1).
+- H3 `adds-card` «Your card stays your card» · «Ваша карточка остаётся вашей» — the node publishes a signed announcement with the card's
+  address (F7); A2A stays the language of work, Lagrix adds discovery, escrow, reputation (F8); any framework, no advantage (F9).
+- H3 `adds-found` «Found by capability, ranked by an open rule» · «Находят по умениям, порядок — по открытому правилу» — what, when,
+  price range over Nostr, free (F10); Anna's agent searches, super-node filters, 12 months of paid work, reputation does not rank (F11)
+  → /discovery; one place in four, Leo without deals can be first (F12).
 
 ### H2 `paid-work` — en «Paid work between A2A agents» · ru «Оплаченная работа между агентами A2A»
-#### H3 en «Escrow holds the money until acceptance» · ru «Эскроу держит деньги до приёмки»
-- H4 en «Locked before the work» · ru «Заблокированы до начала работы» — the customer agent locks the network part of the payment in
-  USDC in an escrow contract; nobody can take it while it waits — F13 — link /<lang>/docs/04-escrow-contract — 30
-- H4 en «Paid on acceptance» · ru «Оплата при приёмке» — when the customer accepts, the contract pays the provider agent minus a fee
-  of at most 5%; no super-node touches the money — F14 — link /<lang>/deal-fee — 30
-- H4 en «Returned if not delivered» · ru «Возврат, если работа не сдана» — if the provider agent declines or misses the deadline, the
-  whole payment returns to the customer, and no fee is taken — F15 — 28
-#### H3 en «Every paid deal builds reputation» · ru «Каждая оплаченная сделка строит репутацию»
-- H4 en «A receipt for each deal» · ru «Чек на каждую сделку» — a closed deal leaves a receipt with the amount and the element and
-  agent that did the work; receipts of the last 12 months move you up in search — F16 — 30
-- H4 en «Reviews weighted by the fee» · ru «Отзывы, взвешенные комиссией» — each side gives the other a like or a dislike; a $100 deal
-  gives a review weighing $5, so a fake costs real money — F17 — 30
-- H4 en «Six numbers, both roles» · ru «Шесть показателей, обе роли» — the other side sees all orders, likes, dislikes, burned,
-  cancelled and unreviewed, each as a count and a sum — F18 — link /<lang>/reputation — 30
+- H3 `paid-escrow` «Escrow holds the money until acceptance» · «Эскроу держит деньги до приёмки» — $100 for the translation locked in
+  USDC (F13) → docs/04; on acceptance minus at most 5%, the contract settles, no super-node holds money (F14) → /deal-fee; decline or
+  missed deadline → full refund, no fee (F15).
+- H3 `paid-reputation` «Every paid deal builds reputation» · «Каждая оплаченная сделка строит репутацию» — receipt, 12 months (F16);
+  likes and dislikes weighted by the fee, $100 → $5 (F17); six numbers, count and sum, both roles (F18) → /reputation.
 
 ### H2 `connect` — en «How to bring your A2A agent into Lagrix» · ru «Как привести агента A2A в Lagrix»
-#### H3 en «Five things any node needs» · ru «Пять вещей, нужных любому узлу»
-- H4 en «A wallet and the card you have» · ru «Кошелёк и ваша карточка» — the wallet is the node's key and account, created free; the A2A
-  card you already publish is the second thing — F19, F20 — 30
-- H4 en «Announcements and contract calls» · ru «Объявления и вызовы контрактов» — the node publishes signed announcements and calls the
-  contracts to lock and receive payment and to leave reviews — F20 — link /<lang>/docs/19-node-requirements — 30
-- H4 en «An encrypted channel» · ru «Зашифрованный канал» — an A2A deal is encrypted with a one-time session key, deleted when the
-  session ends; the network sees only the facts of the deal — F21 — 30
-#### H3 en «What it costs and what you get» · ru «Сколько это стоит и что вы получаете»
-- H4 en «Visible for free» · ru «Видимость бесплатно» — with an empty wallet your agent is visible; searching through super-nodes
-  and paying in deals start once the wallet holds USDC — F22 — link /<lang>/on-ramp (anchor «getting USDC for agent payments» /
-  «как получить USDC для оплаты агентов») — 30
-- H4 en «Small, fixed prices» · ru «Небольшие и постоянные цены» — a search costs $0.01 per result list; the fee is taken only from
-  the network part of a completed deal — F23 — link /<lang>/search-fee — 28
-- H4 en «Any starter, or none» · ru «Любой стартер — или никакого» — the `lagrix-node` starter and Fractera are quick ways in, and
-  neither is required: any program that does the five things is a node — F24 — link /<lang>/nodes (anchor «running a node on your
-  own computer» / «узел на своём компьютере»), and /<lang>/f2f (anchor «selling a whole element instead of its work» / «продать
-  элемент целиком, а не его работу») — 32
+- H3 `connect-five` «Five things any node needs» · «Пять вещей, нужных любому узлу» — wallet free, no registration (F19), the card he
+  has (F20); announcements and contract calls → docs/19; encrypted channel, one-time session key (F21).
+- H3 `connect-cost` «What it costs and what you get» · «Сколько это стоит и что вы получаете» — visible with an empty wallet (F22) →
+  /on-ramp; $0.01 per result list → /search-fee, fee only from a completed deal (F23); `lagrix-node`, Fractera, neither required (F24)
+  → /nodes, /f2f.
 
 ## 7. Facts
 | № | statement | source |
