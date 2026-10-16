@@ -2003,7 +2003,7 @@
   position: absolute; bottom: 9cqh; left: calc(50cqw - var(--pig-w) / 2 - var(--ph) - 1.5cqw); width: var(--ph); z-index: 4;
   padding: 0; border: 0; background: none; cursor: pointer;
 }
-.asPhoneSvg { display: block; width: 100%; height: auto; }
+.asPhoneSvg { display: block; width: 100%; height: auto; overflow: visible; }
 .asPhonePost { fill: var(--ink-soft); }
 .asPhoneRoof { fill: var(--signal); }
 .asPhoneBox { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }

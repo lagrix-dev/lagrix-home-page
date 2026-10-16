@@ -94,7 +94,7 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
 
       {/* Аварийный придорожный телефон на опоре — слева от копилки, поверх летящих писем (498-3). Кнопка открывает окно справки.
           Трубка — в профиль, висит вдоль левого бока будки от верхнего края до нижнего: наушник и микрофон чашками к будке, ручка
-          выгнута наружу, блик вдоль ручки; шнура нет. */}
+          выгнута наружу с просветом до будки (иначе сливается с её рамкой), блик вдоль ручки; шнура нет. */}
       <Button variant="bare" size="bare" type="button" data-block="asphn" className={s.asPhone} popoverTarget={info} aria-label={w.phoneLabel}>
         <svg viewBox="0 0 70 210" aria-hidden="true" className={s.asPhoneSvg}>
           <rect className={s.asPhonePost} x={29} y={86} width={12} height={124} rx={3} />
@@ -105,10 +105,10 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
           <g className={s.asHandset}>
             <path
               className={s.asHandsetBody}
-              d="M7 13 H13 Q16 13 16 16.5 V27 Q16 30.5 12.5 30.5 H10 Q8 30.5 8 33 Q6.5 50 8 67 Q8 69.5 10 69.5 H12.5 Q16 69.5 16 73 V83.5 Q16 87 13 87 H7 Q2 87 2 81 Q-0.5 50 2 19 Q2 13 7 13 Z"
+              d="M4 13 H13 Q16 13 16 16.5 V27 Q16 30.5 12.5 30.5 H6.5 Q4 30.5 3.5 34 Q-1.5 50 3.5 66 Q4 69.5 6.5 69.5 H12.5 Q16 69.5 16 73 V83.5 Q16 87 13 87 H4 Q-2.5 87 -3 80 Q-8 50 -3 20 Q-2.5 13 4 13 Z"
             />
             <path className={s.asHandsetCup} d="M14.6 18 V25.5 M14.6 74.5 V82" />
-            <path className={s.asHandsetShine} d="M4.6 23 Q3 50 4.6 77" />
+            <path className={s.asHandsetShine} d="M-1.2 24 Q-5 50 -1.2 76" />
           </g>
         </svg>
       </Button>
