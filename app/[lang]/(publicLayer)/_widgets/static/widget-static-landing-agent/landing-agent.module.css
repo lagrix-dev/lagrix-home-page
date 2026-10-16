@@ -2263,7 +2263,7 @@
   .rfScales { width: min(62cqw, 86cqh); }
   .rfWindow { top: 22cqh; width: min(22cqw, 38cqh); }
   .rfRoomLabel { top: calc(22cqh + min(22cqw, 38cqh) * 4 / 3 + 1.5cqh); font-size: 13px; }
-  .rfPan { display: none; }
+  /* Чаши и на телефоне переключают сторону — подзаголовок «Нажмите на чашу весов» верен на любом экране. */
   /* [data-side] — сильнее правил выезда `.rfPanel[data-side=…]`, иначе сдвиг за край остаётся и на телефоне. */
   .rfPanel[data-side] { position: static; width: auto; margin-top: 1rem; translate: none; visibility: visible; transition: none; box-shadow: none; }
   .rfRoom[data-open="web2"] .rfPanel[data-side="web3"], .rfRoom:not([data-open="web2"]) .rfPanel[data-side="web2"] { display: none; }
