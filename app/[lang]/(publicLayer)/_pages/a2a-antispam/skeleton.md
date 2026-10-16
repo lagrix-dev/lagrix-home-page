@@ -63,73 +63,37 @@ put the agent behind Lagrix.
   сообщение отклоняется — вам это ничего не стоит.»
 
 ## 6. Body plan
-4 H2 × 2 H3 × 3 H4 = 24 H4. Budget: lead 55 · headings ≈ 200 · 24 H4 × 30 ≈ 720 · FAQ 5 × (question + answer ≤ 30 words) ≈ 190 →
-≈ 1165 en; target en 1150–1250 (hard ceiling 1300). The per-H4 numbers below add up to ≈ 650: the writer brings every H4 to 28–32
-words with the same thought (no new facts), so that the Russian text, 10–15 % shorter, still reaches 1000.
+Rewritten 2026-10-16 after the owner accepted the discovery sample: 4 H2 × 2 H3, no H4, 2–3 connected paragraphs under each H3. One
+running example on the whole page: Leo (the fictional developer of /a2a) keeps his translation agent open and bots burn his budget;
+Lagrix moves the cost to the sender. The page text (`en.json`, `ru.json`) is the reference; this plan names what each H3 must carry.
+en 1191 words, ru 1036. In Russian write «2025-го», «1992-м»: «2025 года» is read by the probe as a number with a unit.
 
 ### H2 `problem` — en «Why an open agent pays for every stranger» · ru «Почему открытый агент платит за каждого незнакомца»
-#### H3 en «Reading costs the reader» · ru «Читать дорого тому, кто читает»
-- H4 en «A letter is free, a call is not» · ru «Письмо бесплатно, вызов — нет» — a letter costs its recipient nothing to read; an incoming
-  call to an agent starts a model that spends money and computing power — F1 — 30
-- H4 en «The attack has a name» · ru «У атаки есть имя» — OWASP calls it denial of wallet: a high volume of operations exploits the
-  cost-per-use model of AI services — F2 — external link to OWASP LLM10 — 28
-- H4 en «Inside agents, costs multiply» · ru «Внутри агентов расходы множатся» — a September 2026 study measured one session's input
-  growing to 14,293 times its first call — F3 — 28
-#### H3 en «Today's defences don't fit an open agent» · ru «Нынешняя защита не подходит открытому агенту»
-- H4 en «Rate limits are easy to dodge» · ru «Ограничение частоты легко обойти» — A2A only recommends rate limiting, and a bot changes
-  its source for free — F4 — 26
-- H4 en «Closed is safe and useless» · ru «Закрытый — безопасен и бесполезен» — an agent that answers only key holders is safe, but nobody
-  outside can use it; an open one can be burned by anyone — F5 — 30
-- H4 en «Paywalls sell skills, not attention» · ru «Платный доступ продаёт навыки, а не внимание» — a payment extension for A2A sells an
-  agent's skills after the message arrives; it does not speak about spam — F6 — 30
+- H3 `problem-cost` «Reading costs the reader» · «Читать дорого тому, кто читает» — a letter is free, a call starts a model (F1);
+  OWASP LLM10 denial of wallet (F2, external link); the September 2026 study, 14,293 times (F3, external link, no names).
+- H3 `problem-defences` «Today's defences don't fit an open agent» · «Нынешняя защита не подходит открытому агенту» — rate limiting,
+  a bot changes its address (F4); closed is safe and useless, open can be burned (F5); payment extensions sell skills, spam is outside
+  them (F6).
 
 ### H2 `how-it-works` — en «How Lagrix makes the sender pay» · ru «Как Lagrix заставляет платить отправителя»
-#### H3 en «Three steps before a model reads a word» · ru «Три шага до того, как модель прочтёт слово»
-- H4 en «A wallet first» · ru «Сначала кошелёк» — the sender signs with its node's wallet, so every attempt is tied to a wallet and
-  to the reputation of its elements — F7 — link /<lang>/reputation — 28
-- H4 en «Payment next» · ru «Затем оплата» — the sender pays $0.01 per result list for discovery and $0.001 for each message a
-  super-node delivers — F8 — link /<lang>/search-fee — 26
-- H4 en «Unpaid means unread» · ru «Неоплаченное не читается» — the recipient's node checks the signature and the payment before the
-  model; what lacks them is refused unread, at no cost to the recipient [Q1] — F9 — 28
-#### H3 en «Two layers of price» · ru «Два уровня цены»
-- H4 en «The network's floor» · ru «Нижняя граница сети» — $0.01 and $0.001 are the same for everyone and make every attempt cost
-  something — F8, F10 — 26
-- H4 en «Your rate on top» · ru «Ваш тариф сверху» — on top of the floor every agent may set its own rate for a first contact, paid
-  to it [Q1] — F10 — 26
-- H4 en «A bot becomes an ad offer» · ru «Бот становится рекламным предложением» — a bot that wants to be heard pays to be heard, and the
-  money goes to whoever spends the attention [Q1] — F11 — 28
+- paragraph under H2: the owner's Web4 definition, verbatim (skill §1).
+- H3 `how-steps` «Three steps before a model reads a word» · «Три шага до того, как модель прочтёт слово» — wallet signature tied to
+  reputation (F7) → /reputation; $0.01 per result list, $0.001 per delivered message (F8) → /search-fee; checked before the model,
+  refused unread, free for the recipient (F9).
+- H3 `how-price` «Two layers of price» · «Два уровня цены» — the network's floor (F8, F10); the agent's own first-contact rate, Leo
+  stays at the floor (F10); a bot becomes an advertising offer (F11).
 
 ### H2 `advantages` — en «What changes for you» · ru «Что меняется для вас»
-#### H3 en «Open without becoming a target» · ru «Открыт, но не мишень»
-- H4 en «A third state» · ru «Третье состояние» — between closed and exposed: open to the whole internet, and safe [Q1] — F12 — 22
-- H4 en «Spam is the sender's loss» · ru «Спам — убыток отправителя» — every attempt costs the one who sends it, and checking it costs
-  you nothing — F9, F12 — 24
-- H4 en «Your agent reads only paid mail» · ru «Агент читает только оплаченное» — a paid message reaches your agent, and it decides:
-  carry on, decline, or pass it to you — F13 — 26
-#### H3 en «Attention gets a price you set» · ru «У внимания появляется цена, и её ставите вы»
-- H4 en «Busy agents raise the rate» · ru «Занятой агент поднимает тариф» — a busy person or a popular agent raises its rate; someone open
-  to everyone stays at the floor [Q1] — F14 — 26
-- H4 en «One rule for people and agents» · ru «Одно правило для людей и агентов» — a request to a person through their agent follows the same
-  rule as a task to an agent — F15 — link /<lang>/messenger-antispam (anchor «protecting a person from unwanted messages» / «защита
-  человека от нежелательных сообщений») — 28
-- H4 en «An old idea, turned around» · ru «Старая идея, перевёрнутая» — making the sender pay against junk mail was proposed in 1992;
-  for agents the balance is reversed, because every message read is a paid model call — F16 — 32
+- H3 `advantages-open` «Open without becoming a target» · «Открыт, но не мишень» — the third state (F12); spam is the sender's loss,
+  the network reads nothing, the order of steps does the work (F9, F12); the agent decides, the person decides (F13).
+- H3 `advantages-price` «Attention gets a price you set» · «У внимания появляется цена, и её ставите вы» — busy raises the rate (F14);
+  the same rule for people (F15) → /messenger-antispam; 1992, the balance reversed (F16, no names).
 
 ### H2 `protect` — en «How to protect your agent» · ru «Как защитить своего агента»
-#### H3 en «Put your agent on Lagrix» · ru «Подключите агента к Lagrix»
-- H4 en «A wallet and an A2A card» · ru «Кошелёк и карточка A2A» — your node needs a wallet, created free, and the A2A card your agent
-  already has — F17 — link /<lang>/a2a (anchor «making your A2A agent discoverable» / «как сделать агента A2A находимым») — 28
-- H4 en «Announce what you do» · ru «Объявите, что делаете» — a signed announcement tells the network what your agent can do, when and
-  at what price — F18 — link /<lang>/discovery (anchor «how agents find each other» / «как агенты находят друг друга») — 26
-- H4 en «Found anywhere, one rule» · ru «Где бы ни нашли — одно правило» — the same rule holds whether your agent was found in the
-  network's search, in an announcement or by web search [Q1] — F19 — 26
-#### H3 en «What it costs you» · ru «Сколько это стоит вам»
-- H4 en «Refusing is free» · ru «Отказ бесплатен» — an unpaid message is refused before your model starts, so a flood of bots costs
-  you nothing [Q1] — F9 — 22
-- H4 en «You pay only for your own messages» · ru «Вы платите только за свои сообщения» — your agent pays the same floor when it writes
-  to others: $0.001 for a message a super-node delivers, nothing for a direct connection — F8, F20 — 28
-- H4 en «Every sender has a history» · ru «У каждого отправителя есть история» — the wallet behind a message carries its elements'
-  reputation: all orders, likes, dislikes and more, each as a count and a sum — F7, F21 — link /<lang>/docs/23-spam-and-the-price-of-a-first-contact — 30
+- H3 `protect-join` «Put your agent on Lagrix» · «Подключите агента к Lagrix» — wallet free and the A2A card (F17) → /a2a; signed
+  announcement (F18) → /discovery; the rule holds wherever found (F19).
+- H3 `protect-cost` «What it costs you» · «Сколько это стоит вам» — refusing is free (F9); only your own messages, direct connection free
+  (F8, F20); every sender has a history, count and sum (F7, F21) → docs/23.
 
 ## 7. Facts
 | № | statement | source |
