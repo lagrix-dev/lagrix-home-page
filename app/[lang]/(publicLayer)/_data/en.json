@@ -448,7 +448,7 @@
           "side": "left",
           "who": "Information desk",
           "contract": "guest",
-          "text": "Hint two: the shortest path is Fractera, an open framework for home agents; everything runs on your computer. Install Claude Code — one line in the terminal: https://code.claude.com/docs/en/setup. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included."
+          "text": "Hint two: the shortest path is Fractera, an open framework for home agents; everything runs on your computer. Install Claude Code following https://code.claude.com/docs/en/setup — for your system it's a single command in the terminal. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included."
         },
         {
           "side": "right",
@@ -940,7 +940,7 @@
         "question": "Let's start! Help me take the first steps.",
         "answers": [
           "# Welcome to Lagrix\n\nLike Anna in our simulation, you can bring up your own AI agent on your computer — with no programming and no middleman. Joining the network is free. There are just three steps; after each one I tell you what you should see.",
-          "# Step 1. Claude Code\n\nInstall Claude Code — one line in the terminal: https://code.claude.com/docs/en/setup. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included.\n\n## What you should see\n\nClaude Code opens in the terminal, and you are signed in to your account.",
+          "# Step 1. Claude Code\n\nInstall Claude Code following https://code.claude.com/docs/en/setup — for your system it's a single command in the terminal. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included.\n\n## What you should see\n\nClaude Code opens in the terminal, and you are signed in to your account.",
           "# Step 2. Your own copy of Fractera\n\nCreate a free GitHub account, open https://github.com/fractera/agi and press Fork.\n\n## What you should see\n\nYour own copy of the project at github.com/<your name>/agi.",
           "# Step 3. Launch\n\nMake an empty folder, run claude in it, paste the link to your copy and write «launch this».\n\n## What you should see\n\nThe agent installs everything by itself and gives you your site's address on a temporary Cloudflare address — the site opens in the browser.",
           "# Something didn't work?\n\nWrite here, in the desk window: which step you stopped at and what you saw. The answer comes right here."
