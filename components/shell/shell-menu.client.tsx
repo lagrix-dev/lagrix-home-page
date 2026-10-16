@@ -55,7 +55,7 @@ function MegaCard({ href, title, description, strong }: { href: string; title: s
       <NavigationMenuLink asChild>
         <Link href={href} className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
           <span className={`block truncate text-sm leading-tight ${strong ? "font-semibold" : "font-medium"}`}>{title}</span>
-          {description && <span className="mt-1.5 line-clamp-2 block text-sm leading-snug text-muted-foreground">{description}</span>}
+          {description && <span className="mt-1.5 line-clamp-2 text-sm leading-snug text-muted-foreground">{description}</span>}
         </Link>
       </NavigationMenuLink>
     </li>
@@ -170,7 +170,7 @@ export function MobileMenu({ lang, groups, label, meUrl }: { lang: string; group
                         className="py-2 pl-4 text-sm font-medium text-foreground hover:text-foreground transition-colors whitespace-normal break-words leading-snug"
                       >
                         {c.title}
-                        {c.description && <span className="mt-0.5 line-clamp-2 block text-xs font-normal text-muted-foreground">{c.description}</span>}
+                        {c.description && <span className="mt-0.5 line-clamp-2 text-xs font-normal text-muted-foreground">{c.description}</span>}
                       </Link>
                     ))}
                   </div>
