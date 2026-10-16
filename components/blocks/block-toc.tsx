@@ -40,6 +40,8 @@ export function tocOf(blocks: Block[]): TocItem[] {
 /** Оглавление — от двух разделов: один раздел оглавлять незачем. */
 export function Toc({ items, heading }: { items: TocItem[]; heading: string }) {
   if (items.length < 2) return null
+  // Пронумерованная статья (`numberHeadings`) несёт номера в тексте — второй счётчик и точка не рисуются.
+  const own = !/^d+./.test(items[0].text)
   return (
     <nav data-block="tc458" aria-label={heading} className="mt-8 rounded-2xl border border-border bg-muted/40 p-5">
       <p data-block="tc459" className="text-xs font-semibold uppercase tracking-widest text-primary">
@@ -49,19 +51,21 @@ export function Toc({ items, heading }: { items: TocItem[]; heading: string }) {
         {items.map((item, i) => (
           <li key={item.id} className="flex flex-col gap-2 text-[15px] leading-snug">
             <span className="flex gap-3">
-              <span aria-hidden className="select-none font-mono text-sm text-muted-foreground">
-                {String(i + 1).padStart(2, '0')}
-              </span>
+              {own && (
+                <span aria-hidden className="select-none font-mono text-sm text-muted-foreground">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              )}
               <a href={`#${item.id}`} className="text-muted-foreground transition-colors hover:text-primary">
                 {item.text}
               </a>
             </span>
             {/* Второй уровень: подразделы своего раздела. Номера им не даются — отступа и точки достаточно. */}
             {item.children && item.children.length > 0 && (
-              <ul className="ml-9 flex flex-col gap-1.5">
+              <ul className={`${own ? 'ml-9' : 'ml-4'} flex flex-col gap-1.5`}>
                 {item.children.map((sub) => (
                   <li key={sub.id} className="flex gap-2 text-sm leading-snug">
-                    <span aria-hidden className="select-none text-muted-foreground">·</span>
+                    {own && <span aria-hidden className="select-none text-muted-foreground">·</span>}
                     <a href={`#${sub.id}`} className="text-muted-foreground transition-colors hover:text-primary">
                       {sub.text}
                     </a>

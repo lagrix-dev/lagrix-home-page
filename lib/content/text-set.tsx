@@ -12,22 +12,25 @@ import type { BlockSet } from '@/components/blocks/page-body'
 type Text = { blockKey?: string; text: string; id?: string }
 
 export const TEXT_SET: BlockSet = {
-  'text-h2': ({ blockKey: k = 'h2', text, id }: Text) => <H2 id={id}>{inline(text, k)}</H2>,
-  'text-h3': ({ blockKey: k = 'h3', text, id }: Text) => <H3 id={id}>{inline(text, k)}</H3>,
-  'text-h4': ({ blockKey: k = 'h4', text, id }: Text) => <H4 id={id}>{inline(text, k)}</H4>,
-  'text-p': ({ blockKey: k = 'p', text }: Text) => <P className="leading-8">{inline(text, k)}</P>,
-  'text-lead': ({ blockKey: k = 'lead', text }: Text) => <Lead>{inline(text, k)}</Lead>,
+  // Ритм как в типографике shadcn (владелец 2026-10-16): над заголовком — воздух, его текст — сразу под ним. Лента рисуется колонкой
+  // с зазором 24 px (`PostBody`), поэтому отступ сверху здесь — добавка к нему: H2 48, H3 36, H4 28; текст — цвет основного текста.
+  // Строка чтения — `max-w-prose` (~65 знаков): колонка страницы подчиняется переключателю ширины, а длина строки текста — нет.
+  'text-h2': ({ blockKey: k = 'h2', text, id }: Text) => <H2 id={id} className="mt-6 max-w-prose first:mt-0">{inline(text, k)}</H2>,
+  'text-h3': ({ blockKey: k = 'h3', text, id }: Text) => <H3 id={id} className="mt-3 max-w-prose">{inline(text, k)}</H3>,
+  'text-h4': ({ blockKey: k = 'h4', text, id }: Text) => <H4 id={id} className="mt-1 max-w-prose">{inline(text, k)}</H4>,
+  'text-p': ({ blockKey: k = 'p', text }: Text) => <P className="max-w-prose leading-7 text-foreground">{inline(text, k)}</P>,
+  'text-lead': ({ blockKey: k = 'lead', text }: Text) => <Lead className="max-w-prose">{inline(text, k)}</Lead>,
   'text-small': ({ blockKey: k = 'small', text }: Text) => <Small>{inline(text, k)}</Small>,
   'text-list': ({ blockKey: k = 'list', items, ordered }: { blockKey?: string; items: string[]; ordered?: boolean }) => {
     const Tag = ordered ? 'ol' : 'ul'
     return (
-      <Tag className={`${ordered ? 'list-decimal' : 'list-disc'} space-y-2 pl-6 leading-8 text-foreground`}>
+      <Tag className={`${ordered ? 'list-decimal' : 'list-disc'} max-w-prose space-y-2 pl-6 leading-7 text-foreground`}>
         {items.map((t, i) => <li key={`${k}-${i}`}>{inline(t, `${k}-${i}`)}</li>)}
       </Tag>
     )
   },
   'text-quote': ({ blockKey: k = 'quote', text, cite }: Text & { cite?: string }) => (
-    <blockquote className="border-l-2 border-primary pl-4 italic text-muted-foreground">
+    <blockquote className="max-w-prose border-l-2 border-primary pl-6 italic text-muted-foreground">
       <P className="leading-8">{inline(text, k)}</P>
       {cite ? <Small>— {cite}</Small> : null}
     </blockquote>

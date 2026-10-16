@@ -6,6 +6,7 @@ import { AccessGate } from '@/components/auth/access-gate.client'
 import { accessGateUi } from '@/components/auth/access-gate.i18n'
 import { appDialogUi } from '@/components/dialog/app-dialog.i18n'
 import { createContentPage } from '@/lib/content/create-content-page'
+import { numberHeadings } from '@/lib/content/number-headings'
 import type { Block } from '@/lib/content/blocks/types'
 import { branchChild, branchRoot, wordsIn, type TreePage } from '@/lib/page-tree'
 import { ownId } from '@/lib/own-id'
@@ -182,7 +183,8 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
       closedBranch: !isPublic(opts.segments),
       // 507-3: обложка публичной страницы — её же сниппет (одна картинка, нарисованная функцией: на странице и в og:image).
       meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service },
-      resolve: (lang) => contentOf(page, lang, opts.segments),
+      // Статья публичной ветки нумерует заголовки 1. / 1.1. / 1.1.1. (владелец 2026-10-16) — страница, оглавление и копия Markdown.
+      resolve: (lang) => { const c = contentOf(page, lang, opts.segments); return isPublic(opts.segments) ? { ...c, blocks: numberHeadings(c.blocks) } : c },
       widgets: opts.widgets,
       chrome: (lang, c) => {
         // 507-3: подпись чужой страницы в крошках проходит ту же подстановку имени сайта, что её собственный H1.

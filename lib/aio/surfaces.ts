@@ -1,5 +1,6 @@
 import { blocksToMarkdown, faqToMarkdown } from './blocks-to-markdown'
 import { getPostBodyUi } from '@/lib/content/post-body-ui'
+import { numberHeadings } from '@/lib/content/number-headings'
 import { urlFor, mdUrlFor } from '@/lib/seo/alternates'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { branchChildren, branchRoot, wordsIn } from '@/lib/page-tree'
@@ -85,7 +86,7 @@ export function publicSurfaces(lang: string): Surface[] {
           `# ${site(page.title)}`, "",
           ...(page.subtitle ? [site(page.subtitle), ""] : []),
           `> ${site(page.description)}`, '',
-          blocksToMarkdown(page.blocks, home.siteName, widgetText(lang)),
+          blocksToMarkdown(numberHeadings(page.blocks), home.siteName, widgetText(lang)),
           ...(faq ? ['', faq] : []),
         ].join('\n').trim()
       },

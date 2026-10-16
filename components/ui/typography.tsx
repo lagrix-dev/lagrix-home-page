@@ -87,17 +87,17 @@ const H1_HERO_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-hero)] font-bold 
 const METRIC_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] font-bold leading-none tracking-tight md:text-[length:var(--fs-h1-md)]`
 
 const H2_STYLES: Record<Variant, string> = {
-  content: `${CONTENT_FAMILY} text-[length:var(--fs-h2)] font-bold leading-snug tracking-tight md:text-[length:var(--fs-h2-md)]`,
+  content: `${CONTENT_FAMILY} scroll-m-20 border-b border-border pb-2 text-[length:var(--fs-h2)] font-semibold leading-snug tracking-tight md:text-[length:var(--fs-h2-md)]`,
   ui: `${UI_FAMILY} text-[length:var(--fs-h3)] font-semibold tracking-tight md:text-[length:var(--fs-h3-md)]`,
 }
 
 const H3_STYLES: Record<Variant, string> = {
-  content: `${UI_FAMILY} text-[length:var(--fs-h3)] font-semibold leading-snug md:text-[length:var(--fs-h3-md)]`,
+  content: `${UI_FAMILY} scroll-m-20 text-[length:var(--fs-h3-md)] font-semibold leading-snug tracking-tight md:text-[length:var(--fs-h2)]`,
   ui: `${UI_FAMILY} text-[length:var(--fs-body)] font-semibold md:text-[length:var(--fs-h3)]`,
 }
 
 const H4_STYLES: Record<Variant, string> = {
-  content: `${UI_FAMILY} text-[length:var(--fs-body)] font-semibold md:text-[length:var(--fs-h3)]`,
+  content: `${UI_FAMILY} scroll-m-20 text-[length:var(--fs-h3)] font-semibold leading-snug tracking-tight md:text-[length:var(--fs-h3-md)]`,
   ui: `${UI_FAMILY} text-[length:var(--fs-small)] font-semibold`,
 }
 
