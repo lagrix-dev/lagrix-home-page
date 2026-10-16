@@ -194,7 +194,9 @@ export function MobileMenu({ lang, groups, label, meUrl }: { lang: string; group
         <>
           {/* Подложка ПОД шапкой, `bg-black/50` — затемнение тёмное в обеих темах. */}
           <div aria-hidden onClick={() => setOpen(false)} className="absolute left-0 right-0 top-14 z-40 h-screen bg-black/50" />
-          <nav className="absolute left-0 right-0 top-14 z-50 border-b border-border bg-background shadow-lg">
+          {/* Высота — до низа экрана и своя прокрутка: тело страницы заперто выше (overflow hidden), и без этого
+              длинный список уходил за край без возможности долистать. `dvh` — с учётом панели адреса телефона. */}
+          <nav className="absolute left-0 right-0 top-14 z-50 max-h-[calc(100dvh-3.5rem)] overflow-y-auto overscroll-contain border-b border-border bg-background shadow-lg">
             <div className="flex flex-col px-6 py-2">
               {visible.map((g) => {
                 const groupHref = shellHref(lang, g.href, `/${lang}/${g.slug}`)
