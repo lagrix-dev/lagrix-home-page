@@ -2,7 +2,6 @@
 
 Written 2026-10-16 (step 507-4) by the federal agent, from the protocol (README, documents 00–23, changelog 000) and research of the
 same day. A writer at minimum reasoning writes `en.json` and `ru.json` from this file only; whatever is not here is not on the page.
-The page today carries two paragraphs written earlier; step 508 replaces them with the text of this skeleton.
 Form: `/code/.claude/skills/lagrix-answer-pages/references/tz-template.md`.
 
 ## 1. Passport
@@ -59,76 +58,36 @@ technical card says, why reviews here cost money to fake, what never travels, ho
   доверять отзывам, которые бывают только после оплаченных сделок.»
 
 ## 6. Body plan
-4 H2 × 2 H3 × 3 H4 = 24 H4. Budget: lead 48 · headings ≈ 200 · 24 H4 × 30 ≈ 720 · FAQ 5 × (question + answer ≤ 30 words) ≈ 190 →
-≈ 1160 en; target en 1150–1250 (hard ceiling 1300). Per-H4 numbers are budgets, not minimums. Russian must still reach 1000.
+Rewritten 2026-10-16 after the owner accepted the discovery sample: 4 H2 × 2 H3, no H4, 2–3 connected paragraphs under each H3. One
+running example on the whole page: Anna's «Bella» salon (as in the home-page simulation) buys a ready booking element; Sam (fictional
+developer) sells it. Prices of the home simulation are not repeated (not in the numbers list). The page text (`en.json`, `ru.json`) is
+the reference; this plan names what each H3 must carry. en 1210 words, ru 1029 — keep ru above 1000.
 
 ### H2 `problem` — en «Why buying ready blocks for an agent is a blind risk» · ru «Почему покупка готовых блоков для агента — риск вслепую»
-#### H3 en «Popularity is not proof» · ru «Популярность — не доказательство»
-- H4 en «Anyone can publish» · ru «Выложить может любой» — agent catalogs grew in months; between launch and active attacks there were
-  weeks — F1 — 28
-- H4 en «Malware with a nice description» · ru «Вредонос с красивым описанием» — between February and May 2026 researchers confirmed over
-  1,184 malicious skills in one marketplace — F1 — external link to the CSA note — 30
-- H4 en «Trust by default» · ru «Доверие по умолчанию» — security researchers call today's trust model «implicit rather than
-  verified»: a block is trusted because it was installed — F2 — 28
-#### H3 en «The catalog keeps the rules and the margin» · ru «Правила и маржа остаются у каталога»
-- H4 en «A share of every sale» · ru «Доля с каждой продажи» — a curated marketplace pays creators 70% of sales and keeps 30%;
-  do not name it — F3 — 28
-- H4 en «Counts are cheap to inflate» · ru «Счётчики дёшево накрутить» — an install count or a star costs nothing to fake on its own;
-  it shows activity, not trust — F4 — 28
-- H4 en «You take the catalog's word» · ru «Остаётся верить каталогу на слово» — whoever keeps the list decides what you see and how it
-  was ordered — F5 — link /<lang>/discovery (anchor «why an open result list matters» / «почему важна открытая выдача») — 30
+- H3 `problem-popularity` «Popularity proves nothing» · «Популярность ничего не доказывает» — Anna needs booking; catalogs grew in
+  months, weeks to first attacks (F1); 1,184 malicious skills, February–May 2026 (F1, external CSA link, no marketplace named);
+  «implicit rather than verified» (F2).
+- H3 `problem-catalog` «The catalog keeps the rules and the margin» · «Правила и маржа остаются у каталога» — Sam would get 70%, the
+  catalog keeps 30% (F3, unnamed); counts cheap to inflate (F4); the list's keeper decides the order (F5) → /discovery.
 
 ### H2 `how-f2f-works` — en «How F2F works» · ru «Как устроен F2F»
-#### H3 en «A whole element, not a snippet» · ru «Целый элемент, а не фрагмент»
-- H4 en «What an element is» · ru «Что такое элемент» — a self-contained site, app, service or agent with its own agents and its own
-  A2A card, with one owner — F6 — 30
-- H4 en «Buy the element, not its work» · ru «Купить сам элемент, а не его работу» — over A2A agents buy each other's work; over F2F a
-  project buys the element itself, to install and build on — F7 — link /<lang>/a2a (anchor «buying an agent's work over A2A» /
-  «покупка работы агента через A2A») — 32
-- H4 en «The same network, no second index» · ru «Та же сеть, без второго каталога» — an element is announced and found through the
-  same super-nodes, the same results and the same reviews as an A2A agent — F8 — 30
-#### H3 en «A card of what it is made of» · ru «Карточка состава»
-- H4 en «Template, framework, languages» · ru «Шаблон, фреймворк, языки» — the card names the starter and version, the runtime with
-  versions and the interface languages — F9 — 28
-- H4 en «What it needs and what it gives» · ru «Что ему нужно и что он даёт» — the services it consumes (sign-in, data, settings, design)
-  with contract versions, and the doors and tools it provides — F9 — 30
-- H4 en «Licence, source, size» · ru «Лицензия, исходник, размер» — the licence of its code and texts, where the code is taken, and the
-  approximate install size and build time — F9 — link /<lang>/docs/20-f2f-element-exchange — 30
+- H3 `how-element` «Whole elements change hands» · «Из рук в руки переходит целый элемент» — what an element is (F6); A2A buys work,
+  F2F buys the element (F7) → /a2a; same super-nodes, results, reviews, no second catalog (F8).
+- H3 `how-card` «A card of what it is made of» · «Карточка состава» — starter and version, runtime, languages; consumes with contract
+  versions, provides; licence, source, size and build time (F9) → docs/20.
 
 ### H2 `trust` — en «Why you can trust what you buy» · ru «Почему покупке можно доверять»
-#### H3 en «Reviews only from paid deals» · ru «Отзывы только из оплаченных сделок»
-- H4 en «No deal, no review» · ru «Нет сделки — нет отзыва» — a like or a dislike can be given only for a deal paid through the network,
-  by each side to the other — F10 — 28
-- H4 en «Weight is money» · ru «Вес — это деньги» — a review weighs the fee paid on its deal: a $100 deal gives a review weighing $5,
-  so one fake unit of weight costs a real dollar — F11 — 30
-- H4 en «Count and sum together» · ru «Число и сумма вместе» — every indicator shows a count with its sum, so a thousand tiny likes
-  reveal farming at a glance — F12 — link /<lang>/likes-and-dislikes (anchor «reviews that cannot be farmed» / «отзывы, которые нельзя
-  накрутить») — 30
-#### H3 en «Nothing secret travels» · ru «Ничего секретного не переезжает»
-- H4 en «Names, never values» · ru «Имена, а не значения» — keys, tokens of access, passwords, users' personal data and storage contents
-  never travel; a field that could hold a secret holds only a name — F13 — 32 (writer: in en say «access keys and passwords», never the
-  bare word «tokens»; ru «ключи доступа и пароли»)
-- H4 en «History stays where it was earned» · ru «История остаётся там, где заработана» — an installed element starts with a clean
-  history, so a reputation cannot be bought together with it — F14 — 28
-- H4 en «Escrow until it works» · ru «Эскроу до приёмки» — the payment waits in escrow until the buyer's agent accepts the element;
-  if the seller does not deliver, the money returns — F15 — link /<lang>/web3-payments (anchor «how escrow holds the payment» / «как
-  эскроу держит оплату») — 30
+- H3 `trust-reviews` «Reviews only from paid deals» · «Отзывы только из оплаченных сделок» — no deal, no review (F10); weight = fee,
+  $100 → $5 (F11); count beside sum reveals farming (F12) → /likes-and-dislikes.
+- H3 `trust-secrets` «Nothing secret travels» · «Ничего секретного не переезжает» — keys, passwords, personal data, storage contents
+  never travel, names only (F13; en «access keys», never bare «tokens»); clean history, Sam keeps his seller reputation (F14); escrow
+  until acceptance, refund if not delivered (F15) → /web3-payments.
 
 ### H2 `buy-and-sell` — en «How to buy or sell an element» · ru «Как купить или продать элемент»
-#### H3 en «Buying» · ru «Покупка»
-- H4 en «Say what you need» · ru «Скажите, что нужно» — you tell your agent the capability you want; it searches the network for
-  elements with a compatible card, at $0.01 per result list — F16, F17 — link /<lang>/search-fee — 30
-- H4 en «Agree on compatibility first» · ru «Сначала договориться о совместимости» — before any deal your agent talks to the seller's
-  agent and agrees that the element fits your project; until payment it gets nothing but this conversation — F21 — 30
-- H4 en «Pay, check, review» · ru «Заплатить, проверить, оценить» — the agent pays into escrow, checks the element and accepts it;
-  the network keeps a fee of at most 5%, and you leave a review — F15, F18 — 30
-#### H3 en «Selling» · ru «Продажа»
-- H4 en «Announce with the card» · ru «Объявление с карточкой» — you announce the element the same way as an agent, pointing to its
-  technical card — F8 — 26
-- H4 en «Equal terms for every project» · ru «Равные условия для любого проекта» — an F2F announcement competes in results like any other;
-  no project, Fractera included, gets an advantage — F19 — 28
-- H4 en «Every sale counts» · ru «Каждая продажа на счету» — each sale paid through the network leaves a receipt that lifts the
-  element in search for a year and a review from the buyer — F20 — link /<lang>/reputation — 30
+- H3 `buying` «Buying» · «Покупка» — plain words, compatible card filters (F16), the same open rule (F8), $0.01 (F17) → /search-fee;
+  compatibility agreed in a dialogue before the deal, nothing else before payment (F21); escrow, accept, fee at most 5% (F15, F18), review.
+- H3 `selling` «Selling» · «Продажа» — announce with the card, no shop, no approval (F8); equal terms, Fractera included (F19); receipt
+  lifts the element for a year, buyer's review (F20) → /reputation.
 
 ## 7. Facts
 | № | statement | source |
