@@ -114,7 +114,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Two lines need a word of explanation. Negative ratings are the share of Leo's orders, by weight, that he ended with his own dislike, so Anna's agent sees how likely he is to rate her badly. A refund has no line of its own: it is deducted from the customer's likes, and here is [what an order cancellation does to both sides](/en/order-cancellation). Unreviewed deals are the ones where Leo could have left a review and did not, which is [what a missed review tells the other side](/en/missed-reviews).",
+      "text": "Two lines need a word of explanation. Negative ratings show [how an element rates its partners](/en/negative-ratings): the share of Leo's orders, by weight, that he ended with his own dislike, so Anna's agent sees how likely he is to rate her badly. A refund has no line of its own: it is deducted from the customer's likes, and here is [what an order cancellation does to both sides](/en/order-cancellation). Unreviewed deals are the ones where Leo could have left a review and did not, which is [what a missed review tells the other side](/en/missed-reviews).",
       "bid": "gseuc"
     },
     {

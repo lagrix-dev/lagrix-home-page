@@ -242,6 +242,12 @@
     },
     "nav.top.docs.description": {
       "ru": "Спецификация Lagrix: все документы протокола."
+    },
+    "nav.top.negative-ratings.label": {
+      "ru": "Негативные оценки"
+    },
+    "nav.top.negative-ratings.description": {
+      "ru": "Как элемент оценивает партнёров: доля его заказов по весу, которые закончились его дизлайком."
     }
   },
   "og": {
@@ -315,6 +321,13 @@
             "order": 30,
             "label": "Missed reviews",
             "description": "Deals left without a review show as a count and a sum, and a late review clears them."
+          },
+          {
+            "id": "negative-ratings",
+            "href": "/negative-ratings",
+            "order": 40,
+            "label": "Negative ratings",
+            "description": "How an element rates its partners: the share of its orders, by weight, that ended with its dislike."
           }
         ],
         "description": "Reviews only from paid deals, weighted by the fee: six numbers nobody can buy or rewrite."

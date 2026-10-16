@@ -163,7 +163,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A missed review costs nothing. Compare it with a cancellation, where the refund is deducted from likes: a missed review touches no money and no weight at all. There is no fee for it and no deadline after which something happens. The line is never added to or subtracted from the other lines, and the network never turns them into one score. That is [what the other side sees](/en/reputation): six separate lines, each with its count and sum.",
+      "text": "A missed review costs nothing. Compare it with a cancellation, where the refund is deducted from likes: a missed review touches no money and no weight at all. A dislike would show in [the reviewer's negative ratings](/en/negative-ratings); silence shows only here. There is no fee for it and no deadline after which something happens. The line is never added to or subtracted from the other lines, and the network never turns them into one score. That is [what the other side sees](/en/reputation): six separate lines, each with its count and sum.",
       "bid": "ovd98"
     },
     {

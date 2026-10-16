@@ -124,7 +124,7 @@ en 1240–1280 words, ru ≥ 1000. H2 headings name the subject (§5в); en with
 | F15 | agent review registries: feedback rarely grounded in verifiable interactions | arXiv 2606.26028, 2026-06-24 |
 | F16 | a cancellation refund is at most the customer's like weight as a customer | doc 04 §4.3; entry 46 |
 
-Numbers: «$100», «$5», «$50», «10%», «10 %», «$30», «60%», «60 %», «0.6%», «0,6 %», «$0.50», «$0,50», «$50.50», «$50,50», «59.4%», «59,4 %», «$300», «$250», «$5,000», «5%», «5 %», «$125», «4%», «4 %»
+Numbers: «$100», «$5», «$50», «10%», «10 %», «$30», «60%», «60 %», «0.6%», «0,6 %», «$0.50», «$0,50», «$50.50», «$50,50», «59.4%», «59,4 %», «$300», «$250», «$5,000», «5%», «5 %», «$125», «4%», «4 %», «100%», «100 %»
 
 ## 8. Questions to the owner
 none — everything stated is in entry 46 and document 17; «a threat loses its force» is an explanation of what the counterparty sees,

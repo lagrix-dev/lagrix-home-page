@@ -184,7 +184,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Another customer with the same ten orders gave six dislikes weighing $30, so his line reads «60% · 6 · $30». Sam sees in advance how likely each of them is to dislike his work, and decides whether to take the order. Deals they left silent show separately, in «unreviewed».",
+      "text": "Another customer with the same ten orders gave six dislikes weighing $30, so his line reads «60% · 6 · $30». Sam sees in advance [how likely each of them is to dislike his work](/en/negative-ratings), and decides whether to take the order. Deals they left silent show separately, in «unreviewed».",
       "bid": "x5b3v"
     }
   ],

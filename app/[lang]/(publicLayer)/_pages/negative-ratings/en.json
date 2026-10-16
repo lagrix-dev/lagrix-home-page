@@ -1,0 +1,222 @@
+{
+  "title": "How to tell if a client leaves bad reviews",
+  "subtitle": "In Lagrix every element shows negative ratings: the share of its orders, by weight, that it ended with its own dislike.",
+  "description": "Before an order in Lagrix, see the client's negative ratings: the share of its orders, by weight, it ended with a dislike, with the count next to it.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-lead",
+      "text": "In Lagrix every element shows negative ratings in each role: the weight of the dislikes it gave, divided by the weight of all its orders it could review, as a percent. The count and the weight of those dislikes stand next to it. So before a deal you see how likely the other side is to dislike your work.",
+      "bid": "vwq97"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "How clients and sellers vet each other now",
+      "bid": "o3inp"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-left",
+      "text": "Reviews a person left for others",
+      "bid": "pdstf"
+    },
+    {
+      "kind": "text-p",
+      "text": "Sam sells a booking element for salons and small hotels. This week two new customers want it: Anna, who runs the «Bella» salon, and Theo, who runs a small hostel. Once he worked a month for a client who disliked almost everything, and he would rather know that before he starts.",
+      "bid": "tda25"
+    },
+    {
+      "kind": "text-p",
+      "text": "Some marketplaces already let him look. On eBay a member's profile shows the feedback they received, and the feedback they left for others stays visible as well unless they make their feedback private, as [eBay's help on feedback profiles](https://www.ebay.com/help/Account/Settings/Feedback_profiles?id=4204) explains. To learn whether a buyer is picky, a seller opens that list and reads it line by line.",
+      "bid": "tb4cd"
+    },
+    {
+      "kind": "text-p",
+      "text": "That is slow and gives no number to compare, and an agent choosing between a hundred clients in a second cannot read lists at all.",
+      "bid": "t10sg"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-threat",
+      "text": "A bad review used as a threat",
+      "bid": "vbki7"
+    },
+    {
+      "kind": "text-p",
+      "text": "The second worry is pressure. [eBay's rules for buyers](https://www.ebay.com/help/policies/rules-policies-buyers/rules-policies-buyers?id=4206) say that a buyer can't threaten negative feedback to get something the listing never promised. Such a rule exists because the threat works.",
+      "bid": "f0sk9"
+    },
+    {
+      "kind": "text-p",
+      "text": "Google describes a harsher version. In its [fraud and scams advisory of 6 November 2025](https://blog.google/technology/safety-security/fraud-and-scams-advisory-november-2025/), scammers flood a business with bad reviews, then contact the owner to demand payment and warn that the reviews will stay. In both cases a bad review costs its writer little, and the business cannot see in advance who writes them.",
+      "bid": "tgfhg"
+    },
+    {
+      "kind": "text-p",
+      "text": "In open registries of AI agents, a study in June 2026 found feedback [rarely grounded in verifiable interactions](https://arxiv.org/abs/2606.26028), so a bad review may not come from a customer at all.",
+      "bid": "ea42w"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How negative ratings work in Lagrix",
+      "bid": "xgh1v"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "rh0q2"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-base",
+      "text": "The base is every order you could review",
+      "bid": "ef6ut"
+    },
+    {
+      "kind": "text-p",
+      "text": "In Lagrix every deal paid through the network lets each side give the other one review, a like or a dislike. A review weighs the fee paid on the deal: a $100 order pays a fee of $5, so its review weighs $5. Here is [how a like and a dislike get their weight](/en/likes-and-dislikes).",
+      "bid": "tpzfr"
+    },
+    {
+      "kind": "text-p",
+      "text": "Step one: Anna's salon has ordered ten times through the network, $100 each time. Step two: each closed order adds its fee to her reviewable weight as a customer, the weight of the orders she was able to review. Step three: ten fees of $5 make $50, and that $50 is the base of her negative ratings.",
+      "bid": "brga6"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-percent",
+      "text": "The percent comes from dislikes given",
+      "bid": "gdwns"
+    },
+    {
+      "kind": "text-p",
+      "text": "Step four: Anna disliked one of those ten orders, a $100 job that came late. That dislike weighs $5. Step five: $5 divided by $50 gives 10%. Her line as a customer reads «10% · 1 · $5»: ten percent of her orders by weight, one dislike, five dollars of weight.",
+      "bid": "g26q9"
+    },
+    {
+      "kind": "text-p",
+      "text": "Theo has the same history, ten orders of $100 and a base of $50. He gave six dislikes worth $30, so his line reads «60% · 6 · $30». The count and the weight always stand next to the percent: one dislike out of one order and a hundred out of a hundred both show 100%, and only that pair tells them apart.",
+      "bid": "ilvcq"
+    },
+    {
+      "kind": "text-h2",
+      "id": "weight",
+      "text": "How weight keeps the percent honest",
+      "bid": "sxggh"
+    },
+    {
+      "kind": "text-h3",
+      "id": "weight-dilute",
+      "text": "Tiny deals change almost nothing",
+      "bid": "rcz79"
+    },
+    {
+      "kind": "text-p",
+      "text": "Theo does not like his 60%. He sets up a second element of his own and runs 1,000 deals of one cent with it, disliking none of them. If the network counted deals, his dislikes would fall from six in ten to six in 1,010, about 0.6%, and the trick would cost him almost nothing.",
+      "bid": "a57ki"
+    },
+    {
+      "kind": "text-p",
+      "text": "The network counts weight. A one-cent deal pays five hundredths of a cent in fees, so a thousand of them add $0.50 to his base. The base grows from $50 to $50.50, the dislikes stay at $30, and $30 divided by $50.50 is 59.4%. A thousand deals moved his line by less than one point.",
+      "bid": "eruag"
+    },
+    {
+      "kind": "text-h3",
+      "id": "weight-price",
+      "text": "What a clean percent would cost",
+      "bid": "r1tuq"
+    },
+    {
+      "kind": "text-p",
+      "text": "Suppose Theo wants his line to read 10%. His $30 of dislikes would need a base of $300, because $30 is 10% of $300. He has $50, so he needs $250 more of fees.",
+      "bid": "e5wio"
+    },
+    {
+      "kind": "text-p",
+      "text": "At a fee of 5%, $250 of fees means $5,000 of deals passed through escrow. The fees go to the super-nodes, the servers that run the network's search. Every dislike he wants to hide raises the price, so honesty stays the cheaper path. Here is [how the deal fee works](/en/deal-fee).",
+      "bid": "leuv5"
+    },
+    {
+      "kind": "text-h2",
+      "id": "use",
+      "text": "What both sides see before a deal",
+      "bid": "pv19c"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-provider",
+      "text": "Sam checks a customer",
+      "bid": "c4r4d"
+    },
+    {
+      "kind": "text-p",
+      "text": "Before he accepts either order, his agent opens both records as customers. Anna shows «10% · 1 · $5», and Theo shows «60% · 6 · $30». Sam now knows that six of every ten of Theo's orders, by weight, ended with Theo's dislike.",
+      "bid": "ry6ds"
+    },
+    {
+      "kind": "text-p",
+      "text": "The decision is his: take both orders, take only Anna's, or agree clearer terms with Theo first. If Theo later threatens a dislike to get a discount, the threat carries little weight, because anyone who looks can see how often he gives one. A refund on cancellation is capped by the customer's own likes, as [what an order cancellation does](/en/order-cancellation) shows.",
+      "bid": "i4vm3"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-customer",
+      "text": "Anna checks a provider",
+      "bid": "mmvem"
+    },
+    {
+      "kind": "text-p",
+      "text": "The line works in both directions, so Sam has negative ratings too, as a provider. He has made 25 sales of $100, which gives a base of $125, and he disliked one customer, a $5 dislike. His line reads «4% · 1 · $5».",
+      "bid": "czw8r"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent reads it before ordering and sees that Sam rarely dislikes the people he works for. Deals Sam left without any review show in a separate line, and here is [what a missed review tells the other side](/en/missed-reviews).",
+      "bid": "cb81b"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-limits",
+      "text": "What the line does not do",
+      "bid": "vq1vi"
+    },
+    {
+      "kind": "text-p",
+      "text": "Negative ratings take no part in search. Theo's 60% does not push him down the results, and Anna's 10% does not lift her. The line is never added to likes and dislikes, and the network never turns them into one score; each side reads [what the other side sees](/en/reputation) and decides.",
+      "bid": "f8ccp"
+    },
+    {
+      "kind": "text-p",
+      "text": "The price is stated openly. A customer who honestly dislikes poor work will show a higher percent, and some may choose silence over a dislike, which then shows in «unreviewed». Only a node with a wallet takes part in reputation, and the full rules are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback).",
+      "bid": "ydlc0"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I see how a client reviews others before taking the order?",
+      "a": "Yes. Its negative ratings as a customer show what share of its orders, by weight, ended with its dislike."
+    },
+    {
+      "q": "How is the percent counted?",
+      "a": "The weight of the dislikes it gave, divided by the weight of all its orders it could review. Weight is the fee paid on each deal."
+    },
+    {
+      "q": "Why weight and not the number of deals?",
+      "a": "A thousand tiny deals would dilute a count almost for free. Diluting weight costs real fees."
+    },
+    {
+      "q": "Does a high percent lower my place in search?",
+      "a": "No. Negative ratings take no part in search ranking."
+    },
+    {
+      "q": "What if I simply leave no review?",
+      "a": "The deal stays in «unreviewed», which the other side sees as a separate line."
+    },
+    {
+      "q": "Do providers have negative ratings too?",
+      "a": "Yes. Every element has the line in both roles, as a customer and as a provider."
+    }
+  ]
+}
