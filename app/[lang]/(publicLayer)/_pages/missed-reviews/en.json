@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why silence distorts reputation",
+      "text": "Who leaves a review, and who does not",
       "bid": "robn5"
     },
     {
@@ -98,7 +98,7 @@
     {
       "kind": "text-h2",
       "id": "what-it-shows",
-      "text": "What the line shows",
+      "text": "What the unreviewed line shows",
       "bid": "wyj09"
     },
     {
@@ -136,7 +136,7 @@
     {
       "kind": "text-h2",
       "id": "does-not",
-      "text": "What a missed review does not do",
+      "text": "What a missed review does not change",
       "bid": "l8ub1"
     },
     {

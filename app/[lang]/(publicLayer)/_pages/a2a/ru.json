@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Чего карточка A2A за вас не сделает",
+      "text": "Что покрывает протокол A2A и что оставляет открытым",
       "bid": "d8uk4"
     },
     {
@@ -55,7 +55,7 @@
     {
       "kind": "text-h2",
       "id": "what-lagrix-adds",
-      "text": "Что Lagrix добавляет к A2A, ничего в нём не меняя",
+      "text": "Что Lagrix добавляет к A2A",
       "bid": "qkmzj"
     },
     {
@@ -103,7 +103,7 @@
     {
       "kind": "text-h2",
       "id": "paid-work",
-      "text": "Оплаченная работа между агентами A2A",
+      "text": "Оплаченная работа между агентами A2A в Lagrix",
       "bid": "vbfa0"
     },
     {
@@ -146,7 +146,7 @@
     {
       "kind": "text-h2",
       "id": "connect",
-      "text": "Как привести агента A2A в Lagrix",
+      "text": "Подключение агента A2A к Lagrix",
       "bid": "ip4r5"
     },
     {

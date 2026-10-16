@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why a marketplace fee is a guess",
+      "text": "How marketplaces set their fees",
       "bid": "ufa14"
     },
     {
@@ -50,7 +50,7 @@
     {
       "kind": "text-h2",
       "id": "how-it-works",
-      "text": "How the deal fee works",
+      "text": "How the deal fee works in Lagrix",
       "bid": "rnlup"
     },
     {
@@ -93,7 +93,7 @@
     {
       "kind": "text-h2",
       "id": "where",
-      "text": "Where the fee goes",
+      "text": "Where the deal fee goes",
       "bid": "w80ci"
     },
     {
@@ -185,7 +185,7 @@
     {
       "kind": "text-h2",
       "id": "refund",
-      "text": "A refund pays no fee",
+      "text": "Refunds and the fee",
       "bid": "h3p2h"
     },
     {

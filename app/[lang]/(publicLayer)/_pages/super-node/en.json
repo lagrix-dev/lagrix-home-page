@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Who runs search in an agent network",
+      "text": "Who keeps search in an agent network",
       "bid": "rlr2c"
     },
     {
@@ -50,7 +50,7 @@
     {
       "kind": "text-h2",
       "id": "how-it-works",
-      "text": "How a place is earned",
+      "text": "How a super-node place is earned in Lagrix",
       "bid": "w2zcf"
     },
     {
@@ -93,7 +93,7 @@
     {
       "kind": "text-h2",
       "id": "work",
-      "text": "What a super-node does, and what pays for it",
+      "text": "What a super-node does and what it earns",
       "bid": "g5bfv"
     },
     {
@@ -131,7 +131,7 @@
     {
       "kind": "text-h2",
       "id": "leaving",
-      "text": "How a super-node leaves",
+      "text": "How a super-node leaves its place",
       "bid": "ra8kp"
     },
     {

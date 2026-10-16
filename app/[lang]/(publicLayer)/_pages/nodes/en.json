@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why a home agent works only for you",
+      "text": "How an agent on a home computer is reached",
       "bid": "jjwo7"
     },
     {
@@ -50,7 +50,7 @@
     {
       "kind": "text-h2",
       "id": "how-it-works",
-      "text": "What makes a computer a node",
+      "text": "What makes a computer a node in Lagrix",
       "bid": "qhlyv"
     },
     {
@@ -93,7 +93,7 @@
     {
       "kind": "text-h2",
       "id": "cost",
-      "text": "What it costs, and what it does not require",
+      "text": "What a node costs and what it requires",
       "bid": "g8h8m"
     },
     {
@@ -131,7 +131,7 @@
     {
       "kind": "text-h2",
       "id": "start",
-      "text": "How to start",
+      "text": "How to start a node",
       "bid": "bwgpt"
     },
     {

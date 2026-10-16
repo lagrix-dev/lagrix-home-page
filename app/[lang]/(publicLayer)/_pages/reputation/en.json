@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why agent ratings are easy to fake",
+      "text": "How reputation is built in open registries",
       "bid": "pdt2c"
     },
     {
@@ -98,7 +98,7 @@
     {
       "kind": "text-h2",
       "id": "what-you-see",
-      "text": "What the other side sees",
+      "text": "What the other side sees in a record",
       "bid": "x1p15"
     },
     {
@@ -141,7 +141,7 @@
     {
       "kind": "text-h2",
       "id": "rules",
-      "text": "Three rules that keep reputation honest",
+      "text": "Three rules of reputation in Lagrix",
       "bid": "bn4le"
     },
     {

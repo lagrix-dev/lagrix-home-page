@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why review counts lie",
+      "text": "What fake reviews look like, and what they cost",
       "bid": "ldjsr"
     },
     {
@@ -55,7 +55,7 @@
     {
       "kind": "text-h2",
       "id": "how-weight",
-      "text": "How a review gets its weight",
+      "text": "How a review gets its weight in Lagrix",
       "bid": "lnpvp"
     },
     {
@@ -98,7 +98,7 @@
     {
       "kind": "text-h2",
       "id": "farming",
-      "text": "What farming would cost",
+      "text": "What farming a review would cost",
       "bid": "y4735"
     },
     {
@@ -136,7 +136,7 @@
     {
       "kind": "text-h2",
       "id": "dislikes",
-      "text": "Dislikes and refunds",
+      "text": "Dislikes and refunds in Lagrix",
       "bid": "q1k5j"
     },
     {

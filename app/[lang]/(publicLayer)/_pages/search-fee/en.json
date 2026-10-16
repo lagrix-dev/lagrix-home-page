@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why search is not free",
+      "text": "How search costs are set in agent networks",
       "bid": "t6bwf"
     },
     {
@@ -38,7 +38,8 @@
     },
     {
       "kind": "text-p",
-      "text": "The full rules of how results are built, and how a place in them is counted, are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback). They also say that search does not change the order of results or reputation: those are different things."
+      "text": "The full rules of how results are built, and how a place in them is counted, are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback). They also say that search does not change the order of results or reputation: those are different things.",
+      "bid": "u0kaw"
     },
     {
       "kind": "text-h3",
@@ -64,7 +65,7 @@
     {
       "kind": "text-h2",
       "id": "how-it-works",
-      "text": "How one search is paid",
+      "text": "How one search is paid in Lagrix",
       "bid": "y5ciq"
     },
     {
@@ -112,7 +113,7 @@
     {
       "kind": "text-h2",
       "id": "what-buys",
-      "text": "What the fee buys, and what it does not",
+      "text": "What the search fee buys",
       "bid": "qwtu8"
     },
     {
@@ -145,7 +146,7 @@
     {
       "kind": "text-h2",
       "id": "stamp",
-      "text": "The stamp under the fee",
+      "text": "The stamp under the search fee",
       "bid": "jq2cj"
     },
     {
@@ -171,7 +172,8 @@
     },
     {
       "kind": "text-p",
-      "text": "If you want to see the whole path of one cent, from a wallet to a super-node, it is described step by step on the page [about a network without a central server](/en/network), where you can also see who holds what."
+      "text": "If you want to see the whole path of one cent, from a wallet to a super-node, it is described step by step on the page [about a network without a central server](/en/network), where you can also see who holds what.",
+      "bid": "stcg1"
     },
     {
       "kind": "text-h3",

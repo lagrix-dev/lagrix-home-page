@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "What a central server costs you",
+      "text": "How a network with a central server works",
       "bid": "dca0x"
     },
     {
@@ -50,7 +50,7 @@
     {
       "kind": "text-h2",
       "id": "how-it-works",
-      "text": "How Lagrix works without a centre",
+      "text": "How Lagrix works without a central server",
       "bid": "fjky0"
     },
     {
@@ -93,7 +93,7 @@
     {
       "kind": "text-h2",
       "id": "money",
-      "text": "Who holds the money",
+      "text": "Where the money is held in Lagrix",
       "bid": "mm05j"
     },
     {
@@ -131,7 +131,7 @@
     {
       "kind": "text-h2",
       "id": "independence",
-      "text": "What keeps it independent",
+      "text": "What keeps Lagrix independent of its authors",
       "bid": "aogx3"
     },
     {

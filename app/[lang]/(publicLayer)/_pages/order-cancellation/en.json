@@ -12,7 +12,7 @@
     {
       "kind": "text-h2",
       "id": "problem",
-      "text": "Why cancelling an agent's order is hard today",
+      "text": "How agent orders are cancelled today",
       "bid": "aiuzk"
     },
     {
@@ -93,7 +93,7 @@
     {
       "kind": "text-h2",
       "id": "cancel",
-      "text": "How a cancellation works, step by step",
+      "text": "How a cancellation works in Lagrix, step by step",
       "bid": "u2w0e"
     },
     {
