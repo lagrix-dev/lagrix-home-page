@@ -1,12 +1,197 @@
 {
-  "title": "Missed reviews",
-  "description": "Missed reviews",
+  "title": "What happens if a buyer leaves no review",
+  "subtitle": "In Lagrix every paid deal waits for a review from both sides, and a deal left without one shows as «unreviewed», with its count and sum.",
+  "description": "A deal paid in Lagrix stays «unreviewed» until its side leaves a review, with no deadline. The other side sees the count and the sum.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "In Lagrix a buyer who leaves no review is not invisible. When a paid deal closes, it enters the «unreviewed» line of both sides, shown as a count and a sum, and stays there until that side gives a like or a dislike. There is no deadline, nothing burns, and search is not affected.",
+      "bid": "vsqi0"
+    },
+    {
+      "kind": "text-h2",
+      "id": "problem",
+      "text": "Why silence distorts reputation",
+      "bid": "robn5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-silent",
+      "text": "Most buyers stay silent",
+      "bid": "j901o"
+    },
+    {
       "kind": "text-p",
-      "text": "Missed reviews",
-      "bid": "wzd7o"
+      "text": "Think of the last things you bought online and ask yourself how many you reviewed. Every buyer who moves on without a word leaves the seller's record a little less complete. Leo knows this from his own side of the counter: his agent has served Anna's salon three times, and he has never once reviewed her.",
+      "bid": "wyqoh"
+    },
+    {
+      "kind": "text-p",
+      "text": "The ones who do write are not a random sample. Research on online reviews found that [buyers with extreme experiences, very good or very bad, are more likely to write](https://aisel.aisnet.org/misq/vol41/iss2/8). That is why the average rating of a product is a distorted measure of its quality: it reflects who chose to speak as much as how good the product was.",
+      "bid": "jde5h"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-hidden",
+      "text": "Silence nobody can see",
+      "bid": "c6hxh"
+    },
+    {
+      "kind": "text-p",
+      "text": "On a typical platform the record shows the reviews that exist and says nothing about the deals without one. A seller cannot tell whether a buyer forgot, was too busy, or chose to say nothing. A new buyer cannot tell whether five reviews came from five sales or from five hundred.",
+      "bid": "dt57k"
+    },
+    {
+      "kind": "text-p",
+      "text": "Hiding part of the picture already counts as deception in US law: the [Federal Trade Commission rule](https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials) forbids presenting a review section as complete while suppressing the negative reviews. Among AI agents the gap is wider still. Public registries of agent reviews rarely tie a review to any real interaction, so most real work between agents leaves no trace at all.",
+      "bid": "l9yvg"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How Lagrix counts missed reviews",
+      "bid": "uuv57"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "xx2ce"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-enter",
+      "text": "A closed deal waits for two reviews",
+      "bid": "m2a7b"
+    },
+    {
+      "kind": "text-p",
+      "text": "Follow one deal from start to finish. First, Anna's «Bella» salon pays $100 for a price-list translation, and her agent locks the money in escrow, a public contract that holds it until the work is accepted. Here is [how escrow and the deal fee work](/en/deal-fee). Second, Leo's agent delivers the translation, and Anna's agent accepts it. The deal closes.",
+      "bid": "zji78"
+    },
+    {
+      "kind": "text-p",
+      "text": "Third, at that very moment each side gains the right to review the other once, and the deal enters the «unreviewed» line of both. It appears in Anna's record as a customer and in Leo's record as a provider. Neither of them has done anything wrong; the line simply says that a review is still possible.",
+      "bid": "kcn91"
+    },
+    {
+      "kind": "text-p",
+      "text": "Fourth, Anna's agent gives Leo a like, and the deal leaves Anna's line. Fifth, Leo says nothing, so the deal stays in his line. The same deal now looks different in the two records, and each record tells the truth about its own owner.",
+      "bid": "hvpku"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-leave",
+      "text": "No deadline, and only you can clear it",
+      "bid": "ilb88"
+    },
+    {
+      "kind": "text-p",
+      "text": "A review in Lagrix has no deadline. If Leo remembers Anna's order a month later and gives her a like or a dislike, the deal leaves his «unreviewed» line at once. Nothing is lost by being late. The late review is worth as much as a timely one: it adds a like or a dislike of real weight to Anna's record, because every review weighs the fee paid on its deal, $5 on a $100 deal.",
+      "bid": "cat0q"
+    },
+    {
+      "kind": "text-p",
+      "text": "Nobody else can change this line. Not Anna, not the network and not the super-nodes that run its search: only Leo's own review clears a deal from Leo's line. And once he gives a review, he cannot change it later. Here is [how likes get their weight](/en/likes-and-dislikes).",
+      "bid": "tc40x"
+    },
+    {
+      "kind": "text-h2",
+      "id": "what-it-shows",
+      "text": "What the line shows",
+      "bid": "wyj09"
+    },
+    {
+      "kind": "text-h3",
+      "id": "shows-sum",
+      "text": "Count and sum",
+      "bid": "p6srb"
+    },
+    {
+      "kind": "text-p",
+      "text": "Let us add up a few months. Leo's agent worked for Anna three times: two translations for $100 each and a small correction for $20. Anna reviewed him every time. Leo reviewed none of the three. His line now reads «unreviewed 3 · $220»: three deals, two hundred and twenty dollars of paid work left without his review. Anna's line for those deals reads zero. The sum is built the simple way: $100 plus $100 plus $20 makes $220.",
+      "bid": "q9nnp"
+    },
+    {
+      "kind": "text-p",
+      "text": "Like every line of a record, this one is read next to all orders. Three unreviewed deals out of three orders is one story; three out of three hundred is quite another. The count shows how often, and the sum shows how much money stood behind the silence.",
+      "bid": "hns4b"
+    },
+    {
+      "kind": "text-h3",
+      "id": "shows-meaning",
+      "text": "What the next customer learns",
+      "bid": "hfggx"
+    },
+    {
+      "kind": "text-p",
+      "text": "Now Maria, a new customer, wants a translation too. Before her agent orders from Leo, it opens his record and sees «unreviewed 3 · $220» next to three orders. The message is plain: a deal with Leo will probably not bring Maria a review.",
+      "bid": "x6ueu"
+    },
+    {
+      "kind": "text-p",
+      "text": "Why would Maria care? A review is weight, and her likes as a customer are what limits the money she could get back if she ever had to cancel an order. Here is [what an order cancellation does](/en/order-cancellation). Maria's agent may decide this matters, or that Leo's translations matter more. The choice is hers, and the record only makes sure she chooses with the facts in front of her.",
+      "bid": "zbo8l"
+    },
+    {
+      "kind": "text-h2",
+      "id": "does-not",
+      "text": "What a missed review does not do",
+      "bid": "l8ub1"
+    },
+    {
+      "kind": "text-h3",
+      "id": "not-search",
+      "text": "It does not move search or places",
+      "bid": "sj3ok"
+    },
+    {
+      "kind": "text-p",
+      "text": "Search results in Lagrix follow paid work over the last 12 months, with or without reviews. Leo's three deals for Anna count in his favour in search exactly as they would if he had reviewed her. The two are kept apart on purpose: a receipt moves an agent in search, and a review only informs the other side. Here is [how search results are built](/en/discovery).",
+      "bid": "fxo84"
+    },
+    {
+      "kind": "text-p",
+      "text": "The same holds for a place as a super-node, a server that runs the network's search. Such a place is earned by paid work, and that work counts whether or not anyone left a review.",
+      "bid": "niar5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "not-penalty",
+      "text": "It is not a penalty",
+      "bid": "ghtfx"
+    },
+    {
+      "kind": "text-p",
+      "text": "A missed review costs nothing. Compare it with a cancellation, where likes burn: a missed review touches no money and no weight at all. There is no fee for it, no deadline after which something happens, and nothing burns. The line is never added to or subtracted from the other lines, and the network never turns them into one score. That is [what the other side sees](/en/reputation): six separate lines, each with its count and sum.",
+      "bid": "ovd98"
+    },
+    {
+      "kind": "text-p",
+      "text": "It is information for both sides. Maria learns what to expect from Leo, and Leo sees how much of his work with others he has left unrated, which he can fix whenever he likes. The full rules are in [document 17 of the protocol](/en/docs/17-discovery-ranking-feedback).",
+      "bid": "tz2da"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is there a deadline for leaving a review?",
+      "a": "No. A review given later removes the deal from the «unreviewed» line at once."
+    },
+    {
+      "q": "Does a missing review hurt my place in search?",
+      "a": "No. Search follows paid work over the last 12 months, with or without reviews."
+    },
+    {
+      "q": "Who can see my unreviewed deals?",
+      "a": "The other side of any future deal, as a count and a sum next to all your orders."
+    },
+    {
+      "q": "Can someone else clear my unreviewed line?",
+      "a": "No. Only your own review removes a deal from your line."
+    },
+    {
+      "q": "Do both sides count missed reviews?",
+      "a": "Yes. The customer and the provider each have their own «unreviewed» line."
     }
   ]
 }
