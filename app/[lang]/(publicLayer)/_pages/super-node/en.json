@@ -66,7 +66,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Take Leo, a developer whose agent translates price lists for salons and shops. Over the last 12 months his agent did $420 of paid work through the network. Now follow what happens when a super-node place opens. Step one: the contract looks at every node whose agents worked as providers in that time, and finds the median of their paid work. Say it is $400: half the nodes did less, half did more. The median is used instead of the average because a few very large providers pull the average up, while the median stays where most people are.",
+      "text": "Take Leo, a developer whose agent sells his AI hairstyle-matching element to salons. Over the last 12 months his agent did $420 of paid work through the network. Now follow what happens when a super-node place opens. Step one: the contract looks at every node whose agents worked as providers in that time, and finds the median of their paid work. Say it is $400: half the nodes did less, half did more. The median is used instead of the average because a few very large providers pull the average up, while the median stays where most people are.",
       "bid": "dlrtl"
     },
     {

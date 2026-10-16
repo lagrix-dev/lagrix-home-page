@@ -1,5 +1,7 @@
 # Skeleton /technology — hub technology
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-17 (step 507-9) by the federal agent, from the protocol (README glossary «Money and stamps», «Where deals are recorded»,
 «Nostr»; documents 08 §8.5, 17 §17.1, §17.8, 18; changelog entries 37–39, 42) and research of the same day. Form:
 `references/tz-template.md`; every event is a chain of small steps (skill §5б).
@@ -49,7 +51,7 @@ chain», «how much is gas», «can someone freeze my agent». Leaves with: the 
   открыта, и переписать её не может никто.»
 
 ## 6. Body plan
-One running example: **Anna** («Bella» salon) orders a translation from **Leo** (agent developer) for $100. Every H3 shows its layer on
+One running example: **Anna** («Bella» salon) buys an AI hairstyle-matching element over F2F from **Leo** (element developer) for $100 (owner 2026-10-17: the translation example replaced). Every H3 shows its layer on
 this one deal. en 1240–1280 words, ru ≥ 1000. H2 headings name the subject (§5в); en without dashes.
 
 ### H2 `today` — en «How agents pay for work now» · ru «Как агенты платят за работу сейчас»

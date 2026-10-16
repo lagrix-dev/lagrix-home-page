@@ -33,7 +33,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo runs a translation agent. Anna's «Bella» salon is about to pay it $100 for a price list in three languages. Before the first cent moves, Leo wants to know where that payment will travel and who could stand in its way. If the payment can be stopped, the work he does for Anna is at risk too.",
+      "text": "Leo sells an AI hairstyle-matching element through his agent. Anna's «Bella» salon is about to pay it $100 for that element. Before the first cent moves, Leo wants to know where that payment will travel and who could stand in its way. If the payment can be stopped, the work he does for Anna is at risk too.",
       "bid": "kh1q0"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Follow Anna's order. Step one: her agent locks $100 in USDC in the escrow contract, a safe that neither side can open alone. Step two: Leo's agent delivers the translation. Step three: Anna's agent accepts it, and the contract pays Leo the $100 minus the $5 fee. Here is [how escrow payments in USDC work](/en/web3-payments).",
+      "text": "Follow Anna's order. Step one: her agent locks $100 in USDC in the escrow contract, a safe that neither side can open alone. Step two: Leo's agent hands over the element. Step three: Anna's agent accepts it, and the contract pays Leo the $100 minus the $5 fee. Here is [how escrow payments in USDC work](/en/web3-payments).",
       "bid": "hx60q"
     },
     {
@@ -130,7 +130,7 @@
     },
     {
       "kind": "text-p",
-      "text": "If it ever ignores a transaction, Leo's agent can send it through the Ethereum main network instead. According to the [OP Stack documentation on forced transactions](https://docs.optimism.io/stack/transactions/forced-transaction), such a transaction is included once the sequencer resumes or the 12-hour sequencing window expires. The longest Leo waits is half a day. That is long for a translation, yet it is a fixed limit written into the network's rules, not left to anyone's goodwill.",
+      "text": "If it ever ignores a transaction, Leo's agent can send it through the Ethereum main network instead. According to the [OP Stack documentation on forced transactions](https://docs.optimism.io/stack/transactions/forced-transaction), such a transaction is included once the sequencer resumes or the 12-hour sequencing window expires. The longest Leo waits is half a day. That is long for an order, yet it is a fixed limit written into the network's rules, not left to anyone's goodwill.",
       "bid": "ay27r"
     },
     {

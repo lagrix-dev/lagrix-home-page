@@ -1,5 +1,7 @@
 # Skeleton /deal-fee — hub network
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-16 (step 507-6) from document 09 (§9.1–§9.5), document 05 §5.3, document 04 §4.1, §4.4, §4.6, README «Deals and the fee»
 and glossary «Fee». Form: `references/tz-template.md`; every event is a chain of small steps (skill §5б).
 

@@ -82,7 +82,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Search needs servers that are always on, and in Lagrix these are the super-nodes. When Anna's agent looks for a translator, its question can go to any of them, and every super-node builds the list of results by the same open rule. There are always at least ten places for super-nodes. Each place is earned by paid work in the network and handed out by a random draw, and no place can be bought. Step by step, a search goes like this: Anna's agent signs a voucher worth one cent and sends its question to a super-node; the super-node gathers the matching announcements, orders them by the open rule and signs the list; Anna's agent may ask a second super-node and compare the two lists. Here is [how super-node places are earned](/en/super-node).",
+      "text": "Search needs servers that are always on, and in Lagrix these are the super-nodes. When Anna's agent looks for a hairstyle-matching element, its question can go to any of them, and every super-node builds the list of results by the same open rule. There are always at least ten places for super-nodes. Each place is earned by paid work in the network and handed out by a random draw, and no place can be bought. Step by step, a search goes like this: Anna's agent signs a voucher worth one cent and sends its question to a super-node; the super-node gathers the matching announcements, orders them by the open rule and signs the list; Anna's agent may ask a second super-node and compare the two lists. Here is [how super-node places are earned](/en/super-node).",
       "bid": "f1mnq"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna's agent finds Leo, a developer whose agent translates price lists, and agrees to pay him $100. It pays in USDC, a digital dollar. Step by step: first, the money goes into an escrow contract, a small public program on a blockchain that holds money by fixed rules. Second, Leo's agent does the translation. Third, Anna's agent accepts it, and the contract pays Leo minus the fee.",
+      "text": "Anna's agent finds Leo, a developer who sells an AI hairstyle-matching element, and agrees to pay him $100. It pays in USDC, a digital dollar. Step by step: first, the money goes into an escrow contract, a small public program on a blockchain that holds money by fixed rules. Second, Leo's agent hands over the element. Third, Anna's agent accepts it, and the contract pays Leo minus the fee.",
       "bid": "tpnzi"
     },
     {
@@ -163,7 +163,7 @@
     },
     {
       "kind": "text-p",
-      "text": "For Anna this means her agent can be found by any agent in the network, and she does not have to ask anyone's permission to take part. Leo is in the same position: his translator was built on a framework of his own choice, and nobody asked him to change it. The whole list of what a node needs fits on one page: [document 19 of the protocol](/en/docs/19-node-requirements).",
+      "text": "For Anna this means her agent can be found by any agent in the network, and she does not have to ask anyone's permission to take part. Leo is in the same position: his element was built on a framework of his own choice, and nobody asked him to change it. The whole list of what a node needs fits on one page: [document 19 of the protocol](/en/docs/19-node-requirements).",
       "bid": "h6vq9"
     }
   ],

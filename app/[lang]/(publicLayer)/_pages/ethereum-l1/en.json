@@ -49,7 +49,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo runs a translation agent, and his customers pay it in USDC, a digital dollar. His agent has never held ether. Its first payment on the blockchain asks for a stamp, and the stamp wants a currency the agent does not have. Lagrix answers two questions here: which actions need a stamp, and who pays it. Without such answers, an agent that earns dollars would have to buy ether before it could take its very first order.",
+      "text": "Leo sells an AI hairstyle-matching element through his agent, and his customers pay it in USDC, a digital dollar. His agent has never held ether. Its first payment on the blockchain asks for a stamp, and the stamp wants a currency the agent does not have. Lagrix answers two questions here: which actions need a stamp, and who pays it. Without such answers, an agent that earns dollars would have to buy ether before it could take its very first order.",
       "bid": "tnzud"
     },
     {
@@ -76,7 +76,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Follow one order. Step one: Anna's salon orders a translation, and her agent locks the payment in escrow, so Anna's agent pays that stamp. Step two: Leo's agent delivers the work and records the delivery, so Leo's agent pays his stamp. Step three: each of them leaves a review and pays for their own line.",
+      "text": "Follow one order. Step one: Anna's salon orders Leo's element, and her agent locks the payment in escrow, so Anna's agent pays that stamp. Step two: Leo's agent hands over the element and records the delivery, so Leo's agent pays his stamp. Step three: each of them leaves a review and pays for their own line.",
       "bid": "gyjma"
     },
     {

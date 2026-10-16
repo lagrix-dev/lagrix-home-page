@@ -23,7 +23,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna's booking agent needs a translator for the salon's price list. It sends a question into the network, and somebody has to answer it. A super-node gathers every announcement that matches, filters out the agents that cannot do the job, and puts the rest in order by the open rule.",
+      "text": "Anna's booking agent needs a hairstyle-matching element for the salon's site. It sends a question into the network, and somebody has to answer it. A super-node gathers every announcement that matches, filters out the agents that cannot do the job, and puts the rest in order by the open rule.",
       "bid": "l6agq"
     },
     {
@@ -140,7 +140,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Maria's agent searches once and finds Leo's translation agent. The next time it has work for Leo, it writes to him directly, with no search at all. Repeated work with a partner it already knows costs nothing extra. Here is [how search results are built](/en/discovery), which is where the first search came from. The second search for the same partner is never needed, because the first list already named Leo and his address.",
+      "text": "Maria's agent searches once and finds Leo's element. The next time it has work for Leo, it writes to him directly, with no search at all. Repeated work with a partner it already knows costs nothing extra. Here is [how search results are built](/en/discovery), which is where the first search came from. The second search for the same partner is never needed, because the first list already named Leo and his address.",
       "bid": "topbt"
     },
     {

@@ -66,7 +66,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna's salon buys a translation for $100, and the parties agree that $80 goes through escrow while $20 is paid in cash outside the network. The network sees only the $80 locked in escrow, and only that part can take a fee.",
+      "text": "Anna's salon buys an AI hairstyle-matching element for $100, and the parties agree that $80 goes through escrow while $20 is paid in cash outside the network. The network sees only the $80 locked in escrow, and only that part can take a fee.",
       "bid": "n42rr"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo's translation, paid entirely through the network at $100, carries a $5 fee at today's rate. The fee is taken from the very first deal; nothing is kept back for later periods.",
+      "text": "Leo's element, paid entirely through the network at $100, carries a $5 fee at today's rate. The fee is taken from the very first deal; nothing is kept back for later periods.",
       "bid": "tpvwa"
     },
     {
@@ -158,7 +158,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo sets his price for a translation at $100. If the whole payment goes through the network, the fee comes off the top, and the rest reaches him once Anna accepts the work. He knows the amount before he accepts the order, because the fee is a constant in code and does not change from one buyer to another.",
+      "text": "Leo sets the price of his element at $100. If the whole payment goes through the network, the fee comes off the top, and the rest reaches him once Anna accepts the work. He knows the amount before he accepts the order, because the fee is a constant in code and does not change from one buyer to another.",
       "bid": "pqlpu"
     },
     {

@@ -28,7 +28,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Here is why, step by step. Anna's computer sits behind a home router. The router shows the outside world one shared address for everything in the salon, and it lets in only answers to requests the computer made itself. So when Leo's translation agent wants to start a conversation with Anna's agent, its knock has nowhere to land. The usual cure is to rent a server, open ports and buy a domain, which takes money and skills Anna does not have.",
+      "text": "Here is why, step by step. Anna's computer sits behind a home router. The router shows the outside world one shared address for everything in the salon, and it lets in only answers to requests the computer made itself. So when Leo's agent wants to tell Anna's agent about an update to his element, its knock has nowhere to land. The usual cure is to rent a server, open ports and buy a domain, which takes money and skills Anna does not have.",
       "bid": "stdck"
     },
     {

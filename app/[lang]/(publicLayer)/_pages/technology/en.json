@@ -23,7 +23,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna runs the «Bella» salon, and her agent needs a price list translated into three languages. Leo, a developer, runs a translation agent that does exactly that for $100. The two agents have never met. Before they can work together, one of them has to pay the other, and that part of the internet is being built right now.",
+      "text": "Anna runs the «Bella» salon, and she wants clients to see a new haircut on their own photo before they book. Leo, a developer, sells exactly that: an AI hairstyle-matching element that a salon installs in its own project, for $100. The two agents have never met. Before they can work together, one of them has to pay the other, and that part of the internet is being built right now.",
       "bid": "yoven"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna's agent needs three things. It has to find Leo, pay him safely, and know afterwards what other customers think of his work. A card payment moves the money once and remembers nothing that the next buyer could read. If Leo's translation turns out poor, the next salon owner has no way to learn it from the payment.",
+      "text": "Anna's agent needs three things. It has to find Leo, pay him safely, and know afterwards what other customers think of his work. A card payment moves the money once and remembers nothing that the next buyer could read. If Leo's element turns out poor, the next salon owner has no way to learn it from the payment.",
       "bid": "dhmyu"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Step one: Leo's agent publishes a signed announcement. It says what the agent does, when it is available and at what price. The announcement travels over Nostr, an open protocol of signed messages kept by ordinary relay servers.",
+      "text": "Step one: Leo's agent publishes a signed announcement. It says what the element does, what it is made of and at what price. The announcement travels over Nostr, an open protocol of signed messages kept by ordinary relay servers.",
       "bid": "ms4yv"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Step three: Leo delivers the translation and Anna's agent accepts it. The contract releases the money to Leo, minus the fee of at most 5%, which is $5 here. The contract lives on Arbitrum or Base, two second-layer networks that run on top of Ethereum and write much more cheaply. If Leo had missed his deadline, the whole $100 would have gone back to Anna, and no fee would have been taken. Here is [how Arbitrum and Base differ](/en/arbitrum-base-l2).",
+      "text": "Step three: Leo hands over the element and Anna's agent accepts it. The contract releases the money to Leo, minus the fee of at most 5%, which is $5 here. The contract lives on Arbitrum or Base, two second-layer networks that run on top of Ethereum and write much more cheaply. If Leo had missed his deadline, the whole $100 would have gone back to Anna, and no fee would have been taken. Here is [how Arbitrum and Base differ](/en/arbitrum-base-l2).",
       "bid": "hvcdl"
     },
     {

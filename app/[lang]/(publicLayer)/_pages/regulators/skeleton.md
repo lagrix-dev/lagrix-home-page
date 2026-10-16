@@ -1,5 +1,7 @@
 # Skeleton /regulators — hub regulators
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-17 (step 507-10) by the federal agent, from protocol document 22 (all sections), README, changelog entries 1, 18, 25, 31,
 32, 38–42, and the primary sources verified in step 473 (risk-map report §1). Before writing, read in full: the risk-map report, MiCA
 report §0, document 22, the word bans (no lottery vocabulary: lottery, won by, drawn, raffle, лотерея, розыгрыш, жребий; no talk of tokens,

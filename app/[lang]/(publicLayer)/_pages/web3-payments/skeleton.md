@@ -1,5 +1,7 @@
 # Skeleton /web3-payments — hub payments
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-16 (step 507-8) from document 04 (the escrow state machine, EIP-712 receipts, the time-lock, §4.3–§4.7), document 09 §9.2, README «Deals and the fee», changelog entries 33, 37, 39, USDC check of 2026-10-16. Form: `references/tz-template.md`; chains of small steps (skill §5б).
 
 🛑 Not on the page: the exact dispute window length (document 04 gives it as an example only); whether the fee applies to a cancelled order (open question); the gas price beyond the measured figure of document 08 §8.5 (not restated here).

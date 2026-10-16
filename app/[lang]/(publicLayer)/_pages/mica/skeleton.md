@@ -1,5 +1,7 @@
 # Skeleton /mica — hub regulators
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-17 (step 507-10) by the federal agent, from protocol document 22 (§22.1, §22.6, §22.7, §22.9), document 08 §8.5, README
 glossary («USDC», «Paymaster») and the primary sources verified in step 473. Read before writing: risk-map report, MiCA report §0, word
 bans. 🛑 Never: lottery vocabulary; tokens, listing, coin, price; «complies». No Article 4 (it concerned a coin the network does not have).

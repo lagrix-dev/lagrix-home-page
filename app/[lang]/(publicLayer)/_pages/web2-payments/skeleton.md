@@ -1,5 +1,7 @@
 # Skeleton /web2-payments — hub payments
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-16 (step 507-8) from README «Deals and the fee» (the part paid outside the network), document 04 §4.6, document 05 §5.2 (receipts), document 17 §17.5 (reviews), the Stripe and Visa checks of 2026-10-16. Form: `references/tz-template.md`; chains of small steps (skill §5б).
 
 🛑 Not on the page: any claim that Lagrix processes card payments (it does not); any card provider's name as a recommendation; the rate of any provider beyond the published standard rate.

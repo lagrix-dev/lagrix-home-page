@@ -1,5 +1,7 @@
 # Skeleton /nostr — hub technology
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-17 (step 507-9) by the federal agent, from the protocol (document 17 §17.1, §17.8, §17.9; document 18; README glossary
 «Nostr», «Announcement», «Search fee») and research of the same day. Form: `references/tz-template.md`; every event is a chain of small
 steps (skill §5б). The discovery hub owns «how do AI agents find each other»; this page owns the Nostr layer only.

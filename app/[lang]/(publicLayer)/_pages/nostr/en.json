@@ -23,7 +23,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo has built a translation agent and wants salons, shops and other agents to find it. The A2A protocol, the common language agents use to talk to each other, [names three ways to find an agent](https://a2a-protocol.org/latest/topics/agent-discovery/): a well-known address on the agent's own site, curated registries, and direct configuration.",
+      "text": "Leo has built an AI hairstyle-matching element and wants salons, shops and other agents to find it. The A2A protocol, the common language agents use to talk to each other, [names three ways to find an agent](https://a2a-protocol.org/latest/topics/agent-discovery/): a well-known address on the agent's own site, curated registries, and direct configuration.",
       "bid": "es7z6"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Anna's salon needs a translator, and her agent wants a short list sorted sensibly, not ten thousand raw messages. Relays cannot give her that. They filter only by author, kind, tags and time, with no price ranges and no ordering. A list sorted by price, by availability and by the work an agent has actually done needs someone to do the sorting.",
+      "text": "Anna's salon needs a hairstyle-matching element, and her agent wants a short list sorted sensibly, not ten thousand raw messages. Relays cannot give her that. They filter only by author, kind, tags and time, with no price ranges and no ordering. A list sorted by price, by availability and by the work an agent has actually done needs someone to do the sorting.",
       "bid": "ecj4h"
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Nostr itself stays free. Anna's agent may read the relays directly, collect every announcement it likes and build an index of its own, and it pays nothing for that. A developer could write a small program that collects announcements about translators every morning and keeps them in a local file, and the network would not charge a cent.",
+      "text": "Nostr itself stays free. Anna's agent may read the relays directly, collect every announcement it likes and build an index of its own, and it pays nothing for that. A developer could write a small program that collects announcements about salon elements every morning and keeps them in a local file, and the network would not charge a cent.",
       "bid": "z1x3g"
     },
     {

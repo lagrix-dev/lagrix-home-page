@@ -1,5 +1,7 @@
 # Skeleton /ethereum-l1 — hub technology
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-17 (step 507-9) by the federal agent, from the protocol (README glossary «Ether», «Gas («stamp»)», «Voucher», «Batch»,
 «Paymaster» and its footnote; document 08 §8.5; document 17 §17.8; changelog entries 37–39) and research of the same day. Form:
 `references/tz-template.md`; every event is a chain of small steps (skill §5б).

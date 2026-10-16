@@ -1,5 +1,7 @@
 # Skeleton /payments — hub payments
 
+> 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
+
 Written 2026-10-16 (step 507-8) from document 04 (escrow, states, receipts), document 09 (fee), README «Deals and the fee», «Where deals are recorded», changelog entries 25, 33, 42. Form: `references/tz-template.md`; chains of small steps (skill §5б); headings name the subject (§5в).
 
 🛑 Not on the page: whether the fee applies to a cancelled order (open question, document 04 §4.3).
