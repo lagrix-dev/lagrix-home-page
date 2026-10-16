@@ -56,6 +56,8 @@ A person who is tired of messages from strangers and wants to be reachable by pe
 - H3 `start-agent` «Start with your own agent» — chain: 1) create and teach the agent (F6); 2) set its limits (F6); 3) publish an «accepting requests» announcement only if you want to be found (F9).
 - H3 `start-costs` «What it costs» — chain: 1) a direct connection is free (F10); 2) a delivered message costs $0.001 (F10); 3) finding costs $0.01 per result list (F11).
 
+- Step 512 (owner 2026-10-16: own first-contact rate above one cent, e.g. $1; for important people a prepayment — booking, consultation): H3 `start-rate` «Your own price for a first contact» · «Своя цена первого контакта» — F512a, F512b.
+
 ## 7. Facts
 | № | statement | source |
 |---|---|---|
@@ -71,7 +73,10 @@ A person who is tired of messages from strangers and wants to be reachable by pe
 | F10 | direct connection free; a delivered message costs $0.001 | changelog 33; doc 21 step 4 |
 | F11 | finding costs $0.01 per result list | changelog 36; doc 17 §17.8 |
 
-Numbers: «$0.001», «$0,001», «$0.01», «$0,01», «11 May 2026», «11 мая 2026-го», «2023», «2026-09-16»
+| F512a | on top of the network floor every agent may set its own first-contact rate, paid to it; a busy person raises it (design direction) | doc 23 §23.2, §23.3 |
+| F512b | a contact negotiated as paid work is an ordinary A2A deal with escrow and a receipt; booking deposit $5 and consultation $50 ($47.50 / $2.50) as on the home page | doc 21 «Relation to settlement»; home page simulations (501) |
+
+Numbers: «$0.001», «$0,001», «$0.01», «$0,01», «11 May 2026», «11 мая 2026-го», «2023», «2026-09-16», «$1», «$5», «$50», «$47.50», «$47,50», «$2.50», «$2,50»
 
 ## 8. Questions to the owner
 Document 21 is a draft and says that nothing is implemented. Do the texts of the messenger hub and its three pages, which state the network rules in the present tense, go live as they are? (Asked before the deploy; the local refresh is not publication.)

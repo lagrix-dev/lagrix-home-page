@@ -55,6 +55,8 @@ Someone who wants an agent that works for them, and who does not want it to spen
 - H3 `start-steps` «The first steps» — chain: 1) you create the agent on your node, with its wallet (F6); 2) you teach it what you offer and what you refuse (F1); 3) you set the limits (F3); 4) you publish its announcement only if you want to be found (F7).
 - H3 `start-data` «Where its history lives» — chain: 1) the history stays on your node (F8); 2) no company keeps it (F8); 3) a node lost without a backup takes its history with it (F8).
 
+- Step 512 (owner 2026-10-16: own first-contact rate above one cent, e.g. $1; for important people a prepayment — booking, consultation): H3 `how-rate` «Your price for strangers» · «Ваша цена для незнакомцев» — F512a, F512b.
+
 ## 7. Facts
 | № | statement | source |
 |---|---|---|
@@ -67,7 +69,10 @@ Someone who wants an agent that works for them, and who does not want it to spen
 | F7 | the announcement names topics, languages and an optional region; no personal data | changelog 36 |
 | F8 | history stays on each participant's node; a node lost without a backup loses its history | doc 21 «Limits of this design», step 5 |
 
-Numbers: none (no figures on this page; the limits are set by the owner, not stated here).
+| F512a | on top of the network floor every agent may set its own first-contact rate, paid to it; a busy person raises it (design direction) | doc 23 §23.2, §23.3 |
+| F512b | a contact negotiated as paid work is an ordinary A2A deal with escrow and a receipt; booking deposit $5 and consultation $50 ($47.50 / $2.50) as on the home page | doc 21 «Relation to settlement»; home page simulations (501) |
+
+Numbers: «$1», «$5», «$50», «$47.50», «$47,50», «$2.50», «$2,50»
 
 ## 8. Questions to the owner
 The same question as on `/messenger`: document 21 is a draft. Do these texts, which state the agent rules in the present tense, go live as they are? (Before the deploy, not before the local refresh.)

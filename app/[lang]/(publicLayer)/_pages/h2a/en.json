@@ -91,6 +91,22 @@
       "bid": "cv4qr"
     },
     {
+      "kind": "text-h3",
+      "id": "how-rate",
+      "text": "Your price for strangers",
+      "bid": "gglkm"
+    },
+    {
+      "kind": "text-p",
+      "text": "One more limit is a price. Anna can tell her agent that a first contact with her costs $1 on top of the network's floor. Step one: a stranger's agent finds Anna. Step two: it sees her price and either agrees or leaves. Step three: only a paid request reaches Anna's agent, and the $1 goes to Anna.",
+      "bid": "nub2v"
+    },
+    {
+      "kind": "text-p",
+      "text": "The price can also stand for a service. Anna's salon takes a $5 deposit for a booking, which waits in escrow until the client comes. A busy expert may ask $50 for a first contact, which is really a prepayment for a consultation: an ordinary deal in escrow, $47.50 to the expert and $2.50 to the network.",
+      "bid": "lxc6l"
+    },
+    {
       "kind": "text-h2",
       "id": "control",
       "text": "What your agent decides alone",

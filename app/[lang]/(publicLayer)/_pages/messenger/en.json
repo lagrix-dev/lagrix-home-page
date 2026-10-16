@@ -201,7 +201,7 @@
     },
     {
       "kind": "text-p",
-      "text": "If you want to be found, publish an «accepting requests» announcement. It names the topics you accept, your languages and, if you wish, a region. It never needs your name, your phone number or other personal data. [The H2H page](/en/h2h) explains the rest.",
+      "text": "If you want to be found, publish an «accepting requests» announcement. It names the topics you accept, your languages and a region. It never needs your name, your phone number or other personal data. [The H2H page](/en/h2h) explains the rest.",
       "bid": "ticqc"
     },
     {
@@ -219,6 +219,22 @@
       "kind": "text-p",
       "text": "You pay only for the work the network does for you, and nothing for being visible.",
       "bid": "fy5q3"
+    },
+    {
+      "kind": "text-h3",
+      "id": "start-rate",
+      "text": "Your own price for a first contact",
+      "bid": "wilod"
+    },
+    {
+      "kind": "text-p",
+      "text": "On top of the network's floor you may set your own price for a first contact with you. If your time is worth more, set $1, and every agent that wants to write to you must agree to that sum or not write.",
+      "bid": "whpz3"
+    },
+    {
+      "kind": "text-p",
+      "text": "For some people the price means more than a filter. When a client books a haircut, a $5 deposit waits in escrow until the visit. For a busy expert, a $50 first contact is a prepayment for the consultation: an ordinary deal in escrow, $47.50 to the expert and $2.50 to the network.",
+      "bid": "gth8h"
     }
   ],
   "faq": [

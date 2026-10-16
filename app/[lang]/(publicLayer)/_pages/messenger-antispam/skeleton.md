@@ -58,6 +58,8 @@ A person whose inbox fills with messages from agents. Pain: «I cannot read ever
 - H3 `protect-floor` «The network floor and your rate» — chain: 1) the floor applies to everyone automatically (F5); 2) you set your own rate, if you want (F7); 3) you choose whom to bring to you and whom to decline (F6).
 - H3 `protect-refused` «When a message is refused» — chain: 1) a refused message never reaches your model (F8); 2) the sender has paid the fees it chose to pay (F5); 3) spam becomes the sender's loss (F10).
 
+- Step 512 (owner 2026-10-16: own first-contact rate above one cent, e.g. $1; for important people a prepayment — booking, consultation): H3 `adv-prepay` «A price that works as a prepayment» · «Цена как предоплата» — F512a, F512b.
+
 ## 7. Facts
 | № | statement | source |
 |---|---|---|
@@ -72,7 +74,10 @@ A person whose inbox fills with messages from agents. Pain: «I cannot read ever
 | F9 | the same rule for a request to a person through their agent and for a task to an agent | doc 23 §23.2–§23.3 |
 | F10 | spam is a loss for the sender; checking costs the recipient nothing [Q1] | doc 23 §23.3 |
 
-Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «40», «2026-09-16»
+| F512a | on top of the network floor every agent may set its own first-contact rate, paid to it; a busy person raises it (design direction) | doc 23 §23.2, §23.3 |
+| F512b | a contact negotiated as paid work is an ordinary A2A deal with escrow and a receipt; booking deposit $5 and consultation $50 ($47.50 / $2.50) as on the home page | doc 21 «Relation to settlement»; home page simulations (501) |
+
+Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «40», «2026-09-16», «$1», «$5», «$50», «$47.50», «$47,50», «$2.50», «$2,50»
 
 ## 8. Questions to the owner
 The same question as on `/messenger`: document 21 is a draft. The [Q1] statements of document 23 are written as rules in the present tense (decided 2026-10-16). Do these texts go live as they are? (Before the deploy, not before the local refresh.)

@@ -55,6 +55,8 @@ Someone with something worth saying to a busy person, who wants a real answer. P
 - H3 `cost-search` «Finding costs a cent» — chain: 1) the search for Elena's agent costs $0.01 per result list (F10); 2) a repeat contact costs nothing (F10).
 - H3 `cost-delivery` «Delivery to an offline person» — chain: 1) a direct connection is free (F11); 2) a super-node holding the message for an offline recipient costs $0.001 per delivered message (F11).
 
+- Step 512 (owner 2026-10-16: own first-contact rate above one cent, e.g. $1; for important people a prepayment — booking, consultation): H3 `cost-rate` «Her own rate» · «Её собственный тариф» — F512a, F512b.
+
 ## 7. Facts
 | № | statement | source |
 |---|---|---|
@@ -70,7 +72,10 @@ Someone with something worth saying to a busy person, who wants a real answer. P
 | F10 | search costs $0.01 per result list; repeated contact with a known party costs nothing | doc 17 §17.8; changelog 36 |
 | F11 | direct connection free; delivered message $0.001 | changelog 33 |
 
-Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «2023»
+| F512a | on top of the network floor every agent may set its own first-contact rate, paid to it; a busy person raises it (design direction) | doc 23 §23.2, §23.3 |
+| F512b | a contact negotiated as paid work is an ordinary A2A deal with escrow and a receipt; booking deposit $5 and consultation $50 ($47.50 / $2.50) as on the home page | doc 21 «Relation to settlement»; home page simulations (501) |
+
+Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «2023», «$1»
 
 ## 8. Questions to the owner
 The same question as on `/messenger`: document 21 is a draft. Do these texts, which state the request rules in the present tense, go live as they are? (Before the deploy, not before the local refresh.)

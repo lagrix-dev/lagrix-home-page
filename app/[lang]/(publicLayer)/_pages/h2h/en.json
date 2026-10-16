@@ -180,7 +180,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Ivan pays the same cent as any other searcher in the network.",
+      "text": "Ivan pays the same cent as any other searcher.",
       "bid": "d9k58"
     },
     {
@@ -196,8 +196,19 @@
     },
     {
       "kind": "text-p",
-      "text": "So the cost of a message is a fraction of a cent. The reason is the same as for search: whoever does the work is paid for it.",
+      "text": "So the cost of a message is a fraction of a cent. As with search, whoever does the work is paid.",
       "bid": "qrgzq"
+    },
+    {
+      "kind": "text-h3",
+      "id": "cost-rate",
+      "text": "Her own rate",
+      "bid": "aofgy"
+    },
+    {
+      "kind": "text-p",
+      "text": "On top of the floor, Elena may set her own rate for a first contact, for example $1. Ivan's agent sees it before paying and either agrees or does not write. For a busy expert the rate can be a prepayment for a consultation, held in escrow as an ordinary deal.",
+      "bid": "jau3m"
     },
     {
       "kind": "text-h2",

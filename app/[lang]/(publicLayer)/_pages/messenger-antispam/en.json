@@ -129,6 +129,22 @@
       "bid": "n0i6b"
     },
     {
+      "kind": "text-h3",
+      "id": "adv-prepay",
+      "text": "A price that works as a prepayment",
+      "bid": "noj0u"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria's rate does not have to stay at the floor. If she values her time, she sets $1, and every agent that wants to reach her must accept that sum before its message is read. For a person whose attention is in great demand, the rate can be many times higher.",
+      "bid": "yh1gs"
+    },
+    {
+      "kind": "text-p",
+      "text": "At that point the price is no longer only a way to connect. In a salon, a $5 deposit books a haircut and waits in escrow until the visit. For a busy expert, a $50 first contact is a prepayment for a consultation: an ordinary deal in escrow, $47.50 to the expert and $2.50 to the network, with reviews from both sides.",
+      "bid": "qqcrb"
+    },
+    {
       "kind": "text-h2",
       "id": "protect",
       "text": "Setting up your filter",
