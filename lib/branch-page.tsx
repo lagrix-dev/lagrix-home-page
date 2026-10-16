@@ -185,12 +185,15 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
       resolve: (lang) => contentOf(page, lang, opts.segments),
       widgets: opts.widgets,
       chrome: (lang, c) => {
+        // 507-3: подпись чужой страницы в крошках проходит ту же подстановку имени сайта, что её собственный H1.
+        // ✗ Зонд прибора: крошка хаба «About %SITE%» печаталась сырой.
+        const titleOf = (p: TreePage) => wordsIn(p, lang).title.split('%SITE%').join(brand().name)
         const crumbs: Crumb[] = []
-        if (root && opts.subPath) crumbs.push({ label: wordsIn(root, lang).title, href: `/${lang}${opts.subPath}` })
-        if (parent) crumbs.push({ label: wordsIn(parent, lang).title, href: `/${lang}${opts.subPath}/${parentSlug}` })
+        if (root && opts.subPath) crumbs.push({ label: titleOf(root), href: `/${lang}${opts.subPath}` })
+        if (parent) crumbs.push({ label: titleOf(parent), href: `/${lang}${opts.subPath}/${parentSlug}` })
         crumbs.push({ label: c.title })
-        if (parent) return { breadcrumbs: crumbs, backHref: `/${lang}${opts.subPath}/${parentSlug}`, backLabel: wordsIn(parent, lang).title }
-        return { breadcrumbs: crumbs, backHref: `/${lang}${opts.subPath}`, backLabel: root ? wordsIn(root, lang).title : undefined }
+        if (parent) return { breadcrumbs: crumbs, backHref: `/${lang}${opts.subPath}/${parentSlug}`, backLabel: titleOf(parent) }
+        return { breadcrumbs: crumbs, backHref: `/${lang}${opts.subPath}`, backLabel: root ? titleOf(root) : undefined }
       },
     })
     return { page, factory }
