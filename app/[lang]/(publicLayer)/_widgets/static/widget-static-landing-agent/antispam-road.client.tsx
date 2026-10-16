@@ -16,15 +16,19 @@ import s from "./landing-agent.module.css"
 // Сцена — слои HTML в контейнере с единицами cqw/cqh: хрюша привязана к центру низа при любой ширине, указатель — к левому краю,
 // грузовик — к правому. Без JavaScript и при «уменьшить движение» сцена стоит в одном кадре (письмо над копилкой, монетка в падении,
 // посылка над кузовом). Окно справки — встроенный popover браузера: открывается и без JavaScript, закрывается Escape и щелчком мимо.
+//
+// 498-3 (владелец 2026-10-16): «надпись + ваш тариф … на указателе третьей строкой: Только после оплаты: $0.01-Lagrix + $вам ваш тариф»;
+// «Телефонная трубку нужна поднять выше потока писем чтобы письма её не перекрывали»; «зигзагообразной линия которая изображает шнур не
+// нужна, трубка должна быть больше на 30% и начинается от верхнего края и идти к нижнему быть более реалистичной».
 
 export type AntispamWords = {
   title: string
   text?: string
   scene: string
   signTop: string
-  signBottom: string
-  /** 498-2: the price tag on the piggy bank — the recipient's own rate on top of the network's floor. */
-  tag: string
+  /** 498-3: the sign reads in three lines — the name, the condition, the price (the network's floor + the recipient's own rate). */
+  signMid: string
+  signPrice: string
   truckTitle: string
   truckSub: string
   phoneLabel: string
@@ -78,16 +82,19 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
       {/* Дорога: полотно цвета табло с обочиной и меловой разметкой. */}
       <div data-block="ialyb" className={s.asRoadBand} aria-hidden="true" />
 
-      {/* Дорожный указатель на одной ноге — у левого края, стрелкой к грузовику. */}
+      {/* Дорожный указатель на одной ноге — у левого края, стрелкой к грузовику. Три строки: имя, условие, цена (пол сети + тариф адресата). */}
       <div data-block="assgn" className={s.asSign}>
         <span className={s.asSignPole} aria-hidden="true" />
         <div data-block="n3iag" className={s.asSignPlate}>
           <span className={s.asSignTop}>{w.signTop}</span>
-          <span className={s.asSignBottom}>{w.signBottom}</span>
+          <span className={s.asSignMid}>{w.signMid}</span>
+          <span className={s.asSignPrice}>{w.signPrice}</span>
         </div>
       </div>
 
-      {/* Аварийный придорожный телефон на опоре — слева от копилки, позади летящих писем. Кнопка открывает окно справки. */}
+      {/* Аварийный придорожный телефон на опоре — слева от копилки, поверх летящих писем (498-3). Кнопка открывает окно справки.
+          Трубка — в профиль, висит вдоль левого бока будки от верхнего края до нижнего: наушник и микрофон чашками к будке, ручка
+          выгнута наружу, блик вдоль ручки; шнура нет. */}
       <Button variant="bare" size="bare" type="button" data-block="asphn" className={s.asPhone} popoverTarget={info} aria-label={w.phoneLabel}>
         <svg viewBox="0 0 70 210" aria-hidden="true" className={s.asPhoneSvg}>
           <rect className={s.asPhonePost} x={29} y={86} width={12} height={124} rx={3} />
@@ -95,15 +102,18 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
           <rect className={s.asPhoneBox} x={8} y={14} width={54} height={72} rx={5} />
           <circle className={s.asPhoneFace} cx={38} cy={44} r={17} />
           <text className={s.asPhoneMark} x={38} y={53} textAnchor="middle">?</text>
-          <path className={s.asPhoneCord} d="M14 66 q-6 6 0 10 q6 4 0 10 q-6 4 0 10" />
           <g className={s.asHandset}>
-            <path className={s.asHandsetBody} d="M10 24 q-8 0 -8 9 v22 q0 9 8 9 h3 v-8 h-3 q-2 0 -2 -3 v-18 q0 -3 2 -3 h3 v-8 Z" />
+            <path
+              className={s.asHandsetBody}
+              d="M7 13 H13 Q16 13 16 16.5 V27 Q16 30.5 12.5 30.5 H10 Q8 30.5 8 33 Q6.5 50 8 67 Q8 69.5 10 69.5 H12.5 Q16 69.5 16 73 V83.5 Q16 87 13 87 H7 Q2 87 2 81 Q-0.5 50 2 19 Q2 13 7 13 Z"
+            />
+            <path className={s.asHandsetCup} d="M14.6 18 V25.5 M14.6 74.5 V82" />
+            <path className={s.asHandsetShine} d="M4.6 23 Q3 50 4.6 77" />
           </g>
         </svg>
       </Button>
 
-      {/* Копилка-хрюша — всегда в центре низа. Щель сверху. 498-2 (владелец: «0.01 это ограничитель самой архитектуры, но каждый агент в
-          праве ставить поверх этой цены еще и собственный тариф»): копилка — адресата, на боку ценник «+ ваш тариф». */}
+      {/* Копилка-хрюша адресата — всегда в центре низа. Щель сверху. Ценник «+ ваш тариф» (498-2) снят: тариф — третья строка указателя (498-3). */}
       <div data-block="aspig" className={s.asPig} aria-hidden="true">
         <svg viewBox="0 0 200 150" className={s.asPigSvg}>
           <path className={s.asPigTail} d="M22 72 q-16 -6 -12 -20 q4 -10 12 -4" />
@@ -118,7 +128,6 @@ export function AntispamRoad({ w, docHref }: { w: AntispamWords; docHref: string
           <circle className={s.asPigEye} cx={146} cy={64} r={6} />
           <rect className={s.asPigSlot} x={76} y={24} width={44} height={8} rx={4} />
         </svg>
-        <span className={s.asTag}>{w.tag}</span>
       </div>
 
       {/* Грузовик в стиле паровоза — у правого края; кузов открыт к копилке, надпись на борту кузова. */}

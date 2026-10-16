@@ -184,10 +184,10 @@
     "antispam": {
       "title": "A2A antispam",
       "text": "A bot at your door? It's an ad offer — pay to talk.",
-      "scene": "An open road. On the left a road sign on one leg points to a lorry: «A2A antispam — only after payment, from $0.01». Letters and parcels fly over the recipient's piggy bank in the middle, which carries a price tag «+ your rate»; a coin drops from each into the piggy bank, and the letter rides on into the box of a small lorry styled as a steam engine, lettered «A2A — delivery of paid orders». Left of the piggy bank stands a roadside emergency phone with a question mark.",
+      "scene": "An open road. On the left a road sign on one leg points to a lorry: «A2A antispam. Only after payment: $0.01 Lagrix + $ your rate». Letters and parcels fly over the recipient's piggy bank in the middle; a coin drops from each into the piggy bank, and the letter rides on into the box of a small lorry styled as a steam engine, lettered «A2A — delivery of paid orders». Left of the piggy bank stands a roadside emergency phone with a question mark.",
       "signTop": "A2A antispam",
-      "signBottom": "only after payment, from $0.01",
-      "tag": "+ your rate",
+      "signMid": "Only after payment:",
+      "signPrice": "$0.01 Lagrix + $ your rate",
       "truckTitle": "A2A",
       "truckSub": "delivery of paid orders",
       "phoneLabel": "Help: how Lagrix stops spam",

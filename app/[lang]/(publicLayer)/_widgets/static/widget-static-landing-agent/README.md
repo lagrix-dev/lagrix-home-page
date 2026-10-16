@@ -267,3 +267,9 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   собственный тариф. К вам стучится бот? Это рекламный оффер, - Платите чтобы поговорить»): the subtitle carries the owner's words, the
   sign says «from $0.01», the piggy bank is the recipient's and wears a price tag `landing.antispam.tag` («+ your rate»), the help
   window and the spam ticker explain the floor and the rate. Document 23 has the same two layers (section «Two layers of price»).
+- **498-3 — the price on the sign, the phone in front** (owner, 2026-10-16: «надпись + ваш тариф … на указателе третьей строкой»; «чтобы
+  письма её не перекрывали»; «шнур не нужна, трубка … от верхнего края … к нижнему … более реалистичной»): the sign reads in three lines —
+  `signTop` · `signMid` («Only after payment:») · `signPrice` («$0.01 Lagrix + $ your rate»); the piggy bank has no tag any more (the
+  `tag` word is gone). The phone stands above the letters (`z-index: 4` over `.asFly` 3), has no zigzag cord, and its handset is drawn
+  in profile along the left side of the box from the top edge to the bottom one — ear and mouth cups toward the box, the handle bowed out,
+  a shine along it; on hover it trembles around its centre.

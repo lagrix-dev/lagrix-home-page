@@ -1992,12 +1992,15 @@
   clip-path: polygon(0 0, 84% 0, 100% 50%, 84% 100%, 0 100%);
 }
 .asSignTop { font-family: var(--display); font-weight: 700; font-size: clamp(15px, 2.7cqw, 32px); line-height: 1; letter-spacing: 0.01em; }
-.asSignBottom { font-family: var(--display); font-weight: 600; font-size: clamp(11px, 1.7cqw, 20px); line-height: 1.1; color: var(--poster); white-space: nowrap; }
+/* 498-3: три строки — имя мелом, условие мелом помельче, цена плакатом (пол сети + тариф адресата). */
+.asSignMid { font-family: var(--display); font-weight: 600; font-size: clamp(11px, 1.7cqw, 20px); line-height: 1.1; white-space: nowrap; }
+.asSignPrice { font-family: var(--display); font-weight: 700; font-size: clamp(11px, 1.7cqw, 20px); line-height: 1.1; color: var(--poster); white-space: nowrap; }
 .asSignPole { order: 1; width: clamp(8px, 1.2cqw, 14px); height: var(--pole); margin-left: 16%; background: var(--ink-soft); border-radius: 0 0 3px 3px; }
 
-/* Аварийный телефон: будка цвета плаката под красной крышей, знак вопроса на меловом круге; наведение — трубка дрожит. */
+/* Аварийный телефон: будка цвета плаката под красной крышей, знак вопроса на меловом круге; наведение — трубка дрожит.
+   498-3: поверх писем (z-index выше .asFly) — владелец: «чтобы письма её не перекрывали». */
 .asPhone {
-  position: absolute; bottom: 9cqh; left: calc(50cqw - var(--pig-w) / 2 - var(--ph) - 1.5cqw); width: var(--ph); z-index: 1;
+  position: absolute; bottom: 9cqh; left: calc(50cqw - var(--pig-w) / 2 - var(--ph) - 1.5cqw); width: var(--ph); z-index: 4;
   padding: 0; border: 0; background: none; cursor: pointer;
 }
 .asPhoneSvg { display: block; width: 100%; height: auto; }
@@ -2006,13 +2009,14 @@
 .asPhoneBox { fill: var(--poster); stroke: var(--ink); stroke-width: 3; }
 .asPhoneFace { fill: var(--chalk); stroke: var(--ink); stroke-width: 2.5; }
 .asPhoneMark { font-family: var(--display); font-weight: 800; font-size: 28px; fill: var(--ink); }
-.asPhoneCord { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
 .asHandsetBody { fill: var(--ink); }
-.asHandset { transform-box: fill-box; transform-origin: 50% 0; }
+.asHandsetCup { fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; }
+.asHandsetShine { fill: none; stroke: var(--ink-soft); stroke-width: 1.4; stroke-linecap: round; }
+.asHandset { transform-box: fill-box; transform-origin: 50% 50%; }
 .asPhone:hover .asHandset, .asPhone:focus-visible .asHandset { animation: asRing 0.14s linear infinite; }
 .asPhone:hover .asPhoneBox { stroke: var(--signal); }
 .asPhone:focus-visible { outline: 3px solid var(--signal); outline-offset: 4px; border-radius: 6px; }
-@keyframes asRing { 0%, 100% { rotate: 0deg; } 25% { rotate: -9deg; } 75% { rotate: 9deg; } }
+@keyframes asRing { 0%, 100% { rotate: 0deg; } 25% { rotate: -5deg; } 75% { rotate: 5deg; } }
 
 /* Копилка: сигнал, разбавленный мелом; щель цвета чернил. Вздрагивает, когда в неё падает монетка. */
 .asPig { position: absolute; left: 50%; bottom: 7cqh; width: var(--pig-w); translate: -50% 0; transform-origin: 50% 100%; z-index: 2; }
@@ -2022,13 +2026,6 @@
 .asPigTail { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
 .asPigNostril, .asPigEye { fill: var(--ink); }
 .asPigSlot { fill: var(--ink); }
-/* 498-2: ценник «+ ваш тариф» на боку копилки — бумажная наклейка цвета мела, чуть наискосок. */
-.asTag {
-  position: absolute; left: 12%; top: 50%; rotate: -7deg; padding: 0.12em 0.55em 0.14em; white-space: nowrap;
-  font-family: var(--display); font-weight: 700; font-size: max(9.5px, calc(var(--pig-w) * 0.1)); line-height: 1.1; color: var(--ink);
-  background: var(--chalk);
-  border: 2px solid var(--ink); border-radius: 3px;
-}
 
 /* Грузовичок в стиле паровоза (владелец: «я просил грузовичок а ты нарисовал паровозик»): машина — кабина впереди, капот-котёл
    с поясами (трубы нет — владелец: «у авто не должно быть трубы как у паровоза»), фара и бампер, два автомобильных колеса (шина — чернила, диск — сигнал); кузов-плакат с надписью. */
@@ -2111,7 +2108,7 @@
 .asInfoClose:hover { background: var(--poster); }
 
 @media (max-width: 560px) {
-  .asSignBottom { white-space: normal; }
+  .asSignMid, .asSignPrice { white-space: normal; }
   .asRoad { height: 330px; --sign-w: 46cqw; --pole: 44cqh; --pig-w: 22cqw; --truck-w: 56cqw; --truck-r: -14cqw; --sy: calc(37cqh - var(--it) / 2); }
 }
 @media (prefers-reduced-motion: reduce) {
