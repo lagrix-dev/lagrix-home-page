@@ -76,15 +76,24 @@ export function markdown(lang: string): string {
 
   // Чат-пример (477: играет в окне бюро по зелёным вывескам-симуляциям): кто что сказал, по порядку.
   if (x.chat?.items?.length) {
-    head(2, x.chat.label)
-    for (const m of x.chat.items) {
-      // 456: протокол реплики — как на значке чата (у гостя сайта — слова из данных, у остальных — код протокола).
-      const badge = m.contract === "guest" ? x.chat.contractLabels.guest : m.contract
-      if (m.text) out.push(`**${m.who}** (${badge}): ${m.text.trim()}`, "")
-      if (m.steps?.length) list(m.steps)
-      if (m.checks?.length) list(m.checks)
+    const labels = x.chat.contractLabels
+    const talk = (label: string, items: NonNullable<typeof x.chat>["items"]) => {
+      head(2, label)
+      for (const m of items) {
+        // 456: протокол реплики — как на значке чата (у гостя сайта — слова из данных, у остальных — код протокола).
+        const badge = m.contract === "guest" ? labels.guest : m.contract
+        if (m.text) out.push(`**${m.who}** (${badge}): ${m.text.trim()}`, "")
+        if (m.steps?.length) list(m.steps)
+        if (m.checks?.length) list(m.checks)
+        // 498-5: плашка доставки под репликой («доставка $0,001 · платит Илья») — строкой под ней.
+        if (m.note) out.push(`_${m.note}_`, "")
+      }
     }
+    talk(x.chat.label, x.chat.items)
     if (x.chat.endCta) out.push(`[${x.chat.endCta.label}](${x.chat.endCta.href})`, "")
+    // 498-5: второй чат-пример бюро — «поиск важного человека».
+    const pc = x.helpDesk?.personChat
+    if (pc?.items?.length) talk(pc.label, pc.items)
   }
 
   if (x.waiting) {

@@ -312,8 +312,13 @@
   color: var(--chalk);
   font-family: var(--font-mono-user, "JetBrains Mono Variable"), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
-.chatHead { display: flex; align-items: center; gap: 0.55rem; padding: 0 0 0.9rem; color: var(--chalk); font-size: 0.85rem; letter-spacing: 0.02em; }
+.chatHead { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; padding: 0 0 0.9rem; color: var(--chalk); font-size: 0.85rem; letter-spacing: 0.02em; }
 .chatDot { flex: none; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--poster); box-shadow: 0 0 0 2px var(--board-deep); animation: lamp 1.6s ease-in-out infinite; }
+/* 498-5: счётчик денег симуляции — справа в шапке, табличка «плакат на флапе»; цифры моноширинные, чтобы не прыгали. */
+.chatMeter {
+  margin-left: auto; padding: 0.1rem 0.5rem; background: var(--flapc); color: var(--poster); border: 1px solid var(--poster);
+  border-radius: var(--tile-corner); font-size: 0.72rem; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
 .chatLog { flex: 1; min-height: 0; }
 .chatLog, .chatLog * { scrollbar-width: none; }
 .chatLog ::-webkit-scrollbar, .chatLog::-webkit-scrollbar { display: none; }
@@ -323,6 +328,11 @@
 .msgMeta, .msgMetaRight { display: flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; }
 .msgMetaRight { justify-content: flex-end; }
 .msgWho { color: var(--poster); }
+/* 498-5: плашка под сообщением между узлами — сколько стоила доставка и кто платит; мел, тонкая пунктирная рамка, как у штампа. */
+.msgFee {
+  display: block; width: fit-content; padding: 0 0.4rem; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--chalk);
+  border: 1px dashed color-mix(in oklab, var(--chalk) 45%, transparent); border-radius: var(--tile-corner);
+}
 .msgAvatar { width: 1.4rem; height: 1.4rem; }
 .msgAvatar > * { background: var(--poster); color: var(--board-deep); }
 .contract {

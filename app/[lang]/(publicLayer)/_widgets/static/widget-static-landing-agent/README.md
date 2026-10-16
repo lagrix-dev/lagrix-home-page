@@ -273,3 +273,15 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   `tag` word is gone). The phone stands above the letters (`z-index: 4` over `.asFly` 3), has no zigzag cord, and its handset is drawn
   in profile along the left side of the box from the top edge to the bottom one — ear and mouth cups toward the box, the handle bowed out,
   a shine along it; on hover it trembles around its centre.
+- **498-4 — the spam ticker** of the Telegraph (`landing.telegraph.spam.ticker`) carries the owner's text, checked against the A2A v1.0
+  specification (the Agent Card is public, §8.1; authentication is optional in `a2a.proto`; abuse is left to «SHOULD implement rate
+  limiting», §13.4) and against document 23. The word «tokens» is avoided on lagrix.dev: there it reads as crypto tokens.
+- **498-5 — «Reaching an important person»**: each green simulation sign now plays its own conversation (`HelpDesk` takes
+  `sims: { project, person }`). The person simulation lives in `landing.helpDesk.personChat` (`label`, `meter`, `items`): inventor
+  Ilya reaches Marcus Vale, the founder of a rocket company, through his agent — the characters are fictional (owner's choice: no real
+  person on an indexed page). Money is data: an item may carry `net` (to the network: the $0.01 search, $0.001 per delivered message)
+  and `to` (to the recipient: the $50 first-contact rate) — `AgentChat` adds them up in the header meter (`meter`, `.chatMeter`) as
+  the conversation plays; `note` is the chip under a message («delivery $0.001 · paid by Ilya», `.msgFee`). Only messages between nodes
+  (A2A, H2H) pay delivery, and the sender pays (document 21); talk with one's own agent (H2A) stays inside the node and is free. The
+  `h2h` protocol is back in `ChatContract`; `ChatItem` is exported and reused by `words.ts`. The markdown copy (`markdown.ts`) prints
+  both conversations with the delivery chips.

@@ -160,7 +160,11 @@ export function LandingAgent({ lang }: { lang: string }) {
       {x.helpDesk && (
         <section data-block="xbxoz" id="help-desk" className={s.desk}>
           <div data-block="ql52w" className={s.wrap}>
-            <HelpDesk w={x.helpDesk} lang={lang} sim={x.chat ? { label: x.chat.label, items: x.chat.items, contractLabels: x.chat.contractLabels, back: x.chat.endCta?.label } : undefined} chatClasses={chatClasses} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
+            <HelpDesk w={x.helpDesk} lang={lang} sims={x.chat ? {
+              project: { label: x.chat.label, items: x.chat.items, contractLabels: x.chat.contractLabels, back: x.chat.endCta?.label },
+              // 498-5: «поиск важного человека» — свой разговор и счётчик денег, метки протоколов — общие с чатом проекта.
+              person: x.helpDesk.personChat && { ...x.helpDesk.personChat, contractLabels: x.chat.contractLabels, back: x.chat.endCta?.label },
+            } : undefined} chatClasses={chatClasses} voiceWords={(({ micDenied, micNoDevice, frame, failed, nothing, noKey }) => ({ micDenied, micNoDevice, frame, failed, nothing, noKey }))(voiceStrings(lang))} />
           </div>
         </section>
       )}

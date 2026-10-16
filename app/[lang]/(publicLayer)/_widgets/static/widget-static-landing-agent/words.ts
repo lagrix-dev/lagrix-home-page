@@ -56,7 +56,7 @@ export type LandingExtra = {
   /** Финал (владелец 2026-09-30): «назначение маршрута» у последней секции и отдельная строка «Маршрут построен» в самом конце. */
   route?: { label: string; value: string }
   /** Справочное бюро (узел, шаг 348): киоск с чатом и вывесками вопросов. */
-  helpDesk?: { title: string; hours: string; greeting: string; who: string; you: string; placeholder: string; send: string; mic: string; questions: string[]; answers: string[]; departure: { label: string; question: string; answer: string }; transfer: { label: string; question: string; answer: string }; github: { label: string; href: string }; thinking: string; down?: string; limit: string; closed: string; simulations?: { project: { label: string; href: string }; person: { label: string; href: string } } }
+  helpDesk?: { title: string; hours: string; greeting: string; who: string; you: string; placeholder: string; send: string; mic: string; questions: string[]; answers: string[]; departure: { label: string; question: string; answer: string }; transfer: { label: string; question: string; answer: string }; github: { label: string; href: string }; thinking: string; down?: string; limit: string; closed: string; simulations?: { project: { label: string; href: string }; person: { label: string; href: string } }; personChat?: { label: string; meter?: import("./agent-chat.client").ChatMeter; items: import("./agent-chat.client").ChatItem[] } }
   /** 456-2: «А почему всё-таки Lagrix?» — вопрос и короткий ответ после «Маршрут построен». */
   why?: { question: string; answer: string }
   routeBuilt?: { title: string; from: { label: string; station: string }; via?: { label: string; station: string; go?: { label: string; aria: string } }; to: { label: string; station: string } }
@@ -70,12 +70,8 @@ export type LandingExtra = {
   outcomes: { name: string; text: string }[]
   chat?: {
     label: string
-    contractLabels: Record<"guest" | "h2a" | "i2i" | "a2a" | "f2f", string>
-    items: {
-      side: "left" | "right" | "system"; who: string; text: string; contract: "guest" | "h2a" | "i2i" | "a2a" | "f2f"
-      kind?: "thinking" | "tool" | "confirm" | "task"; title?: string; steps?: string[]; checks?: string[]
-      tool?: string; input?: unknown; output?: unknown; accepted?: string; attachments?: { filename: string; mediaType: string }[]
-    }[]
+    contractLabels: Record<import("./agent-chat.client").ChatContract, string>
+    items: import("./agent-chat.client").ChatItem[]
     endCta?: Link
   }
   board: {

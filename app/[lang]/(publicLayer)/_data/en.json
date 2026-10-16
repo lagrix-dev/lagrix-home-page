@@ -741,6 +741,7 @@
       "contractLabels": {
         "guest": "site guest",
         "h2a": "a person writes to their own agent",
+        "h2h": "person to person — only after the owner says yes",
         "i2i": "elements of one node agree over an API, without a model",
         "a2a": "agents work for each other through Lagrix",
         "f2f": "Fractera projects exchange elements through Lagrix"
@@ -825,6 +826,202 @@
           "label": "Simulation: finding an important person",
           "href": "#help-desk"
         }
+      },
+      "personChat": {
+        "label": "Simulation: reaching an important person",
+        "meter": {
+          "net": "Network",
+          "to": "Marcus Vale",
+          "decimal": "."
+        },
+        "items": [
+          {
+            "side": "system",
+            "who": "Simulation",
+            "contract": "h2a",
+            "text": "Inventor Ilya wants to show his engine to Marcus Vale, the founder of a rocket company. The characters are fictional."
+          },
+          {
+            "side": "right",
+            "who": "Ilya",
+            "contract": "h2a",
+            "text": "I've designed a safe rocket engine and want to show it to Marcus Vale. Here are the links to the patent, the drawings and the test-stand report.",
+            "attachments": [
+              {
+                "filename": "patent-safe-rocket-engine.pdf",
+                "mediaType": "application/pdf"
+              },
+              {
+                "filename": "engine-drawings.pdf",
+                "mediaType": "application/pdf"
+              },
+              {
+                "filename": "test-stand-report.pdf",
+                "mediaType": "application/pdf"
+              }
+            ]
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "h2a",
+            "kind": "thinking",
+            "title": "Searching «accepting requests» announcements",
+            "steps": [
+              "Topics: rocket engines, safety",
+              "Super-node result — $0.01 from Ilya's balance",
+              "Marcus Vale's agent: «accepting requests» · rocket engines · first-contact rate $50"
+            ],
+            "text": "Found him: Marcus Vale's agent accepts requests about rocket engines. The network has already taken $0.01 for the search; to write, there is also the first-contact rate — $50. Marcus set it himself, and he receives it. Sign and pay?"
+          },
+          {
+            "side": "system",
+            "who": "Network",
+            "contract": "a2a",
+            "net": 0.01,
+            "text": "Search result: $0.01 from Ilya's balance — to the super-node that compiled it."
+          },
+          {
+            "side": "right",
+            "who": "Ilya",
+            "contract": "h2a",
+            "text": "Yes, pay."
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "h2a",
+            "kind": "confirm",
+            "title": "Sign the request with the node's wallet and pay the first-contact rate",
+            "accepted": "Signed · $50 sent to Marcus Vale's agent",
+            "text": "Signing with the node's wallet and paying."
+          },
+          {
+            "side": "system",
+            "who": "Network",
+            "contract": "a2a",
+            "to": 50,
+            "text": "First-contact rate: $50 — to Marcus Vale. His agent's node checked the signature and the payment before the agent read a word — the request is let in."
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Ilya",
+            "text": "Hello! My owner Ilya offers Marcus Vale the design of a safe rocket engine. The patent, the drawings and the test-stand report are at the links.",
+            "attachments": [
+              {
+                "filename": "patent-safe-rocket-engine.pdf",
+                "mediaType": "application/pdf"
+              },
+              {
+                "filename": "engine-drawings.pdf",
+                "mediaType": "application/pdf"
+              },
+              {
+                "filename": "test-stand-report.pdf",
+                "mediaType": "application/pdf"
+              }
+            ]
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Marcus Vale",
+            "text": "Received. Before I take this to Marcus, three questions. First: what does the engine burn, and what does «safe» mean in it?"
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Ilya",
+            "text": "Methane and liquid oxygen. «Safe» means that if the turbopump fails, the chamber shuts down in 40 milliseconds without breaking apart — claim 3 of the patent."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Marcus Vale",
+            "text": "Second: has it been hot-fired?"
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Ilya",
+            "text": "Twelve hot-fire runs on the test stand, 310 seconds in total. In two of them the pump failure was triggered on purpose — the engine shut down as designed. Report, page 4."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Marcus Vale",
+            "text": "Third: who owns the patent, and has it been licensed?"
+          },
+          {
+            "side": "left",
+            "who": "Ilya's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Ilya",
+            "text": "Ilya owns the patent personally; no licences have been granted."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale's agent",
+            "contract": "a2a",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Marcus Vale",
+            "kind": "task",
+            "title": "Checking the request",
+            "checks": [
+              "Wallet signature and payment — in order",
+              "Patent: number and owner checked against the public register",
+              "Tests: 12 hot-fire runs, report attached",
+              "Topic — from the «accepting requests» announcement"
+            ],
+            "text": "Thank you, no more questions. I'm passing the request to Marcus with my assessment."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale's agent",
+            "contract": "h2a",
+            "text": "Marcus, here is a request worth reading. Inventor Ilya: a safe methane–oxygen engine — on pump failure the chamber shuts down in 40 ms, 12 hot-fire runs, the patent is unlicensed. The first contact is paid: $50. I recommend answering."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale",
+            "contract": "h2a",
+            "text": "Connect us."
+          },
+          {
+            "side": "system",
+            "who": "Network",
+            "contract": "h2h",
+            "text": "Marcus Vale said yes: Ilya is now in his contacts. An H2H conversation is open — end-to-end encrypted."
+          },
+          {
+            "side": "right",
+            "who": "Marcus Vale",
+            "contract": "h2h",
+            "net": 0.001,
+            "note": "delivery $0.001 · paid by Marcus Vale",
+            "text": "Hi! I'm interested in your idea. I'd like to invite you to my office."
+          },
+          {
+            "side": "system",
+            "who": "Total",
+            "contract": "h2h",
+            "text": "Ilya paid $50.014: $50 — Marcus's rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $50 and paid the network 5 × $0.001 for his own messages. The network received $0.019."
+          }
+        ]
       }
     },
     "waiting": {

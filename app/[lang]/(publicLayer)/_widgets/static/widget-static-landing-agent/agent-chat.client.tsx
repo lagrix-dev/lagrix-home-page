@@ -27,7 +27,12 @@ import base from "./landing-agent.module.css"
 // левые и не правые: уведомление системы по центру (штамп в ленте), без аватара и без «печатает…».
 
 // 456 (владелец 2026-10-12): протоколы чата — guest (гость сайта lagrix.dev), h2a, i2i, a2a, f2f; m2m/h2m/h2h сняты вместе со сценарием.
-type Contract = "guest" | "h2a" | "i2i" | "a2a" | "f2f"
+// 498-5 (владелец 2026-10-16, симуляция «поиск важного человека»): h2h вернулся — разговор людей после «да» владельца (документ 21).
+export type ChatContract = "guest" | "h2a" | "h2h" | "i2i" | "a2a" | "f2f"
+type Contract = ChatContract
+export type ChatItem = Item
+/** 498-5: счётчик в шапке чата — сколько получила сеть и сколько адресат; `decimal` — знак дроби языка страницы. */
+export type ChatMeter = { net: string; to: string; decimal: string }
 type Item = {
   side: "left" | "right" | "system"
   who: string
@@ -44,13 +49,20 @@ type Item = {
   /** 346 (слово владельца: «покажи … как будто она загрузила изображения и … документ»): вложения реплики — AI Elements
    *  `Attachments`, вид `list`; файлов нет (это визуализация), поэтому у картинки — значок, а не выдуманное фото. */
   attachments?: { filename: string; mediaType: string }[]
+  /** 498-5: деньги, которые реплика переводит, — `net` сети (выдача, доставка), `to` адресату (его тариф); складываются в счётчик
+   *  шапки по мере проигрыша. `note` — плашка под репликой («доставка $0,001 · платит Илья»). */
+  net?: number
+  to?: number
+  note?: string
+  /** 498-5: реплика человека, где правило «человек — справа по h2…» не подходит. */
+  human?: boolean
 }
 
 /** Классы, которые страница может заменить своими («Дизайн агента», `_widgets/static/widget-static-landing-agent/`); без них — вид главной. */
 export type AgentChatClass =
   | "chat" | "chatHead" | "chatDot" | "chatLog" | "chatContent" | "chatMsg" | "msgMeta" | "msgMetaRight" | "msgWho"
   | "msgAvatar" | "contract" | "msgText" | "msgTextRight" | "aeBlock" | "typing" | "typingRight"
-  | "system" | "systemStamp" | "systemBadge" | "endCta"
+  | "system" | "systemStamp" | "systemBadge" | "endCta" | "chatMeter" | "msgFee"
 type Classes = Record<AgentChatClass, string>
 
 // 346: настоящие ссылки в репликах (скачать Claude, форк на GitHub) — кликабельны; вымышленные адреса Анны (временный адрес
@@ -85,7 +97,12 @@ function badgeOf(c: Contract, labels: Record<Contract, string>): string {
 
 function isHuman(item: Item): boolean {
   // 333-21: человек пишет по любому протоколу «h2…» (h2a своему агенту, h2m внешнему, h2h человеку) — у него аватар.
-  return (item.contract.startsWith("h2") || item.contract === "guest") && item.side === "right"
+  return item.human ?? ((item.contract.startsWith("h2") || item.contract === "guest") && item.side === "right")
+}
+
+// 498-5: «$0,019», «$50» — доллар впереди, как во всех текстах lagrix.dev; дробь — до тысячных, знак дроби — языка страницы.
+function usd(n: number, decimal: string): string {
+  return Number.isInteger(n) ? `$${n}` : `$${n.toFixed(3).replace(".", decimal)}`
 }
 
 function Extra({ item, s }: { item: Item; s: Classes }) {
@@ -133,12 +150,13 @@ function Extra({ item, s }: { item: Item; s: Classes }) {
   return null
 }
 
-export function AgentChat({ label, items, contractLabels, endCta, classes }: {
+export function AgentChat({ label, items, contractLabels, endCta, classes, meter }: {
   label: string
   items: Item[]
   contractLabels: Record<Contract, string>
   endCta?: { label: string; href: string }
   classes?: Partial<Classes>
+  meter?: ChatMeter
 }) {
   const s: Classes = { ...(base as Classes), ...classes }
   const box = useRef<HTMLDivElement>(null)
@@ -178,12 +196,18 @@ export function AgentChat({ label, items, contractLabels, endCta, classes }: {
   const list = items.slice(0, count)
   const typingItem = shown !== null && shown.typing && items[shown.count]?.side !== "system" ? items[shown.count] : null
   const done = count >= items.length
+  const paid = meter && list.reduce((a, m) => ({ net: a.net + (m.net ?? 0), to: a.to + (m.to ?? 0) }), { net: 0, to: 0 })
 
   return (
     <div data-block="fh1tp" ref={box} className={s.chat} aria-label={label}>
       <p data-block="j8uli" className={s.chatHead}>
         <span className={s.chatDot} aria-hidden="true" />
         {label}
+        {meter && paid && (
+          <span data-block="cm4tr" className={s.chatMeter}>
+            {`${meter.net} ${usd(paid.net, meter.decimal)} · ${meter.to} ${usd(paid.to, meter.decimal)}`}
+          </span>
+        )}
       </p>
       <Conversation className={s.chatLog}>
         <ConversationContent className={s.chatContent}>
@@ -217,6 +241,7 @@ export function AgentChat({ label, items, contractLabels, endCta, classes }: {
                 </Attachments>
               )}
               <Extra item={m} s={s} />
+              {m.note && <span className={`${s.msgFee} ${m.side === "right" ? "ml-auto" : ""}`}>{m.note}</span>}
             </Message>
           ))}
           {typingItem && (

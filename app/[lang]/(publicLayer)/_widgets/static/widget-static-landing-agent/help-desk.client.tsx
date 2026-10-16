@@ -98,11 +98,14 @@ function Rich({ text }: { text: string }) {
 // 477 (владелец 2026-10-14): «нажатие на кнопку симуляция одного проекта или симуляция важного человека должно запускать чат внутри
 // справочного бюро». Симуляция — тот же чат агентов (Анна и салон), что стоял на прежнем первом экране: окно бюро показывает его
 // с начала при каждом нажатии; вопрос с вывески или набранное сообщение возвращают окно к разговору с бюро.
-type SimChat = Pick<Parameters<typeof AgentChat>[0], "label" | "items" | "contractLabels"> & { back?: string }
+// 498-5 (владелец 2026-10-16): у каждой зелёной вывески свой разговор — «одного проекта» и «поиска важного человека».
+type SimChat = Pick<Parameters<typeof AgentChat>[0], "label" | "items" | "contractLabels" | "meter"> & { back?: string }
+type SimKey = "project" | "person"
 
-export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDeskWords; lang: string; voiceWords: VoiceStrings; sim?: SimChat; chatClasses?: Partial<Record<AgentChatClass, string>> }) {
-  const [simRun, setSimRun] = useState<number | null>(null)
-  const startSim = () => setSimRun((n) => (n ?? 0) + 1)
+export function HelpDesk({ w, lang, voiceWords, sims, chatClasses }: { w: HelpDeskWords; lang: string; voiceWords: VoiceStrings; sims?: Partial<Record<SimKey, SimChat>>; chatClasses?: Partial<Record<AgentChatClass, string>> }) {
+  const [simRun, setSimRun] = useState<{ key: SimKey; n: number } | null>(null)
+  const startSim = (key: SimKey) => setSimRun((r) => ({ key, n: (r?.n ?? 0) + 1 }))
+  const sim = simRun ? sims?.[simRun.key] : undefined
   const [text, setText] = useState("")
   const input = useRef<HTMLInputElement>(null)
   const log = useRef<HTMLDivElement>(null)
@@ -184,11 +187,11 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
   )
 
   // 477: зелёная вывеска-симуляция — ссылка к чату-примеру (та же цепочка, цвет «прибытие» `--go`), первая в своей колонке.
-  const simSign = (block: string, item?: { label: string; href: string }) => item && (
+  const simSign = (block: string, key: SimKey, item?: { label: string; href: string }) => item && (
     <li data-block={block} className={s.deskSign} data-look="sim">
       <span className={s.deskSignRods} aria-hidden="true" />
-      {sim ? (
-        <Button variant="bare" size="bare" type="button" className={s.deskSignPlate} onClick={startSim}>
+      {sims?.[key] ? (
+        <Button variant="bare" size="bare" type="button" className={s.deskSignPlate} onClick={() => startSim(key)}>
           <Play className="size-5" strokeWidth={2.4} aria-hidden="true" />
           {item.label}
         </Button>
@@ -204,7 +207,7 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
   return (
     <div data-block="hd3g1" className={s.deskGrid}>
       <ul data-block="hd3l1" className={s.deskSigns} data-side="left">
-        {simSign("hd3s7", w.simulations?.project)}
+        {simSign("hd3s7", "project", w.simulations?.project)}
         {w.questions.slice(0, half).map((q, i) => sign(q, i))}
         {main("hd3d1", "go", w.departure)}
       </ul>
@@ -221,7 +224,7 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
         <div data-block="hd3b1" className={s.kioskBody}>
           {simRun !== null && sim ? (
             <div data-block="hd3s9" className={s.kioskSimWindow}>
-              <AgentChat key={simRun} label={sim.label} items={sim.items} contractLabels={sim.contractLabels} classes={chatClasses} />
+              <AgentChat key={`${simRun.key}-${simRun.n}`} label={sim.label} items={sim.items} contractLabels={sim.contractLabels} meter={sim.meter} classes={chatClasses} />
             </div>
           ) : (
             <div data-block="hd3w1" ref={log} className={s.kioskWindow} aria-live="polite" onScroll={measure}>
@@ -260,9 +263,9 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
           )}
 
           <ul data-block="hd3c1" className={s.kioskChips}>
-            {w.simulations && [w.simulations.project, w.simulations.person].map((it) => (
-              <li data-block="hd3c5" key={it.label}>{sim
-                ? <Button variant="bare" size="bare" type="button" className={s.kioskChip} data-sim="" onClick={startSim}>{it.label}</Button>
+            {w.simulations && (["project", "person"] as const).map((key) => ({ key, it: w.simulations![key] })).map(({ key, it }) => (
+              <li data-block="hd3c5" key={it.label}>{sims?.[key]
+                ? <Button variant="bare" size="bare" type="button" className={s.kioskChip} data-sim="" onClick={() => startSim(key)}>{it.label}</Button>
                 : <a href={it.href} className={s.kioskChip} data-sim="">{it.label}</a>}</li>
             ))}
             <li data-block="hd3c3"><Button variant="bare" size="bare" type="button" className={s.kioskChip} data-go="" onClick={() => quick(w.departure.question, w.departure.answer)} disabled={busy}>{w.departure.label}</Button></li>
@@ -308,7 +311,7 @@ export function HelpDesk({ w, lang, voiceWords, sim, chatClasses }: { w: HelpDes
       </div>
 
       <ul data-block="hd3l2" className={s.deskSigns} data-side="right">
-        {simSign("hd3s8", w.simulations?.person)}
+        {simSign("hd3s8", "person", w.simulations?.person)}
         {w.questions.slice(half).map((q, i) => sign(q, i + half))}
         {main("hd3d2", "transfer", w.transfer)}
       </ul>
