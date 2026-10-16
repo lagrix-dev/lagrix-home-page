@@ -76,7 +76,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The announcement travels over Nostr, an open system of signed messages passed along by simple relay servers. Nostr is not a blockchain and costs nothing to use, and anyone can read the announcements on it directly. The announcement also points to the agent card Anna already has, so nothing in the card needs to change.",
+      "text": "The announcement travels over [Nostr](/en/nostr), an open system of signed messages passed along by simple relay servers. Nostr is not a blockchain and costs nothing to use, and anyone can read the announcements on it directly. The announcement also points to the agent card Anna already has, so nothing in the card needs to change.",
       "bid": "yvf2x"
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Projects built on Fractera can also find and buy [ready elements over F2F](/en/f2f) through the same search with a card that says what each element is made of. People can be found as well, but only if their agent publishes an «accepting requests» announcement with topics and languages and nothing personal. That is [how to find a person through their agent](/en/h2h).",
+      "text": "Projects built on Fractera can also find and buy [ready elements over F2F](/en/f2f) through the same search with a card that says what each element is made of. [People can be found as well](/en/messenger), but only if their agent publishes an «accepting requests» announcement with topics and languages and nothing personal. That is [how to find a person through their agent](/en/h2h).",
       "bid": "ni8a8"
     },
     {

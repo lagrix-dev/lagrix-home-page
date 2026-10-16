@@ -173,7 +173,7 @@
     },
     {
       "kind": "text-p",
-      "text": "[Document 22 of the protocol](/en/docs/22-questions-regulators-ask) lists the questions regulators ask, with their sources, and names the ones the design leaves to supervisors and courts, among them whether an escrow contract that holds funds counts as custody. This page is a statement of design, not legal advice. Here are [all regulator questions](/en/regulators) in one place.",
+      "text": "[Document 22 of the protocol](/en/docs/22-questions-regulators-ask) lists the questions regulators ask, with their sources, and names the ones the design leaves to supervisors and courts, among them whether an escrow contract that holds funds counts as custody. This page is a statement of design, not legal advice. Here are [all regulator questions](/en/regulators) in one place, and here is [how the US Howey test reads the same design](/en/sec).",
       "bid": "cd5fo"
     }
   ],
