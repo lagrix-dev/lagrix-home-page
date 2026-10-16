@@ -41,7 +41,7 @@ export function tocOf(blocks: Block[]): TocItem[] {
 export function Toc({ items, heading }: { items: TocItem[]; heading: string }) {
   if (items.length < 2) return null
   // Пронумерованная статья (`numberHeadings`) несёт номера в тексте — второй счётчик и точка не рисуются.
-  const own = !/^d+./.test(items[0].text)
+  const own = !/^\d+\./.test(items[0].text)
   return (
     <nav data-block="tc458" aria-label={heading} className="mt-8 rounded-2xl border border-border bg-muted/40 p-5">
       <p data-block="tc459" className="text-xs font-semibold uppercase tracking-widest text-primary">
