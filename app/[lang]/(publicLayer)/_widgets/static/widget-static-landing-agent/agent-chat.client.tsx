@@ -101,8 +101,11 @@ function isHuman(item: Item): boolean {
 }
 
 // 498-5: «$0,019», «$50» — доллар впереди, как во всех текстах lagrix.dev; дробь — до тысячных, знак дроби — языка страницы.
+// 501: без лишнего нуля в тысячных — «$142,50», «$0,01», но «$7,555».
 function usd(n: number, decimal: string): string {
-  return Number.isInteger(n) ? `$${n}` : `$${n.toFixed(3).replace(".", decimal)}`
+  if (Number.isInteger(n)) return `$${n}`
+  const s = n.toFixed(3)
+  return `$${(s.endsWith("0") ? n.toFixed(2) : s).replace(".", decimal)}`
 }
 
 function Extra({ item, s }: { item: Item; s: Classes }) {

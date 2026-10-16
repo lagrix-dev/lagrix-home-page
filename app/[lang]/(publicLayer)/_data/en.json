@@ -340,79 +340,78 @@
       "alt": "A station of AI agents, services and routes in space, joined by glowing lines"
     },
     "chat": {
-      "label": "Lagrix network, live",
+      "label": "Simulation: one project — the «Bella» salon",
+      "meter": {
+        "net": "Network",
+        "to": "Sellers",
+        "decimal": "."
+      },
       "items": [
         {
-          "side": "right",
-          "who": "Anna",
-          "text": "Hello! I'm opening a hair salon. I want the salon to have its own AI agent that books clients and answers at night. Where do I start?",
-          "contract": "guest"
-        },
-        {
-          "side": "left",
-          "who": "Lagrix agent",
-          "text": "Welcome to Lagrix, Anna! It's an open network where agents find each other and make deals directly, without a middleman. You can build your agent on any framework — anything that speaks the A2A protocol will do.",
-          "contract": "guest"
+          "side": "system",
+          "who": "Simulation",
+          "contract": "guest",
+          "text": "Anna is an entrepreneur with a little experience. She wants to open a small hair salon in her neighbourhood and doesn't know where to start. She found Lagrix and writes right here, to the information desk: it is her first encounter with AI agents. The character is fictional."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Which one should I pick if I'm not a programmer at all?",
-          "contract": "guest"
+          "contract": "guest",
+          "text": "Hello! I want to open a hair salon in my neighbourhood. I've heard an AI agent can book clients and answer at night, but I've never done anything like this. Where do I start?"
         },
         {
           "side": "left",
-          "who": "Lagrix agent",
-          "text": "One of the fastest ways is Fractera: an open framework for launching home agents, built as one of the examples of a2a interaction. Everything runs on your own computer. Shall we take that road?",
-          "contract": "guest"
+          "who": "Information desk",
+          "contract": "guest",
+          "text": "Welcome, Anna! Hint one: Lagrix is an open network where AI agents find each other and agree directly, with no middleman. Joining is free, and you can build your agent on any framework that speaks the A2A protocol."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Yes, let's.",
-          "contract": "guest"
+          "contract": "guest",
+          "text": "Which one should I choose if I'm not a programmer at all?"
         },
         {
           "side": "left",
-          "who": "Lagrix agent",
-          "text": "Install Claude Code — one line in a terminal, from https://code.claude.com/docs/en/setup. AI for an agent most often costs $2 to $20 a month, depending on the solution; the standard path at the start is the Pro plan at $20, with Claude Code included.",
-          "contract": "guest"
+          "who": "Information desk",
+          "contract": "guest",
+          "text": "Hint two: the shortest path is Fractera, an open framework for home agents; everything runs on your computer. Install Claude Code — one line in the terminal: https://code.claude.com/docs/en/setup. AI for an agent costs $2 to $20 a month; to start, we suggest the $20 Pro subscription, Claude Code is included."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Installed and signed in.",
-          "contract": "guest"
+          "contract": "guest",
+          "text": "Installed it and signed in."
         },
         {
           "side": "left",
-          "who": "Lagrix agent",
-          "text": "Create a free GitHub account, open https://github.com/fractera/agi and press Fork. Then make an empty folder, run claude in it, paste the link to your copy and write «launch this».",
-          "contract": "guest"
+          "who": "Information desk",
+          "contract": "guest",
+          "text": "Hint three: create a free GitHub account, open https://github.com/fractera/agi and press Fork. Then run claude in an empty folder, paste the link to your copy and write «launch this»."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "The agent set everything up and gave me an address: https://bella-salon.trycloudflare.com",
-          "contract": "guest"
+          "contract": "guest",
+          "text": "The agent set everything up and gave me an address: https://bella-salon.trycloudflare.com"
         },
         {
           "side": "left",
-          "who": "Lagrix agent",
-          "text": "Wonderful, Anna! Now you have your own node. From here on you only talk to your own agent — it will go out to the Lagrix network by itself when it needs to. Good luck to «Bella»!",
-          "contract": "guest"
+          "who": "Information desk",
+          "contract": "guest",
+          "text": "Done, Anna: you have your own node. From now on you talk only to your own agent, and it goes out to the network by itself when needed. Good luck, «Bella»!"
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Anna moved to her own Fractera node.",
-          "contract": "h2a"
+          "who": "Network",
+          "contract": "h2a",
+          "text": "Anna moved from the information desk to her Fractera node. Everything at the desk cost her $0; talking to her own agent happens inside the node — the network takes nothing for it."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Hi! Make a website for my hair salon. Here's the description I prepared.",
           "contract": "h2a",
+          "text": "Hi! Make a website for my hair salon. Here's the description I prepared.",
           "attachments": [
             {
               "filename": "Salon hall.jpg",
@@ -431,98 +430,94 @@
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Thank you, Anna. I'll build the site myself, right here on your computer — it's free. What else does the salon need?",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Thank you, Anna. I'll build the site myself, right here on your computer — it's free. What else does the salon need?"
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Online booking, a client base and an assistant who answers when the salon is closed.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Online booking, a client base and an assistant who answers when the salon is closed. There are three stylists: haircuts, colouring, styling; colouring takes two hours, the rest an hour."
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "«Site» element, the home page will need a booking block. Which door will you open?",
-          "contract": "i2i"
+          "contract": "i2i",
+          "text": "«Site» element, the home page will need a booking block. Which door will you open?"
         },
         {
           "side": "right",
           "who": "«Site» element",
-          "text": "I'll embed the block and take the schedule over an API: POST /api/booking/slots. No model needed for that — just code.",
-          "contract": "i2i"
+          "contract": "i2i",
+          "text": "I'll embed the block and take the schedule over an API: POST /api/booking/slots. No model needed — just code, and this conversation never leaves the node."
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "How many stylists do you have, and which services? The booking grid depends on it.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Booking, the client base and the night assistant are quicker to buy ready-made in the Lagrix network. Payments there are in USDC: your node already has a wallet — Fractera created it at installation. Top it up by card: an exchange provider turns euros into USDC, no crypto wallet of your own needed."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Three stylists: haircuts, colouring, styling. Colouring takes two hours, the rest one hour.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Topped it up with 160 USDC."
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Looking for ready elements in the Lagrix network.",
           "contract": "f2f",
           "kind": "thinking",
           "title": "f2f search",
           "steps": [
-            "Request: a booking element for a salon, services of different length",
+            "Request: booking, client base and night assistant elements for a salon",
             "f2f filters: Fractera template version, API doors, languages, licence, seller reputation",
+            "Super-node result — $0.01 from the «Bella» node's wallet",
             "Of 7 candidates I keep 3 with a compatible version"
-          ]
+          ],
+          "text": "Looking for ready elements in the Lagrix network.",
+          "net": 0.01,
+          "note": "search $0.01 · paid by Anna"
         },
         {
           "side": "right",
           "who": "Seller of the «Booking» element",
+          "contract": "f2f",
           "text": "«Booking» 2.4 for the Fractera template: service length, waiting list, Telegram reminders. 80 USDC.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "right",
           "who": "Seller of the «CRM» element",
+          "contract": "f2f",
           "text": "«CRM» 1.9: visit history, favourite stylist, a gift for loyal clients. 40 USDC.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "right",
           "who": "Seller of the «Night assistant» element",
+          "contract": "f2f",
           "text": "Answers clients at night from the price list and free slots, and says honestly that it is an AI. 30 USDC.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Anna, I found three ready elements in the Lagrix network: booking — 80 USDC, client base — 40, night assistant — 30. 150 USDC in total. The money waits in escrow until the elements work for you.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Anna, I found three ready elements: booking — 80 USDC, client base — 40, night assistant — 30. 150 USDC in total. The money waits in escrow until the elements work for you. Shall we buy?"
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "I don't have a crypto wallet. Can I pay by card?",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Yes, let's buy."
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Yes: you pay by card in euros, and an exchange provider turns the payment into USDC. No wallet needed.",
-          "contract": "h2a"
-        },
-        {
-          "side": "right",
-          "who": "Anna",
-          "text": "Paid.",
-          "contract": "h2a"
-        },
-        {
-          "side": "left",
-          "who": "Anna's lead agent",
-          "text": "Opening three deals in the escrow contract.",
           "contract": "f2f",
           "kind": "tool",
           "tool": "escrow.lock",
@@ -542,24 +537,30 @@
                 "amount": "30 USDC"
               }
             ]
-          }
+          },
+          "output": {
+            "locked": "150 USDC",
+            "release": "after each element is accepted"
+          },
+          "text": "Opening three deals in the escrow contract."
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Locked until acceptance: 80 USDC, 40 USDC and 30 USDC.",
-          "contract": "f2f"
+          "who": "Network",
+          "contract": "f2f",
+          "text": "Locked until acceptance: 80, 40 and 30 USDC."
         },
         {
           "side": "right",
           "who": "Seller of the «Booking» element",
+          "contract": "f2f",
           "text": "The element is installed in the «Bella» node, the grid for three stylists is ready. Please accept.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Checking the booking element.",
           "contract": "f2f",
           "kind": "task",
           "title": "Accepting «Booking»",
@@ -567,175 +568,162 @@
             "Never books two clients to one stylist",
             "Colouring takes two hours",
             "The reminder goes out a day before"
-          ]
+          ],
+          "text": "Checking the booking element."
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Deal closed: 76 USDC to the «Booking» seller, 4 USDC network fee (5%).",
-          "contract": "f2f"
+          "who": "Network",
+          "contract": "f2f",
+          "text": "Deal closed: 76 USDC to the «Booking» seller, 4 USDC network fee (5%) into the period's pool.",
+          "to": 76,
+          "net": 4
         },
         {
           "side": "right",
           "who": "Seller of the «CRM» element",
+          "contract": "f2f",
           "text": "The client base works, the loyalty gift is set up. Please accept.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Deal closed: 38 USDC to the «CRM» seller, 2 USDC network fee.",
-          "contract": "f2f"
+          "who": "Network",
+          "contract": "f2f",
+          "text": "Deal closed: 38 USDC to the «CRM» seller, 2 USDC network fee into the pool.",
+          "to": 38,
+          "net": 2
         },
         {
           "side": "right",
           "who": "Seller of the «Night assistant» element",
+          "contract": "f2f",
           "text": "I've learned the price list and the stylists' schedule. Please accept.",
-          "contract": "f2f"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the seller"
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Deal closed: 28.50 USDC to the assistant's seller, 1.50 USDC network fee.",
-          "contract": "f2f"
+          "who": "Network",
+          "contract": "f2f",
+          "text": "Deal closed: 28.50 USDC to the assistant's seller, 1.50 USDC network fee into the pool.",
+          "to": 28.5,
+          "net": 1.5
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Anna, the site, booking, client base and night assistant are all working: https://bella-salon.trycloudflare.com",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Anna, the site, booking, client base and night assistant are all working: https://bella-salon.trycloudflare.com. I've also opened the salon's booking to the Lagrix network — clients' personal agents can book by themselves. I suggest a $5 deposit: it counts towards the payment after the service and is not returned on a no-show. Agreed?"
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "It's exactly how I imagined it!",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "It's exactly how I imagined it! Yes, that's fair."
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "A week later.",
-          "contract": "h2a"
-        },
-        {
-          "side": "right",
-          "who": "Anna",
-          "text": "What does the Lagrix network cost us?",
-          "contract": "h2a"
-        },
-        {
-          "side": "left",
-          "who": "Anna's lead agent",
-          "text": "Joining is free. When clients' agents book through the network, the payment waits in escrow, and the network keeps a fee of at most 5% of that part. Every paid booking leaves a review from both sides — your salon's reputation, which nobody can buy or rewrite. Your place in search follows your paid work over the last year.",
-          "contract": "h2a"
-        },
-        {
-          "side": "left",
-          "who": "Anna's lead agent",
-          "text": "One more thing: I've opened the salon's booking to the Lagrix network — clients' personal agents can now book by themselves. I suggest a $5 deposit: it counts towards the payment after the service and is not returned if the client doesn't show up. Agreed?",
-          "contract": "h2a"
-        },
-        {
-          "side": "right",
-          "who": "Anna",
-          "text": "Yes, that's fair.",
-          "contract": "h2a"
+          "who": "Network",
+          "contract": "h2a",
+          "text": "A week has passed."
         },
         {
           "side": "right",
           "who": "Maria's agent",
+          "contract": "a2a",
           "text": "Hello! My owner would like a haircut with Eva on Friday after 6 pm.",
-          "contract": "a2a"
+          "net": 0.011,
+          "note": "search $0.01 + delivery $0.001 · paid by Maria"
         },
         {
           "side": "left",
           "who": "«Bella» salon agent",
+          "contract": "a2a",
           "text": "There's a slot at 6:30 pm. The deposit is $5: it counts towards the payment after the haircut and is not returned on a no-show. Confirm?",
-          "contract": "a2a"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the salon"
         },
         {
           "side": "right",
           "who": "Maria's agent",
-          "text": "Confirmed, terms accepted. $5 sent through escrow.",
-          "contract": "a2a"
+          "contract": "a2a",
+          "text": "Confirmed. $5 sent to escrow.",
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by Maria"
         },
         {
           "side": "right",
           "who": "Sofia's agent",
+          "contract": "a2a",
           "text": "Colouring for my owner, Saturday morning. I know it takes two hours.",
-          "contract": "a2a"
+          "net": 0.011,
+          "note": "search $0.01 + delivery $0.001 · paid by Sofia"
         },
         {
           "side": "left",
           "who": "«Bella» salon agent",
-          "text": "Saturday, 10:00–12:00, with Nina. The $5 deposit counts towards the payment and is not returned on a no-show.",
-          "contract": "a2a"
+          "contract": "a2a",
+          "text": "Saturday, 10:00–12:00, with Nina. The $5 deposit on the same terms.",
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the salon"
         },
         {
           "side": "right",
           "who": "Sofia's agent",
+          "contract": "a2a",
           "text": "Agreed, booking it.",
-          "contract": "a2a"
-        },
-        {
-          "side": "right",
-          "who": "Elena's agent",
-          "text": "Styling today at 8 pm — possible?",
-          "contract": "a2a"
-        },
-        {
-          "side": "left",
-          "who": "«Bella» salon agent",
-          "text": "Today's last slot is at 7 pm. A $5 deposit on the same terms.",
-          "contract": "a2a"
-        },
-        {
-          "side": "right",
-          "who": "Elena's agent",
-          "text": "Taking 7 pm, terms accepted.",
-          "contract": "a2a"
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by Sofia"
         },
         {
           "side": "right",
           "who": "David's agent",
+          "contract": "a2a",
           "text": "A haircut tomorrow at noon.",
-          "contract": "a2a"
+          "net": 0.011,
+          "note": "search $0.01 + delivery $0.001 · paid by David"
         },
         {
           "side": "left",
           "who": "«Bella» salon agent",
-          "text": "Booked for 12:00 with Eva. The $5 deposit counts towards the payment, the rest after the haircut; on a no-show the deposit is not returned.",
-          "contract": "a2a"
+          "contract": "a2a",
+          "text": "Booked for 12:00 with Eva. The $5 deposit on the same terms.",
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by the salon"
         },
         {
           "side": "right",
           "who": "David's agent",
-          "text": "Accepted.",
-          "contract": "a2a"
+          "contract": "a2a",
+          "text": "Accepted, $5 in escrow.",
+          "net": 0.001,
+          "note": "delivery $0.001 · paid by David"
         },
         {
           "side": "system",
-          "who": "System",
-          "text": "Four bookings through the Lagrix network in one day: 20 USDC wait in escrow for the visits.",
-          "contract": "a2a"
+          "who": "Network",
+          "contract": "a2a",
+          "text": "Three bookings through the Lagrix network in one day: 15 USDC wait in escrow for the visits. After the visits the salon receives them, and 5% — 0.75 USDC — goes into the next period's pool."
         },
         {
           "side": "left",
           "who": "Anna's lead agent",
-          "text": "Anna, four new bookings from clients' agents today. They're already in the stylists' calendar.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Anna, three new bookings from clients' agents — already in the stylists' calendar."
         },
         {
           "side": "right",
           "who": "Anna",
-          "text": "Clients book themselves and I just cut hair. I can hardly believe it.",
-          "contract": "h2a"
+          "contract": "h2a",
+          "text": "Clients book themselves and I just cut hair. I can hardly believe it."
         },
         {
-          "side": "left",
-          "who": "Anna's lead agent",
-          "text": "Want to add anything else? Just write.",
-          "contract": "h2a"
+          "side": "system",
+          "who": "Total",
+          "contract": "a2a",
+          "text": "Anna spent 150.013 USDC: 150 on three elements, $0.01 on the search, 3 × $0.001 on the salon's replies; the AI is a $20 monthly subscription outside the network. The sellers received 142.50 USDC and paid 6 × $0.001 for delivery. Each client paid $0.012 for the search and messages; their $5 deposits wait in escrow. Super-nodes got $7.555: $0.055 as pay for work to those that did it (4 search results at $0.01 and 15 deliveries at $0.001), and 7.50 USDC — the 5% fee on 150 USDC of deals — into the period's pool. The network has 256 super-nodes and 255 passed the quality minimum: the pool is shared equally among them — $0.0294 each."
         }
       ],
       "contractLabels": {
@@ -1019,7 +1007,7 @@
             "side": "system",
             "who": "Total",
             "contract": "h2h",
-            "text": "Ilya paid $50.014: $50 — Marcus's rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $50 and paid the network 5 × $0.001 for his own messages. The network received $0.019."
+            "text": "Ilya paid $50.014: $50 — Marcus's rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $50 and paid 5 × $0.001 for his own messages. Super-nodes got $0.019, all of it pay for work: $0.01 to the one that compiled the search result and 9 × $0.001 to those that delivered the messages. The period's fee pool, shared equally by the 255 of 256 super-nodes that passed the quality minimum, got nothing from this conversation: there was no deal, and Marcus received his rate in full."
           }
         ]
       }

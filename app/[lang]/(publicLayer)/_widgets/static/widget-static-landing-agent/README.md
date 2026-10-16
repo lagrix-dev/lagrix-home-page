@@ -285,3 +285,9 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   (A2A, H2H) pay delivery, and the sender pays (document 21); talk with one's own agent (H2A) stays inside the node and is free. The
   `h2h` protocol is back in `ChatContract`; `ChatItem` is exported and reused by `words.ts`. The markdown copy (`markdown.ts`) prints
   both conversations with the delivery chips.
+- **501 — the project simulation through the same lens** (owner: «симуляция одного проекта … прошла через эту же призму»): it opens with a
+  framed portrait of Anna, the information desk answers her with numbered hints, her move to her own node is one stamp («everything at the
+  desk cost her $0; talking to her own agent happens inside the node»), search and every message between nodes carry a chip, the three deals
+  send 5% into the period's pool, and `landing.chat.meter` counts «Network · Sellers». The closing stamp of both simulations names who spent
+  what and what super-nodes got: pay for work (searches, deliveries) to the one that did it, and the fee pool shared equally by the 255 of
+  256 super-nodes that passed the quality minimum (document 05, 5.3). The numbers of the network are fictional, like the characters.

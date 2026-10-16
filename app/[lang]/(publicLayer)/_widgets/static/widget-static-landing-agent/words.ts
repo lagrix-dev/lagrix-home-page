@@ -71,6 +71,7 @@ export type LandingExtra = {
   chat?: {
     label: string
     contractLabels: Record<import("./agent-chat.client").ChatContract, string>
+    meter?: import("./agent-chat.client").ChatMeter
     items: import("./agent-chat.client").ChatItem[]
     endCta?: Link
   }
