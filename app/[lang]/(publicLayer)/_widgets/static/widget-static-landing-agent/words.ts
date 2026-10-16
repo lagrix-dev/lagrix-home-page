@@ -23,6 +23,8 @@ export type LandingExtra = {
   customs?: { title: string; text: string; lamp: string; scene: string; question: string; answer: string; items: { q: string; a: string }[]; more?: { label: string; href: string } }
   /** 453: часть подзаголовка — ссылка к секции (инверсия цвета темы). */
   titleSubLink?: { text: string; href: string }
+  /** 510 (владелец 2026-10-16): нижняя строка первого экрана — «Start in 60 seconds on your personal PC», ведёт в справочное бюро. */
+  startNote?: { text: string; href: string }
   /** Подсказка [?] к подзаголовку (слово владельца 2026-09-30: «add [?] … like in От идеи до enterprise-продукта»); абзацы — через пустую строку. */
   titleSubHint?: string
   titleSubHintLabel?: string

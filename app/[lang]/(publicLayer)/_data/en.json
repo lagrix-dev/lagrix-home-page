@@ -1,5 +1,5 @@
 {
-  "title": "Open-source AI agent framework on your own computer",
+  "title": "Open-source Web4 protocol for agents and people",
   "description": "Day-zero infrastructure for indie hackers and AI product makers. Launch autonomous AI agents on your own computer, get your site online at once and scale services in seconds.",
   "keywords": "",
   "blocks": [
@@ -377,7 +377,8 @@
       "exitTime": "3 min"
     },
     "titleMark": "you're invited",
-    "openSource": "*Open Source* *AI* agent framework for the *Web3* era",
+    "openSource": "*Open-source* *Web4* for *A2A* and *H2A*",
+    "startNote": { "text": "Start in 60 seconds on your personal PC", "href": "#help-desk" },
     "outcomes": [
       {
         "name": "Agent",

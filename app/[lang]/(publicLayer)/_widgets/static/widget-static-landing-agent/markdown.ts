@@ -31,7 +31,8 @@ export function markdown(lang: string): string {
   // из блока героя. Звёздное небо — рисунок, слов в нём нет.
   const plate = (x as typeof x & { openSource?: string }).openSource
   if (plate) para(plate.replace(/\*([^*]+)\*/g, "**$1**"))
-  para(x.zeroDay?.title)
+  // 510: нижняя строка первого экрана — «старт за 60 секунд» (прежде — заголовок секции zero-day).
+  para(x.startNote?.text ?? x.zeroDay?.title)
   para(x.launchBanner)
 
   // 477: второй экран — вокзал будущего: вывеска входа и растяжки двух миссий на крыльях.

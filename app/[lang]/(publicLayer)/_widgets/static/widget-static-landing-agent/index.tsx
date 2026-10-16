@@ -71,7 +71,7 @@ export function LandingAgent({ lang }: { lang: string }) {
       {/* 477 (владелец 2026-10-14): новый первый экран — бейдж в центре, заголовок во всю ширину, надпись «Инфраструктура нулевого
           дня» на звёздном небе вокзала; «вторым экраном становится вокзал и всё, что ниже». Прежний первый экран (вывеска станции с
           чатом) снят: чат играет в справочном бюро. */}
-      <FirstScreen title={hero.title} titleMark={x.titleMark} plate={openSource} sub={x.zeroDay ? { text: x.zeroDay.title, href: "#zero-day" } : undefined} />
+      <FirstScreen title={hero.title} titleMark={x.titleMark} plate={openSource} sub={x.startNote ?? (x.zeroDay ? { text: x.zeroDay.title, href: "#zero-day" } : undefined)} />
       {x.facade && <StationFacade w={x.facade} />}
 
       <section data-block="hbbfq" id="board" className={`${s.hall} ${s.boardHall}`}>
