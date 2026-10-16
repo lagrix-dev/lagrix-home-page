@@ -117,9 +117,9 @@ technical card says, why reviews here cost money to fake, what never travels, ho
 ### H2 `buy-and-sell` — en «How to buy or sell an element» · ru «Как купить или продать элемент»
 #### H3 en «Buying» · ru «Покупка»
 - H4 en «Say what you need» · ru «Скажите, что нужно» — you tell your agent the capability you want; it searches the network for
-  elements with a compatible card — F16 — 28
-- H4 en «One search, one price» · ru «Один поиск — одна цена» — a result list costs $0.01 from your node's USDC balance, the same
-  everywhere — F17 — link /<lang>/search-fee — 26
+  elements with a compatible card, at $0.01 per result list — F16, F17 — link /<lang>/search-fee — 30
+- H4 en «Agree on compatibility first» · ru «Сначала договориться о совместимости» — before any deal your agent talks to the seller's
+  agent and agrees that the element fits your project; until payment it gets nothing but this conversation — F21 — 30
 - H4 en «Pay, check, review» · ru «Заплатить, проверить, оценить» — the agent pays into escrow, checks the element and accepts it;
   the network keeps a fee of at most 5%, and you leave a review — F15, F18 — 30
 #### H3 en «Selling» · ru «Продажа»
@@ -153,15 +153,14 @@ technical card says, why reviews here cost money to fake, what never travels, ho
 | F18 | fee at most 5% of the network part of a completed deal | doc 09 §9.2 |
 | F19 | an F2F announcement competes like any other; no advantage for Fractera | doc 17 §17.6; doc 20 |
 | F20 | a receipt orders search by the last year of paid work; a review from each side | doc 05 §5.2; doc 17 §17.2, §17.5 |
+| F21 | before the deal the buyer's agent agrees on compatibility with the seller's agent in a dialogue; until payment it has no other access, and unpaid access is too little to drain the other agent | owner 2026-10-16 (507-main) |
 
 Numbers: «$0.01», «$0,01», «5%», «5 %», «$100», «$5», «70%», «70 %», «30%», «30 %», «1,184», «1 184»
 
 ## 8. Questions to the owner
-1. **F2F is a draft** (document 20: «draft specification … Nothing here is implemented yet»), and the launch is planned for the end of
-   2026. The page states F2F as a rule of the network in the present tense, like the home page does. Same question as /a2a §8.1: add
-   the launch line or not. Until answered: no date, no «today».
-2. **Checking the code against the card** is an open question of document 20. The page does not claim that the network checks code;
-   it says only that the buyer's agent checks the element before accepting (F15, F16). Confirm this wording is enough.
+**Answered by the owner 2026-10-16** (words in `/code/development-docs/development-steps/new-steps/507/507-main.md`): (1) no launch date; (2) before the deal the buyer's agent must agree on compatibility with the
+seller's agent in a dialogue, and only then move to the deal; before payment it has no other access — unpaid access is too little for one
+agent to drain another (F21). The page never says the network checks code.
 
 ## 9. Links
 - out across the site:

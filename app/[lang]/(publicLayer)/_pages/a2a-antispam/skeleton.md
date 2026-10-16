@@ -4,8 +4,8 @@ Written 2026-10-16 (step 507-4) by the federal agent, from the protocol (README,
 same day. A writer at minimum reasoning writes `en.json` and `ru.json` from this file only; whatever is not here is not on the page.
 Form: `/code/.claude/skills/lagrix-answer-pages/references/tz-template.md`.
 
-Statements marked **[Q1]** come from document 23, which the protocol calls «a design direction, not a rule». They stand on the page
-only after the owner answers question 8.1.
+Statements marked **[Q1]** come from document 23 («a design direction, not a rule»); the owner decided on 2026-10-16 that the page
+states them as rules in the present tense, as the home page does.
 
 ## 1. Passport
 - slug: a2a-antispam · hub: discovery · menu order: 103 (`meta.json`)
@@ -159,11 +159,8 @@ words with the same thought (no new facts), so that the Russian text, 10–15 % 
 Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «14,293», «14 293», «1992»
 
 ## 8. Questions to the owner
-1. **Document 23 is «a design direction, not a rule»** (its own first paragraph; mechanism questions in §23.5 are open). The home page
-   already states it in the present tense («Pay to talk», Telegraph). Should this page also state the [Q1] statements as rules in the
-   present tense (check before the model, own rate on top, the same rule wherever found)? If not, the page keeps only the floor prices
-   (entries 33 and 39) and the problem, and the [Q1] H4s are rewritten from the facts F1–F8, F15–F21.
-2. **Launch line** — the same question as /a2a §8.1.
+**Answered by the owner 2026-10-16** (words in `/code/development-docs/development-steps/new-steps/507/507-main.md`): (1) the [Q1] statements of document 23 are written as rules of the network in the present
+tense, as on the home page; (2) no launch date.
 
 ## 9. Links
 - out across the site:

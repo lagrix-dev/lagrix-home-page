@@ -167,10 +167,7 @@ it costs.
 Numbers: «$0.01», «$0,01», «5%», «5 %», «$100», «$5», «12 months», «12 месяцев», «150»
 
 ## 8. Questions to the owner
-1. **Launch.** The network launches at the end of 2026 (home page: «Launch is planned for the end of 2026»; README: «Specification
-   stage»). The H2 `connect` and `paid-work` are written as rules of the network in the present tense and do not say «you can join
-   today». Should the page carry the home page's line «the launch is planned for the end of 2026», or stay without a date? Until
-   answered, the writer writes no date and no «today».
+**Answered by the owner 2026-10-16** (words in `/code/development-docs/development-steps/new-steps/507/507-main.md`): no launch date on the page, and no «today».
 
 ## 9. Links
 - out across the site:
