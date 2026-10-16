@@ -62,7 +62,7 @@ function MegaCard({ href, title, description, strong }: { href: string; title: s
   )
 }
 
-function MegaItem({ lang, group, alignEnd }: { lang: string; group: ShellGroup; alignEnd: boolean }) {
+function MegaItem({ lang, group }: { lang: string; group: ShellGroup }) {
   const groupHref = shellHref(lang, group.href, `/${lang}/${group.slug}`)
   const childHref = (c: ShellChild) => (c.href ? shellHref(lang, c.href, "") : `${groupHref}/${c.slug}`)
 
@@ -91,7 +91,10 @@ function MegaItem({ lang, group, alignEnd }: { lang: string; group: ShellGroup; 
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger className="h-8 px-3">{group.label}</NavigationMenuTrigger>
-      <NavigationMenuContent forceMount className={`data-[state=closed]:hidden ${alignEnd ? "md:right-0 md:left-auto" : ""}`}>
+      {/* 507 (владелец: «Добавь горизонтальный скролл если эти новые кнопки не помещаются»): полоса кнопок прокручивается, а у
+          прокручиваемого блока выпавший вниз список обрезался бы. Поэтому список — `fixed`: шапка с `backdrop-blur` держит его
+          своим блоком, и он встаёт ровно под ней по центру её ширины, вне прокрутки полосы. */}
+      <NavigationMenuContent forceMount className="data-[state=closed]:hidden md:fixed! md:inset-x-0! md:mx-auto! md:top-[calc(100%+0.25rem)]! md:mt-0! md:w-fit!">
         <ul className={`grid max-h-[70vh] gap-1 overflow-y-auto overscroll-contain p-1 ${columnsOf(count)}`}>
           <MegaCard href={groupHref} title={group.label} description={group.description} strong />
           {group.children.map((c) => (
@@ -109,11 +112,14 @@ export function DesktopNav({ lang, groups, meUrl }: { lang: string; groups: Shel
   return (
     <>
       <span className="hidden min-[780px]:block h-5 w-px bg-border" aria-hidden />
-      <NavigationMenu viewport={false} className="hidden min-[780px]:flex max-w-none flex-none justify-start">
-        <NavigationMenuList className="flex-wrap justify-start gap-1">
-          {visible.map((g, i) => (
-            // Две последние группы открываются к правому краю, чтобы широкий список не уходил за экран.
-            <MegaItem key={g.slug} lang={lang} group={g} alignEnd={i >= visible.length - 2} />
+      {/* Кнопки не помещаются — полоса прокручивается по горизонтали, полоса прокрутки самая тонкая (`scrollbar-width: thin`). */}
+      <NavigationMenu
+        viewport={false}
+        className="hidden min-[780px]:flex min-w-0 max-w-none flex-1 justify-start overflow-x-auto overflow-y-hidden pb-0.5 [scrollbar-width:thin] [scrollbar-color:var(--border)_transparent]"
+      >
+        <NavigationMenuList className="w-max flex-none flex-nowrap justify-start gap-1">
+          {visible.map((g) => (
+            <MegaItem key={g.slug} lang={lang} group={g} />
           ))}
         </NavigationMenuList>
       </NavigationMenu>
