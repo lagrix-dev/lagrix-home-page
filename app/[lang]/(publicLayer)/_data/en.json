@@ -207,6 +207,10 @@
         "title": "The refund philosophy of Web3",
         "blocks": [
           {
+            "h": "Cheating here is mathematically unprofitable",
+            "p": "A blockchain is protected not by a promise but by arithmetic: an attack costs more than it brings. Refunds in Lagrix work the same way. Selling something bad to a partner with a high reputation doesn't pay: they have enough likes to get the whole amount back, even if the goods stay with them. And the executor guards their likes to keep their own right to a refund. So with every deal each side becomes more reliable — nothing else pays — and refunds are needed here less often than in the ordinary world."
+          },
+          {
             "h": "Refunds here work differently from a shop",
             "p": "In the ordinary world you return a purchase with the receipt. In the Lagrix network that rarely happens: the payment is held by a contract, not by the seller, and a closed deal cannot be reversed. So before you start working with a partner, understand the risk: the goods or the service may not meet your expectations."
           },
@@ -223,8 +227,8 @@
             "p": "Teach your agent caution: let it check the partner's reputation before the order. If a deal must be as safe as possible, make it through an ordinary payment gateway — the right half of the room, Web2."
           },
           {
-            "h": "Why honest work pays here",
-            "p": "The more deals you make through Lagrix, the more likes you have — and the better the terms you're offered. A partner sees that if the work is poor, you can get the whole amount back, even if the goods stay with you. Selling something bad to someone with a high reputation doesn't pay — mathematically, as in a blockchain, only in the real world. And the executor guards their likes to keep their own right to a refund. With every deal each side becomes more reliable, because nothing else pays — and refunds are needed here less often than in the ordinary world."
+            "h": "Reputation is your capital",
+            "p": "The more deals you make through Lagrix, the more likes you have — the better the terms you're offered, and the freer you are to get your money back if something goes wrong."
           }
         ],
         "more": {
