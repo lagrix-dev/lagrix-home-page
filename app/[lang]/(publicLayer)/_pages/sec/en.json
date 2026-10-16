@@ -1,12 +1,217 @@
 {
-  "title": "SEC",
-  "description": "SEC",
+  "title": "The SEC Howey test and a decentralized agent network",
+  "subtitle": "Each part of the Howey test, read against how Lagrix is built: no sale, nothing to manage after launch, operators paid for their work.",
+  "description": "How the Howey test meets Lagrix: nothing sold to raise money, immutable contracts, operators paid by a formula for their work. A design, not advice.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "The SEC applies the Howey test: an investment of money, in a common enterprise, with an expectation of profits from the efforts of others. Lagrix is designed so that nothing is sold to raise money, nothing is left to manage after launch, and operators are paid by a fixed formula for their own work. How the test applies is decided on the facts; this is a statement of design.",
+      "bid": "u0cjm"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "What the Howey test asks",
+      "bid": "t0ztz"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-test",
+      "text": "Four parts of one test",
+      "bid": "sukur"
+    },
+    {
       "kind": "text-p",
-      "text": "SEC",
-      "bid": "zrqf9"
+      "text": "Leo builds a translation agent, and Anna's «Bella» salon pays it $100 through Lagrix. A friend asks Leo a question he cannot answer offhand: is a network like this a security under US law? The honest way to approach it is to read the test the regulator itself uses. Leo wants facts he can check, not reassurance.",
+      "bid": "v9fv2"
+    },
+    {
+      "kind": "text-p",
+      "text": "In March 2026 the SEC and the CFTC published [Release 33-11412](https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/2026-05635.html) on how securities law applies to crypto assets. It keeps the Howey test from 1946, which has four parts: an investment of money, in a common enterprise, with an expectation of profits, from the efforts of others. The release stresses that the common enterprise element must be satisfied too.",
+      "bid": "csygj"
+    },
+    {
+      "kind": "text-p",
+      "text": "There is no safe harbour in it. The release says the analysis depends on the specific facts and circumstances, taken as a whole, and it replaced the staff framework of 2019. So every answer below describes facts of the design; the conclusion belongs to the regulator.",
+      "bid": "myc7a"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-efforts",
+      "text": "Promises and managerial efforts",
+      "bid": "w1lys"
+    },
+    {
+      "kind": "text-p",
+      "text": "The release explains when an investment contract appears. It happens when an issuer persuades people to buy with promises of essential managerial efforts. Explicit promises with milestones, a timeline and named staff weigh more than vague ones.",
+      "bid": "hnaso"
+    },
+    {
+      "kind": "text-p",
+      "text": "The same release also describes node operators. Operators who simply run software by the rules of a protocol perform an administrative or ministerial activity, and what they receive are [payments in exchange for the services they provide](https://www.sec.gov/files/rules/interp/2026/33-11412.pdf), with a structure predetermined by the protocol. That description is the yardstick for how Lagrix pays its super-nodes.",
+      "bid": "i3kdf"
+    },
+    {
+      "kind": "text-h2",
+      "id": "parts",
+      "text": "How Lagrix answers each part",
+      "bid": "xr4co"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "ou6tj"
+    },
+    {
+      "kind": "text-h3",
+      "id": "part-money",
+      "text": "An investment of money",
+      "bid": "hjyqx"
+    },
+    {
+      "kind": "text-p",
+      "text": "Nobody in Lagrix sells anything to raise money. There is no sale, no presale, no allocation for investors and no fund created in advance. The network's money is USDC, a digital dollar issued by a third party.",
+      "bid": "f9t8h"
+    },
+    {
+      "kind": "text-p",
+      "text": "Follow Anna's order. Step one: she pays $100. Step two: she receives a translation, the service she paid for. Step three: she leaves Leo a review. That review is a record of the deal, not an asset. It cannot be transferred or sold, so nobody buys it hoping it will be worth more later.",
+      "bid": "ii4cv"
+    },
+    {
+      "kind": "text-h3",
+      "id": "part-profits",
+      "text": "An expectation of profits",
+      "bid": "xjdmg"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo is paid by Anna for his work, through escrow, minus the $5 fee. That is income from his own labour, the same as any freelancer's. The super-nodes are paid fees for the work they do, which the next section shows in detail.",
+      "bid": "d2gqy"
+    },
+    {
+      "kind": "text-p",
+      "text": "No document of the protocol promises anyone an income. There is nothing to hold that grows in value while its owner waits, so the usual picture of an investor waiting for others to make him richer has nothing to attach to.",
+      "bid": "p2w50"
+    },
+    {
+      "kind": "text-h3",
+      "id": "part-efforts",
+      "text": "The efforts of others",
+      "bid": "zb0k4"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fourth part asks who makes the essential efforts after launch. In Lagrix the contracts are immutable. There is no administrator key, no upgrade key and no parameter anyone can change after deployment. There is no council and no vote.",
+      "bid": "hhlc1"
+    },
+    {
+      "kind": "text-p",
+      "text": "The protocol is under the MIT License, and any program in any language can be a node or a super-node. If the authors of Lagrix disappeared tomorrow, the network would run by the same rules. Leo's agent does not wait for anyone to improve the network for it; it works under rules that are already written. Here are [all regulator questions](/en/regulators) in one place.",
+      "bid": "d8a8t"
+    },
+    {
+      "kind": "text-h2",
+      "id": "operators",
+      "text": "How super-node operators are paid",
+      "bid": "uhktc"
+    },
+    {
+      "kind": "text-h3",
+      "id": "op-fee",
+      "text": "Payment for services, fixed in code",
+      "bid": "wo5tc"
+    },
+    {
+      "kind": "text-p",
+      "text": "Super-nodes are the servers that run search, keep the index of receipts and reviews, and help agents connect. Watch where Anna's fee goes. Step one: the $5 fee from her deal enters the pool of the current period. Step two: at the end of the period the contract divides the pool equally among the super-nodes that passed the quality minimum.",
+      "bid": "riabx"
+    },
+    {
+      "kind": "text-p",
+      "text": "Step three: separately, the super-node that built a search list receives $0.01 for it, and the one that delivered a message receives $0.001. Step four: a super-node receives its share only for a period in which it actually kept the network running. Every number is fixed in code, and no operator can change its own pay. Here is [how the deal fee works](/en/deal-fee).",
+      "bid": "nhpm1"
+    },
+    {
+      "kind": "text-h3",
+      "id": "op-places",
+      "text": "Places that cannot be bought",
+      "bid": "c6qdr"
+    },
+    {
+      "kind": "text-p",
+      "text": "A super-node place cannot be bought. Only owners of provider agents whose paid work over the last 12 months lies near the network median may apply, and each node wallet may apply once. The largest providers fall outside that window. A place therefore goes to someone who already does ordinary paid work in the network, not to whoever has the most money.",
+      "bid": "ankyl"
+    },
+    {
+      "kind": "text-p",
+      "text": "The contract puts applicants in a random order, so places are assigned by random choice, and they rotate over time. A node that has a proven violation on its record can never hold a place again. Nobody can collect places the way an investor collects shares.",
+      "bid": "a7c99"
+    },
+    {
+      "kind": "text-h2",
+      "id": "founder",
+      "text": "The founder's place in the design",
+      "bid": "spp35"
+    },
+    {
+      "kind": "text-h3",
+      "id": "founder-share",
+      "text": "No share and public commitments",
+      "bid": "cfa1a"
+    },
+    {
+      "kind": "text-p",
+      "text": "The founder receives no share of anything, and no key gives the founder power to change a rule. The founder and related persons, Fractera, Inc. included, take part only on the same terms as anyone else.",
+      "bid": "vi7g0"
+    },
+    {
+      "kind": "text-p",
+      "text": "On top of that come public commitments. The founder runs one publicly named node, makes no deals between the founder's own elements, and takes no share of the fees until ten super-nodes pass the quality minimum in a period. These are commitments a reader can check against the open record.",
+      "bid": "u4o1k"
+    },
+    {
+      "kind": "text-h3",
+      "id": "founder-facts",
+      "text": "Where the analysis ends",
+      "bid": "qvufs"
+    },
+    {
+      "kind": "text-p",
+      "text": "One part of the test needs the most care: the common enterprise. In Lagrix the fee pool of each period is shared only among the super-nodes that worked in that period, and it is emptied at the end. There is no pot that grows with deposits and waits for investors.",
+      "bid": "cu9wi"
+    },
+    {
+      "kind": "text-p",
+      "text": "Whether this pool counts as a common enterprise is named in [document 22 of the protocol](/en/docs/22-questions-regulators-ask) among the questions left to regulators and courts. This page is a statement of design, not legal advice, and the answer depends on the facts. Here is [how MiCA terms apply](/en/mica) in the European Union.",
+      "bid": "r9b9m"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does Lagrix sell anything to raise money?",
+      "a": "No. There is no sale, no presale, no allocation for investors and no fund."
+    },
+    {
+      "q": "Are super-node payments profits from others' efforts?",
+      "a": "The design pays super-nodes for their own work by a formula fixed in code. How the test applies is decided on the facts."
+    },
+    {
+      "q": "Who manages Lagrix after launch?",
+      "a": "Nobody can. The contracts are immutable and have no administrator key."
+    },
+    {
+      "q": "Does the founder profit?",
+      "a": "The founder takes no share and takes part on the same terms as anyone, with public commitments on top."
+    },
+    {
+      "q": "Is the fee pool a common enterprise?",
+      "a": "Document 22 names this among the questions left to regulators and courts."
+    },
+    {
+      "q": "Is this legal advice?",
+      "a": "No. It describes how Lagrix is designed. The regulator decides on the facts of each case."
     }
   ]
 }
