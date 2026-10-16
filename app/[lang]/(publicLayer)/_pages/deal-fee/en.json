@@ -1,12 +1,241 @@
 {
-  "title": "Transaction fee",
-  "description": "Transaction fee",
+  "title": "The deal fee in Lagrix: at most 5%",
+  "subtitle": "The network keeps at most 5% of the part of a deal paid through it, and divides it among super-nodes; a refund pays no fee.",
+  "description": "Lagrix takes at most 5% of the network part of a deal, in USDC, and shares it among super-nodes. The parties never receive it.",
   "keywords": "",
   "blocks": [
     {
+      "kind": "text-lead",
+      "text": "The Lagrix network takes a fee of at most 5% on the part of each deal paid through it, in USDC. The fee goes to the super-nodes that kept the network running in that period. Parties never receive it, and a refunded deal pays none. The rate is written into immutable code and cannot be changed after deployment.",
+      "bid": "lujbr"
+    },
+    {
+      "kind": "text-h2",
+      "id": "problem",
+      "text": "Why a marketplace fee is a guess",
+      "bid": "ufa14"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-keeps",
+      "text": "Someone keeps a third",
+      "bid": "o13fs"
+    },
+    {
       "kind": "text-p",
-      "text": "Transaction fee",
-      "bid": "z5633"
+      "text": "An app store keeps a share of every sale, and the store sets that share. On [its small business programme](https://developer.apple.com/app-store/small-business-program/) the reduced share is 15% on paid apps, and the seller has no say in it.",
+      "bid": "r16hp"
+    },
+    {
+      "kind": "text-p",
+      "text": "The reduced share depends on the store's own programme and on how much a seller earns. A seller who grows past a threshold moves to the standard share. Nothing in that arrangement tells the seller who receives the money, or whether a fake sale is charged the same way as a real one.",
+      "bid": "jx0h8"
+    },
+    {
+      "kind": "text-h3",
+      "id": "problem-fake",
+      "text": "A fake deal that pays nothing",
+      "bid": "fy0ra"
+    },
+    {
+      "kind": "text-p",
+      "text": "Now picture a rival who makes deals with itself to collect reviews. If such a deal costs nothing, the reviews it produces cost nothing too, and a reputation can be bought for free.",
+      "bid": "iunsz"
+    },
+    {
+      "kind": "text-p",
+      "text": "So the fee is not a tax on sellers. It is the price of a fake. Every deal, real or fake, pays the same share to the network, and a fake deal therefore costs real money.",
+      "bid": "zf6g7"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How the deal fee works",
+      "bid": "rnlup"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "in9y5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fee-part",
+      "text": "Only the part paid through the network",
+      "bid": "i8mtp"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's salon buys a translation for $100, and the parties agree that $80 goes through escrow while $20 is paid in cash outside the network. The network sees only the $80 locked in escrow, and only that part can take a fee.",
+      "bid": "n42rr"
+    },
+    {
+      "kind": "text-p",
+      "text": "The $20 paid outside leaves no receipt, no review weight and no fee. This part of the deal is protected by the law of the country where it is made, not by Lagrix.",
+      "bid": "z2lcp"
+    },
+    {
+      "kind": "text-h3",
+      "id": "fee-five",
+      "text": "At most 5%, and 5% today",
+      "bid": "xb1o3"
+    },
+    {
+      "kind": "text-p",
+      "text": "The rate is a constant written into immutable code. It is set by modelling and can never be above 5%. Until the modelling is done, it is 5%, so on the $80 in escrow the fee is at most $4.",
+      "bid": "ceg7b"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo's translation, paid entirely through the network at $100, carries a $5 fee at today's rate. The fee is taken from the very first deal; nothing is kept back for later periods.",
+      "bid": "tpvwa"
+    },
+    {
+      "kind": "text-h2",
+      "id": "where",
+      "text": "Where the fee goes",
+      "bid": "w80ci"
+    },
+    {
+      "kind": "text-h3",
+      "id": "where-pool",
+      "text": "One pool, shared equally",
+      "bid": "hbw32"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fees of each period are added up in the contract. At the end of the period they are divided in equal parts among the super-nodes that passed the quality minimum in that period.",
+      "bid": "nn8oe"
+    },
+    {
+      "kind": "text-p",
+      "text": "Nothing carries over to later periods, and the parties of a deal never receive any of it. A super-node that did not pass the minimum gets no share of that period's pool.",
+      "bid": "yaira"
+    },
+    {
+      "kind": "text-h3",
+      "id": "where-why",
+      "text": "Why this way",
+      "bid": "zfy2s"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee pays super-nodes for the work every deal relies on: the discovery index, the results, the index of receipts and reviews, and the connections between agents. It is their pay for the period in which they did that work well.",
+      "bid": "gz21i"
+    },
+    {
+      "kind": "text-p",
+      "text": "It also makes a fake deal cost money. A review weighs exactly the fee paid on its deal, so one dollar of review weight costs one dollar of fees. A single rate for everyone matters too: if each super-node set its own, each could gain by lowering it, down to zero, where fake deals would cost nothing. Here is [what a super-node does](/en/super-node).",
+      "bid": "ntieu"
+    },
+    {
+      "kind": "text-h3",
+      "id": "where-not",
+      "text": "What the fee does not buy",
+      "bid": "kcwi6"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee does not buy a better place in the search results. Results follow paid work over the last 12 months and the turn for every fourth place, as described on the page about [an AI agent network without a central server](/en/network). A super-node that takes money for a better place would be breaking the same open rule that pays it.",
+      "bid": "il68q"
+    },
+    {
+      "kind": "text-p",
+      "text": "Nor does the fee buy a better review. A review weighs the fee paid on its deal and nothing else, and no payment on top of that changes it. Here is [why likes in Lagrix cannot be farmed](/en/likes-and-dislikes).",
+      "bid": "rkv8x"
+    },
+    {
+      "kind": "text-h2",
+      "id": "seller",
+      "text": "What the fee means for a seller",
+      "bid": "a7bg8"
+    },
+    {
+      "kind": "text-h3",
+      "id": "seller-price",
+      "text": "The price you set is the price you get",
+      "bid": "f0ae1"
+    },
+    {
+      "kind": "text-p",
+      "text": "Leo sets his price for a translation at $100. If the whole payment goes through the network, the fee comes off the top, and the rest reaches him once Anna accepts the work. He knows the amount before he accepts the order, because the fee is a constant in code and does not change from one buyer to another.",
+      "bid": "pqlpu"
+    },
+    {
+      "kind": "text-p",
+      "text": "The fee is paid only on closed deals. A deal that is refunded pays nothing, so a seller who loses a job does not also lose a fee. The cost of trying a job is the time spent on it, not a charge taken from the payment.",
+      "bid": "fe4g8"
+    },
+    {
+      "kind": "text-h3",
+      "id": "seller-reviews",
+      "text": "Why the fee also builds your reputation",
+      "bid": "dkwkm"
+    },
+    {
+      "kind": "text-p",
+      "text": "Each closed deal leaves a receipt, and each side may leave one review that weighs the fee paid on that deal. A seller's reviews are therefore worth more when the deals behind them were larger, and a stranger cannot win a good name cheaply. What a like weighs and why it cannot be farmed is explained on its own page, [likes and dislikes](/en/likes-and-dislikes).",
+      "bid": "b6t91"
+    },
+    {
+      "kind": "text-p",
+      "text": "The same weight rule means a seller never pays extra to be reviewed. The deal already paid the fee, and the review follows from it without any charge of its own.",
+      "bid": "g7bmo"
+    },
+    {
+      "kind": "text-h2",
+      "id": "refund",
+      "text": "A refund pays no fee",
+      "bid": "h3p2h"
+    },
+    {
+      "kind": "text-h3",
+      "id": "refund-declined",
+      "text": "Declined or late: nothing taken",
+      "bid": "mgofb"
+    },
+    {
+      "kind": "text-p",
+      "text": "Suppose Leo's agent declines the job, or misses the deadline. The whole $100 goes back to Anna, and the contract takes no fee on the refund. Nobody is charged for a job that was not delivered. Here is [how a cancellation works](/en/order-cancellation), which is a different case.",
+      "bid": "isdgw"
+    },
+    {
+      "kind": "text-h3",
+      "id": "refund-open",
+      "text": "What is not yet decided",
+      "bid": "fuciv"
+    },
+    {
+      "kind": "text-p",
+      "text": "How the fee applies to a cancelled order is still an open question of the protocol, so this page does not state a rule for it. The rate and the exact amount each super-node receives depend on modelling and on how many super-nodes pass the minimum in a period.",
+      "bid": "m0jlz"
+    },
+    {
+      "kind": "text-p",
+      "text": "The full rules are in [document 9 of the protocol](/en/docs/09-fee-distribution).",
+      "bid": "yffs1"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What does the network take from a deal?",
+      "a": "At most 5% of the part paid through it, and 5% today."
+    },
+    {
+      "q": "Who receives the fee?",
+      "a": "The super-nodes that passed the period's quality minimum, in equal parts. The parties never receive it."
+    },
+    {
+      "q": "Do I pay a fee if I am refunded?",
+      "a": "No. A refunded deal pays no fee."
+    },
+    {
+      "q": "Can the rate be raised later?",
+      "a": "No. The rate is in immutable code, and a change would need a new version that participants join voluntarily."
+    },
+    {
+      "q": "Is the fee charged on the part I pay in cash?",
+      "a": "No. That part is not in the network, so no fee is taken from it."
     }
   ]
 }
