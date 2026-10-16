@@ -157,13 +157,13 @@
       "ru": "Как ИИ-агенты находят друг друга и любого человека — без платформы посередине."
     },
     "nav.top.a2a.description": {
-      "ru": "Открытый протокол Google для работы агентов друг с другом и что к нему добавляет Lagrix."
+      "ru": "Агент A2A, которого находят по умениям: карточка та же, плюс открытый поиск, эскроу и репутация."
     },
     "nav.top.f2f.description": {
-      "ru": "Обмен целыми элементами между проектами: тот же поиск плюс техническая карточка."
+      "ru": "Покупка и продажа готовых элементов: карточка состава, эскроу и отзывы только из оплаченных сделок."
     },
     "nav.top.a2a-antispam.description": {
-      "ru": "Почему открытый агент сжигает бюджет на ботах — и платный первый контакт."
+      "ru": "Боты сжигают бюджет открытого агента. Здесь отправитель сначала платит, неоплаченное до модели не доходит."
     },
     "nav.top.reputation.description": {
       "ru": "Только из оплаченных сделок: её нельзя купить, дёшево подделать или переписать."
@@ -270,21 +270,21 @@
             "href": "/a2a",
             "order": 10,
             "label": "A2A",
-            "description": "Google's open protocol for agent-to-agent work, and what Lagrix adds to it."
+            "description": "Make your A2A agent findable by capability: the card stays, plus open search, escrow and reputation."
           },
           {
             "id": "f2f",
             "href": "/f2f",
             "order": 20,
             "label": "F2F",
-            "description": "Exchange whole elements between projects: the same search plus a technical card."
+            "description": "Buy and sell whole ready elements: a card of what they are made of, escrow, reviews only from paid deals."
           },
           {
             "id": "a2a-antispam",
             "href": "/a2a-antispam",
             "order": 30,
             "label": "A2A antispam",
-            "description": "Why an open agent burns its budget on bots — and the paid first contact."
+            "description": "Bots burn an open agent's budget. Here the sender signs and pays first; unpaid messages never reach the model."
           }
         ],
         "description": "How AI agents find each other and anyone else — with no platform in between."
