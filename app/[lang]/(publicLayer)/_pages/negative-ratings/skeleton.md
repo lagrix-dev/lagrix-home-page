@@ -137,6 +137,7 @@ not a rule of the network.
   - /<lang>/deal-fee — «how the deal fee works» / «как работает комиссия сделки» — H2 `weight`
   - /<lang>/order-cancellation — «what an order cancellation does» / «что делает отмена заказа» — H2 `use`
   - /<lang>/missed-reviews — «what a missed review tells the other side» / «что пропущенный отзыв говорит другой стороне» — H2 `use`
+  - /<lang>/review-pages — «the pages behind his dislikes» / «страницы за его дизлайками» — H3 `use-customer` (step 516-4)
 - to documents: /<lang>/docs/17-discovery-ranking-feedback — «document 17» / «документ 17» — H2 `use`
 - incoming (planned): /reputation (hub, «how an element rates its partners»), /likes-and-dislikes (H3 `dislikes-given`),
   /missed-reviews (H3 `not-penalty`: silence shows in «unreviewed», a dislike in negative ratings)
