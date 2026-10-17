@@ -404,10 +404,13 @@ export function VipRoom({ w, lang }: { w: VipWords; lang: string }) {
 
           <g className={s.vipObjects}>
             <g aria-hidden="true">
-              {/* Развеска по одной линии центров по обе стороны таблички и камеры; Шекспир — нижним рядом слева. */}
-              <Frame x={132} y={102} w={104} h={136} oval sign="napoleon" />
-              <Frame x={250} y={112} w={90} h={116} oval sign="caesar" />
-              <Frame x={182} y={252} w={88} h={96} sign="shakespeare" light={false} />
+              {/* Развеска по одной линии центров по обе стороны таблички и камеры; Шекспир — нижним рядом слева. Левая группа на
+                  телефоне скрыта: срез сцены оставлял от неё обрезанный край рамы. */}
+              <g className={s.vipFarLeft}>
+                <Frame x={132} y={102} w={104} h={136} oval sign="napoleon" />
+                <Frame x={250} y={112} w={90} h={116} oval sign="caesar" />
+                <Frame x={182} y={252} w={88} h={96} sign="shakespeare" light={false} />
+              </g>
               <Frame x={628} y={94} w={96} h={152} sign="lincoln" />
               <Frame x={748} y={112} w={88} h={116} oval sign="cleopatra" />
 

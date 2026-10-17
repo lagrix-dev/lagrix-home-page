@@ -2418,7 +2418,8 @@
 .vipGlowCore { stop-color: var(--vip-white); stop-opacity: 1; }
 .vipGlowMid { stop-color: var(--poster); stop-opacity: 0.55; }
 .vipGlowEdge { stop-color: var(--poster); stop-opacity: 0; }
-.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke { opacity: 0; transform-box: fill-box; transform-origin: center; }
+/* Невидимый круг света лежит поверх таблички и кисти — нажатия он не забирает. */
+.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke { opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
 .vipSpark { fill: var(--vip-white); }
 .vipSpark:nth-child(3n) { fill: var(--poster); }
 .vipSmoke { fill: color-mix(in oklab, var(--chalk) 70%, var(--board)); filter: blur(5px); }
@@ -2560,7 +2561,7 @@
 @media (max-width: 639px) {
   .vipRoom { --vip-col: 22px; }
   .vipRoom:not([data-open]) .vipCol { display: none; }
-  .vipVolute, .vipPlateHint { display: none; }
+  .vipVolute, .vipPlateHint, .vipFarLeft { display: none; }
   .vipPlateCode { font-size: 36px; transform: translateY(10px); }
   .vipPicPoints { font-size: 0.95rem; }
 }
