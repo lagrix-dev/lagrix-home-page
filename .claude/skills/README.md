@@ -31,7 +31,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `connect-own-domain` | ours | the person asks «connect my domain»: buy it, the node adds the zone and gives two name servers, the registrar step (browser or words), measure ≤5 min, old domain → come back in 3–4 h, attach to this element | — not proven |
 | `own-domain-sign-in` | ours | sign-in on this element's own domain goes through the node's sign-in center — why, what to tell the person, the cost of direct sign-in, how to check it is alive and the env marker that breaks it | — not proven |
 | `computer-off` | ours | what still works with the computer off (the Cloudflare copy) and what waits for it | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
-| `project-origin` | ours | a project only from the person's own fork of fractera/agi; updates; moving to a new computer | — not proven |
+| `project-origin` | ours | a project only from the person's own fork of fractera/web4; updates; moving to a new computer | — not proven |
 | `github-repositories` | ours | one private repository per element: created by a button, renamed with the element, tokens, import, restore | — not proven |
 | `temporary-domain` | ours | the free trycloudflare address: not permanent, read-only panel, when it dies, switch to an own domain early | — not proven |
 | `local-node` | ours | a private node at home: agents, data, automations, Telegram as the remote, a buyer node over A2A | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |

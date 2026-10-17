@@ -45,6 +45,6 @@
   ],
   "exclude": [
     "node_modules",
-    "AGI-ITEMS"
+    "WEB4-ITEMS"
   ]
 }

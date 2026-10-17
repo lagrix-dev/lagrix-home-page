@@ -113,4 +113,4 @@ follows the skill `passport-description` — reads its own code, shows the texts
 
 ## State
 
-Built anew on 2026-10-06. The old root file that mixed everything was taken apart: this passport, `A2A-CARD.json` here, and `NODE-CONTRACT.json` at the root (what the node needs to install and manage the element — never served outside). The core reads both layouts through one module (`lib/agi-items/element-props.cjs`), so elements still on the old file keep working.
+Built anew on 2026-10-06. The old root file that mixed everything was taken apart: this passport, `A2A-CARD.json` here, and `NODE-CONTRACT.json` at the root (what the node needs to install and manage the element — never served outside). The core reads both layouts through one module (`lib/web4-items/element-props.cjs`), so elements still on the old file keep working.

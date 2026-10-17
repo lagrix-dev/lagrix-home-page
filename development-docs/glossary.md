@@ -12,7 +12,7 @@ The person speaks by voice and in their own language: their word goes in the sec
 
 | Term | The person may say | What it means |
 |---|---|---|
-| **element** | «элемент», «AGI ITEM», «айтем», «микросервис» | One self-contained thing in the node with its own folder, port, address, repository and agent. To the node it is a microservice that answers its neighbours and asks them for help; to a person it is a whole project — a site, an app, an agent or a service — that can be opened, developed, shared and sold. This element is one. |
+| **element** | «элемент», «WEB4 ITEM» (until 2026-10-17 «AGI ITEM»), «айтем», «микросервис» | One self-contained thing in the node with its own folder, port, address, repository and agent. To the node it is a microservice that answers its neighbours and asks them for help; to a person it is a whole project — a site, an app, an agent or a service — that can be opened, developed, shared and sold. This element is one. |
 | **node** | «узел», «нода» | Every element on one person's computer together with the core. It belongs to the person and works without Fractera. |
 | **core** | «ядро» | The node's centre: the registry of elements, discovery, install, the architect's pages (the element's menu is drawn by the core). It is not an element and is not replaced. |
 | **neighbour** | «сосед» | Another element of the same node. |
