@@ -1,5 +1,5 @@
 import { surfaceFor } from './surfaces'
-import { SUPPORTED_LANGUAGES } from '@/config/translations/translations.config'
+import { INDEXED_LANGUAGES, SUPPORTED_LANGUAGES } from '@/config/translations/translations.config'
 import { urlFor } from '@/lib/seo/alternates'
 
 /**
@@ -7,9 +7,15 @@ import { urlFor } from '@/lib/seo/alternates'
  * берёт канонический адрес из заголовка `Link: <…>; rel="canonical"` (developers.google.com/search/docs/crawling-indexing/
  * consolidate-duplicate-urls); без него копия — второй адрес того же текста. Одна функция на все маршруты копий: дети и
  * главная (`markdownRoute`), `/docs` и каждый документ — правило в одном месте, а не в трёх из четырёх.
+ * Язык, закрытый для поиска, получает `X-Robots-Tag: noindex` (владелец 2026-10-17: «проверь что только Английский язык открыт для
+ * индексации»): у копии нет `<meta name="robots">`, и без заголовка она оставалась единственной открытой дверью закрытого языка —
+ * канонический адрес лишь подсказка. Источник Google: «You can use the X-Robots-Tag for non-HTML files» (developers.google.com/search/docs/crawling-indexing/
+ * robots-meta-tag, прочитано 2026-10-17).
  */
 export function markdownHeaders(lang: string, subPath: string): HeadersInit {
-  return { 'Content-Type': 'text/markdown; charset=utf-8', Link: `<${urlFor(lang, subPath)}>; rel="canonical"` }
+  const h: Record<string, string> = { 'Content-Type': 'text/markdown; charset=utf-8', Link: `<${urlFor(lang, subPath)}>; rel="canonical"` }
+  if (!INDEXED_LANGUAGES.includes(lang)) h['X-Robots-Tag'] = 'noindex'
+  return h
 }
 
 // Общая начинка markdown-маршрута (шаг 505).
