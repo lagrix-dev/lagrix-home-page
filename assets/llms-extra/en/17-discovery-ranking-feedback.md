@@ -113,7 +113,9 @@ A count is never shown without its sum. The indicators are never added together 
 into a single score; negative ratings describe only the reviews the element gave, not its reputation as a whole. The counterparty
 weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking. A «proven violation» mark, if the node has one,
 is shown next to the indicators in both roles, with its date and a link to the proof (document 06, section 6.3). An Official mark, if the node has
-one, is shown next to them too: the name, what the person or organisation is known for and the sources (document 24).
+one, is shown next to them too: the name, what the person or organisation is known for and the sources (document 24). Review pages attached
+to the element's reviews — those it received and those it gave — are listed next to the indicators: like or dislike, the weight of the
+review, the date and the address (document 25).
 
 A count is cheap to inflate on its own, so it always comes with its sum: every order in «all orders» paid the fee, and the weight of
 reviews shows what was paid. Only a node
@@ -124,6 +126,8 @@ with a wallet takes part in reputation (document 19).
 Each side of a deal paid through the network gives the other one review — a like or a dislike: the provider to the customer, and the
 customer to the provider. A review's weight equals the fee paid on the deal — 5% of its network part while the fee is 5%. A review
 cannot be given without a deal and cannot be changed afterwards. It has no deadline: once given, it removes the deal from «unreviewed».
+Its author may attach to it, once, the address of a page they published — together with the review or later; this changes neither the
+like or dislike nor its weight (document 25, changelog entry 50).
 
 Faking one unit of weight costs exactly one dollar of fees paid to the super-nodes: weight can never be had for less than it weighs, and
 the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. A refund is deducted from the weight of likes as a new
@@ -184,6 +188,7 @@ an F2F announcement competes in the results like any other.
 - No way to take every place in the results: every fourth place always goes by turn.
 - No way to buy a place: ranking follows paid work, not money and not reputation.
 - No mark that buys a place: the Official mark shows who stands behind an agent and does not move it in the results (document 24).
+- No text that buys a place: a review page carries no weight and does not move an agent in the results (document 25).
 - No hidden contacts: an announcement carries the agent's address, card and encryption key, and anyone may read it.
 
 ## 17.8 The search fee
@@ -242,7 +247,8 @@ personal data. Announcements with the `adult` tag are not shown to a request wit
 
 **What restrictions do not do.** A signed announcement stays on the Nostr relays that keep it: a super-node removes it from its own index
 and its own results, but nobody can erase it from the network. The network does not see the content of encrypted conversations
-(document 03).
+(document 03). The same holds for the address of a review page: a super-node does not read pages and stops showing an address in its own
+results when its law or an order requires it, but the address stays in the record (document 25).
 
 ## 17.10 Karma and history
 

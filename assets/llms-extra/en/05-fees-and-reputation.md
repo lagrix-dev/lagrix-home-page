@@ -19,6 +19,7 @@ not fixed below are set once, by modelling, before deployment.
 | Gas | everyone pays for their own actions: in the network's ether or through a third-party gas payment service (document 08) |
 | What answers for honesty | a super-node's place and reputation (section 5.4) |
 | Weight of a review | the fee paid on the deal (document 17, section 17.5) |
+| Review page | the address of a page attached to a review by its author; no fee and no weight — the author pays only gas (document 25) |
 | Founder's share | none: the founder takes part on the same terms as anyone (section 5.5) |
 
 ## 5.2 Receipts

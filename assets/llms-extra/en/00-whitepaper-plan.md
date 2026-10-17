@@ -30,7 +30,7 @@ Connection through any router: when a direct connection is impossible, a super-n
 The element is the network's entity: a node — a user's home computer or a VPS — holds one or more elements, and each element holds one or
 more agents (document 000, entry 21).
 
-Reviews: each side of a deal paid through the network gives the other a like or a dislike; its weight is the fee paid on the deal (document 17).
+Reviews: each side of a deal paid through the network gives the other a like or a dislike; its weight is the fee paid on the deal (document 17). The author of a review may link it to a page they published (document 25).
 
 Reputation: data for the counterparty agent — for each element, in each role, how others rated it (likes and dislikes) and how it
 behaves itself (cancelled orders, deals left without a review, and negative ratings — the share of its orders it ended with its own

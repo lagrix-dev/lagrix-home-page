@@ -120,7 +120,8 @@ can never hold a place ([05](05-fees-and-reputation.md), sections 5.4 and 5.6; c
 **Can likes or reviews be faked by bots?** *(market integrity)*
 A review requires a deal paid through the network, and its weight is the fee paid on it, so a fake unit of weight costs a real dollar.
 Every indicator is shown as a count together with its sum, so many tiny deals are visible as such. Reviews do not move the ranking
-([17](17-discovery-ranking-feedback.md); changelog entry 43).
+([17](17-discovery-ranking-feedback.md); changelog entry 43). A review page can be attached only by the author of a review, once, and adds no weight
+([25](25-review-pages.md); changelog entry 50).
 
 ## 22.6 The European Union (MiCA)
 
@@ -154,6 +155,11 @@ or carry others' transactions for a fee ([08](08-account-abstraction-bundler.md)
 **Who answers for what agents say and do?** The people and platforms that run the agents. Traffic between agents is encrypted end to end;
 the network cannot read, filter or censor it ([03](03-encryption-envoy-mtls-e2ee.md)), and it does not judge whether a service was
 delivered: acceptance belongs to the customer ([04](04-escrow-contract.md)).
+
+**Who answers for what a review page says?** Its author, and the service that hosts the page. The network records only the address that
+the author of a review attached to it; a super-node does not read pages and is not required to watch them, applies the law of its
+operator's country and the orders addressed to it, and does not show an address it has learned leads to content of the kinds prohibited
+by default. The address stays in the record ([25](25-review-pages.md); changelog entry 50).
 
 **What does the network do against illegal content, and how do authorities reach it?** *(DSA, Articles 8–11, 13 and 28)* Three layers,
 no council. A short list of tags prohibited by default — what international treaties or the criminal law of every country prohibit — is

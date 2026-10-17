@@ -11,7 +11,7 @@ Slither static analysis.
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
 | SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
-| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, negative ratings (dislikes given against the reviewable weight), likes deducted by cancellations | 17 |
+| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, negative ratings (dislikes given against the reviewable weight), likes deducted by cancellations; the address of a review page, attached once by the review's author | 17, 25 |
 
 ## 7.1 Unit and integration tests (Foundry)
 
@@ -27,6 +27,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_Reputation_CountAndSum()` — every indicator updates its count and its sum together; a review, a like or a dislike, removes the deal from «unreviewed».
 - `test_Reputation_AllOrders()` — every paid order adds to «all orders» of both sides, completed or cancelled; a proven-violation mark on the node's wallet shows on every element of the node.
 - `test_Reputation_NegativeRatings()` — a dislike adds its weight to the reviewer's «dislikes given»; every completed deal adds its fee to the reviewable weight of both sides; negative ratings, read as dislikes given ÷ reviewable weight, stay between 0% and 100%.
+- `test_ReviewPage_Once()` — only the side that gave a review attaches a page to it, once; a second page on the same review and a page on a deal the sender has not reviewed are rejected; the like or dislike, its weight and every indicator stay unchanged; an address longer than the limit is rejected.
 - `test_Cancel_RefundByLikes()` — a cancellation within the dispute window refunds `min(likeWeight, amount)`, deducts the same weight from the customer's likes as a new event, sends the rest to the provider and records a cancelled order for both; a customer without likes gets nothing back.
 - `test_NoAdminFunctions()` — no function changes a rate, a price or a threshold after deployment.
 - `test_Downtime_NoMark()` — an unavailable node is not penalised and after 30 days is removed without a mark.

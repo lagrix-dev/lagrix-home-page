@@ -54,7 +54,7 @@ the EIP-712 standard (Typed Data Hashing and Signing).
   moves to COMPLETED.
 
 The network itself never judges whether a service was delivered. Acceptance belongs to the Customer; quality is told by the reviews of
-both sides (document 17).
+both sides (document 17) and by the pages their authors may attach to them (document 25).
 
 ## 4.3 Time-Lock: protecting the Provider from a hang
 
