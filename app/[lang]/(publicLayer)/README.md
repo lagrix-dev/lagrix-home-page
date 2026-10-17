@@ -8,6 +8,21 @@ The sequence of `_data/<lang>.json` holds the widget `widget-static-landing-agen
 draws it alone, without the page frame (`_widgets/static/widget-static-landing-agent/`). The other items and the field
 `landing` stay its words and the text twin for agents. Remove `bare` and the widget to go back to a page of blocks and text.
 
+## Every other page wears the station look (node step 514)
+
+Every child of this branch (`_pages/<slug>/`) is drawn in the **station look** by default — owner 2026-10-17: «Все страницы
+кроме главной страницы и страницы документов приведи к этому стандарту». The reading page of the home's departure-board world
+(skill impeccable, Read mode): the breadcrumbs, H1 and subtitle on a sign in the board colour; the answer (the first `text-lead`)
+on the yellow poster; the cover smaller, after it; the table of contents on the right, sticky, marking the section being read; H2
+numbers as platform squares; one reading column of 40rem. A page with fewer than two sections gets one centred column. The data,
+crumbs, table of contents, FAQ and structured data are the same as before — only the layout changes.
+
+- Where: `lookOf` in `lib/branch-page.tsx` (the default), `StationLook` branch of `components/content-page/standard-content-page.tsx`,
+  colours in `components/content-page/station-look.module.css` (roles derived from the Design tokens, no hex), the section marker
+  in `station-toc-spy.client.tsx` (an IntersectionObserver, no timers).
+- Opt out for one page: `_pages/<slug>/meta.json` → `"look": "plain"`. The home page (`page.tsx`, a bare landing) and `/docs`
+  (its own template) are outside this rule.
+
 ## What is here
 
 | Path | Role |

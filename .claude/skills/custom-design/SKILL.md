@@ -32,6 +32,10 @@ A page with its own look is a **widget** that takes the whole page: its data fol
 Words stay in the page data (`_data` / `_pages/<slug>/<lang>.json`), never in code. Example: `app/[lang]/(publicLayer)/_widgets/static/widget-static-landing-agent/`
 (the home page, made with impeccable).
 
+A look for ARTICLE pages (text, headings, FAQ) is not a bare widget but a look of the shared article template: `meta.look`
+read by `lib/branch-page.tsx` and drawn by `components/content-page/standard-content-page.tsx`, so crumbs, the table of contents, FAQ
+and structured data stay shared (node step 514: the station look, made with impeccable, is the default of the public branch).
+
 ## What this element's rules override in both skills
 
 - **Pages stay static.** Server component by default; motion only in CSS or in a small `"use client"` island; never

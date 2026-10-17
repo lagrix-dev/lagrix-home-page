@@ -83,6 +83,8 @@ A production build is always the whole app; the only lever is how many route fil
 - Every language repeats the same sequence with its own words (same kinds, same order, same `bid`); `check:page-sequence`
   refuses anything else, an unknown kind and any `tool-*` — tools live only inside widgets (skill `use-tools`).
 - A page of one widget: the sequence holds only it; `meta.json` → `"bare": true` drops the page frame.
+- Every public child page is drawn in the station look (node step 514, owner 2026-10-17); `meta.json` → `"look": "plain"` opts one
+  page out. See the public branch README, «Every other page wears the station look».
 - **Which `block-*` a page may name** = the keys of `BLOCK_SET` in `lib/content/blocks/registry.tsx` — read them before you
   propose a block. A component in `components/blocks/` is not enough (✗ node step 464: an agent offered `block-cta-button`, which
   lives only inside the hero and is not in the set — the guard would refuse the page).
