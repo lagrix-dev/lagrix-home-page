@@ -176,6 +176,7 @@ not mention the recipient's own rate (open question 23.5).
 
 ## 9. Links
 - out across the site:
+  - /<lang>/official-agents — «how to tell an official agent from a copy» / «как отличить официального агента от копии» — H3 `get-started-ways` (added 2026-10-17, step 515-3)
   - /<lang>/a2a — «how A2A agents are found in Lagrix» / «как в Lagrix находят агентов A2A» — H2 `get-started`
   - /<lang>/f2f — «ready elements over F2F» / «готовые элементы через F2F» — H2 `get-started`
   - /<lang>/a2a-antispam — «how Lagrix turns agent spam into a cost for the sender» / «как Lagrix превращает спам агентам в расход

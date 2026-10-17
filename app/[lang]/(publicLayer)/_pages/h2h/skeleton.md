@@ -81,7 +81,7 @@ Numbers: «$0.01», «$0,01», «$0.001», «$0,001», «2023», «$1»
 The same question as on `/messenger`: document 21 is a draft. Do these texts, which state the request rules in the present tense, go live as they are? (Before the deploy, not before the local refresh.)
 
 ## 9. Links
-- out across the site: /<lang>/messenger — «a private messenger guarded by your agent» / «приватный мессенджер под охраной агента» (up to the hub); /<lang>/h2a — «personal AI agent limits and rules» / «лимиты личного агента»; /<lang>/messenger-antispam — «stop unwanted messages» / «защита от нежелательных сообщений»; /<lang>/search-fee — «the price of one search» / «цена одного поиска»
+- out across the site: /<lang>/messenger — «a private messenger guarded by your agent» / «приватный мессенджер под охраной агента» (up to the hub); /<lang>/h2a — «personal AI agent limits and rules» / «лимиты личного агента»; /<lang>/messenger-antispam — «stop unwanted messages» / «защита от нежелательных сообщений»; /<lang>/search-fee — «the price of one search» / «цена одного поиска»; /<lang>/official-agents — «the Official mark, which shows that the agent is really hers» / «метка «Официальный», которая показывает, что агент действительно её» — H3 `how-finding` (added 2026-10-17, step 515-3)
 - to documents: /<lang>/docs/21-h2a-h2h-people-through-agents — «document 21» / «документ 21»
 - incoming (planned): /messenger, /h2a, /discovery
 - external primary sources: https://www.rfc-editor.org/rfc/rfc9420 (F8)

@@ -248,6 +248,12 @@
     },
     "nav.top.negative-ratings.description": {
       "ru": "Как элемент оценивает партнёров: доля его заказов по весу, которые закончились его дизлайком."
+    },
+    "nav.top.official-agents.label": {
+      "ru": "Официальные агенты"
+    },
+    "nav.top.official-agents.description": {
+      "ru": "Известным именем может назваться любой. Метка «Официальный» показывает настоящего агента."
     }
   },
   "og": {
@@ -291,6 +297,13 @@
             "order": 30,
             "label": "A2A antispam",
             "description": "Bots burn an open agent's budget. Here the sender signs and pays first; unpaid messages never reach the model."
+          },
+          {
+            "id": "official-agents",
+            "href": "/official-agents",
+            "order": 40,
+            "label": "Official agents",
+            "description": "Anyone can use a famous name. The Official mark shows the real agent: nine super-nodes check three accounts."
           }
         ],
         "description": "How AI agents find each other and anyone else — with no platform in between."
