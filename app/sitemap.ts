@@ -5,6 +5,8 @@ import { urlFor } from "@/lib/seo/alternates"
 import { indexableLanguages } from "@/lib/seo/translation-state"
 import { branchRoot, branchChildren } from "@/lib/page-tree"
 import { allSlugs, languagesOf, liveDocs, DOCS_LANGUAGES } from "@/app/[lang]/(publicLayer)/docs/_libs/docs"
+import { listReviews } from "@/lib/reviews/store"
+import { translatedPage } from "@/app/[lang]/(publicLayer)/reviews/_libs/reviews-view"
 
 // 458-9: документы Lagrix читаются с GitHub на лету — новый документ попадает в карту в пределах 5 минут, без пересборки.
 export const revalidate = 300
@@ -88,6 +90,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const doc of allSlugs()) for (const lang of languagesOf(doc).filter((l) => open.has(l))) {
     out.push({ url: urlFor(lang, `/docs/${doc}`), changeFrequency: "weekly", priority: 0.5 })
   }
+
+  // 518-5 (from the template v0.3.100): the reviews branch — its root on the open languages that have its words (en, ru), and every
+  // published review page on its open languages. The data layer did not answer — the map keeps every other page.
+  for (const lang of indexableLanguages({ overrides: { ru: { title: "ru" } } })) {
+    out.push({ url: urlFor(lang, "/reviews"), changeFrequency: "weekly", priority: 0.4 })
+  }
+  try {
+    for (const review of (await listReviews()).filter((r) => !r.noindex)) {
+      for (const lang of indexableLanguages(translatedPage(review))) {
+        out.push({ url: urlFor(lang, `/reviews/${review.slug}`), lastModified: review.updatedAt, changeFrequency: "monthly", priority: 0.4 })
+      }
+    }
+  } catch { /* the data layer did not answer: the map keeps every other page */ }
 
   return out.filter((row, i) => out.findIndex(r => r.url === row.url) === i)
 }

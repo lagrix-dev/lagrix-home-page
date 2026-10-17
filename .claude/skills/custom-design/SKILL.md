@@ -30,7 +30,8 @@ Then write its name into the passport `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`
 A page with its own look is a **widget** that takes the whole page: its data folder's `meta.json` names
 `"bare": true` and its sequence holds only the widget `widget-static-<name>`; the widget lives in `<branch>/_widgets/static/widget-static-<name>/` and is listed in that branch's `_widgets/index.tsx`.
 Words stay in the page data (`_data` / `_pages/<slug>/<lang>.json`), never in code. Example: `app/[lang]/(publicLayer)/_widgets/static/widget-static-landing-agent/`
-(the home page, made with impeccable).
+(the home page, made with impeccable). Exception: a branch whose pages are data-layer rows (`/reviews`, node step 518) keeps its look in
+the branch's own `_components/`, with its brief in `development-docs/design-brief-reviews.md`.
 
 A look for ARTICLE pages (text, headings, FAQ) is not a bare widget but a look of the shared article template: `meta.look`
 read by `lib/branch-page.tsx` and drawn by `components/content-page/standard-content-page.tsx`, so crumbs, the table of contents, FAQ
