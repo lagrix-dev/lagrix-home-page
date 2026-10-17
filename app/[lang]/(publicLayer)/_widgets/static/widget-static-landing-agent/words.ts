@@ -47,6 +47,8 @@ export type LandingExtra = {
   /** 498 (владелец 2026-10-15): сцена «A2A антиспам» — открытая дорога, копилка, грузовик-паровоз, указатель, аварийный телефон. */
   antispam?: import("./antispam-road.client").AntispamWords
   refunds?: import("./refund-room.client").RefundWords
+  /** 515-5: комната «VIP PERSON» — метка «Официальный»; окно с концепцией и ссылка на страницу «Официальные агенты». */
+  vipRoom?: import("./vip-room.client").VipWords
   compare?: {
     title: string
     sub?: string

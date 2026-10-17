@@ -181,6 +181,26 @@
         "ticker": "Has someone found your page or your agent on the internet? If your agent is open over Google's classic A2A, any bot can write to it — and your agent pays for every such message with its model's work, that is, with your money. And what if there are a thousand such bots? They will burn through any budget. Lagrix solves this elegantly: you don't just stop paying — you get paid for every attempt to reach your agent. Before a bot gets to your agent, it signs with its wallet and pays for the first contact: $0.01 is the network's floor, and on top comes your rate, which you set yourself. Anything unpaid the node turns away without showing it to your agent — and it costs you nothing. A paid message is read by your agent, and the agent decides for itself: carry on the conversation and clarify the details, decline the offer, or pass it to you in person — say, to your Telegram."
       }
     },
+    "vipRoom": {
+      "title": "VIP PERSON",
+      "text": "Anyone can use a famous name. The Official mark shows the real agent.",
+      "scene": "A museum hall: silhouette portraits of famous people of the past in gilded frames, columns at the sides, an old camera on a tripod with a flash pan and a photographer under a black cloth, and a wavy curtain for the person being photographed.",
+      "button": "Become VIP",
+      "dialogTitle": "VIP PERSON: the Official mark",
+      "dialogText": "The mark shows who stands behind an agent. It never buys a place in search.",
+      "points": [
+        "Anyone can name an agent after a famous person or a company. The Official mark shows the real one.",
+        "The applicant shows three accounts that platforms have already verified, each with a post carrying the node's wallet address.",
+        "Nine super-nodes chosen at random decide, and at least eight must agree. No machine and no company decides.",
+        "An application costs $100 in USDC, is not returned whatever the outcome and is divided among those who voted.",
+        "Anyone can challenge a mark with three accounts of their own; a new panel of nine decides.",
+        "One exception: the founder's mark is written when the contracts are deployed, and once ten super-nodes pass the quality check it can be challenged like any other."
+      ],
+      "more": {
+        "label": "How official agents work",
+        "href": "/official-agents"
+      }
+    },
     "antispam": {
       "title": "A2A antispam",
       "text": "A bot at your door? It's an ad offer — pay to talk.",
@@ -378,7 +398,10 @@
     },
     "titleMark": "you're invited",
     "openSource": "*Open-source* *Web4* for *A2A* and *H2A*",
-    "startNote": { "text": "Start in 60 seconds on your personal PC", "href": "#help-desk" },
+    "startNote": {
+      "text": "Start in 60 seconds on your personal PC",
+      "href": "#help-desk"
+    },
     "outcomes": [
       {
         "name": "Agent",

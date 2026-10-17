@@ -21,6 +21,7 @@ import { HelpDesk } from "./help-desk.client"
 import { TelegraphRoom } from "./telegraph.client"
 import { AntispamRoad } from "./antispam-road.client"
 import { RefundRoom } from "./refund-room.client"
+import { VipRoom } from "./vip-room.client"
 import { Express } from "./express"
 import { WaitingRoom } from "./waiting-room"
 import { WhyNight } from "./why-night"
@@ -202,6 +203,24 @@ export function LandingAgent({ lang }: { lang: string }) {
               </div>
             </div>
             <TelegraphRoom w={x.telegraph} />
+          </div>
+        </section>
+      )}
+
+      {/* 515-5 (владелец 2026-10-17): «VIP PERSON» — музейный зал после «Телеграфа»: портреты великих людей прошлого, камера с
+          магниевой вспышкой, гардина; «Стать VIP» → магний 2 с → белое 0,5 с → растворение 1 с → окно с концепцией метки
+          «Официальный». Слова — `landing.vipRoom`. */}
+      {x.vipRoom && (
+        <section data-block="bbb41" id="vip-person" className={s.vipHall}>
+          <div data-block="z38ta" className={s.wrap}>
+            <div data-block="dqomj" className={s.waitingSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <div data-block="rb3sq" className={s.waitingPlate}>
+                <h2 data-block="rs4xg" className={s.waitingTitle}>{x.vipRoom.title}</h2>
+                {x.vipRoom.text && <p data-block="mbxf5" className={s.waitingText}>{x.vipRoom.text}</p>}
+              </div>
+            </div>
+            <VipRoom w={x.vipRoom} lang={lang} ui={appDialogUi(lang)} />
           </div>
         </section>
       )}

@@ -2285,3 +2285,123 @@
 @keyframes expressWind { to { stroke-dashoffset: 62; } }
 @keyframes expressDot { 0%, 100% { opacity: 0.15; translate: 0 0; } 50% { opacity: 0.7; translate: -4px 0; } }
 @media (prefers-reduced-motion: reduce) { .expressLine, .expressDot { animation: none; } .expressDot { opacity: 0.4; } }
+
+/* 515-5 (владелец 2026-10-17): комната «VIP PERSON» — музейный зал вокзала: стена — табло, рамы — плакат (золото), холсты — мел,
+   силуэты — чернила, колонны — мел, гардина — глубокий сигнал, кнопка — сигнал. Одно авторское движение — магний (2 с, искры и
+   тёплый свет) → белое мгновенно, 0,5 с → растворение 1 с; предметы исчезают в белом и возвращаются за 0,5 с после окна.
+   Фазы — `data-phase` острова `vip-room.client.tsx`; цвета — только роли страницы и их смеси. */
+.vipHall { padding: 4.5rem 0 3rem; }
+.vipRoom {
+  --vip-white: var(--background);
+  --vip-white: oklch(from var(--primary) 0.995 0.003 h);
+  --vip-gilt-deep: color-mix(in oklab, var(--poster) 72%, var(--ink));
+  --vip-wood: color-mix(in oklab, var(--poster) 42%, var(--ink));
+  --vip-curtain: color-mix(in oklab, var(--signal) 80%, var(--ink));
+  --vip-fold: color-mix(in oklab, var(--signal) 52%, var(--ink));
+  position: relative;
+  margin-top: 1.5rem;
+}
+.vipStage {
+  position: relative;
+  height: clamp(380px, 46vw, 560px);
+  overflow: hidden;
+  border-radius: var(--tile-corner);
+  background: var(--board);
+  box-shadow: 0 30px 50px -36px var(--shade);
+}
+.vipSvg { display: block; width: 100%; height: 100%; }
+
+.vipWall { fill: var(--board); }
+.vipWainscot { fill: var(--board-deep); }
+.vipMolding { fill: color-mix(in oklab, var(--poster) 55%, var(--board)); }
+.vipFloor { fill: var(--floor); }
+.vipParquet { stroke: color-mix(in oklab, var(--board) 14%, var(--floor)); stroke-width: 2; fill: none; }
+.vipSkirting { fill: var(--board-deep); }
+
+.vipColumn { fill: var(--chalk); }
+.vipFlute { fill: color-mix(in oklab, var(--board) 12%, var(--chalk)); }
+.vipLampArm { fill: var(--vip-gilt-deep); }
+.vipLamp { fill: var(--poster); }
+.vipGilt { fill: var(--poster); }
+.vipGiltDeep { fill: var(--vip-gilt-deep); }
+.vipCanvas { fill: color-mix(in oklab, var(--chalk) 86%, var(--poster)); }
+.vipInk { fill: var(--ink); }
+
+.vipRod { fill: var(--poster); }
+.vipCurtain { fill: var(--vip-curtain); }
+.vipFold { fill: none; stroke: var(--vip-fold); stroke-width: 7; stroke-linecap: round; opacity: 0.75; }
+.vipTie { fill: var(--poster); }
+
+.vipWood { fill: var(--vip-wood); }
+.vipBellows { fill: var(--flapc); }
+.vipPleat { stroke: color-mix(in oklab, var(--chalk) 25%, var(--flapc)); stroke-width: 2; }
+.vipBrass { fill: var(--poster); }
+.vipLens { fill: var(--flapc); stroke: color-mix(in oklab, var(--chalk) 55%, var(--flapc)); stroke-width: 2; }
+.vipStick { fill: var(--flapc); }
+.vipTray { fill: var(--vip-gilt-deep); }
+.vipPowder { fill: var(--chalk); }
+
+/* Магний: тёплый свет, вспыхивающая чаша, искры, дым — видимы только в фазе burn. */
+.vipGlowCore { stop-color: var(--vip-white); stop-opacity: 1; }
+.vipGlowMid { stop-color: var(--poster); stop-opacity: 0.55; }
+.vipGlowEdge { stop-color: var(--poster); stop-opacity: 0; }
+.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.vipSpark { fill: var(--vip-white); }
+.vipSpark:nth-child(3n) { fill: var(--poster); }
+.vipSmoke { fill: color-mix(in oklab, var(--chalk) 70%, var(--board)); filter: blur(5px); }
+.vipRoom[data-phase="burn"] .vipWarm { animation: vipWarm 2s ease-in forwards; }
+.vipRoom[data-phase="burn"] .vipPowderGlow { animation: vipFlicker 0.14s steps(2, jump-none) infinite; }
+.vipRoom[data-phase="burn"] .vipSpark { animation: vipSpark 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--d) infinite; }
+.vipRoom[data-phase="burn"] .vipSmoke { animation: vipSmoke 2s ease-out var(--d) forwards; }
+@keyframes vipWarm { from { opacity: 0; } to { opacity: 0.4; } }
+@keyframes vipFlicker { 0% { opacity: 0.7; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.12); } }
+@keyframes vipSpark { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+@keyframes vipSmoke {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  30% { opacity: 0.45; }
+  100% { opacity: 0; transform: translate(0, -80px) scale(1.8); }
+}
+
+/* Вспышка: белое мгновенно и на 0,5 с, затем растворение за 1 с; предметы исчезают в белом и не видны, пока открыто окно. */
+.vipFlash { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; background: var(--vip-white); }
+.vipRoom[data-phase="flash"] .vipFlash { opacity: 1; }
+.vipRoom[data-phase="fade"] .vipFlash { opacity: 0; transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.vipObjects, .vipButton { transition: opacity 0.5s var(--ease); }
+.vipRoom:is([data-phase="flash"], [data-phase="fade"], [data-phase="open"]) :is(.vipObjects, .vipButton) {
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+}
+
+/* Кнопка «Стать VIP» стоит там, где встаёт снимаемый, — перед гардиной; на узком экране — внизу посередине. */
+.vipButton, .vipNoscript {
+  position: absolute;
+  z-index: 2;
+  left: 80%;
+  bottom: 13%;
+  translate: -50% 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--tile-corner);
+  background: var(--signal);
+  color: var(--chalk);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 14px 24px -14px var(--shade);
+}
+.vipButton:hover { background: color-mix(in oklab, var(--signal) 88%, var(--chalk)); }
+.vipButton:focus-visible, .vipNoscript:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .vipButton, .vipNoscript { left: 50%; bottom: 6%; font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vipRoom[data-phase] :is(.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke) { animation: none; opacity: 0; }
+  .vipObjects, .vipButton, .vipRoom[data-phase="fade"] .vipFlash { transition: none; }
+}
