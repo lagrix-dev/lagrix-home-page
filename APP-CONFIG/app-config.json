@@ -260,6 +260,9 @@
     },
     "nav.top.review-pages.description": {
       "ru": "К отзыву автор может привязать свою страницу: слова, которые объясняют числа, без собственного веса."
+    },
+    "nav.footer.reviews.label": {
+      "ru": "Отзывы"
     }
   },
   "og": {
@@ -607,6 +610,12 @@
         "href": "/support",
         "order": 70,
         "label": "Support the project"
+      },
+      {
+        "id": "reviews",
+        "href": "/reviews",
+        "order": 80,
+        "label": "Reviews"
       }
     ]
   },
