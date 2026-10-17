@@ -2404,4 +2404,6 @@
 @media (prefers-reduced-motion: reduce) {
   .vipRoom[data-phase] :is(.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke) { animation: none; opacity: 0; }
   .vipObjects, .vipButton, .vipRoom[data-phase="fade"] .vipFlash { transition: none; }
+  /* без вспышки предметам незачем исчезать: окно открывается поверх целой комнаты */
+  .vipRoom[data-phase="open"] .vipObjects { opacity: 1; }
 }
