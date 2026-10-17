@@ -112,7 +112,8 @@ the count and the weight behind it:
 A count is never shown without its sum. The indicators are never added together or subtracted, and the network does not combine them
 into a single score; negative ratings describe only the reviews the element gave, not its reputation as a whole. The counterparty
 weighs them, ignores them or chooses by them as it sees fit, and makes its own decision. Reputation takes no part in the ranking. A «proven violation» mark, if the node has one,
-is shown next to the indicators in both roles, with its date and a link to the proof (document 06, section 6.3).
+is shown next to the indicators in both roles, with its date and a link to the proof (document 06, section 6.3). An Official mark, if the node has
+one, is shown next to them too: the name, what the person or organisation is known for and the sources (document 24).
 
 A count is cheap to inflate on its own, so it always comes with its sum: every order in «all orders» paid the fee, and the weight of
 reviews shows what was paid. Only a node
@@ -182,6 +183,7 @@ an F2F announcement competes in the results like any other.
 - No platform deciding whom to show: the rules of 17.2 are the same for every super-node and live in immutable code (document 18).
 - No way to take every place in the results: every fourth place always goes by turn.
 - No way to buy a place: ranking follows paid work, not money and not reputation.
+- No mark that buys a place: the Official mark shows who stands behind an agent and does not move it in the results (document 24).
 - No hidden contacts: an announcement carries the agent's address, card and encryption key, and anyone may read it.
 
 ## 17.8 The search fee
@@ -245,7 +247,8 @@ and its own results, but nobody can erase it from the network. The network does 
 ## 17.10 Karma and history
 
 **Karma** is the summary of reputations of the elements on a person's own nodes, which the person shows in one tool together with proof
-that all these nodes are theirs. The network does not compute karma: it sees keys, not people, and linking several of one's own nodes is
+that all these nodes are theirs. The network does not compute karma: it sees keys, not people (the Official mark of document 24 adds to a key only what a panel found about the
+person behind it), and linking several of one's own nodes is
 the person's business, proven by the person.
 
 **History stays where it was earned.** An element moved to another node, or handed to another owner, starts there with a clean history;

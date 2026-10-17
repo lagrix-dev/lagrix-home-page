@@ -48,7 +48,8 @@ work they do (section 22.3). No document promises any income.
 
 **Who makes essential managerial efforts after launch?** *(Release 33-11412: "essential managerial efforts" of the issuer)*
 Nobody can. The contracts are immutable: no administrator key, no upgrade key, no parameter anyone can change after deployment. There is
-no council and no vote. New rules can arrive only as a new version of the contracts that participants join by choice (changelog entry 1;
+no council, and no vote changes a rule: the only vote decides whether one agent may carry the Official mark
+([24](24-official-agents.md)). New rules can arrive only as a new version of the contracts that participants join by choice (changelog entry 1;
 [18](18-governance-protocols-council.md)). After deployment there is nothing left to manage.
 
 **Is there a central party that distributes payments?** *(Release 33-11412: a functional system "does not have a central party that
@@ -59,7 +60,9 @@ each period's fee pool by formula among the super-nodes that passed the quality 
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no votes. Super-node places are assigned by random choice, not bought, and places rotate, so no
+No. The only vote in the network is taken by a panel of nine super-nodes chosen at random for one application, and it decides one thing —
+whether an agent may carry the Official mark; it changes no rule, fee or payment ([24](24-official-agents.md); changelog entry 49).
+Super-node places are assigned by random choice, not bought, and places rotate, so no
 group can hold a block of places for ever ([05](05-fees-and-reputation.md), section 5.6; changelog entries 31 and 40).
 
 **Is a super-node's income payment for services or profit from others' efforts?** *(Release 33-11412: payments to node operators "in
@@ -68,7 +71,9 @@ Payment for services, fixed in code:
 - the deal fee of each period is divided equally among the super-nodes that passed that period's quality minimum — payment for the work
   every deal relies on: search, connections and the index of receipts and reviews ([09](09-fee-distribution.md); changelog entry 25);
 - the search fee is paid to the super-node that built the result list, and the delivery fee to the super-node that delivered the message
-  ([17](17-discovery-ranking-feedback.md), section 17.8; changelog entries 33 and 39).
+  ([17](17-discovery-ranking-feedback.md), section 17.8; changelog entries 33 and 39);
+- the fee for an application for the Official mark is divided equally among the panel members who voted — payment for reviewing that
+  application ([24](24-official-agents.md)).
 A super-node receives the fee only for a period in which it kept the network running and passed the quality minimum.
 
 **Is a provider's income payment for work?** Yes. The customer pays the provider for the service through escrow; the network takes its
@@ -129,7 +134,7 @@ and claimed by each super-node for itself. No super-node holds a client's funds 
 help agents connect and relay encrypted traffic.
 
 **Is the network fully decentralised?** *(MiCA, recital 22; EBA Q&A 2024_7172)*
-The contracts have no administrator keys, there is no council and no vote, super-node operators are independent and rotate, and the
+The contracts have no administrator keys, there is no council and no vote on rules, super-node operators are independent and rotate, and the
 network does not depend on any company's domain or server. Whether this is "fully decentralised" in the sense of recital 22 is, under
 the EBA's answer, for the supervisor to assess in each case.
 

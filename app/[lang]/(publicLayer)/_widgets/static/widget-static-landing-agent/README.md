@@ -321,3 +321,22 @@ lines run left, the dots flicker, the train stands; reduced motion — one frame
 `objectBoundingBox` gradient on a zero-height line is not painted at all.
 
 The transit map's ring name runs on a 228°–312° arc (366 units): on 235°–305° (305) the Russian name (320) lost its last letter.
+
+## Step 515 (2026-10-17): the «VIP PERSON» room
+
+`vip-room.client.tsx`, words `landing.vipRoom` (section `#vip-person`, right after the Telegraph). A museum hall of the station world:
+the wall is the board, gilded frames are the poster, canvases chalk, silhouettes ink without faces (the zero-day pictogram rule);
+two ionic columns at the edges, five portraits recognised by one sign each (bicorne, laurel wreath, stovepipe hat and beard, ruff,
+Egyptian headdress with uraeus), an old camera on a tripod slightly left of centre with a photographer under a black cloth holding
+the flash pan up, a deep-signal curtain on the right with a tie-back. The scene is one SVG (viewBox 1200×560, `xMidYMax slice`, so
+a phone keeps the centre: photographer, camera, two portraits, the curtain's edge).
+
+One authored moment, phases in `data-phase` (timers only in the island, motion in CSS): **«Become VIP»** → `burn` 2 s (warm light
+grows, the powder flickers, 12 sparks and smoke) → `flash` 0.5 s (white `oklch(from var(--primary) 0.995 0.003 h)` over the whole
+room; `vipObjects` and the button vanish, the wall and floor stay) → `fade` 1 s → the product dialog `AppDialog` opens halfway
+through the fade (title, one line, six points of the Official mark, link to `/official-agents`) → Escape or ✕ → `back` 0.5 s.
+Under `prefers-reduced-motion` the dialog opens at once, no white, objects stay. Without JavaScript a `noscript` link to
+`/official-agents` stands in for the button; the dialog text is always in the HTML (`asSr`) and in `markdown.ts`.
+Measured in headless Chrome by state (no screenshots during playback): burn at 1 s, flash 1 at 2.25 s, dialog with 6 points at
+3.5 s; reduced motion — dialog at 0.3 s, flash 0. The cookie banner is also `[role=dialog]`: probe the product dialog by
+`[data-slot=dialog-content]`.

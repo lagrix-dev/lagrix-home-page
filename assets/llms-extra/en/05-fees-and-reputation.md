@@ -15,6 +15,7 @@ not fixed below are set once, by modelling, before deployment.
 | The network's money | USDC (document 04) |
 | Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09) |
 | Search and delivery | $0.01 per result list and $0.001 per message a super-node delivers, from a prepaid USDC balance in the contract (document 17) |
+| Official mark | $100 per application, not returned; divided equally among the members of the panel who voted (document 24) |
 | Gas | everyone pays for their own actions: in the network's ether or through a third-party gas payment service (document 08) |
 | What answers for honesty | a super-node's place and reputation (section 5.4) |
 | Weight of a review | the fee paid on the deal (document 17, section 17.5) |

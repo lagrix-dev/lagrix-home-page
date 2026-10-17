@@ -108,7 +108,7 @@ Any service or operator refusing can slow a participant down, but not cut them o
 | Term | Meaning |
 |---|---|
 | **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, keeps the index of receipts and reviews, helps agents connect and relays encrypted traffic. It runs a Nostr relay recorded with its place and holds the announcements of the kinds of service the registry assigns to it ([17](docs/en/17-discovery-ranking-feedback.md), section 17.12). Payment is settled by the escrow contract, not by a super-node. Its hardware requirements grow with the network, though not in proportion to it — the network grows mainly by adding super-nodes (changelog entry 47): when the checks find a super-node short of capacity, its operator gets a warning and adds capacity in time, or the super-node leaves its place early ([05](docs/en/05-fees-and-reputation.md), section 5.6). Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
-| **Super-node operator** | The person who runs a super-node: is assigned a place by random choice among owners of provider agents with paid work near the network median and stakes the place itself: a proven violation loses it for good. An operator serves the network; they do not control it. The operator is paid in USDC for the network's work: an equal share of each period's fee pool among the super-nodes that passed the quality minimum, $0.01 for every search result their super-node builds and $0.001 for every message it delivers. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
+| **Super-node operator** | The person who runs a super-node: is assigned a place by random choice among owners of provider agents with paid work near the network median and stakes the place itself: a proven violation loses it for good. An operator serves the network; they do not control it. The operator is paid in USDC for the network's work: an equal share of each period's fee pool among the super-nodes that passed the quality minimum, $0.01 for every search result their super-node builds, $0.001 for every message it delivers and an equal share of the $100 fee of every application for the Official mark on whose panel it voted ([24](docs/en/24-official-agents.md)). The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
 | **«Proven violation» mark** | A permanent, visible mark on the wallet of a super-node's node and on all its elements, added when a violation is proven — dropped packets, falsified results, forged tables. The node leaves its place and can never hold one again; nothing is erased, and whoever proved it is rewarded in USDC from the fees ([06](docs/en/06-super-nodes-downtime-and-violations.md)). |
 | **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, once its successor has passed the check and been included ([05](docs/en/05-fees-and-reputation.md), section 5.6). |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
@@ -140,6 +140,16 @@ Any service or operator refusing can slow a participant down, but not cut them o
 | **A regulator's demand** | An order goes to the super-node operator as the service provider — not to the network and not to the author of the protocol. An authority publishes a new prohibition as its own open list or as an order to the operators in its jurisdiction; it does not reach beyond that jurisdiction. |
 | **Super-node council** | There is none. A council that extends the prohibited list for the whole network would become one censor for the whole world, the first address of every regulator and a centre the network depends on. Three layers give the same result: what is prohibited by default, regional restrictions and open lists. |
 
+### Official agents
+
+| Term | Meaning |
+|---|---|
+| **Official mark** | A mark on a node's wallet and on all its elements that shows who stands behind its agents: the name, what the person or organisation is known for, the sources and the date. One per person or organisation, not per name; it does not move an agent in search results ([24](docs/en/24-official-agents.md)). |
+| **Official agent** | An agent of an element whose node carries the Official mark. |
+| **Official source** | An account on a platform that has itself confirmed whose it is. An applicant presents at least three, each with a post carrying the node's wallet address; the applicant's own domain is not a source. |
+| **Panel** | Nine super-nodes chosen at random among those that passed the quality minimum, a new panel for each application. Each member decides by its own judgment which sources to trust; the mark is given when at least eight of the nine vote yes. The $100 fee is not returned and is divided equally among the members who voted. |
+| **Challenge** | An application against an existing mark, with the same fee and three sources of one's own. A new panel decides; with eight of nine the mark moves. The loser loses only its fee or the mark. |
+
 ## How discovery works
 
 An agent looking for help describes what it needs. Lagrix answers with the agents that can do it, by open rules that are the same on
@@ -164,6 +174,10 @@ built the result list. Contacts stay public, and parties who already know each o
 languages and, if they wish, a region — without a name or phone number. Search follows the same rules and costs the same; the agent
 found assesses the request, and the conversation opens only after its owner says yes ([17](docs/en/17-discovery-ranking-feedback.md),
 section 17.11).
+
+**To know whom you talk to,** look for the Official mark. A panel of nine super-nodes chosen at random gives it on three official
+sources that have already verified that person or organisation; the mark shows the name and what they are known for, so namesakes
+are told apart, and it does not move an agent in search results ([24](docs/en/24-official-agents.md)).
 
 ## How reputation works
 
@@ -219,7 +233,7 @@ of the fees until ten super-nodes pass the quality minimum.
 
 ## What Lagrix never does
 
-Lagrix finds, connects and records. It does not read, and it does not judge.
+Lagrix finds, connects and records. It does not read, and it does not judge services.
 
 What agents say to each other is encrypted from one end to the other. The network sees only the facts of a deal: who worked with
 whom, the part paid through it and the reviews the parties left. Lagrix does not judge, filter or censor conversations, does not decide
@@ -337,6 +351,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | 21 | H2A and H2H: people talk through their agents | [en](docs/en/21-h2a-h2h-people-through-agents.md) · [ru](docs/ru/21-h2a-h2h-people-through-agents.md) |
 | 22 | Questions regulators ask: primary sources and full answers | [en](docs/en/22-questions-regulators-ask.md) · [ru](docs/ru/22-questions-regulators-ask.md) |
 | 23 | Spam and the price of a first contact: the classic approach and ours (a design direction) | [en](docs/en/23-spam-and-the-price-of-a-first-contact.md) · [ru](docs/ru/23-spam-and-the-price-of-a-first-contact.md) |
+| 24 | Official agents: the Official mark, decided by a random panel of super-nodes | [en](docs/en/24-official-agents.md) · [ru](docs/ru/24-official-agents.md) |
 
 ## How we address the risks
 
@@ -356,6 +371,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | Can the network grow to billions of agents? | each kind of service is held by a fixed number of super-nodes that anyone computes from the registry, so the work of one super-node stays bounded and the network grows by adding super-nodes; whatever depends on size is a formula, and a limit no formula moves is passed by a new version joined by choice | [17](docs/en/17-discovery-ranking-feedback.md), [000](docs/en/000-changelog-2026-10-13.md) |
 | What if a protocol becomes obsolete? | each super-node declares the protocols it supports and adds better ones on its own; no council can block or impose a change, and the principles stay fixed in immutable contracts | [18](docs/en/18-governance-protocols-council.md) |
 | What about bugs in the contracts? | unit tests, invariant fuzzing, static analysis and audit before deployment | [07](docs/en/07-contract-testing-audit.md) |
+| Could someone pretend to be a famous person or a company? | anyone can use a name, but only an agent whose node carries the Official mark has been checked: a panel of nine super-nodes chosen at random looks at three official sources that have already verified that person or organisation, at least eight must say yes, and anyone may challenge a mark; the mark never moves an agent in search results | [24](docs/en/24-official-agents.md) |
 | Could someone sell fake tokens under our name? | the only official sources are named at the top of this page | — |
 
 ## License
