@@ -85,7 +85,9 @@
     grid-template-areas: "answer toc" "cover toc" "body toc";
     grid-template-rows: auto auto 1fr;
     column-gap: clamp(3rem, 5vw, 5rem);
-    justify-content: start;
+    /* Пара «текст + оглавление» — по центру под вывеской (владелец 2026-10-17: «почему ниже первого экрана все сдвинуто
+       влево а не по центру?»): прижатая влево, она оставляла справа пустую полосу при вывеске во всю ширину. */
+    justify-content: center;
   }
 }
 
