@@ -254,6 +254,12 @@
     },
     "nav.top.official-agents.description": {
       "ru": "Известным именем может назваться любой. Метка «Официальный» показывает настоящего агента."
+    },
+    "nav.top.review-pages.label": {
+      "ru": "Страницы отзывов"
+    },
+    "nav.top.review-pages.description": {
+      "ru": "К отзыву автор может привязать свою страницу: слова, которые объясняют числа, без собственного веса."
     }
   },
   "og": {
@@ -341,6 +347,13 @@
             "order": 40,
             "label": "Negative ratings",
             "description": "How an element rates its partners: the share of its orders, by weight, that ended with its dislike."
+          },
+          {
+            "id": "review-pages",
+            "href": "/review-pages",
+            "order": 50,
+            "label": "Review pages",
+            "description": "A review may link to a page its author wrote: words that explain the numbers, with no weight of their own."
           }
         ],
         "description": "Reviews only from paid deals, weighted by the fee: six numbers nobody can buy or rewrite."

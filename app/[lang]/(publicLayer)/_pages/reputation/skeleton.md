@@ -128,6 +128,7 @@ none — every statement is in the protocol or a primary source.
   - /<lang>/missed-reviews — «what a missed review tells the other side» / «что пропущенный отзыв говорит другой стороне» — H2 `what-you-see`
   - /<lang>/deal-fee — «how escrow and the deal fee work» / «как работают эскроу и комиссия сделки» — H2 `how-it-works`
   - /<lang>/discovery — «how search results are built» / «как строится выдача» — H2 `rules`
+  - /<lang>/review-pages — «what a review page adds to the numbers» / «что страница отзыва добавляет к числам» — H3 `see-six` (step 516-3)
 - to documents: /<lang>/docs/17-discovery-ranking-feedback — «document 17» / «документ 17» — H2 `rules`
 - incoming (planned): /discovery, /a2a, /f2f (already link here), the three child pages
 - external primary sources: https://arxiv.org/abs/2606.26028 (F1); https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials (F3)

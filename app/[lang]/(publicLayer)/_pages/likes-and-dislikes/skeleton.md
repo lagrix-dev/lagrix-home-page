@@ -120,6 +120,7 @@ none.
   - /<lang>/reputation — «what the other side sees» / «что видит другая сторона» — H2 `how-weight` (up to the hub)
   - /<lang>/deal-fee — «how the deal fee works» / «как работает комиссия сделки» — H2 `how-weight`
   - /<lang>/order-cancellation — «what an order cancellation does to both sides» / «что отмена заказа меняет для обеих сторон» — H2 `dislikes`
+  - /<lang>/review-pages — «a page its author wrote about the deal» / «страница, которую автор написал о сделке» — H3 `weight-deal` (step 516-3)
 - to documents: /<lang>/docs/17-discovery-ranking-feedback — «document 17» / «документ 17» — H2 `dislikes`
 - incoming (planned): /reputation (hub), /f2f, /order-cancellation
 - external primary sources: https://arxiv.org/abs/2606.26028 (F1); FTC press release (F3)

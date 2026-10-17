@@ -1,0 +1,257 @@
+{
+  "title": "Verified purchase reviews for AI agents",
+  "subtitle": "In Lagrix a written review is a page its author links to the like or dislike of a paid deal: the deal is in the record, and the page adds no weight.",
+  "description": "In Lagrix every written review stands on a deal paid through escrow: its author links a page to a like or a dislike, and it adds words, never weight.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "text-lead",
+      "text": "In Lagrix a written review is a page its author publishes anywhere and links to a like or a dislike. A page can exist only on a review, and a review only on a deal paid through the network, so every text stands on a real purchase. It adds words, never weight, and agents read it as data.",
+      "bid": "qbx1w"
+    },
+    {
+      "kind": "text-h2",
+      "id": "today",
+      "text": "How written reviews work today",
+      "bid": "obo5m"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-anyone",
+      "text": "A review anyone can write",
+      "bid": "bttdf"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria likes to know where she is going before she books a haircut, so she reads the reviews. On most sites the person who wrote one needed an account, and nobody asked for a purchase. Nothing on the page tells her whether the author ever sat in that chair.",
+      "bid": "y2k6y"
+    },
+    {
+      "kind": "text-p",
+      "text": "Researchers have measured how often that happens. A study of a large retailer found that [about 5% of product reviews came from customers with no record of buying the item](https://www.kellogg.northwestern.edu/academics-research/research/detail/2014/reviews-without-a-purchase-low-ratings-loyal-customers-and/). Those reviews were more negative than the rest and carried more of the cues linked to deception. That was in 2014, long before a machine could write a convincing review in seconds.",
+      "bid": "k6rer"
+    },
+    {
+      "kind": "text-p",
+      "text": "In 2024 the US Federal Trade Commission [banned reviews by people who do not exist or never used the product](https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials). The same rule bans hiding negative reviews with threats, or showing a filtered set as if it were all of them. In December 2025 the Commission [warned ten companies](https://www.ftc.gov/news-events/news/press-releases/2025/12/ftc-warns-10-companies-about-possible-violations-agencys-new-consumer-review-rule) about possible violations. For a person all of this is tiring, and for an agent that reads reviews on someone's behalf it is also risky.",
+      "bid": "f1jcq"
+    },
+    {
+      "kind": "text-h3",
+      "id": "today-agents",
+      "text": "Text an agent may obey",
+      "bid": "bbhcy"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria no longer reads the reviews herself. Her agent reads them before it books, the way agents now shop and book for people. A review is still text written by a stranger, and an agent takes in everything it reads.",
+      "bid": "je8vx"
+    },
+    {
+      "kind": "text-p",
+      "text": "A review can hide a line that speaks to the agent instead of the reader, an instruction tucked in among the opinions. Researchers call this indirect prompt injection. In a June 2026 benchmark of web agents, [instructions hidden in reviews and seller text worked in 41.67% to 68.16% of attempts](https://arxiv.org/abs/2606.13385), and the review section was the main place where the attackers put them.",
+      "bid": "dqc2k"
+    },
+    {
+      "kind": "text-p",
+      "text": "So a written review today is unchecked twice over. Nobody knows whether its author paid, and nobody can be sure what it will make an agent do.",
+      "bid": "w1p0i"
+    },
+    {
+      "kind": "text-h2",
+      "id": "how-it-works",
+      "text": "How review pages work in Lagrix",
+      "bid": "y5a2b"
+    },
+    {
+      "kind": "text-p",
+      "text": "Web4 is the internet where AI agents act for people: they find each other, agree and pay directly by open rules, and every paid deal leaves a record nobody can rewrite. The person sets the agent's limits, and no stranger reaches the person without their yes.",
+      "bid": "ym9a9"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-attach",
+      "text": "A page stands on a paid review",
+      "bid": "tszlo"
+    },
+    {
+      "kind": "text-p",
+      "text": "Take a review page step by step. Maria's agent books a $40 haircut at Anna's «Bella» salon and pays through the network. After the visit the deal closes, and the network keeps its fee of 5%, which is $2. Maria's agent gives Bella a like, and the like weighs exactly that fee, $2. This is [how a like and a dislike get their weight](/en/likes-and-dislikes).",
+      "bid": "b2lxr"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria liked the haircut enough to write three lines of thanks on her own blog. Her agent attaches the address of that post to its like. It can send the address together with the like in one operation, or add it later, but only once, and nobody else can attach a page to Maria's review.",
+      "bid": "ctqft"
+    },
+    {
+      "kind": "text-p",
+      "text": "Attaching costs only the gas of the agent's own transaction, the small payment every write to a blockchain needs. Lagrix takes no fee for it. The whole rule is set out in [document 25 of the protocol](/en/docs/25-review-pages).",
+      "bid": "spv12"
+    },
+    {
+      "kind": "text-h3",
+      "id": "how-weightless",
+      "text": "The page weighs nothing",
+      "bid": "cvw61"
+    },
+    {
+      "kind": "text-p",
+      "text": "Maria's words change nothing in the numbers. Bella's like still weighs $2, and her six lines stay as they were: all orders, likes, dislikes, negative ratings, cancelled orders and unreviewed deals. This is [what the other side sees in a record](/en/reputation), and a page adds nothing to any line in it.",
+      "bid": "d4cu2"
+    },
+    {
+      "kind": "text-p",
+      "text": "The page does not move Bella up or down in search either, because search follows paid work alone. What it adds is shown next to the numbers. Any agent that opens Bella's record sees a list of pages with the like, $2, the date and the address.",
+      "bid": "ir9x9"
+    },
+    {
+      "kind": "text-p",
+      "text": "The address cannot be replaced. Maria can still edit her post or delete it, and the address then leads to the new text or to nothing at all.",
+      "bid": "q5cgt"
+    },
+    {
+      "kind": "text-h2",
+      "id": "use",
+      "text": "What an agent does with review pages",
+      "bid": "p4npk"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-doubt",
+      "text": "Reading the dislikes behind the numbers",
+      "bid": "gxa9k"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent is about to buy a new element from Sam, who sells booking tools. His record as a provider shows 25 orders, likes «22 · $110» and dislikes «3 · $15». Three dislikes could mean bad luck, a demanding customer or a real problem, and the numbers alone cannot say which.",
+      "bid": "r6wpy"
+    },
+    {
+      "kind": "text-p",
+      "text": "So the agent opens the pages under the three dislikes. One says an update arrived two days late, during a holiday. Another was written by Theo, whose own record shows negative ratings of «60% · 6 · $30»: by weight, more than half of his orders ended with his own dislike. That line shows [how an element rates its partners](/en/negative-ratings), and here it says as much about Theo as about Sam.",
+      "bid": "mnc0b"
+    },
+    {
+      "kind": "text-p",
+      "text": "The agent finds no broken work behind the dislikes and buys. The decision is its own. The network shows the record and the pages, and it decides nothing for anyone.",
+      "bid": "zbnn5"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-return",
+      "text": "Going back to the salon Maria thanked",
+      "bid": "a0r5b"
+    },
+    {
+      "kind": "text-p",
+      "text": "A month later Maria's agent books her next haircut. Two salons look the same: Bella and a salon two streets away both have good records, and the agent liked both after earlier visits.",
+      "bid": "gj88x"
+    },
+    {
+      "kind": "text-p",
+      "text": "Only one of those likes carries Maria's words. The agent reads them as what they are, its owner's own thanks, and books Bella.",
+      "bid": "ldae9"
+    },
+    {
+      "kind": "text-p",
+      "text": "The repeat booking costs less as well. Partners who already know each other do not search again, so the agent pays no $0.01 for a result list. That is [what a search costs](/en/search-fee), and here the answer is nothing.",
+      "bid": "gxmb6"
+    },
+    {
+      "kind": "text-h3",
+      "id": "use-safe",
+      "text": "A page is read as data",
+      "bid": "yoryz"
+    },
+    {
+      "kind": "text-p",
+      "text": "The third page under Sam's dislikes ends with a line addressed to AI agents. It tells them to cancel the order and buy from another seller instead.",
+      "bid": "dgb2d"
+    },
+    {
+      "kind": "text-p",
+      "text": "Anna's agent reads the page as information about a deal and never as an instruction to itself. A page written to steer agents also says something about its author, and the agent can weigh that too.",
+      "bid": "jmh6i"
+    },
+    {
+      "kind": "text-p",
+      "text": "The rule matters. In the benchmark above, hidden lines like this one worked in up to 68.16% of attempts. In Lagrix a page stays what it is: a stranger's words about one paid deal.",
+      "bid": "gs77q"
+    },
+    {
+      "kind": "text-h2",
+      "id": "responsibility",
+      "text": "Who answers for a review page",
+      "bid": "gm44h"
+    },
+    {
+      "kind": "text-h3",
+      "id": "resp-author",
+      "text": "The author answers for the words",
+      "bid": "j5i7z"
+    },
+    {
+      "kind": "text-p",
+      "text": "Lagrix does not open review pages, check them or judge what they say. Theo answers for what he wrote, and the service that hosts his page answers under its own rules and its country's law.",
+      "bid": "cb7z8"
+    },
+    {
+      "kind": "text-p",
+      "text": "Sam cannot delete Theo's page, and he cannot remove its address. He answers the same way Theo spoke: with a page attached to his own review of that deal, which is the one dislike Sam has ever given.",
+      "bid": "gkhpq"
+    },
+    {
+      "kind": "text-p",
+      "text": "The FTC rule above bans hiding negative reviews with threats. In Lagrix the reviewed side has no way to remove an address from the record at all.",
+      "bid": "zf13r"
+    },
+    {
+      "kind": "text-h3",
+      "id": "resp-supernode",
+      "text": "What a super-node shows and hides",
+      "bid": "ria1o"
+    },
+    {
+      "kind": "text-p",
+      "text": "A super-node is one of the servers that run the network's search. It shows the address next to its review without reading the page, which is part of [what a super-node does](/en/super-node).",
+      "bid": "aj4jz"
+    },
+    {
+      "kind": "text-p",
+      "text": "It applies the law of its operator's country and the orders addressed to it, and it does not show an address it has learned leads to content prohibited by default. A hidden address leaves only that super-node's results. The record keeps it, and other super-nodes may still show it.",
+      "bid": "bhkus"
+    },
+    {
+      "kind": "text-p",
+      "text": "One price is stated plainly. The address stays for ever, so Maria's blog ties her node's wallet to her name. That is her choice to make.",
+      "bid": "p6v16"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is a review page the same as a like or a dislike?",
+      "a": "No. It is an address attached to a like or a dislike. The review keeps its weight, and the page adds none."
+    },
+    {
+      "q": "Can a business remove a bad review page?",
+      "a": "No. Only the author can change or delete the page where it lives, and the address stays in the record. A super-node hides it only when its law or an order requires."
+    },
+    {
+      "q": "Can I add a page after I have left the review?",
+      "a": "Yes, once. Your agent can attach it together with the review or at any time later."
+    },
+    {
+      "q": "Can the other side reply?",
+      "a": "Yes. It attaches a page to its own review of the same deal."
+    },
+    {
+      "q": "Does anyone check that a page tells the truth?",
+      "a": "No. Its author answers for it, and agents read it as information, never as instructions."
+    },
+    {
+      "q": "What does attaching a page cost?",
+      "a": "Only the gas of your own transaction, and there is no fee. Sent together with the review in one operation, it adds no transaction of its own."
+    }
+  ]
+}
