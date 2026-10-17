@@ -91,6 +91,18 @@
   }
 }
 
+/* Страница без оглавления (меньше двух разделов) — одна колонка той же ширины, по центру под вывеской. */
+.solo {
+  grid-template-areas: "answer" "cover" "body";
+}
+@media (min-width: 1100px) {
+  .solo {
+    grid-template-columns: minmax(0, 40rem);
+    grid-template-areas: "answer" "cover" "body";
+    grid-template-rows: auto;
+  }
+}
+
 /* Одна строка чтения для плаката, текста и вопросов: колонка 40rem (~74 знака), а не своя `max-w-prose` у каждого вида. */
 .answer :is(p, ul, ol),
 .body :is(p, ul, ol, h2, h3, h4, blockquote) {

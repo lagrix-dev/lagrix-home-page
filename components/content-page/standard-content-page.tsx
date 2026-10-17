@@ -206,6 +206,8 @@ export function StandardContentPage({
       return m ? ({ ...b, num: m[1], text: m[2] } as Block) : b
     })
     const tocHeading = getPageUi(lang).tocHeading
+    // Оглавление бывает от двух разделов (`Toc`); у страницы короче (служебные: «Поддержка», «Условия») колонка одна, по центру.
+    const withRail = toc.length >= 2
     return (
       <PageShell top="content" columnAs="article" afterHero={afterHero} afterBody={afterBody}>
         <div className={station.station} data-look="station">
@@ -213,7 +215,7 @@ export function StandardContentPage({
             <PageHeader lang={lang} breadcrumbs={breadcrumbs} tags={tags} title={title} subtitle={subtitle} divider={false} />
           </div>
           {afterHeader}
-          <div className={station.layout}>
+          <div className={withRail ? station.layout : `${station.layout} ${station.solo}`}>
             {answer && (
               <div className={`${station.answer} ${station.poster}`}>
                 <PostBody blocks={[answer]} lang={lang} widgets={widgets} />
@@ -222,10 +224,12 @@ export function StandardContentPage({
             {(hero || heroImage) && (
               <div className={station.cover}>{hero ?? (heroImage && <PageCover src={heroImage} alt={heroAlt ?? title} />)}</div>
             )}
-            <div className={station.rail}>
-              <Toc items={toc} heading={tocHeading} />
-              <StationTocSpy navLabel={tocHeading} />
-            </div>
+            {withRail && (
+              <div className={station.rail}>
+                <Toc items={toc} heading={tocHeading} />
+                <StationTocSpy navLabel={tocHeading} />
+              </div>
+            )}
             <div className={station.body}>
               <PostBody blocks={body} lang={lang} widgets={widgets} />
               {sections}

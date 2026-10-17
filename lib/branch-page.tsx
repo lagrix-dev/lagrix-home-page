@@ -62,6 +62,12 @@ function fillElementLinks(blocks: Block[]): Block[] {
 /** Публичная ли ветка: индексируется только `(publicLayer)`; остальные закрыты своим layout. */
 const isPublic = (segments: string[]) => segments[0] === '(publicLayer)'
 
+/** Шаг 514: вид ребёнка. Публичная ветка — `station` по умолчанию (стандарт владельца 2026-10-17 для всех страниц, кроме главной
+ *  и документов: главную рисует `rootPage`, документы — свой шаблон `/docs`); `meta.look: "plain"` — отказ. Закрытые ветки —
+ *  прежний вид, пока их не попросят. */
+const lookOf = (page: TreePage, segments: string[]): 'station' | undefined =>
+  page.meta.look === 'plain' ? undefined : page.meta.look === 'station' || isPublic(segments) ? 'station' : undefined
+
 /** 402: роль папки страницы в кабинете — первая папка пути, названная именем роли (`vip-user` → `vip_user`); иначе null.
  *  Только в `(protectedLayer)`: публичная страница с именем `user` не закрывается. */
 function folderRole(page: TreePage, segments: string[]): string | null {
@@ -188,7 +194,7 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
       data: { overrides: page.overrides },
       closedBranch: !isPublic(opts.segments),
       // 507-3: обложка публичной страницы — её же сниппет (одна картинка, нарисованная функцией: на странице и в og:image).
-      meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service, look: page.meta.look },
+      meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service, look: lookOf(page, opts.segments) },
       // Статья публичной ветки нумерует заголовки 1. / 1.1. / 1.1.1. (владелец 2026-10-16) — страница, оглавление и копия Markdown.
       resolve: (lang) => { const c = contentOf(page, lang, opts.segments); return isPublic(opts.segments) ? { ...c, blocks: numberHeadings(c.blocks) } : c },
       widgets: opts.widgets,
