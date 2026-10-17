@@ -101,6 +101,8 @@ export type ContentPageConfig<C extends ContentPageContent> = {
     tags?: readonly string[]
     /** 431: страница-услуга (`meta.json` → `service`) — разметка `Service` вместо `Article`. */
     service?: ServiceMeta
+    /** Шаг 514: вид статьи (`meta.json` → `look`); `station` — вокзальная читалка, только у страниц с этим полем. */
+    look?: 'station'
   }
   /** Structured-data type for the primary entity. Defaults to 'Article'. */
   jsonLdType?: 'Article' | 'NewsArticle'
@@ -285,6 +287,7 @@ export function createContentPage<C extends ContentPageContent>(config: ContentP
           titleInBody={titleInBody}
           heroImage={meta.heroImage?.replace('{lang}', lang)}
           heroAlt={c.title}
+          look={meta.look}
           hero={hero?.(lang)}
           afterHero={afterHero?.(lang)}
           afterHeader={afterHeader?.(lang)}

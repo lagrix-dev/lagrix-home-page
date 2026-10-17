@@ -13,6 +13,8 @@ import { BackLink } from './back-link.server'
 import { PageShell } from './page-shell'
 import { Toc, tocOf, withHeadingIds } from '@/components/blocks/block-toc'
 import { getPageUi } from '@/lib/content/page-ui'
+import { StationTocSpy } from './station-toc-spy.client'
+import station from './station-look.module.css'
 
 // PORTED FROM THE PLATFORM'S MARKETING SITE (2026-08-11). Three couplings were
 // cut on the way in, and none of them is a loss for a starter: a sponsorship
@@ -86,6 +88,8 @@ export type StandardContentPageProps = {
   metaItems?: ReactNode[]
   heroImage?: string
   heroAlt?: string
+  /** Шаг 514: вид статьи; `station` — вокзальная читалка (`StationLook` ниже). Нет — обычный вид. */
+  look?: 'station'
   /**
    * Hero override. When provided, replaces the default `heroImage` figure (used by
    * createContentPost for a post's video / responsive-picture hero).
@@ -141,6 +145,7 @@ export function StandardContentPage({
   metaItems,
   heroImage,
   heroAlt,
+  look,
   hero,
   afterHero,
   afterHeader,
@@ -187,6 +192,51 @@ export function StandardContentPage({
   // 458-8: у заголовков ленты — адреса, по ним строится оглавление (вид toc из «Блоков», список считает шаблон, а не автор).
   const bodyBlocks = withHeadingIds(blocks.filter(b => b !== heroBlock))
   const toc = tocOf(bodyBlocks)
+
+  // ── ВИД `station` (шаг 514) ───────────────────────────────────────────────────────────────────────────────────────────────
+  // Вокзальная читалка навыка impeccable (выбор владельца 2026-10-17: «Только discovery», «Читалка + вокзал»). Те же данные,
+  // крошки, оглавление, вопросы и разметка для поиска, что у обычного вида; меняется только раскладка: вывеска цвета табло,
+  // ответ (первый `text-lead`) на жёлтом плакате сразу под ней, обложка меньше и после ответа, оглавление справа и липкое,
+  // номер раздела — квадрат платформы. Строки автора нет: на вывеске она читалась бы обрывком.
+  if (look === 'station' && !titleInBody && !heroBlock) {
+    const answer = bodyBlocks[0]?.kind === 'text-lead' ? bodyBlocks[0] : null
+    const body = (answer ? bodyBlocks.slice(1) : bodyBlocks).map((b) => {
+      if (b.kind !== 'text-h2') return b
+      const m = /^(\d+)\.\s+([\s\S]+)$/.exec(b.text)
+      return m ? ({ ...b, num: m[1], text: m[2] } as Block) : b
+    })
+    const tocHeading = getPageUi(lang).tocHeading
+    return (
+      <PageShell top="content" columnAs="article" afterHero={afterHero} afterBody={afterBody}>
+        <div className={station.station} data-look="station">
+          <div className={station.band}>
+            <PageHeader lang={lang} breadcrumbs={breadcrumbs} tags={tags} title={title} subtitle={subtitle} divider={false} />
+          </div>
+          {afterHeader}
+          <div className={station.layout}>
+            {answer && (
+              <div className={`${station.answer} ${station.poster}`}>
+                <PostBody blocks={[answer]} lang={lang} widgets={widgets} />
+              </div>
+            )}
+            {(hero || heroImage) && (
+              <div className={station.cover}>{hero ?? (heroImage && <PageCover src={heroImage} alt={heroAlt ?? title} />)}</div>
+            )}
+            <div className={station.rail}>
+              <Toc items={toc} heading={tocHeading} />
+              <StationTocSpy navLabel={tocHeading} />
+            </div>
+            <div className={station.body}>
+              <PostBody blocks={body} lang={lang} widgets={widgets} />
+              {sections}
+              {faq && faq.length > 0 && renderBlocks([{ kind: 'block-faq', title: blockUi.faqTitle, items: faq }], 'faq')}
+              {backHref && <BackLink href={backHref} label={backLabel} next={next} />}
+            </div>
+          </div>
+        </div>
+      </PageShell>
+    )
+  }
 
   return (
     /* 🔒 ОБОЛОЧКА — ОБЩАЯ, А НЕ СВОЯ (2026-08-19). Здесь стоял собственный

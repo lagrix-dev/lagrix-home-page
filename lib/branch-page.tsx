@@ -188,7 +188,7 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
       data: { overrides: page.overrides },
       closedBranch: !isPublic(opts.segments),
       // 507-3: обложка публичной страницы — её же сниппет (одна картинка, нарисованная функцией: на странице и в og:image).
-      meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service },
+      meta: { subPath: sub, ogImage: ogImageOf(page.meta.ogImage, opts.segments, sub), heroImage: isPublic(opts.segments) ? snippetPath(sub) : undefined, service: page.meta.service, look: page.meta.look },
       // Статья публичной ветки нумерует заголовки 1. / 1.1. / 1.1.1. (владелец 2026-10-16) — страница, оглавление и копия Markdown.
       resolve: (lang) => { const c = contentOf(page, lang, opts.segments); return isPublic(opts.segments) ? { ...c, blocks: numberHeadings(c.blocks) } : c },
       widgets: opts.widgets,

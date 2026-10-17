@@ -15,7 +15,13 @@ export const TEXT_SET: BlockSet = {
   // Ритм как в типографике shadcn (владелец 2026-10-16): над заголовком — воздух, его текст — сразу под ним. Лента рисуется колонкой
   // с зазором 24 px (`PostBody`), поэтому отступ сверху здесь — добавка к нему: H2 48, H3 36, H4 28; текст — цвет основного текста.
   // Строка чтения — `max-w-prose` (~65 знаков): колонка страницы подчиняется переключателю ширины, а длина строки текста — нет.
-  'text-h2': ({ blockKey: k = 'h2', text, id }: Text) => <H2 id={id} className="mt-6 max-w-prose first:mt-0">{inline(text, k)}</H2>,
+  // Шаг 514: `num` ставит только вид `station` (номер раздела — квадрат платформы, `data-platform`); без него — как было.
+  'text-h2': ({ blockKey: k = 'h2', text, id, num }: Text & { num?: string }) => (
+    <H2 id={id} className="mt-6 max-w-prose first:mt-0">
+      {num ? <><span data-platform>{num}</span>{' '}</> : null}
+      {inline(text, k)}
+    </H2>
+  ),
   'text-h3': ({ blockKey: k = 'h3', text, id }: Text) => <H3 id={id} className="mt-3 max-w-prose">{inline(text, k)}</H3>,
   'text-h4': ({ blockKey: k = 'h4', text, id }: Text) => <H4 id={id} className="mt-1 max-w-prose">{inline(text, k)}</H4>,
   'text-p': ({ blockKey: k = 'p', text }: Text) => <P className="max-w-prose leading-7 text-foreground">{inline(text, k)}</P>,
