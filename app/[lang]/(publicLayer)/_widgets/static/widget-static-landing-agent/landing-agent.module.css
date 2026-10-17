@@ -2286,30 +2286,43 @@
 @keyframes expressDot { 0%, 100% { opacity: 0.15; translate: 0 0; } 50% { opacity: 0.7; translate: -4px 0; } }
 @media (prefers-reduced-motion: reduce) { .expressLine, .expressDot { animation: none; } .expressDot { opacity: 0.4; } }
 
-/* 515-5 (владелец 2026-10-17): комната «VIP PERSON» — музейный зал вокзала: стена — табло, рамы — плакат (золото), холсты — мел,
-   силуэты — чернила, колонны — мел, гардина — глубокий сигнал, кнопка — сигнал. Одно авторское движение — магний (2 с, искры и
-   тёплый свет) → белое мгновенно, 0,5 с → растворение 1 с; предметы исчезают в белом и возвращаются за 0,5 с после окна.
-   Фазы — `data-phase` острова `vip-room.client.tsx`; цвета — только роли страницы и их смеси. */
+/* 515-5 / 515-7 (владелец 2026-10-17): комната «VIP PERSON» — музейный зал вокзала: стена — табло, рамы — плакат (золото), холсты —
+   мел, силуэты — чернила, знак эпохи — золото, колонны — мел, гардина — глубокий сигнал, табличка — плакат на болтах (как H2H/H2A
+   «Телеграфа»). Одно авторское движение — магний (2 с, искры и тёплый свет) → белое мгновенно, 0,5 с → растворение 1 с; на белом зал
+   уходит, кроме колонн (и вывески над залом), и на стене висит картина с концепцией. Сцена не возвращается до перезагрузки.
+   Фазы — `data-phase` острова `vip-room.client.tsx`, `data-open` — с белого и дальше; цвета — только роли страницы и их смеси. */
 .vipHall { padding: 4.5rem 0 3rem; }
 .vipRoom {
+  --vip-h: clamp(380px, 46vw, 560px);
+  --vip-col: calc(var(--vip-h) * 92 / 560);
   --vip-white: var(--background);
   --vip-white: oklch(from var(--primary) 0.995 0.003 h);
   --vip-gilt-deep: color-mix(in oklab, var(--poster) 72%, var(--ink));
-  --vip-wood: color-mix(in oklab, var(--poster) 42%, var(--ink));
+  --vip-gilt-hi: color-mix(in oklab, var(--poster) 55%, var(--chalk));
+  --vip-wood: color-mix(in oklab, color-mix(in oklab, var(--signal) 38%, var(--poster)) 52%, var(--ink));
+  --vip-wood-hi: color-mix(in oklab, var(--vip-wood) 70%, var(--chalk));
+  --vip-wood-lo: color-mix(in oklab, var(--vip-wood) 58%, var(--ink));
+  --vip-leather: color-mix(in oklab, var(--signal) 40%, var(--ink));
+  --vip-pleat: color-mix(in oklab, var(--signal) 70%, var(--chalk));
+  --vip-canvas: color-mix(in oklab, var(--chalk) 86%, var(--poster));
+  --vip-canvas-edge: color-mix(in oklab, var(--chalk) 66%, var(--poster));
   --vip-curtain: color-mix(in oklab, var(--signal) 80%, var(--ink));
   --vip-fold: color-mix(in oklab, var(--signal) 52%, var(--ink));
+  --vip-flute: color-mix(in oklab, var(--board) 12%, var(--chalk));
   position: relative;
   margin-top: 1.5rem;
 }
 .vipStage {
   position: relative;
-  height: clamp(380px, 46vw, 560px);
+  height: var(--vip-h);
   overflow: hidden;
   border-radius: var(--tile-corner);
   background: var(--board);
   box-shadow: 0 30px 50px -36px var(--shade);
 }
-.vipSvg { display: block; width: 100%; height: 100%; }
+/* Сцена прижата к полу и высоты не меняет, когда зал растёт под картину; якорем прокрутки она не бывает — иначе браузер
+   «догонял» бы её и уводил картину вверх. */
+.vipSvg { position: absolute; inset: auto 0 0 0; display: block; width: 100%; height: var(--vip-h); overflow-anchor: none; }
 
 .vipWall { fill: var(--board); }
 .vipWainscot { fill: var(--board-deep); }
@@ -2318,30 +2331,90 @@
 .vipParquet { stroke: color-mix(in oklab, var(--board) 14%, var(--floor)); stroke-width: 2; fill: none; }
 .vipSkirting { fill: var(--board-deep); }
 
-.vipColumn { fill: var(--chalk); }
-.vipFlute { fill: color-mix(in oklab, var(--board) 12%, var(--chalk)); }
-.vipLampArm { fill: var(--vip-gilt-deep); }
-.vipLamp { fill: var(--poster); }
+/* Колонны — у краёв зала; капитель и база держат пропорции, ствол тянется, когда зал вырастает под картину. */
+.vipCol {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--vip-h) * 62 / 560);
+  bottom: calc(var(--vip-h) * 127 / 560);
+  width: var(--vip-col);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.vipColL { left: 0; }
+.vipColR { right: 0; }
+.vipColCap, .vipColBase { display: block; flex: none; width: 100%; height: auto; fill: var(--chalk); overflow: visible; }
+.vipColShaft {
+  flex: 1;
+  margin-inline: 19.6%;
+  background: linear-gradient(90deg, var(--chalk) 0 17.9%, var(--vip-flute) 17.9% 23.2%, var(--chalk) 23.2% 39.3%,
+    var(--vip-flute) 39.3% 44.6%, var(--chalk) 44.6% 60.7%, var(--vip-flute) 60.7% 66.1%, var(--chalk) 66.1% 82.1%,
+    var(--vip-flute) 82.1% 87.5%, var(--chalk) 87.5%);
+}
+
+/* Рамы-багеты: тело — плакат, блик и тень — его смеси с мелом и чернилами, бусины — пунктир круглыми концами. */
 .vipGilt { fill: var(--poster); }
 .vipGiltDeep { fill: var(--vip-gilt-deep); }
-.vipCanvas { fill: color-mix(in oklab, var(--chalk) 86%, var(--poster)); }
+.vipGiltHi { fill: var(--vip-gilt-hi); }
+.vipBevelHi { fill: none; stroke: var(--vip-gilt-hi); stroke-width: 3; }
+.vipBevelLo { fill: none; stroke: var(--vip-gilt-deep); stroke-width: 3; }
+.vipBead { fill: none; stroke: var(--vip-gilt-hi); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 0 5; }
+.vipCanvasMid { stop-color: var(--vip-canvas); }
+.vipCanvasEdge { stop-color: var(--vip-canvas-edge); }
+.vipShadow { fill: var(--ink); opacity: 0.35; }
+.vipConeTop { stop-color: var(--poster); stop-opacity: 0.32; }
+.vipConeEnd { stop-color: var(--poster); stop-opacity: 0; }
 .vipInk { fill: var(--ink); }
+.vipCollar { fill: var(--vip-canvas); stroke: var(--ink); stroke-width: 1.4; }
+.vipCut { fill: none; stroke: var(--vip-canvas); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.vipGold { fill: var(--poster); }
+.vipGoldCut { fill: none; stroke: var(--vip-gilt-deep); stroke-width: 1.6; stroke-linecap: round; }
 
 .vipRod { fill: var(--poster); }
 .vipCurtain { fill: var(--vip-curtain); }
 .vipFold { fill: none; stroke: var(--vip-fold); stroke-width: 7; stroke-linecap: round; opacity: 0.75; }
-.vipTie { fill: var(--poster); }
 
+/* Полевая камера: орех со светлой кромкой и тенью, мехи — тёмная кожа цвета сигнала, латунь — плакат. */
 .vipWood { fill: var(--vip-wood); }
-.vipBellows { fill: var(--flapc); }
-.vipPleat { stroke: color-mix(in oklab, var(--chalk) 25%, var(--flapc)); stroke-width: 2; }
+.vipWoodHi { fill: var(--vip-wood-hi); }
+.vipWoodLo { fill: var(--vip-wood-lo); }
+.vipHood { fill: var(--flapc); }
+.vipLeather { fill: var(--vip-leather); }
+.vipPleat { fill: none; stroke: var(--vip-pleat); stroke-width: 1.6; opacity: 0.8; }
 .vipBrass { fill: var(--poster); }
-.vipLens { fill: var(--flapc); stroke: color-mix(in oklab, var(--chalk) 55%, var(--flapc)); stroke-width: 2; }
-.vipStick { fill: var(--flapc); }
-.vipTray { fill: var(--vip-gilt-deep); }
+.vipGlass { fill: var(--flapc); }
+.vipGlint { fill: none; stroke: var(--chalk); stroke-width: 1.6; stroke-linecap: round; opacity: 0.8; }
 .vipPowder { fill: var(--chalk); }
 
-/* Магний: тёплый свет, вспыхивающая чаша, искры, дым — видимы только в фазе burn. */
+/* Табличка — кнопка съёмки. */
+.vipPlate { cursor: pointer; outline: none; }
+.vipPlateFace { fill: var(--poster); stroke: var(--ink); stroke-width: 2.5; transition: stroke-width 0.15s var(--ease); }
+.vipPlate:hover .vipPlateFace { stroke-width: 4; }
+.vipPlate:focus-visible .vipPlateFace { stroke: var(--signal); stroke-width: 5; }
+.vipBolt { fill: var(--ink-soft); }
+.vipPlateCode { font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: 0.03em; fill: var(--ink); }
+.vipPlateHint { font-family: var(--text); font-weight: 600; font-size: 14px; fill: var(--ink); }
+
+/* Шнур и кисть: под рукой кисть уходит вниз (`--pull`), шнур тянется (`--stretch`); отпущенные — пружинят обратно. Нажатие на
+   табличку или кисть — рывок сам (`data-tug`). */
+.vipPull { cursor: grab; touch-action: none; }
+.vipPull[data-drag] { cursor: grabbing; }
+.vipEyelet { fill: none; stroke: var(--vip-gilt-deep); stroke-width: 2.5; }
+.vipRope { fill: none; stroke: var(--vip-gilt-deep); stroke-width: 5; stroke-linecap: round; }
+.vipRopeTwist { fill: none; stroke: var(--poster); stroke-width: 5; stroke-dasharray: 3 4; }
+.vipFringe { fill: none; stroke: var(--vip-gilt-deep); stroke-width: 1.4; }
+.vipGrip { fill: transparent; }
+.vipCord, .vipTassel { transform-box: fill-box; }
+.vipCord { transform-origin: 50% 0; transform: scaleY(var(--stretch, 1)); }
+.vipTassel { transform: translateY(var(--pull, 0px)); }
+.vipPull:not([data-drag]) :is(.vipCord, .vipTassel) { transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.vipPull[data-tug] .vipCord { animation: vipTugCord 0.5s cubic-bezier(0.3, 0.7, 0.4, 1); }
+.vipPull[data-tug] .vipTassel { animation: vipTug 0.5s cubic-bezier(0.3, 0.7, 0.4, 1); }
+@keyframes vipTug { 35% { transform: translateY(26px); } 70% { transform: translateY(-4px); } }
+@keyframes vipTugCord { 35% { transform: scaleY(1.141); } 70% { transform: scaleY(0.978); } }
+
+/* Магний: тёплый свет, вспыхивающий лоток, искры, дым — видимы только в фазе burn. */
 .vipGlowCore { stop-color: var(--vip-white); stop-opacity: 1; }
 .vipGlowMid { stop-color: var(--poster); stop-opacity: 0.55; }
 .vipGlowEdge { stop-color: var(--poster); stop-opacity: 0; }
@@ -2362,48 +2435,137 @@
   100% { opacity: 0; transform: translate(0, -80px) scale(1.8); }
 }
 
-/* Вспышка: белое мгновенно и на 0,5 с, затем растворение за 1 с; предметы исчезают в белом и не видны, пока открыто окно. */
-.vipFlash { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; background: var(--vip-white); }
+/* Вспышка: белое мгновенно и на 0,5 с, затем растворение за 1 с. На белом зал уходит целиком, кроме колонн, и вырастает под
+   картину — рост скрыт белым. */
+.vipFlash { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; background: var(--vip-white); overflow-anchor: none; }
 .vipRoom[data-phase="flash"] .vipFlash { opacity: 1; }
 .vipRoom[data-phase="fade"] .vipFlash { opacity: 0; transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1); }
-.vipObjects, .vipButton { transition: opacity 0.5s var(--ease); }
-.vipRoom:is([data-phase="flash"], [data-phase="fade"], [data-phase="open"]) :is(.vipObjects, .vipButton) {
-  opacity: 0;
-  transition: none;
-  pointer-events: none;
+.vipRoom[data-open] .vipObjects { visibility: hidden; }
+.vipRoom[data-open] .vipStage {
+  height: auto;
+  min-height: var(--vip-h);
+  display: grid;
+  align-content: start;
+  padding: calc(var(--vip-h) * 0.075 + 1.4rem) calc(var(--vip-col) + clamp(10px, 2.2vw, 30px))
+    calc(var(--vip-h) * 130 / 560 + clamp(14px, 2.4vw, 30px));
 }
 
-/* Кнопка «Стать VIP» стоит там, где встаёт снимаемый, — перед гардиной; на узком экране — внизу посередине. */
-.vipButton, .vipNoscript {
+/* Картина с концепцией: лампа-рожок, багет с бусинами и розетками, холст с тёплым светом сверху. Текст — тот же, что до вспышки
+   жил в HTML для поиска и читалок. */
+.vipPainting { position: relative; z-index: 2; justify-self: center; width: 100%; max-width: 62rem; outline: none; }
+.vipPainting ::selection { background: color-mix(in oklab, var(--poster) 60%, transparent); color: var(--ink); }
+.vipPicLamp {
   position: absolute;
-  z-index: 2;
-  left: 80%;
-  bottom: 13%;
+  z-index: 1;
+  left: 50%;
+  top: -1.25rem;
   translate: -50% 0;
+  width: min(36%, 14rem);
+  height: 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(var(--vip-gilt-hi), var(--poster) 45%, var(--vip-gilt-deep));
+  box-shadow: 0 8px 12px -8px var(--shade);
+}
+.vipPicLamp::after { content: ""; position: absolute; left: 50%; top: 100%; width: 0.3rem; height: 0.7rem; translate: -50% 0; background: var(--vip-gilt-deep); }
+.vipPicFrame {
+  --mold: clamp(12px, 2vw, 24px);
+  position: relative;
+  padding: var(--mold);
+  border: 2px solid var(--vip-gilt-deep);
+  background: linear-gradient(140deg, var(--vip-gilt-hi) 0%, var(--poster) 24%, var(--poster) 60%, var(--vip-gilt-deep) 100%);
+  box-shadow: 0 30px 46px -28px var(--shade), inset 0 0 0 1px var(--vip-gilt-hi);
+}
+.vipPicFrame::before { content: ""; position: absolute; inset: calc(var(--mold) * 0.4); border: 2px dotted var(--vip-gilt-hi); pointer-events: none; }
+.vipPicCorner {
+  position: absolute;
+  width: calc(var(--mold) * 0.72);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--vip-gilt-deep) 0 24%, var(--vip-gilt-hi) 28% 62%, var(--poster) 66%);
+}
+.vipPicTl { top: calc(var(--mold) * 0.14); left: calc(var(--mold) * 0.14); }
+.vipPicTr { top: calc(var(--mold) * 0.14); right: calc(var(--mold) * 0.14); }
+.vipPicBl { bottom: calc(var(--mold) * 0.14); left: calc(var(--mold) * 0.14); }
+.vipPicBr { bottom: calc(var(--mold) * 0.14); right: calc(var(--mold) * 0.14); }
+.vipPicCanvas {
+  position: relative;
+  padding: clamp(1.1rem, 3vw, 2.4rem) clamp(1rem, 3.2vw, 2.6rem);
+  background:
+    radial-gradient(110% 60% at 50% 0%, color-mix(in oklab, var(--poster) 24%, transparent), transparent 64%),
+    radial-gradient(140% 120% at 50% 40%, var(--vip-canvas) 60%, var(--vip-canvas-edge));
+  box-shadow: inset 0 0 0 3px var(--vip-gilt-deep), inset 0 10px 18px -10px color-mix(in oklab, var(--ink) 45%, transparent);
+  color: var(--ink);
+}
+.vipPicTitle { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 3.1vw, 2.35rem); line-height: 1.05; letter-spacing: 0.01em; text-wrap: balance; }
+.vipPicLead { margin: 0.55rem 0 0; max-width: 62ch; font-family: var(--text); font-size: clamp(1rem, 1.35vw, 1.1rem); line-height: 1.5; color: var(--ink-soft); }
+.vipPicPoints {
+  margin: 1.1rem 0 0;
+  padding: 1.1rem 0 0;
+  list-style: none;
+  border-top: 2px solid var(--vip-gilt-deep);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 0.8rem 2.2rem;
+  font-family: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.vipPicPoints li { position: relative; padding-left: 1.2rem; }
+.vipPicPoints li::before { content: ""; position: absolute; left: 0.1rem; top: 0.55em; width: 0.45rem; height: 0.45rem; rotate: 45deg; background: var(--vip-gilt-deep); }
+.vipPicMore {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--board);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--vip-gilt-deep);
+  text-underline-offset: 0.25em;
+}
+.vipPicMore:hover { color: var(--signal); }
+.vipPicMore:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+/* Холст «проявляется», пока растворяется белое, — как снимок. */
+.vipRoom[data-phase="fade"] .vipPicCanvas { animation: vipDevelop 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes vipDevelop { from { filter: sepia(0.55) brightness(1.12) contrast(0.86); } to { filter: none; } }
+
+/* Без JavaScript табличка не работает — стоит ссылка на страницу «Официальные агенты». */
+.vipNoscript {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 6%;
+  translate: -50% 0;
+  display: inline-flex;
   padding: 0.85rem 1.4rem;
   border-radius: var(--tile-corner);
   background: var(--signal);
   color: var(--chalk);
   font-family: var(--display);
   font-weight: 700;
-  font-size: 1.15rem;
-  line-height: 1;
+  font-size: 1.05rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0 14px 24px -14px var(--shade);
 }
-.vipButton:hover { background: color-mix(in oklab, var(--signal) 88%, var(--chalk)); }
-.vipButton:focus-visible, .vipNoscript:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
-@media (max-width: 760px) {
-  .vipButton, .vipNoscript { left: 50%; bottom: 6%; font-size: 1rem; }
+.vipNoscript:focus-visible { outline: 3px solid var(--poster); outline-offset: 3px; }
+
+/* Телефон: сцена срезана по краям — колонн до вспышки не видно; на табличке только надпись, её нажимают. */
+@media (max-width: 639px) {
+  .vipRoom { --vip-col: 22px; }
+  .vipRoom:not([data-open]) .vipCol { display: none; }
+  .vipVolute, .vipPlateHint { display: none; }
+  .vipPlateCode { font-size: 36px; transform: translateY(10px); }
+  .vipPicPoints { font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vipRoom[data-phase] :is(.vipWarm, .vipPowderGlow, .vipSpark, .vipSmoke) { animation: none; opacity: 0; }
-  .vipObjects, .vipButton, .vipRoom[data-phase="fade"] .vipFlash { transition: none; }
-  /* без вспышки предметам незачем исчезать: окно открывается поверх целой комнаты */
-  .vipRoom[data-phase="open"] .vipObjects { opacity: 1; }
+  .vipPull:not([data-drag]) :is(.vipCord, .vipTassel), .vipPull[data-tug] :is(.vipCord, .vipTassel) { transition: none; animation: none; }
+  .vipRoom[data-phase="fade"] :is(.vipFlash, .vipPicCanvas) { transition: none; animation: none; }
 }

@@ -207,9 +207,9 @@ export function LandingAgent({ lang }: { lang: string }) {
         </section>
       )}
 
-      {/* 515-5 (владелец 2026-10-17): «VIP PERSON» — музейный зал после «Телеграфа»: портреты великих людей прошлого, камера с
-          магниевой вспышкой, гардина; «Стать VIP» → магний 2 с → белое 0,5 с → растворение 1 с → окно с концепцией метки
-          «Официальный». Слова — `landing.vipRoom`. */}
+      {/* 515-5, 515-7 (владелец 2026-10-17): «VIP PERSON» — музейный зал после «Телеграфа»: портреты великих людей прошлого, полевая
+          камера с магниевой вспышкой, гардина; табличка «Стать VIP» со шнуром и кистью → магний 2 с → белое 0,5 с → растворение 1 с →
+          на стене между колоннами картина с концепцией метки «Официальный», зал не возвращается. Слова — `landing.vipRoom`. */}
       {x.vipRoom && (
         <section data-block="bbb41" id="vip-person" className={s.vipHall}>
           <div data-block="z38ta" className={s.wrap}>
@@ -220,7 +220,7 @@ export function LandingAgent({ lang }: { lang: string }) {
                 {x.vipRoom.text && <p data-block="mbxf5" className={s.waitingText}>{x.vipRoom.text}</p>}
               </div>
             </div>
-            <VipRoom w={x.vipRoom} lang={lang} ui={appDialogUi(lang)} />
+            <VipRoom w={x.vipRoom} lang={lang} />
           </div>
         </section>
       )}

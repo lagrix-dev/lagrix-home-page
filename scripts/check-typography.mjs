@@ -60,6 +60,8 @@ const ALLOWED_RAW_HEADINGS = new Set([
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "zero-day.tsx"),
   // «Таможня» того же лендинга (шаг 467): табличка на цепочках — та же, что у «Зала ожидания» в index.tsx.
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "customs.tsx"),
+  // Комната «VIP PERSON» того же лендинга (шаг 515-7): заголовок картины с концепцией — в оформлении страницы.
+  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "vip-room.client.tsx"),
   // «А почему всё-таки Lagrix?» того же лендинга (шаг 470): табличка-вопрос ночной сцены — заголовок в оформлении страницы.
   path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "why-night.tsx"),
   // Тот же вопрос — кнопка-табличка в островке сцены (шаг 470-3).

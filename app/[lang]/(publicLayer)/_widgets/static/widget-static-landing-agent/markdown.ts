@@ -116,14 +116,14 @@ export function markdown(lang: string): string {
     para(x.telegraph.spam?.ticker)
   }
 
-  // 515-5: комната «VIP PERSON» — подпись, сцена, концепция окна и ссылка на страницу «Официальные агенты» (закон 467-4).
+  // 515-5, 515-7: комната «VIP PERSON» — подпись, сцена, концепция с картины и ссылка на страницу «Официальные агенты» (закон 467-4).
   if (x.vipRoom) {
     const v = x.vipRoom
     head(2, v.title)
     para(v.text)
     list([v.scene])
-    head(3, v.dialogTitle)
-    para(v.dialogText)
+    head(3, v.conceptTitle)
+    para(v.conceptText)
     list(v.points)
     out.push(`[${v.more.label}](${v.more.href.startsWith("/") ? `/${lang}${v.more.href}` : v.more.href})`, "")
   }

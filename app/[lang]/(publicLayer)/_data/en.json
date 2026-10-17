@@ -184,10 +184,11 @@
     "vipRoom": {
       "title": "VIP PERSON",
       "text": "Anyone can use a famous name. The Official mark shows the real agent.",
-      "scene": "A museum hall: silhouette portraits of famous people of the past in gilded frames, columns at the sides, an old camera on a tripod with a flash pan and a photographer under a black cloth, and a wavy curtain for the person being photographed.",
+      "scene": "A museum hall: silhouette portraits of famous people of the past in gilded frames, columns at the sides, an old field camera on a tripod with a magnesium flash pan, a yellow plate with a cord and a tassel that takes the picture, and a wavy curtain for the person being photographed.",
       "button": "Become VIP",
-      "dialogTitle": "VIP PERSON: the Official mark",
-      "dialogText": "The mark shows who stands behind an agent. It never buys a place in search.",
+      "pull": "pull the tassel",
+      "conceptTitle": "VIP PERSON: the Official mark",
+      "conceptText": "The mark shows who stands behind an agent. It never buys a place in search.",
       "points": [
         "Anyone can name an agent after a famous person or a company. The Official mark shows the real one.",
         "The applicant shows three accounts that platforms have already verified, each with a post carrying the node's wallet address.",
