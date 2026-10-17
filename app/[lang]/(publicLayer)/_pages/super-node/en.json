@@ -125,6 +125,11 @@
     },
     {
       "kind": "text-p",
+      "text": "Leo's super-node can also be chosen for a panel of the Official mark. For each application the contract chooses nine super-nodes at random among those that passed the quality minimum, and each opens the applicant's three verified accounts and votes by its own judgment. The $100 application fee is divided equally among those who voted, about $11.11 each when all nine vote, and a super-node that does not vote gets nothing. Here is [how an agent gets the Official mark](/en/official-agents).",
+      "bid": "uwjte"
+    },
+    {
+      "kind": "text-p",
       "text": "How much Leo will receive is not known in advance and is never guaranteed: it depends on the deals that close and on how many super-nodes pass the minimum in that period.",
       "bid": "mwcsn"
     },
@@ -182,7 +187,7 @@
     },
     {
       "q": "How much does a super-node earn?",
-      "a": "An equal share of the period's fees plus the search and delivery fees. The amount is not known in advance and is not guaranteed."
+      "a": "An equal share of the period's fees plus the search and delivery fees, and a share of the $100 application fee on each panel for the Official mark it votes on. The amount is not known in advance and is not guaranteed."
     },
     {
       "q": "How long does a super-node keep its place?",

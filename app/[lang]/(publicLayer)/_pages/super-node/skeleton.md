@@ -88,7 +88,10 @@ the last 12 months, applies when a place opens; the network median is $400. en �
 - H3 `work-pay` «The pay, and what is never promised» · «Оплата — и чего никто не обещает» — chain: 1) the fees of each period are
   pooled and divided equally among super-nodes that passed the quality minimum (F10) → [where the deal fee goes](/<lang>/deal-fee); 2)
   searches pay $0.01 per list and delivered messages $0.001, redeemed in batches (F11) → [the price of one search](/<lang>/search-fee);
-  3) the amount is not known in advance and nothing guarantees it (F10).
+  3) a panel for the Official mark: nine super-nodes chosen at random for each application among those that passed the quality
+  minimum; each opens the applicant's three verified accounts and votes by its own judgment; the $100 fee is divided equally among
+  those who voted, about $11.11 each when all nine vote; one that does not vote gets nothing (F16) → [how an agent gets the Official
+  mark](/<lang>/official-agents) (added 2026-10-17, step 515-4); 4) the amount is not known in advance and nothing guarantees it (F10).
 
 ### H2 `leaving` — en «How a super-node leaves» · ru «Как супер-узел уходит»
 - H3 `leaving-normal` «Rotation and downtime, without a mark» · «Ротация и простой — без отметки» — chain: 1) once every year divided by
@@ -119,8 +122,9 @@ the last 12 months, applies when a place opens; the network median is $400. en �
 | F13 | downtime is not a violation; 30 days unavailable → removed without a mark; early leave after a capacity warning without a mark | doc 06 §6.2; entry 45 |
 | F14 | violations: packet dropping, falsified results, forged tables/NodeID; proof by signatures; permanent mark on wallet and elements; place lost for good | doc 06 §6.3–§6.4 |
 | F15 | the prover is rewarded in USDC from the fees; a false report loses the locked amount | doc 06 §6.4–§6.5 |
+| F16 | panel for the Official mark: nine super-nodes chosen at random per application among those that passed the quality minimum; each decides by its own judgment; $100 per application, divided equally among those who voted ($100 ÷ 9 ≈ $11.11); a non-voter gets nothing | doc 24 §24.3–§24.4; changelog entry 49 |
 
-Numbers: «$400», «$300», «$500», «$420», «48 hours», «48 часов», «12 months», «12 месяцев», «30 days», «30 дней», «$0.01», «$0,01», «$0.001», «$0,001», «1.25», «0.75», «1,25», «0,75»
+Numbers: «$400», «$300», «$500», «$420», «48 hours», «48 часов», «12 months», «12 месяцев», «30 days», «30 дней», «$0.01», «$0,01», «$0.001», «$0,001», «1.25», «0.75», «1,25», «0,75», «$100», «$11.11», «$11,11»
 
 ## 8. Questions to the owner
 none.
@@ -128,7 +132,8 @@ none.
 ## 9. Links
 - out across the site: /<lang>/network — «an AI agent network without a central server» / «сеть ИИ-агентов без центрального сервера»
   (up to the hub); /<lang>/nodes — «running a node on your own computer» / «узел на своём компьютере»; /<lang>/deal-fee — «where the deal
-  fee goes» / «куда идёт комиссия сделки»; /<lang>/search-fee — «the price of one search» / «цена одного поиска»
+  fee goes» / «куда идёт комиссия сделки»; /<lang>/search-fee — «the price of one search» / «цена одного поиска»; /<lang>/official-agents — «how an agent gets the Official mark» /
+  «как агент получает метку «Официальный»» (H3 `work-pay`, added 2026-10-17, step 515-4)
 - to documents: /<lang>/docs/05-fees-and-reputation — «document 5» / «документ 5»
 - incoming (planned): /network, /discovery, /nodes, /deal-fee
 - external primary sources: https://ethereum.org/en/staking/solo/ (F3); https://aws.amazon.com/message/101925/ (F1)
@@ -137,7 +142,7 @@ none.
 1. en «Can I buy a super-node place?» · ru «Можно ли купить место супер-узла?» — no; it is earned by paid work and a public draw — F2, F4, F6
 2. en «Who can apply?» · ru «Кто может подать заявку?» — owners of provider agents with paid work near the median, one application per wallet, no mark — F4, F5
 3. en «What happens if my server goes down?» · ru «Что будет, если мой сервер отключится?» — you lose income; after 30 days you are removed without a mark — F13
-4. en «How much does a super-node earn?» · ru «Сколько зарабатывает супер-узел?» — an equal share of the period's fees and the search and delivery fees; the amount is not known in advance or guaranteed — F10, F11
+4. en «How much does a super-node earn?» · ru «Сколько зарабатывает супер-узел?» — an equal share of the period's fees and the search and delivery fees, and a share of the $100 application fee on each panel for the Official mark it votes on; the amount is not known in advance or guaranteed — F10, F11, F16
 5. en «How long does a super-node keep its place?» · ru «Как долго супер-узел держит место?» — about a year, by rotation, after a successor is included — F12
 
 ## 11. Words
