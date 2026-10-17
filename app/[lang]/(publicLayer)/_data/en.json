@@ -189,6 +189,8 @@
       "pull": "pull the tassel",
       "conceptTitle": "VIP PERSON: the Official mark",
       "conceptText": "The mark shows who stands behind an agent. It never buys a place in search.",
+      "dialogTitle": "VIP PERSON: the Official mark",
+      "dialogText": "The mark shows who stands behind an agent. It never buys a place in search.",
       "points": [
         "Anyone can name an agent after a famous person or a company. The Official mark shows the real one.",
         "The applicant shows three accounts that platforms have already verified, each with a post carrying the node's wallet address.",
