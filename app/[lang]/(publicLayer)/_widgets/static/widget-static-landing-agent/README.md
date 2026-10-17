@@ -325,18 +325,39 @@ The transit map's ring name runs on a 228°–312° arc (366 units): on 235°–
 ## Step 515 (2026-10-17): the «VIP PERSON» room
 
 `vip-room.client.tsx`, words `landing.vipRoom` (section `#vip-person`, right after the Telegraph). A museum hall of the station world:
-the wall is the board, gilded frames are the poster, canvases chalk, silhouettes ink without faces (the zero-day pictogram rule);
-two ionic columns at the edges, five portraits recognised by one sign each (bicorne, laurel wreath, stovepipe hat and beard, ruff,
-Egyptian headdress with uraeus), an old camera on a tripod slightly left of centre with a photographer under a black cloth holding
-the flash pan up, a deep-signal curtain on the right with a tie-back. The scene is one SVG (viewBox 1200×560, `xMidYMax slice`, so
-a phone keeps the centre: photographer, camera, two portraits, the curtain's edge).
+the wall is the board, gilded frames are the poster, canvases chalk, silhouettes ink without faces (the zero-day pictogram rule),
+the sign of each era in gold. Second edition 515-7 (owner, 2026-10-17: no photographer, a plate with a cord and a curtain tassel
+instead of the button, a painting instead of the modal, the room never comes back; plus a critique of the camera and the
+portraits):
 
-One authored moment, phases in `data-phase` (timers only in the island, motion in CSS): **«Become VIP»** → `burn` 2 s (warm light
-grows, the powder flickers, 12 sparks and smoke) → `flash` 0.5 s (white `oklch(from var(--primary) 0.995 0.003 h)` over the whole
-room; `vipObjects` and the button vanish, the wall and floor stay) → `fade` 1 s → the product dialog `AppDialog` opens halfway
-through the fade (title, one line, six points of the Official mark, link to `/official-agents`) → Escape or ✕ → `back` 0.5 s.
-Under `prefers-reduced-motion` the dialog opens at once, no white, objects stay. Without JavaScript a `noscript` link to
-`/official-agents` stands in for the button; the dialog text is always in the HTML (`asSr`) and in `markdown.ts`.
-Measured in headless Chrome by state (no screenshots during playback): burn at 1 s, flash 1 at 2.25 s, dialog with 6 points at
-3.5 s; reduced motion — dialog at 0.3 s, flash 0. The cookie banner is also `[role=dialog]`: probe the product dialog by
-`[data-slot=dialog-content]`.
+- **Scene** — one SVG (viewBox 1200×560, `xMidYMax slice`), pinned to the floor (`.vipSvg` is absolute at the bottom with the
+  height `--vip-h`), so it never rescales when the hall grows. Five framed portraits with their own profiles (Napoleon — bicorne
+  with a gold cockade, high collar, epaulette; Caesar — aquiline nose, gold laurel wreath with ribbons, toga; Shakespeare — high
+  forehead, hair to the collar, pointed beard, white falling band, gold earring; Lincoln — stovepipe, jaw beard without a
+  moustache, shirt collar; Cleopatra — striped headcloth, gold diadem, uraeus and broad collar), hung on one centre line; frames
+  are a three-tone moulding (highlight · body · shadow) with beads, ovals carry a carved bow, rectangles corner rosettes, each top
+  frame a picture light with a warm cone. A field camera in profile (bed, rear standard with a focusing hood, red leather bellows,
+  front standard, brass lens with rings and hood, tripod with a brass collar and tips); the magnesium pan sits on a brass rod on
+  the rear standard. The deep-signal curtain on the right. On phones (≤639 px) the left group of frames (`.vipFarLeft`) is hidden —
+  the crop left a sliver of a frame.
+- **Trigger** — a yellow plate on four bolts (the Telegraph's H2H/H2A plates) slightly left of the camera, high on the wall:
+  «BECOME VIP» and the hint «pull the tassel» (`pull`; hidden on phones, the plate is tapped there). A twisted cord hangs from it
+  to a curtain tassel. Shoot by: a click / Enter / Space on the plate (`role="button"`) · dragging the tassel down past 28 units
+  (pointer capture; the tassel follows `--pull`, the cord stretches by `--stretch`, released it springs back) · a tap on the tassel
+  (less than 4 units — it tugs by itself, `data-tug`). The burn effects (`.vipWarm` r=260 lies over the plate) have
+  `pointer-events: none` — without it they swallowed every press.
+- **Moment** — `burn` 2 s → `flash` 0.5 s (white over the hall; `data-open` from here: `.vipObjects` hidden, the hall grows to the
+  painting's height under the white) → `fade` 1 s (the white dissolves, the canvas «develops» from sepia) → `shown`, focus moves to
+  the painting. No close, no Escape: the first scene returns only after a reload. Reduced motion: a press shows the painting at
+  once, no white.
+- **What stays** — the columns (`.vipCol`, HTML at the hall's edges: capital and base keep their proportions, the fluted shaft
+  stretches; on phones they appear only with the painting) and the sign «VIP PERSON» above the hall.
+- **Painting** — the concept block itself (`conceptTitle`, `conceptText`, six `points`, `more`): before the flash it is `asSr` text
+  for search, agents and screen readers; after it the same nodes become a framed painting (lamp, gilded moulding with beads and
+  rosettes, cream canvas with a warm light from the top, points in two columns on wide screens). `markdown.ts` copies the same words.
+  Without JavaScript a `noscript` link to `/official-agents` stands in for the plate.
+
+Measured in headless Chrome by state, no screenshots during playback (`scratchpad/vip-pull-check.mjs` of the session): a real
+mouse drags the tassel 60 px → `--pull: 60px` under the hand, burn, at 3.3 s white 1 with objects hidden and the painting 908×547
+(the hall 560 → 772 px), then `shown` with focus; Escape changes nothing. A drag of 8 px leaves the hall idle; reduced motion —
+the painting at 0.37 s, white 0; Enter on the plate runs the same path.

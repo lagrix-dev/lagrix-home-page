@@ -2513,10 +2513,9 @@
 }
 .vipPicPoints li { position: relative; padding-left: 1.2rem; }
 .vipPicPoints li::before { content: ""; position: absolute; left: 0.1rem; top: 0.55em; width: 0.45rem; height: 0.45rem; rotate: 45deg; background: var(--vip-gilt-deep); }
+/* Ссылка переносится как текст, стрелка идёт за последним словом (а не уезжает вправо от всего абзаца на телефоне). */
 .vipPicMore {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-block;
   margin-top: 1.2rem;
   font-family: var(--display);
   font-weight: 700;
@@ -2529,6 +2528,7 @@
   text-decoration-color: var(--vip-gilt-deep);
   text-underline-offset: 0.25em;
 }
+.vipPicMore svg { display: inline-block; margin-left: 0.35rem; vertical-align: -0.12em; }
 .vipPicMore:hover { color: var(--signal); }
 .vipPicMore:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
 /* Холст «проявляется», пока растворяется белое, — как снимок. */
