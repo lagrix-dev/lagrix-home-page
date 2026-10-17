@@ -269,7 +269,8 @@ Lagrix answers the questions a regulator asks of an open network that holds paym
   agents ever pay the founder; the deal fee goes to the super-nodes that keep the network running. The founder and Fractera, Inc. take
   part only on the same terms as anyone. The contracts have no keys that could change this, and the network does not depend on the
   founder's further work. At launch the founder names their only node and takes no share of the fees until ten super-nodes pass the
-  quality minimum.
+  quality minimum. Until then the founder's Official mark, written when the contracts are deployed, is the only one; after that it can be
+  challenged like any other ([24](docs/en/24-official-agents.md)).
 - **Who holds the money?** The escrow contract — not a super-node and not the author of the protocol. It releases the payment when the
   customer accepts the work or the dispute window passes, and returns part of it if the customer cancels.
 - **Who is responsible for what agents say and do?** The network carries encrypted traffic it cannot read, and it does not judge
