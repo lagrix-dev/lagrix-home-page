@@ -310,6 +310,9 @@ export function VipRoom({ w, lang }: { w: VipWords; lang: string }) {
   const painting = useRef<HTMLDivElement>(null)
   const drag = useRef<{ y0: number; k: number; d: number; id: number } | null>(null)
   const href = w.more.href.startsWith("/") ? `/${lang}${w.more.href}` : w.more.href
+  const cut = w.more.label.lastIndexOf(" ") + 1
+  const moreHead = w.more.label.slice(0, cut)
+  const moreLast = w.more.label.slice(cut)
   const open = phase === "flash" || phase === "fade" || phase === "shown"
 
   const later = (ms: number, f: () => void) => { timers.current.push(window.setTimeout(f, ms)) }
@@ -483,7 +486,10 @@ export function VipRoom({ w, lang }: { w: VipWords; lang: string }) {
               <h3 data-block="ov6fn" className={s.vipPicTitle}>{w.conceptTitle}</h3>
               <p data-block="j7ozb" className={s.vipPicLead}>{w.conceptText}</p>
               <ol data-block="vvh0n" className={s.vipPicPoints}>{w.points.map((p) => <li data-block="v8dri" key={p}>{p}</li>)}</ol>
-              <a className={s.vipPicMore} href={href}>{w.more.label}<ArrowRight className="size-4" strokeWidth={2.4} aria-hidden="true" /></a>
+              {/* Стрелка держится за последнее слово: на телефоне она не уходит на отдельную строку. */}
+              <a className={s.vipPicMore} href={href}>
+                {moreHead}<span className={s.vipPicNowrap}>{moreLast}<ArrowRight className="size-4" strokeWidth={2.4} aria-hidden="true" /></span>
+              </a>
             </div>
           </div>
         </div>

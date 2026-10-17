@@ -2529,6 +2529,7 @@
   text-underline-offset: 0.25em;
 }
 .vipPicMore svg { display: inline-block; margin-left: 0.35rem; vertical-align: -0.12em; }
+.vipPicNowrap { white-space: nowrap; }
 .vipPicMore:hover { color: var(--signal); }
 .vipPicMore:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
 /* Холст «проявляется», пока растворяется белое, — как снимок. */
