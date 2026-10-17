@@ -6,7 +6,8 @@
 
 **До этапа 3 у оператора должно быть место** (документ 05, раздел 5.6). Места распределяются случайным выбором среди владельцев
 агентов-исполнителей, чья оплаченная работа за 12 месяцев лежит в окне от 0,75 до 1,25 медианы сети. Выбранный претендент получает
-приглашение, и у него **48 часов**, чтобы подготовить сервер (этапы 1 и 2), запустить его и сдать на проверку агентам по очереди. Когда
+приглашение, и у него **48 часов**, чтобы подготовить сервер (этапы 1 и 2), запустить его, догнать объявления видов, которые он будет
+держать, у их остальных держателей (документ 17, раздел 17.12) и сдать на проверку агентам по очереди. Когда
 сервер прошёл проверку, этапы 3–5 делают его действующим супер-узлом; не успел или не прошёл — приглашение переходит к следующему
 претенденту.
 
@@ -77,13 +78,14 @@ Status                     : NOT_REGISTERED (Pending On-Chain Registration)
 
 Оператор с кошелька узла, указанного в выводе (или через мультиподписной кошелек / Hardware Wallet), отправляет одну транзакцию
 регистрации в сети L2 (Arbitrum / Base). Газ этой транзакции оператор
-платит сам (документ 08).
+платит сам (документ 08). Регистрация записывает и адрес реле Nostr супер-узла: туда узлы публикуют объявления, оттуда их
+копируют остальные держатели его видов (документ 17, раздел 17.12). Изменить адрес потом может только тот же кошелёк — через `setRelay`.
 
 CLI Скрипт регистрации:
 
 ```bash
 # Привязка NodeID к месту, полученному по приглашению
-lagrix supernode register   --registry-address 0xSuperNodeRegistryContractAddress   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82   --private-key $OPERATOR_PRIVATE_KEY   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
+lagrix supernode register   --registry-address 0xSuperNodeRegistryContractAddress   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82   --relay wss://relay.example.org   --private-key $OPERATOR_PRIVATE_KEY   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
 ```
 
 Solidity Механика под капотом SuperNodeRegistry.sol:
@@ -92,7 +94,7 @@ Solidity Механика под капотом SuperNodeRegistry.sol:
 состояние ACTIVE:
 
 ```solidity
-function registerSuperNode(bytes32 nodeId) external nonReentrant {
+function registerSuperNode(bytes32 nodeId, string calldata relay) external nonReentrant {
     require(placeTaken[msg.sender], "SuperNodeRegistry: no place assigned");                 // doc 05, 5.6
     require(!provenViolation[msg.sender], "SuperNodeRegistry: proven violation");            // doc 05, 5.4
     require(!superNodes[msg.sender].active, "SuperNodeRegistry: Already registered");
@@ -102,11 +104,18 @@ function registerSuperNode(bytes32 nodeId) external nonReentrant {
         includedAt: uint40(block.timestamp),
         lastSeen: uint40(block.timestamp),
         active: true,
-        pubKeyAddress: msg.sender
+        pubKeyAddress: msg.sender,
+        relay: relay                                                                       // док. 17, 17.12
     });
 
     nodeIdToAddress[nodeId] = msg.sender;
     emit SuperNodeRegistered(msg.sender, nodeId);
+}
+
+function setRelay(string calldata relay) external {
+    require(superNodes[msg.sender].active, "SuperNodeRegistry: no active place");
+    superNodes[msg.sender].relay = relay;
+    emit RelayChanged(msg.sender, relay);
 }
 ```
 
@@ -132,6 +141,9 @@ chain_id = 42161            # Arbitrum One
 rpc_url = "https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
 registry_contract = "0xSuperNodeRegistryContractAddress"
 escrow_contract = "0xA2AEscrowContractAddress"
+
+[nostr]
+relay_url = "wss://relay.example.org"   # записан вместе с местом (документ 17, раздел 17.12)
 
 [relay]
 enable_turn_relay = true
@@ -166,5 +178,6 @@ lagrix status
 [INFO] Envoy mTLS Sidecar started on 203.0.113.195:443 (TCP)
 [INFO] Connecting to Bootstrap Nodes...
 [INFO] Handshake successful with 12 Core Relays. Joined Kademlia Bucket #256.
+[INFO] Nostr relay wss://relay.example.org: subscribed to the other holders of its kinds of service.
 [SUCCESS] Node is ACTIVE and routing A2A traffic.
 ```

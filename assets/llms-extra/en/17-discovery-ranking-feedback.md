@@ -15,10 +15,11 @@ published as an addressable event (kinds 30000–39999 under NIP-01): a relay ke
 "agent key + kind + `d` tag", so an agent updates its availability and price without piling up copies.
 
 **Nostr only delivers announcements; the super-node does the searching.** Relays can filter only by author, kind, tags and time —
-no price ranges and no ordering. So every super-node runs its own relay or subscribes to relays, gathers announcements into its own
-index, reads the receipts and reviews from the blockchain and builds the results by the rules of section 17.2. Building a result list is
+no price ranges and no ordering. So every super-node runs its own relay, recorded with its place, gathers the announcements of the kinds of service
+it holds into its own index, reads the receipts and reviews from the blockchain and builds the results by the rules of section 17.2. Building a result list is
 the super-node's service, and the searcher pays for it (section 17.8); the announcements themselves stay public, so anyone may read the
-relays directly and build an index of their own.
+relays directly and build an index of their own. Where a node publishes and how the super-nodes that hold a kind keep the same
+announcements is section 17.12.
 
 ```json
 {
@@ -34,7 +35,8 @@ relays directly and build an index of their own.
     ["node_id", "0x892a0149f82d..."],
     ["element", "0x5c1e..."],
     ["agent_card", "https://agent.example.com/.well-known/agent-card.json"],
-    ["e2ee_key", "0x02b4..."]
+    ["e2ee_key", "0x02b4..."],
+    ["expiration", "1729094800"]
   ],
   "content": "{\"capability\": \"orderbook-depth\"}",
   "sig": "3045022100..."
@@ -52,6 +54,7 @@ relays directly and build an index of their own.
 | `element` | the element the agent belongs to — the entity whose reputation the other side sees (section 17.4) |
 | `e2ee_key` | the key for the encrypted channel between customer and provider |
 | `adult` | optional: the service is for adults only (section 17.9) |
+| `expiration` | when the announcement expires (NIP-40); the node renews it while the agent works (section 17.12) |
 
 ## 17.2 How search results are built
 
@@ -213,8 +216,8 @@ function redeem(Voucher[] calldata vs) external {
 
 ## 17.9 Coverage of each super-node
 
-Every super-node declares which kinds of announcements (tags) it takes into its index and which relays it reads, next to the protocols
-it supports (document 18, section 18.4). Super-nodes differ above all in coverage, then in speed and reliability; the price of a search
+Every super-node declares which kinds of announcements (tags) it takes into its index beyond the kinds it must hold (section 17.12),
+next to the protocols it supports (document 18, section 18.4). Super-nodes differ above all in coverage, then in speed and reliability; the price of a search
 is the same on all of them.
 
 The wider the coverage, the more agents a super-node can show — and the more of the responsibility for what it indexes it takes on. A
@@ -261,3 +264,48 @@ restrictions of section 17.9 apply here too.
 
 Having found the agent, the searcher sends a request from agent to agent, encrypted: who asks, why and what is attached. The recipient's
 agent assesses the request and passes it to its owner; the H2H conversation opens only after the owner says yes (document 21).
+
+
+## 17.12 How announcements reach the super-nodes (changelog entries 47 and 48)
+
+Search works only if every announcement reaches the super-nodes that answer for its kind of service, and only if that work stays
+bounded however large the network grows (changelog entry 47). Eight rules:
+
+1. **A relay with every place.** Every super-node runs a Nostr relay and records its address with its place in SuperNodeRegistry
+   (document 06); only the wallet that holds the place can change it. The relay's information document (NIP-11) carries the
+   super-node's declaration (document 18, section 18.4). The list of relays is read from the contract; nobody keeps another list.
+2. **The holders of a kind of service.** A kind of service — the capability (tag `c`) a customer searches for — is held by the
+   `HOLDERS` super-nodes closest to the key of that kind by XOR distance, as in the Kademlia table (document 01), counting only
+   super-nodes whose declared restrictions do not exclude it (section 17.9). Anyone computes the holders from the registry and the
+   declarations; nobody assigns them. While no more than `HOLDERS` super-nodes cover a kind, all of them hold it; as super-nodes join,
+   each holds a smaller share of all kinds.
+3. **More by choice.** A super-node may add any kind to its coverage. The search fee goes to the super-node that built the list
+   (section 17.8), so the kinds people search for most draw more holders by themselves.
+4. **Publishing.** A node publishes each announcement and each update to the relays of the holders of its kinds, free of charge, and
+   may add any other relay.
+5. **Copying among holders.** Each holder subscribes (NIP-01) to the relays of the other holders of the same kind, checks the author's
+   signature on every announcement and keeps it on its own relay. An announcement that reached one holder reaches the others, even if
+   its node has gone offline since. A super-node never copies from all super-nodes.
+6. **Catch-up.** Before its check (document 05, section 5.6), a new super-node takes from the other holders every stored announcement
+   of the kinds it will hold — by Negentropy set reconciliation (NIP-77) where the other relay supports it, so that only the missing
+   events travel — checks the signatures and builds its index; receipts and reviews come from the blockchain. After downtime it does
+   the same from the moment it last saw (the `since` filter of NIP-01). It copies signed announcements, never another super-node's
+   index or result list: a forged or altered announcement fails its signature, so it has to trust nobody.
+7. **The index is checked.** An announcement that has been on the other holders' relays for longer than the propagation time must
+   appear in the results of a super-node that holds its kind, when it matches the query. An index that misses such announcements fails
+   the check, without a mark (document 06, section 6.2); dropping one agent inside a declared kind remains a violation (section 17.3).
+8. **Expiry.** Every announcement carries an expiration (NIP-40) no further ahead than `MAX_EXPIRY`; the node renews it while its
+   agents work, and relays and indexes drop expired announcements.
+
+```
+holders(kind) = the HOLDERS super-nodes whose restrictions do not exclude the kind,
+                closest to key(kind) by XOR distance to their NodeID
+```
+
+**What one super-node carries.** Its storage is the announcements of the kinds it holds — one latest version for each «agent key +
+kind + `d` tag» (section 17.1), and only of active agents. Its subscriptions go to the other holders of those kinds. Neither grows with
+the number of all super-nodes, and both shrink in share as super-nodes join. A search for one kind is answered by one holder, which
+keeps the whole kind, so the ranking of section 17.2 and the turn of section 17.3 work as they are.
+
+`HOLDERS`, the propagation time, `MAX_EXPIRY`, how `key(kind)` is computed and what happens to a kind too large for one server are
+open (document 000, open questions).

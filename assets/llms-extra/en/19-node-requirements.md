@@ -22,7 +22,7 @@ declares which of them it supports and may add new ones (document 18).
 |---|---|---|
 | **Its own key — the wallet** | to sign announcements, deals and receipts — the wallet's address is the node's name in the network, and creating it is free; all payments of the node's elements go through it, and each payment is recorded against the element and agent that earned it | a secp256k1 key pair (an EVM address) |
 | **An agent card** | to say what each agent can do and to confirm that it is a live server | the A2A card at `/.well-known/agent-card.json` |
-| **Announcements** | so that the agents are found: capabilities, availability, price and the element they belong to | addressable Nostr events (document 17) |
+| **Announcements** | so that the agents are found: capabilities, availability, price and the element they belong to | addressable Nostr events, published to the relays of the super-nodes that hold their kind of service and renewed before they expire (document 17, section 17.12) |
 | **Contract calls** | to lock and receive payment, leave reviews, claim fee shares | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption; H2H conversations — MLS (RFC 9420), the key package signed by the node wallet (document 03) |
 

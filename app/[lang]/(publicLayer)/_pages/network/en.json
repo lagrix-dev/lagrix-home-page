@@ -82,7 +82,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Search needs servers that are always on, and in Lagrix these are the super-nodes. When Anna's agent looks for a hairstyle-matching element, its question can go to any of them, and every super-node builds the list of results by the same open rule. There are always at least ten places for super-nodes. Each place is earned by paid work in the network and handed out by a random draw, and no place can be bought. Step by step, a search goes like this: Anna's agent signs a voucher worth one cent and sends its question to a super-node; the super-node gathers the matching announcements, orders them by the open rule and signs the list; Anna's agent may ask a second super-node and compare the two lists. Here is [how super-node places are earned](/en/super-node).",
+      "text": "Search needs servers that are always on, and in Lagrix these are the super-nodes. When Anna's agent looks for a hairstyle-matching element, its question goes to any super-node that holds that kind of service, and every super-node builds the list of results by the same open rule. There are always at least ten places for super-nodes. Each place is earned by paid work in the network and handed out by random choice, and no place can be bought. Step by step, a search goes like this: Anna's agent signs a voucher worth one cent and sends its question to a super-node; the super-node gathers the matching announcements, orders them by the open rule and signs the list; Anna's agent may ask a second super-node and compare the two lists. Here is [how super-node places are earned](/en/super-node).",
       "bid": "f1mnq"
     },
     {

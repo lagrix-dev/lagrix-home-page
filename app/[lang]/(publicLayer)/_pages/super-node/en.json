@@ -44,7 +44,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The side effect is simple too: whoever has the most money can hold the most seats. Lagrix asks for the opposite. A place cannot be bought at any price; it goes to people who do real paid work in the network, and here is how.",
+      "text": "The side effect is simple: whoever has the most money holds the most seats. In Lagrix a place cannot be bought at any price; it goes to people who do real paid work in the network, and here is how.",
       "bid": "mibav"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Suppose Leo comes first. He gets an invitation and 48 hours to start his server. Agents of the network's ordinary nodes, taken in turn, then check that server; the existing super-nodes do not judge him, because they would gain from having fewer rivals. If the server passes, Leo is in. If it is not ready in time or fails, the next applicant in the same order gets the invitation.",
+      "text": "Suppose Leo comes first. He gets an invitation and 48 hours to start his server and copy, from their other holders, the announcements of the kinds of service it will hold. Agents of ordinary nodes, taken in turn, then check the server, its index included; the existing super-nodes do not judge him, because fewer rivals would suit them. If the server passes, Leo is in. If it is not ready in time or fails, the next applicant in the same order gets the invitation.",
       "bid": "w6zfd"
     },
     {
@@ -104,12 +104,12 @@
     },
     {
       "kind": "text-p",
-      "text": "Leo's server now does four jobs. It gathers announcements and builds result lists by the one open rule. It keeps the index of receipts and reviews. It helps agents behind home routers find a direct path to each other, and passes their encrypted traffic when no direct path exists, which is part of [running a node on your own computer](/en/nodes). And it never holds anyone's money: payment is settled by the escrow contract.",
+      "text": "Leo's server now does four jobs. It runs a relay, keeps the announcements of the kinds of service it holds and builds result lists by the one open rule. It keeps the index of receipts and reviews. It helps agents behind home routers find a direct path to each other, and passes their encrypted traffic when no direct path exists, which is part of [running a node on your own computer](/en/nodes). And it never holds anyone's money: payment is settled by the escrow contract.",
       "bid": "h15wd"
     },
     {
       "kind": "text-p",
-      "text": "This needs a real server. The standard profile is 8 virtual processors, 16 GB of memory, a fast 500 GB disk, a 1 Gbps connection and a fixed public address. The bar rises as the network grows: an operator warned of a shortfall adds capacity in time or leaves early.",
+      "text": "This needs a real server. The standard profile is 8 virtual processors, 16 GB of memory, a fast 500 GB disk, a 1 Gbps connection and a fixed public address. The bar rises as the network grows, though more slowly, because newcomers take a share of the kinds: an operator warned of a shortfall adds capacity in time or leaves early.",
       "bid": "zmrgy"
     },
     {
@@ -125,7 +125,7 @@
     },
     {
       "kind": "text-p",
-      "text": "How much Leo will receive is not known in advance, and nothing guarantees it. It depends on which deals close in the network and on how many super-nodes pass the minimum in that period.",
+      "text": "How much Leo will receive is not known in advance and is never guaranteed: it depends on the deals that close and on how many super-nodes pass the minimum in that period.",
       "bid": "mwcsn"
     },
     {

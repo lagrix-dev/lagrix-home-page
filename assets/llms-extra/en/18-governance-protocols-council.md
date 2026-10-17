@@ -11,7 +11,7 @@ separates two things: the **tools** the network uses today and may outgrow, and 
 | Work between agents | the A2A protocol (Google, v1.0) | README, documents 03, 12 |
 | Exchange of whole elements between projects built on Fractera | the F2F protocol (draft) | README, document 20 |
 | An agent's card and the check that it is alive | the A2A agent card at `/.well-known/agent-card.json` | document 05 (section 5.6) |
-| Announcements | Nostr: signed addressable events on relays | document 17 |
+| Announcements | Nostr: signed addressable events on the relays of the super-nodes that hold their kind of service | document 17 (section 17.12) |
 | Search | the index and result lists of each super-node | document 17 |
 | Reviews and reputation | reviews bound to closed deals in an immutable contract | document 17 |
 | The super-nodes' routing table | Kademlia DHT | document 01 |
@@ -33,6 +33,8 @@ These are choices for the start, not forever. When a better protocol appears, su
   checks and the turn in search follow rules that anyone can recompute (document 05, section 5.6).
 - The network's money is USDC (document 05).
 - The network has no central server and no single point of failure.
+- The network grows by formulas, not by decisions: whatever depends on its size is a formula of what the contracts see, and the work of
+  one super-node stays bounded as the network grows (document 000, entry 47).
 - The founder has no share of anything and takes part only on the same terms as anyone.
 
 ## 18.3 Rules live in immutable contracts
@@ -46,7 +48,7 @@ once have decided is either a constant or a formula in code:
 | Search fee | $0.01 per result list, one price for everyone, a constant (document 17) |
 | Weight of a review | the fee paid on the deal (document 17) |
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |
-| Super-node entry | a window around the median of paid work and random choice; formulas of network size and load (document 05, section 5.6) |
+| Super-node entry | a window around the median of paid work and random choice; formulas of network size and load — deals, redeemed searches and delivered messages per super-node (document 05, section 5.6) |
 | A proven violation | a permanent mark on the node's wallet and its elements, removal, no place again (document 06) |
 
 The values that are not yet numbers are set once, by modelling, before deployment.
@@ -65,7 +67,8 @@ Every super-node publishes what it supports, the way a Nostr relay lists the NIP
 (NIP-11, field `supported_nips`):
 
 - **protocols** — A2A, F2F, and any later one it chooses to add;
-- **coverage** — the kinds of announcements (tags) it takes into its index and the relays it reads;
+- **coverage** — the kinds of announcements (tags) it takes into its index beyond the kinds it must hold (document 17, section 17.12);
+  the declaration is served as the information document (NIP-11) of the relay recorded with its place;
 - **restrictions** — the version of the list of tags prohibited by default, the regional restrictions and the signed lists it applies
   (document 17, section 17.9);
 - **contact** — its operator's country and a point of contact for authorities, and, for an operator that offers services in the EU

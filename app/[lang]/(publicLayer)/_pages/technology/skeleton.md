@@ -1,5 +1,7 @@
 # Skeleton /technology — hub technology
 
+> 🔒 Changelog entries 47–48 (2026-10-17): announcements go to the relays of the super-nodes that hold their kind of service (document 17, section 17.12); every super-node runs a relay recorded with its place, a newcomer catches up before its check, and the work of one super-node stays bounded as the network grows. The texts follow it.
+
 > 🔒 Running example changed 2026-10-17 (owner: «Лучше пусть Анна заказывает дополнительные f2f элемент для ии подбора причесок»): Anna's «Bella» salon buys Leo's AI hairstyle-matching element over F2F for $100 (document 20) instead of a translation; Leo sells it through his agent. Read every «translation» below as this element; the texts follow it.
 
 Written 2026-10-17 (step 507-9) by the federal agent, from the protocol (README glossary «Money and stamps», «Where deals are recorded»,

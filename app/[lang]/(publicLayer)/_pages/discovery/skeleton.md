@@ -1,5 +1,7 @@
 # Skeleton /discovery — itself (hub)
 
+> 🔒 Changelog entries 47–48 (2026-10-17): announcements go to the relays of the super-nodes that hold their kind of service (document 17, section 17.12); every super-node runs a relay recorded with its place, a newcomer catches up before its check, and the work of one super-node stays bounded as the network grows. The texts follow it.
+
 Written 2026-10-16 (step 507-4) by the federal agent, from the protocol (README, documents 00–23, changelog 000) and research of the
 same day. A writer at minimum reasoning writes `en.json` and `ru.json` from this file only; whatever is not here is not on the page.
 Form: `/code/.claude/skills/lagrix-answer-pages/references/tz-template.md`.

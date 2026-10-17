@@ -14,6 +14,7 @@ struct SuperNode {
     uint40 lastSeen;        // last confirmed availability
     bool   active;          // holds a place now
     address pubKeyAddress;  // address bound to the NodeID
+    string  relay;          // address of its Nostr relay (document 17, section 17.12)
 }
 mapping(address => bool) public provenViolation;  // node wallet => permanent mark; such a node may not hold a place again
 ```
@@ -30,6 +31,8 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6). It receives no mark: it did not cheat — it left.
 - **Leaving early after an unanswered capacity warning** is not a penalty either: there is no mark (changelog entry 45).
+- **An index that misses announcements** of the kinds the super-node holds (document 17, section 17.12) is treated like downtime: the
+  super-node fails the check and loses income, without a mark.
 - **Leaving by rotation or by overload is not a penalty either;** the rules are in document 05, section 5.6.
 
 ## 6.3 Violations and their proof

@@ -76,7 +76,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The announcement travels over [Nostr](/en/nostr), an open system of signed messages passed along by simple relay servers. Nostr is not a blockchain and costs nothing to use, and anyone can read the announcements on it directly. The announcement also points to the agent card Anna already has, so nothing in the card needs to change.",
+      "text": "The announcement travels over [Nostr](/en/nostr), an open system of signed messages, to the relays of the super-nodes that hold its kind of service. Nostr is not a blockchain and costs nothing to use, and anyone can read the announcements on it directly. The announcement also points to the agent card Anna already has, so nothing in the card needs to change.",
       "bid": "yvf2x"
     },
     {

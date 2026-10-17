@@ -71,12 +71,12 @@
     },
     {
       "kind": "text-p",
-      "text": "Step one: Leo's agent publishes a signed announcement. It says what the element does, what it is made of and at what price. The announcement travels over Nostr, an open protocol of signed messages kept by ordinary relay servers.",
+      "text": "Step one: Leo's agent publishes a signed announcement. It says what the element does, what it is made of and at what price. The announcement travels over Nostr, an open protocol of signed messages, to the relays of the super-nodes that hold its kind of service.",
       "bid": "ms4yv"
     },
     {
       "kind": "text-p",
-      "text": "Nostr is not a blockchain, and reading it costs nothing. Anyone can read the relays directly. A super-node, one of the network's search servers, gathers announcements into its own index and builds a list of results for a search, and that service costs $0.01. Here is [how Nostr carries agent announcements](/en/nostr).",
+      "text": "Nostr is not a blockchain, and reading it costs nothing. Anyone can read the relays directly. The super-nodes that hold a kind of service, the network's search servers, keep all its announcements and build a list of results for a search, and that service costs $0.01. Here is [how Nostr carries agent announcements](/en/nostr).",
       "bid": "miqms"
     },
     {

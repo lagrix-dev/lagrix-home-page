@@ -47,76 +47,87 @@ costs and why, what a super-node can and cannot remove.
   собирает объявления и строит упорядоченный список результатов за $0,01.»
 
 ## 6. Body plan
-One running example: **Leo**'s translation agent publishes its offer; **Anna**'s salon agent looks for a translator. en 1240–1280 words,
-ru ≥ 1000. H2 headings name the subject (§5в); en without dashes.
+One running example: **Leo** publishes the offer of his AI hairstyle-matching element; **Anna**'s salon agent looks for such an element
+(owner 2026-10-17). en up to 1600 words (owner 2026-10-17), ru ≥ 1000. H2 headings name the subject (§5в); en without dashes.
+Rewritten 2026-10-17 for changelog entries 47–48 after the owner's questions about section 1.2: who keeps the relays, whether storage grows
+with the network, what guarantees an answer, how this differs from a search engine.
 
 ### H2 `today` — en «Where agent offers live now» · ru «Где сейчас живут предложения агентов»
 - H3 `today-registries` «Registries without a shared address» · «Реестры без общего адреса» — chain: 1) A2A names three ways to find an
   agent: a well-known address on its own site, curated registries, and direct configuration (F1, external link); 2) for registries the
-  specification does not prescribe a standard API (F1); 3) so each registry is someone's product, and Leo's agent exists only where that
-  someone lists it. Budget 130.
+  specification prescribes no standard API (F1); 3) so each registry is someone's product, and Leo's agent exists there only while its
+  owner allows. Budget 110.
 - H3 `today-nostr` «Nostr in plain words» · «Nostr простыми словами» — chain: 1) in Nostr the only kind of object is an event, a small
-  message signed by its author's key (F2, external link); 2) relays are ordinary servers that keep events and hand them out; anyone can
-  run one; 3) Nostr is not a blockchain and costs nothing to use (F4); 4) people have tried job markets for agents on it: NIP-90, where a
-  user names the output and the price and providers compete, is now marked draft and unrecommended (F3, external link). Budget 160.
+  message signed by its author's key; no server that passes it on can forge or change it (F2, external link); 2) the servers that keep
+  events are relays; anyone can run one, so a random relay promises nothing (F4); 3) in Lagrix the relays that matter are the super-nodes'
+  own, their addresses written in the contract with each place (F12); 4) Nostr is not a blockchain and costs nothing (F4). Budget 120.
 
 ### H2 `how-it-works` — en «How announcements work in Lagrix» · ru «Как устроены объявления в Lagrix»
 - paragraph: Web4 definition verbatim (skill §1).
-- H3 `ann-publish` «Leo publishes one announcement» · «Лео публикует одно объявление» — chain: 1) Leo's agent signs an announcement: what
-  it does, when it is available, its price in USDC, a link to its A2A card and its encryption key (F5); 2) it is an addressable event
-  (kinds 30000 to 39999): a relay keeps only the latest one for each key, kind and tag (F2, F5); 3) when Leo changes his price, the new
-  announcement replaces the old one, and no copies pile up (F5). Budget 140.
-- H3 `ann-search` «A super-node builds the results» · «Супер-узел строит выдачу» — chain: 1) relays can filter only by author, kind, tags
-  and time, with no price ranges and no ordering (F6); 2) a super-node gathers announcements into its own index and reads receipts and
-  reviews from the blockchain (F6); 3) it builds Anna's list by the network's open rules (F6) → [how search results are built in
-  Lagrix](/<lang>/discovery). Budget 140.
+- H3 `ann-publish` «Leo publishes one announcement» · «Лео публикует одно объявление» — chain: 1) Leo's agent writes an announcement: what
+  it does, when, its price in USDC, a link to its A2A card and its encryption key (F5); 2) it sends it to the relays of the super-nodes that
+  hold its kind of service; anyone computes them from the contract (F12); a relay keeps only the latest version (F2, F5); 3) a new price
+  replaces the old; the announcement expires unless renewed (F5, F12). Budget 170.
+- H3 `ann-search` «A super-node builds the results» · «Супер-узел строит выдачу» — chain: 1) relays filter only by author, kind, tags and
+  time (F6); 2) the holders of Anna's kind keep all its announcements and copy new ones from each other, checking signatures (F12);
+  3) receipts and reviews from the blockchain, the list by open rules (F6) → [how search results are built in Lagrix](/<lang>/discovery).
+  Budget 100.
+- H3 `ann-catch-up` «A new super-node catches up» · «Новый супер-узел догоняет сеть» — chain: 1) a newcomer computes the kinds it will
+  hold; 2) takes from their other holders only the missing announcements; 3) checks signatures, builds its own index, never copies
+  results (F12); 4) agents check it; missing announcements fail the check — no place for a newcomer, no income for a working super-node
+  (F12) → [how super-node places are earned and checked](/<lang>/super-node). Budget 110.
 
 ### H2 `free` — en «What is free and what is paid» · ru «Что бесплатно, а что платно»
-- H3 `free-read` «Reading is free» · «Читать бесплатно» — chain: 1) Nostr itself stays free (F7); 2) Anna's agent may read the relays
-  directly and build an index of its own, paying nothing (F6, F7); 3) contacts in announcements are public (F7). Budget 120.
-- H3 `free-search` «A ranked list costs one cent» · «Упорядоченный список стоит цент» — chain: 1) a super-node spends real work on every
-  list: gathering, filtering, ordering (F7); 2) the searcher pays $0.01 per list from a prepaid balance (F7); 3) a million searches would
-  cost $10,000, which protects the index from being scraped (F7); 4) agents that already know each other do not search again (F7) →
-  [how the search fee works](/<lang>/search-fee). Budget 140.
+- H3 `free-read` «Reading is free» · «Читать бесплатно» — chain: 1) Nostr itself stays free (F7); 2) anyone may read the relays directly and
+  build an index of their own (F6, F7). Budget 45.
+- H3 `free-search` «A ranked list costs one cent» · «Упорядоченный список стоит цент» — chain: 1) a super-node spends work on every list;
+  the searcher pays $0.01 from a prepaid balance, by voucher (F7, F11); 2) a million searches would cost $10,000 — protection from
+  scraping (F7); 3) known parties do not search again (F7) → [how the search fee works](/<lang>/search-fee). Budget 100.
 
-### H2 `limits` — en «What a super-node can and cannot remove» · ru «Что супер-узел может убрать, а что нет»
-- H3 `limits-index` «Each super-node chooses its coverage» · «Каждый супер-узел выбирает охват» — chain: 1) every super-node declares which
-  kinds of announcements it indexes and which relays it reads (F8); 2) some tags are prohibited by default, such as child sexual
-  exploitation, terrorism or malicious software, and no super-node indexes them (F9); 3) a super-node in a strict country may leave more
-  out; others still show it (F8). Budget 130.
+### H2 `limits` — en «What a super-node keeps and removes» · ru «Что супер-узел хранит и что убирает»
+- H3 `limits-storage` «What one super-node stores» · «Что хранит один супер-узел» — chain: 1) only the kinds it holds, one latest
+  version per offer, until it expires (F12); 2) as super-nodes join, the same kinds are shared among more holders, and each stores less;
+  3) the network grows by adding servers; the work of one stays bounded (F13). Budget 65.
+- H3 `limits-index` «Each super-node chooses its coverage» · «Каждый супер-узел выбирает охват» — chain: 1) kinds beyond those it must
+  hold are its choice (F8, F12); 2) tags prohibited by default are indexed by no one (F9); 3) a strict country may leave more out, others
+  still show them (F8); 4) the request carries only a country and an adult flag (F11). Budget 65.
 - H3 `limits-relay` «An announcement stays on the relays» · «Объявление остаётся на ретрансляторах» — chain: 1) a super-node removes an
-  announcement only from its own index and results (F10); 2) nobody can erase it from the network: it stays on every relay that keeps it
-  (F10); 3) Anna's agent can always read Leo's announcement directly (F7) → [the whole stack of one deal](/<lang>/technology); full rules
-  → [document 17](/<lang>/docs/17-discovery-ranking-feedback). Budget 130.
+  announcement only from its own index and results (F10); 2) it stays on the other holders' relays (F10, F12); 3) unlike a search engine:
+  the offer belongs to Leo's key, the ordering rule is open and the same everywhere, a place cannot be bought, anyone may build an index
+  (F6, F7, doc 17 §17.2) → [the whole stack of one deal](/<lang>/technology); [document 17](/<lang>/docs/17-discovery-ranking-feedback).
+  Budget 110.
 
 ## 7. Facts
 | № | statement | source |
 |---|---|---|
 | F1 | A2A discovery: well-known URI, curated registries, direct configuration; no standard API for curated registries | a2a-protocol.org agent-discovery (read 2026-10-16) |
 | F2 | NIP-01: the only object is the event; each event is signed; kinds 30000–39999 are addressable by kind, pubkey and d tag; relays keep the latest | github nostr-protocol/nips 01.md (read 2026-10-17) |
-| F3 | NIP-90 Data Vending Machines: user announces output and willingness to pay, providers compete; status draft, unrecommended, optional | github nostr-protocol/nips 90.md (read 2026-10-17) |
+| F3 | (no longer used on the page since 2026-10-17) NIP-90 Data Vending Machines: draft, unrecommended | github nostr-protocol/nips 90.md (read 2026-10-17) |
 | F4 | Nostr is not a blockchain, costs nothing; signed events stored and served by ordinary relay servers | doc 17 §17.1; README «Nostr» |
-| F5 | an announcement: signed addressable event (kinds 30000–39999) with capability, availability, price in USDC, A2A card link, encryption key; the latest version replaces earlier | doc 17 §17.1 |
-| F6 | relays filter only by author, kind, tags, time — no price ranges, no ordering; a super-node gathers announcements into its index, reads receipts and reviews, builds results by §17.2; anyone may read relays directly and build their own index | doc 17 §17.1 |
-| F7 | $0.01 per result list from a prepaid balance; Nostr stays free; reading relays directly costs nothing; contacts are public; a million searches cost $10,000 — protects from scraping; known parties do not search again | doc 17 §17.8 |
-| F8 | each super-node declares the kinds (tags) it indexes and the relays it reads; a super-node in a strict country may leave kinds out; others still show them | doc 17 §17.9; doc 18 |
+| F5 | an announcement: signed addressable event (kinds 30000–39999) with capability, availability, price in USDC, A2A card link, encryption key, expiration; the latest version replaces earlier | doc 17 §17.1 |
+| F6 | relays filter only by author, kind, tags, time — no price ranges, no ordering; a super-node builds results by §17.2; anyone may read relays directly and build their own index | doc 17 §17.1 |
+| F7 | $0.01 per result list from a prepaid balance; Nostr stays free; reading relays directly costs nothing; a million searches cost $10,000 — protects from scraping; known parties do not search again | doc 17 §17.8 |
+| F8 | each super-node declares the kinds (tags) it indexes beyond those it must hold; a super-node in a strict country may leave kinds out; others still show them | doc 17 §17.9; doc 18 §18.4 |
 | F9 | tags prohibited by default (child sexual exploitation, trafficking, terrorism, WMD, violence for hire, stolen data, malicious software) | doc 17 §17.9; entry 32 |
-| F11 | a search request carries only a country (ISO 3166-1) and an adult flag, no other personal data; no search waits for a transaction (vouchers, batches) | doc 17 §17.8, §17.9 |
 | F10 | a super-node removes an announcement from its own index and results; nobody can erase it from the relays that keep it | doc 17 §17.9 «What restrictions do not do» |
+| F11 | a search request carries only a country (ISO 3166-1) and an adult flag, no other personal data; no search waits for a transaction (vouchers, batches) | doc 17 §17.8, §17.9 |
+| F12 | every super-node runs a relay recorded with its place; each kind of service is held by a fixed number of super-nodes computed from the registry; a node publishes to them; holders copy among themselves checking signatures; a newcomer catches up before its check, copying signed announcements, never results; an index missing announcements fails the check, without a mark; announcements expire and are renewed | doc 17 §17.12; changelog entry 48 |
+| F13 | the work of one super-node stays bounded as the network grows; the network grows by adding super-nodes | changelog entry 47; doc 18 §18.2 |
 
 Numbers: «$0.01», «$0,01», «$10,000»
 
 ## 8. Questions to the owner
-none — every statement is in document 17 and the README glossary.
+none — every statement is in documents 17 and 18 and changelog entries 47–48 (agreed by the owner 2026-10-17).
 
 ## 9. Links
 - out across the site:
   - /discovery — «how search results are built in Lagrix» / «как строится выдача в Lagrix» — H2 `how-it-works`
+  - /super-node — «how super-node places are earned and checked» / «как супер-узлы зарабатывают место и как их проверяют» — H2 `how-it-works`
   - /search-fee — «how the search fee works» / «как устроена плата за поиск» — H2 `free`
   - /technology — «the whole stack of one deal» / «весь стек одной сделки» — H2 `limits` (up to the hub)
 - to documents: /<lang>/docs/17-discovery-ranking-feedback — «document 17» / «документ 17» — H2 `limits`
-- incoming (planned): /technology (hub), /discovery
-- external primary sources: A2A agent discovery (F1); NIP-01 (F2); NIP-90 (F3)
+- incoming: /technology (hub), /discovery
+- external primary sources: A2A agent discovery (F1); NIP-01 (F2)
 
 ## 10. FAQ
 1. en «Is Nostr a blockchain?» · ru «Nostr — это блокчейн?» — no; signed messages kept by relay servers, free to use — F4
@@ -124,7 +135,8 @@ none — every statement is in document 17 and the README glossary.
 3. en «Can someone delete my agent's announcement?» · ru «Может ли кто-то удалить объявление моего агента?» — a super-node can drop it from its own results; nobody can erase it from the relays — F10
 4. en «Why not search the relays directly?» · ru «Почему не искать прямо по ретрансляторам?» — you can; relays only filter by author, kind, tags and time, without price ranges or ordering — F6
 5. en «How does my agent update its price?» · ru «Как агенту обновить цену?» — publish a new announcement; the relay keeps only the latest — F2, F5
-6. en «Which relays does Lagrix use?» · ru «Какие ретрансляторы использует Lagrix?» — each super-node runs or subscribes to relays and declares them — F6, F8
+6. en «Which relays does Lagrix use?» · ru «Какие ретрансляторы использует Lagrix?» — every super-node's own relay, recorded in the contract; a node publishes to the holders of its kind — F12
+7. en «Does every super-node store every announcement?» · ru «Хранит ли каждый супер-узел все объявления?» — no; a fixed number of holders per kind, each one's share shrinks as the network grows — F12, F13
 
 ## 11. Words
 Glossary: Nostr, relay, announcement, super-node, index, search fee, tag. Traps: Nostr is not a blockchain; never «Lagrix runs Nostr»;
