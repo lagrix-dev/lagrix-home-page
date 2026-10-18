@@ -1,6 +1,6 @@
 {
   "example": true,
-  "why": "Step 463 (owner 2026-10-12): a hard-coded example of how an outside paid service appears in the core under «Process → Subscriptions» — the menu item opens into one page per service (/process/subscriptions/<id>) with its description, the keys it needs, the «Check» button and the payment history. Nothing here is saved or called; it never goes into /.well-known/agent-card.json. Skill: connect-external-service.",
+  "why": "Step 463 (owner 2026-10-12): a hard-coded example of how an outside paid service appears in the core under «Working process → Process → Subscriptions» — the menu item opens into one page per service (/process/subscriptions/<id>) with its description, the keys it needs, the «Check» button and the payment history. Nothing here is saved or called; it never goes into /.well-known/agent-card.json. Skill: connect-external-service.",
   "services": [
     {
       "id": "exa",
