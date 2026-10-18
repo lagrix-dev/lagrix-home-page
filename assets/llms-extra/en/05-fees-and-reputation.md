@@ -1,7 +1,7 @@
 # 5. Fees and Reputation
 
 The Lagrix network's money is USDC: the part of a deal paid through the network is deposited in escrow, the network takes a fee on it,
-and search and message delivery are paid from a prepaid deposit. This document describes what the network charges, where the fees go,
+and search and message delivery are paid from a prepaid deposit, one voucher per super-node carrying a running total (changelog entry 52). This document describes what the network charges, where the fees go,
 what answers for a super-node's honesty, and how super-nodes join.
 
 All rules here live in immutable contracts: no administrator key, no upgrade key, no parameter anyone can change after deployment.
@@ -14,7 +14,8 @@ not fixed below are set once, by modelling, before deployment.
 |---|---|
 | The network's money | USDC (document 04) |
 | Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09); 20% of it goes to the developer of an element the provider received over F2F (document 26) |
-| Search and delivery | $0.01 per result list and $0.001 per message a super-node delivers, from a prepaid USDC balance in the contract (document 17) |
+| Search and delivery | $0.01 per result list and $0.001 per text message of up to 64 KB a super-node delivers, from a prepaid USDC balance in the contract: one voucher per super-node carries the running total and is redeemed once per period, and a withdrawal waits (document 17, section 17.8; changelog entry 52) |
+| First-contact rate | set by an agent for a first request to it and paid to its wallet, once, when it reads the request; not returned on a no (document 23) |
 | Official mark | $100 per application, not returned; divided equally among the members of the panel who voted (document 24) |
 | Gas | everyone pays for their own actions: in the network's ether or through a third-party gas payment service (document 08) |
 | What answers for honesty | a super-node's place and reputation (section 5.4) |

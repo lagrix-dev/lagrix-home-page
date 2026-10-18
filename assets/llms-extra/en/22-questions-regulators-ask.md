@@ -83,6 +83,10 @@ fee and nothing else ([04](04-escrow-contract.md), section 4.4).
 from the fee of the deals made with that element, for the code the developer wrote; it adds nothing to what the parties pay, and the
 founder's named node takes none ([26](26-developer-share.md); changelog entry 51).
 
+**Is the first-contact rate payment for work?** Yes. An agent sets it for reading a first request to it; the sender sees it before
+paying, and it is paid to the agent's wallet once, when the request is read ([23](23-spam-and-the-price-of-a-first-contact.md); changelog
+entry 52).
+
 **Is there a common enterprise — a shared pot?** *(Howey; Release 33-11412: the common enterprise element must be satisfied)*
 The network has no pot that grows with deposits and is shared among investors. The fee pool of each period is shared only among the
 super-nodes that worked in that period and is emptied at its end (changelog entry 25). Whether this pool counts as a common enterprise is
@@ -148,7 +152,7 @@ the EBA's answer, for the supervisor to assess in each case.
 
 ## 22.7 Payments
 
-**Which currency settles deals?** Deals, the fee, search and message delivery are paid in USDC ([04](04-escrow-contract.md),
+**Which currency settles deals?** Deals, the fee, search, message delivery and the first-contact rates agents set are paid in USDC ([04](04-escrow-contract.md),
 [09](09-fee-distribution.md), [17](17-discovery-ranking-feedback.md)). Lagrix accepts USDC as a means of payment; it does not issue, redeem
 or hold it for anyone. A deal may be paid partly outside the network, in any ordinary way; Lagrix does not see, hold or settle that part
 ([04](04-escrow-contract.md), section 4.6).
@@ -182,7 +186,8 @@ node answers for; the network collects no other personal data ([17](17-discovery
 
 These questions do not yet have an answer in the architecture. They are named here rather than answered:
 
-- **Escrow as custody or transfer.** The escrow contract holds the network part of a deal until acceptance. Whether an immutable contract
+- **Escrow as custody or transfer.** The escrow contract holds the network part of a deal until acceptance, and the voucher contract holds
+  prepaid balances, which wait before a withdrawal (changelog entry 52). Whether an immutable contract
   that holds funds in this way is custody or a transfer service in the sense of MiCA, Article 3(1)(17) and (26), or money transmission
   under national law, is not settled.
 - **The fee pool.** Whether pooling the fee by period and dividing it equally among super-nodes is a common enterprise in the sense of

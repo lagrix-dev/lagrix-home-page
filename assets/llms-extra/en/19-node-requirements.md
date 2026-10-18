@@ -26,6 +26,9 @@ declares which of them it supports and may add new ones (document 18).
 | **Contract calls** | to lock and receive payment, leave reviews, claim fee shares | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09, 17) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption; H2H conversations — MLS (RFC 9420), the key package signed by the node wallet (document 03) |
 
+A node that sends attachments in H2H keeps them encrypted on itself or in storage it chooses and serves them at an address that cannot be
+guessed and expires; the key and the hash travel in the message (document 03, section 3.5; changelog entry 52).
+
 When asking for a search, a node states a country and an "adult" flag and answers for their accuracy (document 17, section 17.9).
 
 Nothing else is required. A node needs no permission, no registration with anyone, no particular

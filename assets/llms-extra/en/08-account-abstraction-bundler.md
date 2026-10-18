@@ -103,13 +103,14 @@ network has no paymaster of its own, and Lagrix contracts require no particular 
 - **A super-node pays stamps only for its own actions:** redeeming batches of vouchers, collecting its share of the fees, registering its place.
 - **The fallback — one's own ether — is always open:** a third-party service's refusal does not cut a participant off from the network.
 
-Micropayments — search and message delivery — never go on-chain one by one: a super-node redeems their
-vouchers in batches (document 17, section 17.8), so the stamp per operation is negligible.
+Micropayments — search, message delivery and first-contact rates — never go on-chain one by one: a node signs one voucher per payee that
+carries the running total, and the payee redeems the latest one once per period (document 17, section 17.8; changelog entry 52), so the
+stamp per operation is close to zero.
 
 **Stamp price measured — 14 October 2026, 23:54 UTC.** A simple USDC transfer: Arbitrum One — median **$0.0028** (21 transfers, from
 $0.0020 to $0.0032, gas 0.020 gwei); Base — median **$0.00065** (15 transfers, from $0.00055 to $0.0020, gas 0.006 gwei); ETH at $2,416.
 Sources: the official public nodes [arb1.arbitrum.io/rpc](https://arb1.arbitrum.io/rpc) and [mainnet.base.org](https://mainnet.base.org),
 the price from [Coinbase](https://api.coinbase.com/v2/prices/ETH-USD/spot). This is a one-minute snapshot: the price changes with network load
 and the ether rate. Locking into escrow and accepting work are heavier than a simple transfer — a measurement of the deployed contracts
-will show their price. Conclusion: a stamp is a fraction of a cent; a $0.001 message sent one by one would cost no less than its stamp,
-so vouchers are redeemed only in batches.
+will show their price. Conclusion: a stamp is a fraction of a cent; a $0.001 message redeemed on its own would lose most of its price to the stamp, so a voucher
+carries a running total and is redeemed once per period (changelog entry 52).

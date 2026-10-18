@@ -1,8 +1,8 @@
 # 23. Spam and the Price of a First Contact
 
 This document sets out a problem of open agents and the direction Lagrix takes to solve it: how the classic approach differs from
-ours and what it gives people. It is a design direction, not a rule: the mechanism is designed together with the network's contracts,
-and the questions to settle then are listed in section 23.5.
+ours and what it gives people. Its rules are recorded in the changelog — entries 33, 39 and 52; section 23.5 lists what is decided and what
+remains open.
 
 ## 23.1 The classic approach: an open agent pays for every message
 
@@ -42,6 +42,11 @@ architecture itself: the same for everyone, they make every attempt cost somethi
 for a first contact with it, and that rate is paid to it. A bot knocking at the door is then not spam but an advertising offer: it pays to
 be heard, and the money goes to whoever spends the attention.
 
+**How the rate is paid** (changelog entry 52). The agent states its rate, as one number, in its «accepting requests» announcement and in
+its A2A card, so the sender sees it before paying. The request carries a voucher for the rate made out to the recipient's wallet; the
+rate is charged once, when the recipient's agent reads the request, and it is not returned when the answer is no. A request the node
+refuses unread is not charged. After the yes the conversation runs at the network's prices.
+
 The same holds for a request to a person through their agent (H2A, H2H, document 21) and for a task to an agent (A2A), and wherever the
 element was found: in the network's search, in an announcement, or by web search on a site built for Lagrix — for example on Fractera.
 
@@ -63,20 +68,25 @@ Processing or Combatting Junk Mail», CRYPTO '92). What is new for agents is tha
 and only sending in bulk is cheap; for an agent, every message read is a paid model call. For agents a price on the first contact is not
 a convenience but the condition for being open at all.
 
-## 23.5 What remains to be designed
+## 23.5 What is decided and what remains open
 
-When the network's contracts are designed, this direction becomes a rule recorded in the changelog (document 000). The questions to
-settle then:
+Decided by changelog entry 52:
 
-- How the recipient's node checks the payment and the signature without a model and without waiting for a transaction.
-- How the two layers travel: the floor pays the super-node for its work, the rate goes to the recipient — and how the rate reaches the
-  recipient without a deal in escrow.
-- Where an agent announces its rate — in its A2A card, in its Nostr announcement or both — so that the sender sees it before paying.
-- What happens to the rate when the recipient does not answer: whether it is returned, kept, or held until an answer.
+- **Checking without a model and without a transaction.** The recipient's node checks the voucher's signature and the sender's prepaid
+  balance; a withdrawal from that balance waits longer than vouchers take to be redeemed, so a signed voucher is always paid.
+- **Where the rate is stated.** In the «accepting requests» announcement and in the A2A card, as one number, so the sender sees it before
+  paying.
+- **When the rate is paid, and what happens on a no.** Once, for the first request, when the recipient's agent reads it; it is not
+  returned when the answer is no. A request the node refuses unread is not charged.
+- **How many messages one payment opens.** After the yes the conversation runs at the network's prices: a direct connection is free, and
+  a message a super-node delivers costs $0.001.
+- **How the floor and the rate travel.** One voucher per payee carries a running total: to the super-node for searches and delivered
+  messages, to the recipient for its rate. Each payee redeems the latest voucher once per period.
+
+Still open:
+
 - Whether a rate may depend on who writes — the floor alone for those the recipient already knows, more for strangers.
-- How many messages one payment opens, and when the two nodes may move to a free direct connection.
-- How the rule fits what the changelog says today: announcements are read for free (entries 5 and 39), and a direct connection between
-  two nodes is free (entry 33).
+- Whether the recipient may give a rate back.
 - How an element found by web search answers a stranger and shows the way in through Lagrix.
 
 ## Sources

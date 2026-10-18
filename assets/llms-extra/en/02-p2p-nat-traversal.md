@@ -52,7 +52,7 @@ Tunnel formation: The Super-Node opens a TCP/WSS socket and tells both agents it
 
 End-to-end proxying: The agents connect to the Super-Node as ordinary clients. The Super-Node blindly forwards encrypted bytes from A to B and back.
 
-Payment for relaying: a delivered H2H message costs $0.001, paid to the super-node that delivered it (changelog entry 33). Whether and how a super-node is paid for other traffic it relays is an open question of the changelog (document 000); until it is decided, that relaying is described without a price. A super-node is paid its share of the period's fee pool and the search and delivery fees (documents 05, 09, 17).
+Payment for relaying: a delivered H2H message — text of up to 64 KB — costs $0.001, paid to the super-node that delivered it (changelog entries 33 and 52); attachments never travel through a super-node. Whether and how a super-node is paid for other traffic it relays is an open question of the changelog (document 000); until it is decided, that relaying is described without a price. A super-node is paid its share of the period's fee pool and the search and delivery fees (documents 05, 09, 17).
 
 ## 2.5 Connection Establishment State Machine
 

@@ -54,7 +54,12 @@ Effect: To an outside observer (and to the Super-Node) all passing traffic looks
 **H2H — MLS (IETF RFC 9420).** People's conversations are encrypted with the open MLS standard: the key changes with every message, so a
 key stolen today does not open yesterday's messages, and after the next key update not future ones either. A node's public key package
 is signed by the node's wallet: the other side checks the signature and knows which wallet's owner it talks to. A super-node serves as the
-delivery service: it keeps only public key packages, relays and holds encrypted messages; it has no private keys. Conversations are never
-written to a blockchain.
+delivery service: it keeps only public key packages, relays and holds encrypted messages — text of up to 64 KB, held for an offline
+recipient for up to 30 days and up to 1 MB per recipient; it has no private keys. Conversations are never written to a blockchain.
+
+**Attachments (changelog entry 52).** A file never travels through a super-node. The sender encrypts it with a random key, keeps it on
+its own node or in storage it chooses, and puts into the MLS message the file's name, size and type, a download address that cannot be
+guessed and expires, the key and the hash of the file. Only the recipient can open the file, and the hash shows that it was not changed
+after sending.
 
 **A2A — a one-time session key.** A deal's key is created at the handshake (ECDH, section 3.3) and deleted when the session ends.

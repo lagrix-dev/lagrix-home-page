@@ -9,7 +9,7 @@ Slither static analysis.
 |---|---|---|
 | A2AEscrow.sol | deals, receipts, Time-Lock, cancellation, fee deduction, the `Receipt` event | 04 |
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
-| SearchVouchers.sol | prepaid balances and batch redemption of search and delivery vouchers at the fixed prices | 17 |
+| SearchVouchers.sol | prepaid balances with a withdrawal delay; one voucher per payee carrying a running total for searches, delivered messages and first-contact rates, redeemed once per period | 17, 23 |
 | SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
 | FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, negative ratings (dislikes given against the reviewable weight), likes deducted by cancellations; the address of a review page, attached once by the review's author | 17, 25 |
 | OfficialMarks.sol | the Official marks: applications with the $100 fee, panels of nine chosen at random with commit and reveal, votes, challenges and the founder's mark written at deployment | 24 |
@@ -24,7 +24,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate of the network part (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
 - `test_DeveloperShare()` — with a `developer` named for a deal on an element received over F2F, 20% of the fee goes to that wallet and 80% to the pool of the period; with no `developer`, the whole fee goes to the pool; a refund pays neither.
 - `test_FeePool_EqualShares()` — the fees of a period go into its pool and are divided equally among the super-nodes that passed the quality minimum; the parties of a deal and super-nodes that failed the minimum receive nothing; nothing carries over to the next period.
-- `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
+- `test_Voucher_RunningTotal()` — a voucher pays only the difference between its total and the total already redeemed for that payer and payee; a voucher whose total did not grow pays nothing; a voucher not signed by the payer is rejected; a withdrawal waits the delay, and a voucher signed before it is still paid.
 - `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the fee paid on the deal; a second review of the same deal by the same side is rejected.
 - `test_Reputation_CountAndSum()` — every indicator updates its count and its sum together; a review, a like or a dislike, removes the deal from «unreviewed».
 - `test_Reputation_AllOrders()` — every paid order adds to «all orders» of both sides, completed or cancelled; a proven-violation mark on the node's wallet shows on every element of the node.

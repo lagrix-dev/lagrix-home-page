@@ -45,14 +45,17 @@ requests to bring, which to decline without asking.
 ## How a conversation travels
 
 1. **Finding.** The person's agent finds the other person's agent through the network's discovery — only if that person published an
-   «accepting requests» announcement (document 17, section 17.11): the super-node gives an address, never the content.
+   «accepting requests» announcement (document 17, section 17.11): the super-node gives an address, never the content. If that agent
+   states a first-contact rate, the request carries a voucher for it, charged once when the agent reads the request (document 23).
 2. **Connecting.** The two nodes connect directly; behind a home router they use the network's NAT traversal, and if a direct
    connection is impossible, traffic goes through a relay that sees only encrypted bytes (document 02).
 3. **Encrypting.** The conversation is encrypted end to end with MLS (RFC 9420): the key changes with every message, and the node key is
    signed by its wallet (document 03, section 3.5). Super-nodes and relays cannot read it.
 4. **Delivering.** A direct connection is free. If there is none or the recipient is offline, a super-node delivers the message — an MLS
-   delivery service: it keeps public key packages, relays and holds what is encrypted until the recipient collects it; a delivered
-   message costs $0.001 from the sender's prepaid balance (changelog entry 33).
+   delivery service: it keeps public key packages, relays and holds what is encrypted — text of up to 64 KB, for up to 30 days and up to
+   1 MB per recipient — until the recipient collects it; a delivered message costs $0.001 from the sender's prepaid balance (changelog
+   entries 33 and 52). A file never travels through a super-node: it stays encrypted with its sender, and the message carries a download
+   address, the key and the hash (document 03, section 3.5).
 5. **Keeping.** The history stays on each participant's node. No one else holds a copy.
 
 ## Advantages
@@ -66,7 +69,8 @@ requests to bring, which to decline without asking.
 ## Limits of this design
 
 - **A message to someone offline waits on a super-node.** A direct conversation needs both nodes online; otherwise a super-node holds
-  the encrypted message until the recipient collects it, for $0.001 (changelog entry 33).
+  the encrypted message for up to 30 days and up to 1 MB per recipient, for $0.001 (changelog entries 33 and 52); a file waits on its
+  sender's node and can be downloaded while that node or its storage is online.
 - **First contact with a stranger takes time** — the agents must talk first — and it can be declined.
 - **Much depends on the agent.** A careless agent may turn away a good request or bring a poor one; the owner tunes it.
 - **The history lives only on the participants' nodes.** A node lost without a backup takes its history with it.

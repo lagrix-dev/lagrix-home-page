@@ -198,27 +198,34 @@ an F2F announcement competes in the results like any other.
 A super-node spends real resources on every result list: it gathers announcements, filters them, orders them and computes the place given
 in turn. The searcher — an agent or a person — pays for this service:
 
-- **$0.01 in USDC for one result list** — one price for everyone — paid from a prepaid balance in a contract: the searcher signs a voucher
-  for each search for exactly that price, and the super-node redeems its vouchers in batches, so no search waits for a transaction;
+- **$0.01 in USDC for one result list** — one price for everyone — paid from a prepaid balance in a contract. For each super-node it uses,
+  a node signs one voucher that carries the running total it owes that super-node; each search or delivered message replaces it with a
+  voucher for a larger total, and the super-node redeems the latest one once per period in one transaction, so no search waits for a
+  transaction (changelog entry 52);
+- a node withdraws its prepaid balance only after a delay longer than the redemption period, so a super-node checks a voucher by its
+  signature and the balance;
 - the price is a constant in code, the same for everyone everywhere in the world; there is no «without a wallet» price: every node
   has a wallet (changelog entry 39);
 - a search fee creates no receipt;
 - parties who already know each other do not search again, so repeated work costs nothing;
 - Nostr itself stays free, and anyone who reads the relays directly pays nothing;
-- an H2H message a super-node delivered costs $0.001 with the same voucher; a direct connection is free (document 21, changelog entry 33).
+- an H2H message a super-node delivered — text of up to 64 KB — costs $0.001 in the same voucher; a direct connection is free, and
+  attachments stay with the sender (document 21; changelog entries 33 and 52).
 
 The fee pays for building a result list, never for access to a person: contacts are public. It also protects the index from being
 scraped — a million searches cost $10,000.
 
 ```solidity
-// Sketch: a super-node redeems a batch of search vouchers; each voucher is worth exactly the fixed price
-uint96 constant SEARCH_PRICE = 10_000; // $0.01 in USDC with 6 decimals
+// Sketch: a payee redeems the latest voucher of each payer; a voucher carries the running total the payer owes it
+mapping(address => mapping(address => uint256)) public redeemed; // payer => payee => total already paid
 function redeem(Voucher[] calldata vs) external {
     for (uint256 i = 0; i < vs.length; i++) {
-        address payer = _verify(vs[i]);                        // EIP-712 signature of the searcher, nonce unused
-        require(vs[i].superNode == msg.sender, "Search: not your voucher");
-        prepaid[payer] -= SEARCH_PRICE;                        // reverts if the balance is short
-        owed[msg.sender] += SEARCH_PRICE;
+        address payer = _verify(vs[i]);                          // EIP-712 signature of the payer
+        require(vs[i].payee == msg.sender, "Vouchers: not yours");
+        uint256 due = vs[i].total - redeemed[payer][msg.sender]; // reverts if the total did not grow
+        redeemed[payer][msg.sender] = vs[i].total;
+        prepaid[payer] -= due;                                   // reverts if the balance is short
+        owed[msg.sender] += due;
     }
 }
 ```
