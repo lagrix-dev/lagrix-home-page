@@ -18,7 +18,7 @@ import s from "./landing-agent.module.css"
 // по наведению на доску съезжает по тросам строго параллельно и прочерчивает ось котла; инструмент поднимается со своего нарисованного
 // контура. Без JavaScript окно справки открывает встроенный popover; при «уменьшить движение» ничто не двигается.
 // Сцена — три рисунка со своими единицами: доска 480 × 340, окно 160 × 252, мастерская 330 × 332. На компьютере они стоят в одной
-// комнате 1000 × 470 (проценты), на телефоне комната делится на две картины: «чертёжная» и «мастерская».
+// комнате 1000 × 470 (проценты), на телефоне — только чертёжная (окно, лампа, доска): мастерскую там не показываем (523-3).
 
 export type BuildersWords = {
   title: string
@@ -512,8 +512,6 @@ export function BuildersOffice({ w, docHref }: { w: BuildersWords; docHref: stri
 
       {/* Мастерская: щит с инструментами, под ним верстак, тиски слева. */}
       <div data-block="bdshp" className={s.bdShop}>
-        <span className={s.bdShopWainscot} aria-hidden="true" />
-        <span className={s.bdShopFloor} aria-hidden="true"><Floor /></span>
         <div data-block="bdbch" className={s.bdShopArt}>
           <ShopArt uid={uid} />
           <Button variant="bare" size="bare" type="button" data-block="bdham" className={s.bdTool} style={at(TOOL.hammer)} popoverTarget={info} aria-label={w.hammer}>
