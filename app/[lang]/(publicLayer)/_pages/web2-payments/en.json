@@ -269,7 +269,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The card fee is paid to the card company, and the network fee goes to the network's pool. They are shown in different places, so a buyer can see each one on its own.",
+      "text": "The card fee is paid to the card company, and the network fee goes to the network's pool, less a fifth for the developer of an element received over F2F. They are shown in different places, so a buyer can see each one on its own.",
       "bid": "y7xbp"
     },
     {

@@ -97,7 +97,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Step four: the fee, $5 on this deal, goes into a pool that the contract itself holds, and each super-node claims its own share from it. At none of these steps does a super-node hold Anna's money or the keys to it, and at none of them does Leo's node act on her behalf. The contracts themselves have no administrator key. Here is [how escrow payments work](/en/web3-payments).",
+      "text": "Step four: the fee, $5 on this deal, goes into a pool that the contract itself holds (all of it, because Leo works with his own element; with an element received over F2F, $1 would first go to its developer), and each super-node claims its own share from it. At none of these steps does a super-node hold Anna's money or the keys to it, and at none of them does Leo's node act on her behalf. The contracts themselves have no administrator key. Here is [how escrow payments work](/en/web3-payments).",
       "bid": "bgmaf"
     },
     {

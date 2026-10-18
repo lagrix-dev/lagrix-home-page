@@ -116,7 +116,7 @@ words, ru ≥ 1000. Web4 definition verbatim as the first paragraph of H2 `how-i
 | F15 | an element moved or handed to another owner starts with a clean history | doc 17 §17.10 |
 | F16 | karma: a person shows reputations of their own nodes together with proof; the network does not compute it | doc 17 §17.10 |
 
-Numbers: «$100», «$5», «5%», «5 %», «90.6%», «90,6 %», «12 months», «12 месяцев»
+Numbers: «$100», «$5», «5%», «5 %», «90.6%», «90,6 %», «12 months», «12 месяцев», «20%», «20 %» (the exception of entry 51: naming one's own wallet as the developer returns 20% of the fee — doc 26, step 534)
 
 ## 8. Questions to the owner
 none — every statement is in the protocol or a primary source.

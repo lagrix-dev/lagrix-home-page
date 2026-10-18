@@ -97,9 +97,10 @@ Web4 definition verbatim under H2 `how-it-works`.
 | F8 | one rate for everyone; a rate set by each super-node would fall to zero | doc 09 §9.4 |
 | F9 | on REFUNDED the funds return in full and no fee is taken | doc 04 §4.1; doc 09 §9.2 |
 | F10 | a cancelled order pays the fee on the part the provider keeps; that fee weighs each side's review; no receipt | doc 09 §9.2; entry 55 |
+| F-split | one reading of entry 51 at the deal level (owner 2026-10-18: «Оставить запись 51»): at a 5% fee, an element received over F2F gives 1% of the deal to its developer and 4% to the pool; the provider's own element gives all 5% to the pool | doc 05 §5.3, §5.7; doc 26; step 534 |
 | F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 |
 
-Numbers: «5%», «5 %», «$100», «$80», «$20», «$5», «$4», «15%», «2.9%», «USD0.30», «$0.30», «$0,30», «12 months», «12 месяцев», «20%», «20 %» (document 17 §17.2: the last 12 months of paid work)
+Numbers: «5%», «5 %», «$100», «$80», «$20», «$5», «$4», «15%», «2.9%», «USD0.30», «$0.30», «$0,30», «12 months», «12 месяцев», «20%», «20 %», «1%», «1 %», «4%», «4 %» (F-split, step 534) (document 17 §17.2: the last 12 months of paid work)
 
 ## 8. Questions to the owner
 none for the page (the cancelled-order rule is decided by entry 55 and stated as F10).

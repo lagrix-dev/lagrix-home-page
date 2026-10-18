@@ -105,7 +105,7 @@ operator shows how operators are paid. en 1240–1280 words, ru ≥ 1000. H2 nam
 | F10 | founder: no share, same terms; public commitments (one named node, no deals between own elements, no fee share until ten super-nodes pass) | doc 22 §22.4; entries 41, 42 |
 | F11 | fee pool shared among super-nodes of the period, emptied at its end; whether a common enterprise is open (§22.9) | doc 22 §22.3, §22.9 |
 
-Numbers: «$100», «$5», «$0.01», «$0,01», «$0.001», «$0,001», «12 months», «12 месяцев»
+Numbers: «$100», «$5», «$0.01», «$0,01», «$0.001», «$0,001», «12 months», «12 месяцев», «$1» (F-split: with an element received over F2F, $1 of Anna's $5 fee would go to its developer — step 534)
 
 ## 8. Questions to the owner
 none — every statement is in document 22; no claim that anything «is not a security».

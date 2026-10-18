@@ -87,7 +87,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Imagine a rival who wants $5 of fake likes. In Lagrix there is only one way to get them: make a real $100 deal with himself through the network. He pays the $5 fee to the super-nodes, the servers that run the network's search, and receives exactly $5 of weight in return. Weight can never be had for less than it weighs, so faking is simply buying reputation at full price.",
+      "text": "Imagine a rival who wants $5 of fake likes. In Lagrix there is only one way to get them: make a real $100 deal with himself through the network. He pays the $5 fee to the super-nodes, the servers that run the network's search, and receives exactly $5 of weight in return. Weight can never be had for less than it weighs, so faking is simply buying reputation at full price. The one exception lowers that price by a fifth: naming a wallet of his own as the developer of an element returns 20% of the fee, and such deals stand out in the open record ([developer share](/en/docs/26-developer-share)).",
       "bid": "aeerr"
     },
     {

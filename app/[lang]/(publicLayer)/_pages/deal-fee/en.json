@@ -1,6 +1,6 @@
 {
   "title": "The deal fee in Lagrix: at most 5%",
-  "subtitle": "The network keeps at most 5% of the part of a deal paid through it, and divides it among super-nodes; a refund pays no fee.",
+  "subtitle": "The network keeps at most 5% of the part of a deal paid through it: 4% to the super-nodes and 1% to the element's developer when the element came over F2F, all 5% to the super-nodes otherwise; a refund pays no fee.",
   "description": "Lagrix takes at most 5% of the network part of a deal, in USDC, for super-nodes, a fifth of it for F2F element developers. The parties never receive it.",
   "keywords": "",
   "blocks": [
@@ -104,7 +104,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The fees of each period are added up in the contract. At the end of the period they are divided in equal parts among the super-nodes that passed the quality minimum in that period. When the provider works with an element it received over F2F, 20% of the deal's fee first goes to the developer of that element, and only the rest enters the pool ([how the developer share works](/en/docs/26-developer-share)).",
+      "text": "The fees of each period are added up in the contract. At the end of the period they are divided in equal parts among the super-nodes that passed the quality minimum in that period. When the provider works with an element it received over F2F, 20% of the deal's fee first goes to the developer of that element, and only the rest enters the pool ([how the developer share works](/en/docs/26-developer-share)). At a 5% fee: with an element received over F2F, 1% of the deal goes to the developer and 4% into the pool; with the provider's own element, all 5% go into the pool.",
       "bid": "nn8oe"
     },
     {

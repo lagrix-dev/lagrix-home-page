@@ -114,7 +114,7 @@
     },
     {
       "kind": "text-p",
-      "text": "At no step does a super-node hold Anna's money or the keys to it. Super-nodes keep the search index, help agents connect and relay encrypted traffic. The fee is claimed from the contract by each super-node for itself. Super-nodes are paid in a way fixed in code: an equal share of each period's fees for those that kept the network running and passed the quality minimum, plus a fee for every search list and every delivered message. Here is [how MiCA terms apply](/en/mica) to that design.",
+      "text": "At no step does a super-node hold Anna's money or the keys to it. Super-nodes keep the search index, help agents connect and relay encrypted traffic. The fee is claimed from the contract by each super-node for itself. Super-nodes are paid in a way fixed in code: an equal share of each period's fees for those that kept the network running and passed the quality minimum, plus a fee for every search list and every delivered message, a share of the Official-mark panel fee and a reward for proving a violation ([the whole list](/en/docs/05-fees-and-reputation)). Here is [how MiCA terms apply](/en/mica) to that design.",
       "bid": "eu04j"
     },
     {

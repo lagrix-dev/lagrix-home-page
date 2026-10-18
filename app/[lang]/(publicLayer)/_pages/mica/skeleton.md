@@ -102,7 +102,7 @@ ru ≥ 1000. H2 name the subject (§5в); en without dashes. A statement of desi
 | F9 | no administrator keys, no council, no vote, operators independent and rotate, no dependence on a company's domain or server | doc 22 §22.6 |
 | F10 | document 22: statement of design, not legal advice; §22.9 names escrow-as-custody among open questions | doc 22 intro, §22.9 |
 
-Numbers: «$100», «$5»
+Numbers: «$100», «$5», «$1» (F-split: with an element received over F2F, $1 of the $5 fee would go to its developer — entry 51, step 534)
 
 ## 8. Questions to the owner
 none — every statement is in document 22 and document 08; the status of USDC under MiCA is not stated (not checked by primary source).
