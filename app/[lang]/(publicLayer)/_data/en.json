@@ -292,7 +292,7 @@
     "builders": {
       "title": "Building department",
       "text": "Whoever builds the agent receives a fifth of the network fee from every deal it serves.",
-      "scene": "An old engineer's office with a gently vaulted ceiling and no window. In the middle a large drafting board stands under an openwork aluminium lamp hanging on a wire; its light falls on a drawing of a steam locomotive with its dimensions. On the other side a hammer, pliers and a saw hang on a rack by the wall.",
+      "scene": "An old engineer's office with a gently vaulted ceiling. On the left a large drafting board with a parallel rule on cables and pulleys stands under an openwork aluminium lamp hanging on a wire; on the paper is a drawing of a steam locomotive with its dimensions, a set square rests on the rule, and three pencils — red, yellow and blue — lie at the side. Through the arched window at the back the station of the future glows in the evening: a glass vault, a yellow clock, an orbit above it. On the right a hammer, pliers and a saw hang on a pegboard among other tools, each over its painted outline; below stands a workbench with a vise on the left and a small model of the locomotive from the drawing.",
       "sheet": "Sheet 26 · Locomotive",
       "boardLabel": "The drawing: the developer share",
       "hammer": "Hammer: the developer share",

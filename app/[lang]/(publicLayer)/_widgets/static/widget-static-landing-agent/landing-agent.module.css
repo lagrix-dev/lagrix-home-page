@@ -2572,71 +2572,239 @@
   .vipRoom[data-phase="fade"] :is(.vipFlash, .vipPicCanvas) { transition: none; animation: none; }
 }
 
-/* ── 521: «Строительный департамент» — кабинет инженера без окон, свет только от лампы на струне. ───────────────────────── */
+/* ── 521 → 523: «Строительный департамент» — кабинет инженера: доска с рейсшиной, окно с вокзалом будущего, мастерская. ──────
+   Материалы — смеси ролей табло (как у комнаты VIP), ни одного своего значения. Компьютер: одна комната 1000 × 470, всё в процентах
+   её единиц. Телефон (< 820 px): две картины — «чертёжная» и «мастерская». */
 .builders { padding: 4.5rem 0 3rem; }
 .bdRoom {
-  position: relative; margin-top: 2rem; overflow: hidden; height: clamp(360px, 36vw, 500px); container-type: size;
-  border-radius: 50% 50% var(--tile-corner) var(--tile-corner) / 7cqh 7cqh var(--tile-corner) var(--tile-corner);
+  --bd-wood: color-mix(in oklab, color-mix(in oklab, var(--signal) 38%, var(--poster)) 52%, var(--ink));
+  --bd-wood-hi: color-mix(in oklab, var(--bd-wood) 70%, var(--chalk));
+  --bd-wood-lo: color-mix(in oklab, var(--bd-wood) 58%, var(--ink));
+  --bd-oak: color-mix(in oklab, var(--bd-wood) 58%, var(--poster));
+  --bd-oak-hi: color-mix(in oklab, var(--bd-oak) 70%, var(--chalk));
+  --bd-oak-lo: color-mix(in oklab, var(--bd-oak) 72%, var(--ink));
+  --bd-peg: color-mix(in oklab, var(--bd-wood-hi) 58%, var(--chalk));
+  --bd-steel: color-mix(in oklab, var(--chalk) 80%, var(--board));
+  --bd-steel-lo: color-mix(in oklab, var(--chalk) 50%, var(--board));
+  --bd-iron: color-mix(in oklab, var(--board) 64%, var(--ink));
+  --bd-iron-hi: color-mix(in oklab, var(--board) 62%, var(--chalk));
+  --bd-brass: color-mix(in oklab, var(--poster) 66%, var(--bd-wood));
+  --bd-blue: var(--primary);
+  --bd-blue: oklch(from var(--primary) 0.56 0.17 h);
+  --bd-lit: color-mix(in oklab, var(--poster) 72%, var(--chalk));
+  --bd-paint: color-mix(in oklab, var(--chalk) 88%, var(--board));
+  --bd-wall-top: color-mix(in oklab, var(--board-deep) 70%, var(--ink));
+  --bd-wainscot: color-mix(in oklab, var(--board-deep) 76%, var(--ink));
+  --bd-floor: color-mix(in oklab, var(--bd-wood-lo) 60%, var(--ink));
+  position: relative; margin-top: 2rem; aspect-ratio: 1000 / 470; container-type: inline-size;
+}
+.bdHall {
+  position: absolute; inset: 0; overflow: hidden;
+  border-radius: 50% 50% var(--tile-corner) var(--tile-corner) / 7% 7% var(--tile-corner) var(--tile-corner);
   background:
-    radial-gradient(ellipse 46cqw 70cqh at 44cqw 58cqh, color-mix(in oklab, var(--poster) 14%, transparent), transparent 70%),
-    linear-gradient(to bottom, color-mix(in oklab, var(--board-deep) 70%, var(--ink)), var(--board-deep) 78%);
-  --board-w: min(46cqw, 80cqh);
-  --board-l: 18cqw;
-  --tools-w: min(24cqw, 52cqh);
+    radial-gradient(ellipse 30% 46% at 25.2% 48%, color-mix(in oklab, var(--poster) 15%, transparent), transparent 72%),
+    radial-gradient(ellipse 15% 32% at 54.6% 42%, color-mix(in oklab, var(--ring) 10%, transparent), transparent 75%),
+    linear-gradient(to bottom, var(--bd-wall-top), var(--board-deep) 62%);
 }
-.bdCornice { position: absolute; inset: 9cqh 0 auto; height: 1.4cqh; background: color-mix(in oklab, var(--board) 60%, var(--chalk) 6%); opacity: 0.55; }
-.bdFloor {
-  position: absolute; inset: auto 0 0; height: 13cqh;
-  background: repeating-linear-gradient(90deg, color-mix(in oklab, var(--ink) 82%, var(--board)) 0 7cqw, color-mix(in oklab, var(--ink) 74%, var(--board)) 7cqw 7.3cqw);
-  border-top: 4px solid color-mix(in oklab, var(--ink) 60%, var(--board));
+.bdCornice {
+  position: absolute; left: 0; right: 0; top: 8.4%; height: 1.4%;
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--board) 72%, var(--chalk)) 0 45%, color-mix(in oklab, var(--board-deep) 70%, var(--ink)) 45% 100%);
+}
+.bdWainscot, .bdShopWainscot {
+  position: absolute; left: 0; right: 0; top: 70.2%; height: 13.2%;
+  background:
+    linear-gradient(to bottom, color-mix(in oklab, var(--board) 66%, var(--chalk)) 0 3px, color-mix(in oklab, var(--board-deep) 62%, var(--ink)) 3px 6px, transparent 6px),
+    repeating-linear-gradient(90deg, transparent 0 calc(7.2% - 2px), color-mix(in oklab, var(--board-deep) 55%, var(--ink)) calc(7.2% - 2px) 7.2%),
+    var(--bd-wainscot);
+  box-shadow: inset 0 -5px 0 color-mix(in oklab, var(--board-deep) 50%, var(--ink));
+}
+.bdFloor, .bdShopFloor { position: absolute; left: 0; right: 0; bottom: 0; height: 16.6%; display: block; }
+.bdFloor::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 26% 80% at 25% 30%, color-mix(in oklab, var(--poster) 20%, transparent), transparent 70%);
+}
+.bdFloorSvg { display: block; width: 100%; height: 100%; }
+.bdFloorBase { fill: var(--bd-floor); }
+.bdFloorLine { fill: none; stroke: color-mix(in oklab, var(--ink) 70%, transparent); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.bdWinLight {
+  position: absolute; left: 47%; width: 21%; top: 83.4%; bottom: 0; pointer-events: none;
+  clip-path: polygon(8% 0, 64% 0, 100% 100%, 22% 100%);
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--chalk) 13%, transparent), color-mix(in oklab, var(--chalk) 3%, transparent));
 }
 
-/* Лампа: струна от свода, ажурный колпак, тёплая лампочка; конус света ложится на доску. */
-.bdLamp { position: absolute; left: calc(var(--board-l) + var(--board-w) / 2); top: 0; width: clamp(56px, 10cqw, 120px); translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; }
-.bdWire { display: block; width: 2px; height: 14cqh; background: color-mix(in oklab, var(--chalk) 55%, var(--board)); }
-.bdShade { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 6px 10px var(--shade)); }
-.bdShadeBody { fill: color-mix(in oklab, var(--chalk) 72%, var(--board)); stroke: var(--ink); stroke-width: 2; }
+/* Окно в задней стене: вечер, вокзал будущего вдали. */
+.bdWin { position: absolute; left: 46.6%; top: 17.9%; width: 16%; z-index: 1; }
+.bdWinSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0.8cqw 1cqw var(--shade)); }
+.bdSkyTop { stop-color: color-mix(in oklab, var(--board-deep) 70%, var(--ink)); }
+.bdSkyMid { stop-color: var(--board); }
+.bdSkyLow { stop-color: color-mix(in oklab, var(--board) 56%, var(--ring)); }
+.bdSkyGlow { stop-color: color-mix(in oklab, var(--board) 36%, var(--poster)); }
+.bdGlowIn { stop-color: var(--poster); stop-opacity: 0.55; }
+.bdGlowOut { stop-color: var(--poster); stop-opacity: 0; }
+.bdStar { fill: var(--chalk); opacity: 0.85; }
+.bdPlanet { fill: color-mix(in oklab, var(--board) 52%, var(--chalk)); }
+.bdPlanetRing { fill: none; stroke: var(--poster); stroke-width: 0.9; opacity: 0.75; }
+.bdCity { fill: color-mix(in oklab, var(--board-deep) 60%, var(--ink)); }
+.bdWing { fill: color-mix(in oklab, var(--board) 70%, var(--ink)); }
+.bdWingGlass { fill: var(--bd-lit); opacity: 0.92; }
+.bdMullion { fill: none; stroke: color-mix(in oklab, var(--board) 80%, var(--ink)); stroke-width: 0.6; }
+.bdRoofLine { fill: none; stroke: var(--chalk); stroke-width: 1.3; }
+.bdDome { fill: color-mix(in oklab, var(--board) 55%, var(--chalk)); fill-opacity: 0.6; }
+.bdDomeRib { fill: none; stroke: color-mix(in oklab, var(--chalk) 60%, transparent); stroke-width: 0.5; }
+.bdDomeEdge { fill: none; stroke: var(--chalk); stroke-width: 1.3; }
+.bdBeacon { fill: var(--poster); }
+.bdClockFace { fill: var(--poster); stroke: var(--ink); stroke-width: 0.9; }
+.bdClockHands { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; }
+.bdOrbit { fill: none; stroke: var(--poster); stroke-width: 0.8; opacity: 0.85; }
+.bdSat { fill: var(--chalk); }
+.bdDoor { fill: var(--poster); }
+.bdGround { fill: color-mix(in oklab, var(--board-deep) 72%, var(--ink)); }
+.bdTrack { fill: none; stroke: color-mix(in oklab, var(--chalk) 45%, var(--board)); stroke-width: 0.7; }
+.bdSleeper { fill: none; stroke: color-mix(in oklab, var(--chalk) 25%, var(--board)); stroke-width: 0.8; }
+.bdSignalPost { fill: none; stroke: color-mix(in oklab, var(--chalk) 50%, var(--board)); stroke-width: 0.7; }
+.bdSignalGo { fill: var(--go); filter: drop-shadow(0 0 2px var(--go)); }
+.bdSignalStop { fill: var(--signal); filter: drop-shadow(0 0 2px var(--signal)); }
+.bdGlare { fill: var(--chalk); opacity: 0.07; }
+.bdReveal { fill: none; stroke: color-mix(in oklab, var(--ink) 50%, transparent); stroke-width: 8; }
+.bdSash { fill: none; stroke: var(--bd-paint); stroke-width: 2.6; stroke-linecap: square; }
+.bdCasing { fill: var(--bd-paint); }
+.bdCasingShade { fill: color-mix(in oklab, var(--bd-paint) 75%, var(--board)); }
+.bdSill { fill: var(--bd-paint); }
+.bdSillShade { fill: color-mix(in oklab, var(--ink) 40%, transparent); }
+
+/* Лампа на струне: ажурный колпак, кружевной край, тёплая лампочка; конус света — размытым слоем. */
+.bdLamp { position: absolute; left: 25.2%; top: 0; width: 7.4%; translate: -50% 0; z-index: 4; display: flex; flex-direction: column; align-items: center; }
+.bdLamp::after {
+  content: ""; position: absolute; left: 50%; bottom: -1.2cqw; width: 9cqw; aspect-ratio: 1; translate: -50% 50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in oklab, var(--poster) 50%, transparent), transparent 62%);
+}
+.bdWire { display: block; width: 2px; height: 5.2cqw; background: color-mix(in oklab, var(--chalk) 55%, var(--board)); }
+.bdShade { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 6px 8px var(--shade)); }
+.bdShadeCap { fill: var(--bd-steel-lo); }
+.bdShadeBody { fill: var(--bd-steel); stroke: var(--ink); stroke-width: 1.6; }
+.bdShadeShine { fill: none; stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; opacity: 0.55; }
 .bdShadeHole { fill: var(--poster); }
-.bdShadeRim { stroke: color-mix(in oklab, var(--chalk) 90%, var(--board)); stroke-width: 3; stroke-linecap: round; }
-.bdBulb { fill: var(--poster); filter: drop-shadow(0 0 8px var(--poster)); }
-.bdLight {
-  position: absolute; z-index: 1; pointer-events: none;
-  left: calc(var(--board-l) - 2cqw); width: calc(var(--board-w) + 4cqw); top: calc(14cqh + clamp(30px, 5.6cqw, 66px)); bottom: 13cqh;
-  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
-  background: linear-gradient(to bottom, color-mix(in oklab, var(--poster) 42%, transparent), color-mix(in oklab, var(--poster) 6%, transparent));
+.bdShadeLace { fill: var(--bd-steel); stroke: var(--ink); stroke-width: 1; }
+.bdShadeRim { fill: none; stroke: var(--chalk); stroke-width: 3.2; stroke-linecap: round; }
+.bdBulb { fill: var(--poster); filter: drop-shadow(0 0 6px var(--poster)); }
+.bdLight { position: absolute; z-index: 2; pointer-events: none; left: 3%; width: 44.4%; top: 20.4%; bottom: 5%; filter: blur(7px); }
+.bdLight::before {
+  content: ""; position: absolute; inset: 0; clip-path: polygon(44.5% 0, 55.5% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--poster) 36%, transparent), color-mix(in oklab, var(--poster) 4%, transparent) 88%);
 }
 
-/* Доска и инструменты: под рукой предмет увеличивается; нажатие открывает окно слева. */
-.bdBoard { position: absolute; left: var(--board-l); bottom: 6cqh; width: var(--board-w); z-index: 2; cursor: pointer; transform-origin: 50% 80%; transition: scale 0.35s var(--ease); }
-.bdBoardSvg { display: block; width: 100%; height: auto; overflow: visible; }
-.bdStand { fill: none; stroke: color-mix(in oklab, var(--ink) 70%, var(--board)); stroke-width: 10; stroke-linecap: round; }
-.bdBoardFrame { fill: color-mix(in oklab, var(--poster) 30%, var(--ink) 40%); stroke: var(--ink); stroke-width: 3; }
+/* Доска: щит на стойке, лист с чертежом, рейсшина на тросах, угольник, три карандаша. */
+.bdBoard { position: absolute; left: 2.2%; bottom: 3%; width: 46%; z-index: 3; cursor: pointer; border: 0; padding: 0; background: none; }
+.bdBoardSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 1.2cqw 1.2cqw var(--shade)); }
+.bdOak { fill: var(--bd-oak); }
+.bdOakHi { fill: var(--bd-oak-hi); }
+.bdOakLoFill { fill: var(--bd-oak-lo); }
+.bdOakHiStroke { fill: none; stroke: var(--bd-oak-hi); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.bdWoodFill { fill: var(--bd-wood); }
+.bdWoodLoFill { fill: var(--bd-wood-lo); }
+.bdWoodHiStroke { fill: none; stroke: var(--bd-wood-hi); stroke-width: 1.2; }
+.bdGrain { fill: none; stroke: var(--bd-oak-lo); stroke-width: 0.9; stroke-linecap: round; opacity: 0.8; }
+.bdGrainOnOak { fill: none; stroke: var(--bd-oak-lo); stroke-width: 0.8; opacity: 0.55; }
+.bdLeg { fill: none; stroke: var(--bd-iron-hi); stroke-width: 9; stroke-linecap: round; }
+.bdLegHi { fill: none; stroke: var(--bd-steel); stroke-width: 2; stroke-linecap: round; opacity: 0.7; }
+.bdFoot { fill: none; stroke: var(--bd-iron-hi); stroke-width: 6; stroke-linecap: round; }
+.bdFloorShadow { fill: color-mix(in oklab, var(--ink) 55%, transparent); }
+.bdCable { fill: none; stroke: var(--bd-steel-lo); stroke-width: 1.1; }
+.bdBrassFill { fill: var(--bd-brass); }
+.bdIronFill { fill: var(--bd-iron); }
+.bdSteelDot, .bdSteelDotFill, .bdSteelFill { fill: var(--bd-steel); }
 .bdPaper { fill: var(--chalk); }
-.bdLoco { fill: none; stroke: var(--board); stroke-width: 2; stroke-linejoin: round; }
-.bdDim { fill: none; stroke: var(--signal); stroke-width: 1.2; }
-.bdDim path:nth-child(2) { fill: var(--signal); }
-.bdDim text { fill: var(--signal); stroke: none; font-family: var(--display); font-weight: 600; font-size: 13px; }
-.bdStamp { fill: none; stroke: var(--board); stroke-width: 1.5; }
-.bdStampText { fill: var(--board); font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
-.bdRuler { stroke: color-mix(in oklab, var(--poster) 70%, var(--ink)); stroke-width: 6; stroke-linecap: round; }
-.bdSquare { fill: none; stroke: color-mix(in oklab, var(--board) 50%, var(--chalk)); stroke-width: 5; stroke-linecap: square; }
-.bdTools { position: absolute; right: 4cqw; top: 22cqh; width: var(--tools-w); height: 58cqh; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: 1.4cqw; padding: 2.4cqh 1.6cqw 0; }
-.bdRack { position: absolute; inset: 0; border-radius: var(--tile-corner); background:
-  radial-gradient(circle, color-mix(in oklab, var(--ink) 70%, var(--board)) 1.6px, transparent 2px) 0 0 / 14px 14px,
-  color-mix(in oklab, var(--board) 55%, var(--ink)); box-shadow: inset 0 0 0 3px color-mix(in oklab, var(--ink) 60%, var(--board)); }
-.bdTool { position: relative; display: block; width: 100%; height: auto; cursor: pointer; transform-origin: 50% 8%; transition: scale 0.35s var(--ease); }
-.bdTool::before { content: ""; position: absolute; left: 50%; top: -6%; width: 10%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%; background: var(--ink); }
-.bdTool[data-tool="saw"] { margin-top: 4%; }
-.bdToolSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 8px var(--shade)); }
-.bdHandle { fill: color-mix(in oklab, var(--poster) 40%, var(--ink) 45%); stroke: var(--ink); stroke-width: 2.5; }
-.bdHandleHole { fill: color-mix(in oklab, var(--board) 55%, var(--ink)); }
-.bdGrip { fill: var(--signal); stroke: var(--ink); stroke-width: 2.5; }
-.bdSteel { fill: color-mix(in oklab, var(--chalk) 78%, var(--board)); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
-.bdSteelEdge { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
-.bdShine { fill: none; stroke: var(--chalk); stroke-width: 2; stroke-linecap: round; opacity: 0.85; }
-.bdPivot { fill: var(--ink); }
-.bdBoard:hover, .bdBoard:focus-visible { scale: 1.04; }
-.bdTool:hover, .bdTool:focus-visible { scale: 1.16; z-index: 1; }
+.bdPaperEdge { fill: none; stroke: var(--board); stroke-width: 0.9; }
+.bdStampBox { fill: none; stroke: var(--board); stroke-width: 0.9; }
+.bdStampText { fill: var(--board); font-family: var(--display); font-weight: 700; font-size: 9.5px; letter-spacing: 0.02em; }
+.bdLoco { fill: none; stroke: var(--board); stroke-width: 1.35; stroke-linejoin: round; stroke-linecap: round; }
+.bdLoco .bdThin { stroke-width: 0.6; }
+.bdLoco .bdHub { fill: var(--board); }
+.bdLoco .bdHatch { stroke-width: 0.5; }
+.bdLoco .bdRod { stroke-width: 2.4; }
+.bdLoco .bdRail { stroke-width: 1.8; }
+.bdLoco .bdGuide { stroke-width: 0.5; opacity: 0.28; }
+.bdLoco .bdCenter { stroke-width: 0.55; stroke-dasharray: 7 2 1.5 2; opacity: 0.7; }
+.bdDim { fill: none; stroke: var(--signal); stroke-width: 0.8; }
+.bdDim .bdArrow { fill: var(--signal); stroke: none; }
+.bdDim text { fill: var(--signal); stroke: none; font-family: var(--display); font-weight: 600; font-size: 10px; }
+.bdAxis {
+  fill: none; stroke: var(--board); stroke-width: 0.8; stroke-dasharray: 9 2.5 2 2.5;
+  clip-path: inset(-3px 100% -3px 0); transition: clip-path 0.45s var(--ease);
+}
+.bdPool { mix-blend-mode: multiply; }
+.bdPoolIn { stop-color: var(--poster); stop-opacity: 0.3; }
+.bdPoolOut { stop-color: var(--poster); stop-opacity: 0; }
+.bdTape { fill: color-mix(in oklab, var(--poster) 32%, var(--chalk)); opacity: 0.92; stroke: color-mix(in oklab, var(--poster) 45%, var(--bd-wood)); stroke-width: 0.4; }
+.bdPencils { filter: drop-shadow(1.5px 2.5px 1.2px color-mix(in oklab, var(--ink) 35%, transparent)); }
+.bdPencilRed { --pc: var(--signal); }
+.bdPencilYellow { --pc: var(--poster); }
+.bdPencilBlue { --pc: var(--bd-blue); }
+.bdPencilBody { fill: var(--pc); stroke: color-mix(in oklab, var(--pc) 50%, var(--ink)); stroke-width: 0.6; }
+.bdPencilTop { fill: color-mix(in oklab, var(--pc) 68%, var(--chalk)); }
+.bdPencilLow { fill: color-mix(in oklab, var(--pc) 72%, var(--ink)); }
+.bdPencilWood { fill: var(--bd-wood-hi); stroke: color-mix(in oklab, var(--bd-wood) 70%, var(--ink)); stroke-width: 0.4; }
+.bdPencilLead { fill: color-mix(in oklab, var(--pc) 78%, var(--ink)); }
+.bdPencilEnd { fill: var(--bd-wood-hi); }
+.bdRule { transition: translate 1.1s var(--ease); }
+.bdAcrylic { fill: color-mix(in oklab, var(--bd-blue) 18%, var(--chalk)); fill-opacity: 0.55; }
+.bdAcrylicEdge { fill: none; stroke: color-mix(in oklab, var(--bd-blue) 55%, var(--board)); stroke-width: 0.9; }
+.bdRuleBase { fill: var(--bd-steel-lo); }
+.bdTicks { fill: none; stroke: var(--board); stroke-width: 0.5; }
+.bdBoard:hover .bdRule, .bdBoard:focus-visible .bdRule { translate: 0 -64px; }
+.bdBoard:hover .bdAxis, .bdBoard:focus-visible .bdAxis { clip-path: inset(-3px 0 -3px 0); transition: clip-path 0.9s var(--ease) 0.75s; }
+
+/* Мастерская: щит с контурами инструментов, верстак, тиски слева, модель паровоза. Кнопки стоят ровно над своими контурами. */
+.bdShop { position: absolute; left: 65%; top: 20.6%; width: 33%; z-index: 2; }
+.bdShopArt { position: relative; }
+.bdShopSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0.8cqw 1cqw var(--shade)); }
+.bdShopWainscot, .bdShopFloor { display: none; }
+.bdPeg { fill: var(--bd-peg); }
+.bdPegHole { fill: color-mix(in oklab, var(--bd-wood-lo) 70%, transparent); }
+.bdShop .bdGhost { opacity: 0.3; }
+.bdShop .bdGhost * { fill: var(--board); stroke: var(--board); stroke-width: 3.5px; stroke-linejoin: round; }
+.bdHook { fill: none; stroke: var(--bd-steel-lo); stroke-width: 2.2; stroke-linecap: round; }
+.bdHung { filter: drop-shadow(0 3px 2px color-mix(in oklab, var(--ink) 45%, transparent)); }
+.bdSteel { fill: var(--bd-steel); stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.bdSteelLo { fill: var(--bd-steel-lo); stroke: var(--ink); stroke-width: 1.2; }
+.bdSteelEdge { fill: none; stroke: color-mix(in oklab, var(--ink) 75%, transparent); stroke-width: 1; stroke-linecap: round; }
+.bdTeeth { fill: none; stroke: color-mix(in oklab, var(--ink) 60%, transparent); stroke-width: 0.8; }
+.bdShine { fill: none; stroke: var(--chalk); stroke-width: 1.6; stroke-linecap: round; opacity: 0.9; }
+.bdGrip { fill: var(--signal); stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.bdGripShine { fill: none; stroke: color-mix(in oklab, var(--chalk) 70%, transparent); stroke-width: 1.3; stroke-linecap: round; }
+.bdHoleDark { fill: color-mix(in oklab, var(--bd-peg) 40%, var(--bd-wood-lo)); stroke: var(--ink); stroke-width: 1.2; }
+.bdHandleA { fill: var(--poster); stroke: var(--ink); stroke-width: 1.4; }
+.bdHandleB { fill: var(--bd-blue); stroke: var(--ink); stroke-width: 1.4; }
+.bdToolSvg .bdOak, .bdHung .bdOak, .bdToolSvg .bdOakLoFill { stroke: var(--ink); stroke-width: 1.4; }
+.bdToolSvg .bdIronFill { stroke: var(--ink); stroke-width: 1.2; }
+.bdToolbox .bdBoxBody { fill: var(--signal); stroke: var(--ink); stroke-width: 1; }
+.bdToolbox .bdBoxLid { fill: color-mix(in oklab, var(--signal) 80%, var(--ink)); stroke: var(--ink); stroke-width: 1; }
+.bdToolbox .bdBoxHandle { fill: none; stroke: var(--bd-steel); stroke-width: 2.2; stroke-linejoin: round; }
+.bdJaw { fill: var(--bd-steel); }
+.bdIronEdge { fill: none; stroke: var(--bd-iron-hi); stroke-width: 1; opacity: 0.9; }
+.bdThread { fill: none; stroke: var(--bd-steel-lo); stroke-width: 0.8; }
+.bdTbar { fill: none; stroke: var(--bd-steel); stroke-width: 2.4; stroke-linecap: round; }
+.bdShaving { fill: none; stroke: var(--bd-oak-hi); stroke-width: 1.3; stroke-linecap: round; }
+.bdModelRail { fill: none; stroke: var(--bd-steel); stroke-width: 1.6; }
+.bdModelSleeper { fill: none; stroke: var(--bd-wood-lo); stroke-width: 2.6; }
+.bdModelDark { fill: var(--ink); }
+.bdModelBody { fill: color-mix(in oklab, var(--board) 55%, var(--bd-blue)); stroke: var(--ink); stroke-width: 0.8; }
+.bdModelShine { fill: none; stroke: color-mix(in oklab, var(--chalk) 60%, transparent); stroke-width: 1.4; stroke-linecap: round; }
+.bdModelGold { fill: none; stroke: var(--bd-brass); stroke-width: 1.2; }
+.bdModelGoldFill { fill: var(--bd-brass); }
+.bdModelCab { fill: var(--signal); stroke: var(--ink); stroke-width: 0.8; }
+.bdModelWindow { fill: var(--bd-lit); }
+.bdModelLamp { fill: var(--poster); filter: drop-shadow(0 0 2px var(--poster)); }
+.bdModelWheel { fill: var(--signal); stroke: var(--ink); stroke-width: 1; }
+.bdModelHub { fill: var(--chalk); }
+.bdModelRod { fill: none; stroke: var(--bd-steel); stroke-width: 1.4; stroke-linecap: round; }
+.bdTool {
+  position: absolute; display: block; height: auto; cursor: pointer; border: 0; padding: 0; background: none; border-radius: 6px; z-index: 1;
+  transform-origin: 50% 4%; transition: translate 0.45s var(--ease), rotate 0.45s var(--ease);
+}
+.bdToolSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 3px 2.5px color-mix(in oklab, var(--ink) 45%, transparent)); transition: filter 0.45s var(--ease); }
+.bdTool:hover, .bdTool:focus-visible { translate: 0 -6%; rotate: -4deg; z-index: 2; }
+.bdTool:hover .bdToolSvg, .bdTool:focus-visible .bdToolSvg { filter: drop-shadow(0 12px 9px color-mix(in oklab, var(--ink) 50%, transparent)); }
 .bdBoard:focus-visible, .bdTool:focus-visible { outline: 3px solid var(--poster); outline-offset: 4px; border-radius: 6px; }
 
 /* Окно справки — слева: то же окно, что у антиспама справа. */
@@ -2649,11 +2817,36 @@
 .bdInfo::backdrop { background: transparent; }
 @keyframes bdInfoIn { from { opacity: 0; translate: -2rem -50%; } to { opacity: 1; translate: 0 -50%; } }
 
-@media (max-width: 560px) {
-  .bdRoom { height: 400px; --board-w: 66cqw; --board-l: 2cqw; --tools-w: 30cqw; }
-  .bdTools { right: 2cqw; top: 22cqh; height: 36cqh; }
+/* Телефон и узкий планшет: комната делится на две картины друг под другом — чертёжная и мастерская; инструменты в полный рост. */
+@media (max-width: 819px) {
+  .bdRoom { aspect-ratio: auto; display: grid; gap: 0.75rem; }
+  .bdHall { position: relative; inset: auto; aspect-ratio: 360 / 470; container-type: inline-size; }
+  .bdCornice { top: 6.2%; height: 1.1%; }
+  .bdWin { left: 52%; top: 7%; width: 42%; }
+  .bdLamp { left: 33%; width: 19%; }
+  .bdLamp::after { width: 22cqw; bottom: -3cqw; }
+  .bdWire { height: 7cqw; }
+  .bdLight { left: 1%; width: 58%; top: 19%; bottom: 8%; }
+  .bdBoard { left: 1.5%; width: 97%; bottom: 2%; }
+  .bdWainscot { top: 64%; height: 24.5%; }
+  .bdFloor { height: 11.5%; }
+  .bdFloor::after { background: radial-gradient(ellipse 50% 80% at 40% 30%, color-mix(in oklab, var(--poster) 18%, transparent), transparent 70%); }
+  .bdWinLight { display: none; }
+  .bdShop {
+    position: relative; left: auto; top: auto; width: auto; z-index: auto; overflow: hidden; padding: 10% 3% 3%; container-type: inline-size;
+    border-radius: 50% 50% var(--tile-corner) var(--tile-corner) / 6% 6% var(--tile-corner) var(--tile-corner);
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, color-mix(in oklab, var(--poster) 9%, transparent), transparent 70%),
+      linear-gradient(to bottom, var(--bd-wall-top), var(--board-deep) 70%);
+  }
+  .bdShopWainscot { display: block; top: 56%; height: 30%; }
+  .bdShopFloor { display: block; height: 15%; }
+  .bdShopArt { z-index: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bdBoard, .bdTool { transition: none; }
+  .bdRule, .bdAxis, .bdTool, .bdToolSvg { transition: none; }
+  .bdBoard:hover .bdRule, .bdBoard:focus-visible .bdRule { translate: none; }
+  .bdAxis { clip-path: none; }
+  .bdTool:hover, .bdTool:focus-visible { translate: none; rotate: none; }
   .bdInfo:popover-open { animation: none; }
 }
