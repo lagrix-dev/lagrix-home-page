@@ -394,8 +394,8 @@ Owner: «сделай размер чертежей в ширину больше
 rule «no window» is lifted by this word. Plan agreed: «Подтверждаю (Рекомендую)».
 
 - **Three drawings, each in its own units:** the board `480 × 340`, the window `160 × 252`, the workshop `330 × 332`. On a computer
-  they stand in one room `.bdRoom` (`aspect-ratio: 1000 / 470`, everything in percent of its units); below 820 px the room splits into
-  two pictures — `.bdHall` (window, lamp, board) and `.bdShop` (pegboard, workbench) — so the tools are full size on a phone.
+  they stand in one room `.bdRoom` (`aspect-ratio: 1000 / 470`, everything in percent of its units); below 820 px only `.bdHall` stays
+  (window, lamp, board): the workshop `.bdShop` is not shown on phones (owner, 523-3: «инструменты не нужно показывать на телефон»).
 - **Materials** are mixes of the world roles in `.bdRoom` (`--bd-wood`, `--bd-oak`, `--bd-peg`, `--bd-steel`, `--bd-iron`, `--bd-brass`,
   `--bd-blue` from `--primary`, …), the same way as the VIP room; no own colour value anywhere.
 - **Board** (`Button`, popover as before): oak frame on an iron stand, paper with a frame and a title block (`sheet`), a tank engine with
@@ -409,6 +409,5 @@ rule «no window» is lifted by this word. Plan agreed: «Подтверждаю
   30 %); hammer, pliers and saw are `Button`s placed by the same numbers as their outlines (`TOOL` in the component), screwdrivers and a
   wrench are drawing only. Hover/focus lifts the tool off its outline. Below: a workbench with a drawer, a lower shelf with a red toolbox,
   the **vise on the left** with a block in its jaws and shavings, and a small model of the locomotive from the drawing.
-- Measured on lagrix.dev: paper 341 → 451 px at 1440 (×1.32); tool buttons on a 390 phone 29 → 60 / 54 / 72 px; phone page width 390 =
-  390; hover moves the rule 72 px and reveals the axis, leaving returns both.
+- Measured on lagrix.dev: paper 341 → 451 px at 1440 (×1.32); phone page width 390 = 390; hover moves the rule 72 px and reveals the axis, leaving returns both.
 - `scene` (en, ru) describes the new picture; the other words are unchanged.
