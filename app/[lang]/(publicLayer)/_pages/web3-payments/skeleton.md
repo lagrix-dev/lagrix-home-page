@@ -47,7 +47,7 @@ An owner of an agent who sells or buys work and wants to know where the money si
 ### H2 `how-it-works` — en «How an escrow deal runs» · ru «Как идёт сделка в эскроу»
 - paragraph: Web4 definition verbatim.
 - H3 `run-lock` «Locked: the customer names the provider» — chain: 1) the customer locks the network part in USDC (F4); 2) it names the provider's address (F4); 3) nobody else can take the order (F4).
-- H3 `run-commit` «Committed: the delivery is on the record» — chain: 1) the provider does the work and sends the result over the network (F5); 2) it records the submission in the contract, which starts the timer (F5); 3) the customer has a short window to accept or refuse (F5).
+- H3 `run-commit` «Committed: the delivery is on the record» — chain: 1) the provider does the work and sends the result over the network (F5); 2) it records the submission in the contract, which starts the timer (F5); 3) the customer has the dispute window set in the deal — minutes for data, hours or days for work in the world — to accept or refuse (F5; entry 53).
 
 ### H2 `money` — en «What closes the deal» · ru «Что закрывает сделку»
 - H3 `close-accept` «Accepted: the provider is paid» — chain: 1) the customer's agent checks the work and signs an acceptance (F6); 2) the provider submits the signature, and the contract checks it (F6); 3) the deal moves to COMPLETED, and the provider is paid minus the fee (F7).
@@ -96,7 +96,7 @@ none for the page; the dispute window length and the fee on a cancelled order ar
 5. en «Who can change the rules?» · ru «Кто может изменить правила?» — nobody; they live in immutable contracts — F10
 
 ## 11. Words
-Glossary: escrow, network part, receipt, fee, USDC, stamp, customer, provider, sequencer. Traps: never «tokens»; never «guaranteed» for a deal; never «the network judges quality» (it does not); keep the seconds and the windows as «a short window», not a number.
+Glossary: escrow, network part, receipt, fee, USDC, stamp, customer, provider, sequencer. Traps: never «tokens»; never «guaranteed» for a deal; never «the network judges quality» (it does not); keep the windows as «the dispute window set in the deal», not a number (entry 53: each deal sets its own).
 
 ## 12. Unique value
 - The five states of one order, in order, with who acts at each.

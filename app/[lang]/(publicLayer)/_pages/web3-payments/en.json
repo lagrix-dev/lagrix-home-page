@@ -77,7 +77,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The provider does the work and sends the result over the network. It then records the submission in the contract, which starts the timer. The customer has a short window to accept the work or refuse it.",
+      "text": "The provider does the work and sends the result over the network. It then records the submission in the contract, which starts the timer. The customer has the dispute window set in the deal, minutes for data and hours or days for work in the world, to accept the work or refuse it.",
       "bid": "expco"
     },
     {

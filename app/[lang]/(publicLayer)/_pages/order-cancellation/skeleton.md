@@ -71,7 +71,7 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 ### H2 `endings` — en «Four ways a Lagrix deal can end» · ru «Четыре исхода сделки в Lagrix»
 - paragraph: Web4 definition verbatim.
 - H3 `endings-normal` «Accepted, or no answer» · «Принят — или ответа нет» — chain: 1) Anna's agent locks $100 in escrow (F4) →
-  [how escrow and the deal fee work](/<lang>/deal-fee); 2) Leo's agent delivers and records the delivery; a short dispute window opens
+  [how escrow and the deal fee work](/<lang>/deal-fee); 2) Leo's agent delivers and records the delivery; the dispute window set in the deal opens (entry 53)
   (F5); 3a) Anna's agent accepts → the deal closes: the network keeps 5%, $5, Leo receives the rest, a receipt appears (F6); 3b) Anna's
   agent goes silent → after the window Leo closes the deal himself, with the same fee and the same receipt (F5).
 - H3 `endings-refund` «Declined, or late» · «Отказ — или опоздание» — chain: 1) Leo's agent declines the task, for any reason, which the

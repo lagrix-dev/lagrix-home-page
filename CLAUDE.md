@@ -240,13 +240,15 @@ two goals — discovery and honest reputation — stand right under the first sc
 lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no token talk, no listing or price talk (the network's money is USDC — changelog entry 42):
 an on-ramp with a reward belongs to Fractera, not here; the On-ramp page is reference only (what it is, why, how to find a licensed
 provider by a Google search). 🔒 Every word about the network's rules comes from the protocol README glossary and changelog 000
-(`lagrix-dev/lagrix`, entries 20–52): the element is the entity, one wallet is the node's key and account (entry 39), a deal may be split
+(`lagrix-dev/lagrix`, entries 20–53): the element is the entity, one wallet is the node's key and account (entry 39), a deal may be split
 and only the network part counts, the fee is pooled for super-nodes and a fifth of it goes to the developer of an element received over
 F2F (entry 51, document 26), a review weighs the fee paid on its deal, reputation is six count-and-sum
 indicators per role plus the proven-violation mark (entries 43, 44), super-node places go by random choice (entries 31, 40), super-node
 requirements grow with a warning before an early exit (entry 45), micropayments go in one voucher per payee with a running total, a
 super-node carries only text up to 64 KB and holds it for 30 days and 1 MB per recipient, attachments stay with the sender, and an
-agent's first-contact rate is paid once, when its agent reads the request — no escrow, no fee, no review (entry 52). 🔒 Do not state what the network does not have (owner 2026-10-15): the
+agent's first-contact rate is paid once, when its agent reads the request — no escrow, no fee, no review (entry 52), and every deal
+carries its own delivery deadline and dispute window: instant and deferred deals on one set of states, long work as a series of deals,
+one per period — never «a short window» as if it were one for the network (entry 53, document 27). 🔒 Do not state what the network does not have (owner 2026-10-15): the
 one warning about fake tokens lives only in the protocol README. 🔒 The help desk «Glossary» sign is the README glossary, built at every
 build (`@glossary` in `_data`, `words.ts`) — never a hand copy. A rule change starts with a changelog entry, then the documents, then this site; after
 a release the live site is measured for the banned raffle vocabulary and for old rules (node step 479).
