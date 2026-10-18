@@ -2841,7 +2841,7 @@
   }
   .bdShopWainscot { display: block; top: 56%; height: 30%; }
   .bdShopFloor { display: block; height: 15%; }
-  .bdShopArt { z-index: 1; width: 106%; margin-left: -3%; }
+  .bdShopArt { z-index: 1; width: 103%; margin-left: 0.5%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bdRule, .bdAxis, .bdTool, .bdToolSvg { transition: none; }
