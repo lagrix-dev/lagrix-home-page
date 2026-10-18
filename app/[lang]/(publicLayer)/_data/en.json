@@ -1061,7 +1061,7 @@
               "Super-node result — $0.01 from Ilya's balance",
               "Marcus Vale's agent: «accepting requests» · rocket engines · first-contact rate $50"
             ],
-            "text": "Found him: Marcus Vale's agent accepts requests about rocket engines. The network has already taken $0.01 for the search; to write, there is also the first-contact rate — $50, set by Marcus himself. It is an ordinary deal: the money waits in escrow and goes to him when you accept the work, less the network's 5% fee. Sign and pay?"
+            "text": "Found him: Marcus Vale's agent accepts requests about rocket engines. The network has already taken $0.01 for the search; to write, there is also the first-contact rate — $50, set by Marcus himself. It is paid once, straight to Marcus's wallet, when his agent reads the request, and it is not returned if he says no. Sign and pay?"
           },
           {
             "side": "system",
@@ -1082,14 +1082,14 @@
             "contract": "h2a",
             "kind": "confirm",
             "title": "Sign the request with the node's wallet and pay the first-contact rate",
-            "accepted": "Signed · $50 in escrow for Marcus Vale's agent",
+            "accepted": "Signed · a $50 voucher for Marcus Vale's agent",
             "text": "Signing with the node's wallet and paying."
           },
           {
             "side": "system",
             "who": "Network",
             "contract": "a2a",
-            "text": "First-contact rate $50 — in escrow, as an ordinary A2A deal. Marcus's agent's node checked the signature and the payment before the agent read a word — the request is let in."
+            "text": "First-contact rate $50 — a voucher to Marcus Vale's wallet, charged when his agent reads the request. Marcus's agent's node checked the signature and the payment before the agent read a word — the request is let in."
           },
           {
             "side": "left",
@@ -1120,6 +1120,13 @@
             "net": 0.001,
             "note": "delivery $0.001 · paid by Marcus Vale",
             "text": "Received. Before I take this to Marcus, three questions. First: what does the engine burn, and what does «safe» mean in it?"
+          },
+          {
+            "side": "system",
+            "who": "Network",
+            "contract": "a2a",
+            "to": 50,
+            "text": "Marcus's agent read the request: the $50 first-contact rate went to Marcus Vale's wallet. No escrow and no network fee — the rate pays for his attention."
           },
           {
             "side": "left",
@@ -1181,7 +1188,7 @@
             "side": "right",
             "who": "Marcus Vale's agent",
             "contract": "h2a",
-            "text": "Marcus, here is a request worth reading. Inventor Ilya: a safe methane–oxygen engine — on pump failure the chamber shuts down in 40 ms, 12 hot-fire runs, the patent is unlicensed. The first contact is paid: $50 in escrow. I recommend answering."
+            "text": "Marcus, here is a request worth reading. Inventor Ilya: a safe methane–oxygen engine — on pump failure the chamber shuts down in 40 ms, 12 hot-fire runs, the patent is unlicensed. The first contact is paid: the $50 rate is already in your wallet. I recommend answering."
           },
           {
             "side": "right",
@@ -1204,30 +1211,10 @@
             "text": "Hi! I'm interested in your idea. I'd like to invite you to my office."
           },
           {
-            "side": "left",
-            "who": "Ilya's agent",
-            "contract": "h2a",
-            "text": "Ilya, Marcus's agent did its work: the request reached Marcus and he answered. I'm accepting the first-contact deal — please rate it: like or dislike? The review weighs $2.50 — the fee paid on the deal."
-          },
-          {
-            "side": "right",
-            "who": "Ilya",
-            "contract": "h2a",
-            "text": "Accepted. A like — fast, to the point, and all the way to Marcus."
-          },
-          {
-            "side": "system",
-            "who": "Network",
-            "contract": "a2a",
-            "to": 47.5,
-            "net": 2.5,
-            "text": "Deal closed: $47.50 to Marcus Vale, $2.50 network fee (5%) into the period's pool. Reviews recorded: Ilya — a like to Marcus's agent, Marcus's agent — a like to Ilya; each weighs $2.50."
-          },
-          {
             "side": "system",
             "who": "Total",
             "contract": "h2h",
-            "text": "Ilya paid $50.014: $50 — the first-contact rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $47.50 and paid 5 × $0.001 for his own messages. Super-nodes got $2.519: $0.019 as pay for work ($0.01 to the one that compiled the search result, 9 × $0.001 to those that delivered the messages) and $2.50 — the 5% fee on the first-contact deal — into the period's pool. The network has 256 super-nodes and 255 passed the quality minimum: the pool is shared equally among them — $0.0098 each."
+            "text": "Ilya paid $50.014: $50 — the first-contact rate, $0.01 — the search, 4 × $0.001 — delivery. Marcus Vale received $50 and paid 5 × $0.001 for his own messages. Super-nodes got $0.019 as pay for work: $0.01 to the one that compiled the search result, 9 × $0.001 to those that delivered the messages. The first-contact rate is not a deal: it carries no network fee and leaves no review."
           }
         ]
       }

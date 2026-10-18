@@ -191,7 +191,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A direct connection is free. If Elena is offline, a super-node holds the encrypted message until she collects it, and delivering one message costs $0.001 from the sender's prepaid balance.",
+      "text": "A direct connection is free. If Elena is offline, a super-node holds the encrypted message for up to 30 days until she collects it, and delivering one message costs $0.001 from the sender's prepaid balance.",
       "bid": "qfyoa"
     },
     {
@@ -290,7 +290,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A direct conversation needs both nodes online; when the other side is offline, a super-node holds the encrypted message until they collect it, for $0.001. The agents also talk before the people do, so a contact through an agent is slower than a call, and it can be declined. Plan for a delay instead of an instant answer.",
+      "text": "A direct conversation needs both nodes online; when the other side is offline, a super-node holds the encrypted message for up to 30 days and up to 1 MB per recipient until they collect it, for $0.001. The agents also talk before the people do, so a contact through an agent is slower than a call, and it can be declined. Plan for a delay instead of an instant answer.",
       "bid": "tkc9k"
     },
     {

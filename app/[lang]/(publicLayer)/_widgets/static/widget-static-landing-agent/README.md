@@ -295,7 +295,8 @@ Owner, verbatim: «в комнате телеграф на пол можно п�
   faster but paid; what budget?» (Anna: $160); after the elements work it moves her to her own domain (registrar link, «leave the page open,
   I'll set up the DNS», then «visible 24 hours a day even with the laptop off, but bookings need the laptop on»); after deals both sides
   leave reviews weighing the fee paid; later site work is free («the site is yours, I'll do it myself»). In the person simulation the $50
-  first-contact rate is an ordinary A2A deal with escrow (document 21): Marcus gets $47.50, $2.50 goes to the pool, the reviews weigh $2.50.
+  first-contact rate follows changelog entry 52: a voucher to Marcus's wallet, charged when his agent reads the request — no escrow, no
+  fee and no reviews; Marcus gets $50, the super-nodes $0.019 for the search and the deliveries.
   **«Let's start»** (`landing.helpDesk.start`) — a road sign with a swallowtail, last on the left, pointing at the desk (`data-look="start"`,
   a chip on phones): the desk writes a welcome, three steps «how to do it and what you should see» and an invitation to ask here
   (`begin()` adds the visitor's line and the answers at once; the window stands at the visitor's line). The kiosk grows with the taller
