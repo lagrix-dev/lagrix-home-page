@@ -3,6 +3,8 @@
 Written 2026-10-16 (step 507-4) by the federal agent, from the protocol (README, documents 00–23, changelog 000) and research of the
 same day. A writer at minimum reasoning writes `en.json` and `ru.json` from this file only; whatever is not here is not on the page.
 Form: `/code/.claude/skills/lagrix-answer-pages/references/tz-template.md`.
+Updated 2026-10-18 (node step 521-6, owner: «for https://lagrix.dev/ru/f2f updATE info for developer benefits»): the developer share
+(changelog entry 51, document 26) — a new H3 `developer-share`, facts F22–F23, FAQ 6, numbers, unique value.
 
 ## 1. Passport
 - slug: f2f · hub: discovery · menu order: 102 (`meta.json`)
@@ -88,6 +90,14 @@ the reference; this plan names what each H3 must carry. en 1210 words, ru 1029 �
   compatibility agreed in a dialogue before the deal, nothing else before payment (F21); escrow, accept, fee at most 5% (F15, F18), review.
 - H3 `selling` «Selling» · «Продажа» — announce with the card, no shop, no approval (F8); equal terms, Fractera included (F19); receipt
   lifts the element for a year, buyer's review (F20) → /reputation.
+- H3 `developer-share` en «A share of every deal after the sale» · ru «Доля с каждой сделки после продажи» — a chain of steps (§5б):
+  1. Anna's salon has installed Sam's booking element and takes a $100 order through it; the network fee of the deal is $5 (F18).
+  2. 20% of that fee — $1 — goes to Sam, the developer of the element; $4 goes to the super-nodes (F22).
+  3. Anna and her client pay exactly what they would pay anyway: the share comes out of the fee (F22).
+  4. This repeats on every deal Anna's salon makes with the element, for as long as it works; a free element pays its developer the
+     same way (F22). The element's history stays clean in Anna's project, but the share follows the element (F14, F22).
+  5. A provider that works with an element it built itself pays the whole fee to the super-nodes (F23).
+  No link to document 26 until it answers on the site (521-5, token); the rule is told in plain words.
 
 ## 7. Facts
 | № | statement | source |
@@ -113,8 +123,10 @@ the reference; this plan names what each H3 must carry. en 1210 words, ru 1029 �
 | F19 | an F2F announcement competes like any other; no advantage for Fractera | doc 17 §17.6; doc 20 |
 | F20 | a receipt orders search by the last year of paid work; a review from each side | doc 05 §5.2; doc 17 §17.2, §17.5 |
 | F21 | before the deal the buyer's agent agrees on compatibility with the seller's agent in a dialogue; until payment it has no other access, and unpaid access is too little to drain the other agent | owner 2026-10-16 (507-main) |
+| F22 | when a provider works with an element it received over F2F, bought or free, 20% of the deal's fee goes to the developer of that element (the `developer` wallet of its card) and 80% to the super-nodes; the parties pay the same; the share follows the element | changelog entry 51; doc 26 §26.3–26.5; doc 20 |
+| F23 | a provider's own element pays the whole fee into the pool | changelog entry 51; doc 26 §26.3 |
 
-Numbers: «$0.01», «$0,01», «5%», «5 %», «$100», «$5», «70%», «70 %», «30%», «30 %», «1,184», «1 184»
+Numbers: «$0.01», «$0,01», «5%», «5 %», «$100», «$5», «70%», «70 %», «30%», «30 %», «1,184», «1 184», «20%», «20 %», «$1», «$4»
 
 ## 8. Questions to the owner
 **Answered by the owner 2026-10-16** (words in `/code/development-docs/development-steps/new-steps/507/507-main.md`): (1) no launch date; (2) before the deal the buyer's agent must agree on compatibility with the
@@ -145,6 +157,8 @@ agent to drain another (F21). The page never says the network checks code.
    its card holds only names of settings, never values — F13
 5. en «Does the seller's reputation come with the element?» · ru «Переходит ли репутация продавца вместе с элементом?» — no; the
    element starts with a clean history in your project, and the seller's history stays where it was earned — F14
+6. en «Does the developer receive anything after the sale?» · ru «Получает ли разработчик что-то после продажи?» — yes: 20% of the network
+   fee of every deal made with the element, bought or free, for as long as it works; the parties pay no more — F22, F23
 
 ## 11. Words
 Glossary: F2F, element, technical card, A2A, announcement, super-node, escrow, receipt, review, reputation, network part.
@@ -158,3 +172,5 @@ never «Fractera's protocol».
   appears without its sum.
 - A card of what an element is made of — eleven fields — and a hard rule that no secret and no history travels with it.
 - The margin in numbers: a curated catalog keeps 30% of a sale; the Lagrix network fee is at most 5% of the network part.
+- The developer is paid after the sale: a fifth of the network fee of every deal made with the element, without raising the price for
+  anyone (entry 51).

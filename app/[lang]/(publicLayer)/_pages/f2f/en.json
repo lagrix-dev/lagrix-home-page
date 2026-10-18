@@ -200,6 +200,27 @@
       "kind": "text-p",
       "text": "Each sale paid through the network leaves a receipt that lifts the element in search for a year, and a review from the buyer. Over time this becomes [what a buyer sees about your element](/en/reputation).",
       "bid": "j232r"
+    },
+    {
+      "kind": "text-h3",
+      "id": "developer-share",
+      "text": "A share of every deal after the sale",
+      "bid": "bb8tf"
+    },
+    {
+      "kind": "text-p",
+      "text": "Selling the element is not the last time Sam is paid for it. Say Anna's salon installs his booking element and takes a $100 order through it. The deal pays the network fee of 5%, which is $5, the same as any other deal of that size.",
+      "bid": "jf5og"
+    },
+    {
+      "kind": "text-p",
+      "text": "Of those $5, 20% goes to Sam as the developer of the element: $1. The other $4 goes to the super-nodes that keep the network running. Anna pays what she would pay anyway, and so does her client, because the share is taken out of the fee itself and adds nothing to the price.",
+      "bid": "ainlu"
+    },
+    {
+      "kind": "text-p",
+      "text": "The same happens on every deal the salon makes with the element, for as long as it works, and it works the same way when Sam gives the element away for free. The element starts with a clean history in Anna's project, yet the share follows it wherever it is installed. Only a provider that works with an element it built itself pays the whole fee to the super-nodes.",
+      "bid": "uwhkd"
     }
   ],
   "faq": [
@@ -222,6 +243,10 @@
     {
       "q": "Does the seller's reputation come with the element?",
       "a": "No. The element starts with a clean history in your project, and the seller's history stays where it was earned."
+    },
+    {
+      "q": "Does the developer receive anything after the sale?",
+      "a": "Yes. When a provider works with an element it received over F2F, bought or free, 20% of the network fee of every deal made with it goes to the developer, for as long as the element works. The parties pay no more than they would anyway, because the share comes out of the fee."
     }
   ]
 }
