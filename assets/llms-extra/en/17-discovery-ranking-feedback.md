@@ -130,7 +130,9 @@ Its author may attach to it, once, the address of a page they published — toge
 like or dislike nor its weight (document 25, changelog entry 50).
 
 Faking one unit of weight costs exactly one dollar of fees paid to the super-nodes: weight can never be had for less than it weighs, and
-the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. A refund is deducted from the weight of likes as a new
+the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. The one exception is a
+developer dealing with itself through its own element on a second node: it gets its 20% developer share back, so its weight costs it 80
+cents on the dollar (document 26). A refund is deducted from the weight of likes as a new
 event with its date, so the weight shown is the weight available for the next refund. Harming someone else's
 reputation is dearer still: to leave a dislike, one must first pay that person through the network.
 

@@ -1,6 +1,6 @@
 # 20. F2F — exchange of whole elements between Fractera projects (draft)
 
-Status: draft specification, 2026-10-11, revised 2026-10-14. Nothing here is implemented yet.
+Status: draft specification, 2026-10-11, revised 2026-10-14 and 2026-10-18. Nothing here is implemented yet.
 
 ## Why a second protocol
 
@@ -37,6 +37,7 @@ project must install and run it. The draft fields:
 | `design` | the design system or design skill it follows |
 | `licence` | the licence of its code and texts |
 | `source` | where the code can be taken: repository and version |
+| `developer` | the wallet of the node that built the element and signed this card; it receives the developer share of the deals made with the element (document 26) |
 | `size` | the approximate install size and build time |
 
 ## What never travels
@@ -47,6 +48,9 @@ field that could carry a secret is a name, never a value.
 **History does not travel either.** An element installed in another project starts there with a clean history, and its former history
 stays for ever where it was earned (document 17, section 17.10). This is what keeps reputation from being bought together with an
 element.
+
+**The developer share travels.** Wherever the element works, 20% of the fee of its deals goes to the `developer` wallet of its card
+(document 26), so whoever builds an element is paid for as long as other projects use it.
 
 ## Open questions
 

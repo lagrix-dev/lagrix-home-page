@@ -97,7 +97,7 @@ the reference; this plan names what each H3 must carry. en 1210 words, ru 1029 �
   4. This repeats on every deal Anna's salon makes with the element, for as long as it works; a free element pays its developer the
      same way (F22). The element's history stays clean in Anna's project, but the share follows the element (F14, F22).
   5. A provider that works with an element it built itself pays the whole fee to the super-nodes (F23).
-  No link to document 26 until it answers on the site (521-5, token); the rule is told in plain words.
+  Link to document 26 in step 2 (it answers on the site since 2026-10-18 08:55, when the element got a lagrix-dev token).
 
 ## 7. Facts
 | № | statement | source |
@@ -142,7 +142,8 @@ agent to drain another (F21). The page never says the network checks code.
   - /<lang>/search-fee — «the price of one search» / «цена одного поиска» — H2 `buy-and-sell`
   - /<lang>/reputation — «what a buyer sees about your element» / «что покупатель видит о вашем элементе» — H2 `buy-and-sell`
 - to documents: /<lang>/docs/20-f2f-element-exchange — «every field of the technical card» / «все поля технической карточки» — H2
-  `how-f2f-works`
+  `how-f2f-works`; /<lang>/docs/26-developer-share — «the developer share rule of the protocol» / «правилу доли разработчика» — H3
+  `developer-share`
 - incoming (planned): /discovery (hub), /a2a (H2 `connect`), /likes-and-dislikes, /payments
 - external primary sources: the CSA research note of 2026-06-24 (F1, F2)
 

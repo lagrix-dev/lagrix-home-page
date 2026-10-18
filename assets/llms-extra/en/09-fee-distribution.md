@@ -30,7 +30,8 @@ changelog (document 000).
 
 The fees of a period are added up in the contract. At the end of the period they are divided **in equal parts among the
 super-nodes that passed the quality minimum in that period** (document 05, section 5.6). Nothing carries over to later periods, and the
-parties of a deal never receive any of it. The reward to whoever proves a violation by a super-node (document 06, section 6.4) is also
+parties of a deal never receive any of it. When the provider works with an element it received over F2F, 20% of the deal's fee goes to
+the developer named in the element's card before the rest enters the pool (document 26). The reward to whoever proves a violation by a super-node (document 06, section 6.4) is also
 paid from the fees; its size is set by modelling.
 
 ```solidity
@@ -38,8 +39,12 @@ paid from the fees; its size is set by modelling.
 mapping(uint256 => uint256) public pooled;                            // period => USDC collected
 mapping(uint256 => mapping(address => bool)) public claimed;
 
-function _collect(uint256 period, uint256 fee) internal {             // called by the escrow on COMPLETED
-    pooled[period] += fee;
+uint256 public constant DEVELOPER_SHARE_BPS = 2000;                 // 20% of the fee (document 26)
+
+function _collect(uint256 period, uint256 fee, address developer) internal {   // called by the escrow on COMPLETED
+    uint256 share = developer == address(0) ? 0 : fee * DEVELOPER_SHARE_BPS / 10_000;
+    if (share > 0) usdc.safeTransfer(developer, share);               // the developer of an element received over F2F
+    pooled[period] += fee - share;
 }
 
 function claimFeeShare(uint256 period) external {
@@ -76,6 +81,10 @@ Each alternative breaks one of these jobs:
 
 Pooled by period and divided equally, the fee cannot be steered: a group that holds k of M super-nodes gets back only k/M of its own
 fee, and every one of those places was assigned by random choice, not bought (document 05, section 5.6).
+
+**The developer share is not a payment to the nodes of agents.** It is paid for code that another project installed over F2F, not for
+holding a node, and it is a fifth of the fee (document 26). A developer that deals with itself through its own element on a second node
+gets that fifth back — a cost of the rule that is stated, not hidden.
 
 **One rate for everyone.** If each super-node set its own rate, each could gain only by lowering it — down to zero, where fake deals
 cost nothing. The ceiling of 5% is fixed; modelling may lower the rate.

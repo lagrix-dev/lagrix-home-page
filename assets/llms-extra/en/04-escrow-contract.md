@@ -34,7 +34,8 @@ The fields are packed tightly: a deal record takes a few storage slots, which ke
 - **LOCKED.** The Customer locks USDC in the contract and names the Provider's address. Nobody else can take over the order.
 - **COMMITTED.** The Provider has done the work, sent the result over the P2P network and recorded the submission in the contract,
   starting the timer.
-- **COMPLETED.** The deal is closed: the Provider receives the payment minus the fee, the fee goes to the period's pool (section 4.4),
+- **COMPLETED.** The deal is closed: the Provider receives the payment minus the fee, the fee goes to the period's pool — less the
+  developer share when the Provider works with an element received over F2F (section 4.4) —
   and a receipt is recorded (section 4.5).
 - **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or did not deliver by the deadline.
   The funds return to the Customer in full, and no fee is taken.
@@ -81,9 +82,12 @@ When a deal moves to COMPLETED, the contract splits the network part:
 |---|---|---|
 | The Provider | the rest (95% while the fee is 5%) | to the wallet of the Provider's node |
 | The network fee | at most 5%, set by modelling | into the pool of the current period, divided among super-nodes under document 09 |
+| The developer share | 20% of the fee, only when the Provider works with an element it received over F2F | to the `developer` wallet of the element's F2F card (document 26) |
 
 The pool of each period is divided in equal parts among the super-nodes that passed the quality minimum in that period; the parties of
-the deal never receive it (document 09). The fee is taken from the very first deal (document 05, section 5.3).
+the deal never receive it (document 09). The developer of an element received over F2F is not a party: the Provider's node names it
+when the deal is created, and its share leaves the fee when the deal moves to COMPLETED (document 26). The fee is taken from the very
+first deal (document 05, section 5.3).
 
 ## 4.5 The receipt and the participants' history
 

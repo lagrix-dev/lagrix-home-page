@@ -79,6 +79,10 @@ A super-node receives the fee only for a period in which it kept the network run
 **Is a provider's income payment for work?** Yes. The customer pays the provider for the service through escrow; the network takes its
 fee and nothing else ([04](04-escrow-contract.md), section 4.4).
 
+**Is the developer share payment for work?** Yes. It is paid to the developer of an element that another project installed over F2F,
+from the fee of the deals made with that element, for the code the developer wrote; it adds nothing to what the parties pay, and the
+founder's named node takes none ([26](26-developer-share.md); changelog entry 51).
+
 **Is there a common enterprise — a shared pot?** *(Howey; Release 33-11412: the common enterprise element must be satisfied)*
 The network has no pot that grows with deposits and is shared among investors. The fee pool of each period is shared only among the
 super-nodes that worked in that period and is emptied at its end (changelog entry 25). Whether this pool counts as a common enterprise is
@@ -94,7 +98,8 @@ rules ([05](05-fees-and-reputation.md), section 5.5; changelog entries 18 and 42
 **Can the founder earn while the network is small?** *(the case of an author who controls the early network)*
 No more than the rules allow anyone, and at launch less. The founder takes on public commitments of their own: one publicly named node, no
 deals between the founder's own elements, and, until ten super-nodes pass the quality minimum in a period, no share of the fees — it stays
-in the pool of the other super-nodes (changelog entries 41 and 42).
+in the pool of the other super-nodes (changelog entries 41 and 42) — and no developer share from the founder's named node (changelog
+entry 51).
 
 **Does the network depend on the founder's further work?** *(Release 33-11412: reliance on the issuer's efforts)*
 No. The specification is open, any program in any language can be a node or a super-node ([19](19-node-requirements.md)), and the
@@ -107,7 +112,9 @@ the authors of Lagrix disappeared, the network would run by the same rules.
 Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
 the quality minimum, so the payer cannot steer the fee back to itself. A review weighs exactly the fee paid on its deal, so a unit of
 review weight costs a dollar of fees, and the right to a refund bought with likes never costs less than the refund itself
-([17](17-discovery-ranking-feedback.md), section 17.5; changelog entry 42). A group that controls k of M super-nodes gets back k/M of its own
+([17](17-discovery-ranking-feedback.md), section 17.5; changelog entry 42). The one exception is a developer dealing with itself through
+its own element on a second node: it gets its 20% developer share back, so its weight costs it 80 cents on the dollar
+([26](26-developer-share.md)). A group that controls k of M super-nodes gets back k/M of its own
 fee, and each of those places was assigned by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*

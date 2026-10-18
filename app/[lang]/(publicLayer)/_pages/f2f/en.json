@@ -214,7 +214,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Of those $5, 20% goes to Sam as the developer of the element: $1. The other $4 goes to the super-nodes that keep the network running. Anna pays what she would pay anyway, and so does her client, because the share is taken out of the fee itself and adds nothing to the price.",
+      "text": "Of those $5, 20% goes to Sam as the developer of the element, under [the developer share rule of the protocol](/en/docs/26-developer-share): $1. The other $4 goes to the super-nodes that keep the network running. Anna pays what she would pay anyway, and so does her client, because the share is taken out of the fee itself and adds nothing to the price.",
       "bid": "ainlu"
     },
     {

@@ -21,6 +21,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
   `claimTimeout()` before the dispute window expires).
 - `test_EIP712_SignatureReplay()` — a signature cannot be reused with another `taskId` or nonce.
 - `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate of the network part (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
+- `test_DeveloperShare()` — with a `developer` named for a deal on an element received over F2F, 20% of the fee goes to that wallet and 80% to the pool of the period; with no `developer`, the whole fee goes to the pool; a refund pays neither.
 - `test_FeePool_EqualShares()` — the fees of a period go into its pool and are divided equally among the super-nodes that passed the quality minimum; the parties of a deal and super-nodes that failed the minimum receive nothing; nothing carries over to the next period.
 - `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
 - `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the fee paid on the deal; a second review of the same deal by the same side is rejected.
@@ -58,8 +59,8 @@ amounts — and checks invariants that must hold for any sequence of calls:
 
 1. **Escrow solvency.** The escrow contract's USDC balance is never below the sum of all locked deals.
 2. **Fee solvency.** FeeDistributor's USDC balance is never below the unclaimed part of the period pools.
-3. **No founder share.** No address receives fees except super-nodes that passed the quality minimum and the rewards for proven
-   violations.
+3. **No founder share.** No address receives fees except super-nodes that passed the quality minimum, the developers named on deals
+   (document 26) and the rewards for proven violations.
 4. **Marks are permanent.** Once set, a «proven violation» mark is never cleared, and a marked wallet never holds a place.
 5. **Likes never go below zero.** A refund never exceeds the weight of likes that remains.
 6. **Negative ratings stay in bounds.** The weight of dislikes an element has given in a role never exceeds the reviewable weight of its

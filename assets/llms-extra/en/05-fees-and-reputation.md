@@ -13,7 +13,7 @@ not fixed below are set once, by modelling, before deployment.
 | Property | Value |
 |---|---|
 | The network's money | USDC (document 04) |
-| Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09) |
+| Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09); 20% of it goes to the developer of an element the provider received over F2F (document 26) |
 | Search and delivery | $0.01 per result list and $0.001 per message a super-node delivers, from a prepaid USDC balance in the contract (document 17) |
 | Official mark | $100 per application, not returned; divided equally among the members of the panel who voted (document 24) |
 | Gas | everyone pays for their own actions: in the network's ether or through a third-party gas payment service (document 08) |
@@ -42,12 +42,15 @@ of one receipt (document 17, section 17.5). A receipt cannot be forged: it is th
 
 The network takes a fee on the network part of every deal, in USDC. Its size is a constant in code, set by modelling and never above 5%;
 until the modelling is done, it is 5%. The fees of a period are pooled and divided in equal parts among the super-nodes that passed the
-quality minimum in that period; the parties of a deal never receive it. The fee is taken from the very first deal; nothing is kept back
+quality minimum in that period; the parties of a deal never receive it. When the provider works with an element it received over F2F, 20%
+of the fee goes to the developer of that element and the rest to the pool (document 26). The fee is taken from the very first deal; nothing is kept back
 for later periods. The full rules are in document 09.
 
 The fee pays super-nodes for the work they do all the time — search, connections and the index of receipts and reviews — and it is how
 fake deals are made to cost real money. A review weighs exactly the fee paid on its deal (document 17, section 17.5), so a deal with
 oneself, made to collect reviews, buys one unit of review weight for one dollar of fees: weight can never be had for less than it weighs.
+The one exception is stated in document 26: a developer that deals with itself through its own element on a second node gets its 20%
+developer share back, so its weight costs it 80 cents on the dollar.
 
 ## 5.4 Reputation answers for honesty
 
@@ -74,7 +77,8 @@ exclusion.
 
 At the launch of the network the founder also takes on public commitments of their own: one publicly named node, no deals between the
 founder's own elements, and, until ten super-nodes pass the quality minimum in a period, no share of the fees — it stays in the pool of
-the other super-nodes (document 000, entries 41 and 42). They are commitments of a person, not rules of the contracts.
+the other super-nodes (document 000, entries 41 and 42); and no developer share from the founder's named node (entry 51). They are
+commitments of a person, not rules of the contracts.
 
 ## 5.6 How new super-nodes join
 
