@@ -120,7 +120,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Every deal in the network pays a small fee. The fees of each period are pooled and divided in equal parts among the super-nodes that passed the period's quality minimum; here is [where the deal fee goes](/en/deal-fee). On top of that, searches pay $0.01 per result list and delivered messages $0.001, which super-nodes collect in batches; this is [the price of one search](/en/search-fee).",
+      "text": "Every deal in the network pays a small fee. The fees of each period, less the developer share of elements received over F2F, are pooled and divided in equal parts among the super-nodes that passed the period's quality minimum; here is [where the deal fee goes](/en/deal-fee). On top of that, searches pay $0.01 per result list and delivered messages $0.001, which super-nodes collect in batches; this is [the price of one search](/en/search-fee).",
       "bid": "b0hlp"
     },
     {

@@ -37,17 +37,17 @@ never receive it, a refund pays no fee, and why the rate is in code.
 - title en: «The deal fee in Lagrix: at most 5%» · ru: «Комиссия сделки в Lagrix: не больше 5%»
 - subtitle en: «The network keeps at most 5% of the part of a deal paid through it, and divides it among super-nodes; a refund pays no fee.»
   ru: «Сеть берёт не больше 5% от части сделки, оплаченной через неё, и делит между супер-узлами; возврат комиссии не платит.»
-- description en: «Lagrix takes at most 5% of the network part of a deal, in USDC, and shares it among super-nodes. The parties never receive it.»
-  ru: «Lagrix берёт не больше 5% от сетевой части сделки в USDC и делит между супер-узлами. Стороны сделки её не получают.»
+- description en: «Lagrix takes at most 5% of the network part of a deal, in USDC, for super-nodes, a fifth of it for F2F element developers. The parties never receive it.»
+  ru: «Lagrix берёт не больше 5% от сетевой части сделки в USDC для супер-узлов, а пятую часть — для разработчиков элементов F2F. Стороны её не получают.»
 - cover alt en: «A $100 deal with a $5 fee split among super-nodes» · ru: «Сделка на $100 с комиссией $5, которую делят супер-узлы»
 - menu item en: name «Deal fee» · description «At most 5% of the part paid through the network, shared by super-nodes; a refund pays none.»
   ru: name «Комиссия сделки» · description «Не больше 5% от части, оплаченной через сеть, — супер-узлам; при возврате не берётся.»
-- lead en: «The Lagrix network takes a fee of at most 5% on the part of each deal paid through it, in USDC. The fee goes to the super-nodes
-  that kept the network running in that period. Parties never receive it, and a refunded deal pays none. The rate is written into
-  immutable code and cannot be changed after deployment.»
+- lead en (updated 2026-10-18, entry 51): «The Lagrix network takes a fee of at most 5% on the part of each deal paid through it, in USDC.
+  It goes to the super-nodes that kept the network running, and a fifth to the developer of an element received over F2F. Parties never
+  receive it, and a refunded deal pays none. The rate is fixed in immutable code.»
   ru: «Сеть Lagrix берёт комиссию не больше 5% с части каждой сделки, оплаченной через неё, в USDC. Комиссия уходит супер-узлам, которые
-  держали сеть в этом периоде. Стороны сделки её не получают, а возвращённая сделка комиссии не платит. Ставка записана в неизменяемый
-  код и после развёртывания не меняется.»
+  держали сеть в этом периоде, а пятая часть — разработчику элемента, полученного по F2F. Стороны сделки её не получают, а возвращённая
+  сделка комиссии не платит. Ставка записана в неизменяемый код и после развёртывания не меняется.»
 
 ## 6. Body plan
 4 H2 × 2 H3, no H4, chains of small steps. Running example: Anna's salon buys a $100 translation through the network; Leo receives $95;
@@ -70,7 +70,8 @@ Web4 definition verbatim under H2 `how-it-works`.
   gives $5 of fee (F4).
 
 ### H2 `where` — en «Where the fee goes» · ru «Куда идёт комиссия»
-- H3 `where-pool` «One pool, shared equally» · «Один котёл, делится поровну» — chain: 1) the fees of a period are added up (F5); 2) at the
+- H3 `where-pool` «One pool, shared equally» · «Один котёл, делится поровну» — (2026-10-18: first, when the provider works with an element
+  received over F2F, 20% goes to its developer — F-dev, link /<lang>/docs/26-developer-share) chain: 1) the fees of a period are added up (F5); 2) at the
   end they are divided equally among super-nodes that passed the quality minimum (F5); 3) nothing carries over to later periods (F5);
   4) the parties of the deal never receive any of it (F5).
 - H3 `where-why` «Why this way» · «Почему так» — chain: 1) the fee pays super-nodes for the work every deal relies on (F6); 2) a review
@@ -97,8 +98,9 @@ Web4 definition verbatim under H2 `how-it-works`.
 | F8 | one rate for everyone; a rate set by each super-node would fall to zero | doc 09 §9.4 |
 | F9 | on REFUNDED the funds return in full and no fee is taken | doc 04 §4.1; doc 09 §9.2 |
 | F10 | how the fee applies to a cancelled order is an open question of the changelog | doc 09 §9.2 |
+| F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 |
 
-Numbers: «5%», «5 %», «$100», «$80», «$20», «$5», «$4», «15%», «2.9%», «USD0.30», «$0.30», «$0,30», «12 months», «12 месяцев» (document 17 §17.2: the last 12 months of paid work)
+Numbers: «5%», «5 %», «$100», «$80», «$20», «$5», «$4», «15%», «2.9%», «USD0.30», «$0.30», «$0,30», «12 months», «12 месяцев», «20%», «20 %» (document 17 §17.2: the last 12 months of paid work)
 
 ## 8. Questions to the owner
 none for the page; the open question about cancelled orders stays off the page.
@@ -107,13 +109,15 @@ none for the page; the open question about cancelled orders stays off the page.
 - out across the site: /<lang>/network — «an AI agent network without a central server» / «сеть ИИ-агентов без центрального сервера» (up to the hub);
   /<lang>/super-node — «what a super-node does» / «что делает супер-узел»; /<lang>/order-cancellation — «how a cancellation works» / «как работает отмена»;
   /<lang>/likes-and-dislikes — «why likes cannot be farmed» / «почему лайки нельзя накрутить»
-- to documents: /<lang>/docs/09-fee-distribution — «document 9» / «документ 9»
+- to documents: /<lang>/docs/09-fee-distribution — «document 9» / «документ 9»; /<lang>/docs/26-developer-share — «how the developer share
+  works» / «как устроена доля разработчика» — H3 `where-pool`
 - incoming (planned): /network, /search-fee, /super-node, /reputation
 - external primary sources: https://developer.apple.com/app-store/small-business-program/ (F1); https://stripe.com/us/pricing (context)
 
 ## 10. FAQ
 1. en «What does the network take from a deal?» · ru «Сколько сеть берёт с сделки?» — at most 5% of the part paid through it; 5% today — F3, F4
-2. en «Who receives the fee?» · ru «Кто получает комиссию?» — the super-nodes that passed the period's quality minimum, equally; never the parties — F5
+2. en «Who receives the fee?» · ru «Кто получает комиссию?» — the super-nodes that passed the period's quality minimum, equally; a fifth first
+   to the developer of an element received over F2F; never the parties — F5, F-dev
 3. en «Do I pay a fee if I am refunded?» · ru «Платят ли комиссию при возврате?» — no — F9
 4. en «Can the rate be raised later?» · ru «Можно ли повысить ставку потом?» — no; it is in immutable code, and a change would need a new version that participants join voluntarily — F4
 5. en «Is the fee charged on the part I pay in cash?» · ru «Берётся ли комиссия с части, которую я плачу наличными?» — no; that part is not in the network — F3

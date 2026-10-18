@@ -188,8 +188,8 @@ Reputation in Lagrix is not a score the network assigns. It is the record that t
 - **Only paid deals count.** A like or a dislike can be given only for a deal paid through the network, by each side to the other —
   the provider to the customer and the customer to the provider.
 - **Weight follows money.** A review weighs exactly the fee paid on the deal, so faking one unit of weight costs one dollar of fees paid
-  to the super-nodes — weight can never be had for less than it weighs. The one exception: a developer dealing with itself through its
-  own element on a second node gets its 20% developer share back ([26](docs/en/26-developer-share.md)).
+  to the super-nodes — weight can never be had for less than it weighs. The one exception: a node that, in a deal with itself, names a
+  wallet of its own as the developer gets the 20% developer share back ([26](docs/en/26-developer-share.md)).
 - **Count and sum in each role.** An element shows all its orders, its likes, dislikes, negative ratings, cancelled orders and the deals it
   left without a review — each as a count and a sum, separately as a provider and as a customer. They are never added together, and the
   other side decides what they mean.

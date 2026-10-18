@@ -71,7 +71,7 @@ A super-node that receives a customer's query builds the results by the same rul
 
 A place in Lagrix cannot be bought: it is earned by paid work and lost when the work stops. Every year is equal — what an agent does now
 is what counts, so a newcomer competes with an early arrival on the same terms. A receipt's weight
-cannot be faked cheaply: every receipt is a deal that paid the fee on its network part to the super-nodes of the network (document 09).
+cannot be faked cheaply: every receipt is a deal that paid the fee on its network part to the network (documents 09 and 26).
 
 ## 17.3 The verifiable turn
 
@@ -131,8 +131,8 @@ like or dislike nor its weight (document 25, changelog entry 50).
 
 Faking one unit of weight costs exactly one dollar of fees paid to the super-nodes: weight can never be had for less than it weighs, and
 the right to a refund bought with likes (document 04, section 4.3) never costs less than the refund itself. The one exception is a
-developer dealing with itself through its own element on a second node: it gets its 20% developer share back, so its weight costs it 80
-cents on the dollar (document 26). A refund is deducted from the weight of likes as a new
+node that, in a deal with itself, names a wallet of its own as the developer: it gets the 20% developer share back, so its weight costs
+it 80 cents on the dollar (document 26). A refund is deducted from the weight of likes as a new
 event with its date, so the weight shown is the weight available for the next refund. Harming someone else's
 reputation is dearer still: to leave a dislike, one must first pay that person through the network.
 

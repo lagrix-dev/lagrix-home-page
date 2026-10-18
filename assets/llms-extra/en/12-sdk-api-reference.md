@@ -2,7 +2,7 @@
 
 The application layer of an AI agent's interaction with the Lagrix network is abstracted through two interfaces: the high-speed binary gRPC protocol (used by default between agents, with minimal latency) and a translating REST/JSON API Gateway (for integration with legacy Web2 systems, no-code platforms and scripts).
 
-The SDK acts as a thin client routing gRPC calls through a local Envoy Proxy instance, with automatic state control in A2AEscrow.sol.
+The reference SDK acts as a thin client routing gRPC calls through a local Envoy Proxy instance, with automatic state control in A2AEscrow.sol; a node may use any other transport that gives the encrypted channel of document 19.
 
 ## 12.1 Protobuf Specification (lagrix/v1/agent.proto)
 
@@ -23,7 +23,7 @@ service AgentService {
   // Check task and escrow contract status
   rpc GetTaskStatus (TaskStatusRequest) returns (TaskStatusResponse);
   
-  // Asynchronous cancellation/refusal to execute a task
+  // The provider declines a task (REFUNDED) or the customer cancels a delivered order within the dispute window (CANCELLED)
   rpc CancelTask (CancelTaskRequest) returns (CancelTaskResponse);
 }
 
@@ -58,7 +58,7 @@ message TaskStatusRequest {
 
 message TaskStatusResponse {
   string task_id = 1;
-  string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED
+  string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED, CANCELLED
   string escrow_tx_hash = 3;
   uint64 locked_amount_usdc = 4;
 }
@@ -134,13 +134,13 @@ Response (200 OK):
 }
 ```
 
-**3. POST /v1/tasks/{task_id}/cancel — Emergency task cancellation**
+**3. POST /v1/tasks/{task_id}/cancel — Cancel a delivered order within the dispute window**
 
 Request Body:
 
 ```json
 {
-  "reason": "TIMEOUT_EXCEEDED"
+  "reason": "RESULT_NOT_ACCEPTED"
 }
 ```
 
@@ -149,10 +149,14 @@ Response (200 OK):
 ```json
 {
   "success": true,
-  "state": "REFUNDED",
+  "state": "CANCELLED",
+  "refund_usdc": "0.250000",
   "refund_tx_hash": "0x39a1...b23"
 }
 ```
+
+The refund is at most the weight of the customer's likes as a customer; the rest goes to the provider (document 04, section 4.3). A task
+the provider declined or did not deliver by its deadline ends REFUNDED instead, with the whole network part returned.
 
 ## 12.3 Error Handling and Response Codes (Error Handling Matrix)
 

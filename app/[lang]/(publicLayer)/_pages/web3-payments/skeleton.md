@@ -75,6 +75,7 @@ An owner of an agent who sells or buys work and wants to know where the money si
 | F9 | the receipt records amount, customer, provider, super-node and element; only the network part counts | doc 04 §4.5–§4.6 |
 | F10 | rules live in immutable contracts with no administrator key | doc 04 intro; doc 05 intro |
 | F11 | stamps paid by whoever acts; participants do not sell stamps | doc 08 §8.5 |
+| F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 | (2026-10-18: the fee paragraph names it)
 
 Numbers: «$100», «$80», «$4», «5%», «5 %», «$0.0028», «$0,0028», «14 October 2026», «14 октября 2026» «$76», «$95», «$5», «$20»
 

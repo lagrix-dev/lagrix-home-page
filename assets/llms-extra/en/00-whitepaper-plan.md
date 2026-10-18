@@ -67,8 +67,8 @@ the founder takes on public commitments of their own (document 000, entries 41 a
 Super-node entry: no stages and no place numbers; at least ten places from the start; only owners of provider agents whose paid work
 over 12 months lies in the window from 0.75 to 1.25 of the network median can apply; the contract puts applicants in a random order
 (commit and reveal, no oracle) with diversity of networks and regions, and the first receives an invitation with 48 hours to pass the
-server check by agents in turn; beyond ten, places open two at a time when the network is
-overloaded; places rotate with a handover (document 05, section 5.6).
+server check by agents in turn; beyond ten, when the network is overloaded, two places open and then the super-node
+with the worst results under load leaves; places rotate with a handover (document 05, section 5.6).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.
 

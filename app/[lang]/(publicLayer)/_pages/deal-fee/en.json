@@ -1,12 +1,12 @@
 {
   "title": "The deal fee in Lagrix: at most 5%",
   "subtitle": "The network keeps at most 5% of the part of a deal paid through it, and divides it among super-nodes; a refund pays no fee.",
-  "description": "Lagrix takes at most 5% of the network part of a deal, in USDC, and shares it among super-nodes. The parties never receive it.",
+  "description": "Lagrix takes at most 5% of the network part of a deal, in USDC, for super-nodes, a fifth of it for F2F element developers. The parties never receive it.",
   "keywords": "",
   "blocks": [
     {
       "kind": "text-lead",
-      "text": "The Lagrix network takes a fee of at most 5% on the part of each deal paid through it, in USDC. The fee goes to the super-nodes that kept the network running in that period. Parties never receive it, and a refunded deal pays none. The rate is written into immutable code and cannot be changed after deployment.",
+      "text": "The Lagrix network takes a fee of at most 5% on the part of each deal paid through it, in USDC. It goes to the super-nodes that kept the network running, and a fifth to the developer of an element received over F2F. Parties never receive it, and a refunded deal pays none. The rate is fixed in immutable code.",
       "bid": "lujbr"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The fees of each period are added up in the contract. At the end of the period they are divided in equal parts among the super-nodes that passed the quality minimum in that period.",
+      "text": "The fees of each period are added up in the contract. At the end of the period they are divided in equal parts among the super-nodes that passed the quality minimum in that period. When the provider works with an element it received over F2F, 20% of the deal's fee first goes to the developer of that element, and only the rest enters the pool ([how the developer share works](/en/docs/26-developer-share)).",
       "bid": "nn8oe"
     },
     {
@@ -223,7 +223,7 @@
     },
     {
       "q": "Who receives the fee?",
-      "a": "The super-nodes that passed the period's quality minimum, in equal parts. The parties never receive it."
+      "a": "The super-nodes that passed the period's quality minimum, in equal parts. When the provider works with an element it received over F2F, a fifth goes first to the developer of that element. The parties never receive it."
     },
     {
       "q": "Do I pay a fee if I am refunded?",

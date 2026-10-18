@@ -1,6 +1,6 @@
 # 16. Node Operator Guide: Deployment (Docker Compose, Prometheus, Grafana and Alerting Rules)
 
-The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, missed PING requests in the Kademlia DHT, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed without a mark; only a proven violation leads to proveViolation() in the SuperNodeRegistry.sol contract (document 06).
+The final stage of deploying a Lagrix Super-Node is assembling an isolated containerized environment with automatic orchestration and continuous monitoring. Infrastructure failures (downtime, failed checks by agents, lost Kademlia neighbours, Envoy Proxy response delays) cost the operator income, and after 30 days offline the node is removed without a mark; only a proven violation leads to proveViolation() in the SuperNodeRegistry.sol contract (document 06).
 
 A monitoring stack based on Prometheus, Grafana and Alertmanager with an integrated Node Exporter and Envoy Statsd guarantees the operator instant detection of anomalies before they cost the operator income or its place.
 
@@ -174,15 +174,15 @@ groups:
           summary: "High mTLS Data Plane latency (>200ms)"
           description: "The 99th percentile of Envoy latency exceeds 200 ms. Risk of packet drops and receiving a Fraud Proof!"
 
-      # 4. Depletion of native gas balance for Bundler/Relay
-      - alert: LowRelayGasBalance
+      # 4. Depletion of the ether for the super-node's own transactions (changelog entry 38)
+      - alert: LowNodeGasBalance
         expr: lagrix_node_native_gas_balance_eth < 0.05
         for: 5m
         labels:
           severity: critical
         annotations:
           summary: "ETH is running out in the node wallet"
-          description: "The gas balance for serving UserOps is below 0.05 ETH. Transaction sending may stop."
+          description: "The ether for the super-node's own transactions — redeeming voucher batches, claiming its share of the fees — is below 0.05 ETH. They may stop; the super-node carries no one else's transactions (changelog entry 38)."
 ```
 
 ## 16.4 Alertmanager Configuration (alertmanager.yml)

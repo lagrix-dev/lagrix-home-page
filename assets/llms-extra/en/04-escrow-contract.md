@@ -26,6 +26,7 @@ struct Task {
     bytes32 customerElement; // the Customer's element that orders the work
     bytes32 element;      // the Provider's element that does the work
     bytes32 agent;        // the agent of that element
+    address developer;    // the developer of an element received over F2F, named by the Provider in commitResult (document 26)
 }
 ```
 
@@ -62,8 +63,9 @@ both sides (document 17) and by the pages their authors may attach to them (docu
 A Customer could receive the result, go offline and never send the signature, freezing the Provider's payment. The function
 `claimTimeout(uint256 taskId)` protects against this.
 
-- **Commitment.** Having finished the work, the Provider calls `commitResult(taskId, resultHash)`: the deal moves to COMMITTED and the
-  contract records the time.
+- **Commitment.** Having finished the work, the Provider calls `commitResult(taskId, resultHash, developer)`: the deal moves to COMMITTED
+  and the contract records the time. `developer` names the developer of the element the Provider works with, when it received that element
+  over F2F, and is empty for its own element (document 26).
 - **Dispute window.** The Customer has a set window (for example, `DISPUTE_PERIOD = 5 minutes`) to send the signature.
 - **Cancellation.** Within the same window the Customer may refuse the result and call `cancelOrder(taskId)` instead of signing. The
   contract reads the Customer's like weight as a customer (document 17), returns `min(likeWeight, amount)` to the Customer, deducts
@@ -86,7 +88,7 @@ When a deal moves to COMPLETED, the contract splits the network part:
 
 The pool of each period is divided in equal parts among the super-nodes that passed the quality minimum in that period; the parties of
 the deal never receive it (document 09). The developer of an element received over F2F is not a party: the Provider's node names it
-when the deal is created, and its share leaves the fee when the deal moves to COMPLETED (document 26). The fee is taken from the very
+in `commitResult` (section 4.3), and its share leaves the fee when the deal moves to COMPLETED (document 26). The fee is taken from the very
 first deal (document 05, section 5.3).
 
 ## 4.5 The receipt and the participants' history
@@ -102,12 +104,13 @@ event Receipt(
     bytes32 customerElement,
     bytes32 element,
     bytes32 agent,
+    address developer,
     uint96 amount
 );
 ```
 
-- **The receipt.** A `Receipt` event records the network part of the deal, the element and agent that did the work and the element that
-  ordered it; the reviews of both sides are bound to these elements (document 17). It counts for
+- **The receipt.** A `Receipt` event records the network part of the deal, the element and agent that did the work, the element that
+  ordered it and the developer named for the deal, if any; the reviews of both sides are bound to these elements (document 17). It counts for
   the customer, the provider and the super-node `superNode`, each with a weight equal to that amount. Receipts order search results by
   the last twelve months of paid work (document 17) and measure the paid work that opens a super-node place (document 05, section 5.6). Which
   super-node a deal names in `superNode` is set by the customer when funds are locked; how this field is tied to the node that actually

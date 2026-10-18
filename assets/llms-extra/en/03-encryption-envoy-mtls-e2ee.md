@@ -1,14 +1,14 @@
 # 3. Encryption and Proxying: Envoy Proxy, Web3-mTLS and E2EE Isolation
 
-Separating discovery logic (the Control Plane, implemented through the Kademlia DHT) from data transfer (the Data Plane) is a classic pattern of high-load systems. In Lagrix the role of the Data Plane is played by an integrated Envoy Proxy instance. This provides microsecond latencies, L4/L7 load balancing and hardware-accelerated encryption, leaving Super-Nodes with the sole function of "blind routers".
+Separating discovery and connection logic (the Control Plane: announcements, the super-nodes' Kademlia table and the rendezvous of document 02) from data transfer (the Data Plane) is a classic pattern of high-load systems. In the reference implementation the role of the Data Plane is played by an integrated Envoy Proxy instance; any program that gives the encrypted channel of document 19 may take its place. This provides microsecond latencies, L4/L7 load balancing and hardware-accelerated encryption, leaving Super-Nodes with the sole function of "blind routers".
 
 ## 3.1 Envoy Proxy as the Data Plane (Sidecar Pattern)
 
-Every AI agent (both client and provider) in the Lagrix network is deployed together with a lightweight Envoy sidecar container.
+In the reference implementation every AI agent (both client and provider) is deployed together with a lightweight Envoy sidecar container.
 
 Envoy functions: Managing timeouts, retries, circuit breaking when a node goes down, and keeping persistent connections (keep-alive HTTP/2 and gRPC).
 
-Dynamic configuration (xDS API): Envoy does not use static configuration files. The local Lagrix client (Control Plane) continuously polls the Kademlia DHT. As soon as the DHT finds a new IP address of the needed Provider or a backup Relay bridge, the client sends this data over gRPC (through the EDS/CDS protocols) directly into Envoy's memory. The proxy rebuilds routes on the fly, without a restart, providing zero downtime (Zero Downtime Routing).
+Dynamic configuration (xDS API): Envoy does not use static configuration files. The local Lagrix client (Control Plane) keeps the addresses it learns — from announcements (document 17), from the rendezvous and from the relays (document 02). As soon as it learns a new address of the needed Provider or a backup Relay bridge, the client sends this data over gRPC (through the EDS/CDS protocols) directly into Envoy's memory. The proxy rebuilds routes on the fly, without a restart, providing zero downtime (Zero Downtime Routing).
 
 ## 3.2 Web3-Native mTLS (Mutual Authentication)
 
@@ -16,7 +16,7 @@ In corporate networks (Zero Trust) the security standard is Mutual TLS (mTLS), w
 
 Ephemeral key generation: When a session starts, Envoy generates a temporary TLS certificate (x509).
 
-Web3 signature: The local agent takes this certificate and signs it with its main private key (the Ethereum wallet from which stablecoins will be debited/credited).
+Web3 signature: The local agent takes this certificate and signs it with the key of its node's wallet — the one wallet through which the node's elements pay and are paid (changelog entries 22 and 39).
 
 Cryptographic handshake:
 
@@ -24,7 +24,7 @@ Agent A connects to Agent B.
 
 They exchange certificates and Web3 signatures.
 
-Each extracts the public address (Ethereum Address) from the signature and checks whether it matches the NodeID declared in the escrow smart contract.
+Each extracts the public address (Ethereum Address) from the signature and checks that it matches the other side's node wallet recorded in the escrow deal (document 04, section 4.1).
 
 Result: The agents mathematically prove their identity at the transport level. A Man-in-the-Middle (MitM) attack is impossible: even if an attacker intercepts the IP, they cannot forge the wallet's cryptographic signature.
 

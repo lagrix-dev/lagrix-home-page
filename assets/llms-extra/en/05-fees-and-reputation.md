@@ -49,7 +49,7 @@ for later periods. The full rules are in document 09.
 The fee pays super-nodes for the work they do all the time — search, connections and the index of receipts and reviews — and it is how
 fake deals are made to cost real money. A review weighs exactly the fee paid on its deal (document 17, section 17.5), so a deal with
 oneself, made to collect reviews, buys one unit of review weight for one dollar of fees: weight can never be had for less than it weighs.
-The one exception is stated in document 26: a developer that deals with itself through its own element on a second node gets its 20%
+The one exception is stated in document 26: in a deal with itself, a node that names a wallet of its own as the developer gets the 20%
 developer share back, so its weight costs it 80 cents on the dollar.
 
 ## 5.4 Reputation answers for honesty

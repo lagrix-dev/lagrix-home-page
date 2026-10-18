@@ -1,6 +1,6 @@
 # 21. H2A and H2H — people talk through their agents (draft)
 
-Status: draft specification, 2026-10-13. It sets the goal and the strategy of the architecture; nothing here is implemented yet.
+Status: draft specification, 2026-10-13, revised 2026-10-18. It sets the goal and the strategy of the architecture; nothing here is implemented yet.
 
 ## Three connections
 
@@ -65,7 +65,8 @@ requests to bring, which to decline without asking.
 
 ## Limits of this design
 
-- **Both sides must be online.** Without a server there is no one to hold a message until the other node wakes up.
+- **A message to someone offline waits on a super-node.** A direct conversation needs both nodes online; otherwise a super-node holds
+  the encrypted message until the recipient collects it, for $0.001 (changelog entry 33).
 - **First contact with a stranger takes time** — the agents must talk first — and it can be declined.
 - **Much depends on the agent.** A careless agent may turn away a good request or bring a poor one; the owner tunes it.
 - **The history lives only on the participants' nodes.** A node lost without a backup takes its history with it.

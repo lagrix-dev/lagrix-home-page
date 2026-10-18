@@ -53,9 +53,9 @@ the whole fee (section 26.5).
 ## 26.4 Who the developer is
 
 The developer is the wallet that signed the element's F2F card. The card carries the field `developer` with that wallet's address
-(document 20). When the provider's node creates a deal, it names the developer of the element it works with; when the deal moves to
-COMPLETED, the escrow contract pays the share to that address and the rest of the fee to the pool (document 04, section 4.4; document 09,
-section 9.3).
+(document 20). When the provider's node records its result in the contract (`commitResult`, document 04, section 4.3), it names the
+developer of the element it works with; when the deal moves to COMPLETED, the escrow contract pays the share to that address and the rest
+of the fee to the pool (document 04, section 4.4; document 09, section 9.3).
 
 The share follows the element, not its history. An element installed in another project starts there with a clean history (document 17,
 section 17.10), but wherever it works, a fifth of the fee of its deals goes to the wallet named in its card.
@@ -78,12 +78,14 @@ person; the contracts treat every wallet alike.
 
 ## 26.7 The cost we do not hide
 
-- **Self-dealing by a developer.** A developer that installs its own element on a second node of its own and makes deals with itself
-  gets 20% of the fee back. For it, a unit of review weight costs 80 cents, not a dollar, and the right to a refund bought with likes
-  costs it less than the refund. The weight stays the whole fee by choice — one rule for every deal — and such deals are visible in the
-  chain: the same `developer` wallet stands on deals between the same nodes.
+- **Self-dealing through the developer share.** The contracts cannot tell an element received over F2F from a node's own: they see
+  only the `developer` wallet the provider names. A node that makes deals with itself and, as provider, names a wallet of its own as the
+  developer gets 20% of the fee back. For it, a unit of review weight costs 80 cents, not a dollar, and the right to a refund bought with
+  likes costs it less than the refund. The weight stays the whole fee by choice — one rule for every deal — and such deals are visible in
+  the chain: the same `developer` wallet stands on deals between the same nodes.
 - **The contracts do not see code.** Nothing on the chain proves that the code a provider runs is the code its card describes. A provider
-  could name as developer a wallet that did not build its element, or name no developer at all.
+  could name as developer a wallet that did not build its element — a wallet of its own included, and then keep a fifth of the fee on its
+  deals with others too — or name no developer at all.
 - **A changed element.** A provider may change an element after installing it. Who is then its developer is not decided.
 
 ## 26.8 Open questions

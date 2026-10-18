@@ -42,7 +42,7 @@ project must install and run it. The draft fields:
 
 ## What never travels
 
-Keys, tokens, passwords, personal data of the element's users, and the contents of its storage. An F2F card is published openly; a
+Keys, access credentials, passwords, personal data of the element's users, and the contents of its storage. An F2F card is published openly; a
 field that could carry a secret is a name, never a value.
 
 **History does not travel either.** An element installed in another project starts there with a clean history, and its former history

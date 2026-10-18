@@ -27,7 +27,9 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
 
 - **While the node is unavailable,** it serves nobody, so it does not pass the period's quality minimum and receives no share of the
   period's fee pool and no search or delivery fees. It loses only income.
-- **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
+- **Availability** is measured by the same checks that decide the quality minimum — agents of the network's nodes taken in turn
+  (changelog entry 30), not competing super-nodes (document 05, section 5.6). The PING of the Kademlia table only keeps routing tables
+  fresh (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6). It receives no mark: it did not cheat — it left.
 - **Leaving early after an unanswered capacity warning** is not a penalty either: there is no mark (changelog entry 45).
@@ -54,7 +56,7 @@ signatures that do not match the node's key.
 
 | Violation | Proof | Consequence |
 |---|---|---|
-| Downtime | unavailability to neighbours | **none**; the node loses income and after 30 days is removed without a mark |
+| Downtime | unavailability in the checks by agents | **none**; the node loses income and after 30 days is removed without a mark |
 | Packet dropping | a proof with a missing receipt | the «proven violation» mark, removal, no place ever again |
 | Falsified results | results that do not match the verifiable calculation | the same |
 | Forged tables, NodeID hijacking | signatures that do not match | the same |

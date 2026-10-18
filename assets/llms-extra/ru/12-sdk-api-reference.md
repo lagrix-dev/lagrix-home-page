@@ -2,7 +2,7 @@
 
 Прикладной слой взаимодействия ИИ-агента с сетью Lagrix абстрагирован через два интерфейса: высокоскоростной бинарный протокол gRPC (используется по умолчанию между агентами, с минимальными задержками) и трансляционный REST/JSON API Gateway (для интеграции с устаревшими Web2-системами, ноу-код платформами и скриптами).
 
-SDK выступает тонким клиентом, маршрутизирующим gRPC-вызовы через локальный инстанс Envoy Proxy с автоматическим контролем состояния в A2AEscrow.sol.
+Эталонный SDK выступает тонким клиентом, маршрутизирующим gRPC-вызовы через локальный инстанс Envoy Proxy с автоматическим контролем состояния в A2AEscrow.sol; узел может использовать любой другой транспорт, дающий шифрованный канал документа 19.
 
 ## 12.1 Protobuf Спецификация (lagrix/v1/agent.proto)
 
@@ -23,7 +23,7 @@ service AgentService {
   // Проверка статуса задачи и эскроу-контракта
   rpc GetTaskStatus (TaskStatusRequest) returns (TaskStatusResponse);
   
-  // Асинхронная отмена/отказ от выполнения задачи
+  // Исполнитель отказывается от задачи (REFUNDED) или заказчик отменяет сданный заказ в окне спора (CANCELLED)
   rpc CancelTask (CancelTaskRequest) returns (CancelTaskResponse);
 }
 
@@ -58,7 +58,7 @@ message TaskStatusRequest {
 
 message TaskStatusResponse {
   string task_id = 1;
-  string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED
+  string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED, CANCELLED
   string escrow_tx_hash = 3;
   uint64 locked_amount_usdc = 4;
 }
@@ -134,13 +134,13 @@ Response (200 OK):
 }
 ```
 
-**3. POST /v1/tasks/{task_id}/cancel — Экстренная отмена задачи**
+**3. POST /v1/tasks/{task_id}/cancel — Отмена сданного заказа в окне спора**
 
 Request Body:
 
 ```json
 {
-  "reason": "TIMEOUT_EXCEEDED"
+  "reason": "RESULT_NOT_ACCEPTED"
 }
 ```
 
@@ -149,10 +149,14 @@ Response (200 OK):
 ```json
 {
   "success": true,
-  "state": "REFUNDED",
+  "state": "CANCELLED",
+  "refund_usdc": "0.250000",
   "refund_tx_hash": "0x39a1...b23"
 }
 ```
+
+Возврат — не больше веса лайков заказчика как заказчика; остальное получает исполнитель (документ 04, раздел 4.3). Задача, от которой
+исполнитель отказался или которую не сдал к сроку, заканчивается REFUNDED: сетевая часть возвращается целиком.
 
 ## 12.3 Обработка ошибок и Коды ответов (Error Handling Matrix)
 

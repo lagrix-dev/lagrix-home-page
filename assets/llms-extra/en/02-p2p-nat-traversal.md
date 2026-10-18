@@ -2,7 +2,7 @@
 
 Building a global network of AI agents runs into a fundamental problem of the IPv4/IPv6 architecture: 99% of devices are behind NAT (Network Address Translation) or strict corporate firewalls. Agents do not have public IP addresses, which makes a direct inbound connection impossible by default.
 
-Lagrix implements a custom ICE (Interactive Connectivity Establishment) stack integrated with the protocol's crypto-economics.
+Lagrix implements a custom ICE (Interactive Connectivity Establishment) stack integrated with the protocol's super-nodes.
 
 ## 2.1 Anatomy of the Problem and Node Roles in NAT Traversal
 
@@ -22,15 +22,15 @@ Binding Request: The client agent (Edge Node) sends a STUN_BINDING UDP packet to
 
 Mapping Response: The Super-Node reads the packet's IP header and answers the agent: "I see your traffic from IP 203.0.113.5, port 45123".
 
-DHT Publication: The agent takes this pair (Public IP : Port), signs it with its private session key and publishes it to the Kademlia DHT via the STORE method. Now any Client in the network knows where to knock to find this Provider.
+Handing over the address: The agent keeps this pair (Public IP : Port), signed with its private session key, and gives it to the other side at the rendezvous through a super-node (section 2.3). It does not publish it: the agent itself is found by its signed announcement, which carries its node, card and encryption key (document 17, section 17.1).
 
 ## 2.3 Phase 2: UDP Hole Punching Mechanics (Direct Connection)
 
 If both agents (Client and Provider) are behind a Cone NAT, the simultaneous-open technique (Hole Punching) is used. This is the fastest and free (in terms of gas) way to communicate.
 
-Initiation: Agent A (Client) wants to send a prompt to Agent B (Provider). Agent A asks the DHT for B's public address.
+Initiation: Agent A (Client) wants to send a prompt to Agent B (Provider). Agent A has found B by its announcement (document 17).
 
-Synchronization (Rendezvous): Through a Super-Node, Agent A sends a control message to Agent B: "I am about to start sending you packets, open your port".
+Synchronization (Rendezvous): Through a Super-Node, the two agents exchange their public addresses (section 2.2), and Agent A tells Agent B: "I am about to start sending you packets, open your port".
 
 Simultaneous punch:
 
@@ -44,7 +44,7 @@ Result: The packets cross in the providers' routers. A direct, microsecond P2P c
 
 If UDP Hole Punching fails (500 ms timeout) because a corporate banking AI agent sits behind a Symmetric NAT, routing through an intermediary kicks in.
 
-This is where Lagrix crypto-economics comes into play:
+This is where the super-nodes come into play:
 
 Bridge request (Allocate Request): Agent A asks a trusted Super-Node to allocate a Relay port (create a TURN session).
 
@@ -52,7 +52,7 @@ Tunnel formation: The Super-Node opens a TCP/WSS socket and tells both agents it
 
 End-to-end proxying: The agents connect to the Super-Node as ordinary clients. The Super-Node blindly forwards encrypted bytes from A to B and back.
 
-Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and its share of the period's fee pool (documents 05, 09).
+Payment for relaying: a delivered H2H message costs $0.001, paid to the super-node that delivered it (changelog entry 33). Whether and how a super-node is paid for other traffic it relays is an open question of the changelog (document 000); until it is decided, that relaying is described without a price. A super-node is paid its share of the period's fee pool and the search and delivery fees (documents 05, 09, 17).
 
 ## 2.5 Connection Establishment State Machine
 

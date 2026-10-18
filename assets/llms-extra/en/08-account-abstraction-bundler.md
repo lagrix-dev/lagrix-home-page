@@ -1,6 +1,6 @@
 # 8. Account Abstraction (ERC-4337): The UserOperation Structure and Bundler Infrastructure
 
-Autonomous AI agents should not manage native blockchain wallets (EOA), having to calculate gas by hand, watch their ETH/MATIC balance and sign raw base transactions. Lagrix implements an Account Abstraction stack based on the ERC-4337 standard, which turns every AI agent wallet into a programmable smart account (Smart Contract Wallet).
+Autonomous AI agents should not manage native blockchain wallets (EOA), having to calculate gas by hand, watch their ETH/MATIC balance and sign raw base transactions. Lagrix implements an Account Abstraction stack based on the ERC-4337 standard, which turns the node's wallet — the one wallet through which all the node's elements and agents pay (changelog entries 22 and 39) — into a programmable smart account (Smart Contract Wallet).
 
 This fully isolates the agent's application logic from blockchain mechanics: the agent operates on a "request-payment" abstraction in USDC, and all the work with network fees is taken over by special aggregator nodes (Bundlers) and the Paymaster contract.
 
@@ -10,7 +10,7 @@ Instead of standard Ethereum transactions, AI agents form pseudo-transactions �
 
 ```solidity
 struct UserOperation {
-    address sender;             // Address of the AI agent's smart account
+    address sender;             // Address of the node's smart account
     uint256 nonce;              // Unique sequential number (Anti-Replay)
     bytes initCode;             // Smart account creation code (if launched for the first time)
     bytes callData;             // Encoded function call (for example, lockFunds in A2AEscrow)
@@ -26,7 +26,7 @@ struct UserOperation {
 
 Key fields for payments between agents:
 
-initCode (Lazy Account Deployment): An AI agent is created instantly without transactions on the blockchain. Its smart account is generated off-chain deterministically through CREATE2. The first transaction automatically deploys the account contract thanks to the initCode field.
+initCode (Lazy Account Deployment): A node's smart account is created without transactions on the blockchain: it is generated off-chain deterministically through CREATE2. The first transaction automatically deploys the account contract thanks to the initCode field.
 
 paymasterAndData: The main integration flag. Contains the address of the chosen third-party ERC-4337 paymaster and its signed price: the paymaster pays the transaction's stamp in its own ETH and charges the agent that price in USDC (changelog entries 37 and 38).
 
@@ -73,7 +73,7 @@ Lifecycle of a handleOps() call inside EntryPoint:
 Verification Loop:
 - For each UserOp, the sender account is checked.
 - If the account has not been created yet, initCode is executed.
-- The validateUserOp() function on the agent's smart account is called to check the ECDSA signature.
+- The validateUserOp() function on the node's smart account is called to check the ECDSA signature.
 - validatePaymasterUserOp() is called on the chosen paymaster: it checks its own signature on the price and that the agent can pay it in USDC.
 
 Execution Loop:
@@ -83,9 +83,9 @@ Execution Loop:
 
 ## 8.4 Benefits for the Lagrix Ecosystem
 
-Zero friction (Zero Gas Friction): An AI agent developer only needs to put $10$ USDC on the smart account. The agent will never again need to hold native ETH for transactions.
+Zero friction (Zero Gas Friction): A node only needs to put $10$ USDC on its smart account. Its agents will never need to hold native ETH for transactions.
 
-Session Keys: The agent's smart account makes it possible to limit permissions. A bot can be given a temporary key allowed to spend no more than $1$ USDC per hour and to call exclusively the A2AEscrow.sol contract. If the bot is hacked, the hacker cannot withdraw all the funds from the account.
+Session Keys: The node's smart account makes it possible to limit permissions. Each agent can be given a temporary key allowed to spend no more than $1$ USDC per hour and to call exclusively the A2AEscrow.sol contract. If an agent is hacked, the hacker cannot withdraw all the funds from the account.
 
 Atomic Multi-Operations: An agent can do approve(USDC) and lockFunds() in one UserOp, reducing the number of on-chain steps and saving 40% on gas.
 

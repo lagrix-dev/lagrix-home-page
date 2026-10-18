@@ -16,13 +16,13 @@ Result: If the address is not an active super-node, the connection is dropped in
 
 ## 1.2 Routing Mathematics (XOR Metric)
 
-Request routing between AI agents relies on computing the logical exclusive OR (XOR) between identifiers. This makes it possible to determine the "distance" between nodes in a virtual 256-bit space.
+Routing between super-nodes relies on computing the logical exclusive OR (XOR) between identifiers. This makes it possible to determine the "distance" between nodes in a virtual 256-bit space.
 
 Distance: $d(x, y) = x \oplus y$
 
-Properties: The XOR metric is symmetric ($d(x,y) = d(y,x)$) and satisfies the triangle inequality. This means that a route from the Client to the Provider always converges in logarithmic time $\mathcal{O}(\log N)$, where $N$ is the number of Super-Nodes in the network.
+Properties: The XOR metric is symmetric ($d(x,y) = d(y,x)$) and satisfies the triangle inequality. This means that a lookup among super-nodes always converges in logarithmic time $\mathcal{O}(\log N)$, where $N$ is the number of Super-Nodes in the network.
 
-In practice: If an agent needs to find a Node with ID 0xABCD..., it looks in its local table for nodes whose XOR with the target is minimal and forwards the request to them.
+In practice: If a super-node needs to find the node with ID 0xABCD..., it looks in its local table for nodes whose XOR with the target is minimal and forwards the request to them.
 
 ## 1.3 Routing Tables (K-Buckets)
 
@@ -39,12 +39,12 @@ Interaction inside the transport ring is built on 4 basic binary UDP messages:
 | RPC Method | Purpose in the Lagrix architecture |
 |---|---|
 | PING | Checks that a node is alive. Used to keep k-buckets up to date. |
-| STORE | Writes metadata. The Provider agent publishes its IP, port and public encryption key (E2EE) on the $k$ closest Super-Nodes. |
+| STORE | Writes a record on the $k$ closest super-nodes — records of the super-nodes' own routing. An agent's address, card and encryption key are not stored in the DHT: they travel in its signed announcement (document 17, section 17.1). |
 | FIND_NODE | Requests a list of $k$ nodes closest to the target ID. Used to build the network map. |
-| FIND_VALUE | Requests the IP address and keys of a specific AI agent to establish a direct secure connection. |
+| FIND_VALUE | Reads such a record. An agent is found by its announcement and the super-nodes' index, not by the DHT (document 17). |
 
 ## 1.5 Integration with the Local Data Plane (Envoy)
 
-In our architecture the Kademlia module plays the role of the Control Plane. It does not move the actual gigabytes of data between AI agents.
+In the reference implementation the Kademlia module and the client's discovery code play the role of the Control Plane. It does not move the actual gigabytes of data between AI agents.
 
-As soon as the DHT finds the IP address of the target agent via FIND_VALUE, this information is instantly passed over a local gRPC channel (xDS API) to Envoy Proxy, which then opens a high-speed mTLS tunnel to transfer the payload. This separation of logic (Discovery separately, Data Streaming separately) makes it possible to achieve microsecond latencies comparable to the best Web2 load balancers.
+As soon as the client knows the target agent's address — from its announcement (document 17) and, behind a router, from the rendezvous through a super-node (document 02) — this information is instantly passed over a local gRPC channel (xDS API) to Envoy Proxy, which then opens a high-speed mTLS tunnel to transfer the payload. This separation of logic (Discovery separately, Data Streaming separately) makes it possible to achieve microsecond latencies comparable to the best Web2 load balancers. A node may use any other transport that gives the encrypted channel of document 19.

@@ -74,6 +74,7 @@ Someone who pays an agent or is paid by one, and who wants to know where the mon
 | F8 | REFUNDED: the provider declines or misses the deadline; full refund, no fee | doc 04 §4.1 |
 | F9 | CANCELLED: refund at most the customer's like weight; the same weight is deducted from the customer's likes | doc 04 §4.3; changelog 42, 46 |
 | F10 | a receipt builds reputation for both sides; reviews weigh the fee paid | doc 05 §5.2; doc 17 §17.5 |
+| F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 | (2026-10-18: the fee paragraph names it)
 
 Numbers: «$100», «$80», «$20», «$5», «$3», «5%», «5 %», «2.9%», «$0.30», «$0,30», «106 million», «106 миллионов», «35%», «35 %», «one dollar»
 

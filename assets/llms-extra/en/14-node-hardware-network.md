@@ -10,13 +10,13 @@ The protocol divides infrastructure servers into three categories depending on t
 
 | Node profile | Purpose and role | Entry | Target load |
 |---|---|---|---|
-| Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | a place earned by paid work (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
+| Tier-1: Discovery Node | Serving the super-nodes' Kademlia table (k-buckets), the index of the announcements of the kinds it holds and search results (document 17). | a place earned by paid work (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
 | Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | a place earned by paid work (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
 | Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | a place earned by paid work (document 05, section 5.6) | Heavy load. |
 
 ## 14.2 Minimum and Recommended System Requirements
 
-To ensure a zero packet drop rate and pass regular uptime checks (PING) from neighboring nodes, operators' servers must meet the following hardware specifications:
+To ensure a zero packet drop rate and pass the regular checks by agents taken in turn (document 06, section 6.2), operators' servers must meet the following hardware specifications:
 
 **Tier-2: Super-Relay Node (Standard operator profile)**
 
@@ -54,7 +54,7 @@ The operator must open the following network ports on the external firewall (AWS
         ▼                              ▼                              ▼
   [Port 4001 UDP]               [Port 443 TCP]              [Port 3478 UDP/TCP]
  Kademlia DHT Discovery         Envoy mTLS Data Plane          STUN/TURN NAT Traversal
- (P2P address lookup)           (Encrypted traffic)            (Breaking through firewalls)
+ (super-node routing)           (Encrypted traffic)            (Breaking through firewalls)
 ```
 
 | Port | Protocol | Direction | Purpose in the Lagrix architecture |

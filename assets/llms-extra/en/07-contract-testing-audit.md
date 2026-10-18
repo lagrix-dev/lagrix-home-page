@@ -9,9 +9,10 @@ Slither static analysis.
 |---|---|---|
 | A2AEscrow.sol | deals, receipts, Time-Lock, cancellation, fee deduction, the `Receipt` event | 04 |
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
-| SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
+| SearchVouchers.sol | prepaid balances and batch redemption of search and delivery vouchers at the fixed prices | 17 |
 | SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
 | FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the fee paid on the deal, per element and role; every indicator a count and a sum, unreviewed deals, negative ratings (dislikes given against the reviewable weight), likes deducted by cancellations; the address of a review page, attached once by the review's author | 17, 25 |
+| OfficialMarks.sol | the Official marks: applications with the $100 fee, panels of nine chosen at random with commit and reveal, votes, challenges and the founder's mark written at deployment | 24 |
 
 ## 7.1 Unit and integration tests (Foundry)
 
@@ -41,7 +42,7 @@ function test_CannotClaimTimeoutBeforeDisputePeriod() public {
     escrow.lockFunds(taskId, provider, superNode, 100 * 10**6); // lock 100 USDC (6 decimals)
 
     vm.prank(provider);
-    escrow.commitResult(taskId, resultHash);
+    escrow.commitResult(taskId, resultHash, address(0)); // no developer: the provider's own element (document 26)
 
     // try to collect after 2 minutes, before the 5-minute window expires
     vm.warp(block.timestamp + 2 minutes);
@@ -86,7 +87,7 @@ Slither translates the code into an intermediate representation and looks for co
 
 - **Reentrancy:** protection — the checks → effects → interactions order and OpenZeppelin's `ReentrancyGuard`.
 - **Authorization via `tx.origin`:** forbidden; Slither warns about any use of it.
-- **Unchecked low-level calls:** token transfers only through `SafeERC20`.
+- **Unchecked low-level calls:** USDC transfers only through `SafeERC20`.
 - **Overflows:** built-in checks of Solidity 0.8+ and strict types (`uint96`, `uint40`) for packed fields.
 
 ## 7.4 The check pipeline

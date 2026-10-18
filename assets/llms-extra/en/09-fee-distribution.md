@@ -82,9 +82,10 @@ Each alternative breaks one of these jobs:
 Pooled by period and divided equally, the fee cannot be steered: a group that holds k of M super-nodes gets back only k/M of its own
 fee, and every one of those places was assigned by random choice, not bought (document 05, section 5.6).
 
-**The developer share is not a payment to the nodes of agents.** It is paid for code that another project installed over F2F, not for
-holding a node, and it is a fifth of the fee (document 26). A developer that deals with itself through its own element on a second node
-gets that fifth back — a cost of the rule that is stated, not hidden.
+**The developer share and the nodes of agents.** The share is meant for code that another project installed over F2F, and it is a fifth
+of the fee (document 26). The contracts cannot check where an element came from, so a node that names a wallet of its own as the
+developer gets that fifth back on its deals — in effect the case this table rejects, limited to a fifth of the fee. It is a cost of the
+rule that is stated, not hidden.
 
 **One rate for everyone.** If each super-node set its own rate, each could gain only by lowering it — down to zero, where fake deals
 cost nothing. The ceiling of 5% is fixed; modelling may lower the rate.

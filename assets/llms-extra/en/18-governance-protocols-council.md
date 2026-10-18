@@ -46,7 +46,7 @@ once have decided is either a constant or a formula in code:
 
 | Rule | How it is fixed |
 |---|---|
-| Deal fee | at most 5% of the network part, a constant; pooled by period for super-nodes (document 09) |
+| Deal fee | at most 5% of the network part, a constant; pooled by period for super-nodes, a fifth of it to the developer of an element received over F2F (documents 09, 26) |
 | Search fee | $0.01 per result list, one price for everyone, a constant (document 17) |
 | Weight of a review | the fee paid on the deal (document 17) |
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |

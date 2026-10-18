@@ -123,6 +123,7 @@ the last 12 months, applies when a place opens; the network median is $400. en �
 | F14 | violations: packet dropping, falsified results, forged tables/NodeID; proof by signatures; permanent mark on wallet and elements; place lost for good | doc 06 §6.3–§6.4 |
 | F15 | the prover is rewarded in USDC from the fees; a false report loses the locked amount | doc 06 §6.4–§6.5 |
 | F16 | panel for the Official mark: nine super-nodes chosen at random per application among those that passed the quality minimum; each decides by its own judgment; $100 per application, divided equally among those who voted ($100 ÷ 9 ≈ $11.11); a non-voter gets nothing | doc 24 §24.3–§24.4; changelog entry 49 |
+| F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 | (2026-10-18: the fee paragraph names it)
 
 Numbers: «$400», «$300», «$500», «$420», «48 hours», «48 часов», «12 months», «12 месяцев», «30 days», «30 дней», «$0.01», «$0,01», «$0.001», «$0,001», «1.25», «0.75», «1,25», «0,75», «$100», «$11.11», «$11,11»
 

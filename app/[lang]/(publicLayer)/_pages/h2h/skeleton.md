@@ -56,6 +56,10 @@ Someone with something worth saying to a busy person, who wants a real answer. P
 - H3 `cost-delivery` «Delivery to an offline person» — chain: 1) a direct connection is free (F11); 2) a super-node holding the message for an offline recipient costs $0.001 per delivered message (F11).
 
 - Step 512 (owner 2026-10-16: own first-contact rate above one cent, e.g. $1; for important people a prepayment — booking, consultation): H3 `cost-rate` «Her own rate» · «Её собственный тариф» — F512a, F512b.
+- Step 522 (audit of 2026-10-18): H2 `limits`, H3 `limits-time` «First contact takes time» — chain: 1) a direct conversation needs both
+  nodes online (F7); 2) for an offline person a super-node holds the encrypted message, $0.001 (F11); 3) the agents talk first, so a
+  contact is slower than a call and can be declined (F5). Never «both sides must be online»: the page's own `cost-delivery` and changelog
+  entry 33 say the message waits on a super-node.
 
 ## 7. Facts
 | № | statement | source |

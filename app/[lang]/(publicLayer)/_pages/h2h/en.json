@@ -290,7 +290,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Both sides must be online for a conversation, and the agents must talk before the people do. A contact through an agent is therefore slower than a call, and it can be declined. Plan for a delay instead of an instant answer.",
+      "text": "A direct conversation needs both nodes online; when the other side is offline, a super-node holds the encrypted message until they collect it, for $0.001. The agents also talk before the people do, so a contact through an agent is slower than a call, and it can be declined. Plan for a delay instead of an instant answer.",
       "bid": "tkc9k"
     },
     {

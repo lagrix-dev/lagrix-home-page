@@ -112,9 +112,9 @@ the authors of Lagrix disappeared, the network would run by the same rules.
 Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
 the quality minimum, so the payer cannot steer the fee back to itself. A review weighs exactly the fee paid on its deal, so a unit of
 review weight costs a dollar of fees, and the right to a refund bought with likes never costs less than the refund itself
-([17](17-discovery-ranking-feedback.md), section 17.5; changelog entry 42). The one exception is a developer dealing with itself through
-its own element on a second node: it gets its 20% developer share back, so its weight costs it 80 cents on the dollar
-([26](26-developer-share.md)). A group that controls k of M super-nodes gets back k/M of its own
+([17](17-discovery-ranking-feedback.md), section 17.5; changelog entry 42). The one exception is a node that, in a deal
+with itself, names a wallet of its own as the developer: it gets the 20% developer share back, so its weight costs it 80 cents on the
+dollar ([26](26-developer-share.md)). A group that controls k of M super-nodes gets back k/M of its own
 fee, and each of those places was assigned by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
