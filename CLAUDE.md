@@ -240,15 +240,22 @@ two goals — discovery and honest reputation — stand right under the first sc
 lower or removing them is the owner's decision. 🔒 No commercial widgets, no referral income, no token talk, no listing or price talk (the network's money is USDC — changelog entry 42):
 an on-ramp with a reward belongs to Fractera, not here; the On-ramp page is reference only (what it is, why, how to find a licensed
 provider by a Google search). 🔒 Every word about the network's rules comes from the protocol README glossary and changelog 000
-(`lagrix-dev/lagrix`, entries 20–45): the element is the entity, one wallet registers the node, a deal may be split and only the
-network part counts, the fee is pooled for super-nodes, a review weighs the fee paid on its deal, reputation is six count-and-sum
+(`lagrix-dev/lagrix`, entries 20–51): the element is the entity, one wallet is the node's key and account (entry 39), a deal may be split
+and only the network part counts, the fee is pooled for super-nodes and a fifth of it goes to the developer of an element received over
+F2F (entry 51, document 26), a review weighs the fee paid on its deal, reputation is six count-and-sum
 indicators per role plus the proven-violation mark (entries 43, 44), super-node places go by random choice (entries 31, 40), super-node
 requirements grow with a warning before an early exit (entry 45). 🔒 Do not state what the network does not have (owner 2026-10-15): the
 one warning about fake tokens lives only in the protocol README. 🔒 The help desk «Glossary» sign is the README glossary, built at every
 build (`@glossary` in `_data`, `words.ts`) — never a hand copy. A rule change starts with a changelog entry, then the documents, then this site; after
 a release the live site is measured for the banned raffle vocabulary and for old rules (node step 479).
 
-## The site is temporarily closed (node step 488)
+## 🪦 The site was temporarily closed (node step 488) — open again since 2026-10-17
+
+Owner, 2026-10-17: «отмени запрет индексации … публичные главные страницы будут доступны без регистрации». `config/site-access.json`
+carries `"site": null` (commit fad4b92): the site is open to everyone; search engines see only English, the Russian pages answer
+`noindex, follow`. The gate described below stays in `proxy.ts`; to close the site again — `"site": "architect"`, deploy, refresh the
+copy — only on the owner's word. The text below describes the closed state (audit of 2026-10-18: this section still read as current).
+
 
 Owner, 2026-10-15: «публичный страницу делай доступную только по паролю архитектора … закрыть от индексации сайт». While
 `config/site-access.json` carries `"site": "architect"`, `proxy.ts` (siteAccessGate) shows the site only to the owner at this machine and
