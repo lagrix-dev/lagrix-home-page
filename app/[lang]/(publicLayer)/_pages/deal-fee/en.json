@@ -207,7 +207,7 @@
     },
     {
       "kind": "text-p",
-      "text": "How the fee applies to a cancelled order is still an open question of the protocol, so this page does not state a rule for it. The rate and the exact amount each super-node receives depend on modelling and on how many super-nodes pass the minimum in a period.",
+      "text": "The rate and the exact amount each super-node receives depend on modelling and on how many super-nodes pass the minimum in a period. A cancelled order pays the same fee, taken from the part the provider keeps after the refund, and that fee is also the weight of each side's review; a cancelled order writes no receipt.",
       "bid": "m0jlz"
     },
     {

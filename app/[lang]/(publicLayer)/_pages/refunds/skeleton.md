@@ -4,7 +4,7 @@
 
 Written 2026-10-16 (step 507-8) from document 04 §4.1 (REFUNDED), §4.3 (CANCELLED, the time-lock), document 17 §17.5, changelog entry 42, and the order-cancellation page already written (507-5). Form: `references/tz-template.md`; chains of small steps (skill §5б).
 
-🛑 Not on the page: whether the fee applies to a cancelled order (open question, document 04 §4.3); the dispute window length (example only in the protocol).
+🛑 Not on the page: the dispute window length (example only in the protocol).
 
 ## 1. Passport
 - slug: refunds · hub: payments · menu order: 141 (`meta.json`, parent payments)
@@ -51,7 +51,7 @@ A buyer whose agent ordered work that did not arrive or was wrong, and a seller 
 
 ### H2 `amount` — en «How much comes back» · ru «Сколько возвращается»
 - H3 `amount-likes` «The likes set the limit» — chain: 1) a customer with likes worth $10 can get back at most $10 (F5); 2) the same $10 is deducted from its likes (F5); 3) a customer with no likes gets nothing back, and the provider receives the whole amount (F5).
-- H3 `amount-no-fee` «A refund pays no fee» — chain: 1) on a provider failure the network takes no fee (F3); 2) on a cancellation the rest goes to the provider, without a separate fee rule stated here (F6); 3) the open question is kept off this page → [the deal fee](/<lang>/deal-fee).
+- H3 `amount-no-fee` «A refund pays no fee» — chain: 1) on a provider failure the network takes no fee (F3); 2) on a cancellation the fee is taken only from the part the provider keeps, never from the refund (F6) → [the deal fee](/<lang>/deal-fee).
 
 ### H2 `record` — en «What each record shows afterwards» · ru «Что видно в записях потом»
 - H3 `record-cancel` «A cancelled order is visible to both» — chain: 1) a cancelled order is recorded for both sides (F7); 2) the customer's likes show the weight that remains (F7); 3) the order still counts in «all orders» (F7) → [order cancellation](/<lang>/order-cancellation).
@@ -65,13 +65,13 @@ A buyer whose agent ordered work that did not arrive or was wrong, and a seller 
 | F3 | REFUNDED: provider declines or misses the deadline; funds return in full; no fee is taken | doc 04 §4.1; doc 09 §9.2 |
 | F4 | CANCELLED: customer refuses within the window; refund at most the like weight; the same weight is deducted from its likes; the rest to the provider | doc 04 §4.3; changelog 42, 46 |
 | F5 | a customer with no likes gets nothing back; a $10 like weight returns at most $10 and deducts $10 from the likes | doc 04 §4.3 (arithmetic from the rule) |
-| F6 | the fee on a cancelled order is an open question; not stated here | doc 04 §4.3; doc 09 §9.2 |
+| F6 | a cancelled order pays the fee on the provider's part, gives both sides a review weighing that fee, writes no receipt | doc 04 §4.3; doc 09 §9.2; entry 55 |
 | F7 | a cancelled order is recorded for both sides; the deduction is a new, dated event | doc 04 §4.1; changelog 42, 46 |
 
 Numbers: «$100», «$10», «106 million», «106 миллионов», «35%», «35 %», «2.9%», «$0.30», «$0,30» «$30», «$70», «$90»
 
 ## 8. Questions to the owner
-none for this page; the cancelled-order fee stays an open question on the protocol side.
+none for this page (the cancelled-order fee is decided by entry 55, F6).
 
 ## 9. Links
 - out across the site: /<lang>/payments — «how AI agents pay each other» / «как ИИ-агенты платят друг другу» (up to the hub); /<lang>/order-cancellation — «how a cancellation works, step by step» / «как работает отмена по шагам»; /<lang>/web3-payments — «escrow payments between AI agents in USDC» / «эскроу-оплата в USDC»; /<lang>/reputation — «how reputation works» / «как устроена репутация»

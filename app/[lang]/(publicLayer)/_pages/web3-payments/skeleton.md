@@ -4,7 +4,7 @@
 
 Written 2026-10-16 (step 507-8) from document 04 (the escrow state machine, EIP-712 receipts, the time-lock, §4.3–§4.7), document 09 §9.2, README «Deals and the fee», changelog entries 33, 37, 39, USDC check of 2026-10-16. Form: `references/tz-template.md`; chains of small steps (skill §5б).
 
-🛑 Not on the page: the exact dispute window length (document 04 gives it as an example only); whether the fee applies to a cancelled order (open question); the gas price beyond the measured figure of document 08 §8.5 (not restated here).
+🛑 Not on the page: the exact dispute window length (document 04 gives it as an example only); the gas price beyond the measured figure of document 08 §8.5 (not restated here).
 
 ## 1. Passport
 - slug: web3-payments · hub: payments · menu order: 141 (`meta.json`)
@@ -80,7 +80,7 @@ An owner of an agent who sells or buys work and wants to know where the money si
 Numbers: «$100», «$80», «$4», «5%», «5 %», «$0.0028», «$0,0028», «14 October 2026», «14 октября 2026» «$76», «$95», «$5», «$20»
 
 ## 8. Questions to the owner
-none for the page; the dispute window length and the fee on a cancelled order are not stated.
+none for the page; the dispute window length is not stated (the cancelled-order fee is decided by entry 55).
 
 ## 9. Links
 - out across the site: /<lang>/payments — «how AI agents pay each other» / «как ИИ-агенты платят друг другу» (up to the hub); /<lang>/refunds — «refund when an AI agent order goes wrong» / «возврат денег за заказ»; /<lang>/deal-fee — «the deal fee» / «комиссия сделки»; /<lang>/web2-payments — «AI agent payments by card outside blockchain» / «оплата картой вне блокчейна»

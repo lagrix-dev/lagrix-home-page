@@ -5,8 +5,7 @@
 Written 2026-10-16 (step 507-6) from document 09 (§9.1–§9.5), document 05 §5.3, document 04 §4.1, §4.4, §4.6, README «Deals and the fee»
 and glossary «Fee». Form: `references/tz-template.md`; every event is a chain of small steps (skill §5б).
 
-🛑 Not on the page: the rate after modelling (5% is the ceiling and today's value; modelling may lower it); how the fee applies to a
-cancelled order (open question, document 09 §9.2); any amount a super-node will receive (document 09 §9.5: not known, not guaranteed).
+🛑 Not on the page: the rate after modelling (5% is the ceiling and today's value; modelling may lower it); any amount a super-node will receive (document 09 §9.5: not known, not guaranteed).
 
 ## 1. Passport
 - slug: deal-fee · hub: network · menu order: 122 (`meta.json`)
@@ -81,8 +80,8 @@ Web4 definition verbatim under H2 `how-it-works`.
 ### H2 `refund` — en «A refund pays no fee» · ru «Возврат комиссию не платит»
 - H3 `refund-declined` «Declined or late: nothing taken» · «Отказ или опоздание: ничего не берётся» — chain: 1) Leo's agent declines the job or
   misses the deadline (F9); 2) the whole $100 goes back to Anna (F9); 3) the contract takes no fee on a refund (F9) → [how a cancellation works](/<lang>/order-cancellation).
-- H3 `refund-open` «What is not yet decided» · «Что ещё не решено» — chain: 1) a cancelled order does not yet have a settled fee rule
-  (F10, not on the page as a rule); 2) the rate and the exact share depend on modelling (F4, F5); 3) the full rules are in
+- H3 `refund-open` «What is not yet decided» · «Что ещё не решено» — chain: 1) the rate and the exact share depend on modelling (F4, F5);
+  2) a cancelled order pays the same fee on the provider's part, which is also the weight of each side's review, and writes no receipt (F10); 3) the full rules are in
   [document 9 of the protocol](/<lang>/docs/09-fee-distribution).
 
 ## 7. Facts
@@ -97,13 +96,13 @@ Web4 definition verbatim under H2 `how-it-works`.
 | F7 | one unit of review weight costs one dollar of fees | doc 09 §9.4; doc 17 §17.5 |
 | F8 | one rate for everyone; a rate set by each super-node would fall to zero | doc 09 §9.4 |
 | F9 | on REFUNDED the funds return in full and no fee is taken | doc 04 §4.1; doc 09 §9.2 |
-| F10 | how the fee applies to a cancelled order is an open question of the changelog | doc 09 §9.2 |
+| F10 | a cancelled order pays the fee on the part the provider keeps; that fee weighs each side's review; no receipt | doc 09 §9.2; entry 55 |
 | F-dev | when the provider works with an element it received over F2F, 20% of the deal's fee goes first to the developer of that element, the rest to the pool; the parties never receive the fee | changelog entry 51; doc 26 §26.3 |
 
 Numbers: «5%», «5 %», «$100», «$80», «$20», «$5», «$4», «15%», «2.9%», «USD0.30», «$0.30», «$0,30», «12 months», «12 месяцев», «20%», «20 %» (document 17 §17.2: the last 12 months of paid work)
 
 ## 8. Questions to the owner
-none for the page; the open question about cancelled orders stays off the page.
+none for the page (the cancelled-order rule is decided by entry 55 and stated as F10).
 
 ## 9. Links
 - out across the site: /<lang>/network — «an AI agent network without a central server» / «сеть ИИ-агентов без центрального сервера» (up to the hub);
@@ -124,7 +123,7 @@ none for the page; the open question about cancelled orders stays off the page.
 
 ## 11. Words
 Glossary: fee, network part, escrow, receipt, super-node, quality minimum, period, refund. Traps: never «commission» for the search fee;
-«tokens» banned; never promise a super-node's income (F5 says it is not known in advance); do not state the cancelled-order rule.
+«tokens» banned; never promise a super-node's income (F5 says it is not known in advance); state the cancelled-order rule only as F10 says it.
 
 ## 12. Unique value
 - The fee walked through one $100 deal split into its network and outside parts, with who receives each cent.

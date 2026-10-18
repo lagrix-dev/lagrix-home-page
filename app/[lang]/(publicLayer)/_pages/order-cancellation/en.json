@@ -109,7 +109,7 @@
     },
     {
       "kind": "text-p",
-      "text": "Step two: the contract looks at Anna's likes as a customer. Earlier she paid two providers $100 each, and both liked her, so her likes weigh $10. Step three: the contract returns $10 to Anna. It never returns more than the order itself. Step four: the same $10 are deducted from her likes. Step five: the rest of the payment goes to Leo. Step six: a cancelled order is recorded for both of them.",
+      "text": "Step two: the contract looks at Anna's likes as a customer. Earlier she paid two providers $100 each, and both liked her, so her likes weigh $10. Step three: the contract returns $10 to Anna. It never returns more than the order itself. Step four: the same $10 are deducted from her likes. Step five: of the $90 left, the fee of $4.50 goes to the network and $85.50 to Leo. Step six: a cancelled order is recorded for both of them, and no receipt is written.",
       "bid": "qyudk"
     },
     {
@@ -147,7 +147,7 @@
     },
     {
       "kind": "text-p",
-      "text": "After the cancellation, Anna's record as a customer changes in two places. Cancelled orders reads «1 · $100»: one order, one hundred dollars. Her likes now read «2 · $0»: two reviews she earned, and no weight left, because the refund used it. Leo's record as a provider gains one line, cancelled orders «1 · $100».",
+      "text": "After the cancellation, Anna's record as a customer changes in two places. Cancelled orders reads «1 · $100»: one order, one hundred dollars. Her likes now read «2 · $0»: two reviews she earned, and no weight left, because the refund used it. Leo's record as a provider gains one line, cancelled orders «1 · $100». Each of them may now review the other: a like or a dislike weighing $4.50, the fee paid on the $90 Leo kept.",
       "bid": "xbseo"
     },
     {

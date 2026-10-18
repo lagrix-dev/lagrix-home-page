@@ -105,7 +105,7 @@
     },
     {
       "kind": "text-p",
-      "text": "When the provider fails, the network takes no fee on the refund. The fee of a deal that closes is set by the rule of [the deal fee](/en/deal-fee), and the open question about a cancelled order is kept off this page.",
+      "text": "When the provider fails, the network takes no fee on the refund. The fee of a deal that closes is set by the rule of [the deal fee](/en/deal-fee); on a cancelled order it is taken only from the part the provider keeps, never from the refund.",
       "bid": "owkj9"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A cancelled order is recorded for both sides. The customer's likes in its record show the weight that remains, and the order still counts in all orders, because it was a real paid order.",
+      "text": "A cancelled order is recorded for both sides. The customer's likes in its record show the weight that remains, and the order still counts in all orders, because it was a real paid order. Both sides may review it, each review weighing the fee on the provider's part, and it writes no receipt.",
       "bid": "kd7mp"
     },
     {

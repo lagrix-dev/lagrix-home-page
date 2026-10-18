@@ -6,8 +6,8 @@ Written 2026-10-16 (step 507-5) by the federal agent, from the protocol (documen
 glossary «Cancelled order», «Escrow»; changelog entry 42) and research of the same day. Form: `references/tz-template.md`; every event is
 a chain of small steps (skill §5б).
 
-🛑 Open in the protocol and NOT on the page (document 04 §4.3, changelog «Open questions»): whether the fee is taken from the part the
-provider receives on a cancelled order, and whether a cancelled order leaves a receipt and reviews.
+🔒 Decided by entry 55 and on the page: a cancelled order pays the fee on the part the provider keeps ($4.50 of Leo's $90), gives both
+sides a review weighing that fee, and writes no receipt (document 04 §4.3).
 
 ## 1. Passport
 - slug: order-cancellation · hub: reputation · menu order: 116 (`meta.json`)
@@ -81,8 +81,8 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 ### H2 `cancel` — en «How a cancellation works, step by step» · ru «Как работает отмена, шаг за шагом»
 - H3 `cancel-steps` «The refund is limited by your likes» · «Возврат ограничен вашими лайками» — chain: 1) Leo delivered; Anna's agent
   refuses the result within the dispute window and cancels (F8); 2) the contract reads Anna's likes as a customer: $10 (F8); 3) it returns
-  $10 to Anna, never more than the order itself (F8); 4) the same $10 are deducted from her likes (F8); 5) the rest of the payment goes to Leo (F8);
-  6) a cancelled order is recorded for both of them (F9).
+  $10 to Anna, never more than the order itself (F8); 4) the same $10 are deducted from her likes (F8); 5) of the $90 left, the fee of $4.50 goes to the network and $85.50 to Leo (F8);
+  6) a cancelled order is recorded for both of them, and no receipt is written (F9).
 - H3 `cancel-why` «Why the limit is likes» · «Почему предел — лайки» — chain: 1) a customer with no likes gets nothing back, and the whole
   amount goes to the provider (F8); 2) otherwise anyone could order work, take the result and cancel for free; 3) each dollar of likes
   cost a dollar of fees, so the right to a $1 refund never costs less than $1 (F10) → [why likes cannot be farmed](/<lang>/likes-and-dislikes);
@@ -90,7 +90,7 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 
 ### H2 `record` — en «What a cancellation leaves in the record» · ru «Что отмена оставляет в записи»
 - H3 `record-lines` «Cancelled orders and remaining likes» · «Отменённые заказы и оставшиеся лайки» — chain: 1) Anna's record as a
-  customer: cancelled orders «1 · $100», likes «2 · $0» — two reviews earned, no weight left (F9, F12); 2) Leo's record as a provider: cancelled orders «1 · $100» (F9); 3) the order still counts in
+  customer: cancelled orders «1 · $100», likes «2 · $0» — two reviews earned, no weight left (F9, F12); 2) Leo's record as a provider: cancelled orders «1 · $100» (F9); each may review the other, weight $4.50 (F9, entry 55); 3) the order still counts in
   «all orders» for both (F12); 4) nothing is erased: the deduction is a new, dated event (F13).
 - H3 `record-read` «How the next side reads it» · «Как это читает следующая сторона» — chain: 1) the next provider sees Anna's cancelled
   orders and remaining likes before taking her order; 2) three cancellations out of three hundred orders and three out of four are different
@@ -114,7 +114,7 @@ a customer weigh $10 (as on /likes-and-dislikes). en ≥ 1240 words, ru ≥ 1000
 | F13 | the deduction is a new, dated event; history is not rewritten | entries 42, 46 |
 | F14 | three cancelled out of three hundred and three out of four are different stories | entry 44 «Why» |
 
-Numbers: «$100», «$5», «$10», «$90», «5%», «5 %», «35%», «35 %», «$1», «$0»
+Numbers: «$100», «$5», «$10», «$90», «5%», «5 %», «35%», «35 %», «$1», «$0», «$4.50», «$4,50», «$85.50», «$85,50» (entry 55: the fee on Leo's $90 and what Leo receives)
 
 ## 8. Questions to the owner
 none for the page; the open protocol question is kept off the page (see the top of this file).
@@ -137,8 +137,8 @@ none for the page; the open protocol question is kept off the page (see the top 
 
 ## 11. Words
 Glossary: cancelled order, dispute window, refund, escrow, like, customer, provider, all orders. Traps: «cancellation» ≠
-«refund» (refund = provider declined or late); never «the network decides who is right»; do not state what happens to the fee, the receipt
-or reviews on a cancelled order; «tokens» banned; ru «2026 года» → «2026-го».
+«refund» (refund = provider declined or late); never «the network decides who is right»; state the fee, the reviews and the absence of a
+receipt on a cancelled order only as entry 55 says; «tokens» banned; ru «2026 года» → «2026-го».
 
 ## 12. Unique value
 - The rule known before the order, in numbers: $100 order, $10 of likes → $10 back, $10 deducted from likes, the rest to the provider.
