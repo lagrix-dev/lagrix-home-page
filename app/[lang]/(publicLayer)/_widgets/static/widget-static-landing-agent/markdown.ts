@@ -153,6 +153,17 @@ export function markdown(lang: string): string {
     }
   }
 
+  // 521: «Строительный департамент» — сцена и окно справки абзацем, ссылка на документ 26.
+  if (x.builders) {
+    const b = x.builders
+    head(2, b.title)
+    para(b.text)
+    list([b.scene])
+    head(3, b.infoTitle)
+    para(b.info)
+    out.push(`[${b.more}](/${lang}/docs/26-developer-share)`, "")
+  }
+
   list(x.cards)
   if (x.canNote) para(x.canNote.replace("{link}", x.canNoteLink ?? ""))
 

@@ -361,3 +361,26 @@ Measured in headless Chrome by state, no screenshots during playback (`scratchpa
 mouse drags the tassel 60 px → `--pull: 60px` under the hand, burn, at 3.3 s white 1 with objects hidden and the painting 908×547
 (the hall 560 → 772 px), then `shown` with focus; Escape changes nothing. A drag of 8 px leaves the hall idle; reduced motion —
 the painting at 0.37 s, white 0; Enter on the plate runs the same path.
+
+## Step 521 (2026-10-18): the «Building department»
+
+`builders-office.client.tsx`, words `landing.builders` (section `#building-department`, right after «Ticket refunds»). Owner: an old
+engineer's office «со скругленными потолками незначительно», no window; a large drafting board in the middle with a drawing of a train;
+an openwork aluminium lamp on a wire throws light onto the board; a hammer, pliers and a saw hang on the other side; hover enlarges the
+board or a tool, a click opens the same help window as the antispam scene — but on the **left**.
+
+- **Room** (`.bdRoom`, `container-type: size`, everything in `cqw`/`cqh`): the vault is the container's own top radius (`7cqh`), a
+  cornice line, a plank floor; the only light is the lamp — a radial warmth around the board and a cone (`.bdLight`, `clip-path`) from
+  the shade to the board. Colours are the world's roles only (board, poster, signal, chalk, ink).
+- **Lamp** (`.bdLamp`) hangs above the centre of the board (`--board-l + --board-w / 2`): a wire from the vault, an aluminium shade with
+  ten holes lit by the bulb.
+- **Board** (`.bdBoard`, shadcn `Button variant="bare"`, `popoverTarget`): a drafting table — stand, frame, paper, a steam locomotive in
+  thin `--board` lines with `--signal` dimension lines, a ruler, a square and the title stamp `sheet` («Sheet 26 · Locomotive»).
+- **Tools** (`.bdTools`): a pegboard by the wall with three `Button`s (`data-tool` hammer · pliers · saw), each on its peg; `aria-label`
+  names the tool and the subject.
+- **Window** (`.bdInfo`, native `popover="auto"`): `left: max(1rem, 3vw)`, enters from the left; one paragraph (`info`) with the taxi
+  example of protocol document 26 and the link `/<lang>/docs/26-developer-share`. Works without JavaScript; Escape and a click outside
+  close it. Hover scale 1.04 (board) / 1.16 (tools); reduced motion — no scale transition, no entrance.
+- `markdown.ts` copies the title, text, scene, the window title, paragraph and the link.
+- The texts follow changelog entry 51 and document 26 of `lagrix-dev/lagrix`: 20% of the 5% fee to the developer of an element received
+  over F2F; the parties pay the same.

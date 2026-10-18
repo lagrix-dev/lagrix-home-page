@@ -20,6 +20,7 @@ import { PortalStation } from "./portal-station.client"
 import { HelpDesk } from "./help-desk.client"
 import { TelegraphRoom } from "./telegraph.client"
 import { AntispamRoad } from "./antispam-road.client"
+import { BuildersOffice } from "./builders-office.client"
 import { RefundRoom } from "./refund-room.client"
 import { VipRoom } from "./vip-room.client"
 import { Express } from "./express"
@@ -255,6 +256,23 @@ export function LandingAgent({ lang }: { lang: string }) {
               </div>
             </div>
             <RefundRoom w={x.refunds} lang={lang} />
+          </div>
+        </section>
+      )}
+
+      {/* 521 (владелец 2026-10-18): «Строительный департамент» — кабинет инженера: доска с чертежом поезда, лампа на струне, инструменты;
+          нажатие открывает окно слева о доле разработчика со ссылкой на документ 26 протокола. Слова — `landing.builders`. */}
+      {x.builders && (
+        <section data-block="bdsec" id="building-department" className={s.builders}>
+          <div data-block="bdwrp" className={s.wrap}>
+            <div data-block="bdsgp" className={s.waitingSign}>
+              <span className={s.gateRods} aria-hidden="true" />
+              <div data-block="bdplt" className={s.waitingPlate}>
+                <h2 data-block="bdtit" className={s.waitingTitle}>{x.builders.title}</h2>
+                {x.builders.text && <p data-block="bdtxt" className={s.waitingText}>{x.builders.text}</p>}
+              </div>
+            </div>
+            <BuildersOffice w={x.builders} docHref={`/${lang}/docs/26-developer-share`} />
           </div>
         </section>
       )}

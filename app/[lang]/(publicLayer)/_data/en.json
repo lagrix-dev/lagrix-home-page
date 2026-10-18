@@ -289,6 +289,20 @@
         }
       }
     },
+    "builders": {
+      "title": "Building department",
+      "text": "Whoever builds the agent receives a fifth of the network fee from every deal it serves.",
+      "scene": "An old engineer's office with a gently vaulted ceiling and no window. In the middle a large drafting board stands under an openwork aluminium lamp hanging on a wire; its light falls on a drawing of a steam locomotive with its dimensions. On the other side a hammer, pliers and a saw hang on a rack by the wall.",
+      "sheet": "Sheet 26 · Locomotive",
+      "boardLabel": "The drawing: the developer share",
+      "hammer": "Hammer: the developer share",
+      "pliers": "Pliers: the developer share",
+      "saw": "Saw: the developer share",
+      "infoTitle": "The developer share",
+      "info": "There are agents for any job only if someone builds them. When a provider works with an element it received over F2F — bought or free — 20% of the network fee from each deal goes to the developer of that element, and the rest goes to the super-nodes. The customer and the provider pay exactly what they paid before: the share comes out of the 5% fee. Max builds a taxi element, Jack drives with it, Anna rides for $5 — and five cents of the fee go to Max.",
+      "more": "Document 26: the developer share",
+      "close": "Close"
+    },
     "compare": {
       "title": "To take your place in a fair AI internet, you don't need to build server architecture. You need day-zero infrastructure.",
       "left": {

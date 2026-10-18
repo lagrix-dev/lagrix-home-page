@@ -2571,3 +2571,89 @@
   .vipPull:not([data-drag]) :is(.vipCord, .vipTassel), .vipPull[data-tug] :is(.vipCord, .vipTassel) { transition: none; animation: none; }
   .vipRoom[data-phase="fade"] :is(.vipFlash, .vipPicCanvas) { transition: none; animation: none; }
 }
+
+/* ── 521: «Строительный департамент» — кабинет инженера без окон, свет только от лампы на струне. ───────────────────────── */
+.builders { padding: 4.5rem 0 3rem; }
+.bdRoom {
+  position: relative; margin-top: 2rem; overflow: hidden; height: clamp(360px, 36vw, 500px); container-type: size;
+  border-radius: 50% 50% var(--tile-corner) var(--tile-corner) / 7cqh 7cqh var(--tile-corner) var(--tile-corner);
+  background:
+    radial-gradient(ellipse 46cqw 70cqh at 44cqw 58cqh, color-mix(in oklab, var(--poster) 14%, transparent), transparent 70%),
+    linear-gradient(to bottom, color-mix(in oklab, var(--board-deep) 70%, var(--ink)), var(--board-deep) 78%);
+  --board-w: min(52cqw, 112cqh);
+  --board-l: 18cqw;
+  --tools-w: min(24cqw, 44cqh);
+}
+.bdCornice { position: absolute; inset: 9cqh 0 auto; height: 1.4cqh; background: color-mix(in oklab, var(--board) 60%, var(--chalk) 6%); opacity: 0.55; }
+.bdFloor {
+  position: absolute; inset: auto 0 0; height: 13cqh;
+  background: repeating-linear-gradient(90deg, color-mix(in oklab, var(--ink) 82%, var(--board)) 0 7cqw, color-mix(in oklab, var(--ink) 74%, var(--board)) 7cqw 7.3cqw);
+  border-top: 4px solid color-mix(in oklab, var(--ink) 60%, var(--board));
+}
+
+/* Лампа: струна от свода, ажурный колпак, тёплая лампочка; конус света ложится на доску. */
+.bdLamp { position: absolute; left: calc(var(--board-l) + var(--board-w) / 2); top: 0; width: clamp(56px, 10cqw, 120px); translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; }
+.bdWire { display: block; width: 2px; height: 14cqh; background: color-mix(in oklab, var(--chalk) 55%, var(--board)); }
+.bdShade { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 6px 10px var(--shade)); }
+.bdShadeBody { fill: color-mix(in oklab, var(--chalk) 72%, var(--board)); stroke: var(--ink); stroke-width: 2; }
+.bdShadeHole { fill: var(--poster); }
+.bdShadeRim { stroke: color-mix(in oklab, var(--chalk) 90%, var(--board)); stroke-width: 3; stroke-linecap: round; }
+.bdBulb { fill: var(--poster); filter: drop-shadow(0 0 8px var(--poster)); }
+.bdLight {
+  position: absolute; z-index: 1; pointer-events: none;
+  left: calc(var(--board-l) - 2cqw); width: calc(var(--board-w) + 4cqw); top: calc(14cqh + clamp(30px, 5.6cqw, 66px)); bottom: 13cqh;
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--poster) 42%, transparent), color-mix(in oklab, var(--poster) 6%, transparent));
+}
+
+/* Доска и инструменты: под рукой предмет увеличивается; нажатие открывает окно слева. */
+.bdBoard { position: absolute; left: var(--board-l); bottom: 6cqh; width: var(--board-w); z-index: 2; cursor: pointer; transform-origin: 50% 80%; transition: scale 0.35s var(--ease); }
+.bdBoardSvg { display: block; width: 100%; height: auto; overflow: visible; }
+.bdStand { fill: none; stroke: color-mix(in oklab, var(--ink) 70%, var(--board)); stroke-width: 10; stroke-linecap: round; }
+.bdBoardFrame { fill: color-mix(in oklab, var(--poster) 30%, var(--ink) 40%); stroke: var(--ink); stroke-width: 3; }
+.bdPaper { fill: var(--chalk); }
+.bdLoco { fill: none; stroke: var(--board); stroke-width: 2; stroke-linejoin: round; }
+.bdDim { fill: none; stroke: var(--signal); stroke-width: 1.2; }
+.bdDim path:nth-child(2) { fill: var(--signal); }
+.bdDim text { fill: var(--signal); stroke: none; font-family: var(--display); font-weight: 600; font-size: 13px; }
+.bdStamp { fill: none; stroke: var(--board); stroke-width: 1.5; }
+.bdStampText { fill: var(--board); font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
+.bdRuler { stroke: color-mix(in oklab, var(--poster) 70%, var(--ink)); stroke-width: 6; stroke-linecap: round; }
+.bdSquare { fill: none; stroke: color-mix(in oklab, var(--board) 50%, var(--chalk)); stroke-width: 5; stroke-linecap: square; }
+.bdTools { position: absolute; right: 4cqw; top: 22cqh; width: var(--tools-w); height: 58cqh; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: 4%; padding: 6% 6% 0; }
+.bdRack { position: absolute; inset: 0; border-radius: var(--tile-corner); background:
+  radial-gradient(circle, color-mix(in oklab, var(--ink) 70%, var(--board)) 1.6px, transparent 2px) 0 0 / 14px 14px,
+  color-mix(in oklab, var(--board) 55%, var(--ink)); box-shadow: inset 0 0 0 3px color-mix(in oklab, var(--ink) 60%, var(--board)); }
+.bdTool { position: relative; cursor: pointer; transform-origin: 50% 8%; transition: scale 0.35s var(--ease); }
+.bdTool::before { content: ""; position: absolute; left: 50%; top: -6%; width: 10%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%; background: var(--ink); }
+.bdTool[data-tool="saw"] { margin-top: 4%; }
+.bdToolSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 8px var(--shade)); }
+.bdHandle { fill: color-mix(in oklab, var(--poster) 40%, var(--ink) 45%); stroke: var(--ink); stroke-width: 2.5; }
+.bdHandleHole { fill: color-mix(in oklab, var(--board) 55%, var(--ink)); }
+.bdGrip { fill: var(--signal); stroke: var(--ink); stroke-width: 2.5; }
+.bdSteel { fill: color-mix(in oklab, var(--chalk) 78%, var(--board)); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.bdSteelEdge { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.bdShine { fill: none; stroke: var(--chalk); stroke-width: 2; stroke-linecap: round; opacity: 0.85; }
+.bdPivot { fill: var(--ink); }
+.bdBoard:hover, .bdBoard:focus-visible { scale: 1.04; }
+.bdTool:hover, .bdTool:focus-visible { scale: 1.16; z-index: 1; }
+.bdBoard:focus-visible, .bdTool:focus-visible { outline: 3px solid var(--poster); outline-offset: 4px; border-radius: 6px; }
+
+/* Окно справки — слева: то же окно, что у антиспама справа. */
+.bdInfo {
+  position: fixed; inset: auto; top: 50%; left: max(1rem, 3vw); translate: 0 -50%; margin: 0; width: min(26rem, calc(100vw - 2rem));
+  padding: 1.3rem 1.4rem 1.2rem; border: 0; border-radius: var(--tile-corner); background: var(--board); color: var(--chalk);
+  box-shadow: 0 24px 48px -20px var(--shade);
+}
+.bdInfo:popover-open { animation: bdInfoIn 0.45s var(--ease); }
+.bdInfo::backdrop { background: transparent; }
+@keyframes bdInfoIn { from { opacity: 0; translate: -2rem -50%; } to { opacity: 1; translate: 0 -50%; } }
+
+@media (max-width: 560px) {
+  .bdRoom { height: 400px; --board-w: 66cqw; --board-l: 2cqw; --tools-w: 30cqw; }
+  .bdTools { right: 2cqw; top: 22cqh; height: 36cqh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bdBoard, .bdTool { transition: none; }
+  .bdInfo:popover-open { animation: none; }
+}
