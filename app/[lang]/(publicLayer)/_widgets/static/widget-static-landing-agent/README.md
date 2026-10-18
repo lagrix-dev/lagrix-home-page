@@ -384,3 +384,31 @@ board or a tool, a click opens the same help window as the antispam scene — bu
 - `markdown.ts` copies the title, text, scene, the window title, paragraph and the link.
 - The texts follow changelog entry 51 and document 26 of `lagrix-dev/lagrix`: 20% of the 5% fee to the developer of an element received
   over F2F; the parties pay the same.
+
+
+## Step 523 (2026-10-18): the «Building department» from sketch to picture (skill impeccable, «Launcher unavailable»)
+
+Owner: «сделай размер чертежей в ширину больше на 30% … специальной линейки … позволяет перемещаться линиям строго параллельно по
+холсту … три карандаша разного цвета на этом холсте … под инструментами дорисую верстак и пусть слева будут находиться тиски, сзади
+нарисуй окно сквозь которое просвечивается вдалеке здание железнодорожного вокзала … должно вызывать восторженный эффект». The 521
+rule «no window» is lifted by this word. Plan agreed: «Подтверждаю (Рекомендую)».
+
+- **Three drawings, each in its own units:** the board `480 × 340`, the window `160 × 252`, the workshop `330 × 332`. On a computer
+  they stand in one room `.bdRoom` (`aspect-ratio: 1000 / 470`, everything in percent of its units); below 820 px the room splits into
+  two pictures — `.bdHall` (window, lamp, board) and `.bdShop` (pegboard, workbench) — so the tools are full size on a phone.
+- **Materials** are mixes of the world roles in `.bdRoom` (`--bd-wood`, `--bd-oak`, `--bd-peg`, `--bd-steel`, `--bd-iron`, `--bd-brass`,
+  `--bd-blue` from `--primary`, …), the same way as the VIP room; no own colour value anywhere.
+- **Board** (`Button`, popover as before): oak frame on an iron stand, paper with a frame and a title block (`sheet`), a tank engine with
+  spoked drivers, a hatched cylinder section, centre lines and two dimensions; the lamp's light pool on the paper (`multiply`); masking
+  tape; three pencils (red `--signal`, yellow `--poster`, blue `--bd-blue`) on the right margin; the **parallel rule** on cables and four
+  brass pulleys with a 45° set square. Hover/focus: the rule slides 64 units up strictly parallel and draws the boiler axis
+  (`clip-path` reveal) — the only motion of the board; reduced motion: nothing moves and the axis is always drawn.
+- **Window** (`.bdWin`): arched sash with a fanlight, a dusk sky, the planet with a ring and the **station of the future** of the first
+  screen far away — glass vault, yellow clock, orbit, lit wings, tracks and two signals; still. A cool light patch on the floor.
+- **Workshop** (`.bdShop`): a pegboard with **painted outlines** under every tool (`.bdGhost` — the tool art filled with `--board` at
+  30 %); hammer, pliers and saw are `Button`s placed by the same numbers as their outlines (`TOOL` in the component), screwdrivers and a
+  wrench are drawing only. Hover/focus lifts the tool off its outline. Below: a workbench with a drawer, a lower shelf with a red toolbox,
+  the **vise on the left** with a block in its jaws and shavings, and a small model of the locomotive from the drawing.
+- Measured on lagrix.dev: paper 341 → 451 px at 1440 (×1.32); tool buttons on a 390 phone 29 → 60 / 54 / 72 px; phone page width 390 =
+  390; hover moves the rule 72 px and reveals the axis, leaving returns both.
+- `scene` (en, ru) describes the new picture; the other words are unchanged.
