@@ -2673,7 +2673,7 @@
 .bdSillShade { fill: color-mix(in oklab, var(--ink) 40%, transparent); }
 
 /* Лампа на струне: ажурный колпак, кружевной край, тёплая лампочка; конус света — размытым слоем. */
-.bdLamp { position: absolute; left: 25.2%; top: 0; width: 7.4%; translate: -50% 0; z-index: 4; display: flex; flex-direction: column; align-items: center; }
+.bdLamp { position: absolute; left: 25.7%; top: 0; width: 7.4%; translate: -50% 0; z-index: 4; display: flex; flex-direction: column; align-items: center; }
 .bdLamp::after {
   content: ""; position: absolute; left: 50%; bottom: -1.2cqw; width: 9cqw; aspect-ratio: 1; translate: -50% 50%; border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle, color-mix(in oklab, var(--poster) 50%, transparent), transparent 62%);
@@ -2687,14 +2687,14 @@
 .bdShadeLace { fill: var(--bd-steel); stroke: var(--ink); stroke-width: 1; }
 .bdShadeRim { fill: none; stroke: var(--chalk); stroke-width: 3.2; stroke-linecap: round; }
 .bdBulb { fill: var(--poster); filter: drop-shadow(0 0 6px var(--poster)); }
-.bdLight { position: absolute; z-index: 2; pointer-events: none; left: 3%; width: 44.4%; top: 20.4%; bottom: 5%; filter: blur(7px); }
+.bdLight { position: absolute; z-index: 2; pointer-events: none; left: 3%; width: 45.4%; top: 20.4%; bottom: 5%; filter: blur(7px); }
 .bdLight::before {
   content: ""; position: absolute; inset: 0; clip-path: polygon(44.5% 0, 55.5% 0, 100% 100%, 0 100%);
   background: linear-gradient(to bottom, color-mix(in oklab, var(--poster) 36%, transparent), color-mix(in oklab, var(--poster) 4%, transparent) 88%);
 }
 
 /* Доска: щит на стойке, лист с чертежом, рейсшина на тросах, угольник, три карандаша. */
-.bdBoard { position: absolute; left: 2.2%; bottom: 3%; width: 46%; z-index: 3; cursor: pointer; border: 0; padding: 0; background: none; }
+.bdBoard { position: absolute; left: 2.2%; bottom: 3%; width: 47%; z-index: 3; cursor: pointer; border: 0; padding: 0; background: none; }
 .bdBoardSvg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 1.2cqw 1.2cqw var(--shade)); }
 .bdOak { fill: var(--bd-oak); }
 .bdOakHi { fill: var(--bd-oak-hi); }
@@ -2833,7 +2833,7 @@
   .bdFloor::after { background: radial-gradient(ellipse 50% 80% at 40% 30%, color-mix(in oklab, var(--poster) 18%, transparent), transparent 70%); }
   .bdWinLight { display: none; }
   .bdShop {
-    position: relative; left: auto; top: auto; width: auto; z-index: auto; overflow: hidden; padding: 10% 3% 3%; container-type: inline-size;
+    position: relative; left: auto; top: auto; width: auto; z-index: auto; overflow: hidden; padding: 10% 0 3%; container-type: inline-size;
     border-radius: 50% 50% var(--tile-corner) var(--tile-corner) / 6% 6% var(--tile-corner) var(--tile-corner);
     background:
       radial-gradient(ellipse 60% 50% at 50% 40%, color-mix(in oklab, var(--poster) 9%, transparent), transparent 70%),
@@ -2841,7 +2841,7 @@
   }
   .bdShopWainscot { display: block; top: 56%; height: 30%; }
   .bdShopFloor { display: block; height: 15%; }
-  .bdShopArt { z-index: 1; }
+  .bdShopArt { z-index: 1; width: 106%; margin-left: -3%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bdRule, .bdAxis, .bdTool, .bdToolSvg { transition: none; }
