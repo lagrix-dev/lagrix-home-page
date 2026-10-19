@@ -35,6 +35,7 @@ How to use them — what to read when, what to write on which event, how a step 
 | `owner-decisions-on-skill-changes.md` | what a self-review proposed and what the person answered, verbatim | skill `self-review` | before every self-review |
 | `translation-debt.md` | texts left in one language while building: path, what, which languages it owes, why deferred | the agent, the same day a text is left untranslated (skill `use-languages`) | before translating; before launch in more languages |
 | `design-brief-reviews.md` | the design brief of the reviews branch `/<lang>/reviews`: mode, direction contract, blocks and their rules (skill impeccable, node step 518-3) | the agent, before changing how a review page looks | before any change to the look of the reviews branch |
+| `product/` | the product quiz: what the element is, in product words, before code — `quiz.json` (vision, actors, the list of modules, open questions, slices, the person's decisions) and `modules/<slug>.json` (scenarios `S-NN`, rules `R-NN`: text, dependencies, status); only in the element's default language; the core shows it on «Building → Product design → Product quiz» (node step 536) | the agent with the person (skill `product-quiz`); an item stays a draft until the person confirms it in words; `npm run check:product` | on wake into building — `quiz.json` only; before planning a step that adds or changes what the product does |
 
 ## Proof marks
 

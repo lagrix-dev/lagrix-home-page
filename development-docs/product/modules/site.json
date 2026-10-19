@@ -1,0 +1,34 @@
+{
+  "slug": "site",
+  "title": "The site itself",
+  "text": "What every reader gets whatever page they read.",
+  "items": [
+    {
+      "id": "S-08", "kind": "scenario", "actor": "A-01",
+      "title": "Search engines see the English site; people read English and Russian",
+      "text": "English is open to search engines. Russian is for people and carries «noindex, follow». Public pages need no sign-in.",
+      "acceptance": "/en pages are «index, follow», /ru pages are «noindex, follow».",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 340, 509"
+    },
+    {
+      "id": "S-10", "kind": "scenario", "actor": "A-01",
+      "title": "The site is visible when the owner's computer is off",
+      "text": "A page is asked from the computer first; when it does not answer, a copy kept with Cloudflare is shown.",
+      "acceptance": "With the tunnel stopped, the public pages still open.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 385, 458"
+    },
+    {
+      "id": "S-11", "kind": "scenario", "actor": "A-01",
+      "title": "Analytics counts only after the reader agrees",
+      "text": "Google Analytics is on; the cookie banner asks first, and the footer links the policy pages.",
+      "acceptance": "Before «Accept» nothing is counted.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 413, 449"
+    },
+    {
+      "id": "R-04", "kind": "rule",
+      "title": "Texts change without a rebuild",
+      "text": "The words of pages are data: a change is committed, the pages are refreshed and the Cloudflare copy is updated. A rebuild is needed only when code changes.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node step 527"
+    }
+  ]
+}

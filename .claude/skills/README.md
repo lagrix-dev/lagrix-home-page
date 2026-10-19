@@ -23,6 +23,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `github-element` | ours | saving the work to the element's own repository: Telegram — at once, terminal — on request; the core's push command and its answers | 🟨 2026-10-07: loaded first, step kept; no plan in steps-new |
 | `use-tests-before-dev-finish` | ours | proving a change before «done»: planned checks, machine + behaviour, spoil-and-restore, measurements that lie here | 🟨 2026-10-07: law kept, skill not loaded |
 | `use-development-docs` | ours | carrying building in development-docs/: current-step.md first and on every event, steps small and larger, substep = commit, mid-step tasks, closing; when glossary, backlog, cancelled, reports, anti-patterns are read and written; notes vs empty records | 🟨 2026-10-07: law kept, skill not loaded |
+| `product-quiz` | ours | the product quiz in `development-docs/product/`: when to load it, the interview one question at a time, the impact form before code, only the person confirms, `npm run check:product` | — not proven |
 | `use-auth` | ours | sign-in by the node's auth element, roles and inheritance, locks of a branch, a page and a door, bypasses, guests, a new role | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
 | `use-element-tree` | ours | the exact file tree of the element and the folders every branch must have; the guards that keep it | ✅ 2026-10-12 |
 | `cloudflare-connection` | ours | the tunnel, the temporary address, the own domain with subdomains, the copy in Workers — gains and limits | — not proven |

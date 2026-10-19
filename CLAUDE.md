@@ -50,7 +50,11 @@ The documents in `development-docs/` are how building survives an ended session;
 A word of the person, a term in this file or a skill that can be read two ways → `development-docs/glossary.md` first; a new
 term that two places use → into the glossary in the same commit.
 
-1. **On wake into building:** read `current-step.md`, then `pre-steps/` — a non-empty intake is named to the person first.
+1. **On wake into building:** read `current-step.md`, then `pre-steps/` — a non-empty intake is named to the person first. If
+   the element has a product quiz, read its index `development-docs/product/quiz.json` too (the modules only when a task needs them).
+1a. **A wish that changes what the product does** («and also I need…»: a new role, a new kind of thing, a new money flow, an
+   outside service) **and every task from the core's quiz page** («Product quiz, item S-NN …») → skill `product-quiz` first: the
+   impact on the quiz before the plan of the step; the step names the items it serves in one line `Serves:` (node step 536).
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
@@ -118,7 +122,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 | Nature | Skills |
 |---|---|
 | both — building or a job | `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: every text a person reads, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
-| builder | `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| builder | `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | worker | `order-summary`, `review-order` (recall a closed order with your person, agree on the review and publish the review page at `/<lang>/reviews/<slug>` through `/api/reviews` — no commit, no rebuild; the review itself is not sent while the network does not exist) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
 

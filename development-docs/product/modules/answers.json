@@ -1,0 +1,33 @@
+{
+  "slug": "answers",
+  "title": "Answer pages",
+  "text": "Pages that answer a question people search for, through the architecture of Lagrix.",
+  "items": [
+    {
+      "id": "S-04", "kind": "scenario", "actor": "A-01",
+      "title": "A reader from search lands on a page that answers their question",
+      "text": "The page answers at once and then walks through the problem, the protocol's view of the solution, its advantages, how to connect and the benefit, with one example running through it.",
+      "acceptance": "The answer stands right after the title, before the table of contents.",
+      "dependsOn": ["R-02", "R-03"], "status": "draft", "builtBefore": "node steps 507-509"
+    },
+    {
+      "id": "S-05", "kind": "scenario", "actor": "A-01",
+      "title": "The reader finds every page from the menu and from the text",
+      "text": "The top menu lists every page in its hub, the hubs are in the footer, and every page is linked from the text of at least two others.",
+      "acceptance": "Each page has two or more incoming links in the text.",
+      "dependsOn": ["R-03"], "status": "draft", "builtBefore": "node step 509"
+    },
+    {
+      "id": "R-02", "kind": "rule",
+      "title": "The size and shape of an answer page",
+      "text": "1000 to 1600 words in each language, at least four H2 sections with two H3 each, a cover drawn by the page snippet, breadcrumbs and a FAQ.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 507-509"
+    },
+    {
+      "id": "R-03", "kind": "rule",
+      "title": "A link in the text carries the language",
+      "text": "A link inside a page names the language (/en/escrow): without it the address answers with a redirect.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node step 509"
+    }
+  ]
+}

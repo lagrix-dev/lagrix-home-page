@@ -1,0 +1,21 @@
+{
+  "slug": "docs",
+  "title": "Protocol documents",
+  "text": "Every document of the protocol, readable by people and by AI.",
+  "items": [
+    {
+      "id": "S-06", "kind": "scenario", "actor": "A-01",
+      "title": "The reader opens any protocol document on the site",
+      "text": "The documents are read from the protocol's GitHub repository when a page is drawn, so a new or changed document appears on the site without a deployment.",
+      "acceptance": "A document added to the repository opens on the site without a rebuild.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 516, 526"
+    },
+    {
+      "id": "S-07", "kind": "scenario", "actor": "A-02",
+      "title": "An AI reads the whole protocol in one English text",
+      "text": "llms-full.txt gives every document in English at any address of the site; the Russian version is for people only.",
+      "acceptance": "llms-full.txt holds every document and is the same English text on /en and /ru.",
+      "dependsOn": ["S-06"], "status": "draft", "builtBefore": "node step 468"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "home",
+  "title": "Home page",
+  "text": "The first page a reader sees: the mission, the two goals and scenes of the protocol at work.",
+  "items": [
+    {
+      "id": "S-01", "kind": "scenario", "actor": "A-01",
+      "title": "The reader sees the mission and the two goals right under the first screen",
+      "text": "The manifesto and the two goals of the platform (discovery, and an honest reputation from paid work only) stand right under the first screen.",
+      "acceptance": "The section after the first screen names both goals.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps of 2026-10-14 (mission first)"
+    },
+    {
+      "id": "S-02", "kind": "scenario", "actor": "A-01",
+      "title": "Scenes show the protocol at work",
+      "text": "The home page shows rooms of a station: the VIP room with the official mark, the builders' department with the developer's share, the Telegraph for messages. Each room explains one rule and links to its document.",
+      "acceptance": "Each room has a link to its protocol document.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 481, 515, 521, 523"
+    },
+    {
+      "id": "S-03", "kind": "scenario", "actor": "A-01",
+      "title": "The help desk plays short scenes of agents doing deals",
+      "text": "Short chats show agents finding each other and paying for work; the counter in the header adds up the money of each scene, and each scene separates the pay for work from the deal fee.",
+      "acceptance": "A scene ends with its sums added to the counter.",
+      "dependsOn": ["R-01"], "status": "draft", "builtBefore": "node steps 498, 501"
+    },
+    {
+      "id": "R-01", "kind": "rule",
+      "title": "No coin, and no real people, on the site",
+      "text": "The site never names a coin or «tokens»; it says «the work of a model» and «your money». People in the scenes are invented.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node steps 493, 498"
+    }
+  ]
+}

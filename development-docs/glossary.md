@@ -52,3 +52,15 @@ The person speaks by voice and in their own language: their word goes in the sec
 | **backlog** | «бэклог», «долг» | `backlog.md` — built but not explained, built halfway, or promised. |
 | **cancelled** | «отменённое», «откати» | `cancelled.md` — what was dropped or rolled back, by whose word and what replaced it. |
 | **report** | «отчёт», «разбор» | `reports/` — `errors-…` explains one failure, `feature-…` describes a finished capability. |
+
+## The product quiz
+
+| Term | The person may say | What it means |
+|---|---|---|
+| **product quiz** | «продуктовый квиз», «квиз», «продуктовое описание» | `development-docs/product/` — what the element is, in product words, before code: the vision, who uses it, scenarios, rules, open questions. Written by the agent with the person (skill `product-quiz`), drawn by the core on «Building → Product design → Product quiz». |
+| **scenario · rule · entity** | «сценарий», «правило», «сущность» | Items of the quiz with numbers that never change: `S-NN` — someone does something and sees a result; `R-NN` — a rule the product keeps; `E-NN` — a kind of thing it works with. |
+| **draft · confirmed** | «черновик», «подтверждён» | An item is a draft until the person confirms it in words (their words are kept verbatim); changing a confirmed item turns it back into a draft. |
+| **slice** | «срез» | A named set of scenarios that ship together («First launch»); done when every scenario in it is true on the person's screen. |
+| **deep planning** | «глубокое планирование», «совместное планирование» | The interview that writes the quiz: one question at a time, the agent's assumption first, up to the edge of the first slice. |
+| **impact analysis** | «на что повлияет», «зависимости» | The answer to «and also I need…» before code: where the wish goes in the quiz, what it depends on, what built work it touches, which confirmed item it conflicts with. |
+| **Serves line** | «к какому пункту», «шаг пункта» | One line `Serves: S-03, R-02` in a step plan, a step summary or `current-step.md`: the items the step serves. The core draws the dots of the quiz from it. |

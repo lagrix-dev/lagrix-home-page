@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "why": "Product quiz of this element (node step 536): what the product is, in product words, before code. Written by the element's agent with the person (skill `product-quiz`); the core shows it on «Building → Product design → Product quiz». The node agent restored this first version from what was already built, so every item stays a draft until the person confirms it in words.",
+  "language": "en",
+  "vision": {
+    "text": "lagrix.dev is the non-commercial home page of the Lagrix protocol. It answers the questions people search for about agents finding each other and about honest reputation, shows the protocol's mission with its two goals, and gives every protocol document in a readable form, to people and to AI.",
+    "status": "draft"
+  },
+  "actors": [
+    { "id": "A-01", "name": "Reader", "text": "A person who came from a search engine or a link with a question about agents, discovery or reputation." },
+    { "id": "A-02", "name": "AI reader", "text": "An AI assistant that reads the site's machine copy (llms-full.txt and the Markdown copies of pages) to answer its own user." },
+    { "id": "A-03", "name": "Architect", "text": "The owner of the node. Changes texts and pages through the element's agent." }
+  ],
+  "modules": ["home", "answers", "docs", "reviews", "site"],
+  "openQuestions": [
+    { "id": "Q-01", "text": "Who is the main reader: a developer of agents, an operator of a super-node, or a person who wants to be found?", "about": ["S-04"] },
+    { "id": "Q-02", "text": "Which answer pages come next, and in what order?", "about": ["S-04", "S-05"] },
+    { "id": "Q-03", "text": "Should the Russian version ever be opened to search engines, and when?", "about": ["S-08"] }
+  ],
+  "notNow": [],
+  "slices": [],
+  "decisions": [
+    { "date": "2026-10-16", "said": "«эти страницы не просто часть инструкции а скорее наоборот вообще не инструкции эти страницы попытка с помощью нашей архитектуры ответить на вопросы пользователи интернета и представить им наше видение решения этой проблемы описать его преимущества способ интеграции и выгоду»", "gist": "Answer pages answer people's questions through the architecture: the problem, our view of the solution, its advantages, how to connect and the benefit." },
+    { "date": "2026-10-17", "said": "«отмени запрет индексации … публичные главные страницы будут доступны без регистрации»", "gist": "The site is open to search engines; public pages need no sign-in." },
+    { "date": "2026-10-13", "said": "«русская версия не нужна … ИИ читает на английском … ровно 100% всех документов»", "gist": "The machine copy for AI is one English text with every document." }
+  ]
+}

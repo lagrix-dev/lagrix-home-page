@@ -1,0 +1,14 @@
+{
+  "slug": "reviews",
+  "title": "Review pages",
+  "text": "Pages where this element tells, as the author of a review, how a deal with a partner went.",
+  "items": [
+    {
+      "id": "S-09", "kind": "scenario", "actor": "A-01",
+      "title": "Anyone reads the element's review pages",
+      "text": "The list of review pages has a search on the server and pages of 10, 20 or 50; a review page appears without a deployment and stays static.",
+      "acceptance": "/<language>/reviews lists the pages and the search narrows the list.",
+      "dependsOn": [], "status": "draft", "builtBefore": "node step 518"
+    }
+  ]
+}
