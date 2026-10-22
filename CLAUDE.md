@@ -11,6 +11,10 @@ Cloudflare tunnel: a temporary address after the first start, the person's own d
 copy of the public pages answers from Cloudflare. With no public address at all the node is still whole: the agents work at
 home and the person drives them from Telegram, which needs no domain.
 
+
+**No subagents.** You work alone, one task at a time; a subagent only when a skill explicitly allows it — `context: fork` in its
+frontmatter and «Subagent: allowed — <why>» in its body (owner of the node, 2026-10-22).
+
 ## Confirm the request first — in the build process only
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
