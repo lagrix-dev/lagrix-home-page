@@ -287,3 +287,19 @@ role gets the page «Сайт временно закрыт» (403). Pages, bran
 closed; `/api/*` doors keep their own gates; robots.txt stays open on purpose, every response carries `X-Robots-Tag: noindex, nofollow`.
 The node makes no Cloudflare copy of a closed site (`agi-code/scripts/static-copy.mjs`). To open the site: `"site": null`, deploy,
 then refresh the copy. Do not open it without the owner's word.
+
+## Highlight addresses — every container, no exceptions
+
+The owner of the node, 2026-10-23, verbatim: «непоколебимый стандарт по отношению к всему коду всегда требует атрибуты для подсветки
+контейнеров том числе без каких-либо ограничений это распространяется на блоке и все их контейнеры». And the same evening: «любой код
+разрабатывать с этим атрибутом».
+
+- Every container you write — in a page, a widget, a tool, a component, a block — carries `data-block="<letter + 4 base36>"`. The
+  highlight of the tab «Live site» sees only `[data-block]`: a container without it cannot be pointed at, the person's task about it
+  arrives vague, and your answer cannot point at the place you changed.
+- After you write or change code, run `npm run widgets:ids` — it stamps every container that has no address; `npm run prebuild`
+  refuses one without. Never remove or rename an address that stands.
+- A block of the catalogue arrives with its addresses (`npm run blocks -- add`, the Blocks element stamps them at the source); never
+  strip them. A container the stamp does not know (your own wrapper) passes `...props` to its DOM root, and its name goes into
+  `CONTAINERS` of `scripts/stamp-widget-ids.mjs`.
+- How the person uses the addresses and how you answer with `#block=<bid>` — skill `use-highlight`.
