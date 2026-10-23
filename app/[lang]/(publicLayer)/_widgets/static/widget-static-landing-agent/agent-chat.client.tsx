@@ -230,7 +230,7 @@ export function AgentChat({ label, items, contractLabels, endCta, classes, meter
                   </Avatar>
                 )}
                 <span className={s.msgWho}>{m.who}</span>
-                <Badge variant="outline" className={s.contract} title={contractLabels[m.contract]}>{badgeOf(m.contract, contractLabels)}</Badge>
+                <Badge data-block="nsek7" variant="outline" className={s.contract} title={contractLabels[m.contract]}>{badgeOf(m.contract, contractLabels)}</Badge>
               </div>
               <MessageContent className={m.side === "right" ? s.msgTextRight : s.msgText}><Linked text={m.text} /></MessageContent>
               {m.attachments && m.attachments.length > 0 && (

@@ -188,10 +188,10 @@ export function CustomsHall({ w }: { w: Words }) {
   return (
     <div data-block="cshal" ref={hall} className={s.customsHall} data-live={live ? "" : undefined}>
       {/* Табло листается анимацией — для чтения с экрана все пары лежат здесь списком. */}
-      <dl className={s.srOnly}>
-        <dt>{w.scene}</dt>
+      <dl data-block="vec0m" className={s.srOnly}>
+        <dt data-block="jno06">{w.scene}</dt>
         {w.items.map((it) => (
-          <dd key={it.q}>{it.q} {it.a}</dd>
+          <dd data-block="ay523" key={it.q}>{it.q} {it.a}</dd>
         ))}
       </dl>
       <div data-block="qke3r" className={s.hallFloor} aria-hidden="true" />
