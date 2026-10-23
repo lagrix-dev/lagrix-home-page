@@ -46,6 +46,8 @@ and structured data stay shared (node step 514: the station look, made with impe
 - **impeccable's launcher downloads a binary** (`scripts/impeccable`). Run it only with the person's yes in this conversation;
   otherwise follow the skill's «Launcher unavailable» path.
 - **Claims stay true.** A public page does not state what does not exist without the person's explicit yes.
+- **Where the person changes the tokens** — the shared Design, or this element's workshop `/<lang>/admin/design` when the link to
+  Design is off (skill `use-design`).
 - **Colours, fonts and corners are Design tokens** (node step 333-2): map every role of the skill world to `--primary`,
   `--accent`, `--destructive`, `--background`, `--muted`, `--foreground`, `--border`, `--font-heading`, `--font-body`,
   `--radius` - never a hex value or a font name in the widget, so the Design element restyles the page.

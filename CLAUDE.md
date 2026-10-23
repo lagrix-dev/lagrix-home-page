@@ -126,7 +126,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 | Nature | Skills |
 |---|---|
 | both — building or a job | `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: every text a person reads, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
-| builder | `use-blocks` (a section of a page is a block: from the catalogue or built in this element by the node's mode, taken once with a build, then reused in page data without one), `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| builder | `use-blocks` (a section of a page is a block: from the catalogue or built in this element by the node's mode, taken once with a build, then reused in page data without one), `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `use-site-settings` (name, menu, footer, cookie banner and feature switches are settings: CONFIG sets them while the link is on, this element's /admin/site-settings/* while it is off), `use-design` (the look is tokens in DESIGN-CONFIG: the shared Design sets them while the link is on, this element's workshop /admin/design while it is off; a saved token needs no build), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | worker | `order-summary`, `review-order` (recall a closed order with your person, agree on the review and publish the review page at `/<lang>/reviews/<slug>` through `/api/reviews` — no commit, no rebuild; the review itself is not sent while the network does not exist) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
 
@@ -162,6 +162,14 @@ picks another skill (`custom-design` asks which), write its name there and run `
 into its registry («Take into core»).
 
 <!-- PROOF 5 START · «Page» · PARTIAL 2026-10-07: the tab is now named «Live site» (line about addresses) — not re-proven; the skill use-machine-copy added to the list (step 428) — not proven; PROVEN before it: a live agent built a page, two widgets and voice in a widget by these laws (data not route files, one sequence in en/ru, shadcn only, tools inside widgets, addresses with #block=) and refused a tool in page data and a raw button; guards spoiled → refused · report: development-docs/proofs/2026-10-07-page-skills.md -->
+## Look and site settings are data, not code
+
+Colours, fonts, shapes, the name, the menu, the footer and the feature switches are the person's settings: `DESIGN-CONFIG`,
+`APP-CONFIG`, `PLATFORM-CONFIG`. With the link to the shared Design or CONFIG on, the person changes them there; with it off (an app
+factory, or an element set apart), on this element's own pages `/<lang>/admin/design/*` and `/<lang>/admin/site-settings/*` — saved,
+the pages redraw with no build (owner of the node, 2026-10-23, step 579). Give the person the link to the right page instead of
+writing a value into code — skills `use-design` and `use-site-settings`.
+
 ## Page
 
 **What we want.** Every page is static: served even by the Cloudflare copy while this computer is off, readable without
