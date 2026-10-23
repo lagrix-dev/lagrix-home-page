@@ -13,7 +13,7 @@ not fixed below are set once, by modelling, before deployment.
 | Property | Value |
 |---|---|
 | The network's money | USDC (document 04) |
-| Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09); 20% of it goes to the developer of an element the provider received over F2F (document 26) |
+| Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), divided equally among the super-nodes that passed the quality minimum in the period (section 5.3, document 09); 20% of it — 1% of the deal at a 5% fee — goes to the developer of an element the provider received over F2F, so the pool receives 4% of such a deal and 5% of a deal made with the provider's own element (document 26) |
 | Search and delivery | $0.01 per result list and $0.001 per text message of up to 64 KB a super-node delivers, from a prepaid USDC balance in the contract: one voucher per super-node carries the running total and is redeemed once per period, and a withdrawal waits (document 17, section 17.8; changelog entry 52) |
 | First-contact rate | set by an agent for a first request to it and paid to its wallet, once, when it reads the request; not returned on a no (document 23) |
 | Official mark | $100 per application, not returned; divided equally among the members of the panel who voted (document 24) |
@@ -44,7 +44,9 @@ of one receipt (document 17, section 17.5). A receipt cannot be forged: it is th
 The network takes a fee on the network part of every deal, in USDC. Its size is a constant in code, set by modelling and never above 5%;
 until the modelling is done, it is 5%. The fees of a period are pooled and divided in equal parts among the super-nodes that passed the
 quality minimum in that period; the parties of a deal never receive it. When the provider works with an element it received over F2F, 20%
-of the fee goes to the developer of that element and the rest to the pool (document 26). The fee is taken from the very first deal; nothing is kept back
+of the fee goes to the developer of that element and the rest to the pool (document 26). At a 5% fee this is one rule in two cases:
+with an element received over F2F, 1% of the deal goes to its developer and 4% into the pool; with the provider's own element, all 5%
+go into the pool. The fee is taken from the very first deal; nothing is kept back
 for later periods. The full rules are in document 09.
 
 The fee pays super-nodes for the work they do all the time — search, connections and the index of receipts and reviews — and it is how
@@ -133,3 +135,23 @@ and not taken by number: places have no stages and no numbers, and the terms are
 The numbers — the overload constant, how many failed periods lead to leaving, the reward to whoever proves a violation — are set by
 modelling. How "passed or failed" and the checks under load are measured, and how the contract finds the median cheaply, are open
 questions (document 000).
+
+## 5.7 What a super-node is paid for
+
+This is the whole list, in one place; other documents refer here. Everything is paid in USDC, for work, under rules fixed in the
+contracts. How much a super-node earns is not known in advance and not guaranteed: it depends on the deals of the network and on how many
+super-nodes pass the quality minimum.
+
+| What | How much | Where the rule is |
+|---|---|---|
+| An equal share of the period's fee pool | the pool receives 4% of every deal made with an element received over F2F (1% goes to the element's developer) and 5% of every deal made with the provider's own element, at a 5% fee; it is divided equally among the super-nodes that passed the quality minimum in the period | section 5.3, documents 09, 26 |
+| Redistribution of shares | a super-node that fails the quality minimum in a period — downtime, failed checks — receives no share of that period's pool, and the pool is divided only among those that passed; the founder's share stays in the pool of the others in the same way until ten super-nodes pass the minimum (section 5.5) | section 5.6, documents 06, 09 |
+| Search | $0.01 for every result list it builds | document 17, section 17.8 |
+| Message delivery | $0.001 for every H2H message it delivers; text up to 64 KB | documents 17, 21; changelog entries 33 and 52 |
+| A vote on the Official mark | an equal share of the $100 fee of an application, among the panel members who voted — about $11 for nine votes | document 24 |
+| Proving a violation by another super-node | a reward from the fees, its size set by modelling | document 06, section 6.4 |
+
+What a super-node loses goes to the others: downtime and a failed minimum cost it its share of the period's pool, which the super-nodes
+that passed divide among themselves (document 06, section 6.2); a proven violation also costs it the place, with a permanent mark
+(section 5.4). What a super-node does not earn is part of the list too: the parties of a deal
+never receive the fee, and a super-node takes nothing from the deals it serves beyond the fees above.

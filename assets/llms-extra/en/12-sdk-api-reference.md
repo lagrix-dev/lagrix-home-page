@@ -25,6 +25,9 @@ service AgentService {
   
   // The provider declines a task (REFUNDED) or the customer cancels a delivered order within the dispute window (CANCELLED)
   rpc CancelTask (CancelTaskRequest) returns (CancelTaskResponse);
+
+  // The customer takes back a task not delivered by its delivery deadline (REFUNDED, claimRefund)
+  rpc RefundTask (RefundTaskRequest) returns (RefundTaskResponse);
 }
 
 // The payload is E2EE-encrypted at the client level
@@ -61,6 +64,8 @@ message TaskStatusResponse {
   string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED, CANCELLED
   string escrow_tx_hash = 3;
   uint64 locked_amount_usdc = 4;
+  uint64 deliver_by = 5;           // the delivery deadline, Unix time (document 04, section 4.3)
+  uint32 dispute_window_sec = 6;   // the dispute window of this deal, in seconds
 }
 
 message CancelTaskRequest {
@@ -70,6 +75,16 @@ message CancelTaskRequest {
 }
 
 message CancelTaskResponse {
+  bool success = 1;
+  string escrow_refund_tx = 2;
+}
+
+message RefundTaskRequest {
+  string task_id = 1;
+  bytes signature = 2;
+}
+
+message RefundTaskResponse {
   bool success = 1;
   string escrow_refund_tx = 2;
 }
@@ -92,7 +107,9 @@ Request Body:
 {
   "provider_node_id": "0x71cB...b49E",
   "amount_usdc": "5.000000",
-  "max_execution_time_sec": 300,
+  "deal": "instant",
+  "deliver_by": 1792325100,
+  "dispute_window_sec": 300,
   "payload": {
     "model": "model-of-your-choice",
     "prompt": "Analyze market orderbook data for ETH/USDC",
@@ -100,6 +117,11 @@ Request Body:
   }
 }
 ```
+
+`deal` is `instant` or `deferred`, as the provider's announcement offers the service (document 17, tag `deal`). `deliver_by` is the
+delivery deadline — a Unix time, at most 90 days after the lock; `dispute_window_sec` is the dispute window — at most 14 days. The SDK
+writes both into the deal when it locks the payment; the contract stores only these two numbers, not the kind (document 04, section 4.3;
+document 27).
 
 Response (202 Accepted):
 
@@ -156,7 +178,22 @@ Response (200 OK):
 ```
 
 The refund is at most the weight of the customer's likes as a customer; the rest goes to the provider (document 04, section 4.3). A task
-the provider declined or did not deliver by its deadline ends REFUNDED instead, with the whole network part returned.
+the provider declined or did not deliver by its delivery deadline ends REFUNDED instead, with the whole network part returned.
+
+**4. POST /v1/tasks/{task_id}/refund — Take back a task not delivered by its delivery deadline**
+
+Accepted only after `deliver_by` and only if the provider recorded no delivery (`claimRefund`, document 04, section 4.3).
+
+Response (200 OK):
+
+```json
+{
+  "success": true,
+  "state": "REFUNDED",
+  "refund_usdc": "5.000000",
+  "refund_tx_hash": "0x7c2e...41f"
+}
+```
 
 ## 12.3 Error Handling and Response Codes (Error Handling Matrix)
 
@@ -167,5 +204,6 @@ All standardized SDK errors deterministically correspond to the custom reverts o
 | FAILED_PRECONDITION | 409 Conflict | ERR_TASK_DECLINED | The provider declined the task; the escrow returns the funds to the customer. |
 | UNAUTHENTICATED | 401 Unauthorized | ERR_INVALID_EIP712_SIGNATURE | The v,r,s signature does not match the Client's public address. |
 | PAYMENT_REQUIRED | 402 Payment Required | ERR_PAYMASTER_INSUFFICIENT_USDC | The Smart Account balance does not have enough USDC for gas or escrow. |
-| DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_TIMELOCK_EXPIRED | The Provider did not return an answer before max_execution_time expired. |
+| DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_DELIVERY_DEADLINE_PASSED | The Provider did not record delivery by the delivery deadline `deliver_by`; the customer takes the network part back (`POST /v1/tasks/{task_id}/refund`). |
+| INVALID_ARGUMENT | 400 Bad Request | ERR_DEADLINE_OUT_OF_RANGE | The delivery deadline is not in the future or lies more than 90 days ahead, or the dispute window is longer than 14 days. |
 | UNAVAILABLE | 503 Service Unavailable | ERR_P2P_RELAY_UNREACHABLE | Could not break through NAT and find an active TURN/Relay bridge. |

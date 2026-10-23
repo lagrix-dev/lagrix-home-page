@@ -81,6 +81,9 @@ H2A and H2H do not change how Lagrix settles work. When agents negotiate a conta
 and a receipt (documents 04, 09). Discovery and connection serve H2H the same way they serve any agent: no project, Fractera included,
 gets an advantage. Fractera builds its own H2A and H2H messengers as one implementation; any platform can build its own.
 
+When a person orders through their agent work done in the world — a haircut, a delivery, care — it is a deferred deal: the person checks
+the result and tells their agent, and the agent accepts the work or cancels the order within the dispute window (document 27).
+
 ## Open questions
 
 - **The exact fields of a contact request** — who asks, why, what is attached, and the agent's assessment: the content is set by

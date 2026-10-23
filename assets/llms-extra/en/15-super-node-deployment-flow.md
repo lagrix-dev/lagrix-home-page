@@ -181,3 +181,47 @@ Example of successful output:
 [INFO] Nostr relay wss://relay.example.org: subscribed to the other holders of its kinds of service.
 [SUCCESS] Node is ACTIVE and routing A2A traffic.
 ```
+
+## 15.7 Operator API, version 1 (prototype)
+
+A super-node runs on its operator's machine — a dedicated server, or a powerful home computer that meets the profile of document 14,
+section 14.2, and can later move to a dedicated server. The operator's node — the node whose wallet applied for the place — needs to see
+what only that machine knows: whether it meets the profile, what the checks found, what it was paid. The operator API is a small
+interface the super-node's machine gives its own operator for this. It is not a network rule: the network never calls it, and another
+implementation may offer a different one. Version 1 is a prototype; its fields may change.
+
+**When it is used.** An application needs no server and no spending (document 05, section 5.6): the server is set up from the
+installation package only after the invitation, within the 48 hours. Then the operator gives its node the machine's address and the
+operator key, the node reads the data, and the operator runs the test before the check by agents of the network.
+
+**Access.** At its first start the super-node creates an operator key and shows it once. The node sends it with every request as
+`Authorization: Bearer <operator key>`; a request without it or with another one is refused with 401. On a remote server the API is served
+over TLS. Version 2 replaces the key with a signature of the node wallet.
+
+**Paths** (JSON; `GET` unless stated):
+
+| Path | What it returns |
+|---|---|
+| `/operator/v1/status` | `version`, the software and its version, `startedAt`, `uptimeSeconds`, the place as this machine sees it (`none`, `invited`, `active`, `leaving`) and the wallet the place is bound to |
+| `/operator/v1/hardware` | measured on this machine: `cpus`, `cpuModel`, `aes` (AES-NI: true, false or null when not measured), `ramGb`, `diskTotalGb`, `diskFreeGb`, `nvme`, `bandwidthMbps`, `publicIPv4`, `ipv6` (null when not measured), `measuredAt`, and `profile` — the values of section 14.2 they are compared with |
+| `/operator/v1/notices` | `warnings` — capacity warnings (changelog entry 45) with `at`, `text`, `deadline`; `checks` — results of the checks by agents per period: `period`, `passed`, `reason` |
+| `/operator/v1/payouts` | `payouts` — `at`, `period`, `kind` (`pool`, `search`, `delivery`, `official-vote`, `violation-reward`), `amount` in USDC and `tx`, the transaction that paid it |
+| `/operator/v1/declaration` (`GET`, `PUT`) | the declaration of document 18, section 18.4: `country` (ISO 3166-1), `coverage`, `regional`, `lists`; `PUT` replaces it, and the super-node publishes it as the information document (NIP-11) of its relay |
+
+**What the API does not carry.** What the contracts record — the place, a proven violation mark, the claimable share of the fee pool — the
+node reads from the contracts itself. The API does not repeat it, so each fact has one source.
+
+**The test.** The operator's node reads `/operator/v1/hardware`, compares each value with `profile` and shows what falls short. It is the
+operator's own check before the check by agents of the network and decides nothing in the network. Bandwidth and public addresses are
+measured by the agents' check; the machine reports them only when it has measured them itself.
+
+```
+GET /operator/v1/hardware
+Authorization: Bearer 6f1c…
+
+200 {"version":1,"cpus":8,"cpuModel":"AMD EPYC 7543","aes":true,"ramGb":31.3,"diskTotalGb":938.2,"diskFreeGb":812.4,"nvme":true,
+     "bandwidthMbps":null,"publicIPv4":null,"ipv6":null,"measuredAt":"2026-10-18T19:02:11Z","profile":{"cpus":8,"ramGb":16,"diskGb":500}}
+```
+
+A prototype — [`prototype/operator-api.mjs`](https://github.com/lagrix-dev/lagrix-supernode/tree/main/prototype) in the lagrix-supernode
+repository — answers these paths on any machine with Node.js 22 and measures the machine it runs on.

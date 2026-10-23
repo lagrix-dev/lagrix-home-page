@@ -32,6 +32,7 @@ Nostr — не блокчейн, пользоваться им бесплатн�
     ["c", "market-analysis"],
     ["available_from", "1728490600"],
     ["price", "300000", "700000", "USDC"],
+    ["deal", "instant", "300"],
     ["node_id", "0x892a0149f82d..."],
     ["element", "0x5c1e..."],
     ["agent_card", "https://agent.example.com/.well-known/agent-card.json"],
@@ -50,6 +51,7 @@ Nostr — не блокчейн, пользоваться им бесплатн�
 | `c` и `content` | способности агента; его навыки описаны в визитке агента A2A |
 | `available_from` | когда агент может начать работу |
 | `price` | диапазон цены услуги (здесь от $0,30 до $0,70) |
+| `deal` | тип сделки, которую предлагает услуга, — `instant` или `deferred` — и её окно спора в секундах (документ 27); без метки услуга предлагает мгновенные сделки |
 | `node_id`, `agent_card` | где живёт агент; визитка подтверждает, что это живой сервер |
 | `element` | элемент, к которому относится агент, — сущность, репутацию которой видит другая сторона (раздел 17.4) |
 | `e2ee_key` | ключ шифрованного канала между заказчиком и исполнителем |
@@ -122,7 +124,8 @@ place_in_group = turn mod 4
 
 Каждая сторона сделки, оплаченной через сеть, ставит другой один отзыв — лайк или дизлайк: исполнитель — заказчику, заказчик —
 исполнителю. Вес отзыва равен комиссии, уплаченной по сделке, — 5 % её сетевой части, пока комиссия 5 %. Без сделки отзыв
-поставить нельзя, и изменить его потом нельзя. Срока у отзыва нет: поставленный, он убирает сделку из «без отзыва».
+поставить нельзя, и изменить его потом нельзя. Отменённый заказ тоже даёт отзывы: они весят комиссию, взятую с части, оставшейся
+исполнителю, а заказ, по которому вернули всё, отзыва не даёт (журнал, запись 55). Срока у отзыва нет: поставленный, он убирает сделку из «без отзыва».
 Автор может один раз привязать к нему адрес страницы, которую сам опубликовал, — вместе с отзывом или позже; ни лайк или дизлайк, ни
 его вес от этого не меняются (документ 25, журнал, запись 50).
 
@@ -142,7 +145,7 @@ contract FeedbackRegistry {
     mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // элемент => роль (0 исполнитель, 1 заказчик)
     mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => кто уже оставил отзыв
 
-    function onCompleted(uint256 taskId) external onlyEscrow {          // обе стороны теперь могут оценить друг друга
+    function onClosed(uint256 taskId) external onlyEscrow {             // COMPLETED или CANCELLED с комиссией (запись 55): обе стороны теперь могут оценить друг друга
         (, , bytes32 customerElement, bytes32 providerElement, uint96 amount, ) = escrow.dealParties(taskId);
         _add(reputation[customerElement][1].unreviewed, amount);
         _add(reputation[providerElement][0].unreviewed, amount);
@@ -152,9 +155,9 @@ contract FeedbackRegistry {
     }
 
     function review(uint256 taskId, bool like) external {
-        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool completed)
-            = escrow.dealParties(taskId);
-        require(completed, "Feedback: deal not completed");
+        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool reviewable)
+            = escrow.dealParties(taskId);                                  // reviewable: COMPLETED или CANCELLED с комиссией
+        require(reviewable, "Feedback: no review for this deal");
         require(msg.sender == customer || msg.sender == provider, "Feedback: not a party");
         require(!reviewed[taskId][msg.sender], "Feedback: already reviewed");
         reviewed[taskId][msg.sender] = true;

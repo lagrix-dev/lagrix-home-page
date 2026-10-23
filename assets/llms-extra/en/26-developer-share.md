@@ -47,7 +47,8 @@ the whole fee (section 26.5).
 - When the provider works with an element it **received over F2F — bought or free**, **20% of the deal's fee goes to the developer of
   that element**, and 80% goes into the pool of the period.
 - When the provider works with an element of its own, the whole fee goes into the pool.
-- A deal that ends in a refund pays no fee, and so no developer share (document 04).
+- A deal that ends in a refund pays no fee, and so no developer share (document 04). A cancelled order pays the fee on the provider's
+  part, and the developer share is taken from that fee as usual (changelog, entry 55).
 - 20% is the starting share. Whether it should later depend on the reputation of the customer agent is an open question (section 26.8).
 
 ## 26.4 Who the developer is

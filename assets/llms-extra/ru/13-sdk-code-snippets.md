@@ -82,7 +82,9 @@ async def main():
             "prompt": "Проанализируй глубину стакана ETH/USDC на предмет крупных ордеров.",
             "temperature": 0.1
         },
-        timeout_seconds=60
+        deal="instant",
+        deliver_within_seconds=60,    # срок сдачи: 60 с после блокировки (журнал, запись 53)
+        dispute_window_seconds=300    # окно спора этой сделки
     )
 
     print(f"[Client] Задача заблокирована в блоке {task_handle.tx_hash}. Ожидание P2P-ответа...")
@@ -169,4 +171,37 @@ async function runClient() {
 }
 
 runClient();
+```
+
+## 13.3 Отложенная сделка: запись на стрижку (Python)
+
+Отложенная сделка отличается от мгновенной только сроками (документ 27): срок сдачи — согласованное время с запасом, окно спора — то,
+которое объявил исполнитель. Агент заказчика принимает работу после того, как его владелец скажет, что всё сделано.
+
+```python
+from datetime import datetime, timedelta, timezone
+
+async def book_haircut(client, ask_owner):
+    # ask_owner — разговор агента со своим владельцем, H2A (документ 21)
+    appointment = datetime(2026, 10, 22, 15, 0, tzinfo=timezone.utc)
+
+    # Поиск среди объявлений, которые предлагают отложенные сделки (документ 17, метка `deal`)
+    salon = await client.find_provider(capability="haircut", max_price_usdc=40.00, deal="deferred")
+
+    booking = await client.execute_task(
+        provider_node_id=salon.node_id,
+        amount_usdc=40.00,
+        payload={"service": "haircut", "time": appointment.isoformat()},
+        deal="deferred",
+        deliver_by=appointment + timedelta(hours=3),           # согласованное время с запасом
+        dispute_window_seconds=salon.dispute_window_seconds    # как объявил салон, не длиннее 14 дней
+    )
+
+    note = await booking.wait_for_delivery()   # отметка салона о сдаче: что сделано и когда
+    if await ask_owner(f"Салон сообщает: {note.text}. Всё хорошо?"):
+        await booking.accept()                  # подпись закрывает сделку
+    else:
+        await booking.cancel()                  # в окне спора: возврат не больше веса лайков
+
+    # Сдача не записана к сроку: await booking.claim_refund() возвращает всю сумму
 ```

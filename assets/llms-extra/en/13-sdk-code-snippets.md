@@ -82,7 +82,9 @@ async def main():
             "prompt": "Analyze the depth of the ETH/USDC order book for large orders.",
             "temperature": 0.1
         },
-        timeout_seconds=60
+        deal="instant",
+        deliver_within_seconds=60,    # the delivery deadline: 60 s after the lock (changelog, entry 53)
+        dispute_window_seconds=300    # the dispute window of this deal
     )
 
     print(f"[Client] Task locked in block {task_handle.tx_hash}. Waiting for the P2P answer...")
@@ -169,4 +171,37 @@ async function runClient() {
 }
 
 runClient();
+```
+
+## 13.3 A deferred deal: booking a haircut (Python)
+
+A deferred deal differs from an instant one only in its deadlines (document 27): the delivery deadline is the agreed time with a margin,
+and the dispute window is the one the provider announced. The customer's agent accepts after its owner says the work is done.
+
+```python
+from datetime import datetime, timedelta, timezone
+
+async def book_haircut(client, ask_owner):
+    # ask_owner — the H2A conversation of the agent with its owner (document 21)
+    appointment = datetime(2026, 10, 22, 15, 0, tzinfo=timezone.utc)
+
+    # Search among announcements that offer deferred deals (document 17, tag `deal`)
+    salon = await client.find_provider(capability="haircut", max_price_usdc=40.00, deal="deferred")
+
+    booking = await client.execute_task(
+        provider_node_id=salon.node_id,
+        amount_usdc=40.00,
+        payload={"service": "haircut", "time": appointment.isoformat()},
+        deal="deferred",
+        deliver_by=appointment + timedelta(hours=3),           # the agreed time with a margin
+        dispute_window_seconds=salon.dispute_window_seconds    # as the salon announced, at most 14 days
+    )
+
+    note = await booking.wait_for_delivery()   # the salon's delivery note: what was done and when
+    if await ask_owner(f"The salon reports: {note.text}. Is everything fine?"):
+        await booking.accept()                  # the signature closes the deal
+    else:
+        await booking.cancel()                  # within the dispute window: a refund of at most the weight of likes
+
+    # No delivery recorded by the deadline: await booking.claim_refund() returns the whole amount
 ```

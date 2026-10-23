@@ -19,6 +19,8 @@ struct Task {
     uint96 amount;        // the network part of the payment, in USDC (up to $79 billion, 96 bits are enough)
     uint40 lockedAt;      // when the funds were locked
     uint40 commitTime;    // when the Provider submitted the result
+    uint40 deliverBy;     // the delivery deadline: the last moment the Provider may record delivery (section 4.3)
+    uint32 disputeWindow; // the dispute window: seconds after delivery for the Customer to accept or cancel (section 4.3)
     TaskState state;      // current state
     address customer;     // the Customer's node wallet
     address provider;     // the Provider's node wallet — the only one who may perform the task
@@ -28,21 +30,27 @@ struct Task {
     bytes32 agent;        // the agent of that element
     address developer;    // the developer of an element received over F2F, named by the Provider in commitResult (document 26)
 }
+
+uint256 constant MAX_DELIVERY = 90 days;       // the delivery deadline is at most 90 days after the lock
+uint256 constant MAX_DISPUTE_WINDOW = 14 days; // the dispute window is at most 14 days
 ```
 
 The fields are packed tightly: a deal record takes a few storage slots, which keeps the cost on layer-2 networks minimal.
 
-- **LOCKED.** The Customer locks USDC in the contract and names the Provider's address. Nobody else can take over the order.
+- **LOCKED.** The Customer locks USDC in the contract, names the Provider's address and sets the two deadlines of the deal
+  (section 4.3). Nobody else can take over the order.
 - **COMMITTED.** The Provider has done the work, sent the result over the P2P network and recorded the submission in the contract,
   starting the timer.
 - **COMPLETED.** The deal is closed: the Provider receives the payment minus the fee, the fee goes to the period's pool — less the
   developer share when the Provider works with an element received over F2F (section 4.4) —
   and a receipt is recorded (section 4.5).
-- **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or did not deliver by the deadline.
-  The funds return to the Customer in full, and no fee is taken.
+- **REFUNDED.** The Provider declined the task (`declineTask`) — for any reason, which the network does not judge — or the delivery
+  deadline passed with no delivery and the Customer took the money back (`claimRefund`, section 4.3). The funds return to the Customer
+  in full, and no fee is taken.
 - **CANCELLED.** The Customer did not accept the delivered work and cancelled the order within the dispute window (section 4.3). The
   refund is at most the weight of the Customer's likes as a customer, and the same weight is deducted from its likes; the Provider receives the rest,
-  and a «cancelled order» is recorded for both sides (document 17; changelog entries 42 and 46).
+  less the fee on it; both sides may review the order, no receipt is written, and a «cancelled order» is recorded for both sides
+  (document 17; changelog entries 42, 46 and 55).
 
 ## 4.2 Cryptographic receipts (EIP-712)
 
@@ -58,27 +66,39 @@ the EIP-712 standard (Typed Data Hashing and Signing).
 The network itself never judges whether a service was delivered. Acceptance belongs to the Customer; quality is told by the reviews of
 both sides (document 17) and by the pages their authors may attach to them (document 25).
 
-## 4.3 Time-Lock: protecting the Provider from a hang
+## 4.3 Time-Lock: the delivery deadline and the dispute window
 
-A Customer could receive the result, go offline and never send the signature, freezing the Provider's payment. The function
-`claimTimeout(uint256 taskId)` protects against this.
+A Customer could receive the result, go offline and never send the signature, freezing the Provider's payment; a Provider could take
+an order and never deliver, freezing the Customer's. Every deal therefore carries two deadlines of its own, set by the Customer when it
+locks the payment and seen by the Provider before it starts work (changelog, entry 53). How they are chosen for instant and deferred
+deals and for a series of deals is described in document 27.
 
+- **Lock.** `lockFunds(…, deliverBy, disputeWindow)` writes both deadlines into the deal. The contract rejects a delivery deadline that
+  is not in the future or lies more than `MAX_DELIVERY` (90 days) after the lock, and a dispute window longer than `MAX_DISPUTE_WINDOW`
+  (14 days).
+- **Decline.** Until it records delivery, the Provider may call `declineTask(taskId)`: the whole amount returns to the Customer, the deal
+  moves to REFUNDED and no fee is taken.
 - **Commitment.** Having finished the work, the Provider calls `commitResult(taskId, resultHash, developer)`: the deal moves to COMMITTED
   and the contract records the time. `developer` names the developer of the element the Provider works with, when it received that element
-  over F2F, and is empty for its own element (document 26).
-- **Dispute window.** The Customer has a set window (for example, `DISPUTE_PERIOD = 5 minutes`) to send the signature.
+  over F2F, and is empty for its own element (document 26). The contract accepts delivery only while `block.timestamp <= deliverBy`: a
+  delivery recorded later is rejected.
+- **Refund after the deadline.** If the delivery deadline has passed with no delivery, the Customer calls `claimRefund(taskId)`: the
+  whole amount returns to the Customer, the deal moves to REFUNDED, no fee is taken and no receipt is written.
+- **Dispute window.** After delivery the Customer has the dispute window of this deal (`disputeWindow`) to send the signature.
 - **Cancellation.** Within the same window the Customer may refuse the result and call `cancelOrder(taskId)` instead of signing. The
   contract reads the Customer's like weight as a customer (document 17), returns `min(likeWeight, amount)` to the Customer, deducts
   the same weight from its likes as a new event with its date and sends the rest to the Provider; the deal moves to CANCELLED. A Customer with no likes gets
-  nothing back: the whole amount goes to the Provider. Whether the fee is taken from the Provider's part and whether a cancelled order
-  leaves a receipt and reviews are open questions (document 000).
+  nothing back: the whole amount goes to the Provider. The fee is taken from the part the Provider receives and divided as on
+  COMPLETED (section 4.4); both sides may review the order, each review weighing that fee; no receipt is written (changelog, entry 55).
+  A refund of the whole amount takes no fee and gives no review.
 - **Automatic closing.** When the window has passed, the Provider calls `claimTimeout(taskId)`. The contract checks
-  `block.timestamp > commitTime + DISPUTE_PERIOD` and closes the deal without the Customer's signature — with the same fee and the same
+  `block.timestamp > commitTime + disputeWindow` and closes the deal without the Customer's signature — with the same fee and the same
   receipt as a normal closing.
 
 ## 4.4 Splitting the payment and the fee
 
-When a deal moves to COMPLETED, the contract splits the network part:
+When a deal moves to COMPLETED, the contract splits the network part; when an order is CANCELLED, it splits the same way the part left to
+the Provider after the refund (section 4.3):
 
 | To whom | Share | Where |
 |---|---|---|
@@ -88,12 +108,12 @@ When a deal moves to COMPLETED, the contract splits the network part:
 
 The pool of each period is divided in equal parts among the super-nodes that passed the quality minimum in that period; the parties of
 the deal never receive it (document 09). The developer of an element received over F2F is not a party: the Provider's node names it
-in `commitResult` (section 4.3), and its share leaves the fee when the deal moves to COMPLETED (document 26). The fee is taken from the very
+in `commitResult` (section 4.3), and its share leaves the fee when the deal moves to COMPLETED or CANCELLED (document 26). The fee is taken from the very
 first deal (document 05, section 5.3).
 
 ## 4.5 The receipt and the participants' history
 
-A closed deal emits an event from which receipts and history are built:
+A closed deal (COMPLETED) emits an event from which receipts and history are built; a cancelled order emits none (changelog, entry 55):
 
 ```solidity
 event Receipt(

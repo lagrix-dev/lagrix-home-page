@@ -25,6 +25,9 @@ service AgentService {
   
   // Исполнитель отказывается от задачи (REFUNDED) или заказчик отменяет сданный заказ в окне спора (CANCELLED)
   rpc CancelTask (CancelTaskRequest) returns (CancelTaskResponse);
+
+  // Заказчик забирает задачу, не сданную к сроку сдачи (REFUNDED, claimRefund)
+  rpc RefundTask (RefundTaskRequest) returns (RefundTaskResponse);
 }
 
 // Полезная нагрузка (Payload) зашифрована E2EE на клиентском уровне
@@ -61,6 +64,8 @@ message TaskStatusResponse {
   string state = 2;                // LOCKED, COMMITTED, COMPLETED, REFUNDED, CANCELLED
   string escrow_tx_hash = 3;
   uint64 locked_amount_usdc = 4;
+  uint64 deliver_by = 5;           // срок сдачи, время Unix (документ 04, раздел 4.3)
+  uint32 dispute_window_sec = 6;   // окно спора этой сделки, в секундах
 }
 
 message CancelTaskRequest {
@@ -70,6 +75,16 @@ message CancelTaskRequest {
 }
 
 message CancelTaskResponse {
+  bool success = 1;
+  string escrow_refund_tx = 2;
+}
+
+message RefundTaskRequest {
+  string task_id = 1;
+  bytes signature = 2;
+}
+
+message RefundTaskResponse {
   bool success = 1;
   string escrow_refund_tx = 2;
 }
@@ -92,7 +107,9 @@ Request Body:
 {
   "provider_node_id": "0x71cB...b49E",
   "amount_usdc": "5.000000",
-  "max_execution_time_sec": 300,
+  "deal": "instant",
+  "deliver_by": 1792325100,
+  "dispute_window_sec": 300,
   "payload": {
     "model": "model-of-your-choice",
     "prompt": "Analyze market orderbook data for ETH/USDC",
@@ -100,6 +117,10 @@ Request Body:
   }
 }
 ```
+
+`deal` — `instant` или `deferred`, как услугу предлагает объявление исполнителя (документ 17, метка `deal`). `deliver_by` — срок сдачи,
+время Unix, не дальше 90 дней от блокировки; `dispute_window_sec` — окно спора, не длиннее 14 дней. SDK записывает оба срока в сделку,
+когда блокирует оплату; контракт хранит только эти два числа, а не тип (документ 04, раздел 4.3; документ 27).
 
 Response (202 Accepted):
 
@@ -156,7 +177,22 @@ Response (200 OK):
 ```
 
 Возврат — не больше веса лайков заказчика как заказчика; остальное получает исполнитель (документ 04, раздел 4.3). Задача, от которой
-исполнитель отказался или которую не сдал к сроку, заканчивается REFUNDED: сетевая часть возвращается целиком.
+исполнитель отказался или которую не сдал к сроку сдачи, заканчивается REFUNDED: сетевая часть возвращается целиком.
+
+**4. POST /v1/tasks/{task_id}/refund — Возврат задачи, не сданной к сроку сдачи**
+
+Принимается только после `deliver_by` и только если исполнитель не записал сдачу (`claimRefund`, документ 04, раздел 4.3).
+
+Response (200 OK):
+
+```json
+{
+  "success": true,
+  "state": "REFUNDED",
+  "refund_usdc": "5.000000",
+  "refund_tx_hash": "0x7c2e...41f"
+}
+```
 
 ## 12.3 Обработка ошибок и Коды ответов (Error Handling Matrix)
 
@@ -167,5 +203,6 @@ Response (200 OK):
 | FAILED_PRECONDITION | 409 Conflict | ERR_TASK_DECLINED | Исполнитель отказался от задачи; эскроу возвращает деньги заказчику. |
 | UNAUTHENTICATED | 401 Unauthorized | ERR_INVALID_EIP712_SIGNATURE | Подпись v,r,s не совпадает с публичным адресом Заказчика. |
 | PAYMENT_REQUIRED | 402 Payment Required | ERR_PAYMASTER_INSUFFICIENT_USDC | На балансе Smart Account недостаточного средств USDC для газа или эскроу. |
-| DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_TIMELOCK_EXPIRED | Исполнитель не предоставил ответ до истечения max_execution_time. |
+| DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_DELIVERY_DEADLINE_PASSED | Исполнитель не записал сдачу до срока сдачи `deliver_by`; заказчик забирает сетевую часть (`POST /v1/tasks/{task_id}/refund`). |
+| INVALID_ARGUMENT | 400 Bad Request | ERR_DEADLINE_OUT_OF_RANGE | Срок сдачи не в будущем или дальше 90 дней, или окно спора длиннее 14 дней. |
 | UNAVAILABLE | 503 Service Unavailable | ERR_P2P_RELAY_UNREACHABLE | Не удалось пробить NAT и найти активный TURN/Relay мост. |

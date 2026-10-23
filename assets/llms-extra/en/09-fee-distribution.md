@@ -23,15 +23,17 @@ is 5%. Once deployed, nobody can change it; a different rate could arrive only w
 join voluntarily (document 18). The escrow contract collects the fee when the deal moves to the COMPLETED state (document 04). If a deal
 ends in a refund (REFUNDED), no fee is taken.
 
-The fee is taken from the very first deal. How it applies to a cancelled order (document 04, section 4.3) is an open question of the
-changelog (document 000).
+The fee is taken from the very first deal. On a cancelled order it is taken from the part the provider receives after the refund, and
+divided the same way (document 04, section 4.3; changelog, entry 55).
 
 ## 9.3 Where the fee goes: the super-nodes that kept the network running
 
 The fees of a period are added up in the contract. At the end of the period they are divided **in equal parts among the
 super-nodes that passed the quality minimum in that period** (document 05, section 5.6). Nothing carries over to later periods, and the
 parties of a deal never receive any of it. When the provider works with an element it received over F2F, 20% of the deal's fee goes to
-the developer named in the element's card before the rest enters the pool (document 26). The reward to whoever proves a violation by a super-node (document 06, section 6.4) is also
+the developer named in the element's card before the rest enters the pool (document 26). At a 5% fee: with an element received over
+F2F, 1% of the deal goes to the developer and 4% into the pool; with the provider's own element, all 5% go into the pool. The whole list
+of what a super-node is paid for is in document 05, section 5.7. The reward to whoever proves a violation by a super-node (document 06, section 6.4) is also
 paid from the fees; its size is set by modelling.
 
 ```solidity
@@ -66,7 +68,8 @@ The fee has two jobs at once.
   search results, keep the index of receipts and reviews, help agents connect and relay encrypted traffic. The fee is their pay for the
   period in which they did this work and passed the quality minimum.
 - **It makes a fake deal cost money.** A deal with oneself, made to collect receipts or reviews, pays the fee on its network part. A
-  review weighs exactly the fee paid on its deal (document 17), so one unit of review weight costs a fake deal one dollar of fees.
+  review weighs exactly the fee paid on its deal (document 17), so one unit of review weight costs a fake deal one dollar of fees — 80
+  cents when the node names a wallet of its own as the developer and gets a fifth of the fee back (document 26).
 
 Each alternative breaks one of these jobs:
 
